@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>AI顧問室 ご紹介資料</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --blue: #2D6CB5; --gold: #C9A227;
+    --ink: #1A2433; --gray: #5B6B7F; --line: #DDE4EC; --bg-soft: #F4F7FA; --white: #FFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: 254mm 142.9mm; margin: 0; }
+  html, body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); }
+  .slide { width: 960px; height: 540px; page-break-after: always; position: relative; overflow: hidden; background: var(--white); padding: 48px 56px; }
+  .slide.dark { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 60%, #19376D); color: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; }
+  .label { font-size: 11px; letter-spacing: 0.22em; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+  .s-title { font-size: 26px; color: var(--navy); margin-bottom: 6px; }
+  .s-lead { font-size: 12.5px; color: var(--gray); margin-bottom: 22px; }
+  .pagenum { position: absolute; bottom: 16px; right: 24px; font-size: 10px; color: var(--gray); }
+  .footer-brand { position: absolute; bottom: 16px; left: 56px; font-size: 10px; color: var(--gray); letter-spacing: 0.08em; }
+
+  /* cover */
+  .cover { display: flex; flex-direction: column; justify-content: center; }
+  .cover .badge { border: 1px solid rgba(255,255,255,0.4); border-radius: 999px; display: inline-block; width: fit-content; font-size: 12px; padding: 5px 18px; color: #DCE6F5; margin-bottom: 28px; }
+  .cover h1 { font-size: 52px; margin-bottom: 10px; }
+  .cover .tag { font-size: 20px; color: var(--gold); font-family: 'Noto Serif JP', serif; margin-bottom: 34px; }
+  .cover .meta { font-size: 12px; color: #9FB0C7; line-height: 2; }
+
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card { border: 1px solid var(--line); border-top: 3px solid var(--navy); border-radius: 6px; padding: 18px 18px; }
+  .card .who { font-size: 10px; color: var(--blue); font-weight: 700; margin-bottom: 6px; }
+  .card h3 { font-size: 15px; color: var(--navy); margin-bottom: 8px; line-height: 1.5; }
+  .card p { font-size: 11.5px; color: var(--gray); line-height: 1.8; }
+
+  /* level map */
+  .lvrow { display: flex; align-items: center; gap: 12px; border: 1px solid var(--line); border-radius: 5px; padding: 8px 14px; margin-bottom: 7px; }
+  .lvrow .num { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 12px; background: var(--navy); color: #fff; border-radius: 3px; padding: 3px 0; width: 46px; text-align: center; flex-shrink: 0; }
+  .lvrow.faded .num { background: #8A97A8; }
+  .lvrow.goal .num { background: var(--gold); color: var(--navy-deep); }
+  .lvrow b { font-size: 12.5px; color: var(--navy); }
+  .lvrow span.desc { font-size: 11px; color: var(--gray); }
+  .lvrow .tag { margin-left: auto; font-size: 9.5px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--navy); color: #fff; white-space: nowrap; }
+  .lvrow.goal .tag { background: var(--gold); color: var(--navy-deep); }
+  .lvrow.target { border: 1.5px solid var(--navy); }
+  .lvrow.goal { border: 1.5px solid var(--gold); }
+
+  /* value */
+  .vcard { display: flex; gap: 14px; border: 1px solid var(--line); border-radius: 6px; padding: 18px; }
+  .vcard .no { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--gold); min-width: 32px; }
+  .vcard h3 { font-size: 15px; color: var(--navy); margin-bottom: 6px; }
+  .vcard p { font-size: 11px; color: var(--gray); line-height: 1.7; }
+
+  /* use case */
+  .ba { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .ba .b { font-size: 10.5px; color: var(--gray); background: var(--bg-soft); border-radius: 4px; padding: 6px 10px; flex: 1; }
+  .ba .arrow { color: var(--gold); font-weight: 700; font-size: 14px; }
+  .ba .a { font-size: 10.5px; color: var(--navy); background: #EDF3FA; border-radius: 4px; padding: 6px 10px; flex: 1.15; font-weight: 700; }
+  .note { font-size: 9.5px; color: var(--gray); margin-top: 14px; }
+
+  /* reasons */
+  .r-item { border-top: 2px solid var(--gold); padding-top: 12px; }
+  .r-item h3 { font-size: 15px; margin-bottom: 8px; }
+  .r-item p { font-size: 11px; line-height: 1.8; }
+
+  /* pricing */
+  .plan { border: 1px solid var(--line); border-radius: 8px; padding: 20px 18px; text-align: left; }
+  .plan.feat { border: 2px solid var(--navy); position: relative; }
+  .plan .pbadge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--navy-deep); font-size: 9.5px; font-weight: 700; padding: 2px 12px; border-radius: 999px; white-space: nowrap; }
+  .plan .pname { font-family: 'Noto Serif JP', serif; font-size: 15px; color: var(--navy); }
+  .plan .ppos { font-size: 10px; color: var(--blue); font-weight: 700; margin-bottom: 8px; }
+  .plan .pprice { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 700; color: var(--navy); }
+  .plan .pprice small { font-size: 10px; color: var(--gray); font-weight: 400; }
+  .plan ul { list-style: none; margin-top: 10px; }
+  .plan li { font-size: 10.5px; padding: 4.5px 0 4.5px 16px; position: relative; border-bottom: 1px solid var(--bg-soft); }
+  .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .plan li.na { color: #B9C3CF; }
+  .plan li.na::before { content: "—"; color: #B9C3CF; }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .step { border: 1px solid var(--line); border-radius: 6px; padding: 14px; }
+  .step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .step h3 { font-size: 12.5px; color: var(--navy); margin-bottom: 4px; }
+  .step p { font-size: 10px; color: var(--gray); line-height: 1.6; }
+
+  .urlbox { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; padding: 18px 22px; margin-top: 8px; }
+  .urlbox .u-label { font-size: 11px; color: var(--gold); font-weight: 700; }
+  .urlbox .u-url { font-size: 15px; color: #fff; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<!-- 1. 表紙 -->
+<div class="slide dark cover">
+  <span class="badge">従業員10〜50名の中小企業のためのAI顧問サービス｜ご紹介資料</span>
+  <h1>AI顧問室</h1>
+  <p class="tag">AI人材を雇う前に、「AI顧問」という選択。</p>
+  <p class="meta">経営歴15年 × AI歴4年の顧問が、相談から実装・社内定着まで伴走します。<br>https://rakansens.github.io/ai-komon2/</p>
+</div>
+
+<!-- 2. 悩み -->
+<div class="slide">
+  <span class="label">PROBLEMS</span>
+  <h2 class="s-title">こんなお悩みはありませんか</h2>
+  <p class="s-lead">AIに関するご相談で、いちばん多い3つの状態です。</p>
+  <div class="grid3">
+    <div class="card">
+      <div class="who">CASE 01</div>
+      <h3>「AIをやらなきゃとは思うが、正直よく分からない」</h3>
+      <p>社内にITに詳しい人材がおらず、何から手を付ければいいのか判断できない。変な業者に騙されるのも怖い。</p>
+    </div>
+    <div class="card">
+      <div class="who">CASE 02</div>
+      <h3>「社長の自分だけがChatGPTを使っている」</h3>
+      <p>自分では日常的に使っていて手応えもある。しかし社員への広げ方が分からず、会社の成果につながっていない。</p>
+    </div>
+    <div class="card">
+      <div class="who">CASE 03</div>
+      <h3>「取引先や若手から、デジタル化を迫られている」</h3>
+      <p>業界全体がAI活用に動き出した。判断を任せられる相談相手が、社内にも周りにもいない。</p>
+    </div>
+  </div>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">2</div>
+</div>
+
+<!-- 3. レベルマップ -->
+<div class="slide">
+  <span class="label">ROADMAP</span>
+  <h2 class="s-title">会社のAI活用には「レベル」があります</h2>
+  <p class="s-lead">AI顧問室の仕事は、御社のレベルを1段ずつ確実に上げること。レベルを飛ばした導入は、社内がついてこず失敗します。</p>
+  <div class="lvrow faded"><div class="num">Lv.0</div><b>未導入</b><span class="desc">何も使っていない。焦りだけがある</span></div>
+  <div class="lvrow target"><div class="num">Lv.1</div><b>お試し</b><span class="desc">ChatGPTを触ってみた。でも業務は変わらない</span><span class="tag">多くのお客様はここ</span></div>
+  <div class="lvrow"><div class="num">Lv.2</div><b>日常化</b><span class="desc">全社員が毎日使う。ルールと研修が整う</span></div>
+  <div class="lvrow"><div class="num">Lv.3</div><b>業務組み込み</b><span class="desc">見積AI・営業メールAIなど御社専用AIが業務に入る</span></div>
+  <div class="lvrow"><div class="num">Lv.4</div><b>自動化</b><span class="desc">問い合わせ対応・追客・SNSが人の指示なしで回る</span></div>
+  <div class="lvrow goal"><div class="num">Lv.5</div><b>エージェント経営</b><span class="desc">調査から実行までAIが「働き手」としてこなす</span><span class="tag">めざすゴール</span></div>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">3</div>
+</div>
+
+<!-- 4. サービス内容 -->
+<div class="slide">
+  <span class="label">SERVICE</span>
+  <h2 class="s-title">AI顧問室が提供する4つの価値</h2>
+  <p class="s-lead">単なるアドバイスで終わらせず、経営相談から実装・社内定着まで一気通貫で支援します。</p>
+  <div class="grid2">
+    <div class="vcard"><div class="no">01</div><div><h3>経営×AIの相談・壁打ち</h3><p>チャットでいつでも相談可能。現場の疑問から経営の意思決定まで、経営者の目線で答えます。</p></div></div>
+    <div class="vcard"><div class="no">02</div><div><h3>AI導入ロードマップの策定と伴走</h3><p>業務を棚卸しし「どこにAIを入れると最も利益に効くか」を優先順位付きの計画に。実行まで定例で伴走します。</p></div></div>
+    <div class="vcard"><div class="no">03</div><div><h3>業務自動化・AIツール構築の実装代行</h3><p>問い合わせ対応、追客・集客、見積書作成——売上を作るものから順に、御社専用のAIを顧問が直接構築します。</p></div></div>
+    <div class="vcard"><div class="no">04</div><div><h3>社員向けAI研修・社内定着支援</h3><p>社員のレベルに合わせた実践研修で、現場が自走できる状態まで持っていきます。</p></div></div>
+  </div>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">4</div>
+</div>
+
+<!-- 5. 活用例 -->
+<div class="slide">
+  <span class="label">USE CASES</span>
+  <h2 class="s-title">たとえば、こんな変化を作ります</h2>
+  <p class="s-lead">「売上を作るAI活用」を優先して実装します。（以下は支援内容の想定例です）</p>
+  <div class="grid2">
+    <div class="card"><div class="who">営業・集客</div><h3>問い合わせ・反響への一次対応</h3>
+      <div class="ba"><div class="b">営業時間内に人が返信。漏れも発生</div><div class="arrow">→</div><div class="a">24時間・数分で一次返信。人は最終確認だけ</div></div>
+    </div>
+    <div class="card"><div class="who">営業・集客</div><h3>見込み客への追客</h3>
+      <div class="ba"><div class="b">担当者まかせで、3回で止まる</div><div class="arrow">→</div><div class="a">LINE/メールのシナリオが自動で回り続ける</div></div>
+    </div>
+    <div class="card"><div class="who">事務</div><h3>見積書・提案書づくり</h3>
+      <div class="ba"><div class="b">1件2時間かけて手作業で作成</div><div class="arrow">→</div><div class="a">AIが下書き、人は確認だけ（約15分）</div></div>
+    </div>
+    <div class="card"><div class="who">会議</div><h3>議事録と宿題の管理</h3>
+      <div class="ba"><div class="b">若手が録音を聞き直して半日がかり</div><div class="arrow">→</div><div class="a">録音から議事録・決定事項・宿題まで自動作成</div></div>
+    </div>
+  </div>
+  <p class="note">※ 無料相談では、御社の業務に当てはめた活用イメージをその場でお示しします。</p>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">5</div>
+</div>
+
+<!-- 6. 選ばれる理由 -->
+<div class="slide dark">
+  <span class="label">REASONS</span>
+  <h2 class="s-title" style="color:#fff;">AI顧問室が選ばれる理由</h2>
+  <p class="s-lead" style="color:#C7D3E4;">AIに詳しい人は増えました。しかし「経営者の言葉でAIを語れる人」は、ほとんどいません。</p>
+  <div class="grid3" style="margin-top:24px;">
+    <div class="r-item"><h3>経営歴15年の「経営目線」</h3><p style="color:#C7D3E4;">顧問自身が15年会社を経営。資金繰りや組織の悩みを知っているからこそ、「儲けにつながるAI活用」だけを提案します。</p></div>
+    <div class="r-item"><h3>AI歴4年の「実践力」</h3><p style="color:#C7D3E4;">あらゆるAIを実務で使い込んできた実践者。流行のツール紹介ではなく、本当に効く技術を選び、自ら実装できます。</p></div>
+    <div class="r-item"><h3>提案で終わらない「伴走型」</h3><p style="color:#C7D3E4;">資料を納品して終わりにしません。定例とチャットで実行を管理し、ツールは顧問が構築。成果が出るまで隣にいます。</p></div>
+  </div>
+  <div class="footer-brand" style="color:#9FB0C7;">AI顧問室</div><div class="pagenum" style="color:#9FB0C7;">6</div>
+</div>
+
+<!-- 7. 進め方 -->
+<div class="slide">
+  <span class="label">FLOW</span>
+  <h2 class="s-title">ご相談から、最初の90日まで</h2>
+  <p class="s-lead">まず無料相談（60分）から。相談だけでも「何から始めるべきか」を持ち帰っていただけます。売り込みは一切しません。</p>
+  <div class="steps">
+    <div class="step"><div class="no">1</div><h3>無料相談（60分）</h3><p>課題とAI活用の可能性をヒアリング。方向性をその場で整理</p></div>
+    <div class="step"><div class="no">2</div><h3>現状診断</h3><p>業務を簡易診断し、活用余地と優先順位をご報告</p></div>
+    <div class="step"><div class="no">3</div><h3>プラン提案</h3><p>御社に合ったプランと初月の動き方をご提案</p></div>
+    <div class="step"><div class="no">4</div><h3>顧問スタート</h3><p>チャット開設。その日から相談できる体制に</p></div>
+  </div>
+  <h3 style="font-size:15px; color:var(--navy); margin:22px 0 10px;">契約後、最初の90日でやること</h3>
+  <div class="steps" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="step"><div class="no">1ヶ月目</div><h3>業務の棚卸しと診断</h3><p>「どこが最も利益に効くか」を優先順位付きロードマップに</p></div>
+    <div class="step"><div class="no">2ヶ月目</div><h3>最初の成果をひとつ</h3><p>効果が出やすい業務を実際に自動化・効率化</p></div>
+    <div class="step"><div class="no">3ヶ月目</div><h3>定着と次の一手</h3><p>社内に定着させ、次の施策へ。以降このサイクルを毎月</p></div>
+  </div>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">7</div>
+</div>
+
+<!-- 8. 料金 -->
+<div class="slide">
+  <span class="label">PRICING</span>
+  <h2 class="s-title">料金プラン</h2>
+  <p class="s-lead">AI人材の採用（年600万円〜+採用コスト）と比べてください。月15万円から、明日から、経営が分かるAIの専門家を。</p>
+  <div class="grid3">
+    <div class="plan">
+      <div class="pname">ライト</div><div class="ppos">AI経営の相談役</div>
+      <div class="pprice">15<small>万円/月（税別）</small></div>
+      <ul>
+        <li>チャット相談（平日随時）</li>
+        <li>定例ミーティング 月1回</li>
+        <li>オンライン完結</li>
+        <li class="na">実装代行</li>
+        <li class="na">社員研修</li>
+      </ul>
+    </div>
+    <div class="plan feat">
+      <div class="pbadge">いちばん選ばれています</div>
+      <div class="pname">スタンダード</div><div class="ppos">AI導入の伴走者</div>
+      <div class="pprice">25<small>万円/月（税別）</small></div>
+      <ul>
+        <li>チャット相談（平日随時）</li>
+        <li>定例 月2回（訪問月1回可）</li>
+        <li>ロードマップ策定・伴走</li>
+        <li>自動化の実装 月1件</li>
+        <li>社員研修 四半期1回</li>
+      </ul>
+    </div>
+    <div class="plan">
+      <div class="pname">プレミアム</div><div class="ppos">社外AI役員</div>
+      <div class="pprice">50<small>万円/月（税別）</small></div>
+      <ul>
+        <li>チャット相談（優先対応）</li>
+        <li>定例 月2回（経営会議同席可）</li>
+        <li>訪問対応（回数制限なし）</li>
+        <li>自動化の実装 月3件目安</li>
+        <li>社員研修 毎月・対面可</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">最低契約期間3ヶ月・プラン変更可。IT導入補助金・人材開発支援助成金など、使える制度のご提案も行います。</p>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">8</div>
+</div>
+
+<!-- 9. 関連サービス -->
+<div class="slide">
+  <span class="label">MORE</span>
+  <h2 class="s-title">あわせて使えるサービス</h2>
+  <p class="s-lead">「まず小さく試したい」方向けの入口もご用意しています。</p>
+  <div class="grid2">
+    <div class="card" style="border-top-color: var(--gold);">
+      <div class="who">1分でできます</div>
+      <h3>AI活用レベル診断（無料）</h3>
+      <p>5つの質問に答えるだけで、御社の現在地（Lv.0〜5）と次にやるべきことが分かります。無料相談の前にどうぞ。</p>
+      <p style="margin-top:10px; font-weight:700; color:var(--navy); font-size:11.5px;">https://rakansens.github.io/ai-komon2/diagnosis.html</p>
+    </div>
+    <div class="card" style="border-top-color: var(--gold);">
+      <div class="who">月給3万円から</div>
+      <h3>AI社員採用センター</h3>
+      <p>見積書づくり・問い合わせ対応・議事録など、業務特化のAI社員を「月給制」で採用できます。面接不要・即日入社・退職しません。</p>
+      <p style="margin-top:10px; font-weight:700; color:var(--navy); font-size:11.5px;">https://rakansens.github.io/ai-komon2/ai-shain.html</p>
+    </div>
+  </div>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">9</div>
+</div>
+
+<!-- 10. CTA -->
+<div class="slide dark cover">
+  <span class="label">CONTACT</span>
+  <h2 style="font-size:34px; margin-bottom:14px;">まずは60分、話してみませんか。</h2>
+  <p style="font-size:13px; color:#C7D3E4; margin-bottom:28px;">無料相談だけでも「自社が何から始めるべきか」が明確になります。<br>オンライン対応・全国どこからでも。ご紹介の方はその旨お伝えください。</p>
+  <div class="urlbox">
+    <div class="u-label">公式サイト</div>
+    <div class="u-url">https://rakansens.github.io/ai-komon2/</div>
+    <div class="u-label">お問い合わせ</div>
+    <div class="u-url">【メールアドレス／電話番号】</div>
+  </div>
+  <p style="font-size:10px; color:#9FB0C7; margin-top:24px;">AI顧問室｜運営：【会社名】</p>
+</div>
+
+</body>
+</html>
