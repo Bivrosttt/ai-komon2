@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI社員チームの協働 体験デモ｜AI顧問室</title>
+<meta name="description" content="1件の問い合わせに、4人のAI社員がバトンリレーで対応。人間は要所の承認だけ——という様子をリプレイで体験できるデモです。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="AI社員チームの協働 体験デモ｜AI顧問室">
+<meta property="og:description" content="1件の問い合わせに、4人のAI社員がバトンリレーで対応。人間は要所の承認だけ——という様子をリプレイで体験できるデモです。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/demo-ai-team.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    --red: #B0432F;
+    --teal: #0E7A5F;
+    --purple: #6B4FA0;
+    --orange: #B5651D;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; gap: 16px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; white-space: nowrap; }
+  .header-right a.textlink:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s, transform .1s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+  .header-cta { padding: 10px 24px; font-size: 14px; white-space: nowrap; }
+
+  /* Title / hero */
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 80px 0 64px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    color: #DCE6F5;
+  }
+  .demo-hero h1 { font-size: 40px; margin-bottom: 20px; }
+  .demo-hero h1 em { font-style: normal; color: var(--gold); }
+  .demo-hero p.sub { font-size: 16px; color: #C7D3E4; max-width: 660px; }
+
+  /* Note banner */
+  .note-banner { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding-top: 18px; padding-bottom: 18px; }
+  .note-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--white);
+    border-radius: 4px; padding: 14px 20px; font-size: 13.5px; color: var(--gray);
+    max-width: 900px;
+  }
+  .note-box .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .note-box strong { color: var(--ink); }
+
+  /* Demo section */
+  .demo-section { background: var(--white); }
+  .demo-step-label {
+    font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 10px;
+  }
+  .demo-question {
+    font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy); margin-bottom: 16px;
+  }
+  .demo-sub { font-size: 14px; color: var(--gray); margin-bottom: 32px; }
+
+  /* Player controls */
+  .player-bar {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    background: var(--bg-soft); border: 1px solid var(--line); border-radius: 8px;
+    padding: 18px 22px; margin-bottom: 8px;
+  }
+  .player-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 11px 22px; border-radius: 4px; font-weight: 700; font-size: 14px;
+    border: none; cursor: pointer; font-family: 'Noto Sans JP', sans-serif;
+    transition: opacity .2s, transform .1s;
+  }
+  .player-btn:hover { opacity: 0.85; }
+  .player-btn:active { transform: scale(0.98); }
+  .player-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .player-btn.play { background: var(--navy); color: var(--white); }
+  .player-btn.skip { background: var(--white); color: var(--navy); border: 1.5px solid var(--line); }
+  .player-btn.replay { background: var(--white); color: var(--navy); border: 1.5px solid var(--line); }
+  .player-progress-wrap { flex: 1; min-width: 160px; }
+  .player-progress-track {
+    width: 100%; height: 6px; background: var(--line); border-radius: 999px; overflow: hidden;
+  }
+  .player-progress-fill {
+    height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), var(--navy));
+    border-radius: 999px; transition: width .25s ease;
+  }
+  .player-progress-label { font-size: 12px; color: var(--gray); margin-top: 6px; }
+
+  /* Timeline */
+  .timeline { margin-top: 40px; }
+  .tl-event {
+    display: grid; grid-template-columns: 52px 1fr; gap: 16px;
+    padding: 0 0 28px; opacity: 0; transform: translateY(10px);
+    animation: tl-in .4s ease forwards;
+  }
+  @keyframes tl-in { to { opacity: 1; transform: translateY(0); } }
+  .tl-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--white); flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(11,36,71,0.15);
+  }
+  .tl-body { border-left: 2px solid var(--line); padding-left: 20px; margin-left: -1px; position: relative; }
+  .tl-event:last-child .tl-body { border-left-color: transparent; }
+  .tl-time { font-size: 12px; color: var(--gray); font-weight: 700; letter-spacing: 0.03em; }
+  .tl-name { font-size: 14.5px; font-weight: 700; color: var(--navy); margin: 2px 0 8px; }
+  .tl-name .role-tag {
+    display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 10px;
+    border-radius: 999px; margin-left: 8px; vertical-align: middle;
+    background: var(--bg-soft); color: var(--gray); border: 1px solid var(--line);
+  }
+
+  /* system event */
+  .tl-event.type-system .tl-avatar { background: var(--gray); }
+  .tl-event.type-system .tl-msg {
+    font-size: 13.5px; color: var(--gray); background: var(--bg-soft);
+    border-radius: 6px; padding: 12px 16px; display: inline-block;
+  }
+
+  /* handoff line */
+  .tl-handoff {
+    font-size: 13px; color: var(--blue); font-weight: 700; margin-top: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .tl-handoff::before { content: "→"; font-size: 14px; }
+
+  /* AI message */
+  .tl-event.type-ai .tl-msg {
+    background: var(--white); border: 1.5px solid var(--line); border-radius: 8px;
+    padding: 18px 20px; font-size: 13.5px; color: var(--ink); line-height: 1.85;
+  }
+  .tl-action-tag { font-size: 12px; color: var(--white); font-weight: 700; padding: 3px 12px; border-radius: 999px; display: inline-block; margin-bottom: 10px; }
+
+  .mini-mail { border: 1px dashed var(--line); border-radius: 6px; padding: 12px 14px; margin-top: 10px; background: var(--bg-soft); }
+  .mini-mail .mm-subject { font-weight: 700; color: var(--navy); font-size: 13px; margin-bottom: 6px; }
+  .mini-mail .mm-body { white-space: pre-wrap; font-size: 13px; color: var(--ink); line-height: 1.8; }
+
+  .est-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+  .est-table th, .est-table td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+  .est-table th { color: var(--gray); font-weight: 700; font-size: 12px; }
+  .est-table td.num, .est-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .est-table tr.subtotal td { font-weight: 700; border-top: 2px solid var(--line); }
+  .est-table tr.total td { font-weight: 700; color: var(--navy); font-size: 14.5px; background: var(--bg-soft); }
+  .est-note { font-size: 12px; color: var(--gray); margin-top: 8px; }
+
+  .sns-card { border: 1px dashed var(--line); border-radius: 6px; padding: 12px 14px; margin-top: 10px; background: var(--bg-soft); }
+  .sns-card .sc-title { font-weight: 700; color: var(--navy); font-size: 13px; margin-bottom: 6px; }
+
+  /* human approval */
+  .tl-event.type-human .tl-avatar { background: var(--gold); color: var(--navy-deep); }
+  .tl-event.type-human .tl-msg {
+    background: #FBF6E6; border: 1.5px solid var(--gold); border-radius: 8px;
+    padding: 18px 20px; font-size: 13.5px; color: var(--ink); line-height: 1.85;
+  }
+  .approve-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--gold); color: var(--navy-deep); font-weight: 700; font-size: 12.5px;
+    padding: 5px 14px; border-radius: 999px; margin-top: 10px;
+  }
+
+  /* closing banner */
+  .tl-closing {
+    margin-top: 8px; text-align: center; background: var(--navy);
+    color: var(--white); border-radius: 8px; padding: 32px 24px;
+    opacity: 0; transform: translateY(10px);
+  }
+  .tl-closing.show { opacity: 1; transform: translateY(0); transition: opacity .5s ease, transform .5s ease; }
+  .tl-closing p.big { font-family: 'Noto Serif JP', serif; font-size: 20px; margin-bottom: 6px; }
+  .tl-closing p.big em { color: var(--gold); font-style: normal; }
+  .tl-closing p.small { font-size: 13px; color: #C7D3E4; }
+
+  /* salary mini table */
+  .salary-wrap {
+    margin-top: 56px; border: 1px solid var(--line); border-radius: 8px;
+    padding: 32px; background: var(--bg-soft);
+  }
+  .salary-wrap h3 { font-size: 18px; color: var(--navy); margin-bottom: 18px; }
+  .salary-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 8px; }
+  .salary-table td { padding: 10px 8px; border-bottom: 1px dashed var(--line); }
+  .salary-table td.role { display: flex; align-items: center; gap: 10px; }
+  .salary-table .mini-avatar { width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; color: var(--white); flex-shrink: 0; }
+  .salary-table td.amt { text-align: right; font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+  .salary-table tr.sum td { border-top: 2px solid var(--navy); border-bottom: none; font-weight: 700; padding-top: 14px; }
+  .salary-note { font-size: 12px; color: var(--gray); margin-top: 6px; }
+  .salary-cta {
+    margin-top: 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 18px 22px;
+  }
+  .salary-cta p { font-size: 14.5px; color: var(--ink); }
+  .salary-cta p strong { color: var(--navy); }
+
+  /* honesty box */
+  .honesty-box {
+    margin-top: 40px; border-left: 4px solid var(--teal); background: #F0F8F5;
+    border-radius: 4px; padding: 20px 24px; display: flex; gap: 14px; align-items: flex-start;
+  }
+  .honesty-box .hmark { font-size: 18px; color: var(--teal); flex-shrink: 0; }
+  .honesty-box p { font-size: 13.5px; color: var(--ink); }
+  .honesty-box strong { color: var(--teal); }
+
+  .reselect-row { text-align: center; margin-top: 8px; }
+
+  /* How it works */
+  .how { background: var(--bg-soft); }
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+  .how-note { text-align: center; margin-top: 40px; font-size: 14px; color: var(--gray); }
+  .how-note strong { color: var(--navy); }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .demo-hero h1 { font-size: 28px; }
+    .section-title { font-size: 26px; }
+    .demo-hero { padding: 56px 0 44px; }
+    .header-right a.textlink { display: none; }
+    .tl-event { grid-template-columns: 40px 1fr; }
+    .salary-cta { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-right">
+      <a href="demos.html" class="textlink">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">体験デモ｜AI社員チームの協働</span>
+    <h1>1件の問い合わせを、<br><em>4人のAI社員</em>がバトンリレーする。</h1>
+    <p class="sub">問い合わせ対応・見積・営業事務・SNS広報——。それぞれの持ち場を持つAI社員が、人間に代わって次々と業務をつなぎます。人間が手を動かすのは、金額提示や対外発信など「重要な判断」だけ。サンプル工務店に届いた1件の問い合わせを、実際の流れのままリプレイで体験できます。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container">
+    <div class="note-box">
+      <span class="mark">※</span>
+      <span><strong>このページはサンプルデータによる体験デモです。</strong>登場する工務店・お客様・金額はすべて架空のものです。実際の導入では、御社の業務フロー・承認ルールに合わせてAI社員チームの連携範囲を設計します。</span>
+    </div>
+  </div>
+</div>
+
+<section class="demo-section" id="demo">
+  <div class="container">
+    <span class="section-label">TRY IT</span>
+    <div class="demo-step-label">REPLAY</div>
+    <h2 class="demo-question">サンプル工務店に届いた、ある夜の問い合わせ</h2>
+    <p class="demo-sub">「浴室リフォームの金額感を知りたい」——19時20分に届いた1通のメールが、どうさばかれていくかを再生してご覧ください。</p>
+
+    <div class="player-bar">
+      <button type="button" class="player-btn play" id="btnPlay">▶ 再生する</button>
+      <button type="button" class="player-btn skip" id="btnSkip" disabled>⏩ すべて表示</button>
+      <button type="button" class="player-btn replay" id="btnReplay" disabled>↺ もう一度再生</button>
+      <div class="player-progress-wrap">
+        <div class="player-progress-track"><div class="player-progress-fill" id="progressFill"></div></div>
+        <div class="player-progress-label" id="progressLabel">0 / 10 イベント</div>
+      </div>
+    </div>
+
+    <div class="timeline" id="timeline"></div>
+
+    <div class="salary-wrap">
+      <h3>このチームの月給</h3>
+      <table class="salary-table">
+        <tbody id="salaryBody"></tbody>
+        <tbody>
+          <tr class="sum">
+            <td class="role">合計</td>
+            <td class="amt">150,000円／月</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="salary-note">※見積AI社員は、AI社員採用センターの「事務AI社員」（見積書・請求書作成が主業務／月給30,000円）に該当します。金額は税別・体（AI社員1人分）あたりの月給です。</p>
+      <div class="salary-cta">
+        <p>個別に採用すると合計<strong>月15万円</strong>。<br><strong>AI部署セット（月15万円）</strong>なら、まさにこのチームが丸ごと雇えます。</p>
+        <a href="ai-shain.html" class="btn btn-navy" style="padding:12px 26px; font-size:14px;">AI社員採用センターを見る</a>
+      </div>
+    </div>
+
+    <div class="honesty-box">
+      <span class="hmark">◆</span>
+      <p><strong>誠実コーナー：</strong>金額提示や対外発信など、重要な判断には必ず人の承認ポイントを設計します。AI社員がすべてを自動で進めるわけではありません。「どこまで任せて、どこで人が確認するか」を最初にお客様と一緒に決めます。</p>
+    </div>
+
+    <div class="reselect-row">
+      <a id="topLink" href="#demo" style="font-size:13.5px; color:var(--gray); text-decoration:underline;">▲ デモの先頭に戻る</a>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">HOW IT WORKS</span>
+    <h2 class="section-title">この連携を御社仕様にするには</h2>
+    <p class="section-lead">今ご覧いただいたのはサンプルですが、実際の導入では御社の業務フローとルールをもとに、AI社員同士のバトンタッチと、人間の承認ポイントを設計します。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>各AI社員に業務ルールを学習させる</h3>
+        <p>問い合わせ対応・見積・営業事務・SNS広報など、担当ごとに御社の書式・単価・トーンを学習させます。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>バトンタッチのルールを設計する</h3>
+        <p>「どの情報が揃ったら次のAI社員に引き継ぐか」を業務フローとして設計し、迷わず連携できる状態にします。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>重要な判断だけ人が承認する</h3>
+        <p>金額提示・対外発信など、会社の信用に関わる判断はAI社員が下書きを作り、最終承認は人が行う運用からスタートします。</p>
+      </div>
+    </div>
+    <p class="how-note">全自動にはしません。<strong>「人の承認」を要所に残しながら、任せられる範囲を少しずつ広げる</strong>のがAI顧問室のやり方です。</p>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の業務でも、AI社員チームは組めるか。</h2>
+    <p>「うちの場合、どこまで任せられそうか」を知りたい段階で構いません。<br>まずは無料相談で、御社の業務フローをお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">1分でレベル診断を受ける</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var ROLES = {
+    system: { name: "システム", icon: "⚙️", color: "#5B6B7F" },
+    inquiry: { name: "問い合わせ対応AI社員", icon: "📨", color: "#2D6CB5" },
+    quote: { name: "見積AI社員", icon: "🧮", color: "#0E7A5F" },
+    sales: { name: "営業事務AI社員", icon: "📋", color: "#6B4FA0" },
+    sns: { name: "SNS広報AI社員", icon: "📱", color: "#B5651D" },
+    ceo: { name: "社長", icon: "👤", color: "#C9A227" }
+  };
+
+  var EVENTS = [
+    {
+      type: "system", role: "system", time: "19:20",
+      title: "Webフォームから問い合わせが着信",
+      html:
+        '<div class="tl-msg">' +
+          '<div class="mini-mail">' +
+            '<div class="mm-subject">お名前：M様（個人のお客様）</div>' +
+            '<div class="mm-body">「浴室のリフォームを検討しています。だいたいの金額感を知りたいです。」</div>' +
+          '</div>' +
+        '</div>'
+    },
+    {
+      type: "ai", role: "inquiry", time: "19:20",
+      title: "即時に一次返信メールを作成・送信",
+      html:
+        '<div class="tl-msg">' +
+          '<span class="tl-action-tag" style="background:#2D6CB5;">一次返信</span>' +
+          '<div class="mini-mail">' +
+            '<div class="mm-subject">件名：浴室リフォームのお問い合わせ、ありがとうございます</div>' +
+            '<div class="mm-body">M様\n\nこの度はお問い合わせいただき、誠にありがとうございます。サンプル工務店でございます。\n\n概算の金額感につきまして、下記2点をお伺いできますでしょうか。\n\n1. 浴室の広さ（号数）はお分かりになりますか？　目安として「1坪タイプ」「1.25坪タイプ」など\n2. 建物の築年数はどのくらいでしょうか？\n\nより正確な金額をお出しするため、無料の現地点検（30分程度）も承っております。ご希望であればあわせてご連絡ください。\n\nサンプル工務店\nお問い合わせ窓口</div>' +
+          '</div>' +
+        '</div>'
+    },
+    {
+      type: "system", role: "system", time: "19:47",
+      title: "お客様より返信あり",
+      html:
+        '<div class="tl-msg">' +
+          '<div class="mini-mail">' +
+            '<div class="mm-body">「浴室は1坪タイプ（1616サイズ）です。建物は築22年になります。」</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="tl-handoff">見積AI社員に引き継ぎました</div>'
+    },
+    {
+      type: "ai", role: "quote", time: "19:48",
+      title: "概算見積の下書きを作成",
+      html:
+        '<div class="tl-msg">' +
+          '<span class="tl-action-tag" style="background:#0E7A5F;">見積下書き</span>' +
+          'ユニットバス交換工事一式（1坪タイプ／築22年）の内訳です。' +
+          '<table class="est-table">' +
+            '<thead><tr><th>工事項目</th><th class="num">金額（税別）</th></tr></thead>' +
+            '<tbody>' +
+              '<tr><td>解体・撤去工事</td><td class="num">80,000円</td></tr>' +
+              '<tr><td>給排水管・電気設備工事</td><td class="num">120,000円</td></tr>' +
+              '<tr><td>ユニットバス本体・設置工事</td><td class="num">850,000円</td></tr>' +
+              '<tr><td>内装補修工事（壁・床）</td><td class="num">100,000円</td></tr>' +
+              '<tr><td>諸経費（廃材処分・現場管理費）</td><td class="num">50,000円</td></tr>' +
+              '<tr class="subtotal"><td>小計（税別）</td><td class="num">1,200,000円</td></tr>' +
+              '<tr><td>消費税（10%）</td><td class="num">120,000円</td></tr>' +
+              '<tr class="total"><td>合計（税込）</td><td class="num">1,320,000円</td></tr>' +
+            '</tbody>' +
+          '</table>' +
+          '<div class="est-note">※実際の金額は現地確認の結果により変動する場合があります。</div>' +
+        '</div>'
+    },
+    {
+      type: "human", role: "ceo", time: "19:50",
+      title: "承認（1／2回目）",
+      html:
+        '<div class="tl-msg">' +
+          'スマホに「概算見積　承認待ち」の通知が届きました。内容を確認し、その場でワンタップ承認。' +
+          '<div class="approve-badge">✓ 承認しました（1/2）</div>' +
+        '</div>'
+    },
+    {
+      type: "system", role: "system", time: "19:51",
+      title: "概算見積をお客様へ送信",
+      html:
+        '<div class="tl-msg">合計1,320,000円（税込）の概算見積をメールで送信しました。</div>' +
+        '<div class="tl-handoff">営業事務AI社員に引き継ぎました</div>'
+    },
+    {
+      type: "ai", role: "sales", time: "19:52",
+      title: "顧客台帳へ記録・追客予定を設定",
+      html:
+        '<div class="tl-msg">' +
+          '<span class="tl-action-tag" style="background:#6B4FA0;">顧客台帳</span>' +
+          '顧客台帳に「M様｜浴室リフォーム検討｜概算1,320,000円（税込）」を登録しました。3日後（7/13）に「その後いかがでしょうか」の様子伺いメールを自動で予約しました。' +
+        '</div>'
+    },
+    {
+      type: "ai", role: "sns", time: "19:55",
+      title: "SNS投稿を提案",
+      html:
+        '<div class="tl-msg">' +
+          '<span class="tl-action-tag" style="background:#B5651D;">SNS提案</span>' +
+          '直近1週間で浴室リフォームの問い合わせが増加傾向です。過去の施工事例（浴室ビフォーアフター）の投稿を提案します。' +
+          '<div class="sns-card">' +
+            '<div class="sc-title">投稿案：「築20年超のお風呂、こう変わりました」</div>' +
+            '施工事例写真＋工期・費用感を添えた投稿。浴室リフォームの検討層に向けて、過去の施工事例を紹介します。' +
+          '</div>' +
+        '</div>'
+    },
+    {
+      type: "human", role: "ceo", time: "19:57",
+      title: "承認（2／2回目）",
+      html:
+        '<div class="tl-msg">' +
+          'SNS投稿案の通知を確認し、承認。' +
+          '<div class="approve-badge">✓ 承認しました（2/2）</div>' +
+        '</div>'
+    },
+    {
+      type: "system", role: "system", time: "19:58",
+      title: "投稿を予約しました",
+      html:
+        '<div class="tl-msg">施工事例の投稿を7月11日 10:00公開予定でセットしました。</div>'
+    }
+  ];
+
+  var SALARY = [
+    { role: "inquiry", label: "問い合わせ対応AI社員", amount: "50,000円" },
+    { role: "quote", label: "見積AI社員", amount: "30,000円" },
+    { role: "sales", label: "営業事務AI社員", amount: "40,000円" },
+    { role: "sns", label: "SNS広報AI社員", amount: "30,000円" }
+  ];
+
+  var timeline = document.getElementById("timeline");
+  var btnPlay = document.getElementById("btnPlay");
+  var btnSkip = document.getElementById("btnSkip");
+  var btnReplay = document.getElementById("btnReplay");
+  var progressFill = document.getElementById("progressFill");
+  var progressLabel = document.getElementById("progressLabel");
+  var salaryBody = document.getElementById("salaryBody");
+
+  var playing = false;
+  var nextIndex = 0;
+  var playTimer = null;
+
+  function renderSalaryTable() {
+    var html = "";
+    for (var i = 0; i < SALARY.length; i++) {
+      var r = ROLES[SALARY[i].role];
+      html +=
+        '<tr>' +
+          '<td class="role"><span class="mini-avatar" style="background:' + r.color + ';">' + r.icon + '</span>' + SALARY[i].label + '</td>' +
+          '<td class="amt">' + SALARY[i].amount + '</td>' +
+        '</tr>';
+    }
+    salaryBody.innerHTML = html;
+  }
+  renderSalaryTable();
+
+  function escapeHtml(str) {
+    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function buildEventNode(ev) {
+    var role = ROLES[ev.role];
+    var wrap = document.createElement("div");
+    wrap.className = "tl-event type-" + ev.type;
+    var roleTag = ev.type === "ai" ? '<span class="role-tag">AI社員</span>' : (ev.type === "human" ? '<span class="role-tag" style="background:#FBF6E6;color:#96790F;border-color:#C9A227;">人の承認</span>' : "");
+    wrap.innerHTML =
+      '<div class="tl-avatar" style="background:' + role.color + ';">' + role.icon + '</div>' +
+      '<div class="tl-body">' +
+        '<div class="tl-time">' + ev.time + '</div>' +
+        '<div class="tl-name">' + role.name + roleTag + '</div>' +
+        '<div class="tl-desc" style="font-size:13px;color:var(--gray);margin-bottom:8px;">' + escapeHtml(ev.title) + '</div>' +
+        ev.html +
+      '</div>';
+    return wrap;
+  }
+
+  function updateProgress() {
+    progressFill.style.width = Math.round((nextIndex / EVENTS.length) * 100) + "%";
+    progressLabel.textContent = nextIndex + " / " + EVENTS.length + " イベント";
+  }
+
+  function appendClosingBanner() {
+    var closing = document.createElement("div");
+    closing.className = "tl-closing";
+    closing.innerHTML =
+      '<p class="big">1件の問い合わせに<em>4人のAI社員</em>が連携。</p>' +
+      '<p class="small">人間がやったのは、承認2タップでした。</p>';
+    timeline.appendChild(closing);
+    setTimeout(function () { closing.classList.add("show"); }, 60);
+  }
+
+  function addNextEvent() {
+    if (nextIndex >= EVENTS.length) {
+      finishPlayback();
+      return;
+    }
+    var ev = EVENTS[nextIndex];
+    var node = buildEventNode(ev);
+    timeline.appendChild(node);
+    node.scrollIntoView({ behavior: "smooth", block: "end" });
+    nextIndex++;
+    updateProgress();
+
+    if (nextIndex >= EVENTS.length) {
+      finishPlayback();
+      return;
+    }
+    var delay = 1200 + Math.random() * 600;
+    playTimer = setTimeout(addNextEvent, delay);
+  }
+
+  function finishPlayback() {
+    playing = false;
+    if (playTimer) { clearTimeout(playTimer); playTimer = null; }
+    appendClosingBanner();
+    btnPlay.disabled = true;
+    btnPlay.textContent = "▶ 再生する";
+    btnSkip.disabled = true;
+    btnReplay.disabled = false;
+  }
+
+  function startPlayback() {
+    if (playing) return;
+    playing = true;
+    btnPlay.disabled = true;
+    btnSkip.disabled = false;
+    btnReplay.disabled = true;
+    addNextEvent();
+  }
+
+  function skipToEnd() {
+    if (playTimer) { clearTimeout(playTimer); playTimer = null; }
+    while (nextIndex < EVENTS.length) {
+      var ev = EVENTS[nextIndex];
+      var node = buildEventNode(ev);
+      node.style.animation = "none";
+      node.style.opacity = "1";
+      node.style.transform = "none";
+      timeline.appendChild(node);
+      nextIndex++;
+    }
+    updateProgress();
+    finishPlayback();
+    timeline.scrollIntoView({ behavior: "smooth", block: "end" });
+  }
+
+  function resetPlayback() {
+    if (playTimer) { clearTimeout(playTimer); playTimer = null; }
+    playing = false;
+    nextIndex = 0;
+    timeline.innerHTML = "";
+    updateProgress();
+    btnPlay.disabled = false;
+    btnPlay.textContent = "▶ 再生する";
+    btnSkip.disabled = true;
+    btnReplay.disabled = true;
+    document.getElementById("demo").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  updateProgress();
+
+  btnPlay.addEventListener("click", startPlayback);
+  btnSkip.addEventListener("click", skipToEnd);
+  btnReplay.addEventListener("click", resetPlayback);
+})();
+</script>
+
+</body>
+</html>
