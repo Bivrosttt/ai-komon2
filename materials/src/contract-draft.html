@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>AI顧問サービス業務委託契約書(雛形)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0B2447; --gold:#C9A227; --blue:#2D6CB5; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg-soft:#F4F7FA; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A4; margin: 0; }
+  body { font-family:'Noto Sans JP',sans-serif; color:var(--ink); width:794px; }
+  .page { width:794px; height:1122px; padding:50px 60px 44px; position:relative; page-break-after:always; }
+  .page:last-child { page-break-after:auto; }
+  h1,h2,h3 { font-family:'Noto Serif JP',serif; }
+
+  /* header / footer */
+  .head { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--line); padding-bottom:8px; margin-bottom:16px; }
+  .head .brand { font-family:'Noto Serif JP',serif; font-size:11px; color:var(--navy); font-weight:700; }
+  .head .doc { font-size:9.5px; color:var(--gray); }
+  .foot { position:absolute; bottom:20px; left:60px; right:60px; border-top:1px solid var(--line); padding-top:8px; font-size:9px; color:var(--gray); display:flex; justify-content:space-between; }
+
+  /* notice box */
+  .notice { border:1.5px solid var(--gold); background:#FFFBF0; border-radius:4px; padding:12px 16px; margin-bottom:18px; }
+  .notice .tag { display:inline-block; background:var(--gold); color:#071A35; font-size:9.5px; font-weight:700; border-radius:3px; padding:2px 8px; margin-bottom:6px; }
+  .notice p { font-size:10.5px; color:var(--navy); line-height:1.7; font-weight:500; }
+
+  /* title */
+  .doc-title { text-align:center; font-size:19px; color:var(--navy); font-weight:700; letter-spacing:1px; margin:6px 0 16px; }
+  .doc-title small { display:block; font-family:'Noto Sans JP',sans-serif; font-size:9px; color:var(--gray); font-weight:400; margin-top:4px; letter-spacing:0; }
+
+  .preamble { font-size:10.3px; line-height:1.85; margin-bottom:14px; color:var(--ink); }
+  .preamble .party { font-weight:700; color:var(--navy); }
+
+  /* articles */
+  article { margin-bottom:11px; }
+  article h2 { font-size:11.3px; color:var(--navy); font-weight:700; margin-bottom:4px; border-left:3px solid var(--gold); padding-left:7px; }
+  article p, article .item { font-size:9.9px; line-height:1.72; color:var(--ink); margin-bottom:2px; text-align:justify; }
+  article ol { list-style:none; counter-reset:num; }
+  article ol li { font-size:9.9px; line-height:1.72; text-align:justify; padding-left:1.5em; position:relative; margin-bottom:2px; }
+  article ol li:before { counter-increment:num; content: counter(num) "."; position:absolute; left:0; color:var(--navy); font-weight:700; }
+  .blank { border-bottom:1px solid var(--ink); padding:0 2px; }
+
+  /* signature */
+  .sign-lead { font-size:10.3px; line-height:1.8; margin:16px 0 20px; }
+  .sign-date { font-size:10.3px; text-align:center; margin-bottom:22px; }
+  .sign-wrap { display:flex; gap:28px; }
+  .sign-box { flex:1; border:1px solid var(--line); border-radius:4px; padding:16px 18px; }
+  .sign-box .role { font-family:'Noto Serif JP',serif; font-size:12px; color:var(--navy); font-weight:700; border-bottom:2px solid var(--gold); padding-bottom:6px; margin-bottom:14px; }
+  .sign-box .line { font-size:10px; color:var(--gray); margin-bottom:14px; }
+  .sign-box .line .lbl { display:inline-block; width:56px; color:var(--navy); font-weight:700; }
+  .sign-box .line .fill { display:inline-block; border-bottom:1px solid var(--line); min-width:200px; height:16px; }
+  .sign-box .seal { text-align:right; font-size:10px; color:var(--gray); margin-top:6px; }
+
+  /* annex table */
+  .annex-title { font-size:15px; color:var(--navy); font-weight:700; margin-bottom:4px; }
+  .annex-sub { font-size:9.5px; color:var(--gray); margin-bottom:14px; }
+  table { width:100%; border-collapse:collapse; font-size:9.8px; }
+  th,td { border:1px solid var(--line); padding:8px 8px; text-align:center; vertical-align:middle; }
+  td:first-child { text-align:left; background:var(--bg-soft); font-weight:700; color:var(--navy); width:150px; }
+  thead th { font-family:'Noto Serif JP',serif; font-size:11px; color:var(--navy); background:#fff; }
+  thead th.feat { background:var(--navy); color:#fff; }
+  td.ok { color:var(--navy); font-weight:700; }
+  td.na { color:#B9C3CF; }
+  .annex-notes { margin-top:14px; font-size:9.3px; color:var(--gray); line-height:1.85; }
+  .annex-foot-notice { margin-top:20px; border:1.5px solid var(--gold); background:#FFFBF0; border-radius:4px; padding:12px 16px; }
+  .annex-foot-notice p { font-size:9.8px; color:var(--navy); line-height:1.7; font-weight:500; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page">
+  <div class="head">
+    <span class="brand">AI顧問室</span>
+    <span class="doc">AI顧問サービス業務委託契約書(雛形)｜1/4</span>
+  </div>
+
+  <div class="notice">
+    <span class="tag">DRAFT</span>
+    <p>本書は「AI顧問サービス業務委託契約書」の雛形（ドラフト）です。法的助言を目的とするものではなく、内容の網羅性・正確性を保証するものではありません。実際にご使用・締結される前に、必ず弁護士等の専門家による確認・レビューを受けてください。</p>
+  </div>
+
+  <div class="doc-title">AI顧問サービス業務委託契約書
+    <small>DRAFT TEMPLATE — 締結前に弁護士確認必須</small>
+  </div>
+
+  <p class="preamble">
+    <span class="party">【　　　　　　　　　　　　】</span>(以下「甲」という)と<span class="party">【　　　　　　　　　　　　】</span>(以下「乙」という)とは、乙が甲に対して提供するAI顧問サービスに関する業務委託契約(以下「本契約」という)を、以下のとおり締結する。
+  </p>
+
+  <article>
+    <h2>第1条(目的)</h2>
+    <p>本契約は、乙が甲に対し、AI(人工知能)の活用に関する助言、AI導入の伴走支援その他別紙「プラン別提供内容表」(以下「別紙」という)に定める業務(以下「本業務」という)を提供し、甲がその対価を支払うことに関し、甲乙間の権利義務関係を定めることを目的とする。</p>
+  </article>
+
+  <article>
+    <h2>第2条(業務内容)</h2>
+    <ol>
+      <li>乙は、甲が別紙に定めるプランのうち選択したプラン(以下「選択プラン」という)の範囲内において、本業務を甲に提供する。</li>
+      <li>本契約は民法上の準委任契約であり、乙は本業務の遂行にあたり善良な管理者の注意をもってこれに当たるものとし、特定の成果物の完成又は特定の経営上の成果を保証するものではない。</li>
+      <li>本業務の具体的な提供内容、回数及び範囲は、選択プランに応じ別紙の定めるところによる。</li>
+    </ol>
+  </article>
+
+  <article>
+    <h2>第3条(契約期間)</h2>
+    <ol>
+      <li>本契約の有効期間は、<span class="blank">　　　　年　　月　　日</span>(以下「開始日」という)から起算して3ヶ月間とする(以下「最低契約期間」という)。</li>
+      <li>最低契約期間の満了する日の1ヶ月前までに、甲又は乙いずれからも書面(電子メールを含む。以下同じ)による更新拒絶の申出がない場合、本契約は同一条件にて1ヶ月単位で自動的に更新されるものとし、以後も同様とする。</li>
+    </ol>
+  </article>
+
+  <article>
+    <h2>第4条(報酬及び支払方法)</h2>
+    <ol>
+      <li>甲は乙に対し、選択プランに応じた月額報酬として月額金<span class="blank">　　　　　　　</span>円(税別)を支払う。</li>
+      <li>甲は、当月分の報酬を前月末日までに、乙の指定する銀行口座に振り込む方法により支払うものとする。振込手数料は甲の負担とする。</li>
+      <li>契約期間の途中で開始又は終了する月の報酬は、日割り計算により算定する。</li>
+      <li>甲が支払を遅滞した場合、乙は年14.6%の割合による遅延損害金を甲に請求することができる。</li>
+    </ol>
+  </article>
+
+  <article>
+    <h2>第5条(業務の遂行方法)</h2>
+    <ol>
+      <li>本業務は、原則としてオンライン(チャットツール及びオンライン会議システム等)を通じて遂行する。訪問対応の要否・回数は選択プランの定めるところによる。</li>
+      <li>甲は、本業務の円滑な遂行のため、乙に対し必要な情報・資料を適時に提供するとともに、乙との連絡窓口となる担当者を選任するものとする。</li>
+      <li>甲の情報提供の遅延又は不備等、甲の責めに帰すべき事由により本業務の遂行に支障が生じた場合、乙はその責を負わない。</li>
+    </ol>
+  </article>
+
+  <div class="foot">
+    <span>本書は締結前レビュー用の雛形です。法的助言ではありません。</span>
+    <span>AI顧問室</span>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="page">
+  <div class="head">
+    <span class="brand">AI顧問室</span>
+    <span class="doc">AI顧問サービス業務委託契約書(雛形)｜2/4</span>
+  </div>
+
+  <article>
+    <h2>第6条(秘密保持)</h2>
+    <ol>
+      <li>甲及び乙は、本契約の遂行に関連して知り得た相手方の技術上、営業上その他一切の非公知の情報(以下「秘密情報」という)を、相手方の事前の書面による承諾なく第三者に開示又は漏洩してはならず、本契約の履行の目的以外に使用してはならない。</li>
+      <li>前項の規定は、(1)開示を受けた時点で既に公知であった情報、(2)開示後、自己の責めによらず公知となった情報、(3)開示を受ける前から既に自ら保有していた情報、(4)正当な権限を有する第三者から秘密保持義務を負うことなく適法に取得した情報、(5)法令又は裁判所若しくは監督官庁の命令に基づき開示すべき情報については適用しない。</li>
+      <li>本条の義務は、本契約終了後も3年間存続する。</li>
+    </ol>
+  </article>
+
+  <article>
+    <h2>第7条(個人情報・データの取扱い)</h2>
+    <ol>
+      <li>乙は、本業務の遂行にあたり甲から提供を受けた個人情報及び業務データ(以下「預託データ」という)を、本業務の目的の範囲内でのみ利用し、目的外利用を行わない。</li>
+      <li>乙が本業務の遂行のためAIサービス(生成AIを含む外部AIツール・サービスをいう。以下同じ)へ預託データを入力する場合、甲乙間で事前に合意した範囲内でのみこれを行うものとし、機密情報又は個人情報を含むデータの入力については、当該AIサービスの利用規約及び学習利用の有無等を踏まえ、甲の事前の承諾を得るものとする。</li>
+      <li>乙は、預託データについて、善良な管理者の注意をもって管理し、漏洩、滅失又は毀損の防止その他の安全管理のために必要かつ適切な措置を講じる。</li>
+      <li>本契約終了後、乙は甲の指示に従い預託データを返還又は消去する。ただし、法令上の保存義務がある場合はこの限りでない。</li>
+    </ol>
+  </article>
+
+  <article>
+    <h2>第8条(成果物の権利帰属)</h2>
+    <ol>
+      <li>乙が本業務の遂行の過程で甲のために個別に構築したツール、プロンプト、マニュアルその他の成果物(以下「個別成果物」という)に係る利用権は、当該個別成果物に対応する報酬が完済されたことをもって甲に帰属(又は移転)する。</li>
+      <li>前項にかかわらず、乙が本業務以前から保有していたノウハウ、技術、プログラム、テンプレートその他の汎用的な知的財産(以下「乙既存資産」という)及び本業務を通じて得られた乙の汎用的な知見・ノウハウは、個別成果物に組み込まれている場合であっても乙に帰属するものとし、乙は甲に対し、個別成果物の利用に必要な範囲でその利用を許諾する。</li>
+      <li>甲は、報酬完済前において、個別成果物を第三者に利用させ、又は開示してはならない。</li>
+    </ol>
+  </article>
+
+  <article>
+    <h2>第9条(免責)</h2>
+    <ol>
+      <li>乙が本業務において提供するAIサービスの出力その他の情報は、その正確性、完全性、有用性及び特定目的への適合性を保証するものではなく、甲は自己の責任と判断においてこれを利用するものとする。</li>
+      <li>本業務における助言・提案は意思決定の参考情報の提供にとどまるものであり、これに基づく最終的な経営判断及びその実行は、甲の責任において行うものとする。</li>
+      <li>乙の債務不履行又は不法行為(乙の故意又は重過失による場合を除く)に基づき甲に生じた損害について乙が負う賠償責任は、本契約に基づき現に発生した損害の直近3ヶ月分の報酬合計額を上限とする。</li>
+      <li>乙は、甲の逸失利益、間接損害及び特別損害については、予見の有無を問わず責任を負わない。</li>
+    </ol>
+  </article>
+
+  <div class="foot">
+    <span>本書は締結前レビュー用の雛形です。法的助言ではありません。</span>
+    <span>AI顧問室</span>
+  </div>
+</div>
+
+<!-- ============ PAGE 3 ============ -->
+<div class="page">
+  <div class="head">
+    <span class="brand">AI顧問室</span>
+    <span class="doc">AI顧問サービス業務委託契約書(雛形)｜3/4</span>
+  </div>
+
+  <article>
+    <h2>第10条(再委託)</h2>
+    <p>乙は、本業務の全部又は一部を、甲の事前の書面による承諾を得た上で、第三者に再委託することができる。この場合、乙は再委託先の行為について、自ら行ったものと同様の責任を負う。</p>
+  </article>
+
+  <article>
+    <h2>第11条(解約)</h2>
+    <ol>
+      <li>甲及び乙は、最低契約期間の経過後、相手方に対し1ヶ月前までに書面で通知することにより、本契約を将来に向かって解約することができる。</li>
+      <li>甲又は乙の一方に本契約上の債務不履行があり、相手方が相当の期間を定めてその履行を催告したにもかかわらず当該期間内に履行がない場合、相手方は本契約を解除することができる。</li>
+      <li>甲又は乙が次の各号のいずれかに該当した場合、相手方は何らの催告を要せず本契約を解除することができる。(1)支払停止若しくは支払不能又は破産、民事再生、会社更生若しくはこれらに準ずる手続の申立てがあったとき (2)差押え、仮差押え、仮処分、強制執行又は競売の申立てを受けたとき (3)その他前各号に準ずる信用不安の事由が生じたとき</li>
+      <li>契約終了時点で発生済みの未払報酬債務は、契約終了後も消滅しない。</li>
+    </ol>
+  </article>
+
+  <article>
+    <h2>第12条(反社会的勢力の排除)</h2>
+    <ol>
+      <li>甲及び乙は、自己及び自己の役員が、暴力団、暴力団員、暴力団関係企業、総会屋その他これらに準ずる反社会的勢力(以下「反社会的勢力」という)に該当しないこと、並びに反社会的勢力と資金提供その他を通じて関与していないことを表明し、保証する。</li>
+      <li>甲又は乙は、相手方が反社会的勢力に該当し、又は前項の表明保証に反することが判明した場合、何らの催告を要せず本契約を解除することができる。この場合、解除により相手方に生じた損害について、解除した当事者は何らの賠償責任を負わない。</li>
+    </ol>
+  </article>
+
+  <article>
+    <h2>第13条(契約の変更)</h2>
+    <p>本契約の内容を変更する場合は、甲乙協議の上、書面によりこれを行う。</p>
+  </article>
+
+  <article>
+    <h2>第14条(協議事項)</h2>
+    <p>本契約に定めのない事項又は本契約の解釈に疑義が生じた事項については、甲乙誠意をもって協議の上、これを解決する。</p>
+  </article>
+
+  <article>
+    <h2>第15条(合意管轄)</h2>
+    <p>本契約に関して甲乙間に生じた紛争については、<span class="blank">　　　　</span>地方裁判所を第一審の専属的合意管轄裁判所とする。</p>
+  </article>
+
+  <p class="sign-lead">以上、本契約の成立を証するため、本書2通を作成し、甲乙記名押印の上、各自1通を保有する。</p>
+  <p class="sign-date">【　　　　年　　月　　日】</p>
+
+  <div class="sign-wrap">
+    <div class="sign-box">
+      <div class="role">甲(委託者)</div>
+      <div class="line"><span class="lbl">住所</span><span class="fill"></span></div>
+      <div class="line"><span class="lbl">商号</span><span class="fill"></span></div>
+      <div class="line"><span class="lbl">代表者</span><span class="fill"></span></div>
+      <div class="seal">印</div>
+    </div>
+    <div class="sign-box">
+      <div class="role">乙(受託者)</div>
+      <div class="line"><span class="lbl">住所</span><span class="fill"></span></div>
+      <div class="line"><span class="lbl">商号</span><span class="fill">【　　　　　　　　　　】(AI顧問室 運営会社)</span></div>
+      <div class="line"><span class="lbl">代表者</span><span class="fill"></span></div>
+      <div class="seal">印</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>本書は締結前レビュー用の雛形です。法的助言ではありません。</span>
+    <span>AI顧問室</span>
+  </div>
+</div>
+
+<!-- ============ PAGE 4 : 別紙 ============ -->
+<div class="page">
+  <div class="head">
+    <span class="brand">AI顧問室</span>
+    <span class="doc">AI顧問サービス業務委託契約書(雛形)｜4/4・別紙</span>
+  </div>
+
+  <div class="annex-title">別紙　プラン別提供内容表</div>
+  <p class="annex-sub">第2条(業務内容)に定める選択プランごとの提供内容は、以下のとおりとする。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="border:none; background:#fff;"></th>
+        <th>ライト</th>
+        <th class="feat">スタンダード</th>
+        <th>プレミアム</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>月額報酬(税別)</td><td>金15万円</td><td>金25万円</td><td>金50万円</td></tr>
+      <tr><td>チャット相談</td><td class="ok">平日随時</td><td class="ok">平日随時</td><td class="ok">平日随時・優先対応</td></tr>
+      <tr><td>定例ミーティング</td><td>月1回</td><td>月2回</td><td>月2回</td></tr>
+      <tr><td>訪問対応</td><td class="na">なし(オンライン完結)</td><td>月1回まで可</td><td class="ok">回数制限なし</td></tr>
+      <tr><td>AI導入ロードマップ策定</td><td class="na">アドバイスのみ</td><td class="ok">策定・伴走を実施</td><td class="ok">策定・伴走を実施</td></tr>
+      <tr><td>業務自動化・ツール構築の実装</td><td class="na">対象外</td><td>月1件を目安に実施</td><td class="ok">月3件を目安に実施</td></tr>
+      <tr><td>社員向けAI研修</td><td class="na">対象外</td><td>四半期に1回</td><td class="ok">毎月実施</td></tr>
+    </tbody>
+  </table>
+
+  <p class="annex-notes">
+    ※ 上表の回数・件数は目安であり、業務内容の難易度・規模等により甲乙協議のうえ調整する場合がある。<br>
+    ※ 大規模なシステム構築等、上表の範囲を超える実装を要する場合は、別途甲乙協議のうえ見積り及び契約を行う。<br>
+    ※ プラン変更は、変更を希望する月の前月末日までに書面で申し出ることにより、翌月から可能とする。
+  </p>
+
+  <div class="annex-foot-notice">
+    <p><strong>【重要】</strong>本書は「AI顧問サービス業務委託契約書」の雛形(ドラフト)であり、法的助言を目的とするものではありません。個別の事情(取引金額、業務範囲、免責の妥当性、下請法・独占禁止法等の適用関係を含む)により条項の修正が必要となる場合があります。実際の締結にあたっては、必ず弁護士等の専門家によるレビューを受けたうえでご使用ください。</p>
+  </div>
+
+  <div class="foot">
+    <span>本書は締結前レビュー用の雛形です。法的助言ではありません。</span>
+    <span>AI顧問室</span>
+  </div>
+</div>
+
+</body>
+</html>
