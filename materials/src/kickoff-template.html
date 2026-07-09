@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>AI顧問室 キックオフ資料（最初の90日計画）</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --blue: #2D6CB5; --gold: #C9A227;
+    --ink: #1A2433; --gray: #5B6B7F; --line: #DDE4EC; --bg-soft: #F4F7FA; --white: #FFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { size: 254mm 142.9mm; margin: 0; }
+  html, body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); }
+  .slide { width: 960px; height: 540px; page-break-after: always; position: relative; overflow: hidden; background: var(--white); padding: 48px 56px; }
+  .slide.dark { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 60%, #19376D); color: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; }
+  .label { font-size: 11px; letter-spacing: 0.22em; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
+  .s-title { font-size: 26px; color: var(--navy); margin-bottom: 6px; }
+  .s-lead { font-size: 12.5px; color: var(--gray); margin-bottom: 22px; }
+  .pagenum { position: absolute; bottom: 16px; right: 24px; font-size: 10px; color: var(--gray); }
+  .footer-brand { position: absolute; bottom: 16px; left: 56px; font-size: 10px; color: var(--gray); letter-spacing: 0.08em; }
+
+  /* cover */
+  .cover { display: flex; flex-direction: column; justify-content: center; }
+  .cover .badge { border: 1px solid rgba(255,255,255,0.4); border-radius: 999px; display: inline-block; width: fit-content; font-size: 12px; padding: 5px 18px; color: #DCE6F5; margin-bottom: 28px; }
+  .cover h1 { font-size: 44px; margin-bottom: 10px; line-height: 1.4; }
+  .cover .tag { font-size: 18px; color: var(--gold); font-family: 'Noto Serif JP', serif; margin-bottom: 34px; }
+  .cover .meta { font-size: 12px; color: #9FB0C7; line-height: 2; }
+
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card { border: 1px solid var(--line); border-top: 3px solid var(--navy); border-radius: 6px; padding: 18px 18px; }
+  .card .who { font-size: 10px; color: var(--blue); font-weight: 700; margin-bottom: 6px; }
+  .card h3 { font-size: 15px; color: var(--navy); margin-bottom: 8px; line-height: 1.5; }
+  .card p { font-size: 11.5px; color: var(--gray); line-height: 1.8; }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .step { border: 1px solid var(--line); border-radius: 6px; padding: 16px; }
+  .step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .step h3 { font-size: 13px; color: var(--navy); margin-bottom: 4px; }
+  .step p { font-size: 10.5px; color: var(--gray); line-height: 1.6; }
+
+  .ba { display: flex; align-items: center; gap: 8px; }
+  .ba .b { font-size: 12px; color: var(--gray); background: var(--bg-soft); border-radius: 6px; padding: 16px 18px; flex: 1; font-weight: 700; }
+  .ba .arrow { color: var(--gold); font-weight: 700; font-size: 18px; }
+  .ba .a { font-size: 12px; color: var(--navy); background: #EDF3FA; border-radius: 6px; padding: 16px 18px; flex: 1; font-weight: 700; }
+  .note { font-size: 9.5px; color: var(--gray); margin-top: 14px; }
+
+  .urlbox { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; padding: 18px 22px; margin-top: 8px; }
+  .urlbox .u-label { font-size: 11px; color: var(--gold); font-weight: 700; }
+  .urlbox .u-url { font-size: 15px; color: #fff; margin-bottom: 10px; }
+
+  /* fill-in emphasis */
+  .fill { color: var(--gold); font-weight: 700; }
+
+  /* table */
+  .tbl { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  .tbl th { background: var(--navy); color: #fff; font-size: 11px; letter-spacing: 0.04em; text-align: left; padding: 10px 16px; font-weight: 700; }
+  .tbl th:first-child { border-radius: 5px 0 0 0; }
+  .tbl th:last-child { border-radius: 0 5px 0 0; }
+  .tbl td { border-bottom: 1px solid var(--line); padding: 11px 16px; font-size: 12px; color: var(--ink); vertical-align: top; }
+  .tbl tr:nth-child(even) td { background: var(--bg-soft); }
+  .tbl td.k { color: var(--navy); font-weight: 700; width: 20%; white-space: nowrap; }
+  .tbl td .fill { display: inline-block; }
+
+  /* status / evidence */
+  .evline { font-size: 12px; color: var(--gray); padding: 7px 0; border-bottom: 1px solid var(--bg-soft); line-height: 1.6; }
+  .evline:last-child { border-bottom: none; }
+  .evline .fill { color: var(--gold); }
+
+  /* goal box */
+  .goalbox { background: var(--bg-soft); border-left: 4px solid var(--gold); border-radius: 6px; padding: 20px 24px; font-size: 16px; color: var(--navy); font-weight: 700; margin-bottom: 22px; font-family: 'Noto Serif JP', serif; }
+
+  /* roadmap columns */
+  .rm-col { border: 1px solid var(--line); border-radius: 6px; padding: 16px; }
+  .rm-col .rm-month { font-family: 'Noto Serif JP', serif; font-size: 13px; font-weight: 700; color: #fff; background: var(--navy); border-radius: 4px; padding: 4px 0; text-align: center; margin-bottom: 10px; }
+  .rm-col .rm-std { display: inline-block; font-size: 9px; color: var(--gray); background: var(--bg-soft); border-radius: 999px; padding: 3px 10px; margin-bottom: 10px; }
+  .rm-col h3 { font-size: 12.5px; color: var(--navy); margin-bottom: 8px; }
+  .rm-fill { border: 1px dashed #C7D3E4; border-radius: 5px; min-height: 130px; padding: 12px; font-size: 12px; color: var(--gold); font-weight: 700; line-height: 1.8; }
+
+  /* kpi cards */
+  .kpi { border: 1px solid var(--line); border-radius: 6px; padding: 16px; }
+  .kpi .who { font-size: 9.5px; color: var(--blue); font-weight: 700; margin-bottom: 6px; }
+  .kpi h3 { font-size: 13px; color: var(--navy); margin-bottom: 10px; line-height: 1.5; }
+  .kpi .kv { font-size: 11px; color: var(--gray); }
+  .kpi .kv .fill { display: inline-block; }
+</style>
+</head>
+<body>
+
+<!-- 1. 表紙 -->
+<div class="slide dark cover">
+  <span class="badge">キックオフ資料｜最初の90日計画</span>
+  <h1>【会社名】様<br>AI活用プロジェクト キックオフ</h1>
+  <p class="tag">最初の90日で、最初の成果を。</p>
+  <p class="meta">開催日: 【日付】<br>AI顧問室</p>
+</div>
+
+<!-- 2. 本日のゴール -->
+<div class="slide">
+  <span class="label">TODAY'S GOAL</span>
+  <h2 class="s-title">本日のゴール</h2>
+  <p class="s-lead">この60分で、以下の3つを決めます。</p>
+  <div class="steps">
+    <div class="step"><div class="no">1</div><h3>体制と連絡ルールの確認</h3><p>チャット相談・定例MTG・窓口・ファイル共有の進め方をすり合わせます。</p></div>
+    <div class="step"><div class="no">2</div><h3>90日のゴール合意</h3><p>90日後にどんな状態を目指すか、御社と顧問で認識を合わせます。</p></div>
+    <div class="step"><div class="no">3</div><h3>最初の2週間のアクション決定</h3><p>誰が・何を・いつまでにやるかを、この場で具体的に決めます。</p></div>
+  </div>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">2</div>
+</div>
+
+<!-- 3. 体制と連絡ルール -->
+<div class="slide">
+  <span class="label">TEAM &amp; RULES</span>
+  <h2 class="s-title">体制と連絡ルール</h2>
+  <p class="s-lead">今後の90日間、以下のルールでやり取りします。</p>
+  <table class="tbl">
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td class="k">チャット相談</td><td><span class="fill">【ツール名】</span>でいつでもご相談いただけます。平日24時間以内に返信します。</td></tr>
+    <tr><td class="k">定例ミーティング</td><td>月<span class="fill">【回数】</span>回・<span class="fill">【曜日／時間】</span></td></tr>
+    <tr><td class="k">窓口</td><td>御社側担当: <span class="fill">【氏名】</span>　／　当方担当: <span class="fill">【氏名】</span></td></tr>
+    <tr><td class="k">ファイル共有</td><td><span class="fill">【方法】</span></td></tr>
+  </table>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">3</div>
+</div>
+
+<!-- 4. 御社の現在地 -->
+<div class="slide">
+  <span class="label">CURRENT STATUS</span>
+  <h2 class="s-title">御社の現在地</h2>
+  <p class="s-lead">初回の診断結果をもとに、現在地を確認します。</p>
+  <div class="card" style="border-top-color: var(--gold); margin-bottom: 20px;">
+    <div class="who">診断結果の根拠</div>
+    <div class="evline"><span class="fill">【 】</span></div>
+    <div class="evline"><span class="fill">【 】</span></div>
+    <div class="evline"><span class="fill">【 】</span></div>
+  </div>
+  <div class="ba">
+    <div class="b">現在地　Lv.<span class="fill">【 】</span>　<span class="fill">【レベル名】</span></div>
+    <div class="arrow">→</div>
+    <div class="a">90日後の目標　Lv.<span class="fill">【 】</span>　<span class="fill">【レベル名】</span></div>
+  </div>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">4</div>
+</div>
+
+<!-- 5. 90日のゴール -->
+<div class="slide">
+  <span class="label">GOAL</span>
+  <h2 class="s-title">90日のゴール</h2>
+  <div class="goalbox"><span class="fill">【 90日後に実現したい状態を1行で 】</span></div>
+  <p class="s-lead" style="margin-bottom: 12px;">測り方（KPI）— 以下は想定例です。御社に合わせて設定します。</p>
+  <div class="grid3">
+    <div class="kpi"><div class="who">想定例</div><h3>対象業務の作業時間</h3><div class="kv">現状 <span class="fill">【 】</span> → 目標 <span class="fill">【 】</span></div></div>
+    <div class="kpi"><div class="who">想定例</div><h3>問い合わせ一次返信までの時間</h3><div class="kv">現状 <span class="fill">【 】</span> → 目標 <span class="fill">【 】</span></div></div>
+    <div class="kpi"><div class="who">想定例</div><h3>社員のAI利用率</h3><div class="kv">現状 <span class="fill">【 】</span> → 目標 <span class="fill">【 】</span></div></div>
+  </div>
+  <p class="note">その他のKPI: <span class="fill">【 】</span></p>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">5</div>
+</div>
+
+<!-- 6. 月別ロードマップ -->
+<div class="slide">
+  <span class="label">ROADMAP</span>
+  <h2 class="s-title">90日の月別ロードマップ</h2>
+  <p class="s-lead">標準の型に沿って、御社ならではの内容を書き込みます。</p>
+  <div class="grid3">
+    <div class="rm-col">
+      <div class="rm-month">1ヶ月目</div>
+      <div class="rm-std">標準の型：棚卸し・診断</div>
+      <h3>やること</h3>
+      <div class="rm-fill">【 　　　　　　　 】</div>
+    </div>
+    <div class="rm-col">
+      <div class="rm-month">2ヶ月目</div>
+      <div class="rm-std">標準の型：最初の実装</div>
+      <h3>やること</h3>
+      <div class="rm-fill">【 　　　　　　　 】</div>
+    </div>
+    <div class="rm-col">
+      <div class="rm-month">3ヶ月目</div>
+      <div class="rm-std">標準の型：定着・検証</div>
+      <h3>やること</h3>
+      <div class="rm-fill">【 　　　　　　　 】</div>
+    </div>
+  </div>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">6</div>
+</div>
+
+<!-- 7. 最初の2週間のアクション -->
+<div class="slide">
+  <span class="label">NEXT 2 WEEKS</span>
+  <h2 class="s-title">最初の2週間のアクション</h2>
+  <p class="s-lead">この場で担当と期日まで決めてしまいましょう。</p>
+  <table class="tbl">
+    <tr><th>やること</th><th>担当</th><th>期日</th></tr>
+    <tr><td>業務ヒアリング日程の確定</td><td><span class="fill">【御社／顧問】</span></td><td><span class="fill">【 】</span></td></tr>
+    <tr><td>現状資料の共有（書式・マニュアル等）</td><td><span class="fill">【御社／顧問】</span></td><td><span class="fill">【 】</span></td></tr>
+    <tr><td>チャットグループ開設</td><td><span class="fill">【御社／顧問】</span></td><td><span class="fill">【 】</span></td></tr>
+    <tr><td>対象業務の選定</td><td><span class="fill">【御社／顧問】</span></td><td><span class="fill">【 】</span></td></tr>
+    <tr><td>次回定例日程の確定</td><td><span class="fill">【御社／顧問】</span></td><td><span class="fill">【 】</span></td></tr>
+  </table>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">7</div>
+</div>
+
+<!-- 8. 締め -->
+<div class="slide dark cover">
+  <span class="label">CLOSING</span>
+  <h2 style="font-size: 32px; margin-bottom: 14px;">90日後、最初の変化を<br>お見せします。</h2>
+  <p style="font-size: 13px; color: #C7D3E4; margin-bottom: 28px;">分からないこと・迷ったことがあれば、いつでもチャットでご相談ください。<br>ここからの90日、しっかり伴走します。</p>
+  <div class="urlbox">
+    <div class="u-label">次回定例</div>
+    <div class="u-url">【日付】</div>
+  </div>
+  <p style="font-size: 10px; color: #9FB0C7; margin-top: 24px;">AI顧問室</p>
+</div>
+
+</body>
+</html>
