@@ -71,8 +71,8 @@
     font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
   }
   .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
-  nav ul { display: flex; gap: 28px; list-style: none; }
-  nav a { font-size: 14px; color: var(--ink); font-weight: 500; }
+  nav ul { display: flex; gap: 18px; list-style: none; }
+  nav a { font-size: 13px; color: var(--ink); font-weight: 500; white-space: nowrap; }
   nav a:hover { color: var(--blue); }
   .btn {
     display: inline-block;
@@ -189,6 +189,23 @@
     .level-list .level-row { margin-left: 0 !important; }
     .diag-banner .container { justify-content: center; text-align: center; }
   }
+
+  /* Demo teaser */
+  .demo-teaser { background: var(--bg-soft); }
+  .dt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+  .dt-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
+  .dt-card:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .dt-visual { height: 110px; background: linear-gradient(135deg, #EDF3FA, var(--bg-soft)); display: flex; align-items: center; justify-content: center; position: relative; }
+  .dt-visual .mock { background: var(--white); border: 1px solid var(--line); border-radius: 5px; width: 72%; padding: 10px 12px; box-shadow: 0 5px 14px rgba(11,36,71,.08); }
+  .dt-visual .m-line { height: 6px; border-radius: 3px; background: var(--line); margin-bottom: 6px; }
+  .dt-visual .m-line.gold { background: var(--gold); width: 45%; }
+  .dt-visual .m-line.navy { background: var(--navy); width: 68%; }
+  .dt-badge { position: absolute; top: 10px; right: 10px; background: var(--gold); color: var(--navy-deep); font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .dt-body { padding: 18px 20px 20px; }
+  .dt-body h3 { font-size: 17px; color: var(--navy); margin-bottom: 6px; }
+  .dt-body p { font-size: 12.5px; color: var(--gray); margin-bottom: 10px; }
+  .dt-body .try { font-size: 13px; font-weight: 700; color: var(--gold); }
+  .dt-more { text-align: center; margin-top: 36px; }
 
   /* Reasons */
   .reasons { background: var(--navy); color: var(--white); }
@@ -479,6 +496,64 @@
           <p>社長だけがAIを使えても会社は変わりません。社員のレベルに合わせた実践研修で、現場が自走できる状態まで持っていきます。</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="demo-teaser" id="demo-teaser">
+  <div class="container">
+    <span class="section-label">DEMO</span>
+    <h2 class="section-title">言葉より、実物を。</h2>
+    <p class="section-lead">私たちが御社向けに構築するAIツールを、サンプルデータの体験デモでお見せします。すべて無料・登録不要。まずは1つ、触ってみてください。</p>
+    <div class="dt-grid">
+      <a class="dt-card" href="demo-inquiry.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <div class="mock">
+            <div class="m-line gold"></div>
+            <div class="m-line navy"></div>
+            <div class="m-line" style="width:82%"></div>
+          </div>
+        </div>
+        <div class="dt-body">
+          <h3>問い合わせ返信AI</h3>
+          <p>届いたメールから、すぐ送れる品質の返信案を数秒で。24時間・返信漏れゼロの一次対応。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+      <a class="dt-card" href="demo-quote.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <div class="mock">
+            <div class="m-line navy" style="width:50%"></div>
+            <div class="m-line" style="width:88%"></div>
+            <div class="m-line gold" style="width:35%; margin-left:53%;"></div>
+          </div>
+        </div>
+        <div class="dt-body">
+          <h3>見積書AI</h3>
+          <p>営業の走り書きメモが、整った見積書に。1件2時間の見積づくりを「確認するだけ」に。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+      <a class="dt-card" href="demo-minutes.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <div class="mock">
+            <div class="m-line gold" style="width:40%"></div>
+            <div class="m-line" style="width:85%"></div>
+            <div class="m-line navy" style="width:62%"></div>
+          </div>
+        </div>
+        <div class="dt-body">
+          <h3>議事録AI</h3>
+          <p>脱線だらけの会議録音から、決定事項・宿題・期日まで整理された議事録を自動作成。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+    </div>
+    <div class="dt-more">
+      <a href="demos.html" class="btn btn-navy">6つの構築デモをすべて見る →</a>
     </div>
   </div>
 </section>
