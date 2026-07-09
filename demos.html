@@ -43,6 +43,13 @@
   .hero p { color: #C7D3E4; max-width: 640px; font-size: 15px; }
 
   .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .shelf-head { display: flex; align-items: baseline; gap: 14px; margin: 56px 0 20px; border-bottom: 2px solid var(--line); padding-bottom: 12px; }
+  .shelf-head.first { margin-top: 0; }
+  .shelf-head .lvbox { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 14px; background: var(--navy); color: #fff; border-radius: 4px; padding: 5px 0; width: 56px; text-align: center; flex-shrink: 0; }
+  .shelf-head.goal .lvbox { background: var(--gold); color: var(--navy-deep); }
+  .shelf-head h2 { font-size: 21px; color: var(--navy); }
+  .shelf-head p { font-size: 12.5px; color: var(--gray); margin-left: auto; text-align: right; }
+  @media (max-width: 820px) { .shelf-head p { display: none; } }
   .demo-card {
     border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;
     transition: border-color .2s;
@@ -103,6 +110,55 @@
 
 <section>
   <div class="container">
+
+    <div class="shelf-head first">
+      <span class="lvbox">Lv.2</span>
+      <h2>まず、AIを道具として使う</h2>
+      <p>今日からできる「最初の一歩」の体験</p>
+    </div>
+    <div class="demo-grid">
+
+      <a class="demo-card" href="demo-recruit.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <div class="mock">
+            <div class="m-line gold" style="width:35%"></div>
+            <div class="m-line navy" style="width:75%"></div>
+            <div class="m-line" style="width:85%"></div>
+          </div>
+        </div>
+        <div class="demo-body">
+          <div class="cat">採用・人手不足対策</div>
+          <h3>求人票AI</h3>
+          <p>会社の特徴を選ぶと、応募したくなる求人票が完成。「弱み」を「魅力」に言い換えるAIの腕を体験。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+      <a class="demo-card" href="demo-sns.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <div class="mock">
+            <div class="m-line gold" style="width:30%"></div>
+            <div class="m-line" style="width:80%"></div>
+            <div class="m-line" style="width:70%"></div>
+          </div>
+        </div>
+        <div class="demo-body">
+          <div class="cat">集客・広報</div>
+          <h3>SNS投稿量産AI</h3>
+          <p>商品情報ひとつから、Instagram・X・ブログの投稿案を一気に量産。発信が続かない会社のための体験デモ。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="shelf-head">
+      <span class="lvbox">Lv.3</span>
+      <h2>業務に組み込む——御社専用のAI</h2>
+      <p>書式やルールを学習した「専用AI」の体験</p>
+    </div>
     <div class="demo-grid">
 
       <a class="demo-card" href="demo-inquiry.html">
@@ -159,23 +215,6 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-sns.html">
-        <div class="demo-visual">
-          <span class="m-badge">体験できます</span>
-          <div class="mock">
-            <div class="m-line gold" style="width:30%"></div>
-            <div class="m-line" style="width:80%"></div>
-            <div class="m-line" style="width:70%"></div>
-          </div>
-        </div>
-        <div class="demo-body">
-          <div class="cat">集客・広報</div>
-          <h3>SNS投稿量産AI</h3>
-          <p>商品情報ひとつから、Instagram・X・ブログの投稿案を一気に量産。発信が続かない会社のための体験デモ。</p>
-          <span class="try">▶ デモを試す</span>
-        </div>
-      </a>
-
       <a class="demo-card" href="demo-qa-bot.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
@@ -193,6 +232,32 @@
         </div>
       </a>
 
+      <a class="demo-card" href="demo-photo-report.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <div class="mock">
+            <div class="m-line navy" style="width:40%"></div>
+            <div class="m-line gold" style="width:65%"></div>
+            <div class="m-line" style="width:80%"></div>
+          </div>
+        </div>
+        <div class="demo-body">
+          <div class="cat">建設・不動産・現場</div>
+          <h3>現場写真→報告書AI</h3>
+          <p>現場の写真と走り書きメモが、提出できる工事報告書に。追加依頼の「見積漏れ」も自動検知する体験デモ。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="shelf-head">
+      <span class="lvbox">Lv.4</span>
+      <h2>自動で回す——人が起点でなくても動く</h2>
+      <p>「寝ている間に仕事が進む」仕組みの体験</p>
+    </div>
+    <div class="demo-grid">
+
       <a class="demo-card" href="demo-report.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
@@ -207,6 +272,83 @@
           <h3>日報 自動集計ダッシュボード</h3>
           <p>現場からLINEで届く日報が、自動でKPI・グラフ・要対応アラートに。報告業務をなくすダッシュボードの体験デモ。</p>
           <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+      <a class="demo-card" href="demo-exec-report.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <div class="mock">
+            <div class="m-line navy" style="width:55%"></div>
+            <div class="m-line gold" style="width:35%"></div>
+            <div class="m-line" style="width:85%"></div>
+          </div>
+        </div>
+        <div class="demo-body">
+          <div class="cat">経営・意思決定</div>
+          <h3>週次経営レポートAI</h3>
+          <p>売上・日報・入金データから、毎週月曜の朝に社長向けレポートが自動で完成。入金遅れは督促文まで用意。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+      <a class="demo-card" href="demo-line-booking.html">
+        <div class="demo-visual">
+          <span class="m-badge">リプレイ再生</span>
+          <div class="mock">
+            <div class="m-line gold" style="width:50%"></div>
+            <div class="m-line" style="width:70%"></div>
+            <div class="m-line navy" style="width:60%"></div>
+          </div>
+        </div>
+        <div class="demo-body">
+          <div class="cat">予約・顧客対応</div>
+          <h3>LINE予約受付の全自動フロー</h3>
+          <p>営業時間外のLINE予約が、確定・記録・リマインドまで無人で流れる様子を「再生」して見る新形式デモ。</p>
+          <span class="try">▶ リプレイを再生</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="shelf-head goal">
+      <span class="lvbox">Lv.5</span>
+      <h2>エージェントに任せる——AIが「働き手」になる</h2>
+      <p>顧問がめざすゴールの景色</p>
+    </div>
+    <div class="demo-grid">
+
+      <a class="demo-card" href="demo-agent-research.html">
+        <div class="demo-visual">
+          <span class="m-badge">リプレイ再生</span>
+          <div class="mock">
+            <div class="m-line gold" style="width:30%"></div>
+            <div class="m-line navy" style="width:80%"></div>
+            <div class="m-line" style="width:65%"></div>
+          </div>
+        </div>
+        <div class="demo-body">
+          <div class="cat">経営・戦略</div>
+          <h3>競合調査エージェント</h3>
+          <p>チャット1行の指示で、調査→比較表→打ち出し方の提案書まで。エージェントの思考ログ付きリプレイ。</p>
+          <span class="try">▶ リプレイを再生</span>
+        </div>
+      </a>
+
+      <a class="demo-card" href="demo-ai-team.html">
+        <div class="demo-visual">
+          <span class="m-badge">リプレイ再生</span>
+          <div class="mock">
+            <div class="m-line navy" style="width:45%"></div>
+            <div class="m-line gold" style="width:70%"></div>
+            <div class="m-line" style="width:55%"></div>
+          </div>
+        </div>
+        <div class="demo-body">
+          <div class="cat">AI社員採用センター連動</div>
+          <h3>AI社員チームの協働</h3>
+          <p>1件の問い合わせを4人のAI社員がリレー処理。人間の仕事は承認2タップだけ——という未来のリプレイ。</p>
+          <span class="try">▶ リプレイを再生</span>
         </div>
       </a>
 

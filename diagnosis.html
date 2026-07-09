@@ -167,10 +167,12 @@
           <p id="r-state"></p>
           <h3>次にやるべきこと</h3>
           <p id="r-next"></p>
+          <h3>「次の一段」の景色を、デモで先に見る</h3>
+          <div id="r-demos" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px;"></div>
           <div class="r-cta">
             <p id="r-cta-msg"></p>
             <a href="index.html#contact" class="btn btn-gold">無料相談で詳しく聞く（60分）</a>
-            <p style="margin: 14px 0 0; font-size: 13px;"><a href="demos.html" style="color: var(--blue); text-decoration: underline;">先に「どんなものが作れるのか」を体験デモで見る →</a></p>
+            <p style="margin: 14px 0 0; font-size: 13px;"><a href="demos.html" style="color: var(--blue); text-decoration: underline;">すべての構築デモを見る →</a></p>
           </div>
           <p class="r-note">※ この診断は簡易版です。無料相談では業務内容をお聞きした上で、御社専用のレベルアップ計画をお渡しします。</p>
         </div>
@@ -200,6 +202,15 @@
     { name: '業務組み込み期', state: '専用AIが業務に入り込んでいる、かなり進んだ状態です。ここまで来た会社の次の課題は「人が起点にならないと動かない」こと。まだ人がAIに指示を出す働き方です。', next: '問い合わせ対応やSNS運用など、「人が指示しなくても回る」自動化（Lv.4）へ。業務フローの再設計が必要になるので、全体を見渡せる相棒がいると加速します。', cta: '自動化は費用対効果の見極めが肝心です。経営目線で「効く自動化」だけを選んで実装します。' },
     { name: '自動化期', state: '業務が自動で回り始めている、上位数％の会社です。次はいよいよ、AIが「道具」から「働き手」に変わる段階——エージェント経営が視野に入ります。', next: '調査・資料作成・実行までを任せられるAIエージェント（Lv.5）の業務投入。どの業務から任せるか、安全にどう運用するかの設計が鍵になります。', cta: 'エージェント活用は最先端領域です。最新のAIを使い込んでいる顧問と、二人三脚で進めましょう。' },
     { name: 'エージェント経営期', state: 'AIエージェントが働き手として機能している、最先端の状態です。ここまで来ると、課題は「技術」より「経営」——どの領域に広げ、組織をどう作り変えるかのフェーズです。', next: 'エージェントの適用範囲拡大と、AI前提の組織・事業設計。ここは正解のない領域なので、壁打ち相手としての顧問の使い方が変わってきます。', cta: '同じ景色を見ている相談相手は貴重です。経営者同士として、次の一手を一緒に考えさせてください。' }
+  ];
+
+  var DEMOS = [
+    [ { href: 'demo-recruit.html', label: '求人票AI' }, { href: 'demo-quote.html', label: '見積書AI' } ],
+    [ { href: 'demo-quote.html', label: '見積書AI' }, { href: 'demo-minutes.html', label: '議事録AI' } ],
+    [ { href: 'demo-inquiry.html', label: '問い合わせ返信AI' }, { href: 'demo-photo-report.html', label: '現場写真→報告書AI' } ],
+    [ { href: 'demo-line-booking.html', label: 'LINE予約の全自動フロー' }, { href: 'demo-exec-report.html', label: '週次経営レポートAI' } ],
+    [ { href: 'demo-agent-research.html', label: '競合調査エージェント' }, { href: 'demo-ai-team.html', label: 'AI社員チームの協働' } ],
+    [ { href: 'demo-ai-team.html', label: 'AI社員チームの協働' }, { href: 'demos.html', label: 'デモギャラリー全体' } ]
   ];
 
   document.querySelectorAll('.q-block').forEach(function (block) {
@@ -237,6 +248,15 @@
     document.getElementById('r-state').textContent = data.state;
     document.getElementById('r-next').textContent = data.next;
     document.getElementById('r-cta-msg').textContent = data.cta;
+    var rd = document.getElementById('r-demos');
+    rd.innerHTML = '';
+    DEMOS[lv].forEach(function (d) {
+      var a = document.createElement('a');
+      a.href = d.href;
+      a.textContent = '▶ ' + d.label;
+      a.style.cssText = 'display:inline-block; padding:10px 18px; border:1.5px solid var(--navy); border-radius:4px; font-size:13px; font-weight:700; color:var(--navy);';
+      rd.appendChild(a);
+    });
     var bars = document.getElementById('r-meter').children;
     for (var i = 0; i < bars.length; i++) {
       bars[i].className = i <= lv ? 'fill' : '';
