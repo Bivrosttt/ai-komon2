@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>補助金・助成金でかしこくAI導入</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0B2447; --navy-soft:#16305C; --gold:#C9A227; --gold-soft:#E8D9A8; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg-soft:#F4F7FA; --red:#B4453D; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A4; margin: 0; }
+  body { font-family:'Noto Sans JP',sans-serif; color:var(--ink); width:794px; }
+  .page { width:794px; height:1122px; padding:56px 64px; position:relative; overflow:hidden; page-break-after:always; }
+  .page:last-child { page-break-after:auto; }
+  h1,h2,h3 { font-family:'Noto Serif JP',serif; }
+  .head { border-bottom:3px solid var(--navy); padding-bottom:14px; margin-bottom:26px; display:flex; justify-content:space-between; align-items:flex-end; }
+  .head .brand { font-family:'Noto Serif JP',serif; font-size:14px; color:var(--navy); font-weight:700; }
+  .head .pageno { font-size:10px; color:var(--gray); letter-spacing:0.1em; }
+  h1.pt { font-size:23px; color:var(--navy); }
+  .lead { font-size:12px; color:var(--gray); margin-bottom:22px; line-height:1.95; }
+  .label { font-size:10px; letter-spacing:0.2em; color:var(--gold); font-weight:700; margin-bottom:6px; }
+  h2 { font-size:16px; color:var(--navy); margin-bottom:10px; }
+  h3 { font-size:13px; color:var(--navy); margin-bottom:6px; }
+  section { margin-bottom:22px; }
+  table { width:100%; border-collapse:collapse; font-size:11.5px; }
+  th,td { border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top; line-height:1.75; }
+  th { background:var(--bg-soft); color:var(--navy); font-weight:700; }
+  ul.check { list-style:none; }
+  ul.check li { font-size:12px; padding:8px 0 8px 24px; position:relative; border-bottom:1px dashed var(--line); line-height:1.8; }
+  ul.check li::before { content:"✓"; position:absolute; left:2px; color:var(--gold); font-weight:700; }
+  .goal { background:var(--bg-soft); border-left:4px solid var(--gold); padding:14px 18px; font-size:12px; line-height:1.95; }
+  .goal b { color:var(--navy); }
+  .note { background:#FBF6E9; border:1px solid var(--gold-soft); border-left:4px solid var(--gold); padding:12px 16px; font-size:11px; line-height:1.85; color:var(--navy-soft); }
+  .note b { color:var(--navy); }
+  .foot { position:absolute; bottom:32px; left:64px; right:64px; border-top:1px solid var(--line); padding-top:11px; font-size:9.5px; color:var(--gray); display:flex; justify-content:space-between; }
+
+  /* cover */
+  .cover { background:linear-gradient(160deg,var(--navy) 0%,var(--navy-soft) 62%,#0E2A50 100%); color:#fff; display:flex; flex-direction:column; justify-content:space-between; }
+  .cover .kicker { font-size:11px; letter-spacing:0.35em; color:var(--gold); font-weight:700; margin-bottom:26px; }
+  .cover h1 { font-size:38px; line-height:1.55; font-weight:900; margin-bottom:18px; }
+  .cover h1 .accent { color:var(--gold); }
+  .cover .sub { font-size:13.5px; color:#CBD6E6; line-height:2; max-width:560px; }
+  .cover .mark { width:56px; height:2px; background:var(--gold); margin-bottom:22px; }
+  .cover .badges { display:flex; gap:12px; margin-top:34px; }
+  .cover .badge { border:1px solid rgba(201,162,39,0.55); color:var(--gold-soft); font-size:10.5px; padding:7px 14px; border-radius:2px; letter-spacing:0.05em; }
+  .cover .footer-block { border-top:1px solid rgba(255,255,255,0.18); padding-top:18px; display:flex; justify-content:space-between; align-items:flex-end; }
+  .cover .brandline { font-family:'Noto Serif JP',serif; font-size:15px; font-weight:700; color:#fff; }
+  .cover .url { font-size:10.5px; color:#CBD6E6; }
+  .cover .disclaimer { font-size:9px; color:#93A3BC; margin-top:10px; line-height:1.7; max-width:640px; }
+
+  /* map */
+  .map-row { display:flex; align-items:stretch; gap:14px; margin-bottom:14px; }
+  .map-need { width:190px; background:var(--navy); color:#fff; border-radius:4px; padding:16px 16px; display:flex; flex-direction:column; justify-content:center; }
+  .map-need .tag { font-size:9.5px; color:var(--gold-soft); letter-spacing:0.12em; margin-bottom:6px; }
+  .map-need .ttl { font-size:13.5px; font-weight:700; line-height:1.5; font-family:'Noto Serif JP',serif; }
+  .map-arrow { display:flex; align-items:center; justify-content:center; width:22px; color:var(--gold); font-size:18px; font-weight:700; }
+  .map-sys { flex:1; background:var(--bg-soft); border:1px solid var(--line); border-radius:4px; padding:14px 18px; display:flex; flex-direction:column; justify-content:center; }
+  .map-sys .name { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:4px; font-family:'Noto Serif JP',serif; }
+  .map-sys .desc { font-size:11px; color:var(--gray); line-height:1.75; }
+
+  /* system card */
+  .sys-card { border:1px solid var(--line); border-radius:4px; overflow:hidden; margin-bottom:18px; }
+  .sys-card .sys-head { background:var(--navy); color:#fff; padding:12px 18px; display:flex; justify-content:space-between; align-items:center; }
+  .sys-card .sys-head .name { font-family:'Noto Serif JP',serif; font-size:14.5px; font-weight:700; }
+  .sys-card .sys-head .kind { font-size:9.5px; color:var(--gold-soft); border:1px solid rgba(201,162,39,0.6); padding:3px 9px; border-radius:10px; letter-spacing:0.05em; }
+  .sys-card table { border:none; }
+  .sys-card th { width:110px; background:#fff; border-right:1px solid var(--line); color:var(--navy); }
+  .sys-card td { }
+  .sys-card tr:not(:last-child) th, .sys-card tr:not(:last-child) td { border-bottom:1px solid var(--line); }
+
+  /* trouble points */
+  .trouble { display:flex; gap:16px; margin-bottom:16px; align-items:flex-start; }
+  .trouble .num { font-family:'Noto Serif JP',serif; font-size:30px; font-weight:900; color:var(--gold-soft); width:48px; line-height:1; }
+  .trouble .body h3 { margin-bottom:5px; }
+  .trouble .body p { font-size:12px; color:var(--gray); line-height:1.9; }
+
+  /* QA */
+  .qa { margin-bottom:16px; }
+  .qa .q { font-size:12.5px; font-weight:700; color:var(--navy); background:var(--bg-soft); padding:10px 14px; border-radius:3px; margin-bottom:6px; }
+  .qa .q::before { content:"Q. "; color:var(--gold); font-weight:900; }
+  .qa .a { font-size:11.5px; color:var(--ink); line-height:1.9; padding:0 14px; }
+  .qa .a::before { content:"A. "; color:var(--navy); font-weight:900; }
+
+  /* closing */
+  .cta-box { background:var(--navy); color:#fff; border-radius:6px; padding:26px 30px; text-align:center; margin-top:8px; }
+  .cta-box .ttl { font-family:'Noto Serif JP',serif; font-size:18px; font-weight:700; margin-bottom:10px; }
+  .cta-box p { font-size:12px; color:#CBD6E6; line-height:1.9; margin-bottom:16px; }
+  .cta-box .url-line { font-size:14px; color:var(--gold); font-weight:700; letter-spacing:0.02em; }
+  .disclaimer-box { border:1px solid var(--line); background:var(--bg-soft); padding:14px 18px; font-size:9.5px; color:var(--gray); line-height:1.8; margin-top:22px; }
+</style>
+</head>
+<body>
+
+<!-- p1 表紙 -->
+<div class="page cover">
+  <div>
+    <div class="kicker">AI KOMON SHITSU ｜ FREE GUIDE</div>
+    <div class="mark"></div>
+    <h1>補助金・助成金で<br>かしこく<span class="accent">AI導入</span><br>——中小企業が使える<br>制度の見取り図</h1>
+    <p class="sub">「AIを導入したいが費用が気になる」——そんな社長のために、AI導入に関わる公的な支援制度の考え方を整理しました。制度の細部は年度ごとに変わるため、本冊子では仕組みと確認先を中心にご案内します。</p>
+    <div class="badges">
+      <span class="badge">制度の全体像</span>
+      <span class="badge">向いている会社の見分け方</span>
+      <span class="badge">つまずきやすい点</span>
+    </div>
+  </div>
+  <div>
+    <div class="footer-block">
+      <span class="brandline">AI顧問室</span>
+      <span class="url">https://rakansens.github.io/ai-komon2/</span>
+    </div>
+    <p class="disclaimer">本資料は2026年7月時点で公開されている情報をもとに一般的な仕組みを解説するものです。金額・補助率・締切等は制度・年度により変わります。詳細は必ず各制度の最新の公募要領・実施要領をご確認ください。</p>
+  </div>
+</div>
+
+<!-- p2 はじめに -->
+<div class="page">
+  <div class="head"><h1 class="pt">はじめに——補助金と助成金、何が違う？</h1><span class="brand">AI顧問室</span></div>
+  <p class="lead">「補助金」「助成金」という言葉はよく似ていますが、仕組みは異なります。まずはこの違いを押さえておくと、制度の見取り図が理解しやすくなります。</p>
+
+  <section>
+    <span class="label">BASIC STRUCTURE</span>
+    <h2>おおまかな整理（一般的な傾向）</h2>
+    <table>
+      <tr><th>補助金（経済産業省系が多い）</th><td>予算の範囲内で審査・採択される「競争型」。応募しても採択されないことがある。IT導入補助金（デジタル化・AI導入補助金）や省力化投資補助金など。</td></tr>
+      <tr><th>助成金（厚生労働省系が多い）</th><td>定められた要件を満たし、正しく手続きすれば基本的に受給できる「要件充足型」。人材開発支援助成金など、人材育成・雇用に関するものが中心。</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <span class="label">WHY THIS MATTERS</span>
+    <h2>この整理がAI導入にどう関係するか</h2>
+    <div class="goal">
+      AIツールの導入や研修には、性質の異なる複数の制度が関わることがあります。<b>「ツールを入れる」「設備を自動化する」「社員を育てる」</b>——目的によって候補になる制度が変わるため、まずは「何にお金がかかるのか」を整理することが第一歩です。
+    </div>
+  </section>
+
+  <section>
+    <span class="label">A NOTE ON ACCURACY</span>
+    <h2>この冊子でお伝えしたいこと</h2>
+    <div class="note">
+      補助金・助成金は<b>制度そのものが毎年見直され、名称・金額・補助率・締切が変わります。</b>本冊子は特定の年度の金額や締切をお約束するものではなく、<b>「どんな考え方で制度が組まれているか」という見取り図</b>をお伝えするものです。実際に活用できるかどうかは、必ず最新の公募要領・実施要領、または専門家への確認をおすすめします。
+    </div>
+  </section>
+
+  <div class="foot"><span>AI顧問室｜中小企業のためのAI顧問サービス</span><span>02</span></div>
+</div>
+
+<!-- p3 見取り図マップ -->
+<div class="page">
+  <div class="head"><h1 class="pt">制度の見取り図——何に、どの制度が関わるか</h1><span class="brand">AI顧問室</span></div>
+  <p class="lead">AI導入にかかる費用は、大きく3つの目的に分けられます。それぞれに関わる可能性がある制度の系統を整理しました。「使えるかどうか」は会社の状況・年度により異なります。</p>
+
+  <section>
+    <span class="label">OVERVIEW MAP</span>
+    <h2>費用の目的 → 関わる可能性のある制度</h2>
+
+    <div class="map-row">
+      <div class="map-need"><span class="tag">01｜ツール導入</span><span class="ttl">AIツール・システムの導入</span></div>
+      <div class="map-arrow">→</div>
+      <div class="map-sys"><span class="name">デジタル化・AI導入補助金（旧：IT導入補助金）</span><span class="desc">会計・受発注・AI搭載ツールなど、業務効率化のためのITツール導入経費の一部を補助する制度</span></div>
+    </div>
+
+    <div class="map-row">
+      <div class="map-need"><span class="tag">02｜設備・自動化</span><span class="ttl">業務の自動化・省力化設備</span></div>
+      <div class="map-arrow">→</div>
+      <div class="map-sys"><span class="name">中小企業省力化投資補助金</span><span class="desc">人手不足に対応するための省力化・自動化設備やシステムの導入経費の一部を補助する制度</span></div>
+    </div>
+
+    <div class="map-row">
+      <div class="map-need"><span class="tag">03｜人材育成</span><span class="ttl">社員のAIリテラシー・活用研修</span></div>
+      <div class="map-arrow">→</div>
+      <div class="map-sys"><span class="name">人材開発支援助成金</span><span class="desc">生成AIを含む業務スキル向上のための研修（OFF-JT）にかかる経費・訓練期間中の賃金の一部を助成する制度</span></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="label">HOW TO READ THIS MAP</span>
+    <h2>見取り図の使い方</h2>
+    <div class="goal">
+      多くの場合、AI導入は「ツール導入」だけで完結しません。<b>ツール導入＋研修</b>のように複数の目的が重なることもあり、その場合は複数の制度を組み合わせて検討できることがあります。次のページから、それぞれの制度をもう少し詳しく見ていきましょう。
+    </div>
+  </section>
+
+  <div class="foot"><span>AI顧問室｜中小企業のためのAI顧問サービス</span><span>03</span></div>
+</div>
+
+<!-- p4 制度詳細1: デジタル化AI導入補助金 -->
+<div class="page">
+  <div class="head"><h1 class="pt">制度を詳しく見る①｜ツール・システム導入</h1><span class="brand">AI顧問室</span></div>
+  <p class="lead">まずは、多くの企業が最初に検討することになる「ITツール・AI搭載ツール導入」に関わる制度です。</p>
+
+  <div class="sys-card">
+    <div class="sys-head"><span class="name">デジタル化・AI導入補助金（旧：IT導入補助金）</span><span class="kind">補助金・競争採択型</span></div>
+    <table>
+      <tr><th>何に使える制度か</th><td>会計・受発注・顧客管理などの業務効率化ツールや、AIを搭載したITツールの導入費用の一部を補助する制度。2026年度に「IT導入補助金」から名称変更され、AI活用ツールの導入がより明確に対象として位置づけられている。</td></tr>
+      <tr><th>おおまかな仕組み</th><td>導入したいITツールを選び、事業計画とあわせて申請。審査を経て採択された場合に補助を受けられる「競争型」。補助額・補助率・申請枠・締切は年度ごとの公募要領で定められる。</td></tr>
+      <tr><th>向いている会社</th><td>これから業務システムやAIツールを本格的に導入したい会社。ツール選定と事業計画づくりに一定の時間を割ける会社。</td></tr>
+      <tr><th>注意点</th><td>申請すれば必ず採択されるわけではない（競争型）。対象ツールはあらかじめ登録された製品・事業者に限られる場合が多い。原則として費用は先に立て替え、採択・完了後に補助金が支払われる「後払い」が基本。</td></tr>
+    </table>
+  </div>
+
+  <div class="note"><b>金額・補助率・締切について：</b>これらは年度・申請枠によって変わるため、本冊子では記載していません。必ず最新の公募要領（中小企業庁・事務局サイト）をご確認ください。</div>
+
+  <div class="foot"><span>AI顧問室｜中小企業のためのAI顧問サービス</span><span>04</span></div>
+</div>
+
+<!-- p5 制度詳細2: 省力化投資補助金 -->
+<div class="page">
+  <div class="head"><h1 class="pt">制度を詳しく見る②｜自動化・省力化設備</h1><span class="brand">AI顧問室</span></div>
+  <p class="lead">人手不足への対応として、設備やシステムによる自動化を検討する場合に関わる制度です。</p>
+
+  <div class="sys-card">
+    <div class="sys-head"><span class="name">中小企業省力化投資補助金</span><span class="kind">補助金・競争採択型</span></div>
+    <table>
+      <tr><th>何に使える制度か</th><td>人手不足の解消につながる省力化・自動化設備やITシステムの導入費用の一部を補助する制度。人手のかかる作業をAI・センサー・ロボット等で代替する投資が想定されている。</td></tr>
+      <tr><th>おおまかな仕組み</th><td>あらかじめカタログに登録された汎用製品から選ぶ「カタログ注文型」と、業種・業務にあわせてオーダーメイドで設備を導入する「一般型」の2つの類型がある。いずれも審査を経て採択された場合に補助を受けられる。</td></tr>
+      <tr><th>向いている会社</th><td>特定の業務（検品・搬送・受付対応など）に人手がかかりすぎており、設備・システムで代替したい会社。</td></tr>
+      <tr><th>注意点</th><td>カタログ注文型は対象製品があらかじめ限定される。一般型は計画書の作り込みに手間がかかる分、汎用性が高い。いずれも競争採択であり、後払いが基本である点はIT導入系の制度と共通。</td></tr>
+    </table>
+  </div>
+
+  <div class="note"><b>金額・補助率・締切について：</b>類型・年度により大きく異なるため、本冊子では記載していません。必ず最新の公募要領（事業事務局サイト）をご確認ください。</div>
+
+  <div class="foot"><span>AI顧問室｜中小企業のためのAI顧問サービス</span><span>05</span></div>
+</div>
+
+<!-- p6 制度詳細3: 人材開発支援助成金 -->
+<div class="page">
+  <div class="head"><h1 class="pt">制度を詳しく見る③｜社員のAI研修</h1><span class="brand">AI顧問室</span></div>
+  <p class="lead">ツールを入れても使いこなせなければ意味がありません。社員のAIリテラシー向上に関わる制度です。</p>
+
+  <div class="sys-card">
+    <div class="sys-head"><span class="name">人材開発支援助成金</span><span class="kind">助成金・要件充足型</span></div>
+    <table>
+      <tr><th>何に使える制度か</th><td>従業員のスキルアップを目的とした研修（生成AIの基礎リテラシーや業務活用に関する研修を含む）にかかる経費や、研修期間中の賃金の一部を助成する制度。複数のコースがあり、生成AI研修に活用できるコースも複数存在する。</td></tr>
+      <tr><th>おおまかな仕組み</th><td>助成金の中では珍しく「要件を満たせば受給できる」タイプ。研修計画を事前に作成・届出し、計画どおりに研修（原則としてOFF-JT＝通常業務から離れた形での訓練）を実施することが基本的な流れ。</td></tr>
+      <tr><th>向いている会社</th><td>社員向けにAIツールの使い方や業務活用の研修を計画的に実施したい会社。研修と業務の関連性を説明できる会社（例：営業部門が提案書作成に生成AIを使うための研修、など）。</td></tr>
+      <tr><th>注意点</th><td>研修を始める前に計画の届出が必要になるのが一般的な運用。「研修をやってから申請」では対象にならないことが多い。コースごとに対象となる研修の要件・書類が異なるため、事前確認が重要。</td></tr>
+    </table>
+  </div>
+
+  <div class="note"><b>助成率・上限額について：</b>コース・要件により異なるため、本冊子では記載していません。必ず最新の制度案内（厚生労働省・都道府県労働局）をご確認ください。</div>
+
+  <div class="foot"><span>AI顧問室｜中小企業のためのAI顧問サービス</span><span>06</span></div>
+</div>
+
+<!-- p7 申請でつまずく3つのポイント -->
+<div class="page">
+  <div class="head"><h1 class="pt">申請でつまずく3つのポイント</h1><span class="brand">AI顧問室</span></div>
+  <p class="lead">制度の存在を知っていても、実際の申請段階でつまずくケースは少なくありません。よくある3つの壁を整理しました。</p>
+
+  <div class="trouble">
+    <span class="num">01</span>
+    <div class="body"><h3>計画書の作り込み</h3><p>「なぜこの投資が必要か」「導入後どう業務が変わり、どんな効果が見込めるか」を、審査する側にわかる形で言語化する必要があります。ツールを選ぶことより、この言語化に時間がかかるケースが多いです。</p></div>
+  </div>
+  <div class="trouble">
+    <span class="num">02</span>
+    <div class="body"><h3>スケジュール（公募期間）</h3><p>補助金には申請の受付期間（公募期間）が決まっており、公募が締め切られると次回の開始まで待つことになります。「導入したいタイミング」と「公募のタイミング」がずれると、想定より導入が遅れることがあります。</p></div>
+  </div>
+  <div class="trouble">
+    <span class="num">03</span>
+    <div class="body"><h3>「補助金ありき」で不要な投資をしてしまう罠</h3><p>補助金が使えるからという理由だけで、本来必要のない機能や規模のツール・設備を選んでしまうことがあります。優先すべきは「自社の業務課題を解決できるか」であり、補助金は結果的に使えたら活用する、という順番が本来の考え方です。</p></div>
+  </div>
+
+  <div class="note"><b>共通して言えること：</b>いずれの制度も、採択・受給を保証するものではありません。要件や審査基準は年度ごとに見直されるため、申請前に最新の公募要領・実施要領を確認することが欠かせません。</div>
+
+  <div class="foot"><span>AI顧問室｜中小企業のためのAI顧問サービス</span><span>07</span></div>
+</div>
+
+<!-- p8 よくある質問 + おわりに + CTA -->
+<div class="page">
+  <div class="head"><h1 class="pt">よくある質問／おわりに</h1><span class="brand">AI顧問室</span></div>
+
+  <section>
+    <span class="label">FAQ</span>
+    <h2>よくある質問</h2>
+    <div class="qa"><div class="q">自社だけで申請できますか？</div><div class="a">可能です。ただし計画書の作成や必要書類の準備には相応の時間がかかるため、専門家（認定支援機関・社会保険労務士など）に相談しながら進める会社も多くあります。</div></div>
+    <div class="qa"><div class="q">採択されなかったらどうなりますか？</div><div class="a">競争型の補助金は不採択になることがあります。多くの制度は次回以降の公募に再申請することが可能です。不採択の理由（計画書の内容など）を踏まえて改善するケースが一般的です。</div></div>
+    <div class="qa"><div class="q">AI顧問室のような顧問契約は補助対象になりますか？</div><div class="a">制度・年度・申請類型によって対象範囲の考え方が異なるため、一律にはお答えできません。個別の制度要件に照らした確認が必要です。無料相談で御社の状況を伺いながら、確認の進め方をご案内します。</div></div>
+  </section>
+
+  <section>
+    <span class="label">CLOSING</span>
+    <h2>おわりに</h2>
+    <p class="lead" style="margin-bottom:10px;">どの制度が使えるかは、会社の業種・規模・タイミング、そして年度ごとの公募内容によって変わります。この冊子が「見取り図」として、まず全体像をつかむ助けになれば幸いです。</p>
+  </section>
+
+  <div class="cta-box">
+    <div class="ttl">どの制度が使えるかは、無料相談で一緒に確認しましょう</div>
+    <p>御社の事業内容・導入したい内容をお伺いしたうえで、検討に値する制度の方向性を一緒に整理します。売り込みは一切いたしません。</p>
+    <div class="url-line">https://rakansens.github.io/ai-komon2/</div>
+  </div>
+
+  <div class="disclaimer-box">
+    発行：AI顧問室｜本資料は2026年7月時点で確認できた公開情報をもとに、補助金・助成金の一般的な仕組みをご紹介する目的で作成したものであり、特定の制度の受給・採択を保証するものではありません。金額・補助率・対象要件・締切等の詳細は年度・制度により変更されます。実際の申請にあたっては、必ず各制度の最新の公募要領・実施要領をご確認いただくか、中小企業診断士・社会保険労務士等の専門家にご相談ください。
+  </div>
+
+  <div class="foot"><span>AI顧問室｜中小企業のためのAI顧問サービス</span><span>08</span></div>
+</div>
+
+</body>
+</html>
