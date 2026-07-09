@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>無料相談ヒアリングシート（内部用）</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0B2447; --gold:#C9A227; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg-soft:#F4F7FA; --write:#B9C3CF; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A4; margin: 0; }
+  body { font-family:'Noto Sans JP',sans-serif; color:var(--ink); width:794px; }
+  .page { width:794px; height:1122px; padding:48px 60px; position:relative; page-break-after:always; }
+  .page:last-of-type { page-break-after:auto; }
+  h1,h2 { font-family:'Noto Serif JP',serif; }
+  .head { border-bottom:3px solid var(--navy); padding-bottom:14px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:flex-end; }
+  .head .brand { font-family:'Noto Serif JP',serif; font-size:15px; color:var(--navy); font-weight:700; }
+  h1 { font-size:20px; color:var(--navy); }
+  .internal-tag { display:inline-block; margin-top:6px; font-size:9.5px; color:var(--gray); border:1px solid var(--line); border-radius:3px; padding:2px 8px; background:var(--bg-soft); }
+  .label { font-size:9.5px; letter-spacing:0.18em; color:var(--gold); font-weight:700; margin-bottom:4px; }
+  h2 { font-size:14px; color:var(--navy); margin-bottom:8px; }
+  section { margin-bottom:14px; }
+  table { width:100%; border-collapse:collapse; font-size:11px; }
+  th,td { border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:middle; }
+  th { background:var(--bg-soft); color:var(--navy); font-weight:700; white-space:nowrap; }
+  table.info th { width:90px; }
+  table.info td { width:145px; }
+  table.tri th { width:auto; text-align:center; }
+  table.tri td { height:26px; }
+  ul.qlist { list-style:none; }
+  ul.qlist li { margin-bottom:9px; }
+  ul.qlist li .q { font-size:11.5px; font-weight:700; color:var(--ink); padding-left:20px; position:relative; margin-bottom:4px; }
+  ul.qlist li .q::before { content:"Q"; position:absolute; left:0; top:0; color:#fff; background:var(--gold); font-family:'Noto Serif JP',serif; font-size:9px; font-weight:700; width:14px; height:14px; line-height:14px; text-align:center; border-radius:3px; }
+  .write-line { border-bottom:1px solid var(--write); height:19px; }
+  .write-box { border:1px solid var(--write); border-radius:4px; height:60px; }
+  .lv-row { display:flex; gap:8px; margin-top:6px; }
+  .lv-box { flex:1; border:1.3px solid var(--line); border-radius:6px; text-align:center; padding:8px 3px; }
+  .lv-box .mark { display:block; width:16px; height:16px; margin:0 auto 4px; border:1.3px solid var(--gray); border-radius:50%; }
+  .lv-box b { display:block; font-family:'Noto Serif JP',serif; font-size:13px; color:var(--navy); }
+  .lv-box span { font-size:8.5px; color:var(--gray); }
+  .chk-row { display:flex; gap:16px; margin-top:6px; flex-wrap:wrap; }
+  .chk-row label { font-size:11.5px; display:flex; align-items:center; gap:6px; }
+  .chk-row .box { width:13px; height:13px; border:1.4px solid var(--navy); display:inline-block; border-radius:3px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:0 20px; }
+  .field { margin-bottom:9px; }
+  .field .f-label { font-size:10.5px; color:var(--gray); margin-bottom:3px; }
+  .foot { position:absolute; bottom:26px; left:60px; right:60px; border-top:1px solid var(--line); padding-top:10px; font-size:9.5px; color:var(--gray); display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="head">
+    <div>
+      <h1>無料相談ヒアリングシート（内部用）</h1>
+      <span class="internal-tag">社外秘・お客様には共有しないでください</span>
+    </div>
+    <span class="brand">AI顧問室</span>
+  </div>
+
+  <section>
+    <span class="label">BASIC INFO</span>
+    <h2>基本情報</h2>
+    <table class="info">
+      <tr><th>会社名</th><td></td><th>日付</th><td></td></tr>
+      <tr><th>業種</th><td></td><th>従業員数</th><td></td></tr>
+      <tr><th>紹介元</th><td></td><th>事前レベル診断の結果</th><td></td></tr>
+    </table>
+  </section>
+
+  <section>
+    <span class="label">SECTION A ／ 10分</span>
+    <h2>事業を知る</h2>
+    <ul class="qlist">
+      <li><div class="q">主力商品・サービスは何ですか？</div><div class="write-line"></div></li>
+      <li><div class="q">お客様（顧客）は誰ですか？</div><div class="write-line"></div></li>
+      <li><div class="q">売上はどのように作られていますか？（集客チャネル）</div><div class="write-line"></div></li>
+      <li><div class="q">組織構成はどうなっていますか？</div><div class="write-line"></div></li>
+    </ul>
+  </section>
+
+  <section>
+    <span class="label">SECTION B ／ Lv判定</span>
+    <h2>AIの現状を知る</h2>
+    <ul class="qlist">
+      <li><div class="q">誰が、どのAIツールを、どう使っていますか？</div><div class="write-line"></div></li>
+      <li><div class="q">有料プラン（ChatGPT Plus等）の利用はありますか？</div><div class="write-line"></div></li>
+      <li><div class="q">業務の自動化（RPA・API連携等）はありますか？</div><div class="write-line"></div></li>
+      <li><div class="q">社内ルール・研修の実施はありますか？</div><div class="write-line"></div></li>
+      <li><div class="q">「AIエージェント」という言葉への認知度は？</div><div class="write-line"></div></li>
+    </ul>
+
+    <div class="f-label" style="margin-top:8px; margin-bottom:4px; color:var(--navy); font-weight:700; font-size:10.5px;">Lv判定（現時点でのあたりをつける・丸で囲む）</div>
+    <div class="lv-row">
+      <div class="lv-box"><span class="mark"></span><b>Lv0</b><span>未導入</span></div>
+      <div class="lv-box"><span class="mark"></span><b>Lv1</b><span>お試し</span></div>
+      <div class="lv-box"><span class="mark"></span><b>Lv2</b><span>日常化</span></div>
+      <div class="lv-box"><span class="mark"></span><b>Lv3</b><span>業務組み込み</span></div>
+      <div class="lv-box"><span class="mark"></span><b>Lv4</b><span>自動化</span></div>
+      <div class="lv-box"><span class="mark"></span><b>Lv5</b><span>エージェント経営</span></div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span>AI顧問室｜無料相談ヒアリングシート（社内用）</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+    <span>1 / 2</span>
+  </div>
+</div>
+
+<div class="page">
+  <div class="head">
+    <div>
+      <h1>無料相談ヒアリングシート（内部用）</h1>
+      <span class="internal-tag">社外秘・お客様には共有しないでください</span>
+    </div>
+    <span class="brand">AI顧問室</span>
+  </div>
+
+  <section>
+    <span class="label">SECTION C ／ 25分</span>
+    <h2>業務の棚卸し</h2>
+    <div class="f-label" style="margin-bottom:4px;">時間を取られている業務 トップ3</div>
+    <table class="tri">
+      <tr><th style="width:55%;">業務名</th><th style="width:25%;">担当</th><th style="width:20%;">週の時間</th></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+    </table>
+
+    <div class="field" style="margin-top:10px;">
+      <div class="f-label">売上に直結するのに手が回っていない業務</div>
+      <div class="write-line"></div>
+    </div>
+    <div class="field">
+      <div class="f-label">問い合わせ・反響への対応スピード</div>
+      <div class="write-line"></div>
+    </div>
+    <div class="field">
+      <div class="f-label">やめたい業務</div>
+      <div class="write-line"></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="label">SECTION D</span>
+    <h2>決裁と温度感</h2>
+    <div class="grid2">
+      <div class="field">
+        <div class="f-label">予算感への反応</div>
+        <div class="write-line"></div>
+      </div>
+      <div class="field">
+        <div class="f-label">決裁者は誰か</div>
+        <div class="write-line"></div>
+      </div>
+      <div class="field">
+        <div class="f-label">開始時期</div>
+        <div class="write-line"></div>
+      </div>
+      <div class="field">
+        <div class="f-label">懸念点</div>
+        <div class="write-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="label">SECTION E</span>
+    <h2>クロージングメモ</h2>
+    <div class="field">
+      <div class="f-label">推奨プラン</div>
+      <div class="chk-row">
+        <label><span class="box"></span>ライト</label>
+        <label><span class="box"></span>スタンダード</label>
+        <label><span class="box"></span>プレミアム</label>
+        <label><span class="box"></span>モニター</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="f-label">提案する最初の90日の仮説</div>
+      <div class="write-box"></div>
+    </div>
+    <div class="field">
+      <div class="f-label">次のアクションと期日</div>
+      <div class="write-line"></div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span>AI顧問室｜無料相談ヒアリングシート（社内用）</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+    <span>2 / 2</span>
+  </div>
+</div>
+
+</body>
+</html>
