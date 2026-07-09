@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日報 自動集計ダッシュボード 体験デモ｜AI顧問室</title>
+<meta name="description" content="現場からLINEで届く日報を、AIが自動で読み取り経営ダッシュボードに変換する体験デモです。進捗・要対応事項を自動集計。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    --red: #B0432F;
+    --green: #2F7D5B;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; gap: 16px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; white-space: nowrap; }
+  .header-right a.textlink:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s, transform .1s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+  .header-cta { padding: 10px 24px; font-size: 14px; white-space: nowrap; }
+
+  /* Title / hero */
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 80px 0 64px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    color: #DCE6F5;
+  }
+  .demo-hero h1 { font-size: 40px; margin-bottom: 20px; }
+  .demo-hero h1 em { font-style: normal; color: var(--gold); }
+  .demo-hero p.sub { font-size: 16px; color: #C7D3E4; max-width: 660px; }
+
+  /* Note banner */
+  .note-banner { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding-top: 18px; padding-bottom: 18px; }
+  .note-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--white);
+    border-radius: 4px; padding: 14px 20px; font-size: 13.5px; color: var(--gray);
+    max-width: 900px;
+  }
+  .note-box .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .note-box strong { color: var(--ink); }
+
+  /* Demo section */
+  .demo-section { background: var(--white); }
+  .demo-step-label {
+    font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 10px;
+  }
+  .demo-question {
+    font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy); margin-bottom: 32px;
+  }
+
+  /* LINE chat mock */
+  .line-window {
+    border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--white);
+    box-shadow: 0 10px 30px rgba(11,36,71,0.08); max-width: 640px;
+  }
+  .line-titlebar {
+    background: var(--navy); color: var(--white); padding: 12px 20px;
+    display: flex; align-items: center; gap: 10px; font-size: 13px;
+  }
+  .line-titlebar .dot3 { display: flex; gap: 5px; }
+  .line-titlebar .dot3 span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); }
+  .line-titlebar .label { margin-left: auto; color: #C7D3E4; letter-spacing: 0.03em; font-size: 12px; }
+  .line-body { padding: 22px 20px; background: var(--bg-soft); display: flex; flex-direction: column; gap: 20px; }
+  .line-msg { display: flex; gap: 12px; align-items: flex-start; }
+  .line-avatar {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: var(--white);
+    display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;
+    flex-shrink: 0; font-family: 'Noto Serif JP', serif;
+  }
+  .line-content { max-width: 440px; }
+  .line-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .line-name { font-size: 12.5px; font-weight: 700; color: var(--navy); }
+  .line-time { font-size: 11px; color: var(--gray); }
+  .line-bubble {
+    background: var(--white); border: 1px solid var(--line); border-radius: 4px 14px 14px 14px;
+    padding: 14px 16px; font-size: 14px; color: var(--ink); line-height: 1.8;
+  }
+  .line-photo { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); }
+  .line-photo-thumb {
+    width: 52px; height: 52px; border-radius: 6px; flex-shrink: 0;
+    background: linear-gradient(135deg, #B7C3D2, #7C8DA3);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .line-photo-thumb .cam { width: 20px; height: 14px; border: 2px solid rgba(255,255,255,0.85); border-radius: 3px; position: relative; }
+  .line-photo-thumb .cam::before {
+    content: ""; position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; border-radius: 50%;
+    background: transparent; border: 2px solid rgba(255,255,255,0.85); transform: translate(-50%, -50%);
+  }
+  .line-photo-name { font-size: 11.5px; color: var(--gray); }
+
+  .aggregate-row { text-align: center; margin-top: 32px; }
+  .aggregate-row .btn { font-size: 16px; padding: 16px 44px; }
+  .aggregate-hint { font-size: 12.5px; color: var(--gray); margin-top: 12px; }
+
+  /* Result area */
+  .demo-result { margin-top: 56px; display: none; }
+  .demo-result.active { display: block; animation: fadein .3s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Loading */
+  .loading-box {
+    border: 1px dashed var(--line); border-radius: 6px; padding: 48px 24px;
+    text-align: center; color: var(--gray); font-size: 15px; background: var(--white);
+  }
+  .dots { display: inline-flex; gap: 6px; margin-left: 8px; vertical-align: middle; }
+  .dots span {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+    animation: bounce 1.1s infinite ease-in-out;
+  }
+  .dots span:nth-child(2) { animation-delay: .15s; }
+  .dots span:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce { 0%, 80%, 100% { opacity: .25; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1.1); } }
+
+  /* Dashboard */
+  .dashboard { display: none; }
+  .dashboard.show { display: block; }
+  .fade-block { opacity: 0; transform: translateY(14px); margin-bottom: 40px; }
+  .dashboard.show .fade-block { animation: fadeinup .55s ease forwards; }
+  .dashboard.show .fade-block:nth-child(1) { animation-delay: .05s; }
+  .dashboard.show .fade-block:nth-child(2) { animation-delay: .22s; }
+  .dashboard.show .fade-block:nth-child(3) { animation-delay: .39s; }
+  .dashboard.show .fade-block:nth-child(4) { animation-delay: .56s; }
+  .dashboard.show .fade-block:nth-child(5) { animation-delay: .73s; }
+  .dashboard.show .fade-block:nth-child(6) { animation-delay: .90s; }
+  .fade-block:last-child { margin-bottom: 0; }
+  @keyframes fadeinup { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  .block-label { font-size: 12.5px; font-weight: 700; color: var(--gray); letter-spacing: 0.06em; margin-bottom: 14px; }
+
+  /* KPI cards */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; }
+  .kpi-card {
+    border: 1px solid var(--line); border-top: 3px solid var(--navy); border-radius: 6px;
+    background: var(--white); padding: 22px 22px 20px;
+  }
+  .kpi-card .num { font-family: 'Noto Serif JP', serif; font-size: 34px; color: var(--navy); line-height: 1.2; }
+  .kpi-card .num .unit { font-size: 15px; font-weight: 700; margin-left: 2px; }
+  .kpi-card .lbl { font-size: 13px; color: var(--ink); font-weight: 700; margin-top: 8px; }
+  .kpi-card .sub { font-size: 12px; color: var(--gray); margin-top: 4px; }
+  .kpi-card.gold { border-top-color: var(--gold); }
+  .kpi-card.gold .num { color: #96790F; }
+
+  /* Status badges */
+  .status-badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 999px; white-space: nowrap; }
+  .status-good { background: #E5F1EA; color: var(--green); }
+  .status-warn { background: #FBF1DA; color: #96790F; }
+  .status-bad { background: #FBE7E2; color: var(--red); }
+
+  /* Status table */
+  .status-table-wrap { border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; background: var(--white); }
+  table.status-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+  table.status-table th, table.status-table td { text-align: left; padding: 14px 20px; font-size: 13.5px; }
+  table.status-table th {
+    background: var(--bg-soft); color: var(--gray); font-weight: 700; font-size: 12px;
+    letter-spacing: 0.04em; border-bottom: 1px solid var(--line);
+  }
+  table.status-table td { border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
+  table.status-table tr:last-child td { border-bottom: none; }
+  table.status-table td.site { font-weight: 700; color: var(--navy); white-space: nowrap; }
+  table.status-table td.staff { color: var(--gray); white-space: nowrap; }
+
+  /* Weekly chart */
+  .chart-box { border: 1px solid var(--line); border-radius: 6px; padding: 28px 28px 18px; background: var(--white); }
+  .chart-bars { display: flex; align-items: flex-end; gap: 20px; height: 160px; padding: 0 8px; }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+  .bar-val { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .bar-shape {
+    width: 100%; max-width: 44px; background: linear-gradient(180deg, var(--navy-light), var(--navy));
+    border-radius: 4px 4px 0 0; transition: height .8s ease;
+  }
+  .bar-col.today .bar-shape { background: linear-gradient(180deg, #D9B84A, var(--gold)); }
+  .bar-col.today .bar-val { color: #96790F; }
+  .bar-day { font-size: 12px; color: var(--gray); margin-top: 10px; font-weight: 700; }
+  .chart-foot { font-size: 12px; color: var(--gray); margin-top: 16px; text-align: right; }
+
+  /* Alert card */
+  .alert-card {
+    display: flex; gap: 14px; align-items: flex-start;
+    border: 1px solid #E9D48A; border-left: 4px solid var(--gold); background: #FBF6E7;
+    border-radius: 6px; padding: 20px 24px;
+  }
+  .alert-card .mark {
+    width: 30px; height: 30px; border-radius: 50%; background: var(--gold); color: var(--navy-deep);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0;
+  }
+  .alert-card .txt { font-size: 14.5px; color: var(--ink); line-height: 1.8; }
+  .alert-card .txt strong { color: var(--navy); }
+
+  /* Summary */
+  .summary-box {
+    border-left: 4px solid var(--navy); background: var(--bg-soft); border-radius: 4px;
+    padding: 22px 26px; font-size: 14.5px; color: var(--ink); line-height: 2;
+  }
+
+  /* AI actions panel */
+  .ai-actions {
+    border: 1px solid var(--line); border-radius: 8px; background: var(--white); padding: 26px 28px;
+  }
+  .ai-actions h4 {
+    font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy);
+    letter-spacing: 0.05em; margin-bottom: 18px; display: flex; align-items: center; gap: 6px;
+  }
+  .ai-actions h4::before { content: "◆"; color: var(--gold); font-size: 11px; }
+  .action-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .action-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .action-item:first-child { padding-top: 0; }
+  .action-icon {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--bg-soft); color: var(--gold);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;
+    flex-shrink: 0; font-family: 'Noto Serif JP', serif;
+  }
+  .action-body h5 { font-size: 14.5px; color: var(--navy); margin-bottom: 5px; font-family: 'Noto Sans JP', sans-serif; }
+  .action-body p { font-size: 13px; color: var(--gray); line-height: 1.85; }
+
+  .reselect-row { text-align: center; margin-top: 40px; }
+  .reselect-row a { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; }
+  .reselect-row a:hover { color: var(--navy); }
+
+  /* How it works */
+  .how { background: var(--bg-soft); }
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+  .how-note { text-align: center; margin-top: 40px; font-size: 14px; color: var(--gray); }
+  .how-note strong { color: var(--navy); }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  @media (max-width: 900px) {
+    .chart-bars { gap: 10px; }
+  }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .demo-hero h1 { font-size: 28px; }
+    .section-title { font-size: 26px; }
+    .demo-hero { padding: 56px 0 44px; }
+    .header-right a.textlink { display: none; }
+    .line-content { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-right">
+      <a href="demos.html" class="textlink">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">体験デモ｜日報 自動集計ダッシュボード</span>
+    <h1>毎晩の日報集計に、<br><em>もう時間を使わない。</em></h1>
+    <p class="sub">現場からLINEで届く日報を、AIが自動で読み取り、進捗・要対応事項をまとめた経営ダッシュボードに変換します。社長がやることは、朝ダッシュボードを見るだけ。実際の画面イメージをこのまま体験できます。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container">
+    <div class="note-box">
+      <span class="mark">※</span>
+      <span><strong>このページはサンプルデータによる体験デモです。</strong>表示される日報・集計結果は事前に用意したものです。実際は御社の報告フォーマット・工程に合わせて構築し、実データを集計します。</span>
+    </div>
+  </div>
+</div>
+
+<section class="demo-section" id="demo">
+  <div class="container">
+    <span class="section-label">TRY IT</span>
+    <div class="demo-step-label">STEP 1</div>
+    <h2 class="demo-question">現場から今日届いた日報（LINE）</h2>
+
+    <div class="line-window">
+      <div class="line-titlebar">
+        <span class="dot3"><span></span><span></span><span></span></span>
+        <span>現場LINEグループ｜サンプル工務店</span>
+        <span class="label">本日 17:40 更新</span>
+      </div>
+      <div class="line-body">
+        <div class="line-msg">
+          <div class="line-avatar">田</div>
+          <div class="line-content">
+            <div class="line-meta"><span class="line-name">現場A（田中）</span><span class="line-time">16:12</span></div>
+            <div class="line-bubble">
+              基礎工事完了、明日から型枠。生コン手配済み
+              <div class="line-photo">
+                <div class="line-photo-thumb"><span class="cam"></span></div>
+                <span class="line-photo-name">基礎_完了.jpg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="line-msg">
+          <div class="line-avatar">鈴</div>
+          <div class="line-content">
+            <div class="line-meta"><span class="line-name">現場B（鈴木）</span><span class="line-time">16:45</span></div>
+            <div class="line-bubble">クロス貼り70%まで。脚立の予備が足りない、2台注文お願いします</div>
+          </div>
+        </div>
+        <div class="line-msg">
+          <div class="line-avatar">佐</div>
+          <div class="line-content">
+            <div class="line-meta"><span class="line-name">現場C（佐藤）</span><span class="line-time">17:20</span></div>
+            <div class="line-bubble">雨で外構作業中止。室内の造作を前倒しで進めた。工程に遅れなし</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="aggregate-row">
+      <button type="button" class="btn btn-navy" id="aggregateBtn">AIに集計させる</button>
+      <div class="aggregate-hint">上の3件の日報をAIが読み取り、ダッシュボードに変換します</div>
+    </div>
+
+    <div class="demo-result" id="demoResult">
+      <div class="demo-step-label" style="margin-top:0;">STEP 2</div>
+      <h2 class="demo-question">AIが集計した経営ダッシュボード</h2>
+
+      <div id="loadingBox" class="loading-box">
+        AIが日報を読み取り、集計しています<span class="dots"><span></span><span></span><span></span></span>
+      </div>
+
+      <div class="dashboard" id="dashboard">
+
+        <div class="fade-block">
+          <div class="block-label">サマリー指標</div>
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="num">3<span class="unit">/3</span></div>
+              <div class="lbl">稼働現場</div>
+              <div class="sub">本日報告あり</div>
+            </div>
+            <div class="kpi-card">
+              <div class="num">2<span class="unit">件</span></div>
+              <div class="lbl">進捗順調</div>
+              <div class="sub">現場A・現場C</div>
+            </div>
+            <div class="kpi-card gold">
+              <div class="num">1<span class="unit">件</span></div>
+              <div class="lbl">要対応</div>
+              <div class="sub">現場B</div>
+            </div>
+            <div class="kpi-card">
+              <div class="num">66<span class="unit">%</span></div>
+              <div class="lbl">今週の平均進捗</div>
+              <div class="sub">月〜金 現場平均</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-block">
+          <div class="block-label">現場別ステータス</div>
+          <div class="status-table-wrap">
+            <table class="status-table">
+              <thead>
+                <tr><th>現場</th><th>担当</th><th>今日の進捗</th><th>状態</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="site">現場A</td>
+                  <td class="staff">田中</td>
+                  <td>基礎工事完了。明日から型枠工事へ</td>
+                  <td><span class="status-badge status-good">順調</span></td>
+                </tr>
+                <tr>
+                  <td class="site">現場B</td>
+                  <td class="staff">鈴木</td>
+                  <td>クロス貼り70%まで進捗。資材（脚立）を追加手配中</td>
+                  <td><span class="status-badge status-warn">注意</span></td>
+                </tr>
+                <tr>
+                  <td class="site">現場C</td>
+                  <td class="staff">佐藤</td>
+                  <td>雨天のため外構作業を中止、室内造作を前倒し。工程に遅れなし</td>
+                  <td><span class="status-badge status-good">順調</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="fade-block">
+          <div class="block-label">週間の進捗（現場平均）</div>
+          <div class="chart-box">
+            <div class="chart-bars">
+              <div class="bar-col"><div class="bar-val">60%</div><div class="bar-shape" style="height:60%;"></div><div class="bar-day">月</div></div>
+              <div class="bar-col"><div class="bar-val">63%</div><div class="bar-shape" style="height:63%;"></div><div class="bar-day">火</div></div>
+              <div class="bar-col"><div class="bar-val">66%</div><div class="bar-shape" style="height:66%;"></div><div class="bar-day">水</div></div>
+              <div class="bar-col"><div class="bar-val">70%</div><div class="bar-shape" style="height:70%;"></div><div class="bar-day">木</div></div>
+              <div class="bar-col today"><div class="bar-val">71%</div><div class="bar-shape" style="height:71%;"></div><div class="bar-day">金（本日）</div></div>
+            </div>
+            <div class="chart-foot">週平均 66%｜3現場の日報進捗をAIが自動集計</div>
+          </div>
+        </div>
+
+        <div class="fade-block">
+          <div class="block-label">要対応アラート</div>
+          <div class="alert-card">
+            <span class="mark">！</span>
+            <div class="txt"><strong>現場B：</strong>脚立2台の発注依頼 → 発注担当に通知済み</div>
+          </div>
+        </div>
+
+        <div class="fade-block">
+          <div class="block-label">週次サマリー（AI作成）</div>
+          <div class="summary-box">
+            今週は3現場すべてが稼働し、うち現場A・現場Cは計画通り順調です。現場Aは基礎工事が完了し、明日から型枠工事に移ります。<br>
+            現場Cは雨天で外構作業を中止しましたが、室内造作を前倒しで進めたため、全体工程に遅れは出ていません。<br>
+            現場Bのみ、脚立の追加手配が必要となったためAIが発注担当へ自動通知しました。今週の現場平均進捗は66%で、計画線上を推移しています。
+          </div>
+        </div>
+
+        <div class="fade-block">
+          <div class="ai-actions">
+            <h4>AIがやったこと</h4>
+            <div class="action-item">
+              <span class="action-icon">1</span>
+              <div class="action-body">
+                <h5>自由文の日報から構造化データを抽出</h5>
+                <p>「基礎工事完了、明日から型枠」のような現場担当者の自由な書き方の報告文から、進捗・工程・状態を自動で読み取り、表形式のデータに変換しました。</p>
+              </div>
+            </div>
+            <div class="action-item">
+              <span class="action-icon">2</span>
+              <div class="action-body">
+                <h5>依頼事項の検知と担当への通知</h5>
+                <p>「脚立の予備が足りない、2台注文お願いします」という一文から発注依頼を検知し、発注担当へ自動で通知しました。</p>
+              </div>
+            </div>
+            <div class="action-item">
+              <span class="action-icon">3</span>
+              <div class="action-body">
+                <h5>経営者向けサマリー生成</h5>
+                <p>3現場分の日報を踏まえ、社長が知りたい要点だけをまとめた週次サマリーを自動で作成しました。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="reselect-row">
+        <a id="resetLink">もう一度見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">HOW TO CUSTOMIZE</span>
+    <h2 class="section-title">これを御社仕様にするには</h2>
+    <p class="section-lead">今ご覧いただいたのはサンプルですが、実際の導入では御社の報告フォーマット・現場の進め方に合わせて、無理のない範囲からAIを組み込んでいきます。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>現場は今まで通りLINEで報告するだけ</h3>
+        <p>現場の作業や報告方法は一切変わりません。普段通りLINEで一言送るだけで、AIが内容を読み取ります。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>AIが読み取り・集計・通知</h3>
+        <p>届いた日報をAIが構造化データに変換し、進捗を自動集計。発注や手配などの依頼事項があれば、担当者へ自動で通知します。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>社長は朝このダッシュボードを見るだけ</h3>
+        <p>翌朝には現場ごとの進捗・要対応事項・週次サマリーが揃った状態に。日報を1件ずつ読む時間がなくなります。</p>
+      </div>
+    </div>
+    <p class="how-note">現場の作業を増やすことなく、<strong>今まで通りのLINE報告が、そのまま経営情報に変わる</strong>——それがAI顧問室のやり方です。</p>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の日報集計で試したい方へ</h2>
+    <p>「うちの現場でもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、御社の日報・報告の現状をお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">1分でレベル診断を受ける</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var aggregateBtn = document.getElementById("aggregateBtn");
+  var demoResult = document.getElementById("demoResult");
+  var loadingBox = document.getElementById("loadingBox");
+  var dashboard = document.getElementById("dashboard");
+  var resetLink = document.getElementById("resetLink");
+
+  function runAggregation() {
+    aggregateBtn.disabled = true;
+    demoResult.classList.add("active");
+    dashboard.classList.remove("show");
+    dashboard.style.display = "none";
+    loadingBox.style.display = "block";
+
+    demoResult.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    setTimeout(function () {
+      loadingBox.style.display = "none";
+      dashboard.style.display = "block";
+      // force reflow so the fade-in animation replays every run
+      void dashboard.offsetWidth;
+      dashboard.classList.add("show");
+      aggregateBtn.disabled = false;
+    }, 1500);
+  }
+
+  aggregateBtn.addEventListener("click", runAggregation);
+
+  resetLink.addEventListener("click", function () {
+    demoResult.classList.remove("active");
+    dashboard.classList.remove("show");
+    dashboard.style.display = "none";
+    loadingBox.style.display = "block";
+    document.getElementById("demo").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
+
+</body>
+</html>
