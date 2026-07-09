@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>AI活用診断サマリー</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0B2447; --gold:#C9A227; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg-soft:#F4F7FA; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A4; margin: 0; }
+  body { font-family:'Noto Sans JP',sans-serif; color:var(--ink); width:794px; }
+  .page { width:794px; height:1122px; padding:56px 64px; position:relative; page-break-after:always; }
+  .page:last-of-type { page-break-after:auto; }
+  h1,h2,h3 { font-family:'Noto Serif JP',serif; }
+  .head { border-bottom:3px solid var(--navy); padding-bottom:16px; margin-bottom:22px; display:flex; justify-content:space-between; align-items:flex-end; }
+  .head .brand { font-family:'Noto Serif JP',serif; font-size:16px; color:var(--navy); font-weight:700; }
+  h1 { font-size:26px; color:var(--navy); }
+  .addr-row { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:14px; }
+  .addr { font-size:19px; font-family:'Noto Serif JP',serif; color:var(--navy); font-weight:700; }
+  .addr small { font-size:11px; font-weight:400; color:var(--gray); margin-left:6px; font-family:'Noto Sans JP',sans-serif; }
+  .date { font-size:11px; color:var(--gray); }
+  .lead { font-size:12px; color:var(--gray); margin-bottom:24px; line-height:1.95; }
+  .label { font-size:10px; letter-spacing:0.2em; color:var(--gold); font-weight:700; margin-bottom:6px; }
+  h2 { font-size:16px; color:var(--navy); margin-bottom:12px; }
+  section { margin-bottom:24px; }
+
+  .lvmap { display:flex; align-items:flex-start; margin:14px 0 16px; }
+  .lvmap .step { flex:1; text-align:center; position:relative; }
+  .lvmap .step .dot { width:28px; height:28px; border-radius:50%; background:#fff; border:2px solid var(--line); margin:0 auto 6px; display:flex; align-items:center; justify-content:center; font-family:'Noto Serif JP',serif; font-weight:700; font-size:12px; color:var(--gray); position:relative; z-index:2; }
+  .lvmap .step .conn { position:absolute; top:13px; left:-50%; width:100%; height:2px; background:var(--line); z-index:1; }
+  .lvmap .step:first-child .conn { display:none; }
+  .lvmap .step .lbl { font-size:9.5px; color:var(--gray); line-height:1.4; }
+  .lvmap .step.current .dot { background:var(--gold); border-color:var(--gold); color:#071A35; box-shadow:0 0 0 5px rgba(201,162,39,.18); }
+  .lvmap .step.current .lbl { color:var(--navy); font-weight:700; }
+  .lvmap .step.current .tag { position:absolute; top:-18px; left:50%; transform:translateX(-50%); font-size:9px; color:#fff; background:var(--navy); padding:2px 8px; border-radius:999px; white-space:nowrap; }
+
+  .basis { background:var(--bg-soft); border-left:4px solid var(--gold); padding:14px 18px; font-size:12px; line-height:2; }
+  .basis b { color:var(--navy); }
+
+  .opp { border:1px solid var(--line); border-radius:8px; padding:13px 18px; margin-bottom:10px; }
+  .opp .opp-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+  .opp .opp-head .name { font-family:'Noto Serif JP',serif; font-size:14px; color:var(--navy); font-weight:700; }
+  .opp .opp-head .badge { display:inline-block; background:var(--navy); color:#fff; font-size:9.5px; font-weight:700; border-radius:999px; padding:3px 12px; white-space:nowrap; }
+  .opp .cols { display:flex; gap:18px; }
+  .opp .col { flex:1; font-size:11.5px; line-height:1.75; }
+  .opp .col .lbl2 { font-size:9px; letter-spacing:.08em; color:var(--gold); font-weight:700; display:block; margin-bottom:2px; }
+
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th,td { border:1px solid var(--line); padding:11px 14px; text-align:left; vertical-align:top; }
+  th { background:var(--bg-soft); color:var(--navy); width:150px; font-weight:700; }
+  th .phase { display:block; font-size:10px; color:var(--gold); font-weight:700; margin-top:2px; }
+
+  .plan-box { background:var(--bg-soft); border:1px solid var(--line); border-radius:8px; padding:18px 22px; }
+  .plan-box .plan-name { font-family:'Noto Serif JP',serif; font-size:19px; color:var(--navy); font-weight:700; }
+  .plan-box .plan-price { font-size:12px; color:var(--gray); margin-top:2px; }
+  .plan-box .plan-reason { margin-top:10px; font-size:12px; line-height:1.9; }
+
+  .steps { font-size:12px; line-height:2.1; }
+  .steps .srow { display:flex; border-bottom:1px dashed var(--line); padding:9px 0; }
+  .steps .srow .k { width:150px; color:var(--gray); font-size:10.5px; }
+  .steps .srow .v b { color:var(--navy); }
+  .closing { margin-top:16px; font-size:12px; color:var(--gray); line-height:2; }
+
+  .foot { position:absolute; bottom:36px; left:64px; right:64px; border-top:1px solid var(--line); padding-top:12px; font-size:10px; color:var(--gray); display:flex; justify-content:space-between; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="head">
+    <h1>AI活用診断サマリー</h1>
+    <span class="brand">AI顧問室</span>
+  </div>
+
+  <div class="addr-row">
+    <div class="addr">【会社名】 様</div>
+    <div class="date">【日付】</div>
+  </div>
+  <p class="lead">
+    先日はお忙しい中、無料相談のお時間をいただきありがとうございました。当日お伺いした内容をもとに、御社の現在のAI活用状況と、次に取り組んでいただきたいポイントを簡潔にまとめました。ご検討の一助になれば幸いです。
+  </p>
+
+  <section>
+    <span class="label">SECTION 1 ／ CURRENT LEVEL</span>
+    <h2>御社の現在地：Lv.【数字】【レベル名】</h2>
+    <div class="lvmap">
+      <div class="step"><span class="conn"></span><div class="dot">0</div><div class="lbl">未導入</div></div>
+      <div class="step"><span class="conn"></span><div class="dot">1</div><div class="lbl">お試し</div></div>
+      <div class="step current"><span class="tag">現在地</span><span class="conn"></span><div class="dot">2</div><div class="lbl">日常化</div></div>
+      <div class="step"><span class="conn"></span><div class="dot">3</div><div class="lbl">業務組み込み</div></div>
+      <div class="step"><span class="conn"></span><div class="dot">4</div><div class="lbl">自動化</div></div>
+      <div class="step"><span class="conn"></span><div class="dot">5</div><div class="lbl">エージェント経営</div></div>
+    </div>
+    <div class="basis">
+      <b>判定根拠：</b><br>
+      ・【判定根拠1】<br>
+      ・【判定根拠2】<br>
+      ・【判定根拠3】
+    </div>
+  </section>
+
+  <section>
+    <span class="label">SECTION 2 ／ OPPORTUNITY</span>
+    <h2>御社の業務で、AIが最も効く3つのポイント</h2>
+
+    <div class="opp">
+      <div class="opp-head"><span class="name">①【業務名】</span><span class="badge">推奨レベル感：【 】</span></div>
+      <div class="cols">
+        <div class="col"><span class="lbl2">現状</span>【現状の記述】</div>
+        <div class="col"><span class="lbl2">AI導入後の姿</span>【導入後の姿の記述】</div>
+      </div>
+    </div>
+    <div class="opp">
+      <div class="opp-head"><span class="name">②【業務名】</span><span class="badge">推奨レベル感：【 】</span></div>
+      <div class="cols">
+        <div class="col"><span class="lbl2">現状</span>【現状の記述】</div>
+        <div class="col"><span class="lbl2">AI導入後の姿</span>【導入後の姿の記述】</div>
+      </div>
+    </div>
+    <div class="opp">
+      <div class="opp-head"><span class="name">③【業務名】</span><span class="badge">推奨レベル感：【 】</span></div>
+      <div class="cols">
+        <div class="col"><span class="lbl2">現状</span>【現状の記述】</div>
+        <div class="col"><span class="lbl2">AI導入後の姿</span>【導入後の姿の記述】</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+    <span>1 / 2</span>
+  </div>
+</div>
+
+<div class="page">
+  <div class="head">
+    <h1>AI活用診断サマリー</h1>
+    <span class="brand">AI顧問室</span>
+  </div>
+
+  <section>
+    <span class="label">SECTION 3 ／ ROADMAP</span>
+    <h2>推奨90日ロードマップ</h2>
+    <table>
+      <tr>
+        <th>1ヶ月目<span class="phase">棚卸しと診断</span></th>
+        <td>【1ヶ月目の具体的な取り組み】</td>
+      </tr>
+      <tr>
+        <th>2ヶ月目<span class="phase">最初の成果ひとつ</span></th>
+        <td>【2ヶ月目の具体的な取り組み】</td>
+      </tr>
+      <tr>
+        <th>3ヶ月目<span class="phase">定着と次の一手</span></th>
+        <td>【3ヶ月目の具体的な取り組み】</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <span class="label">SECTION 4 ／ PROPOSAL</span>
+    <h2>ご提案プラン</h2>
+    <div class="plan-box">
+      <div class="plan-name">【プラン名】プラン</div>
+      <div class="plan-price">月額【 】円（税別・最低契約期間3ヶ月）</div>
+      <div class="plan-reason">
+        【ご提案理由1】<br>
+        【ご提案理由2】
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="label">SECTION 5 ／ NEXT STEP</span>
+    <h2>次のステップ</h2>
+    <div class="steps">
+      <div class="srow"><span class="k">ご契約の場合の開始日目安</span><span class="v"><b>【 】</b></span></div>
+      <div class="srow"><span class="k">ご質問・ご相談</span><span class="v">チャットまたはメールにて、いつでもご連絡ください（【担当者名】／【連絡先】）</span></div>
+    </div>
+    <p class="closing">
+      本サマリーはあくまで現時点でのご提案であり、御社の状況に応じて内容は柔軟に調整いたします。ご不明点はご遠慮なく、いつでもお気軽にお問い合わせください。
+    </p>
+  </section>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+    <span>2 / 2</span>
+  </div>
+</div>
+
+</body>
+</html>
