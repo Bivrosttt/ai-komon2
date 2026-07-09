@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>社員はもうAIを使っている。なのに数字が変わらない会社へ｜AI顧問室</title>
+<meta name="description" content="ChatGPTが社内で日常化したのに、会社の数字は変わらない——。個人の効率化で止まっている御社のAI活用を「御社専用AI」として業務に組み込み、成果につなげる無料相談。中小企業向けAI顧問サービス。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 32px; color: var(--navy); margin-bottom: 18px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 48px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  .header-link { font-size: 14px; color: var(--navy); font-weight: 700; border-bottom: 1px solid var(--navy); padding-bottom: 2px; }
+  .header-link:hover { color: var(--blue); border-color: var(--blue); }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 96px 0 100px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.05em;
+    margin-bottom: 28px;
+    color: #DCE6F5;
+  }
+  .hero h1 { font-size: 42px; margin-bottom: 24px; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p.sub {
+    font-size: 17px; color: #C7D3E4; max-width: 620px; margin-bottom: 40px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .hero-note { font-size: 13px; color: #9FB0C7; margin-top: 18px; }
+
+  /* Empathy */
+  .problems { background: var(--bg-soft); }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .p-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--navy);
+    border-radius: 6px;
+    padding: 32px 28px;
+  }
+  .p-card .who {
+    font-size: 12px; color: var(--blue); font-weight: 700; letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .p-card h3 { font-size: 18px; color: var(--navy); margin-bottom: 14px; }
+  .p-card p { font-size: 14px; color: var(--gray); }
+  .problems-close {
+    text-align: center; margin-top: 52px;
+    font-family: 'Noto Serif JP', serif; font-size: 22px; color: var(--navy);
+  }
+  .problems-close em { font-style: normal; border-bottom: 3px solid var(--gold); padding-bottom: 2px; }
+
+  /* Cause */
+  .cause-flow { display: flex; align-items: stretch; gap: 20px; flex-wrap: wrap; max-width: 820px; margin: 0 auto 36px; }
+  .cause-box { flex: 1; min-width: 260px; border: 1px solid var(--line); border-radius: 6px; padding: 30px 26px; background: var(--white); }
+  .cause-box.now { border-top: 5px solid #8A97A8; }
+  .cause-box.next { border: 2px solid var(--navy); border-top: 5px solid var(--gold); }
+  .cause-box .tag { font-size: 12px; font-weight: 700; letter-spacing: .06em; margin-bottom: 10px; display: block; }
+  .cause-box.now .tag { color: var(--gray); }
+  .cause-box.next .tag { color: var(--gold); }
+  .cause-box h3 { font-size: 19px; color: var(--navy); margin-bottom: 10px; }
+  .cause-box p { font-size: 14px; color: var(--gray); }
+  .cause-arrow {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif JP', serif; font-weight: 700; color: var(--gold); font-size: 26px;
+    padding: 0 4px;
+  }
+  .cause-note { max-width: 720px; margin: 0 auto; font-size: 15px; text-align: center; color: var(--ink); }
+  .cause-note strong { color: var(--navy); }
+  @media (max-width: 720px) {
+    .cause-flow { flex-direction: column; }
+    .cause-arrow { transform: rotate(90deg); padding: 4px 0; }
+  }
+
+  /* Recipe */
+  .recipe { background: var(--bg-soft); }
+  .recipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+  .recipe-card {
+    background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--gold);
+    border-radius: 6px; padding: 28px 26px;
+  }
+  .recipe-card .tool { font-size: 12px; color: var(--blue); font-weight: 700; letter-spacing: .04em; margin-bottom: 8px; }
+  .recipe-card h3 { font-size: 18px; color: var(--navy); margin-bottom: 10px; }
+  .recipe-card p.desc { font-size: 13.5px; color: var(--gray); margin-bottom: 16px; }
+  .recipe-card .ba { font-size: 13px; background: var(--bg-soft); border-radius: 4px; padding: 12px 14px; color: var(--navy); line-height: 1.7; }
+  .recipe-card .ba .arrow { color: var(--gold); font-weight: 700; margin: 0 4px; }
+  .recipe-note { text-align: center; font-size: 12.5px; color: var(--gray); margin-top: 28px; }
+
+  /* Compare */
+  .compare-box {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch;
+    max-width: 860px; margin: 0 auto;
+  }
+  .cmp {
+    border: 1px solid var(--line); border-radius: 6px; padding: 34px 30px; background: var(--white);
+  }
+  .cmp.hire { background: var(--bg-soft); }
+  .cmp.advisor { border: 2px solid var(--navy); position: relative; }
+  .cmp h3 { font-size: 18px; color: var(--navy); margin-bottom: 18px; }
+  .cmp ul { list-style: none; }
+  .cmp li { font-size: 14px; color: var(--gray); padding: 9px 0 9px 26px; position: relative; border-bottom: 1px dashed var(--line); }
+  .cmp.hire li::before { content: "▲"; position: absolute; left: 0; color: #B0432F; font-size: 11px; top: 13px; }
+  .cmp.advisor li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .vs {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif JP', serif; font-weight: 700; color: var(--gray);
+    padding: 0 20px; font-size: 18px;
+  }
+
+  /* Pricing */
+  .pricing { background: var(--bg-soft); }
+  .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch; }
+  .plan {
+    background: var(--white); border: 1px solid var(--line); border-radius: 8px;
+    padding: 36px 30px; display: flex; flex-direction: column; position: relative;
+  }
+  .plan.featured { border: 2px solid var(--navy); }
+  .plan-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--navy-deep); font-size: 12px; font-weight: 700;
+    padding: 4px 18px; border-radius: 999px; white-space: nowrap;
+  }
+  .plan .name { font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--navy); }
+  .plan .position { font-size: 12px; color: var(--blue); font-weight: 700; margin-bottom: 18px; }
+  .plan .amount { font-family: 'Noto Serif JP', serif; font-size: 36px; font-weight: 700; color: var(--navy); line-height: 1.2; }
+  .plan .amount small { font-size: 14px; font-weight: 400; color: var(--gray); }
+  .plan ul { list-style: none; margin: 20px 0 28px; flex: 1; }
+  .plan li { font-size: 13.5px; padding: 9px 0 9px 26px; position: relative; border-bottom: 1px solid var(--bg-soft); color: var(--ink); }
+  .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .plan .btn { text-align: center; }
+  .price-note { text-align: center; font-size: 13px; color: var(--gray); margin-top: 28px; }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 18px; }
+  .cta p { color: #C7D3E4; margin-bottom: 36px; }
+  .cta-sub { margin-top: 28px; font-size: 14px; color: #9FB0C7; }
+  .cta-sub a { text-decoration: underline; color: #DCE6F5; font-weight: 700; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 36px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 17px; }
+  footer .logo { justify-content: center; margin-bottom: 10px; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 820px) {
+    section { padding: 60px 0; }
+    .hero { padding: 72px 0 80px; }
+    .hero h1 { font-size: 28px; }
+    .section-title { font-size: 24px; }
+    .compare-box { grid-template-columns: 1fr; }
+    .vs { padding: 16px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <a href="index.html" class="header-link">公式サイトへ</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="hero-label">Lv.2の会社向け｜社員がAIを使い始めた企業へ</span>
+    <h1>社員はもう、ChatGPTを使っている。<br>なのに、<em>会社の数字</em>は変わらない。</h1>
+    <p class="sub">「使うのが当たり前」にはなった。でも、それは一人ひとりの効率化止まりで、会社としての成果にはつながっていない——。そんな状態から、御社の業務そのものにAIを組み込む段階へ引き上げる無料相談です。</p>
+    <div class="hero-ctas">
+      <a href="index.html#contact" class="btn btn-gold">無料相談を予約する（60分）</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">1分でレベル診断する</a>
+    </div>
+    <p class="hero-note">※ 無料相談だけでも「次に何を業務に組み込むべきか」が明確になります。売り込みは一切しません。</p>
+  </div>
+</div>
+
+<section class="problems" id="problems">
+  <div class="container">
+    <span class="section-label">よくあるお悩み</span>
+    <h2 class="section-title">その「AI活用してます」、実はここで止まっていませんか？</h2>
+    <div class="card-grid">
+      <div class="p-card">
+        <div class="who">CASE 01｜成果が数字に出ない</div>
+        <h3>「便利にはなった。でも売上や利益は変わっていない」</h3>
+        <p>メールの文面づくりや調べ物は速くなった。でもそれは一人ひとりの作業が少し楽になっただけ。会社全体の数字として効果を実感できていない。</p>
+      </div>
+      <div class="p-card">
+        <div class="who">CASE 02｜使い方が属人化している</div>
+        <h3>「使う人によって、質もスピードもバラバラ」</h3>
+        <p>AIを使いこなす社員もいれば、まったく触らない社員もいる。統一されたルールや型がなく、成果物の品質が担当者次第になっている。</p>
+      </div>
+      <div class="p-card">
+        <div class="who">CASE 03｜不安が拭えない</div>
+        <h3>「機密情報を入れて大丈夫か、投資に見合っているのか分からない」</h3>
+        <p>顧客情報や社外秘の資料をAIに入力してよいのか、社内ルールが曖昧なまま。有料プランへの投資が増える一方で、費用対効果を説明できない。</p>
+      </div>
+    </div>
+    <p class="problems-close">それは御社の努力不足ではなく、<em>まだ次の段階に進んでいないだけ</em>です。</p>
+  </div>
+</section>
+
+<section id="cause">
+  <div class="container">
+    <span class="section-label">原因</span>
+    <h2 class="section-title">「個人の道具」で止まっているから、数字が変わらない</h2>
+    <p class="section-lead">AI顧問室では、会社のAI活用度を6段階の「AI活用レベルマップ」で捉えています。御社はおそらく、社員がAIを日常的に使う<strong>Lv.2「日常化」</strong>の状態。ここから成果を出すには、次のLv.3「業務組み込み」へ進む必要があります。</p>
+    <div class="cause-flow">
+      <div class="cause-box now">
+        <span class="tag">現在地｜Lv.2 日常化</span>
+        <h3>AIは「個人の道具」</h3>
+        <p>社員それぞれがChatGPTなどを自分のやり方で使っている状態。使う・使わない、上手い・下手が個人差として残り、会社の業務プロセスそのものは変わっていない。</p>
+      </div>
+      <div class="cause-arrow">→</div>
+      <div class="cause-box next">
+        <span class="tag">次の段階｜Lv.3 業務組み込み</span>
+        <h3>AIは「会社の仕組み」</h3>
+        <p>御社の書式・単価表・過去資料を学習した「御社専用AI」が、見積り作成や議事録づくりなど日々の業務手順に組み込まれる。誰が使っても、同じ品質とスピードが出る状態。</p>
+      </div>
+    </div>
+    <p class="cause-note"><strong>個人のスキルに依存する使い方から、会社の仕組みとしての使い方へ。</strong>この引き上げを設計し、実際に作り、現場に定着させるところまでを、AI顧問室が伴走します。</p>
+  </div>
+</section>
+
+<section class="recipe" id="recipe">
+  <div class="container">
+    <span class="section-label">RECIPE</span>
+    <h2 class="section-title">御社専用AI化の「業務組み込みレシピ」</h2>
+    <p class="section-lead">御社の書式・ルール・過去データを学習させ、日々の業務手順に組み込む。代表的な6つの実装例です。</p>
+    <div class="recipe-grid">
+      <div class="recipe-card">
+        <div class="tool">GPTs / Claude Projects</div>
+        <h3>見積書AI</h3>
+        <p class="desc">御社の見積書フォーマットと単価表を学習させ、条件を伝えるだけで下書きが出るAIを構築。</p>
+        <div class="ba">想定例：作成1件<strong>約2時間</strong><span class="arrow">→</span>AIが下書き、人は確認のみで<strong>約15分</strong></div>
+      </div>
+      <div class="recipe-card">
+        <div class="tool">Claude / Gemini</div>
+        <h3>議事録AI</h3>
+        <p class="desc">会議の録音・文字起こしから、決定事項とToDoを自動で整理するフォーマットを構築。</p>
+        <div class="ba">想定例：まとめ作業<strong>約1時間</strong><span class="arrow">→</span>会議直後に<strong>共有可能な状態</strong>で自動生成</div>
+      </div>
+      <div class="recipe-card">
+        <div class="tool">GPTs</div>
+        <h3>報告書の自動整形</h3>
+        <p class="desc">担当者ごとにバラバラだった日報・月次報告を、決まった型に自動で整形するAIを設置。</p>
+        <div class="ba">想定例：<strong>書式バラバラ</strong>で確認に時間<span class="arrow">→</span><strong>全員同じ型</strong>で提出、確認だけで完了</div>
+      </div>
+      <div class="recipe-card">
+        <div class="tool">NotebookLM</div>
+        <h3>社内ナレッジQ&amp;A AI</h3>
+        <p class="desc">マニュアルや過去の議事録・提案書を読み込ませ、社員が質問すれば即座に答えるAIを構築。</p>
+        <div class="ba">想定例：過去資料を<strong>探すのに10分以上</strong><span class="arrow">→</span>聞けば<strong>数十秒</strong>で回答</div>
+      </div>
+      <div class="recipe-card">
+        <div class="tool">Claude / GPTs</div>
+        <h3>提案書たたき台AI</h3>
+        <p class="desc">過去の提案書の型と勝ちパターンを学習させ、案件情報を入力すると骨子が出るAIを構築。</p>
+        <div class="ba">想定例：たたき台づくりに<strong>半日</strong><span class="arrow">→</span>骨子は<strong>数十分</strong>、磨き込みに集中</div>
+      </div>
+      <div class="recipe-card">
+        <div class="tool">ChatGPT / Gemini</div>
+        <h3>求人・採用文書AI</h3>
+        <p class="desc">御社の求める人物像と過去の求人票を学習させ、職種ごとの求人文や面接質問を生成するAIを構築。</p>
+        <div class="ba">想定例：求人票づくりに<strong>数時間</strong><span class="arrow">→</span>ドラフト作成が<strong>数分</strong>に短縮</div>
+      </div>
+    </div>
+    <p class="recipe-note">※ 上記はいずれも実装の想定例です。効果は業務内容・データの整備状況により異なり、成果を保証するものではありません。</p>
+  </div>
+</section>
+
+<section id="diy">
+  <div class="container">
+    <span class="section-label">DIYとの違い</span>
+    <h2 class="section-title">自分たちだけで進めると、ここでつまずきます</h2>
+    <p class="section-lead">「業務組み込み」は、ツールを触るだけの段階より一段難易度が上がります。自社だけで進めようとすると、よくある落とし穴があります。</p>
+    <div class="compare-box">
+      <div class="cmp hire">
+        <h3>自分たちだけで進める場合</h3>
+        <ul>
+          <li>ツール選定を誤り、合わないツールに時間とお金を費やす</li>
+          <li>セキュリティ・利用ルールの設計が後回しになり、機密情報の扱いが不安なまま運用が続く</li>
+          <li>担当者が作ったものの、他の社員に使われず現場に定着しない</li>
+          <li>効果を測る仕組みがなく、投資対効果を説明できない</li>
+        </ul>
+      </div>
+      <div class="vs">VS</div>
+      <div class="cmp advisor">
+        <h3>AI顧問室と進める場合</h3>
+        <ul>
+          <li>御社の業務内容に合わせて、最適なツールと構成を顧問が選定</li>
+          <li>機密情報の扱いを含めた社内ルール設計まで込みで実装</li>
+          <li>現場で実際に使われるところまで研修・伴走して定着させる</li>
+          <li>何にいくら投資し、何が改善したかを定例で振り返る</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <span class="section-label">PRICING</span>
+    <h2 class="section-title">料金プラン</h2>
+    <p class="section-lead">Lv.2からLv.3へ引き上げるには、月1件でも「実装」が継続的に進むことが重要です。多くのLv.2の会社には、実装が組み込まれた<strong>スタンダードプラン</strong>をおすすめしています。</p>
+    <div class="price-grid">
+      <div class="plan">
+        <div class="name">ライト</div>
+        <div class="position">AI経営の相談役</div>
+        <div class="amount">15<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（平日随時）</li>
+          <li>定例ミーティング 月1回60分</li>
+          <li>AIツール選定・活用アドバイス</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">Lv.2の会社に最適</div>
+        <div class="name">スタンダード</div>
+        <div class="position">業務組み込みの伴走者</div>
+        <div class="amount">25<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（平日随時）＋定例月2回</li>
+          <li>AI導入ロードマップ策定・伴走</li>
+          <li>業務組み込みAIの実装 月1件込み</li>
+          <li>社員向けAI研修 四半期1回</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-navy">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan">
+        <div class="name">プレミアム</div>
+        <div class="position">社外AI役員</div>
+        <div class="amount">50<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（優先対応）＋定例月2回</li>
+          <li>AI経営戦略の立案・推進</li>
+          <li>業務組み込みAIの実装 月3件目安</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+    </div>
+    <p class="price-note">最低契約期間は3ヶ月。プランは途中変更できます。IT導入補助金など活用できる制度のご提案も行っています。</p>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>まずは60分、Lv.3への道筋を話しませんか。</h2>
+    <p>「何を業務に組み込めば数字が変わるか」を、御社の業務内容に沿って一緒に整理します。<br>オンライン対応・全国どこからでも。売り込みは一切しません。</p>
+    <a href="index.html#contact" class="btn btn-gold" style="font-size:17px; padding:18px 48px;">無料相談を予約する</a>
+    <p class="cta-sub">まずは自社の現在地から確認したい方は<br><a href="diagnosis.html">1分でわかるレベル診断 →</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：<a href="index.html">AI顧問室</a>｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
