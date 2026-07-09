@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>業務別・AI活用アイデア50</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0B2447; --navy-deep:#071A35; --gold:#C9A227; --blue:#2D6CB5; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg-soft:#F4F7FA; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A4; margin: 0; }
+  body { font-family:'Noto Sans JP',sans-serif; color:var(--ink); width:794px; }
+  h1,h2,h3 { font-family:'Noto Serif JP',serif; }
+
+  .page { width:794px; height:1122px; padding:56px 64px; position:relative; page-break-after:always; overflow:hidden; }
+  .page:last-of-type { page-break-after:auto; }
+  .page.dark { background:linear-gradient(135deg, var(--navy-deep), var(--navy) 62%, #19376D); color:#fff; }
+
+  .head { border-bottom:3px solid var(--navy); padding-bottom:14px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:flex-end; }
+  .head .brand { font-family:'Noto Serif JP',serif; font-size:15px; color:var(--navy); font-weight:700; }
+  .head .doctitle { font-size:12.5px; color:var(--gray); }
+
+  .foot { position:absolute; bottom:32px; left:64px; right:64px; border-top:1px solid var(--line); padding-top:12px; font-size:9.5px; color:var(--gray); display:flex; justify-content:space-between; }
+  .foot.foot-dark { border-top:1px solid rgba(255,255,255,0.25); color:#9FB0C7; }
+
+  .label { font-size:10px; letter-spacing:0.2em; color:var(--gold); font-weight:700; margin-bottom:6px; display:block; }
+  .lead { font-size:11.5px; color:var(--gray); line-height:1.9; margin-bottom:16px; }
+
+  /* ===== cover ===== */
+  .cover { display:flex; flex-direction:column; justify-content:center; }
+  .cover .badge { border:1px solid rgba(255,255,255,0.4); border-radius:999px; display:inline-block; width:fit-content; font-size:11.5px; padding:6px 20px; color:#DCE6F5; margin-bottom:30px; }
+  .cover .num50 { font-family:'Noto Serif JP',serif; font-size:120px; font-weight:700; color:var(--gold); line-height:1; margin-bottom:6px; }
+  .cover h1 { font-size:34px; line-height:1.5; margin-bottom:18px; }
+  .cover .sub { font-size:14.5px; color:var(--gold); font-family:'Noto Serif JP',serif; line-height:1.9; margin-bottom:40px; }
+  .cover .meta { font-size:11.5px; color:#9FB0C7; line-height:2.1; }
+  .cover .brandline { position:absolute; top:56px; right:64px; font-family:'Noto Serif JP',serif; font-size:16px; font-weight:700; color:#fff; }
+
+  /* ===== usage page ===== */
+  .rule-box { background:var(--bg-soft); border-left:4px solid var(--gold); padding:20px 24px; font-size:13px; line-height:2.1; margin-bottom:26px; }
+  .rule-box b { color:var(--navy); }
+  .steps-mini { display:flex; gap:14px; margin-bottom:28px; }
+  .steps-mini .sm { flex:1; border:1px solid var(--line); border-radius:8px; padding:16px 16px; }
+  .steps-mini .sm .no { font-family:'Noto Serif JP',serif; color:var(--gold); font-size:18px; font-weight:700; margin-bottom:6px; }
+  .steps-mini .sm h3 { font-size:12.5px; color:var(--navy); margin-bottom:6px; }
+  .steps-mini .sm p { font-size:10.5px; color:var(--gray); line-height:1.7; }
+
+  .legend-title { font-size:15px; color:var(--navy); margin-bottom:12px; }
+  .legend { border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .legend .lrow { display:flex; align-items:center; gap:16px; padding:14px 18px; border-bottom:1px solid var(--line); }
+  .legend .lrow:last-child { border-bottom:none; }
+  .legend .lrow .stars { width:80px; font-family:'Noto Serif JP',serif; font-weight:700; font-size:15px; flex-shrink:0; }
+  .legend .lrow.lv1 .stars { color:var(--navy); }
+  .legend .lrow.lv2 .stars { color:var(--blue); }
+  .legend .lrow.lv3 .stars { color:#8A6D1A; }
+  .legend .lrow b { font-size:12.5px; color:var(--navy); display:block; }
+  .legend .lrow span.d { font-size:11px; color:var(--gray); }
+  .catindex { margin-top:26px; }
+  .catindex .ci-title { font-size:12px; color:var(--gray); margin-bottom:10px; }
+  .catindex .cirow { display:flex; font-size:11.5px; padding:8px 0; border-bottom:1px dashed var(--line); }
+  .catindex .cirow .cn { width:220px; font-weight:700; color:var(--navy); }
+  .catindex .cirow .cc { color:var(--gray); }
+
+  /* ===== category pages ===== */
+  table { width:100%; border-collapse:collapse; font-size:10.8px; margin-top:4px; }
+  th,td { border:1px solid var(--line); padding:8px 9px; text-align:left; vertical-align:middle; line-height:1.55; }
+  thead th { background:var(--navy); color:#fff; font-family:'Noto Serif JP',serif; font-size:11px; font-weight:700; text-align:center; }
+  td.chkcell { text-align:center; width:34px; }
+  td.no { text-align:center; width:26px; color:var(--gray); font-weight:700; }
+  td.idea { width:150px; color:var(--navy); font-weight:700; }
+  td.idea .anno { display:block; font-weight:400; color:#B5471E; font-size:9px; margin-top:3px; line-height:1.5; }
+  td.change { color:var(--ink); }
+  td.change .arrow { color:var(--gold); font-weight:700; margin:0 3px; }
+  td.diffcell { text-align:center; width:76px; }
+  .diff { display:inline-block; border-radius:999px; padding:3px 10px; font-family:'Noto Serif JP',serif; font-weight:700; font-size:10.5px; border:1px solid; }
+  .diff.lv1 { background:var(--bg-soft); color:var(--navy); border-color:var(--line); }
+  .diff.lv2 { background:#EAF1FA; color:var(--blue); border-color:#C7DBF0; }
+  .diff.lv3 { background:#FBF1D9; color:#8A6D1A; border-color:#EAD9A6; }
+  .chk-o { display:inline-block; width:13px; height:13px; border:1.4px solid var(--line); border-radius:50%; }
+  .cat-note { margin-top:12px; font-size:9.5px; color:var(--gray); line-height:1.9; }
+
+  /* ===== closing page ===== */
+  .closing { display:flex; flex-direction:column; justify-content:center; }
+  .closing h2 { font-size:26px; color:#fff; line-height:1.6; margin-bottom:14px; }
+  .closing .clead { font-size:12.5px; color:#C7D3E4; line-height:2; margin-bottom:34px; }
+  .ctaboxes { display:flex; flex-direction:column; gap:16px; }
+  .ctabox { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.25); border-radius:10px; padding:20px 24px; display:flex; align-items:center; gap:18px; }
+  .ctabox .cno { font-family:'Noto Serif JP',serif; font-size:26px; font-weight:700; color:var(--gold); flex-shrink:0; width:34px; }
+  .ctabox h3 { font-size:15px; color:#fff; margin-bottom:6px; }
+  .ctabox p { font-size:11px; color:#C7D3E4; line-height:1.7; margin-bottom:8px; }
+  .ctabox .u { font-size:12.5px; color:var(--gold); font-weight:700; word-break:break-all; }
+  .closing .pub { margin-top:34px; font-size:10.5px; color:#9FB0C7; }
+</style>
+</head>
+<body>
+
+<!-- 1. 表紙 -->
+<div class="page dark cover">
+  <span class="brandline">AI顧問室</span>
+  <span class="badge">従業員10〜50名の中小企業のための無料ガイド</span>
+  <div class="num50">50</div>
+  <h1>業務別・AI活用アイデア50<br>——中小企業が今日から真似できる使い道リスト</h1>
+  <p class="sub">「うちの会社でAIって何に使えるの？」への、いちばん具体的な答え方。</p>
+  <p class="meta">営業・顧客対応・事務・経営・人事・現場——6つの業務カテゴリ、50個の具体例。<br>https://rakansens.github.io/ai-komon2/</p>
+</div>
+
+<!-- 2. 使い方 -->
+<div class="page">
+  <div class="head">
+    <span class="doctitle">業務別・AI活用アイデア50</span>
+    <span class="brand">AI顧問室</span>
+  </div>
+
+  <span class="label">HOW TO USE</span>
+  <h2 style="font-size:22px; color:var(--navy); margin-bottom:14px;">このガイドの使い方</h2>
+
+  <div class="rule-box">
+    <b>全部やる必要はありません。</b><br>
+    このあと6つの業務カテゴリ・50個のアイデアが並びます。読みながら「うちでも使えそう」と思ったものに、各行の左端の丸に◯を付けてください。<br>
+    <b>ひとつのカテゴリで◯が3つ付いたら、その業務から始めてください。</b>それが、御社にとって今いちばん優先度の高いAI活用です。
+  </div>
+
+  <div class="steps-mini">
+    <div class="sm"><div class="no">1</div><h3>読みながら◯を付ける</h3><p>ピンとこないものは飛ばしてOK。直感で構いません</p></div>
+    <div class="sm"><div class="no">2</div><h3>カテゴリごとに数える</h3><p>◯が多いカテゴリ＝御社の伸びしろが大きい業務です</p></div>
+    <div class="sm"><div class="no">3</div><h3>いちばん多い所から着手</h3><p>難易度★のものから、ひとつだけ試してみてください</p></div>
+  </div>
+
+  <h3 class="legend-title">難易度の見方</h3>
+  <div class="legend">
+    <div class="lrow lv1"><span class="stars">★☆☆</span><div><b>今日からできる</b><span class="d">ChatGPTなど既存のAIチャットに、そのままお願いするだけで試せます</span></div></div>
+    <div class="lrow lv2"><span class="stars">★★☆</span><div><b>少し設定が要る</b><span class="d">テンプレートの用意や社内ルールの整理など、下準備が少し必要です</span></div></div>
+    <div class="lrow lv3"><span class="stars">★★★</span><div><b>専門家と一緒に</b><span class="d">ツール連携やシステム構築が伴うため、専門家と進めるのがおすすめです</span></div></div>
+  </div>
+
+  <div class="catindex">
+    <div class="ci-title">目次</div>
+    <div class="cirow"><span class="cn">01｜営業・集客（10）</span><span class="cc">反響対応・提案・追客・SNS発信まわり</span></div>
+    <div class="cirow"><span class="cn">02｜顧客対応（8）</span><span class="cc">問い合わせ・クレーム・多言語対応まわり</span></div>
+    <div class="cirow"><span class="cn">03｜事務・バックオフィス（10）</span><span class="cc">見積・請求・議事録・書類まわり</span></div>
+    <div class="cirow"><span class="cn">04｜企画・経営（8）</span><span class="cc">壁打ち・計画・調査・資料まわり</span></div>
+    <div class="cirow"><span class="cn">05｜人事・採用（7）</span><span class="cc">求人・面接・評価・社内広報まわり</span></div>
+    <div class="cirow"><span class="cn">06｜製造・現場系（7）</span><span class="cc">手順書・報告書・在庫・引き継ぎまわり</span></div>
+  </div>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+    <span>2 / 9</span>
+  </div>
+</div>
+
+<!-- 3. 営業・集客 -->
+<div class="page">
+  <div class="head">
+    <span class="doctitle">業務別・AI活用アイデア50</span>
+    <span class="brand">AI顧問室</span>
+  </div>
+  <span class="label">CATEGORY 01 ／ 10 IDEAS</span>
+  <h2 style="font-size:20px; color:var(--navy); margin-bottom:6px;">営業・集客</h2>
+  <p class="lead">反響対応から提案書づくりまで、営業活動のあらゆる場面でAIが「たたき台」を作ってくれます。</p>
+
+  <table>
+    <thead><tr><th>チェック</th><th>No</th><th>アイデア</th><th>こう変わる</th><th>難易度</th></tr></thead>
+    <tbody>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">1</td><td class="idea">営業メールの下書き</td><td class="change">白紙から30分かけて作成<span class="arrow">→</span>AIが下書き、確認して数分で送信</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">2</td><td class="idea">提案書のたたき台</td><td class="change">構成から自分で悩んで手が止まる<span class="arrow">→</span>目次と骨子をAIが用意、肉付けするだけ</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">3</td><td class="idea">見込み客への追客文</td><td class="change">担当者まかせで連絡が途絶えがち<span class="arrow">→</span>シナリオに沿った追客文をAIが用意</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">4</td><td class="idea">SNS投稿の量産</td><td class="change">ネタ切れで更新が止まる<span class="arrow">→</span>テーマを渡すだけで複数の投稿案を生成</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">5</td><td class="idea">ブログ記事の下書き</td><td class="change">書ける人が限られ、後回しになりがち<span class="arrow">→</span>構成案と下書きをAIが用意、仕上げは人が</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">6</td><td class="idea">チラシ・DMのコピー案</td><td class="change">キャッチコピーで毎回手が止まる<span class="arrow">→</span>複数パターンをAIが提示、選んで微調整</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">7</td><td class="idea">顧客の声の整理と分析</td><td class="change">アンケートが溜まったまま放置<span class="arrow">→</span>AIが傾向を要約し、改善点を抽出</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">8</td><td class="idea">競合サイトの要約</td><td class="change">見に行っても読み込む時間がない<span class="arrow">→</span>URLを渡せば要点を数分で要約</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">9</td><td class="idea">営業トークの練習相手</td><td class="change">ロールプレイの相手がいない<span class="arrow">→</span>AI相手に想定問答を何度でも練習</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">10</td><td class="idea">商談メモの要約と次アクション抽出</td><td class="change">メモが荒く後で思い出せない<span class="arrow">→</span>メモから要点と次の一手を自動整理</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+    </tbody>
+  </table>
+  <p class="cat-note">★☆☆＝今日からできる　★★☆＝少し設定が要る　★★★＝専門家と一緒に</p>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+    <span>3 / 9</span>
+  </div>
+</div>
+
+<!-- 4. 顧客対応 -->
+<div class="page">
+  <div class="head">
+    <span class="doctitle">業務別・AI活用アイデア50</span>
+    <span class="brand">AI顧問室</span>
+  </div>
+  <span class="label">CATEGORY 02 ／ 8 IDEAS</span>
+  <h2 style="font-size:20px; color:var(--navy); margin-bottom:6px;">顧客対応</h2>
+  <p class="lead">問い合わせやクレームへの対応スピードと質を、AIが底上げします。</p>
+
+  <table>
+    <thead><tr><th>チェック</th><th>No</th><th>アイデア</th><th>こう変わる</th><th>難易度</th></tr></thead>
+    <tbody>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">1</td><td class="idea">問い合わせメールの返信下書き</td><td class="change">一件ずつ考えながら書いている<span class="arrow">→</span>AIが下書き、内容を確認して送信</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">2</td><td class="idea">FAQの整備</td><td class="change">同じ質問に毎回個別で対応している<span class="arrow">→</span>過去のやり取りからFAQ案をAIが作成</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">3</td><td class="idea">クレーム対応文の推敲</td><td class="change">言葉選びに毎回神経を使う<span class="arrow">→</span>AIが丁寧な言い回しに整えてくれる</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">4</td><td class="idea">LINE一次応対の自動化</td><td class="change">営業時間外は返信できない<span class="arrow">→</span>定型的な一次対応を自動化、複雑な内容は人へ</td><td class="diffcell"><span class="diff lv3">★★★</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">5</td><td class="idea">多言語対応</td><td class="change">外国語の問い合わせに時間がかかる<span class="arrow">→</span>AIが翻訳・下訳し、やり取りがスムーズに</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">6</td><td class="idea">アンケート集計</td><td class="change">自由記述を読み込むのに時間がかかる<span class="arrow">→</span>回答を要約し傾向をひと目で把握</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">7</td><td class="idea">回答テンプレの改善</td><td class="change">テンプレが古いまま放置されている<span class="arrow">→</span>AIと一緒に文面を定期的にブラッシュアップ</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">8</td><td class="idea">レビュー返信</td><td class="change">返信が後回しになりがち<span class="arrow">→</span>内容に応じた返信文をAIが下書き</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+    </tbody>
+  </table>
+  <p class="cat-note">★☆☆＝今日からできる　★★☆＝少し設定が要る　★★★＝専門家と一緒に</p>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+    <span>4 / 9</span>
+  </div>
+</div>
+
+<!-- 5. 事務・バックオフィス -->
+<div class="page">
+  <div class="head">
+    <span class="doctitle">業務別・AI活用アイデア50</span>
+    <span class="brand">AI顧問室</span>
+  </div>
+  <span class="label">CATEGORY 03 ／ 10 IDEAS</span>
+  <h2 style="font-size:20px; color:var(--navy); margin-bottom:6px;">事務・バックオフィス</h2>
+  <p class="lead">毎日の細かい事務作業ほど、AIに任せると時間が生まれます。</p>
+
+  <table>
+    <thead><tr><th>チェック</th><th>No</th><th>アイデア</th><th>こう変わる</th><th>難易度</th></tr></thead>
+    <tbody>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">1</td><td class="idea">見積書の下書き</td><td class="change">毎回ゼロから作成している<span class="arrow">→</span>過去の見積を参考にAIが下書き</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">2</td><td class="idea">請求書チェック</td><td class="change">目視確認でミスに気づきにくい<span class="arrow">→</span>AIが記載漏れ・金額の不整合をチェック</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">3</td><td class="idea">議事録作成</td><td class="change">録音を聞き直して半日がかり<span class="arrow">→</span>録音・メモから議事録を自動作成</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">4</td><td class="idea">日報の要約</td><td class="change">部下の日報に目を通す時間がない<span class="arrow">→</span>複数人の日報をAIが要約、要点だけ確認</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">5</td><td class="idea">Excel関数を日本語で作る</td><td class="change">関数を調べるのに毎回時間がかかる<span class="arrow">→</span>やりたいことを伝えるだけで関数を提案</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">6</td><td class="idea">書類のフォーマット変換</td><td class="change">手作業でコピペしながら変換<span class="arrow">→</span>AIに渡せば形式を整えて出力</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">7</td><td class="idea">経費のカテゴリ分け<span class="anno">※最終的な仕訳・税務判断は税理士に確認を</span></td><td class="change">仕分けに毎回悩んで手が止まる<span class="arrow">→</span>AIが仮の分類を提案、確認するだけに</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">8</td><td class="idea">契約書の要点整理<span class="anno">※最終判断は専門家に</span></td><td class="change">長文を読み込むのに時間がかかる<span class="arrow">→</span>要点・注意点をAIが整理、読む負担を軽減</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">9</td><td class="idea">スケジュール調整文</td><td class="change">候補日のやり取りに手間がかかる<span class="arrow">→</span>候補日提示から調整文までAIが下書き</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">10</td><td class="idea">マニュアルの下書き</td><td class="change">属人化していて誰も書けない<span class="arrow">→</span>手順を話すだけでAIがマニュアル化</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+    </tbody>
+  </table>
+  <p class="cat-note">★☆☆＝今日からできる　★★☆＝少し設定が要る　★★★＝専門家と一緒に　／　法務・税務が関わる項目は最終判断を専門家にご確認ください</p>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+    <span>5 / 9</span>
+  </div>
+</div>
+
+<!-- 6. 企画・経営 -->
+<div class="page">
+  <div class="head">
+    <span class="doctitle">業務別・AI活用アイデア50</span>
+    <span class="brand">AI顧問室</span>
+  </div>
+  <span class="label">CATEGORY 04 ／ 8 IDEAS</span>
+  <h2 style="font-size:20px; color:var(--navy); margin-bottom:6px;">企画・経営</h2>
+  <p class="lead">考えを整理する壁打ち相手として、AIを使う場面です。</p>
+
+  <table>
+    <thead><tr><th>チェック</th><th>No</th><th>アイデア</th><th>こう変わる</th><th>難易度</th></tr></thead>
+    <tbody>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">1</td><td class="idea">事業計画の壁打ち</td><td class="change">一人で考えて堂々巡りになる<span class="arrow">→</span>AI相手に何度でも壁打ちして整理</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">2</td><td class="idea">会議アジェンダ作成</td><td class="change">毎回考えるのが面倒で後回しに<span class="arrow">→</span>目的を伝えるだけでアジェンダ案を作成</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">3</td><td class="idea">価格改定のシミュレーション整理</td><td class="change">条件を変えるたびに計算し直す<span class="arrow">→</span>前提条件を伝えれば試算パターンを整理</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">4</td><td class="idea">補助金情報の下調べ<span class="anno">※最新情報は必ず公式サイト等でご確認ください</span></td><td class="change">制度が多すぎて追いきれない<span class="arrow">→</span>御社に合いそうな制度の候補をAIが整理</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">5</td><td class="idea">市場調査の下調べ</td><td class="change">情報収集だけで丸一日かかる<span class="arrow">→</span>概況や論点をAIが整理、深掘りの起点に</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">6</td><td class="idea">新サービス名のブレスト</td><td class="change">アイデアが同じ発想からしか出ない<span class="arrow">→</span>条件を伝えるだけで案を大量に発想</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">7</td><td class="idea">リスクの洗い出し</td><td class="change">気づいたときには手遅れになりがち<span class="arrow">→</span>計画を伝えると想定リスクを列挙</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">8</td><td class="idea">銀行向け資料の構成案</td><td class="change">何をどう書けばいいか分からない<span class="arrow">→</span>目的を伝えれば構成案と下書きを用意</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+    </tbody>
+  </table>
+  <p class="cat-note">★☆☆＝今日からできる　★★☆＝少し設定が要る　★★★＝専門家と一緒に　／　制度・補助金情報は必ず公式情報でご確認ください</p>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+    <span>6 / 9</span>
+  </div>
+</div>
+
+<!-- 7. 人事・採用 -->
+<div class="page">
+  <div class="head">
+    <span class="doctitle">業務別・AI活用アイデア50</span>
+    <span class="brand">AI顧問室</span>
+  </div>
+  <span class="label">CATEGORY 05 ／ 7 IDEAS</span>
+  <h2 style="font-size:20px; color:var(--navy); margin-bottom:6px;">人事・採用</h2>
+  <p class="lead">採用や評価など、言葉選びに気を使う場面でAIが力を発揮します。</p>
+
+  <table>
+    <thead><tr><th>チェック</th><th>No</th><th>アイデア</th><th>こう変わる</th><th>難易度</th></tr></thead>
+    <tbody>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">1</td><td class="idea">求人票の作成</td><td class="change">毎回一から書いて時間がかかる<span class="arrow">→</span>職種と条件を伝えるだけで下書きが完成</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">2</td><td class="idea">面接質問リスト</td><td class="change">質問が毎回同じで深掘りできない<span class="arrow">→</span>職種・重視点に応じた質問案をAIが用意</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">3</td><td class="idea">応募者への連絡文</td><td class="change">一件ずつ文面を考えている<span class="arrow">→</span>状況に応じた連絡文をAIが下書き</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">4</td><td class="idea">研修資料の下書き</td><td class="change">資料作成に時間を取られる<span class="arrow">→</span>テーマを伝えれば構成と下書きをAIが用意</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">5</td><td class="idea">評価コメントの推敲</td><td class="change">言葉選びに毎回悩んでしまう<span class="arrow">→</span>事実を伝えれば建設的な表現に整えてくれる</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">6</td><td class="idea">社内報・朝礼ネタ</td><td class="change">ネタ探しが毎回の負担になっている<span class="arrow">→</span>テーマを渡せば複数の案をAIが提示</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">7</td><td class="idea">退職手続きチェックリスト<span class="anno">※手続きの詳細は社労士等の専門家にご確認ください</span></td><td class="change">手続きに漏れがないか毎回不安<span class="arrow">→</span>一般的な流れをAIと一緒にチェックリスト化</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+    </tbody>
+  </table>
+  <p class="cat-note">★☆☆＝今日からできる　★★☆＝少し設定が要る　★★★＝専門家と一緒に　／　労務手続きの最終確認は専門家にご相談ください</p>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+    <span>7 / 9</span>
+  </div>
+</div>
+
+<!-- 8. 製造・現場系 -->
+<div class="page">
+  <div class="head">
+    <span class="doctitle">業務別・AI活用アイデア50</span>
+    <span class="brand">AI顧問室</span>
+  </div>
+  <span class="label">CATEGORY 06 ／ 7 IDEAS</span>
+  <h2 style="font-size:20px; color:var(--navy); margin-bottom:6px;">製造・現場系</h2>
+  <p class="lead">現場の記録や手順の整理も、AIが下書き役になってくれます。</p>
+
+  <table>
+    <thead><tr><th>チェック</th><th>No</th><th>アイデア</th><th>こう変わる</th><th>難易度</th></tr></thead>
+    <tbody>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">1</td><td class="idea">作業手順書の整備</td><td class="change">手順が個人の頭の中にしかない<span class="arrow">→</span>話した内容をAIが手順書の形に整理</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">2</td><td class="idea">安全確認チェックリスト</td><td class="change">チェック項目が古いまま放置<span class="arrow">→</span>作業内容を伝えれば項目案をAIが整理</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">3</td><td class="idea">現場写真から報告書</td><td class="change">写真を見ながら手作業で報告書を作成<span class="arrow">→</span>写真とメモをAIに渡せば報告書の下書きに</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">4</td><td class="idea">在庫メモの整理</td><td class="change">手書きメモの集計に時間がかかる<span class="arrow">→</span>メモの内容をAIが整理・集計</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">5</td><td class="idea">発注メールの定型化</td><td class="change">毎回同じ内容を打ち直している<span class="arrow">→</span>よく使う発注文面をAIと一緒にテンプレ化</td><td class="diffcell"><span class="diff lv1">★☆☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">6</td><td class="idea">クレーム原因の整理</td><td class="change">原因の切り分けに時間がかかる<span class="arrow">→</span>状況を伝えると原因の切り分けを整理</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+      <tr><td class="chkcell"><span class="chk-o"></span></td><td class="no">7</td><td class="idea">引き継ぎ書の作成</td><td class="change">退職・異動時に情報が抜け落ちる<span class="arrow">→</span>話した内容をAIが引き継ぎ書の形に整理</td><td class="diffcell"><span class="diff lv2">★★☆</span></td></tr>
+    </tbody>
+  </table>
+  <p class="cat-note">★☆☆＝今日からできる　★★☆＝少し設定が要る　★★★＝専門家と一緒に</p>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+    <span>8 / 9</span>
+  </div>
+</div>
+
+<!-- 9. 最後のページ -->
+<div class="page dark closing">
+  <span class="label">NEXT STEP</span>
+  <h2>50個の中から選ぶより、<br>御社の業務から逆算するほうが早い。</h2>
+  <p class="clead">◯がいちばん多く付いたカテゴリは見つかりましたか。ここから先は、御社の業務内容に当てはめて優先順位を付ける作業です。それは、一般論のリストよりも、御社の状況を直接見た方が早く・正確に決まります。</p>
+
+  <div class="ctaboxes">
+    <div class="ctabox">
+      <div class="cno">①</div>
+      <div>
+        <h3>1分レベル診断（無料）</h3>
+        <p>5つの質問に答えるだけで、御社の現在地（Lv.0〜5）と次にやるべきことが分かります。</p>
+        <div class="u">https://rakansens.github.io/ai-komon2/diagnosis.html</div>
+      </div>
+    </div>
+    <div class="ctabox">
+      <div class="cno">②</div>
+      <div>
+        <h3>無料相談（60分）</h3>
+        <p>このガイドで◯が付いた業務を持って、そのままご相談ください。当日「何から始めるべきか」を持ち帰っていただけます。売り込みは一切しません。</p>
+        <div class="u">https://rakansens.github.io/ai-komon2/</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="pub">発行：AI顧問室｜中小企業のためのAI顧問サービス</p>
+</div>
+
+</body>
+</html>
