@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>AI導入で失敗する会社 7つのパターン</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0B2447; --gold:#C9A227; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg-soft:#F4F7FA; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A4; margin: 0; }
+  body { font-family:'Noto Sans JP',sans-serif; color:var(--ink); width:794px; background:#EEF1F5; }
+  .page { width:794px; height:1122px; padding:54px 64px 50px; position:relative; page-break-after:always; background:#fff; overflow:hidden; }
+  .page:last-of-type { page-break-after:auto; }
+  h1,h2,h3 { font-family:'Noto Serif JP',serif; }
+
+  /* running header / footer for content pages */
+  .runhead { display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid var(--line); margin-bottom:26px; }
+  .runhead .rh-brand { font-family:'Noto Serif JP',serif; font-weight:700; font-size:12px; color:var(--navy); letter-spacing:.02em; }
+  .runhead .rh-title { font-size:10px; color:var(--gray); letter-spacing:.06em; }
+  .foot { position:absolute; bottom:32px; left:64px; right:64px; border-top:1px solid var(--line); padding-top:12px; font-size:9.5px; color:var(--gray); display:flex; justify-content:space-between; }
+
+  .label { font-size:10px; letter-spacing:.22em; color:var(--gold); font-weight:700; margin-bottom:8px; }
+  h1.pt { font-size:24px; color:var(--navy); margin-bottom:14px; }
+  .lead { font-size:12.5px; color:var(--ink); line-height:2.05; margin-bottom:20px; }
+
+  ul.check { list-style:none; margin-bottom:6px; }
+  ul.check li { font-size:12.5px; padding:10px 0 10px 26px; position:relative; border-bottom:1px dashed var(--line); line-height:1.85; }
+  ul.check li::before { content:"✓"; position:absolute; left:2px; color:var(--gold); font-weight:700; }
+
+  .goal { background:var(--bg-soft); border-left:4px solid var(--gold); padding:16px 20px; font-size:12.5px; line-height:1.95; }
+  .goal b { color:var(--navy); }
+
+  /* ===== cover ===== */
+  .cover { background:#fff; }
+  .cover .band { position:absolute; top:0; left:0; right:0; height:10px; background:linear-gradient(90deg,var(--navy),var(--gold)); }
+  .cover .ringdeco { position:absolute; top:90px; right:-70px; width:340px; height:340px; border-radius:50%; border:1px solid var(--line); z-index:0; }
+  .cover .ringdeco::before { content:""; position:absolute; top:38px; left:38px; right:38px; bottom:38px; border-radius:50%; border:1px solid var(--line); }
+  .cover .inner { position:relative; z-index:1; height:100%; display:flex; flex-direction:column; justify-content:center; padding-top:40px; }
+  .cover .tag { display:inline-block; font-size:11px; letter-spacing:.28em; color:var(--gold); font-weight:700; margin-bottom:26px; }
+  .cover .titlebox h1 { font-size:44px; color:var(--navy); line-height:1.5; margin-bottom:20px; }
+  .cover .titlebox h1 .num { color:var(--gold); }
+  .cover .sub { font-size:14.5px; color:var(--gray); line-height:2; max-width:520px; margin-bottom:52px; }
+  .cover .meta { display:flex; gap:28px; margin-bottom:80px; }
+  .cover .meta .m-item { border-left:2px solid var(--gold); padding-left:14px; }
+  .cover .meta .m-item .k { font-size:9.5px; color:var(--gray); letter-spacing:.1em; margin-bottom:3px; }
+  .cover .meta .m-item .v { font-size:14px; color:var(--navy); font-weight:700; font-family:'Noto Serif JP',serif; }
+  .cover .brandline { display:flex; align-items:center; gap:14px; }
+  .cover .brandline .mark { width:40px; height:40px; border:2px solid var(--navy); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Noto Serif JP',serif; font-weight:900; color:var(--navy); font-size:15px; }
+  .cover .brandline .name { font-family:'Noto Serif JP',serif; font-size:17px; font-weight:700; color:var(--navy); }
+  .cover .brandline .desc { font-size:10.5px; color:var(--gray); margin-top:2px; }
+  .cover .foot2 { position:absolute; bottom:40px; left:64px; right:64px; display:flex; justify-content:space-between; font-size:10px; color:var(--gray); border-top:1px solid var(--line); padding-top:14px; }
+
+  /* ===== pattern blocks ===== */
+  .patt { margin-bottom:22px; }
+  .patt-head { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+  .pnum { width:32px; height:32px; border-radius:50%; background:var(--navy); color:#fff; font-family:'Noto Serif JP',serif; font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .patt h3 { font-size:16.5px; color:var(--navy); }
+  .scene { font-size:12px; color:var(--ink); background:var(--bg-soft); border-left:3px solid var(--line); padding:12px 16px; margin-bottom:12px; line-height:1.9; }
+  .row2 { display:flex; gap:20px; }
+  .row2 .col { flex:1; font-size:11.8px; line-height:1.85; }
+  .row2 .col .tg { display:block; font-size:9.5px; letter-spacing:.1em; color:var(--gold); font-weight:700; margin-bottom:4px; }
+  .patt-divider { border-top:1px dashed var(--line); margin:0 0 22px; }
+  .bridge { margin-top:8px; font-size:12px; color:var(--gray); line-height:1.9; background:var(--bg-soft); border-left:4px solid var(--navy); padding:14px 18px; }
+  .bridge b { color:var(--navy); }
+
+  /* ===== summary table page ===== */
+  table.sum { width:100%; border-collapse:collapse; font-size:11.3px; }
+  table.sum th, table.sum td { border:1px solid var(--line); padding:11px 13px; text-align:left; vertical-align:top; line-height:1.7; }
+  table.sum thead th { background:var(--navy); color:#fff; font-weight:700; font-size:10.5px; }
+  table.sum td.no { width:26px; text-align:center; font-family:'Noto Serif JP',serif; font-weight:700; color:var(--navy); background:var(--bg-soft); }
+  table.sum td.nm { width:150px; font-weight:700; color:var(--navy); }
+  table.sum td.rx { width:230px; }
+
+  /* ===== level map page ===== */
+  .stairs { margin:22px 0 24px; }
+  .srow { display:flex; align-items:center; gap:16px; margin-bottom:10px; padding:12px 16px; border:1px solid var(--line); border-radius:8px; }
+  .srow .sdot { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Noto Serif JP',serif; font-weight:700; font-size:14px; flex-shrink:0; color:#fff; }
+  .srow .stxt { flex:1; }
+  .srow .stxt .sname { font-family:'Noto Serif JP',serif; font-size:13.5px; color:var(--navy); font-weight:700; }
+  .srow .stxt .sdesc { font-size:11px; color:var(--gray); margin-top:2px; line-height:1.6; }
+  .srow .sarrow { text-align:center; color:var(--line); font-size:12px; margin:-2px 0 -2px 50px; }
+  .arrow-row { text-align:left; padding-left:16px; color:var(--gold); font-size:13px; margin-bottom:-2px; }
+
+  /* ===== closing / cta page ===== */
+  .cta-box { border:1px solid var(--line); border-radius:10px; padding:22px 26px; margin-bottom:18px; }
+  .cta-box .cta-head { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .cta-box .cta-num { width:28px; height:28px; border-radius:50%; background:var(--gold); color:#071A35; font-family:'Noto Serif JP',serif; font-weight:700; font-size:13px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .cta-box h3 { font-size:15px; color:var(--navy); }
+  .cta-box p { font-size:12px; color:var(--ink); line-height:1.9; margin-bottom:10px; }
+  .cta-box .link { display:inline-block; background:var(--navy); color:#fff; font-size:11.5px; font-weight:700; padding:9px 18px; border-radius:6px; }
+  .cta-box .sub2 { font-size:10.5px; color:var(--gray); margin-top:8px; }
+  .closing-lead { font-size:12.5px; color:var(--ink); line-height:2.05; margin-bottom:24px; }
+  .issuer { margin-top:20px; font-size:11px; color:var(--gray); border-top:1px solid var(--line); padding-top:16px; line-height:1.9; }
+  .issuer b { color:var(--navy); font-family:'Noto Serif JP',serif; }
+</style>
+</head>
+<body>
+
+<!-- 1: cover -->
+<div class="page cover">
+  <div class="band"></div>
+  <div class="ringdeco"></div>
+  <div class="inner">
+    <span class="tag">無料小冊子 ／ FREE GUIDE</span>
+    <div class="titlebox">
+      <h1>AI導入で失敗する会社<br><span class="num">7つ</span>のパターン</h1>
+    </div>
+    <p class="sub">従業員10〜50名の会社が、<br>ムダなお金を使う前に読む小冊子</p>
+    <div class="meta">
+      <div class="m-item"><div class="k">READING TIME</div><div class="v">読了目安　約15分</div></div>
+      <div class="m-item"><div class="k">FOR</div><div class="v">従業員10〜50名の経営者</div></div>
+    </div>
+    <div class="brandline">
+      <div class="mark">顧</div>
+      <div>
+        <div class="name">AI顧問室</div>
+        <div class="desc">中小企業のためのAI顧問サービス</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot2">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>https://rakansens.github.io/ai-komon2/</span>
+  </div>
+</div>
+
+<!-- 2: はじめに -->
+<div class="page">
+  <div class="runhead">
+    <span class="rh-brand">AI顧問室</span>
+    <span class="rh-title">AI導入で失敗する会社　7つのパターン</span>
+  </div>
+  <span class="label">INTRODUCTION</span>
+  <h1 class="pt">はじめに</h1>
+  <p class="lead">
+    「うちも早くAIを導入しないと、他社に置いていかれるかもしれない」——そう感じて、この小冊子を手に取ってくださったのだと思います。その焦りは、決して的外れではありません。<br><br>
+    ただ、多くの中小企業のAI活用を見てきて分かったことがあります。<b style="color:var(--navy)">AI導入で失敗している会社の多くは、技術で失敗しているのではなく、順番で失敗している</b>ということです。高いツールを買った、社長だけが盛り上がった、いきなり自動化に手を出した——理由はバラバラに見えて、実は同じところに行き着きます。<br><br>
+    この小冊子では、中小企業のAI導入でよく見られる「7つの失敗パターン」を、順番の問題という切り口で整理しました。他社の失敗を先に知っておくことは、自社が同じ轍を踏まないための、いちばん手軽な保険です。
+  </p>
+
+  <span class="label" style="margin-top:6px;">WHAT YOU'LL LEARN</span>
+  <h1 class="pt" style="font-size:17px;">この小冊子で分かること</h1>
+  <ul class="check">
+    <li>中小企業のAI導入でよくある「7つの失敗パターン」と、その共通点</li>
+    <li>なぜ「順番」を間違えると、お金と時間がムダになるのか</li>
+    <li>自社が今どの段階にいて、次に何から始めればいいのか</li>
+  </ul>
+
+  <div class="goal" style="margin-top:18px;">
+    読み終える頃には、「順番さえ間違えなければ、AI導入は怖くない」ということと、<b>自社の現在地を知りたくなっている</b>はずです。最後のページで、その調べ方もご案内します。
+  </div>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>2 / 9</span>
+  </div>
+</div>
+
+<!-- 3: pattern 1-2 -->
+<div class="page">
+  <div class="runhead">
+    <span class="rh-brand">AI顧問室</span>
+    <span class="rh-title">7つの失敗パターン</span>
+  </div>
+  <span class="label">FAILURE PATTERN</span>
+  <h1 class="pt" style="font-size:19px; margin-bottom:22px;">よくある失敗パターン</h1>
+
+  <div class="patt">
+    <div class="patt-head"><span class="pnum">1</span><h3>いきなり高いツールを買う</h3></div>
+    <p class="scene">展示会や営業の電話で「これを入れれば業務が劇的に変わります」と言われ、年間契約で高額なAIツールを導入。導入初日は現場も少し盛り上がるが、使い方が複雑で、結局みんな慣れた既存のやり方に戻ってしまう。半年後に気づけば、誰もログインしていないのに月額費用だけが引き落とされ続けている。</p>
+    <div class="row2">
+      <div class="col"><span class="tg">なぜ失敗するのか</span>「ツールを買えば解決する」と考えてしまいがちですが、道具は使う人がいて初めて価値を生みます。現場が必要性を実感する前に高機能・高額なツールを与えても、使いこなす土台がありません。</div>
+      <div class="col"><span class="tg">どうすればよかったか</span>まずは無料〜低コストのツールで「AIは仕事に使える」という体感を作る。順番は「体感 → 見極め → 投資」。土台がないまま投資額を上げても、定着しません。</div>
+    </div>
+  </div>
+  <div class="patt-divider"></div>
+
+  <div class="patt">
+    <div class="patt-head"><span class="pnum">2</span><h3>社長だけが盛り上がる</h3></div>
+    <p class="scene">社長が経営者向けセミナーでAI活用事例を聞いて興奮し、朝礼で「うちも今日からAIを使うぞ」と宣言。しかし具体的に「誰が」「何を」「どうやって」使うのかは決まっていない。社員は「また社長が何か言い出した」と冷めた目で受け止め、数週間で誰も触らなくなる。</p>
+    <div class="row2">
+      <div class="col"><span class="tg">なぜ失敗するのか</span>社長の熱量と社員の熱量には、そもそも差があります。トップダウンの号令だけでは、日々の業務を回している現場が「自分の仕事がどう変わるのか」を理解できず、当事者意識が生まれません。</div>
+      <div class="col"><span class="tg">どうすればよかったか</span>号令の前に「誰の・どの業務が・どう変わるか」を具体化する。1人か1業務からの小さな成功体験を作り、それを周りに見せていく方が、結果として定着は早いものです。</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>3 / 9</span>
+  </div>
+</div>
+
+<!-- 4: pattern 3-4 -->
+<div class="page">
+  <div class="runhead">
+    <span class="rh-brand">AI顧問室</span>
+    <span class="rh-title">7つの失敗パターン</span>
+  </div>
+  <span class="label">FAILURE PATTERN</span>
+  <h1 class="pt" style="font-size:19px; margin-bottom:22px;">よくある失敗パターン</h1>
+
+  <div class="patt">
+    <div class="patt-head"><span class="pnum">3</span><h3>レベルを飛ばす</h3></div>
+    <p class="scene">ChatGPTすら社内で日常的に使われていない段階なのに、「他社に遅れたくない」焦りから、数百万円規模の業務自動化システムを発注。納品されたシステムは高機能だが、社員がAIとのやり取りにそもそも慣れていないため使いこなせず、宝の持ち腐れになってしまう。</p>
+    <div class="row2">
+      <div class="col"><span class="tg">なぜ失敗するのか</span>AI活用には段階があります。基本の「使う」ができていない組織に、いきなり高度な「組み込む・自動化する」を持ち込んでも、運用できる人がいません。階段を飛ばすと、必ずどこかで踏み外します。</div>
+      <div class="col"><span class="tg">どうすればよかったか</span>自社の現在地（レベル）を正しく把握し、1段ずつ上がる。焦る気持ちは分かりますが、急がば回れが結局いちばん早い道になります。</div>
+    </div>
+  </div>
+  <div class="patt-divider"></div>
+
+  <div class="patt">
+    <div class="patt-head"><span class="pnum">4</span><h3>「AIに詳しい若手」に丸投げする</h3></div>
+    <p class="scene">「うちの若手はAIに詳しいから」と、AI活用の旗振り役をまるごと任せる。しかしその若手は業務の全体像や経営判断の権限を持っておらず、他部署からの協力も得られない。孤軍奮闘のすえに疲弊し、いつのまにか熱意を失っていく。</p>
+    <div class="row2">
+      <div class="col"><span class="tg">なぜ失敗するのか</span>AI活用は「ツールの知識」だけでは進みません。どの業務にどう使うかを決めるには業務全体を見渡す視点と、部署をまたいで動かす権限が必要で、それは経営に近い立場でなければ持てないものです。</div>
+      <div class="col"><span class="tg">どうすればよかったか</span>旗振り役には権限とサポートを与える。もしくは社長自身が最終判断者として関わり続け、若手は実行パートナーとして位置づけましょう。</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>4 / 9</span>
+  </div>
+</div>
+
+<!-- 5: pattern 5-6 -->
+<div class="page">
+  <div class="runhead">
+    <span class="rh-brand">AI顧問室</span>
+    <span class="rh-title">7つの失敗パターン</span>
+  </div>
+  <span class="label">FAILURE PATTERN</span>
+  <h1 class="pt" style="font-size:19px; margin-bottom:22px;">よくある失敗パターン</h1>
+
+  <div class="patt">
+    <div class="patt-head"><span class="pnum">5</span><h3>セキュリティを気にしすぎて何も始めない</h3></div>
+    <p class="scene">情報漏えいのニュースを見て不安になり、「AIの業務利用は禁止」という通達だけを出す。代替案やルール整備がないまま1年が経過。その間、社員は個人のスマホでこっそりAIを使うようになり、むしろ管理されていない使い方が社内に広がってしまう。</p>
+    <div class="row2">
+      <div class="col"><span class="tg">なぜ失敗するのか</span>リスクをゼロにしようと「禁止」で止めてしまうと、リスク管理ではなく思考停止になります。禁止しても現場のニーズは消えず、見えないところで使われるだけで、かえって統制が効かなくなります。</div>
+      <div class="col"><span class="tg">どうすればよかったか</span>「禁止」ではなく「ルールを作って安全に使う」。入力してよい情報・ダメな情報を決め、使ってよいツールを指定する。最低限のルールがあれば、多くのリスクは防げます。</div>
+    </div>
+  </div>
+  <div class="patt-divider"></div>
+
+  <div class="patt">
+    <div class="patt-head"><span class="pnum">6</span><h3>効率化から入って成果が見えない</h3></div>
+    <p class="scene">議事録作成や資料整形など、「時間がかかって面倒な作業」からAI活用を始める。たしかに作業時間は減るが、それが売上や利益にどうつながっているのか誰も説明できず、社内に「で、結局何の意味があるの」という空気が広がっていく。</p>
+    <div class="row2">
+      <div class="col"><span class="tg">なぜ失敗するのか</span>効率化（コスト削減）は成果が見えにくく、実感しにくいものです。特に「AIって意味あるの」と疑い始めている段階では、目に見える成果がないと活動自体が失速してしまいます。</div>
+      <div class="col"><span class="tg">どうすればよかったか</span>最初の一歩は、売上に直結する業務（営業提案・顧客対応・商品企画など）から選ぶ。「時間が減った」より「受注が増えた」の方が、社内の納得感も次への投資判断も早くなります。</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>5 / 9</span>
+  </div>
+</div>
+
+<!-- 6: pattern 7 (alone, spacious) -->
+<div class="page">
+  <div class="runhead">
+    <span class="rh-brand">AI顧問室</span>
+    <span class="rh-title">7つの失敗パターン</span>
+  </div>
+  <span class="label">FAILURE PATTERN</span>
+  <h1 class="pt" style="font-size:19px; margin-bottom:26px;">よくある失敗パターン</h1>
+
+  <div class="patt">
+    <div class="patt-head"><span class="pnum">7</span><h3>提案書だけ立派なコンサルに頼む</h3></div>
+    <p class="scene" style="font-size:12.5px; padding:16px 20px;">
+      立派なパワーポイントの提案書と、壮大なロードマップを提示され、契約。しかし実際に動き出すと「では現場での実装は御社側で」と言われ、社内に実装できる人材がいないため、ロードマップは机の引き出しにしまわれたまま止まってしまう。
+    </p>
+    <div class="row2">
+      <div class="col" style="font-size:12.3px;"><span class="tg">なぜ失敗するのか</span>「戦略を考えること」と「現場で実装し、定着させること」は別のスキルです。優れた提案書を作れることと、中小企業の限られた人員・予算のなかで実際に手を動かして定着させられることは、必ずしもイコールではありません。</div>
+      <div class="col" style="font-size:12.3px;"><span class="tg">どうすればよかったか</span>提案書のクオリティではなく、「実装まで一緒にやってくれるか」「定着するまで伴走してくれるか」で選ぶ。契約前に「導入後、誰が何をどこまでやるのか」を具体的に確認しましょう。</div>
+    </div>
+  </div>
+
+  <div class="bridge">
+    ここまで7つのパターンを見てきましたが、原因はすべて同じところに行き着きます。<b>「今の自社に合わないレベルのことを、順番を飛ばしてやろうとした」</b>という一点です。次のページで、7つのパターンを一覧にして振り返り、その後で「正しい順番」を図でご紹介します。
+  </div>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>6 / 9</span>
+  </div>
+</div>
+
+<!-- 7: summary table -->
+<div class="page">
+  <div class="runhead">
+    <span class="rh-brand">AI顧問室</span>
+    <span class="rh-title">7つの失敗パターン｜早見表</span>
+  </div>
+  <span class="label">QUICK REFERENCE</span>
+  <h1 class="pt" style="font-size:19px;">7つの失敗パターン　早見表</h1>
+  <p class="lead" style="margin-bottom:18px;">社内で共有する際は、このページだけコピーしてお使いいただいても構いません。自社に当てはまるものがないか、チェックしてみてください。</p>
+
+  <table class="sum">
+    <thead>
+      <tr><th style="width:26px;">No</th><th style="width:150px;">パターン</th><th>一言でいうと</th><th style="width:230px;">処方箋</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="no">1</td><td class="nm">いきなり高いツールを買う</td><td>体感の前に投資してしまう</td><td class="rx">まず無料〜低コストで体感を作る</td></tr>
+      <tr><td class="no">2</td><td class="nm">社長だけが盛り上がる</td><td>号令だけで現場が置き去り</td><td class="rx">「誰の・どの業務が」を具体化する</td></tr>
+      <tr><td class="no">3</td><td class="nm">レベルを飛ばす</td><td>基礎なしで高度な自動化に手を出す</td><td class="rx">現在地を把握し1段ずつ上がる</td></tr>
+      <tr><td class="no">4</td><td class="nm">若手に丸投げする</td><td>権限のない人に任せきりにする</td><td class="rx">旗振り役に権限とサポートを与える</td></tr>
+      <tr><td class="no">5</td><td class="nm">セキュリティを気にしすぎる</td><td>禁止だけして思考停止する</td><td class="rx">ルールを作って安全に使う</td></tr>
+      <tr><td class="no">6</td><td class="nm">効率化から入る</td><td>成果が見えず社内の熱が冷める</td><td class="rx">売上に直結する業務から始める</td></tr>
+      <tr><td class="no">7</td><td class="nm">提案書だけ立派なコンサル</td><td>戦略だけで実装が伴わない</td><td class="rx">実装まで伴走してくれる相手を選ぶ</td></tr>
+    </tbody>
+  </table>
+
+  <div class="goal" style="margin-top:22px;">
+    7つのパターンをあらためて眺めると、共通点が見えてきます。それは<b>「今の自社のレベルに合わないことを、順番を飛ばしてやろうとした」</b>という一点です。逆に言えば、順番さえ守れば、この7つの失敗はほぼ避けられます。
+  </div>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>7 / 9</span>
+  </div>
+</div>
+
+<!-- 8: level map -->
+<div class="page">
+  <div class="runhead">
+    <span class="rh-brand">AI顧問室</span>
+    <span class="rh-title">失敗しないための「順番」</span>
+  </div>
+  <span class="label">THE RIGHT ORDER</span>
+  <h1 class="pt" style="font-size:19px;">失敗しないための「順番」</h1>
+  <p class="lead" style="margin-bottom:4px;">AI活用には、飛ばしてはいけない6つの段階があります。今の自社がどこにいるかを知り、<b style="color:var(--navy)">1段ずつ</b>上がっていくことが、7つの失敗を避ける唯一にして最短の方法です。</p>
+
+  <div class="stairs">
+    <div class="srow" style="background:#fff;">
+      <div class="sdot" style="background:#B9C2CE;">0</div>
+      <div class="stxt"><div class="sname">Lv.0　未導入期</div><div class="sdesc">AIはまだ会社の外の話。何から始めればいいか分からない状態。</div></div>
+    </div>
+    <div class="arrow-row">▼</div>
+    <div class="srow" style="background:#fff;">
+      <div class="sdot" style="background:#8B98A8;">1</div>
+      <div class="stxt"><div class="sname">Lv.1　お試し期</div><div class="sdesc">一部の人がChatGPTなどを触ってはいるが、業務はまだ何も変わっていない。</div></div>
+    </div>
+    <div class="arrow-row">▼</div>
+    <div class="srow" style="background:var(--bg-soft);">
+      <div class="sdot" style="background:#5B6B7F;">2</div>
+      <div class="stxt"><div class="sname">Lv.2　日常化期</div><div class="sdesc">社員がAIを日常的に使えている状態。ただし成果はまだ「作業が楽になった」止まり。</div></div>
+    </div>
+    <div class="arrow-row">▼</div>
+    <div class="srow" style="background:var(--bg-soft);">
+      <div class="sdot" style="background:#33465F;">3</div>
+      <div class="stxt"><div class="sname">Lv.3　業務組み込み期</div><div class="sdesc">御社の書式・ルールを覚えた「専用AI」が業務プロセスに組み込まれている。</div></div>
+    </div>
+    <div class="arrow-row">▼</div>
+    <div class="srow" style="background:#F4EFE0;">
+      <div class="sdot" style="background:var(--navy);">4</div>
+      <div class="stxt"><div class="sname">Lv.4　自動化期</div><div class="sdesc">人が指示しなくても、業務が自動で回り始めている状態。上位数％の会社。</div></div>
+    </div>
+    <div class="arrow-row" style="color:var(--gold);">▼</div>
+    <div class="srow" style="background:#F4EFE0; border-color:var(--gold);">
+      <div class="sdot" style="background:var(--gold); color:#071A35;">5</div>
+      <div class="stxt"><div class="sname">Lv.5　エージェント経営期</div><div class="sdesc">AIエージェントが「道具」ではなく「働き手」として機能している最先端の状態。</div></div>
+    </div>
+  </div>
+
+  <div class="goal">
+    7つの失敗パターンのほとんどは、<b>今いる段階を無視して、上の段階の打ち手に手を出してしまうこと</b>から起きています。反対に、自社の現在地さえ分かれば、次の一歩は驚くほどシンプルになります。
+  </div>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>8 / 9</span>
+  </div>
+</div>
+
+<!-- 9: closing + CTA -->
+<div class="page">
+  <div class="runhead">
+    <span class="rh-brand">AI顧問室</span>
+    <span class="rh-title">おわりに</span>
+  </div>
+  <span class="label">CLOSING</span>
+  <h1 class="pt">おわりに</h1>
+  <p class="closing-lead">
+    ここまでお読みいただき、ありがとうございました。7つの失敗パターンに共通するのは、技術力の不足ではなく、「今の自社に合わない一手を、順番を飛ばして打ってしまう」ことでした。<br><br>
+    逆に言えば、<b style="color:var(--navy)">自社の現在地さえ正しく分かれば</b>、次にやるべきことは驚くほどシンプルになります。焦って高いツールを買う必要も、無理に自動化に手を出す必要もありません。ただ、1段ずつ上がっていけばいいのです。<br><br>
+    そこで、自社の現在地を知るための2つの方法をご用意しました。どちらも売り込みは一切ありませんので、気軽にお試しください。
+  </p>
+
+  <div class="cta-box">
+    <div class="cta-head"><span class="cta-num">1</span><h3>1分レベル診断</h3></div>
+    <p>5つの質問に答えるだけで、御社が今どのレベル（Lv.0〜Lv.5）にいるのか、そして次にやるべきことが分かります。所要時間は約1分です。</p>
+    <span class="link">https://rakansens.github.io/ai-komon2/diagnosis.html</span>
+  </div>
+
+  <div class="cta-box">
+    <div class="cta-head"><span class="cta-num">2</span><h3>無料相談（60分・売り込みなし）</h3></div>
+    <p>御社の業務内容をお伺いしながら、現在のAI活用レベルと、次の90日でできることを一緒に整理します。契約するかどうかに関わらず、この60分だけで持ち帰る価値がある時間にすることをお約束します。</p>
+    <span class="link">https://rakansens.github.io/ai-komon2/</span>
+  </div>
+
+  <div class="issuer">
+    発行：<b>AI顧問室</b>｜中小企業のためのAI顧問サービス<br>
+    https://rakansens.github.io/ai-komon2/
+  </div>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>9 / 9</span>
+  </div>
+</div>
+
+</body>
+</html>
