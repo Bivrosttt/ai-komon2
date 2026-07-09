@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>週次経営レポートAI 自動作成 体験デモ｜AI顧問室</title>
+<meta name="description" content="売上記録・現場日報・入金予定というバラバラのデータから、AIが毎週月曜の朝に社長向け経営レポートを自動で組み上げる体験デモです。入金遅延の検知や督促メールの下書き作成まで。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="週次経営レポートAI 自動作成 体験デモ｜AI顧問室">
+<meta property="og:description" content="売上記録・現場日報・入金予定というバラバラのデータから、AIが毎週月曜の朝に社長向け経営レポートを自動で組み上げる体験デモです。入金遅延の検知や督促メールの下書き作成まで。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/demo-exec-report.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    --red: #B0432F;
+    --green: #2F7D5B;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; gap: 16px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; white-space: nowrap; }
+  .header-right a.textlink:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s, transform .1s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+  .header-cta { padding: 10px 24px; font-size: 14px; white-space: nowrap; }
+
+  /* Title / hero */
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 80px 0 64px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    color: #DCE6F5;
+  }
+  .demo-hero h1 { font-size: 38px; margin-bottom: 20px; }
+  .demo-hero h1 em { font-style: normal; color: var(--gold); }
+  .demo-hero p.sub { font-size: 16px; color: #C7D3E4; max-width: 660px; }
+
+  /* Note banner */
+  .note-banner { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding-top: 18px; padding-bottom: 18px; }
+  .note-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--white);
+    border-radius: 4px; padding: 14px 20px; font-size: 13.5px; color: var(--gray);
+    max-width: 900px;
+  }
+  .note-box .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .note-box strong { color: var(--ink); }
+
+  /* Demo section */
+  .demo-section { background: var(--white); }
+  .demo-step-label {
+    font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 10px;
+  }
+  .demo-question {
+    font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy); margin-bottom: 32px;
+  }
+
+  /* Raw data cards (messy / disparate sources) */
+  .raw-data-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
+    align-items: start;
+  }
+  .data-card {
+    border: 1px solid var(--line); border-radius: 8px; background: var(--white); overflow: hidden;
+    box-shadow: 0 8px 22px rgba(11,36,71,0.06);
+  }
+  .data-card.tilt-a { transform: rotate(-0.4deg); }
+  .data-card.tilt-b { transform: rotate(0.5deg); }
+  .data-card.tilt-c { transform: rotate(-0.2deg); }
+  .dc-head {
+    padding: 13px 18px; background: var(--bg-soft); border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .dc-head .dc-title { font-weight: 700; color: var(--navy); font-size: 13.5px; white-space: nowrap; }
+  .dc-head .dc-tag {
+    font-size: 10.5px; color: var(--gray); border: 1px solid var(--line); border-radius: 999px;
+    padding: 3px 10px; white-space: nowrap; background: var(--white);
+  }
+  .dc-body { padding: 16px 18px 18px; }
+
+  table.data-table { width: 100%; border-collapse: collapse; }
+  table.data-table th, table.data-table td { text-align: left; padding: 8px 4px; font-size: 12.5px; }
+  table.data-table th { color: var(--gray); font-weight: 700; border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: 0.03em; }
+  table.data-table td { border-bottom: 1px dashed var(--line); color: var(--ink); }
+  table.data-table td.amt { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  table.data-table tr.total-row td { border-top: 2px solid var(--navy); border-bottom: none; font-weight: 700; color: var(--navy); padding-top: 10px; }
+
+  .mini-report { display: flex; flex-direction: column; gap: 14px; }
+  .mini-msg { display: flex; gap: 10px; align-items: flex-start; }
+  .mini-avatar {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: var(--white);
+    display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700;
+    flex-shrink: 0; font-family: 'Noto Serif JP', serif;
+  }
+  .mini-content { flex: 1; }
+  .mini-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 5px; }
+  .mini-name { font-size: 11.5px; font-weight: 700; color: var(--navy); }
+  .mini-time { font-size: 10.5px; color: var(--gray); }
+  .mini-bubble {
+    background: var(--bg-soft); border: 1px solid var(--line); border-radius: 4px 12px 12px 12px;
+    padding: 11px 13px; font-size: 12.5px; color: var(--ink); line-height: 1.8;
+  }
+
+  table.pay-table td.status-cell, table.pay-table th.status-cell { white-space: nowrap; }
+  .status-neutral { background: #E8EEF6; color: var(--blue); }
+
+  .aggregate-row { text-align: center; margin-top: 36px; }
+  .aggregate-row .btn { font-size: 16px; padding: 16px 44px; }
+  .aggregate-hint { font-size: 12.5px; color: var(--gray); margin-top: 12px; }
+
+  /* Result area */
+  .demo-result { margin-top: 56px; display: none; }
+  .demo-result.active { display: block; animation: fadein .3s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Loading */
+  .loading-box {
+    border: 1px dashed var(--line); border-radius: 6px; padding: 48px 24px;
+    text-align: center; color: var(--gray); font-size: 15px; background: var(--white);
+  }
+  .dots { display: inline-flex; gap: 6px; margin-left: 8px; vertical-align: middle; }
+  .dots span {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+    animation: bounce 1.1s infinite ease-in-out;
+  }
+  .dots span:nth-child(2) { animation-delay: .15s; }
+  .dots span:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce { 0%, 80%, 100% { opacity: .25; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1.1); } }
+
+  /* Dashboard */
+  .dashboard { display: none; }
+  .dashboard.show { display: block; }
+  .fade-block { opacity: 0; transform: translateY(14px); margin-bottom: 40px; }
+  .dashboard.show .fade-block { animation: fadeinup .55s ease forwards; }
+  .dashboard.show .fade-block:nth-child(1) { animation-delay: .05s; }
+  .dashboard.show .fade-block:nth-child(2) { animation-delay: .22s; }
+  .dashboard.show .fade-block:nth-child(3) { animation-delay: .39s; }
+  .dashboard.show .fade-block:nth-child(4) { animation-delay: .56s; }
+  .dashboard.show .fade-block:nth-child(5) { animation-delay: .73s; }
+  .fade-block:last-child { margin-bottom: 0; }
+  @keyframes fadeinup { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  .block-label { font-size: 12.5px; font-weight: 700; color: var(--gray); letter-spacing: 0.06em; margin-bottom: 14px; }
+
+  /* KPI cards */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; }
+  .kpi-card {
+    border: 1px solid var(--line); border-top: 3px solid var(--navy); border-radius: 6px;
+    background: var(--white); padding: 22px 22px 20px;
+  }
+  .kpi-card .num { font-family: 'Noto Serif JP', serif; font-size: 34px; color: var(--navy); line-height: 1.2; }
+  .kpi-card .num .unit { font-size: 15px; font-weight: 700; margin-left: 2px; }
+  .kpi-card .lbl { font-size: 13px; color: var(--ink); font-weight: 700; margin-top: 8px; }
+  .kpi-card .sub { font-size: 12px; color: var(--gray); margin-top: 4px; }
+  .kpi-card.gold { border-top-color: var(--gold); }
+  .kpi-card.gold .num { color: #96790F; }
+
+  /* Status badges */
+  .status-badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 999px; white-space: nowrap; }
+  .status-good { background: #E5F1EA; color: var(--green); }
+  .status-warn { background: #FBF1DA; color: #96790F; }
+  .status-bad { background: #FBE7E2; color: var(--red); }
+
+  /* Status table */
+  .status-table-wrap { border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; background: var(--white); }
+  table.status-table { width: 100%; border-collapse: collapse; min-width: 520px; }
+  table.status-table th, table.status-table td { text-align: left; padding: 12px 18px; font-size: 13px; }
+  table.status-table th {
+    background: var(--bg-soft); color: var(--gray); font-weight: 700; font-size: 11.5px;
+    letter-spacing: 0.04em; border-bottom: 1px solid var(--line);
+  }
+  table.status-table td { border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
+  table.status-table tr:last-child td { border-bottom: none; }
+  table.status-table td.site { font-weight: 700; color: var(--navy); white-space: nowrap; }
+  table.status-table td.amt { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  /* Horizontal bar chart (sales composition) */
+  .chart-box { border: 1px solid var(--line); border-radius: 6px; padding: 26px 28px 22px; background: var(--white); }
+  .hbar-list { display: flex; flex-direction: column; gap: 16px; }
+  .hbar-row { display: grid; grid-template-columns: 152px 1fr 108px; align-items: center; gap: 14px; }
+  .hbar-name { font-size: 13px; color: var(--ink); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hbar-track { background: var(--bg-soft); border-radius: 4px; height: 18px; overflow: hidden; }
+  .hbar-fill {
+    height: 100%; background: linear-gradient(90deg, var(--navy-light), var(--navy)); border-radius: 4px;
+    width: 0; transition: width 1s ease .1s;
+  }
+  .dashboard.show .hbar-fill { width: var(--w); }
+  .hbar-val { font-size: 12.5px; color: var(--navy); font-weight: 700; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .chart-foot { font-size: 12px; color: var(--gray); margin-top: 18px; text-align: right; }
+
+  /* Alert card */
+  .alert-card {
+    display: flex; gap: 14px; align-items: flex-start;
+    border: 1px solid #E9D48A; border-left: 4px solid var(--gold); background: #FBF6E7;
+    border-radius: 6px; padding: 20px 24px;
+  }
+  .alert-card .mark {
+    width: 30px; height: 30px; border-radius: 50%; background: var(--gold); color: var(--navy-deep);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0;
+  }
+  .alert-card .txt { font-size: 14.5px; color: var(--ink); line-height: 1.8; flex: 1; }
+  .alert-card .txt strong { color: var(--navy); }
+
+  .draft-mail { margin-top: 16px; border: 1px dashed #E9D48A; background: var(--white); border-radius: 6px; padding: 16px 18px; }
+  .draft-mail .dm-label {
+    font-size: 11px; font-weight: 700; color: #96790F; letter-spacing: 0.05em; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .draft-mail .dm-subject { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .draft-mail .dm-body { font-size: 12.5px; color: var(--gray); line-height: 1.9; }
+
+  /* AI insights list */
+  .ai-actions {
+    border: 1px solid var(--line); border-radius: 8px; background: var(--white); padding: 26px 28px;
+  }
+  .ai-actions h4 {
+    font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy);
+    letter-spacing: 0.05em; margin-bottom: 18px; display: flex; align-items: center; gap: 6px;
+  }
+  .ai-actions h4::before { content: "◆"; color: var(--gold); font-size: 11px; }
+  .action-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .action-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .action-item:first-child { padding-top: 0; }
+  .action-icon {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--bg-soft); color: var(--gold);
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px;
+    flex-shrink: 0; font-family: 'Noto Serif JP', serif;
+  }
+  .action-body h5 { font-size: 14.5px; color: var(--navy); margin-bottom: 5px; font-family: 'Noto Sans JP', sans-serif; }
+  .action-body p { font-size: 13px; color: var(--gray); line-height: 1.85; }
+
+  /* Next-week focus list */
+  .next-list { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+  .next-list li { display: flex; gap: 10px; font-size: 14px; color: var(--ink); align-items: flex-start; line-height: 1.8; }
+  .next-list li::before { content: "→"; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+  .next-box { border-left: 4px solid var(--navy); background: var(--bg-soft); border-radius: 4px; padding: 22px 26px; }
+
+  .reselect-row { text-align: center; margin-top: 40px; }
+  .reselect-row a { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; }
+  .reselect-row a:hover { color: var(--navy); }
+
+  /* Operation band */
+  .band {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white); text-align: center; padding: 64px 0;
+  }
+  .band .clock-badge {
+    display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 999px; padding: 7px 20px; font-size: 13px; color: #DCE6F5; margin-bottom: 22px; letter-spacing: 0.04em;
+  }
+  .band h2 { font-size: 26px; margin-bottom: 14px; line-height: 1.7; }
+  .band h2 em { font-style: normal; color: var(--gold); }
+  .band p { color: #C7D3E4; font-size: 14px; max-width: 620px; margin: 0 auto; }
+
+  /* How it works */
+  .how { background: var(--bg-soft); }
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+  .how-note { text-align: center; margin-top: 40px; font-size: 14px; color: var(--gray); }
+  .how-note strong { color: var(--navy); }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .demo-hero h1 { font-size: 27px; }
+    .section-title { font-size: 26px; }
+    .demo-hero { padding: 56px 0 44px; }
+    .header-right a.textlink { display: none; }
+    .hbar-row { grid-template-columns: 100px 1fr 82px; gap: 8px; }
+    .data-card.tilt-a, .data-card.tilt-b, .data-card.tilt-c { transform: none; }
+    .band h2 { font-size: 21px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-right">
+      <a href="demos.html" class="textlink">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">体験デモ｜週次経営レポートAI（レベル4・自動化）</span>
+    <h1>月曜の朝、バラバラのデータが、<br><em>社長のための一枚</em>に変わる。</h1>
+    <p class="sub">売上記録・現場日報・入金予定——別々の場所にバラバラに存在する今週のデータから、AIが毎週月曜の朝に社長向けの経営レポートを自動で組み上げます。社長がやることは、届いたレポートを読むだけ。実際のレポートイメージをこのまま体験できます。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container">
+    <div class="note-box">
+      <span class="mark">※</span>
+      <span><strong>このページはサンプルデータによる体験デモです。</strong>表示される売上・日報・入金データと経営レポートは、すべて事前に用意したサンプルです。実際は御社の会計・案件管理・入金確認の仕組みに合わせて構築し、実データを毎週自動集計します。</span>
+    </div>
+  </div>
+</div>
+
+<section class="demo-section" id="demo">
+  <div class="container">
+    <span class="section-label">TRY IT</span>
+    <div class="demo-step-label">STEP 1</div>
+    <h2 class="demo-question">今週、会社にたまったデータ</h2>
+
+    <div class="raw-data-grid">
+
+      <div class="data-card tilt-a">
+        <div class="dc-head">
+          <span class="dc-title">売上記録</span>
+          <span class="dc-tag">Excel管理・今週5件</span>
+        </div>
+        <div class="dc-body">
+          <table class="data-table">
+            <thead><tr><th>日付</th><th>案件</th><th>金額</th></tr></thead>
+            <tbody>
+              <tr><td>7/6（月）</td><td>リフォームA邸</td><td class="amt">880,000円</td></tr>
+              <tr><td>7/7（火）</td><td>修繕B社</td><td class="amt">120,000円</td></tr>
+              <tr><td>7/8（水）</td><td>外構C邸</td><td class="amt">450,000円</td></tr>
+              <tr><td>7/8（水）</td><td>定期点検（3件）</td><td class="amt">90,000円</td></tr>
+              <tr><td>7/9（木）</td><td>追加工事D邸</td><td class="amt">310,000円</td></tr>
+              <tr class="total-row"><td colspan="2">今週合計</td><td class="amt">1,850,000円</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="data-card tilt-b">
+        <div class="dc-head">
+          <span class="dc-title">現場日報の抜粋</span>
+          <span class="dc-tag">LINE・2件</span>
+        </div>
+        <div class="dc-body">
+          <div class="mini-report">
+            <div class="mini-msg">
+              <div class="mini-avatar">田</div>
+              <div class="mini-content">
+                <div class="mini-meta"><span class="mini-name">現場担当（田中）</span><span class="mini-time">水 17:10</span></div>
+                <div class="mini-bubble">外構C邸、本日で工事完了。仕上がりも上々です。立て続けにカーポート増設のご相談をいただき、来月着工で仮合意（要見積り）。</div>
+              </div>
+            </div>
+            <div class="mini-msg">
+              <div class="mini-avatar">鈴</div>
+              <div class="mini-content">
+                <div class="mini-meta"><span class="mini-name">現場担当（鈴木）</span><span class="mini-time">木 16:45</span></div>
+                <div class="mini-bubble">リフォームA邸、追加のクロス張替えご要望に対応中。本日、新規のお客様からリフォーム無料相談の来店予約が1件入りました。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="data-card tilt-c">
+        <div class="dc-head">
+          <span class="dc-title">入金予定リスト</span>
+          <span class="dc-tag">経理表・4件</span>
+        </div>
+        <div class="dc-body">
+          <table class="data-table pay-table">
+            <thead><tr><th>状態</th><th>取引先</th><th>金額</th></tr></thead>
+            <tbody>
+              <tr><td class="status-cell"><span class="status-badge status-good">済</span></td><td>F邸（先月工事）</td><td class="amt">600,000円</td></tr>
+              <tr><td class="status-cell"><span class="status-badge status-good">済</span></td><td>G社（修繕代金）</td><td class="amt">180,000円</td></tr>
+              <tr><td class="status-cell"><span class="status-badge status-neutral">予定</span></td><td>D邸（追加工事）</td><td class="amt">310,000円</td></tr>
+              <tr><td class="status-cell"><span class="status-badge status-bad">超過</span></td><td>E社（外構工事）</td><td class="amt">140,000円</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="aggregate-row">
+      <button type="button" class="btn btn-navy" id="aggregateBtn">AIに週次レポートを作らせる</button>
+      <div class="aggregate-hint">上の3種類のバラバラのデータをAIが読み取り、社長向け経営レポートに変換します</div>
+    </div>
+
+    <div class="demo-result" id="demoResult">
+      <div class="demo-step-label" style="margin-top:0;">STEP 2</div>
+      <h2 class="demo-question">AIが作成した社長向け経営レポート</h2>
+
+      <div id="loadingBox" class="loading-box">
+        データを読み取り、集計しています<span class="dots"><span></span><span></span><span></span></span>
+      </div>
+
+      <div class="dashboard" id="dashboard">
+
+        <div class="fade-block">
+          <div class="block-label">サマリー指標</div>
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="num">185<span class="unit">万円</span></div>
+              <div class="lbl">今週の売上</div>
+              <div class="sub">前週データはデモでは省略（初回集計）</div>
+            </div>
+            <div class="kpi-card">
+              <div class="num">1<span class="unit">件</span></div>
+              <div class="lbl">受注残</div>
+              <div class="sub">カーポート増設・来月着工で仮合意</div>
+            </div>
+            <div class="kpi-card">
+              <div class="num">1<span class="unit">件</span></div>
+              <div class="lbl">新規問い合わせ</div>
+              <div class="sub">リフォーム相談の来店予約</div>
+            </div>
+            <div class="kpi-card gold">
+              <div class="num">1<span class="unit">件</span></div>
+              <div class="lbl">⚠ 要対応</div>
+              <div class="sub">E社 入金期日超過</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-block">
+          <div class="block-label">売上構成（案件別）</div>
+          <div class="chart-box">
+            <div class="hbar-list">
+              <div class="hbar-row">
+                <span class="hbar-name">リフォームA邸</span>
+                <div class="hbar-track"><div class="hbar-fill" style="--w:100%;"></div></div>
+                <span class="hbar-val">88万円（48%）</span>
+              </div>
+              <div class="hbar-row">
+                <span class="hbar-name">外構C邸</span>
+                <div class="hbar-track"><div class="hbar-fill" style="--w:51%;"></div></div>
+                <span class="hbar-val">45万円（24%）</span>
+              </div>
+              <div class="hbar-row">
+                <span class="hbar-name">追加工事D邸</span>
+                <div class="hbar-track"><div class="hbar-fill" style="--w:35%;"></div></div>
+                <span class="hbar-val">31万円（17%）</span>
+              </div>
+              <div class="hbar-row">
+                <span class="hbar-name">修繕B社</span>
+                <div class="hbar-track"><div class="hbar-fill" style="--w:14%;"></div></div>
+                <span class="hbar-val">12万円（6%）</span>
+              </div>
+              <div class="hbar-row">
+                <span class="hbar-name">定期点検（3件）</span>
+                <div class="hbar-track"><div class="hbar-fill" style="--w:10%;"></div></div>
+                <span class="hbar-val">9万円（5%）</span>
+              </div>
+            </div>
+            <div class="chart-foot">今週合計 185万円｜5件の売上記録をAIが自動集計</div>
+          </div>
+        </div>
+
+        <div class="fade-block">
+          <div class="block-label">要対応アラート</div>
+          <div class="alert-card">
+            <span class="mark">！</span>
+            <div class="txt">
+              <strong>E社：</strong>外構工事代金（14万円）の入金が、お支払い期日を14日超過しています → 督促メールの下書きを作成済み
+              <div class="draft-mail">
+                <div class="dm-label">AI下書き（未送信・確認待ち）</div>
+                <div class="dm-subject">件名：【ご入金確認のお願い】外構工事代金について</div>
+                <div class="dm-body">
+                  いつもお世話になっております。サンプル工務店です。<br>
+                  先般ご依頼いただきました外構工事代金（140,000円）につきまして、お支払い期日を過ぎておりますことを確認いたしました。<br>
+                  行き違いでしたら恐縮ですが、ご入金状況のご確認をお願いできますでしょうか。何かご事情がございましたら、遠慮なくご連絡ください。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-block">
+          <div class="block-label">AIからの気づき</div>
+          <div class="ai-actions">
+            <div class="action-item">
+              <span class="action-icon">1</span>
+              <div class="action-body">
+                <h5>小口案件の増加傾向</h5>
+                <p>修繕B社（12万円）・定期点検3件（9万円）といった小口案件が、今週の売上の1割強を占めています。個別対応より定期契約化を提案できる余地がありそうです。</p>
+              </div>
+            </div>
+            <div class="action-item">
+              <span class="action-icon">2</span>
+              <div class="action-body">
+                <h5>追加工事が粗利に貢献</h5>
+                <p>追加工事D邸（31万円）は既存のお客様からの追加受注で、新規開拓なしに売上へ貢献しました。粗利率の高い案件として期待できます。</p>
+              </div>
+            </div>
+            <div class="action-item">
+              <span class="action-icon">3</span>
+              <div class="action-body">
+                <h5>来週は入金集中週</h5>
+                <p>追加工事D邸（31万円）の入金が来週に予定されています。E社の督促結果とあわせて、来週は資金繰りを確認しておきたい週です。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-block">
+          <div class="block-label">来週の注目点</div>
+          <div class="next-box">
+            <ul class="next-list">
+              <li>E社（14万円）の入金確認・督促メール送付結果のフォロー</li>
+              <li>追加工事D邸（31万円）の入金消込確認</li>
+              <li>カーポート増設の見積り提出→受注確度アップ</li>
+              <li>修繕B社・G社への定期契約プランの打診</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="reselect-row">
+        <a id="resetLink">もう一度見る</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="container">
+    <span class="clock-badge">🕖 毎週月曜 7:00</span>
+    <h2>毎週月曜7時、このレポートが<br>社長の<em>LINE</em>に届く——<br>それがLv.4「自動化」の景色です。</h2>
+    <p>社長が集計のために時間を使うのではなく、AIが用意した経営レポートを読んで、判断に時間を使う。それが実現できているかどうかが、レベル4「自動化」の分かれ目です。</p>
+  </div>
+</section>
+
+<section id="what-ai-did">
+  <div class="container">
+    <span class="section-label">WHAT AI DID</span>
+    <h2 class="section-title">AIがやったこと</h2>
+    <p class="section-lead">今ご覧いただいたレポートの裏側で、AIは次の4つを自動で行っています。</p>
+    <div class="ai-actions">
+      <h4>週次経営レポート自動作成の中身</h4>
+      <div class="action-item">
+        <span class="action-icon">1</span>
+        <div class="action-body">
+          <h5>バラバラのデータの統合</h5>
+          <p>売上記録・現場日報・入金予定という、別々の場所（Excel／LINE／経理表）にあるデータを1つに集約し、突き合わせました。</p>
+        </div>
+      </div>
+      <div class="action-item">
+        <span class="action-icon">2</span>
+        <div class="action-body">
+          <h5>異常検知（入金遅延）</h5>
+          <p>入金予定と実績を照合し、E社の入金が期日を14日超過していることを自動で検知しました。</p>
+        </div>
+      </div>
+      <div class="action-item">
+        <span class="action-icon">3</span>
+        <div class="action-body">
+          <h5>対応の下書きまで準備</h5>
+          <p>検知したE社案件について、督促メールの文面をAIがあらかじめ下書き。社長は内容を確認して送るだけの状態にしました。</p>
+        </div>
+      </div>
+      <div class="action-item">
+        <span class="action-icon">4</span>
+        <div class="action-body">
+          <h5>経営者向けの要約</h5>
+          <p>数字を並べるだけでなく、「気づき」「来週の注目点」という形に要約し、社長が意思決定にそのまま使える形にまとめました。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">HOW TO CUSTOMIZE</span>
+    <h2 class="section-title">これを御社仕様にするには</h2>
+    <p class="section-lead">今ご覧いただいたのはサンプルですが、実際の導入では御社の会計・案件管理・入金確認の仕組みに合わせて、無理のない範囲からAIを組み込んでいきます。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>データは今まで通り登録するだけ</h3>
+        <p>売上記録はExcelや会計ソフトへ、日報はLINEへ、入金確認は経理表へ——普段の業務・入力方法は一切変わりません。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>AIが統合・検知・下書きまで自動実行</h3>
+        <p>バラバラのデータをAIが毎週読み取り、集計・異常検知・対応の下書き作成までを自動で行います。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>社長は毎週月曜、届いたレポートを読むだけ</h3>
+        <p>週の始まりには、売上・受注残・要対応事項・来週の注目点が揃った経営レポートが手元に。集計に時間を使う必要がなくなります。</p>
+      </div>
+    </div>
+    <p class="how-note">現場・経理の業務を増やすことなく、<strong>今まで通りの記録が、そのまま社長の週次経営レポートに変わる</strong>——それがAI顧問室のやり方です。</p>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の週次レポートで試したい方へ</h2>
+    <p>「うちのデータでもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、御社の売上・日報・入金管理の現状をお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">1分でレベル診断を受ける</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var aggregateBtn = document.getElementById("aggregateBtn");
+  var demoResult = document.getElementById("demoResult");
+  var loadingBox = document.getElementById("loadingBox");
+  var dashboard = document.getElementById("dashboard");
+  var resetLink = document.getElementById("resetLink");
+
+  function runAggregation() {
+    aggregateBtn.disabled = true;
+    demoResult.classList.add("active");
+    dashboard.classList.remove("show");
+    dashboard.style.display = "none";
+    loadingBox.style.display = "block";
+
+    demoResult.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    setTimeout(function () {
+      loadingBox.style.display = "none";
+      dashboard.style.display = "block";
+      // force reflow so the fade-in / bar animation replays every run
+      void dashboard.offsetWidth;
+      dashboard.classList.add("show");
+      aggregateBtn.disabled = false;
+    }, 1500);
+  }
+
+  aggregateBtn.addEventListener("click", runAggregation);
+
+  resetLink.addEventListener("click", function () {
+    demoResult.classList.remove("active");
+    dashboard.classList.remove("show");
+    dashboard.style.display = "none";
+    loadingBox.style.display = "block";
+    document.getElementById("demo").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
+
+</body>
+</html>
