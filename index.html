@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI顧問室｜中小企業のためのAI顧問サービス</title>
+<meta name="description" content="AI人材を雇う前に、AI顧問という選択。経営歴15年×AI歴4年の顧問が、従業員10〜50名の会社のAI活用を経営目線で伴走します。月額15万円から。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  nav ul { display: flex; gap: 28px; list-style: none; }
+  nav a { font-size: 14px; color: var(--ink); font-weight: 500; }
+  nav a:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); }
+  .header-cta { padding: 10px 24px; font-size: 14px; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 110px 0 120px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 28px;
+    color: #DCE6F5;
+  }
+  .hero h1 { font-size: 46px; margin-bottom: 24px; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p.sub {
+    font-size: 17px; color: #C7D3E4; max-width: 620px; margin-bottom: 40px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .hero-note { font-size: 13px; color: #9FB0C7; margin-top: 16px; }
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 64px; flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.18); padding-top: 32px;
+  }
+  .hero-stats div span { display: block; }
+  .stat-num { font-family: 'Noto Serif JP', serif; font-size: 30px; color: var(--gold); font-weight: 700; }
+  .stat-label { font-size: 13px; color: #C7D3E4; }
+
+  /* Problems */
+  .problems { background: var(--bg-soft); }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .p-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--navy);
+    border-radius: 6px;
+    padding: 32px 28px;
+  }
+  .p-card .who {
+    font-size: 12px; color: var(--blue); font-weight: 700; letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .p-card h3 { font-size: 19px; color: var(--navy); margin-bottom: 14px; }
+  .p-card p { font-size: 14px; color: var(--gray); }
+  .problems-close {
+    text-align: center; margin-top: 56px;
+    font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy);
+  }
+  .problems-close em { font-style: normal; border-bottom: 3px solid var(--gold); padding-bottom: 2px; }
+
+  /* Services */
+  .s-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 24px; }
+  .s-card {
+    border: 1px solid var(--line); border-radius: 6px; padding: 36px 32px;
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+  .s-num {
+    font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 700;
+    color: var(--gold); line-height: 1; min-width: 44px;
+  }
+  .s-card h3 { font-size: 20px; color: var(--navy); margin-bottom: 10px; }
+  .s-card p { font-size: 14px; color: var(--gray); }
+
+  /* Diagnosis banner */
+  .diag-banner { background: var(--gold); }
+  .diag-banner .container { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 16px; padding-bottom: 16px; flex-wrap: wrap; }
+  .diag-banner .q { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 18px; color: var(--navy-deep); }
+  .diag-banner .btn { background: var(--navy); color: var(--white); padding: 10px 26px; font-size: 14px; }
+
+  /* Levels */
+  .levels { background: var(--white); }
+  .level-list { max-width: 860px; }
+  .level-row { display: flex; gap: 18px; align-items: flex-start; background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 20px 22px; margin-bottom: 12px; max-width: 680px; position: relative; }
+  .level-list .level-row:nth-child(2) { margin-left: 5%; }
+  .level-list .level-row:nth-child(3) { margin-left: 10%; }
+  .level-list .level-row:nth-child(4) { margin-left: 15%; }
+  .level-list .level-row:nth-child(5) { margin-left: 20%; }
+  .level-list .level-row:nth-child(6) { margin-left: 25%; }
+  .lv-num { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 15px; background: var(--navy); color: var(--white); border-radius: 4px; padding: 8px 0; width: 58px; text-align: center; flex-shrink: 0; }
+  .level-row.faded .lv-num { background: #8A97A8; }
+  .level-row.goal .lv-num { background: var(--gold); color: var(--navy-deep); }
+  .lv-body h3 { font-size: 17px; color: var(--navy); margin-bottom: 4px; }
+  .lv-body p { font-size: 13px; color: var(--gray); }
+  .lv-tag { position: absolute; top: -12px; right: 16px; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; background: var(--navy); color: var(--white); }
+  .level-row.target { border: 2px solid var(--navy); }
+  .level-row.goal { border: 2px solid var(--gold); }
+  .level-row.goal .lv-tag { background: var(--gold); color: var(--navy-deep); }
+  .lv-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .lv-chips span { font-size: 11px; background: var(--bg-soft); color: var(--navy); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; }
+  .lv-ex { display: inline-block; font-size: 12px; font-weight: 700; color: var(--navy); background: #EDF3FA; border-radius: 4px; padding: 4px 12px; margin-top: 10px; }
+  .levels-close { max-width: 680px; margin-top: 28px; font-size: 15px; }
+  .levels-close strong { color: var(--navy); }
+  .mid-cta { text-align: center; margin-top: 40px; }
+  .mid-cta p { font-family: 'Noto Serif JP', serif; font-size: 19px; color: var(--navy); margin-bottom: 18px; }
+  @media (max-width: 820px) {
+    .level-list .level-row { margin-left: 0 !important; }
+    .diag-banner .container { justify-content: center; text-align: center; }
+  }
+
+  /* Reasons */
+  .reasons { background: var(--navy); color: var(--white); }
+  .reasons .section-title { color: var(--white); }
+  .reasons .section-lead { color: #C7D3E4; }
+  .r-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+  .r-item { border-top: 2px solid var(--gold); padding-top: 24px; }
+  .r-item h3 { font-size: 20px; margin-bottom: 12px; color: var(--white); }
+  .r-item p { font-size: 14px; color: #C7D3E4; }
+
+  /* Compare */
+  .compare-box {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch;
+    max-width: 860px; margin: 0 auto;
+  }
+  .cmp {
+    border: 1px solid var(--line); border-radius: 6px; padding: 36px 32px; background: var(--white);
+  }
+  .cmp.hire { background: var(--bg-soft); }
+  .cmp.advisor { border: 2px solid var(--navy); position: relative; }
+  .cmp h3 { font-size: 18px; color: var(--navy); margin-bottom: 16px; }
+  .cmp .price { font-family: 'Noto Serif JP', serif; font-size: 32px; font-weight: 700; color: var(--navy); }
+  .cmp .price small { font-size: 14px; font-weight: 400; color: var(--gray); }
+  .cmp ul { list-style: none; margin-top: 20px; }
+  .cmp li { font-size: 14px; color: var(--gray); padding: 8px 0 8px 26px; position: relative; border-bottom: 1px dashed var(--line); }
+  .cmp.hire li::before { content: "▲"; position: absolute; left: 0; color: #B0432F; font-size: 11px; top: 12px; }
+  .cmp.advisor li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .vs {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif JP', serif; font-weight: 700; color: var(--gray);
+    padding: 0 20px; font-size: 18px;
+  }
+
+  /* Pricing */
+  .pricing { background: var(--bg-soft); }
+  .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; align-items: stretch; }
+  .plan {
+    background: var(--white); border: 1px solid var(--line); border-radius: 8px;
+    padding: 40px 32px; display: flex; flex-direction: column; position: relative;
+  }
+  .plan.featured { border: 2px solid var(--navy); }
+  .plan-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--navy-deep); font-size: 12px; font-weight: 700;
+    padding: 4px 18px; border-radius: 999px; white-space: nowrap;
+  }
+  .plan .name { font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--navy); }
+  .plan .position { font-size: 12px; color: var(--blue); font-weight: 700; margin-bottom: 20px; }
+  .plan .amount { font-family: 'Noto Serif JP', serif; font-size: 40px; font-weight: 700; color: var(--navy); line-height: 1.2; }
+  .plan .amount small { font-size: 14px; font-weight: 400; color: var(--gray); }
+  .plan ul { list-style: none; margin: 24px 0 32px; flex: 1; }
+  .plan li { font-size: 14px; padding: 10px 0 10px 26px; position: relative; border-bottom: 1px solid var(--bg-soft); color: var(--ink); }
+  .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .plan li.na { color: #B9C3CF; }
+  .plan li.na::before { content: "—"; color: #B9C3CF; }
+  .plan .btn { text-align: center; }
+  .price-note { text-align: center; font-size: 13px; color: var(--gray); margin-top: 32px; }
+
+  /* Flow */
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+
+  /* Profile */
+  .profile { background: var(--bg-soft); }
+  .profile-box {
+    display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start;
+    background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 56px;
+  }
+  .avatar {
+    width: 100%; aspect-ratio: 1; border-radius: 6px; background: var(--navy);
+    object-fit: cover; display: block;
+  }
+  .profile-box h3 { font-size: 24px; color: var(--navy); margin-bottom: 4px; }
+  .profile-box .role { font-size: 13px; color: var(--gray); margin-bottom: 24px; }
+  .profile-box p { font-size: 15px; color: var(--ink); margin-bottom: 16px; }
+  .tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+  .tag { font-size: 12px; background: var(--bg-soft); color: var(--navy); border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; }
+
+  /* FAQ */
+  details {
+    border-bottom: 1px solid var(--line); padding: 4px 0;
+  }
+  summary {
+    cursor: pointer; font-weight: 700; font-size: 16px; color: var(--navy);
+    padding: 20px 0; list-style: none; position: relative; padding-right: 40px;
+  }
+  summary::after { content: "＋"; position: absolute; right: 8px; color: var(--gold); font-size: 20px; }
+  details[open] summary::after { content: "－"; }
+  details p { padding: 0 8px 24px; font-size: 15px; color: var(--gray); }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 34px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .hero h1 { font-size: 32px; }
+    .section-title { font-size: 26px; }
+    nav { display: none; }
+    .compare-box { grid-template-columns: 1fr; }
+    .vs { padding: 16px 0; }
+    .profile-box { grid-template-columns: 1fr; padding: 32px 24px; }
+    .avatar { max-width: 200px; }
+    .s-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="#" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <nav>
+      <ul>
+        <li><a href="#levels">レベルマップ</a></li>
+        <li><a href="#service">サービス内容</a></li>
+        <li><a href="#reasons">選ばれる理由</a></li>
+        <li><a href="#pricing">料金プラン</a></li>
+        <li><a href="#profile">顧問紹介</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn btn-gold header-cta">無料相談を予約</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="hero-label">従業員10〜50名の中小企業のためのAI顧問サービス</span>
+    <h1>AI人材を雇う前に、<br><em>「AI顧問」</em>という選択。</h1>
+    <p class="sub">「ChatGPTを触ってみた。でも、会社は何も変わっていない」——そこから先を、経営歴15年×AI歴4年の顧問が伴走します。相談から実装、社内定着まで。</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-gold">無料相談を予約する（60分）</a>
+      <a href="#pricing" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">料金プランを見る</a>
+    </div>
+    <p class="hero-note">※ 無料相談だけでも「自社で何から始めるべきか」が明確になります。売り込みは一切しません。</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">15年</span><span class="stat-label">経営者としての実務経験</span></div>
+      <div><span class="stat-num">4年</span><span class="stat-label">AI活用・研究の専門歴</span></div>
+      <div><span class="stat-num">月15万円〜</span><span class="stat-label">AI人材採用の約1/4のコスト</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="diag-banner">
+  <div class="container">
+    <span class="q">御社のAI活用は、いまレベルいくつ？</span>
+    <a href="diagnosis.html" class="btn">1分でわかるレベル診断 →</a>
+  </div>
+</div>
+
+<section class="problems" id="problems">
+  <div class="container">
+    <span class="section-label">PROBLEMS</span>
+    <h2 class="section-title">こんな悩み、ありませんか？</h2>
+    <div class="card-grid">
+      <div class="p-card">
+        <div class="who">CASE 01｜何から始めるべきか分からない</div>
+        <h3>「AIをやらなきゃとは思うが、正直よく分からない」</h3>
+        <p>ニュースでAIの話を聞かない日はない。でも社内にITに詳しい人材はおらず、何から手を付ければいいのか判断できない。変な業者に騙されるのも怖い。</p>
+      </div>
+      <div class="p-card">
+        <div class="who">CASE 02｜自分は使えるが、会社に広がらない</div>
+        <h3>「社長の自分だけがChatGPTを使っている」</h3>
+        <p>自分では日常的にAIを使っていて手応えもある。しかし社員への展開の仕方が分からず、会社としての生産性向上につながっていない。</p>
+      </div>
+      <div class="p-card">
+        <div class="who">CASE 03｜周囲からDXを迫られている</div>
+        <h3>「取引先や若手から、デジタル化を求められている」</h3>
+        <p>業界全体がデジタル化に動き、取引先からの要請も増えてきた。判断を任せられる相談相手が社内にも周りにもいない。</p>
+      </div>
+    </div>
+    <p class="problems-close">その悩み、<em>経営が分かるAI顧問</em>に任せてください。</p>
+  </div>
+</section>
+
+<section class="levels" id="levels">
+  <div class="container">
+    <span class="section-label">ROADMAP</span>
+    <h2 class="section-title">会社のAI活用には「レベル」があります</h2>
+    <p class="section-lead">「ChatGPTを触ってみた」から「AIに仕事を任せる」まで、会社のAI活用は段階的に進みます。AI顧問室の仕事は、御社のレベルを1段ずつ確実に上げることです。</p>
+    <div class="level-list">
+      <div class="level-row faded">
+        <div class="lv-num">Lv.0</div>
+        <div class="lv-body">
+          <h3>未導入 ——「AIはまだ様子見」</h3>
+          <p>何も使っていない。ニュースを見て焦りだけが募っている状態。</p>
+        </div>
+      </div>
+      <div class="level-row target">
+        <span class="lv-tag">多くのお客様はここから</span>
+        <div class="lv-num">Lv.1</div>
+        <div class="lv-body">
+          <h3>お試し ——「ChatGPTを触ってみた」</h3>
+          <p>社長や一部の社員がたまに使っている。でも業務は何も変わっていない。「使い方が分からない」「これで合ってるのか不安」。</p>
+        </div>
+      </div>
+      <div class="level-row">
+        <div class="lv-num">Lv.2</div>
+        <div class="lv-body">
+          <h3>日常化 ——「みんなが毎日使う」</h3>
+          <p>全社員が文章作成・調べ物・企画づくりに日常的に活用。社内ルールと研修が整い、「AIを使うのが当たり前」の空気になる。</p>
+          <div class="lv-chips"><span>社内ルール整備</span><span>社員研修</span><span>有料プランの使い分け</span></div>
+        </div>
+      </div>
+      <div class="level-row">
+        <div class="lv-num">Lv.3</div>
+        <div class="lv-body">
+          <h3>業務組み込み ——「御社専用のAIがある」</h3>
+          <p>見積AI・議事録AIなど、御社の書式とルールを覚えた専用AIが業務に組み込まれ、仕事の手順そのものが変わる。</p>
+          <div class="lv-chips"><span>見積書AI</span><span>議事録AI</span><span>報告書の自動整形</span></div>
+          <span class="lv-ex">例：見積書づくり 1件2時間 → AIが下書き、人は確認だけ（約15分）</span>
+        </div>
+      </div>
+      <div class="level-row">
+        <div class="lv-num">Lv.4</div>
+        <div class="lv-body">
+          <h3>自動化 ——「人が起点でなくても回る」</h3>
+          <p>問い合わせが来たら自動で一次対応。SNSは自動で運用。人が指示しなくても業務が流れ始める。</p>
+          <div class="lv-chips"><span>LINE自動応答</span><span>SNS自動運用</span><span>問い合わせの自動処理</span></div>
+          <span class="lv-ex">例：問い合わせ対応が24時間・返信漏れゼロに。担当者は最終確認だけ</span>
+        </div>
+      </div>
+      <div class="level-row goal">
+        <span class="lv-tag">顧問がめざすゴール</span>
+        <div class="lv-num">Lv.5</div>
+        <div class="lv-body">
+          <h3>エージェント経営 ——「AIに仕事を任せる」</h3>
+          <p>「競合を調べて資料にまとめて」と指示すれば、AIエージェントが調査から実行までこなす。AIが「道具」から「働き手」に変わる段階。</p>
+          <div class="lv-chips"><span>AIエージェント</span><span>AI社員</span><span>業務の自律実行</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="levels-close">大事なのは、レベルを飛ばさないこと。<strong>Lv.1の会社にいきなり自動化を売りつける業者</strong>がうまくいかないのは、社内がついてこないからです。AI顧問室は御社の現在地を診断し、<strong>1段ずつ、確実に</strong>登る道筋を設計します。</p>
+    <div class="mid-cta">
+      <p>御社はいま、どのレベルでしたか？</p>
+      <a href="diagnosis.html" class="btn btn-navy">1分診断で現在地を確かめる →</a>
+    </div>
+  </div>
+</section>
+
+<section id="service">
+  <div class="container">
+    <span class="section-label">SERVICE</span>
+    <h2 class="section-title">AI顧問室が提供する4つの価値</h2>
+    <p class="section-lead">単なるアドバイスで終わらせません。経営相談から、社内に定着するまでを一気通貫で支援します。</p>
+    <div class="s-grid">
+      <div class="s-card">
+        <div class="s-num">01</div>
+        <div>
+          <h3>経営×AIの相談・壁打ち</h3>
+          <p>チャットでいつでも相談可能。「この業務、AIでどうにかならないか」という現場の疑問から、経営戦略レベルの意思決定まで、経営者の目線で答えます。</p>
+        </div>
+      </div>
+      <div class="s-card">
+        <div class="s-num">02</div>
+        <div>
+          <h3>AI導入ロードマップの策定と伴走</h3>
+          <p>御社の業務を棚卸しし、「どこにAIを入れると最も利益に効くか」を優先順位付きのロードマップに。策定して終わりではなく、実行まで定例で伴走します。</p>
+        </div>
+      </div>
+      <div class="s-card">
+        <div class="s-num">03</div>
+        <div>
+          <h3>業務自動化・AIツール構築の実装代行</h3>
+          <p>見積書作成、問い合わせ対応、日報集計——。御社専用のAIツールやワークフローを顧問が直接構築。「話して終わり」のコンサルとの最大の違いです。</p>
+        </div>
+      </div>
+      <div class="s-card">
+        <div class="s-num">04</div>
+        <div>
+          <h3>社員向けAI研修・社内定着支援</h3>
+          <p>社長だけがAIを使えても会社は変わりません。社員のレベルに合わせた実践研修で、現場が自走できる状態まで持っていきます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reasons" id="reasons">
+  <div class="container">
+    <span class="section-label">REASONS</span>
+    <h2 class="section-title">AI顧問室が選ばれる理由</h2>
+    <p class="section-lead">AIに詳しい人は増えました。しかし「経営者の言葉でAIを語れる人」は、ほとんどいません。</p>
+    <div class="r-grid">
+      <div class="r-item">
+        <h3>経営歴15年の「経営目線」</h3>
+        <p>顧問自身が15年会社を経営してきました。資金繰り、採用、組織の悩み——経営者の判断の重さを知っているからこそ、「儲けにつながるAI活用」だけを提案します。</p>
+      </div>
+      <div class="r-item">
+        <h3>AI歴4年の「実践力」</h3>
+        <p>ChatGPT登場以前からあらゆるAIを実務で使い込んできました。流行りのツール紹介ではなく、御社の業務に本当に効く技術を選定し、自ら実装できます。</p>
+      </div>
+      <div class="r-item">
+        <h3>提案で終わらない「伴走型」</h3>
+        <p>立派な資料を納品して終わり、にはしません。月々の定例とチャットで実行を管理し、ツールは顧問が構築。成果が出るまで隣にいます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="container">
+    <span class="section-label">COMPARISON</span>
+    <h2 class="section-title">AI人材の採用と比べてください</h2>
+    <p class="section-lead">AIが分かる人材の採用市場は、いま最も競争が激しい領域です。</p>
+    <div class="compare-box">
+      <div class="cmp hire">
+        <h3>AI人材を採用する場合</h3>
+        <div class="price">年600万円〜 <small>＋採用コスト100万円超</small></div>
+        <ul>
+          <li>採用まで平均6ヶ月以上かかる</li>
+          <li>経営が分かるAI人材はほぼ市場にいない</li>
+          <li>ミスマッチでも簡単には辞めさせられない</li>
+          <li>教育・マネジメントコストが別途発生</li>
+        </ul>
+      </div>
+      <div class="vs">VS</div>
+      <div class="cmp advisor">
+        <h3>AI顧問室に依頼する場合</h3>
+        <div class="price">月15万円〜 <small>（年180万円〜）</small></div>
+        <ul>
+          <li>契約したその月から稼働開始</li>
+          <li>経営歴15年×AI歴4年の知見をそのまま活用</li>
+          <li>合わなければ月単位で見直し可能</li>
+          <li>実装も研修も顧問が直接担当</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <span class="section-label">PRICING</span>
+    <h2 class="section-title">料金プラン</h2>
+    <p class="section-lead">関与の深さで選べる3つのプラン。まずは無料相談で、御社に最適なプランをご提案します。</p>
+    <div class="price-grid">
+      <div class="plan">
+        <div class="name">ライト</div>
+        <div class="position">AI経営の相談役</div>
+        <div class="amount">15<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（平日随時）</li>
+          <li>定例ミーティング 月1回60分</li>
+          <li>対応はオンライン完結</li>
+          <li>AIツール選定・活用アドバイス</li>
+          <li class="na">AI導入ロードマップ策定</li>
+          <li class="na">業務自動化の実装代行</li>
+          <li class="na">社員向けAI研修</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">いちばん選ばれています</div>
+        <div class="name">スタンダード</div>
+        <div class="position">AI導入の伴走者</div>
+        <div class="amount">25<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（平日随時）</li>
+          <li>定例ミーティング 月2回</li>
+          <li>訪問対応 月1回まで可</li>
+          <li>AIツール選定・活用アドバイス</li>
+          <li>AI導入ロードマップ策定・伴走</li>
+          <li>小規模な自動化の実装 月1件</li>
+          <li>社員向けAI研修 四半期1回</li>
+        </ul>
+        <a href="#contact" class="btn btn-navy">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan">
+        <div class="name">プレミアム</div>
+        <div class="position">社外AI役員</div>
+        <div class="amount">50<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（優先対応）</li>
+          <li>定例ミーティング 月2回（経営会議同席可）</li>
+          <li>訪問対応（回数制限なし）</li>
+          <li>AI経営戦略の立案・推進</li>
+          <li>業務自動化の実装 月3件目安</li>
+          <li>社員向けAI研修 毎月・対面開催可</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+    </div>
+    <p class="price-note">最低契約期間は3ヶ月。プランは途中変更できます。実装内容が大きい場合は個別にお見積りします。<br>IT導入補助金・人材開発支援助成金など、活用できる補助金・助成金のご提案も行っています。</p>
+  </div>
+</section>
+
+<section id="flow">
+  <div class="container">
+    <span class="section-label">FLOW</span>
+    <h2 class="section-title">ご契約までの流れ</h2>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>無料相談（60分）</h3>
+        <p>現状の課題とAI活用の可能性をヒアリング。この時点で持ち帰れる気づきをお渡しします。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>現状診断</h3>
+        <p>業務内容を簡易診断し、AI活用の余地と優先順位を整理してご報告します。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>プランのご提案</h3>
+        <p>診断結果をもとに、御社に合ったプランと初月の動き方をご提案します。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">4</div>
+        <h3>顧問契約スタート</h3>
+        <p>チャットグループを開設し、その日から相談可能に。最初の定例で90日計画を決めます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="first90" style="background: var(--bg-soft);">
+  <div class="container">
+    <span class="section-label">FIRST 90 DAYS</span>
+    <h2 class="section-title">契約後、最初の90日でやること</h2>
+    <p class="section-lead">「顧問」と聞くと何をしてくれるのか曖昧に感じるかもしれません。最初の3ヶ月の動きを、あらかじめお見せします。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1ヶ月目</div>
+        <h3>業務の棚卸しと診断</h3>
+        <p>主要な業務をヒアリングし、「どこにAIを入れると最も利益に効くか」を優先順位付きのロードマップにまとめます。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2ヶ月目</div>
+        <h3>最初の成果をひとつ</h3>
+        <p>効果が出やすい業務をひとつ選び、実際に自動化・効率化します。「目に見える変化」をまず社内に作ります。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3ヶ月目</div>
+        <h3>定着と次の一手</h3>
+        <p>使われ方を検証して定着させ、ロードマップの次の施策へ。以降はこのサイクルを毎月回していきます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="profile" id="profile">
+  <div class="container">
+    <span class="section-label">PROFILE</span>
+    <h2 class="section-title">顧問紹介</h2>
+    <div class="profile-box">
+      <img class="avatar" src="assets/representative.jpg" alt="AI顧問室 代表">
+      <div>
+        <h3>【代表者名】</h3>
+        <div class="role">AI顧問室 代表／AI顧問</div>
+        <p>15年にわたり自ら会社を経営。資金繰りから採用、組織づくりまで、中小企業経営のリアルを実体験してきました。</p>
+        <p>4年前からAIの実務活用に没頭し、生成AI・業務自動化・データ活用まで、あらゆるAI技術を自社経営の中で使い倒してきました。その経験から確信しているのは、「中小企業に必要なのはAIの知識ではなく、経営が分かるAIの相談相手だ」ということです。</p>
+        <p>コンサルタントとしてではなく、同じ経営者として、御社の隣に立ちます。</p>
+        <div class="tags">
+          <span class="tag">経営歴15年</span>
+          <span class="tag">AI実務歴4年</span>
+          <span class="tag">生成AI活用</span>
+          <span class="tag">業務自動化</span>
+          <span class="tag">AI研修</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">よくある質問</h2>
+    <details>
+      <summary>ITに詳しい社員が一人もいませんが、大丈夫ですか？</summary>
+      <p>まったく問題ありません。むしろそういった会社のためのサービスです。専門用語を使わず、経営者の言葉でご説明します。ツールの構築や設定は顧問が直接行うので、社内に技術者は不要です。</p>
+    </details>
+    <details>
+      <summary>どの業種でも対応できますか？</summary>
+      <p>はい。AI活用の要点は業種よりも「業務の構造」にあります。製造、建設、卸売、サービス業、士業など、幅広く対応可能です。無料相談の際に御社の業務での活用イメージを具体的にお話しします。</p>
+    </details>
+    <details>
+      <summary>成果が出るまでどのくらいかかりますか？</summary>
+      <p>最初の90日で「目に見える変化」を1つ作ることを目標にしています。多くの場合、初月〜2ヶ月目で最初の業務自動化や効率化の成果を実感いただけます。</p>
+    </details>
+    <details>
+      <summary>途中でプランを変更できますか？</summary>
+      <p>可能です。まずライトプランで始めて、実装ニーズが出てきたらスタンダードへ、という進め方のお客様も多く想定しています。月単位で見直せます。</p>
+    </details>
+    <details>
+      <summary>顧問契約の前に、単発で相談だけすることはできますか？</summary>
+      <p>初回の無料相談（60分）をご利用ください。その場で御社のAI活用の方向性を整理してお渡しします。無理な勧誘は一切いたしません。</p>
+    </details>
+    <details>
+      <summary>補助金や助成金は使えますか？</summary>
+      <p>内容によって活用できる場合があります。AIツールの導入にはIT導入補助金や省力化投資補助金、社員研修には人材開発支援助成金など、御社の状況に合わせて使える制度をご提案します。「補助金で実質負担を抑えてAI化を進める」設計も顧問の仕事です。</p>
+    </details>
+    <details>
+      <summary>研修だけ、ツール導入だけを頼むこともできますか？</summary>
+      <p>可能です。まず研修や小さな自動化から始めて、手応えを見てから顧問契約に進むお客様も想定しています。無料相談の際にご希望をお聞かせください。</p>
+    </details>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>まずは60分、話してみませんか。</h2>
+    <p>無料相談だけでも「自社が何から始めるべきか」が明確になります。<br>オンライン対応・全国どこからでも。</p>
+    <a href="#" class="btn btn-gold" style="font-size:17px; padding:18px 48px;">無料相談を予約する</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p style="margin-bottom: 8px;">運営会社：【会社名】｜所在地：【所在地】｜代表：【代表者名】</p>
+    <p style="margin-bottom: 8px;"><a href="#" style="text-decoration:underline;">会社概要</a>｜<a href="#" style="text-decoration:underline;">特定商取引法に基づく表記</a>｜<a href="#" style="text-decoration:underline;">プライバシーポリシー</a></p>
+    <p>関連サービス：<a href="ai-shain.html" style="text-decoration:underline;">AI社員採用センター</a>｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

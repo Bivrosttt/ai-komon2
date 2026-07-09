@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI活用レベル診断（1分）｜AI顧問室</title>
+<meta name="description" content="5つの質問に答えるだけで、御社のAI活用レベル（Lv0〜Lv5）と次にやるべきことがわかります。中小企業のためのAI顧問サービス「AI顧問室」提供。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.9; background: var(--bg-soft); }
+  a { text-decoration: none; color: inherit; }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  header { background: var(--white); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--navy); }
+  .back { font-size: 13px; color: var(--blue); }
+
+  .page-head { background: var(--navy); color: var(--white); padding: 56px 0; text-align: center; }
+  .page-head .lbl { color: var(--gold); font-size: 13px; letter-spacing: 0.2em; font-weight: 700; }
+  .page-head h1 { font-size: 30px; margin: 10px 0 12px; }
+  .page-head p { color: #C7D3E4; font-size: 14px; }
+
+  .quiz { padding: 56px 0 80px; }
+  .q-block { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 28px; margin-bottom: 20px; }
+  .q-block .q-no { font-size: 12px; font-weight: 700; color: var(--gold); letter-spacing: 0.1em; }
+  .q-block h2 { font-size: 18px; color: var(--navy); margin: 6px 0 18px; font-weight: 700; }
+  .opts { display: flex; flex-direction: column; gap: 10px; }
+  .opt { border: 1.5px solid var(--line); border-radius: 6px; padding: 12px 18px; font-size: 14px; cursor: pointer; background: var(--white); text-align: left; font-family: inherit; color: var(--ink); transition: border-color .15s, background .15s; }
+  .opt:hover { border-color: var(--blue); }
+  .opt.on { border-color: var(--navy); background: #EDF3FA; font-weight: 700; color: var(--navy); }
+
+  .submit-wrap { text-align: center; margin-top: 32px; }
+  .btn { display: inline-block; border: none; cursor: pointer; font-family: inherit; padding: 16px 44px; border-radius: 4px; font-weight: 700; font-size: 16px; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-gold:disabled { background: #D9CFA8; cursor: not-allowed; }
+  .remain { font-size: 13px; color: var(--gray); margin-top: 10px; }
+
+  #result { display: none; margin-top: 48px; }
+  .r-card { background: var(--white); border: 2px solid var(--navy); border-radius: 8px; overflow: hidden; }
+  .r-head { background: var(--navy); color: var(--white); padding: 28px; text-align: center; }
+  .r-head .r-lv { font-family: 'Noto Serif JP', serif; font-size: 44px; font-weight: 700; color: var(--gold); line-height: 1.2; }
+  .r-head .r-name { font-size: 20px; font-family: 'Noto Serif JP', serif; }
+  .r-body { padding: 32px 28px; }
+  .r-body h3 { font-size: 16px; color: var(--navy); margin-bottom: 8px; border-left: 4px solid var(--gold); padding-left: 10px; }
+  .r-body p { font-size: 14px; color: var(--ink); margin-bottom: 22px; }
+  .r-meter { display: flex; gap: 6px; margin-bottom: 26px; }
+  .r-meter div { flex: 1; height: 10px; border-radius: 999px; background: var(--line); }
+  .r-meter div.fill { background: var(--gold); }
+  .r-cta { background: var(--bg-soft); border-radius: 8px; padding: 24px; text-align: center; }
+  .r-cta p { font-size: 14px; margin-bottom: 16px; }
+  .r-note { font-size: 12px; color: var(--gray); text-align: center; margin-top: 16px; }
+
+  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 32px 0; text-align: center; }
+  footer a { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">AI顧問室</a>
+    <a href="index.html" class="back">← サービスページに戻る</a>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="container">
+    <span class="lbl">AI LEVEL CHECK</span>
+    <h1>御社のAI活用レベル診断</h1>
+    <p>5つの質問に答えるだけ。御社の現在地（Lv.0〜5）と、次にやるべきことがわかります。</p>
+  </div>
+</div>
+
+<div class="quiz">
+  <div class="container">
+
+    <div class="q-block" data-q="1">
+      <span class="q-no">QUESTION 1</span>
+      <h2>会社の中で、AI（ChatGPTなど）はどう使われていますか？</h2>
+      <div class="opts">
+        <button type="button" class="opt" data-pt="0">まったく使っていない</button>
+        <button type="button" class="opt" data-pt="1">社長や一部の社員が、たまに使っている</button>
+        <button type="button" class="opt" data-pt="2">多くの社員が日常的に使っている</button>
+        <button type="button" class="opt" data-pt="3">業務の仕組みに組み込まれている（専用ツール化されている）</button>
+      </div>
+    </div>
+
+    <div class="q-block" data-q="2">
+      <span class="q-no">QUESTION 2</span>
+      <h2>ChatGPTなどの有料プランは導入していますか？</h2>
+      <div class="opts">
+        <button type="button" class="opt" data-pt="0">導入していない／よく分からない</button>
+        <button type="button" class="opt" data-pt="1">個人で課金している社員はいる</button>
+        <button type="button" class="opt" data-pt="2">会社として契約し、使い分けもできている</button>
+      </div>
+    </div>
+
+    <div class="q-block" data-q="3">
+      <span class="q-no">QUESTION 3</span>
+      <h2>「人が指示しなくても、AIが自動でこなす仕事」はありますか？</h2>
+      <div class="opts">
+        <button type="button" class="opt" data-pt="0">ない（想像もつかない）</button>
+        <button type="button" class="opt" data-pt="2">自動ではないが、AIに手伝わせている業務はある</button>
+        <button type="button" class="opt" data-pt="4">ある（問い合わせ対応やSNS投稿などが自動で回っている）</button>
+      </div>
+    </div>
+
+    <div class="q-block" data-q="4">
+      <span class="q-no">QUESTION 4</span>
+      <h2>社内のAI利用ルールや研修はありますか？</h2>
+      <div class="opts">
+        <button type="button" class="opt" data-pt="0">特にない</button>
+        <button type="button" class="opt" data-pt="1">「機密情報は入れない」など、注意くらいはしている</button>
+        <button type="button" class="opt" data-pt="2">ルールを整備し、研修も実施した</button>
+      </div>
+    </div>
+
+    <div class="q-block" data-q="5">
+      <span class="q-no">QUESTION 5</span>
+      <h2>「AIエージェント」（指示すると調査や作業を自律的にこなすAI）を知っていますか？</h2>
+      <div class="opts">
+        <button type="button" class="opt" data-pt="0">初めて聞いた</button>
+        <button type="button" class="opt" data-pt="1">聞いたことはあるが、使ったことはない</button>
+        <button type="button" class="opt" data-pt="3">試したことがある</button>
+        <button type="button" class="opt" data-pt="5">業務で使っている</button>
+      </div>
+    </div>
+
+    <div class="submit-wrap">
+      <button type="button" class="btn btn-gold" id="judge" disabled>診断結果を見る</button>
+      <p class="remain" id="remain">あと5問答えてください</p>
+    </div>
+
+    <div id="result">
+      <div class="r-card">
+        <div class="r-head">
+          <div class="r-lv" id="r-lv">Lv.1</div>
+          <div class="r-name" id="r-name">お試し期</div>
+        </div>
+        <div class="r-body">
+          <div class="r-meter" id="r-meter"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          <h3>いまの状態</h3>
+          <p id="r-state"></p>
+          <h3>次にやるべきこと</h3>
+          <p id="r-next"></p>
+          <div class="r-cta">
+            <p id="r-cta-msg"></p>
+            <a href="index.html#contact" class="btn btn-gold">無料相談で詳しく聞く（60分）</a>
+          </div>
+          <p class="r-note">※ この診断は簡易版です。無料相談では業務内容をお聞きした上で、御社専用のレベルアップ計画をお渡しします。</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var answers = {};
+  var total = 5;
+  var judge = document.getElementById('judge');
+  var remain = document.getElementById('remain');
+
+  var LEVELS = [
+    { name: '未導入期', state: 'AIはまだ会社の外の話。ニュースで焦りは感じるものの、何から始めればいいか分からない状態です。実はこの段階が、いちばん伸びしろが大きい段階でもあります。', next: 'まずは社長ご自身がChatGPTを「仕事で」使ってみること。最初の1ヶ月で「これは使える」という体感を作るのが、すべての出発点です。', cta: 'Lv.0からのスタートは、変な癖がついていない分むしろ有利です。最初の一歩の設計からお手伝いします。' },
+    { name: 'お試し期', state: '一部の人がChatGPTを触ってはいるものの、業務はまだ何も変わっていない状態。「使い方が合っているのか分からない」「社員にどう広げればいいか分からない」——この段階のご相談が、実はいちばん多いです。', next: '「個人のお試し」を「会社の仕組み」に変えること。社内ルールを整え、御社の業務に合った使い方を研修で全社員に配ることで、Lv.2（日常化)に上がれます。', cta: '御社と同じLv.1からのスタートを想定してサービスを設計しています。90日でLv.2への道筋をお見せします。' },
+    { name: '日常化期', state: '社員がAIを日常的に使えている、立派な中級レベルです。ただ、このままだと「文章作成が楽になった」止まりで、利益への効き方が頭打ちになる段階でもあります。', next: '御社の書式・ルールを覚えた「専用AI」を業務に組み込むこと（Lv.3）。見積・議事録・報告書など、毎日発生する定型業務から着手すると効果が見えやすいです。', cta: 'ここから先は「使う」から「組み込む」への転換点。実装まで代行できる顧問が最も活きる段階です。' },
+    { name: '業務組み込み期', state: '専用AIが業務に入り込んでいる、かなり進んだ状態です。ここまで来た会社の次の課題は「人が起点にならないと動かない」こと。まだ人がAIに指示を出す働き方です。', next: '問い合わせ対応やSNS運用など、「人が指示しなくても回る」自動化（Lv.4）へ。業務フローの再設計が必要になるので、全体を見渡せる相棒がいると加速します。', cta: '自動化は費用対効果の見極めが肝心です。経営目線で「効く自動化」だけを選んで実装します。' },
+    { name: '自動化期', state: '業務が自動で回り始めている、上位数％の会社です。次はいよいよ、AIが「道具」から「働き手」に変わる段階——エージェント経営が視野に入ります。', next: '調査・資料作成・実行までを任せられるAIエージェント（Lv.5）の業務投入。どの業務から任せるか、安全にどう運用するかの設計が鍵になります。', cta: 'エージェント活用は最先端領域です。最新のAIを使い込んでいる顧問と、二人三脚で進めましょう。' },
+    { name: 'エージェント経営期', state: 'AIエージェントが働き手として機能している、最先端の状態です。ここまで来ると、課題は「技術」より「経営」——どの領域に広げ、組織をどう作り変えるかのフェーズです。', next: 'エージェントの適用範囲拡大と、AI前提の組織・事業設計。ここは正解のない領域なので、壁打ち相手としての顧問の使い方が変わってきます。', cta: '同じ景色を見ている相談相手は貴重です。経営者同士として、次の一手を一緒に考えさせてください。' }
+  ];
+
+  document.querySelectorAll('.q-block').forEach(function (block) {
+    var q = block.getAttribute('data-q');
+    block.querySelectorAll('.opt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        block.querySelectorAll('.opt').forEach(function (b) { b.classList.remove('on'); });
+        btn.classList.add('on');
+        answers[q] = parseInt(btn.getAttribute('data-pt'), 10);
+        var done = Object.keys(answers).length;
+        if (done >= total) {
+          judge.disabled = false;
+          remain.textContent = '準備ができました';
+        } else {
+          remain.textContent = 'あと' + (total - done) + '問答えてください';
+        }
+      });
+    });
+  });
+
+  judge.addEventListener('click', function () {
+    var score = 0;
+    for (var k in answers) score += answers[k];
+    var lv;
+    if (score <= 1) lv = 0;
+    else if (score <= 4) lv = 1;
+    else if (score <= 7) lv = 2;
+    else if (score <= 10) lv = 3;
+    else if (score <= 13) lv = 4;
+    else lv = 5;
+
+    var data = LEVELS[lv];
+    document.getElementById('r-lv').textContent = 'Lv.' + lv;
+    document.getElementById('r-name').textContent = data.name;
+    document.getElementById('r-state').textContent = data.state;
+    document.getElementById('r-next').textContent = data.next;
+    document.getElementById('r-cta-msg').textContent = data.cta;
+    var bars = document.getElementById('r-meter').children;
+    for (var i = 0; i < bars.length; i++) {
+      bars[i].className = i <= lv ? 'fill' : '';
+    }
+    var result = document.getElementById('result');
+    result.style.display = 'block';
+    result.scrollIntoView({ behavior: 'smooth' });
+  });
+})();
+</script>
+
+</body>
+</html>

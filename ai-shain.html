@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI社員採用センター｜月給3万円から働く、辞めない社員。</title>
+<meta name="description" content="求人を出す前に、AI社員という選択。見積書作成、問い合わせ対応、議事録、経理アシスタントまで。月給3万円から、面接不要・即日入社・退職しない社員を採用できます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #0E7A5F;
+    --green-deep: #085041;
+    --green-pale: #E6F4EF;
+    --yellow: #F5B301;
+    --ink: #1F2A26;
+    --gray: #5C6B66;
+    --line: #DFE7E3;
+    --bg-soft: #F6F9F7;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.9; background: var(--white); }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; }
+  h1, h2, h3 { line-height: 1.5; }
+
+  .section-label { display: block; font-size: 13px; letter-spacing: 0.18em; color: var(--green); font-weight: 700; margin-bottom: 10px; }
+  .section-title { font-size: 32px; font-weight: 900; margin-bottom: 18px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 48px; }
+
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-weight: 900; font-size: 19px; color: var(--green-deep); }
+  .logo span { color: var(--yellow); }
+  nav ul { display: flex; gap: 26px; list-style: none; }
+  nav a { font-size: 14px; font-weight: 500; }
+  nav a:hover { color: var(--green); }
+  .btn { display: inline-block; padding: 14px 32px; border-radius: 999px; font-weight: 700; font-size: 15px; transition: opacity .2s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-yellow { background: var(--yellow); color: #4A3600; }
+  .btn-green { background: var(--green); color: var(--white); }
+  .btn-outline { border: 2px solid var(--green); color: var(--green); }
+  .header-cta { padding: 9px 22px; font-size: 13px; }
+
+  .hero { background: var(--green-pale); padding: 96px 0 88px; }
+  .hero-flex { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; }
+  .hero-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .hero-badge { background: var(--white); border: 1.5px solid var(--green); color: var(--green-deep); font-size: 13px; font-weight: 700; border-radius: 999px; padding: 5px 16px; }
+  .hero h1 { font-size: 42px; font-weight: 900; margin-bottom: 20px; }
+  .hero h1 em { font-style: normal; color: var(--green); }
+  .hero p.sub { font-size: 16px; color: var(--gray); margin-bottom: 36px; max-width: 520px; }
+  .hero-note { font-size: 13px; color: var(--gray); margin-top: 14px; }
+
+  .kyujin-card { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 28px; box-shadow: 0 8px 24px rgba(8,80,65,0.08); }
+  .kyujin-card .k-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--green-pale); padding-bottom: 12px; margin-bottom: 14px; }
+  .kyujin-card .k-title { font-weight: 900; font-size: 17px; }
+  .kyujin-card .k-badge { background: var(--yellow); color: #4A3600; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; }
+  .kyujin-card table { width: 100%; font-size: 13px; border-collapse: collapse; }
+  .kyujin-card td { padding: 7px 0; border-bottom: 1px dashed var(--line); }
+  .kyujin-card td:first-child { color: var(--gray); width: 84px; }
+  .kyujin-card td strong { color: var(--green-deep); font-size: 16px; }
+
+  .compare { background: var(--white); }
+  .cmp-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .cmp-table th, .cmp-table td { padding: 16px 18px; text-align: center; border: 1px solid var(--line); }
+  .cmp-table th:first-child, .cmp-table td:first-child { text-align: left; background: var(--bg-soft); font-weight: 700; width: 26%; }
+  .cmp-table thead th { font-size: 15px; font-weight: 900; }
+  .cmp-table .col-ai { background: var(--green-pale); color: var(--green-deep); font-weight: 700; }
+  .cmp-table thead .col-ai { background: var(--green); color: var(--white); }
+  .cmp-note { font-size: 12px; color: var(--gray); margin-top: 14px; }
+
+  .catalog { background: var(--bg-soft); }
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+  .job-card { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 26px 24px; display: flex; flex-direction: column; }
+  .job-card .j-cat { font-size: 11px; font-weight: 700; color: var(--green); letter-spacing: 0.08em; margin-bottom: 6px; }
+  .job-card h3 { font-size: 19px; font-weight: 900; margin-bottom: 4px; }
+  .job-card .j-salary { color: var(--green-deep); font-weight: 900; font-size: 22px; margin-bottom: 12px; }
+  .job-card .j-salary small { font-size: 12px; font-weight: 500; color: var(--gray); }
+  .job-card p { font-size: 13px; color: var(--gray); margin-bottom: 14px; flex: 1; }
+  .job-card ul { list-style: none; font-size: 13px; margin-bottom: 4px; }
+  .job-card li { padding: 5px 0 5px 24px; position: relative; border-bottom: 1px dashed var(--line); }
+  .job-card li::before { content: "✓"; position: absolute; left: 2px; color: var(--yellow); font-weight: 900; }
+
+  .features { background: var(--white); }
+  .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
+  .feat { background: var(--green-pale); border-radius: 16px; padding: 30px 26px; }
+  .feat .f-num { font-size: 13px; font-weight: 900; color: var(--green); margin-bottom: 8px; }
+  .feat h3 { font-size: 18px; font-weight: 900; margin-bottom: 10px; color: var(--green-deep); }
+  .feat p { font-size: 13px; color: var(--ink); }
+
+  .flow { background: var(--bg-soft); }
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; }
+  .f-step { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 26px 22px; }
+  .f-step .no { font-weight: 900; color: var(--yellow); font-size: 24px; margin-bottom: 6px; }
+  .f-step h3 { font-size: 16px; font-weight: 900; margin-bottom: 6px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+
+  .pricing-simple { background: var(--white); }
+  .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; align-items: stretch; }
+  .pplan { background: var(--white); border: 1px solid var(--line); border-radius: 20px; padding: 36px 30px; display: flex; flex-direction: column; position: relative; }
+  .pplan.featured { border: 2.5px solid var(--green); }
+  .pplan-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--yellow); color: #4A3600; font-size: 12px; font-weight: 700; padding: 4px 18px; border-radius: 999px; white-space: nowrap; }
+  .pplan .pp-name { font-weight: 900; font-size: 18px; }
+  .pplan .pp-for { font-size: 12px; color: var(--green); font-weight: 700; margin-bottom: 16px; }
+  .pplan .pp-price { font-size: 30px; font-weight: 900; color: var(--green-deep); line-height: 1.3; }
+  .pplan .pp-price small { font-size: 13px; font-weight: 500; color: var(--gray); }
+  .pplan .pp-init { font-size: 13px; color: var(--gray); margin-bottom: 14px; }
+  .pplan ul { list-style: none; margin: 10px 0 22px; flex: 1; }
+  .pplan li { font-size: 13px; padding: 8px 0 8px 24px; position: relative; border-bottom: 1px dashed var(--line); }
+  .pplan li::before { content: "✓"; position: absolute; left: 0; color: var(--yellow); font-weight: 900; }
+  .pplan li.na { color: #A9B8B2; }
+  .pplan li.na::before { content: "—"; color: #A9B8B2; }
+  .pplan .btn { text-align: center; }
+  .pplan.komon { background: #0B2447; border-color: #0B2447; color: #fff; }
+  .pplan.komon .pp-name, .pplan.komon .pp-price { color: #fff; }
+  .pplan.komon .pp-for { color: #C9A227; }
+  .pplan.komon .pp-price small, .pplan.komon .pp-init { color: #C7D3E4; }
+  .pplan.komon li { color: #DCE6F5; border-bottom-color: rgba(255,255,255,0.15); }
+  .pplan.komon li::before { color: #C9A227; }
+  .price-note2 { font-size: 13px; color: var(--gray); margin-top: 28px; text-align: center; }
+
+  details { border-bottom: 1px solid var(--line); padding: 4px 0; }
+  summary { cursor: pointer; font-weight: 700; font-size: 15px; padding: 18px 40px 18px 0; list-style: none; position: relative; }
+  summary::after { content: "＋"; position: absolute; right: 8px; color: var(--green); font-size: 20px; }
+  details[open] summary::after { content: "－"; }
+  details p { padding: 0 8px 22px; font-size: 14px; color: var(--gray); }
+
+  .operator { background: var(--bg-soft); }
+  .op-box { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 40px; display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+  .op-box .op-mark { width: 88px; height: 88px; border-radius: 16px; background: #0B2447; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 15px; text-align: center; line-height: 1.5; flex-shrink: 0; }
+  .op-box h3 { font-size: 18px; font-weight: 900; margin-bottom: 8px; }
+  .op-box p { font-size: 14px; color: var(--gray); }
+  .op-box a.textlink { color: var(--green); font-weight: 700; border-bottom: 1.5px solid var(--green); }
+
+  .cta { background: var(--green-deep); color: var(--white); text-align: center; }
+  .cta h2 { font-size: 32px; font-weight: 900; margin-bottom: 16px; }
+  .cta p { color: #BFE3D6; margin-bottom: 36px; }
+
+  footer { background: #06342B; color: #9FC5B8; font-size: 13px; padding: 36px 0; text-align: center; }
+  footer .logo { color: #fff; margin-bottom: 8px; display: block; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 860px) {
+    section { padding: 60px 0; }
+    .hero h1 { font-size: 30px; }
+    .section-title { font-size: 24px; }
+    nav { display: none; }
+    .hero-flex { grid-template-columns: 1fr; }
+    .cmp-wrap { overflow-x: auto; }
+    .cmp-table { min-width: 640px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="#" class="logo">AI社員<span>採用</span>センター</a>
+    <nav>
+      <ul>
+        <li><a href="#compare">人を雇うと比べる</a></li>
+        <li><a href="#catalog">募集中のAI社員</a></li>
+        <li><a href="#flow">入社までの流れ</a></li>
+        <li><a href="#pricing">給与体系</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn btn-yellow header-cta">採用相談（無料）</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container hero-flex">
+    <div>
+      <div class="hero-badges">
+        <span class="hero-badge">面接不要</span>
+        <span class="hero-badge">即日入社</span>
+        <span class="hero-badge">24時間勤務</span>
+        <span class="hero-badge">退職しません</span>
+      </div>
+      <h1>求人を出す前に、<br><em>AI社員</em>という選択。</h1>
+      <p class="sub">見積書づくり、問い合わせ対応、議事録、経理の下ごしらえ——。人が採れない業務は、月給3万円のAI社員に任せませんか。御社の業務に合わせて教育済みの状態で入社します。</p>
+      <a href="#contact" class="btn btn-yellow" style="font-size:16px;">採用相談をしてみる（無料）</a>
+      <p class="hero-note">※ 相談したからといって採用義務はありません。求人票を眺める感覚でどうぞ。</p>
+    </div>
+    <div class="kyujin-card">
+      <div class="k-head">
+        <span class="k-title">求人票（見本）</span>
+        <span class="k-badge">人気No.1</span>
+      </div>
+      <table>
+        <tr><td>職種</td><td><strong>事務AI社員</strong></td></tr>
+        <tr><td>仕事内容</td><td>見積書・請求書の作成、書類の下書き</td></tr>
+        <tr><td>月給</td><td><strong>30,000円</strong></td></tr>
+        <tr><td>勤務時間</td><td>24時間365日（休憩不要）</td></tr>
+        <tr><td>入社日</td><td>最短で構築完了から即日</td></tr>
+        <tr><td>退職リスク</td><td>ありません</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<section class="compare" id="compare">
+  <div class="container">
+    <span class="section-label">COMPARISON</span>
+    <h2 class="section-title">パートを1人雇うのと、比べてください</h2>
+    <p class="section-lead">事務パート1人分の仕事のうち、定型的な部分はAI社員が肩代わりできます。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-table">
+        <thead>
+          <tr><th></th><th>事務パート採用</th><th class="col-ai">AI社員</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>月あたりのコスト</td><td>約10〜15万円</td><td class="col-ai">3万円〜</td></tr>
+          <tr><td>採用コスト・期間</td><td>広告費数万〜数十万円／1〜3ヶ月</td><td class="col-ai">0円／最短1週間で入社</td></tr>
+          <tr><td>勤務時間</td><td>1日4〜6時間・シフト調整が必要</td><td class="col-ai">24時間365日</td></tr>
+          <tr><td>教育</td><td>数ヶ月かけてOJT</td><td class="col-ai">教育済みで入社（構築時に業務を学習）</td></tr>
+          <tr><td>退職・急な欠勤</td><td>常にリスクあり</td><td class="col-ai">ありません</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-note">※ 人にしかできない仕事はあります。AI社員は「人を減らす」のではなく、定型業務を引き受けて社員を付加価値の高い仕事に回すための存在です。</p>
+  </div>
+</section>
+
+<section class="catalog" id="catalog">
+  <div class="container">
+    <span class="section-label">RECRUIT LIST</span>
+    <h2 class="section-title">募集中のAI社員（職種カタログ）</h2>
+    <p class="section-lead">すべて御社の業務内容・書式・ルールを学習させてから入社します。「こんな仕事もできる？」はお気軽にご相談を。</p>
+    <div class="cat-grid">
+      <div class="job-card">
+        <div class="j-cat">事務・書類作成</div>
+        <h3>事務AI社員</h3>
+        <div class="j-salary">月給 30,000円<small>／体（税別）</small></div>
+        <p>御社の書式・単価表を覚えて、営業から送られたメモを見積書・請求書に仕上げます。</p>
+        <ul>
+          <li>見積書・請求書の作成</li>
+          <li>社内文書・案内文の下書き</li>
+          <li>Excelデータの整形・転記</li>
+        </ul>
+      </div>
+      <div class="job-card">
+        <div class="j-cat">カスタマー対応</div>
+        <h3>問い合わせ対応AI社員</h3>
+        <div class="j-salary">月給 50,000円<small>／体（税別）</small></div>
+        <p>よくある質問と御社の回答方針を学習し、メール・チャットの一次対応を24時間こなします。</p>
+        <ul>
+          <li>メール・フォーム問い合わせの一次返信</li>
+          <li>FAQに沿った自動回答</li>
+          <li>難しい案件は担当者へ引き継ぎ</li>
+        </ul>
+      </div>
+      <div class="job-card">
+        <div class="j-cat">会議サポート</div>
+        <h3>議事録AI社員</h3>
+        <div class="j-salary">月給 20,000円<small>／体（税別）</small></div>
+        <p>会議の録音から議事録を作成し、決定事項とToDoを整理して関係者に共有します。</p>
+        <ul>
+          <li>録音→議事録の自動作成</li>
+          <li>決定事項・宿題の抽出</li>
+          <li>指定フォーマットで共有</li>
+        </ul>
+      </div>
+      <div class="job-card">
+        <div class="j-cat">営業サポート</div>
+        <h3>営業事務AI社員</h3>
+        <div class="j-salary">月給 40,000円<small>／体（税別）</small></div>
+        <p>営業リストの作成や提案書のたたき台づくりなど、営業の「準備仕事」を引き受けます。</p>
+        <ul>
+          <li>営業リスト・企業情報の収集整理</li>
+          <li>提案書・営業メールのたたき台</li>
+          <li>日報・商談メモの要約</li>
+        </ul>
+      </div>
+      <div class="job-card">
+        <div class="j-cat">経理サポート</div>
+        <h3>経理アシスタントAI社員</h3>
+        <div class="j-salary">月給 40,000円<small>／体（税別）</small></div>
+        <p>領収書・請求書の整理と仕訳の下書きまで。顧問税理士に渡す前の下ごしらえを担当します。</p>
+        <ul>
+          <li>領収書・請求書のデータ化</li>
+          <li>仕訳の下書き作成</li>
+          <li>月次資料の集計補助</li>
+        </ul>
+      </div>
+      <div class="job-card">
+        <div class="j-cat">広報・発信</div>
+        <h3>SNS広報AI社員</h3>
+        <div class="j-salary">月給 30,000円<small>／体（税別）</small></div>
+        <p>御社の商品・トーンを学習し、SNSやブログの投稿案を毎週まとめて用意します。</p>
+        <ul>
+          <li>SNS投稿案の作成（週次）</li>
+          <li>ブログ・お知らせ記事の下書き</li>
+          <li>投稿カレンダーの管理</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <span class="section-label">FEATURES</span>
+    <h2 class="section-title">「ツール導入」と何が違うの？</h2>
+    <p class="section-lead">ChatGPTを契約するだけでは、仕事は片付きません。AI社員は「御社の業務を覚えた状態」で納品される点が違います。</p>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="f-num">01</div>
+        <h3>御社専用に教育してから入社</h3>
+        <p>業務のヒアリングを行い、御社の書式・ルール・言葉づかいを学習させた専用のAI社員を構築します。汎用ツールの「使い方を覚える」負担がありません。</p>
+      </div>
+      <div class="feat">
+        <div class="f-num">02</div>
+        <h3>入社後も「上司」がつく</h3>
+        <p>月給には保守・改善が含まれます。「もう少しこうしてほしい」という指示は私たちが翻訳してAI社員を再教育。放置されません。</p>
+      </div>
+      <div class="feat">
+        <div class="f-num">03</div>
+        <h3>30日間の試用期間つき</h3>
+        <p>本採用の前に30日間の試用期間を設けています。試して合わなければ、費用は初期構築費のみ。リスクなく「AIを雇う」体験ができます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flow" id="flow">
+  <div class="container">
+    <span class="section-label">FLOW</span>
+    <h2 class="section-title">入社までの流れ</h2>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>採用相談（無料）</h3>
+        <p>「どの業務を任せられるか」を一緒に整理します。オンライン30分。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>業務ヒアリング</h3>
+        <p>任せたい業務の手順・書式・判断ルールをお聞きします。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>構築・教育</h3>
+        <p>御社専用のAI社員を構築。約1〜2週間で「入社」できます。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">4</div>
+        <h3>試用期間（30日）</h3>
+        <p>実際の業務で試していただき、フィードバックをもとに再教育します。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">5</div>
+        <h3>本採用</h3>
+        <p>月給制で継続勤務。改善・メンテナンスも月給に含まれます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-simple" id="pricing">
+  <div class="container">
+    <span class="section-label">PRICING</span>
+    <h2 class="section-title">給与体系</h2>
+    <p class="section-lead">1体だけ試すことも、部署ごと任せることもできます。任せる範囲が広がるほど、1体あたりは割安になります。</p>
+    <div class="price-grid">
+      <div class="pplan">
+        <div class="pp-name">単体採用</div>
+        <div class="pp-for">まず1業務だけ試したい</div>
+        <div class="pp-price">月給 2〜5<small>万円／体（税別）</small></div>
+        <div class="pp-init">入社金（構築・教育）10万円〜／体</div>
+        <ul>
+          <li>定型業務1つを担当</li>
+          <li>稼働環境・保守を月給に含む</li>
+          <li>再教育（調整依頼）月1回まで</li>
+          <li>チャットサポート</li>
+          <li class="na">改善ミーティング</li>
+          <li class="na">新しい業務の掘り起こし</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">採用相談する</a>
+      </div>
+      <div class="pplan featured">
+        <div class="pplan-badge">おすすめ・いちばん割安</div>
+        <div class="pp-name">AI部署セット</div>
+        <div class="pp-for">部署ごと任せたい</div>
+        <div class="pp-price">月給 15<small>万円（税別）</small></div>
+        <div class="pp-init">入社金 20万円〜（3体分・まとめて割引）</div>
+        <ul>
+          <li>AI社員3体（職種は自由に選択）</li>
+          <li>毎月の改善ミーティング</li>
+          <li>再教育は回数無制限</li>
+          <li>「次はどの業務を任せるか」の相談</li>
+          <li>優先サポート</li>
+        </ul>
+        <a href="#contact" class="btn btn-green">採用相談する</a>
+      </div>
+      <div class="pplan komon">
+        <div class="pp-name">全社まるごとAI化</div>
+        <div class="pp-for">経営レベルで伴走してほしい</div>
+        <div class="pp-price">月額 15万円〜<small>（AI顧問室）</small></div>
+        <div class="pp-init">経営目線のAI顧問サービス</div>
+        <ul>
+          <li>経営相談・壁打ち（チャット随時）</li>
+          <li>AI導入ロードマップの策定・伴走</li>
+          <li>AI社員の構築も顧問業務内で対応</li>
+          <li>社員向けAI研修</li>
+          <li>補助金・助成金の活用提案</li>
+        </ul>
+        <a href="index.html" class="btn btn-yellow">AI顧問室を見る</a>
+      </div>
+    </div>
+    <p class="price-note2">月給に含まれるもの：稼働環境（AI利用料等の実費）・保守・再教育・サポート。業務が複雑な場合は個別にお見積りします。<br>3体以上の採用をお考えなら、AI部署セットまたはAI顧問室のほうが割安です。IT導入補助金など活用できる補助金のご提案も可能です。</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">よくある質問</h2>
+    <details>
+      <summary>ITに詳しい社員がいなくても使えますか？</summary>
+      <p>はい。AI社員は「チャットに話しかける」「フォルダにファイルを入れる」など、普段の仕事の延長で使える形に仕上げてお渡しします。導入時には使い方の説明会も行います。</p>
+    </details>
+    <details>
+      <summary>セキュリティは大丈夫ですか？</summary>
+      <p>お預かりする情報の範囲を最初に決め、機密情報を学習に使わない設計も可能です。利用するAIサービスのデータ取り扱いポリシーも含めてご説明します。</p>
+    </details>
+    <details>
+      <summary>カタログにない業務も頼めますか？</summary>
+      <p>ご相談ください。「この作業、AIでできる？」という持ち込み相談から生まれたAI社員がたくさんいます。採用相談（無料）でお聞かせください。</p>
+    </details>
+    <details>
+      <summary>辞めさせたい（解約したい）ときは？</summary>
+      <p>月単位で解約できます。試用期間30日で合わなければ、月給は発生しません。</p>
+    </details>
+    <details>
+      <summary>会社全体のAI活用も相談したいのですが。</summary>
+      <p>運営元の「AI顧問室」で、経営目線のAI顧問サービス（月額15万円〜）を提供しています。AI社員の導入をきっかけに、全社のAI活用へ広げるお客様が多いです。</p>
+    </details>
+  </div>
+</section>
+
+<section class="operator">
+  <div class="container">
+    <span class="section-label">OPERATOR</span>
+    <h2 class="section-title">運営について</h2>
+    <div class="op-box">
+      <div class="op-mark">AI<br>顧問室</div>
+      <div>
+        <h3>AI社員採用センターは「AI顧問室」が運営しています</h3>
+        <p>経営歴15年×AI歴4年の顧問が率いる、中小企業専門のAI活用支援チームです。AI社員の構築・教育も、経営目線で「利益に効く業務」から設計します。AI社員は「道具と保守」を買うサービス、AI顧問室（月額15万円〜）は「経営の伴走」を買うサービス。会社全体のAI活用を相談したい方は <a class="textlink" href="index.html">AI顧問室のサービスページ</a> をご覧ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>まずは求人票を眺める感覚で。</h2>
+    <p>採用相談（無料・30分）で、御社のどの業務をAI社員に任せられるか整理します。<br>採用義務はありません。オンライン対応・全国どこからでも。</p>
+    <a href="#" class="btn btn-yellow" style="font-size:17px; padding:18px 48px;">採用相談を予約する（無料）</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span class="logo">AI社員採用センター</span>
+    <p>運営：<a href="index.html">AI顧問室</a>｜© 2026 AI社員採用センター All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
