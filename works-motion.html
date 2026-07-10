@@ -276,14 +276,15 @@
   }
   .s3-badge { display: flex; flex-direction: column; align-items: center; gap: calc(12px * var(--mscale)); opacity: 0; }
   .s3-circle {
-    width: calc(96px * var(--mscale)); height: calc(96px * var(--mscale));
+    width: calc(110px * var(--mscale)); height: calc(110px * var(--mscale));
     border-radius: 50%;
     background: var(--white);
-    border: 2px solid var(--bk-gold);
+    border: 3px solid var(--bk-gold);
     display: flex; align-items: center; justify-content: center;
-    font-size: calc(38px * var(--mscale));
-    box-shadow: 0 8px 20px rgba(74,50,34,0.15);
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(74,50,34,0.18);
   }
+  .s3-circle img { width: 100%; height: 100%; object-fit: cover; }
   .s3-label {
     font-size: calc(14.5px * var(--mscale));
     font-weight: 700;
@@ -530,15 +531,15 @@
                 <div class="s3-kicker" id="s3Kicker">3つのこだわり</div>
                 <div class="s3-badges">
                   <div class="s3-badge" id="s3B1">
-                    <span class="s3-circle">🌰</span>
+                    <span class="s3-circle"><img src="assets/works/motion-kuri.jpg" alt="国産栗の渋皮煮"></span>
                     <span class="s3-label">国産栗の<br>渋皮煮</span>
                   </div>
                   <div class="s3-badge" id="s3B2">
-                    <span class="s3-circle">🧈</span>
+                    <span class="s3-circle"><img src="assets/works/motion-butter.jpg" alt="発酵バター"></span>
                     <span class="s3-label">発酵バター<br>100%</span>
                   </div>
                   <div class="s3-badge" id="s3B3">
-                    <span class="s3-circle">📅</span>
+                    <span class="s3-circle"><img src="assets/works/motion-autumn.jpg" alt="10月限定"></span>
                     <span class="s3-label">10月限定</span>
                   </div>
                 </div>
@@ -590,9 +591,14 @@
     <span class="section-label">HOW IT WORKS</span>
     <h2 class="section-title">実際の制作では、こう活用します</h2>
 
+    <div style="background:#fff; border:1px solid var(--line, #DDE4EC); border-left:4px solid #C9A227; border-radius:0 8px 8px 0; padding:24px 28px; margin-bottom:20px;">
+      <p style="font-family:'Noto Serif JP',serif; font-size:19px; color:#0B2447; margin-bottom:10px;">このムービー、動画編集ソフトは一切使っていません。</p>
+      <p style="font-size:14px; color:#1A2433; margin-bottom:8px;">構成・カット割り・アニメーションのすべてを、<strong>AIに日本語で依頼して</strong>作りました。「商品写真をふわっと出して、こだわりを3つ、最後に価格をドンと」——この程度の指示で、この品質になります。</p>
+      <p style="font-size:14px; color:#1A2433;">つまり、動画編集を学ぶ必要はもうありません。<strong>AIへの頼み方を身につければ、御社の社員がこれを作れます。</strong>それがAI顧問室の研修・伴走で手に入るスキルです。</p>
+    </div>
     <div class="note-box" style="margin-bottom:8px;">
       <span class="mark">※</span>
-      <span>このムービーはコードで生成しています。実案件では<strong>Remotion等のOSS</strong>でMP4動画として書き出し、SNS広告・店頭サイネージ・採用動画などに使えます。写真はAI生成のサンプルです。</span>
+      <span>実案件では<strong>Remotion等のOSS</strong>でMP4動画として書き出し、SNS広告・店頭サイネージ・採用動画などに使えます。写真はAI生成のサンプルです。</span>
     </div>
 
     <div class="chip-row" style="margin-top:40px;">
