@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI導入支援・自動化構築｜AI顧問室</title>
+<meta name="description" content="作ってほしいものが決まっているなら、最短で。御社専用のAIツール・業務自動化を、経営が分かる目利きのプロが構築します。小規模ツール30万円〜。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="AI導入支援・自動化構築｜AI顧問室">
+<meta property="og:description" content="作ってほしいものが決まっているなら、最短で。御社専用のAIツール・業務自動化を、経営が分かる目利きのプロが構築します。小規模ツール30万円〜。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/implementation.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  nav ul { display: flex; gap: 18px; list-style: none; }
+  nav a { font-size: 13px; color: var(--ink); font-weight: 500; white-space: nowrap; }
+  nav a:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); }
+  .header-cta { padding: 10px 24px; font-size: 14px; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 110px 0 96px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 28px;
+    color: #DCE6F5;
+  }
+  .hero h1 { font-size: 42px; margin-bottom: 24px; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p.sub {
+    font-size: 17px; color: #C7D3E4; max-width: 640px; margin-bottom: 40px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .hero-note { font-size: 13px; color: #9FB0C7; margin-top: 16px; }
+
+  /* Problems（誰向けか） */
+  .problems { background: var(--bg-soft); }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .p-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--navy);
+    border-radius: 6px;
+    padding: 32px 28px;
+  }
+  .p-card .who {
+    font-size: 12px; color: var(--blue); font-weight: 700; letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .p-card h3 { font-size: 19px; color: var(--navy); margin-bottom: 14px; }
+  .p-card p { font-size: 14px; color: var(--gray); }
+  .problems-close {
+    text-align: center; margin-top: 56px;
+    font-family: 'Noto Serif JP', serif; font-size: 23px; color: var(--navy);
+  }
+  .problems-close em { font-style: normal; border-bottom: 3px solid var(--gold); padding-bottom: 2px; }
+
+  /* Catalog（作れるものカタログ） */
+  .dt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+  .dt-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
+  .dt-card:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .dt-visual { height: 110px; position: relative; }
+  .dt-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .dt-badge { position: absolute; top: 10px; right: 10px; background: var(--gold); color: var(--navy-deep); font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+  .dt-body { padding: 18px 20px 20px; }
+  .dt-body h3 { font-size: 17px; color: var(--navy); margin-bottom: 6px; }
+  .dt-body p { font-size: 12.5px; color: var(--gray); margin-bottom: 10px; }
+  .dt-body .try { font-size: 13px; font-weight: 700; color: var(--gold); }
+  .dt-more { text-align: center; margin-top: 36px; }
+
+  /* Flow */
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); position: relative; }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+  .f-step.highlight { border: 2px solid var(--gold); background: #FBF6E7; }
+  .f-step.highlight .no { color: var(--navy); }
+
+  /* Pricing */
+  .pricing { background: var(--bg-soft); }
+  .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch; }
+  .plan {
+    background: var(--white); border: 1px solid var(--line); border-radius: 8px;
+    padding: 40px 32px; display: flex; flex-direction: column; position: relative;
+  }
+  .plan .name { font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--navy); }
+  .plan .position { font-size: 12px; color: var(--blue); font-weight: 700; margin-bottom: 20px; }
+  .plan .amount { font-family: 'Noto Serif JP', serif; font-size: 34px; font-weight: 700; color: var(--navy); line-height: 1.2; }
+  .plan .amount small { font-size: 14px; font-weight: 400; color: var(--gray); }
+  .plan ul { list-style: none; margin: 24px 0 32px; flex: 1; }
+  .plan li { font-size: 14px; padding: 10px 0 10px 26px; position: relative; border-bottom: 1px solid var(--bg-soft); color: var(--ink); }
+  .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .plan .btn { text-align: center; }
+  .price-note { text-align: center; font-size: 13px; color: var(--gray); margin-top: 32px; }
+
+  /* Compare box */
+  .compare-box {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch;
+    max-width: 860px; margin: 48px auto 0;
+  }
+  .cmp {
+    border: 1px solid var(--line); border-radius: 6px; padding: 32px 28px; background: var(--white);
+  }
+  .cmp.spot { background: var(--bg-soft); }
+  .cmp.advisor { border: 2px solid var(--navy); position: relative; }
+  .cmp h3 { font-size: 17px; color: var(--navy); margin-bottom: 14px; }
+  .cmp .price { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 700; color: var(--navy); }
+  .cmp .price small { font-size: 13px; font-weight: 400; color: var(--gray); }
+  .cmp ul { list-style: none; margin-top: 18px; }
+  .cmp li { font-size: 13.5px; color: var(--gray); padding: 8px 0 8px 24px; position: relative; border-bottom: 1px dashed var(--line); }
+  .cmp.spot li::before { content: "▲"; position: absolute; left: 0; color: #B0432F; font-size: 11px; top: 12px; }
+  .cmp.advisor li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .vs {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif JP', serif; font-weight: 700; color: var(--gray);
+    padding: 0 20px; font-size: 18px;
+  }
+  .compare-cta { text-align: center; margin-top: 28px; }
+
+  /* Subsidy */
+  .subsidy { background: var(--navy); color: var(--white); }
+  .subsidy .section-title { color: var(--white); }
+  .subsidy .section-lead { color: #C7D3E4; }
+  .subsidy-box { border: 1px solid rgba(255,255,255,.25); border-left: 4px solid var(--gold); border-radius: 6px; padding: 32px 28px; max-width: 780px; }
+  .subsidy-box p { font-size: 15px; color: #DCE6F5; margin-bottom: 12px; }
+  .subsidy-note { font-size: 12.5px; color: #9FB0C7; margin-top: 16px; }
+
+  /* Reasons */
+  .r-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+  .r-item { border-top: 2px solid var(--gold); padding-top: 24px; }
+  .r-item h3 { font-size: 19px; margin-bottom: 12px; color: var(--navy); }
+  .r-item p { font-size: 14px; color: var(--gray); }
+
+  /* FAQ */
+  details {
+    border-bottom: 1px solid var(--line); padding: 4px 0;
+  }
+  summary {
+    cursor: pointer; font-weight: 700; font-size: 16px; color: var(--navy);
+    padding: 20px 0; list-style: none; position: relative; padding-right: 40px;
+  }
+  summary::after { content: "＋"; position: absolute; right: 8px; color: var(--gold); font-size: 20px; }
+  details[open] summary::after { content: "－"; }
+  details p { padding: 0 8px 24px; font-size: 15px; color: var(--gray); }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 32px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  /* Mobile sticky CTA */
+  .mobile-cta { display: none; }
+  @media (max-width: 820px) {
+    .mobile-cta { display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 300; background: var(--white); border-top: 1px solid var(--line); padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); gap: 10px; box-shadow: 0 -4px 16px rgba(11,36,71,.10); transform: translateY(110%); transition: transform .3s; }
+    .mobile-cta.show { transform: translateY(0); }
+    .mobile-cta a { flex: 1; text-align: center; padding: 13px 0; border-radius: 4px; font-weight: 700; font-size: 14px; }
+    .mobile-cta .mc-demo { border: 1.5px solid var(--navy); color: var(--navy); }
+    .mobile-cta .mc-consult { background: var(--gold); color: var(--navy-deep); }
+  }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .hero h1 { font-size: 28px; }
+    .section-title { font-size: 25px; }
+    nav { display: none; }
+    .compare-box { grid-template-columns: 1fr; }
+    .vs { padding: 16px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <nav>
+      <ul>
+        <li><a href="#catalog">作れるもの</a></li>
+        <li><a href="#flow">進め方</a></li>
+        <li><a href="#pricing">料金</a></li>
+        <li><a href="#subsidy">補助金</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+        <li><a href="index.html">AI顧問室トップ</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn btn-gold header-cta">無料相談を予約</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="hero-label">AI導入支援・自動化構築</span>
+    <h1>作ってほしいものが<br>決まっているなら、<em>最短で。</em></h1>
+    <p class="sub">「この業務を、AIで何とかしたい」——具体的なイメージがあるなら、顧問契約より先に、単発でお請けします。世界中のAIツール・OSSを毎日使い込む目利きのプロが、御社専用のAIツール・業務自動化を直接構築します。</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-gold">無料相談で相談する</a>
+      <a href="demos.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">まず実物を見る（構築デモ）</a>
+    </div>
+    <p class="hero-note">※ 「作れるかどうか分からない」段階でも構いません。まずは無料相談でお聞かせください。</p>
+  </div>
+</div>
+
+<section class="problems" id="who">
+  <div class="container">
+    <span class="section-label">FOR YOU IF</span>
+    <h2 class="section-title">こんな会社に向いています</h2>
+    <div class="card-grid">
+      <div class="p-card">
+        <div class="who">CASE 01｜顧問はまだ早いという会社に</div>
+        <h3>「顧問はまだ要らないが、この業務だけ何とかしたい」</h3>
+        <p>継続的な伴走は今すぐ必要ないが、見積書づくりや問い合わせ対応など、特定の1業務だけを自動化したい。ピンポイントの依頼、大歓迎です。</p>
+      </div>
+      <div class="p-card">
+        <div class="who">CASE 02｜社内にIT人材がいない会社に</div>
+        <h3>「社内にIT人材がいない」</h3>
+        <p>作りたいものはあるが、社内に構築できる人がいない。エンジニア採用は時間もコストもかかりすぎる。技術は丸ごとお任せいただけます。</p>
+      </div>
+      <div class="p-card">
+        <div class="who">CASE 03｜見積に驚いた会社に</div>
+        <h3>「ベンダーの見積が高すぎた」</h3>
+        <p>システム会社に相談したら想定外の金額が出てきた。高価なツールを売りつけるのではなく、OSSや既存ツールの目利きでコストを抑えて構築します。</p>
+      </div>
+    </div>
+    <p class="problems-close">やりたいことが決まっているなら、<em>目利きのプロ</em>に直接お任せください。</p>
+  </div>
+</section>
+
+<section id="catalog">
+  <div class="container">
+    <span class="section-label">CATALOG</span>
+    <h2 class="section-title">作れるものの実物カタログ</h2>
+    <p class="section-lead">私たちが実際に構築できるAIツールを、サンプルデータで動く体験デモでご覧いただけます。すべて無料・登録不要。まずは触ってみてください。</p>
+    <div class="dt-grid">
+      <a class="dt-card" href="demo-inquiry.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <img src="assets/thumbs/demo-inquiry.jpg" alt="問い合わせ返信AIのデモ画面" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <h3>問い合わせ返信AI</h3>
+          <p>届いたメールから、すぐ送れる品質の返信案を数秒で作成。24時間対応・返信漏れゼロの一次対応に。</p>
+          <span class="try">▶ 実物のデモを触る</span>
+        </div>
+      </a>
+      <a class="dt-card" href="demo-quote.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <img src="assets/thumbs/demo-quote.jpg" alt="見積書AIのデモ画面" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <h3>見積書AI</h3>
+          <p>営業の走り書きメモを、整った見積書に自動変換。1件2時間かかっていた作業を「確認するだけ」に。</p>
+          <span class="try">▶ 実物のデモを触る</span>
+        </div>
+      </a>
+      <a class="dt-card" href="demo-minutes.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <img src="assets/thumbs/demo-minutes.jpg" alt="議事録AIのデモ画面" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <h3>議事録AI</h3>
+          <p>脱線だらけの会議録音から、決定事項・宿題・期日まで整理された議事録を自動作成します。</p>
+          <span class="try">▶ 実物のデモを触る</span>
+        </div>
+      </a>
+      <a class="dt-card" href="demo-line-booking.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <img src="assets/thumbs/demo-line-booking.jpg" alt="LINE自動予約のデモ画面" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <h3>LINE自動予約</h3>
+          <p>お客様がLINEでやり取りするだけで日程調整から予約確定まで完結。電話対応の手間を減らします。</p>
+          <span class="try">▶ 実物のデモを触る</span>
+        </div>
+      </a>
+      <a class="dt-card" href="demo-report.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <img src="assets/thumbs/demo-report.jpg" alt="日報ダッシュボードのデモ画面" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <h3>日報ダッシュボード</h3>
+          <p>現場からの日報をAIが自動集計・可視化。数字を追うだけで現場の状況がひと目で分かります。</p>
+          <span class="try">▶ 実物のデモを触る</span>
+        </div>
+      </a>
+      <a class="dt-card" href="demo-voice.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <img src="assets/thumbs/demo-voice.jpg" alt="AI電話受付のデモ画面" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <h3>AI電話受付</h3>
+          <p>AI生成の実音声で一次対応する電話受付AI。通話UIとトランスクリプトで実際の応対をそのまま体験できます。</p>
+          <span class="try">▶ 実物のデモを触る</span>
+        </div>
+      </a>
+    </div>
+    <div class="dt-more">
+      <a href="demos.html" class="btn btn-navy">構築デモを全17種すべて見る →</a>
+    </div>
+  </div>
+</section>
+
+<section id="flow" style="background: var(--bg-soft);">
+  <div class="container">
+    <span class="section-label">FLOW</span>
+    <h2 class="section-title">進め方（4ステップ）</h2>
+    <p class="section-lead">お問い合わせから引き渡しまで、平均的な流れです。規模や内容によって前後します。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>要件ヒアリング</h3>
+        <p>「何を、どんな業務のために作りたいか」を整理します。曖昧なイメージのままでも構いません。対話の中で具体化します。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>試作（PoC）を触って確認</h3>
+        <p>まず動く試作品をお見せします。イメージと違えば、本番構築の前にこの段階で調整。作ってから「思っていたのと違う」を防ぎます。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>本番構築</h3>
+        <p>試作で固まった仕様をもとに、実務で使える形に仕上げます。既存の業務フロー・システムとの連携もここで整えます。</p>
+      </div>
+      <div class="f-step highlight">
+        <div class="no">4</div>
+        <h3>引き渡し研修</h3>
+        <p>使い方はもちろん、簡単な直し方まで教えます。作って終わりにせず、ブラックボックスにしません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <span class="section-label">PRICING</span>
+    <h2 class="section-title">料金（目安・税別）</h2>
+    <p class="section-lead">内容によって金額は変わります。無料相談でお見積りいたします。</p>
+    <div class="price-grid">
+      <div class="plan">
+        <div class="name">小規模ツール</div>
+        <div class="position">1業務の自動化</div>
+        <div class="amount">30<small>万円〜（税別）</small></div>
+        <ul>
+          <li>問い合わせ返信AI、見積書AIなど単機能のツール</li>
+          <li>要件ヒアリング〜試作〜本番構築〜引き渡し研修</li>
+          <li>納品後30日間のサポート付き</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">無料相談で見積りを聞く</a>
+      </div>
+      <div class="plan">
+        <div class="name">業務システム連携を含む構築</div>
+        <div class="position">複数業務・既存システム連携</div>
+        <div class="amount">80<small>万円〜（税別）</small></div>
+        <ul>
+          <li>複数の業務にまたがる自動化、既存システムとのデータ連携</li>
+          <li>要件ヒアリング〜試作〜本番構築〜引き渡し研修</li>
+          <li>納品後30日間のサポート付き</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline">無料相談で見積りを聞く</a>
+      </div>
+    </div>
+
+    <div class="compare-box">
+      <div class="cmp spot">
+        <h3>単発でご依頼の場合</h3>
+        <div class="price">都度 30万円〜 <small>案件ごとに個別見積り</small></div>
+        <ul>
+          <li>1件ごとに要件確認から見積りが必要</li>
+          <li>次に作りたいものが出たら、また一から相談</li>
+          <li>継続的な経営相談は含まれない</li>
+        </ul>
+      </div>
+      <div class="vs">VS</div>
+      <div class="cmp advisor">
+        <h3>顧問契約（スタンダード以上）の場合</h3>
+        <div class="price">月25万円〜 <small>実装が契約に含まれる</small></div>
+        <ul>
+          <li>スタンダードは小規模な自動化の実装が月1件込み</li>
+          <li>プレミアムは業務自動化の実装が月3件目安</li>
+          <li>経営相談・ロードマップ策定・研修もセットで継続</li>
+        </ul>
+      </div>
+    </div>
+    <p class="compare-cta">継続的に作りたいものがあるなら、単発の積み重ねより顧問契約の方が総額でお得になるケースが多くあります。<br><a href="index.html#pricing" class="btn btn-navy" style="margin-top:16px;">顧問プランを見る →</a></p>
+
+    <p class="price-note">上記は目安であり、内容により個別にお見積りします。最終的な金額・納期は要件ヒアリング後にご提示します。</p>
+  </div>
+</section>
+
+<section class="subsidy" id="subsidy">
+  <div class="container">
+    <span class="section-label">SUBSIDY</span>
+    <h2 class="section-title">活用できる補助金のご提案</h2>
+    <p class="section-lead">構築費用の負担を抑えられる制度がある場合、あわせてご提案します。</p>
+    <div class="subsidy-box">
+      <p>デジタル化・AI導入補助金（旧IT導入補助金）や省力化投資補助金など、AIツール・業務自動化の導入に活用できる可能性のある制度について、御社の状況に合わせてご提案いたします。</p>
+      <p>申請要件や採択の可否は制度・年度・審査によって変わります。まずは無料相談で、活用できそうな制度があるかどうかからご相談ください。</p>
+      <p class="subsidy-note">※ 補助金・助成金は審査を伴う制度であり、採択を保証するものではありません。申請支援の可否・範囲は制度により異なります。</p>
+    </div>
+  </div>
+</section>
+
+<section id="reasons">
+  <div class="container">
+    <span class="section-label">REASONS</span>
+    <h2 class="section-title">AI顧問室らしさ</h2>
+    <p class="section-lead">単発の構築依頼でも、姿勢は顧問契約のお客様と変わりません。</p>
+    <div class="r-grid">
+      <div class="r-item">
+        <h3>納品して終わりにしない</h3>
+        <p>引き渡し研修で使い方と直し方までお伝えし、納品後30日間はサポートします。動かなくなったときに誰にも相談できない、という状態を作りません。</p>
+      </div>
+      <div class="r-item">
+        <h3>高価なツールを売らない</h3>
+        <p>毎日AIを使い込む顧問だからこそできる目利きで、OSSや既存ツールを組み合わせてコストを抑えます。不要に高機能・高額な仕組みは提案しません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background: var(--bg-soft);">
+  <div class="container">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">よくある質問</h2>
+    <details>
+      <summary>既存の業務システムと連携できますか？</summary>
+      <p>多くの場合、可能です。お使いのシステムやツールの仕様を要件ヒアリングの段階で確認し、連携できる範囲・方法をご提案します。連携が難しい場合は、その旨を正直にお伝えします。</p>
+    </details>
+    <details>
+      <summary>納品後の保守はどうなりますか？</summary>
+      <p>納品後30日間は無償サポートいたします。それ以降の保守・追加改修が必要な場合は、都度のご依頼または顧問契約への切り替えをご案内します。引き渡し研修で簡単な直し方もお伝えするので、軽微な調整は御社だけで対応いただけることもあります。</p>
+    </details>
+    <details>
+      <summary>納期の目安はどれくらいですか？</summary>
+      <p>小規模ツールで要件ヒアリングから数週間程度が目安です。業務システム連携を含む構築は規模により変動します。あくまで目安であり、正式な納期は要件確定後にご提示します。</p>
+    </details>
+    <details>
+      <summary>1件だけでも依頼できますか？</summary>
+      <p>可能です。顧問契約は前提ではありません。「この業務だけ何とかしたい」というご依頼こそ、このページで想定している依頼の形です。継続のご希望があれば、後から顧問契約へ移行することもできます。</p>
+    </details>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>作りたいものを、聞かせてください。</h2>
+    <p>「これは作れるのか」だけの相談でも構いません。無料相談だけでも次の一歩が見えてきます。<br>オンライン対応・全国どこからでも。</p>
+    <div class="cta-ctas">
+      <a href="#" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="demos.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">まず実物を見る →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p style="margin-bottom: 8px;">運営会社：【会社名】｜所在地：【所在地】｜代表：【代表者名】</p>
+    <p style="margin-bottom: 8px;"><a href="#" style="text-decoration:underline;">会社概要</a>｜<a href="#" style="text-decoration:underline;">特定商取引法に基づく表記</a>｜<a href="#" style="text-decoration:underline;">プライバシーポリシー</a></p>
+    <p>関連ページ：<a href="index.html" style="text-decoration:underline;">AI顧問室トップ</a>｜<a href="demos.html" style="text-decoration:underline;">構築デモ一覧</a>｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<div class="mobile-cta" id="mobile-cta">
+  <a href="demos.html" class="mc-demo">実物のデモを見る</a>
+  <a href="#contact" class="mc-consult">無料相談を予約</a>
+</div>
+
+<script>
+(function () {
+  var bar = document.getElementById('mobile-cta');
+  var shown = false;
+  window.addEventListener('scroll', function () {
+    var s = window.scrollY > 500;
+    if (s !== shown) { shown = s; bar.classList.toggle('show', s); }
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>

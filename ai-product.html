@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI商品開発・販売支援｜AIを、御社の商品にする。 - AI顧問室</title>
+<meta name="description" content="効率化で終わらせない、攻めのAI活用。御社の既存サービスにAIを組み込み、競合と違う「売り物」に育てるまでを伴走します。商品企画＋PoC構築50万円〜。AI顧問室が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="AI商品開発・販売支援｜AIを、御社の商品にする。 - AI顧問室">
+<meta property="og:description" content="効率化で終わらせない、攻めのAI活用。御社の既存サービスにAIを組み込み、競合と違う「売り物」に育てるまでを伴走します。商品企画＋PoC構築50万円〜。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/ai-product.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    --red: #B0432F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; gap: 16px; flex-wrap: wrap;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  nav ul { display: flex; gap: 22px; list-style: none; }
+  nav a { font-size: 13.5px; color: var(--ink); font-weight: 500; white-space: nowrap; }
+  nav a:hover { color: var(--blue); }
+  .header-actions { display: flex; align-items: center; gap: 10px; }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); }
+  .header-cta { padding: 10px 22px; font-size: 13px; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 110px 0 120px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 28px;
+    color: #DCE6F5;
+  }
+  .hero h1 { font-size: 44px; margin-bottom: 24px; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p.sub {
+    font-size: 17px; color: #C7D3E4; max-width: 640px; margin-bottom: 40px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .hero-note { font-size: 13px; color: #9FB0C7; margin-top: 16px; }
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 64px; flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.18); padding-top: 32px;
+  }
+  .hero-stats div span { display: block; }
+  .stat-num { font-family: 'Noto Serif JP', serif; font-size: 28px; color: var(--gold); font-weight: 700; }
+  .stat-label { font-size: 13px; color: #C7D3E4; }
+
+  /* Compare (守り vs 攻め) */
+  .compare-box {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch;
+    max-width: 900px; margin: 0 auto;
+  }
+  .cmp { border: 1px solid var(--line); border-radius: 6px; padding: 36px 32px; background: var(--white); }
+  .cmp.hire { background: var(--bg-soft); }
+  .cmp.advisor { border: 2px solid var(--navy); position: relative; }
+  .cmp .cmp-tag { font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--gray); margin-bottom: 6px; }
+  .cmp.advisor .cmp-tag { color: var(--gold); }
+  .cmp h3 { font-size: 19px; color: var(--navy); margin-bottom: 6px; }
+  .cmp .cmp-obj { font-size: 13.5px; color: var(--gray); margin-bottom: 18px; }
+  .cmp ul { list-style: none; }
+  .cmp li { font-size: 13.5px; color: var(--gray); padding: 8px 0 8px 26px; position: relative; border-bottom: 1px dashed var(--line); }
+  .cmp.hire li::before { content: "▲"; position: absolute; left: 0; color: var(--red); font-size: 11px; top: 12px; }
+  .cmp.advisor li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .vs {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif JP', serif; font-weight: 700; color: var(--gray);
+    padding: 0 20px; font-size: 18px;
+  }
+  .compare-close {
+    text-align: center; margin-top: 40px;
+    font-family: 'Noto Serif JP', serif; font-size: 21px; color: var(--navy);
+  }
+  .compare-close em { font-style: normal; border-bottom: 3px solid var(--gold); padding-bottom: 2px; }
+
+  /* Examples（想定例） */
+  .ex-band { background: var(--bg-soft); }
+  .dt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+  .dt-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
+  .dt-card:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .dt-visual { height: 130px; overflow: hidden; position: relative; background: var(--bg-soft); }
+  .dt-visual img { width: 100%; height: 100%; object-fit: cover; }
+  .dt-badge { position: absolute; top: 10px; right: 10px; background: var(--gold); color: var(--navy-deep); font-size: 10px; font-weight: 700; padding: 3px 12px; border-radius: 999px; }
+  .dt-body { padding: 20px 22px 22px; }
+  .dt-body .cat { font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: .06em; margin-bottom: 6px; }
+  .dt-body h3 { font-size: 18px; color: var(--navy); margin-bottom: 8px; }
+  .dt-body p { font-size: 13px; color: var(--gray); margin-bottom: 14px; }
+  .dt-links { display: flex; gap: 14px; flex-wrap: wrap; }
+  .dt-links a { font-size: 13px; font-weight: 700; color: var(--gold); }
+  .dt-links a:hover { text-decoration: underline; }
+  .ex-note { text-align: center; font-size: 12.5px; color: var(--gray); margin-top: 30px; }
+
+  /* Flow */
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+
+  /* Pricing */
+  .pricing { background: var(--bg-soft); }
+  .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; align-items: stretch; max-width: 820px; margin: 0 auto; }
+  .plan {
+    background: var(--white); border: 1px solid var(--line); border-radius: 8px;
+    padding: 40px 32px; display: flex; flex-direction: column; position: relative;
+  }
+  .plan.featured { border: 2px solid var(--navy); }
+  .plan-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--navy-deep); font-size: 12px; font-weight: 700;
+    padding: 4px 18px; border-radius: 999px; white-space: nowrap;
+  }
+  .plan .name { font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--navy); }
+  .plan .position { font-size: 12px; color: var(--blue); font-weight: 700; margin-bottom: 20px; }
+  .plan .amount { font-family: 'Noto Serif JP', serif; font-size: 32px; font-weight: 700; color: var(--navy); line-height: 1.3; }
+  .plan .amount small { font-size: 13px; font-weight: 400; color: var(--gray); }
+  .plan ul { list-style: none; margin: 24px 0 32px; flex: 1; }
+  .plan li { font-size: 14px; padding: 10px 0 10px 26px; position: relative; border-bottom: 1px solid var(--bg-soft); color: var(--ink); }
+  .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .plan .btn { text-align: center; }
+  .price-note { text-align: center; font-size: 13px; color: var(--gray); margin-top: 32px; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+  /* Relation */
+  .relation-box {
+    max-width: 820px; margin: 0 auto; border: 1px solid var(--line); border-left: 4px solid var(--gold);
+    border-radius: 6px; background: var(--white); padding: 32px 36px;
+  }
+  .relation-box h3 { font-size: 19px; color: var(--navy); margin-bottom: 12px; }
+  .relation-box p { font-size: 14.5px; color: var(--gray); margin-bottom: 14px; }
+  .relation-box a { font-size: 13.5px; font-weight: 700; color: var(--gold); }
+  .relation-box a:hover { text-decoration: underline; }
+
+  /* FAQ */
+  details { border-bottom: 1px solid var(--line); padding: 4px 0; }
+  summary {
+    cursor: pointer; font-weight: 700; font-size: 16px; color: var(--navy);
+    padding: 20px 0; list-style: none; position: relative; padding-right: 40px;
+  }
+  summary::after { content: "＋"; position: absolute; right: 8px; color: var(--gold); font-size: 20px; }
+  details[open] summary::after { content: "－"; }
+  details p { padding: 0 8px 24px; font-size: 15px; color: var(--gray); }
+  details p.warn { color: var(--red); font-weight: 500; }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .hero h1 { font-size: 30px; }
+    .section-title { font-size: 26px; }
+    nav { display: none; }
+    .compare-box { grid-template-columns: 1fr; }
+    .vs { padding: 16px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <nav>
+      <ul>
+        <li><a href="#concept">発想の転換</a></li>
+        <li><a href="#examples">こんな商品が作れる</a></li>
+        <li><a href="#flow">進め方</a></li>
+        <li><a href="#pricing">料金</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="index.html" class="btn btn-outline header-cta">公式サイトへ</a>
+      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談を予約</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="hero-label">AI商品開発・販売支援｜攻めのAI活用</span>
+    <h1>AIを、<em>御社の商品</em>にする。</h1>
+    <p class="sub">「AIで業務を効率化する」——その先があります。効率化で終わらせず、AIを組み込んだ新しい売り物で、選ばれる会社になる。御社の既存サービスにAIを組み込み、競合と違う商品として売り出すところまで、顧問が伴走します。</p>
+    <div class="hero-ctas">
+      <a href="index.html#contact" class="btn btn-gold">無料相談を予約する（60分）</a>
+      <a href="works.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">作品ショーケースを見る</a>
+    </div>
+    <p class="hero-note">※ まずは壁打ちだけでも構いません。御社の強み×AIで何が売り物になりそうか、無料相談でお話しします。</p>
+    <div class="hero-stats">
+      <div><span class="stat-num">50万円〜</span><span class="stat-label">商品企画＋PoC構築の目安</span></div>
+      <div><span class="stat-num">4ステップ</span><span class="stat-label">企画から運用定着までを伴走</span></div>
+      <div><span class="stat-num">単発OK</span><span class="stat-label">顧問契約なしでもご依頼いただけます</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="concept">
+  <div class="container">
+    <span class="section-label">CONCEPT</span>
+    <h2 class="section-title">「守りのAI」で止まっていませんか？</h2>
+    <p class="section-lead">AI活用には2つの方向があります。ひとつはコストを減らす「守り」。もうひとつは、売り物そのものを変える「攻め」。多くの会社は守りで満足してしまいます。</p>
+    <div class="compare-box">
+      <div class="cmp hire">
+        <div class="cmp-tag">DEFENSE</div>
+        <h3>守りのAI（コスト削減）</h3>
+        <div class="cmp-obj">目的：人件費・時間の削減</div>
+        <ul>
+          <li>議事録・見積書など内部業務を効率化</li>
+          <li>コストは減るが、社外からは見えない</li>
+          <li>効果は「浮いた時間」でしか測れない</li>
+          <li>気づけば競合も同じことをしている</li>
+        </ul>
+      </div>
+      <div class="vs">VS</div>
+      <div class="cmp advisor">
+        <div class="cmp-tag">OFFENSE</div>
+        <h3>攻めのAI（売上をつくる）</h3>
+        <div class="cmp-obj">目的：新しい売り物をつくる</div>
+        <ul>
+          <li>AIを組み込んだサービス自体が商品になる</li>
+          <li>「他社にはない体験」として選ばれる理由になる</li>
+          <li>商談・提案の場で効果を体感してもらえる</li>
+          <li>効率化と違い、価格や差別化に直結しやすい</li>
+        </ul>
+      </div>
+    </div>
+    <p class="compare-close">差をつけるのは、AIを<em>「攻め」</em>に使う会社です。</p>
+  </div>
+</section>
+
+<section class="ex-band" id="examples">
+  <div class="container">
+    <span class="section-label">EXAMPLES</span>
+    <h2 class="section-title">たとえば、こんな商品が作れる</h2>
+    <p class="section-lead">御社の業種に置き換えると、こんな売り物が考えられます。実物のサンプルは作品ショーケース・構築デモでご覧いただけます。</p>
+    <div class="dt-grid">
+
+      <div class="dt-card">
+        <div class="dt-visual">
+          <span class="dt-badge">想定例</span>
+          <img src="assets/works/pers-exterior.jpg" alt="不動産会社向け商品イメージ" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <div class="cat">不動産会社</div>
+          <h3>AI即日パース・3D内見つき物件提案</h3>
+          <p>反響当日に完成イメージパースと3D内見モデルを提示。「見てから決められる」を御社の商談の武器にする商品です。</p>
+          <div class="dt-links">
+            <a href="works-3d.html">▶ 3D内見モデルを見る</a>
+            <a href="works-video.html">▶ AI生成動画を見る</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dt-card">
+        <div class="dt-visual">
+          <span class="dt-badge">想定例</span>
+          <img src="assets/works/pers-interior.jpg" alt="工務店向け商品イメージ" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <div class="cat">工務店</div>
+          <h3>その場でイメージパースが出る打ち合わせ</h3>
+          <p>お客様の要望を聞きながら、その場で外観・内装パースを生成。「決められない」を「決めたくなる」打ち合わせに変える商品です。</p>
+          <div class="dt-links">
+            <a href="works.html#gallery">▶ 画像ギャラリーを見る</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dt-card">
+        <div class="dt-visual">
+          <span class="dt-badge">想定例</span>
+          <img src="assets/thumbs/demo-qa-bot.jpg" alt="士業・コンサル向け商品イメージ" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <div class="cat">士業・コンサル</div>
+          <h3>24時間AI一次相談窓口つき顧問プラン</h3>
+          <p>就業規則やFAQをもとにAIが一次回答し、曖昧な質問は人に引き継ぐ。「顧問料以上に頼れる」を売りにする新プランです。</p>
+          <div class="dt-links">
+            <a href="demo-qa-bot.html">▶ 体験デモを試す</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dt-card">
+        <div class="dt-visual">
+          <span class="dt-badge">想定例</span>
+          <img src="assets/thumbs/demo-line-booking.jpg" alt="店舗・サービス業向け商品イメージ" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <div class="cat">店舗・サービス業</div>
+          <h3>LINEで完結するAI予約・接客</h3>
+          <p>営業時間外の予約もAIだけで受付・確定まで完了。人を増やさずに「いつでも繋がる店」を売りにできる商品です。</p>
+          <div class="dt-links">
+            <a href="demo-line-booking.html">▶ 体験デモを試す</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <p class="ex-note">※ 上記4例はすべて想定例であり、実在の企業・導入事例ではありません。リンク先は制作品質をご確認いただくためのサンプルです。御社の業種・強みに合わせた企画は、無料相談で個別にご提案します。</p>
+  </div>
+</section>
+
+<section id="flow">
+  <div class="container">
+    <span class="section-label">FLOW</span>
+    <h2 class="section-title">提供内容（4ステップ）</h2>
+    <p class="section-lead">アイデア出しだけでは終わりません。動くものを作り、値付けをし、売り出すところまで伴走します。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">01</div>
+        <h3>商品企画の壁打ち</h3>
+        <p>御社の強み×AIで、何が売り物になり得るかを一緒に整理します。既存サービスの棚卸しから始めます。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">02</div>
+        <h3>PoC構築</h3>
+        <p>アイデアを言葉のままで終わらせず、顧問がまず動くものを作ります。小さく作って、反応を確かめます。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">03</div>
+        <h3>価格設計・販促物制作</h3>
+        <p>新商品としての価格設計に加え、商品LP・デモ・営業資料まで制作を支援します。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">04</div>
+        <h3>運用研修</h3>
+        <p>売り出した後、御社チームだけで回せるように研修します。ゴールは顧問がいなくても続く「自走」です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <span class="section-label">PRICING</span>
+    <h2 class="section-title">料金プラン</h2>
+    <p class="section-lead">目安の料金です（税別）。商品の複雑さや想定効果により個別にお見積もりします。</p>
+    <div class="price-grid">
+      <div class="plan">
+        <div class="name">商品企画＋PoC構築</div>
+        <div class="position">まずは形にする</div>
+        <div class="amount">50<small>万円〜（税別）</small></div>
+        <ul>
+          <li>御社の強み×AIの企画壁打ち</li>
+          <li>動くPoC（試作品）を顧問が構築</li>
+          <li>反応を見てから本投資を判断できる</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">販売まで伴走</div>
+        <div class="name">商品化伴走</div>
+        <div class="position">販促・研修込み</div>
+        <div class="amount">30<small>万円/月×3ヶ月〜（税別）</small></div>
+        <ul>
+          <li>価格設計・商品LP制作</li>
+          <li>デモ・営業資料の制作支援</li>
+          <li>運用研修で御社チームの自走化まで</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-navy">無料相談で詳しく聞く</a>
+      </div>
+    </div>
+    <p class="price-note">上記はいずれも目安です。商品の複雑さ・想定される効果により、内容は個別にお見積もりします。単発でのご依頼も可能です。</p>
+  </div>
+</section>
+
+<section id="anxiety">
+  <div class="container">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">よくある不安</h2>
+    <details>
+      <summary>うちにAIの知識がゼロでも大丈夫ですか？</summary>
+      <p>問題ありません。専門用語を使わず、企画の壁打ちから顧問が伴走します。動くものを作るのも顧問が担当するので、社内にAI人材がいなくても進められます。</p>
+    </details>
+    <details>
+      <summary>作って売れなかったらどうなりますか？</summary>
+      <p class="warn">まず小さくPoCを作り、実際の反応を見てから本投資を判断していただく設計にしています。ただし、本商品は売れる仕組みを一緒に作るものであり、<strong>売上や成果を保証するものではありません。</strong>市場の反応や御社の販売活動によって結果は変わります。</p>
+    </details>
+    <details>
+      <summary>作った後の保守やサポートはどうなりますか？</summary>
+      <p>販売開始後は運用研修を行い、御社チームだけで回せる状態を目指します。研修後も、必要に応じてチャットでのサポートや追加の改修相談を承ります。</p>
+    </details>
+    <details>
+      <summary>どんな業種でも対応できますか？</summary>
+      <p>はい。ポイントは業種よりも「御社の既存サービスの、どこにAIを組み込めば新しい売り物になるか」です。無料相談で御社の事業内容をお聞きし、活用イメージを具体的にお話しします。</p>
+    </details>
+  </div>
+</section>
+
+<section id="relation" style="background: var(--bg-soft);">
+  <div class="container">
+    <span class="section-label">RELATION</span>
+    <h2 class="section-title">AI顧問との関係</h2>
+    <div class="relation-box">
+      <h3>単発でも、顧問契約と組み合わせても。</h3>
+      <p>本商品は単発でご依頼いただけます。まず商品企画とPoCだけを試し、手応えを見てから次を考えていただいて構いません。</p>
+      <p>AI顧問契約（月15万円〜）と組み合わせれば、企画→PoC構築→商品化→運用定着までを一気通貫で伴走できます。すでに顧問契約中のお客様は、商品開発フェーズだけを追加でご依頼いただくことも可能です。</p>
+      <a href="index.html#pricing">▶ AI顧問の料金プランを見る</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の商品×AIで、何ができるか。</h2>
+    <p>無料相談（60分）で、御社の強みとAIを掛け合わせたら何が売り物になりそうか、壁打ちからどうぞ。<br>売り込みは一切しません。</p>
+    <a href="index.html#contact" class="btn btn-gold" style="font-size:17px; padding:18px 48px;">無料相談を予約する</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p style="margin-bottom: 8px;">この商品は、AI顧問室が提供する「AI商品開発・販売支援」の詳細ページです。</p>
+    <p><a href="index.html">公式サイトへ</a>｜<a href="works.html">作品ショーケース</a>｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

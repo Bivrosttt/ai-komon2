@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI研修｜社員が「AIを使える人」に変わる実践研修｜AI顧問室</title>
+<meta name="description" content="講義で終わらせない、実践型のAI研修。自社の実業務データで演習し、翌日から使える状態にします。半日研修15万円〜、研修後30日はチャットで質問し放題。人材開発支援助成金の活用提案も。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="AI研修｜社員が「AIを使える人」に変わる実践研修｜AI顧問室">
+<meta property="og:description" content="講義で終わらせない、実践型のAI研修。自社の実業務データで演習し、翌日から使える状態にします。半日研修15万円〜、研修後30日はチャットで質問し放題。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/training.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D; --blue: #2D6CB5;
+    --gold: #C9A227; --ink: #1A2433; --gray: #5B6B7F; --line: #DDE4EC; --bg-soft: #F4F7FA; --white: #FFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.9; background: var(--white); }
+  h1, h2, h3, h4 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; }
+  .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-weight: 700; font-size: 15px; transition: opacity .2s; border: none; cursor: pointer; font-family: inherit; }
+  .btn:hover { opacity: .85; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); }
+
+  /* Header */
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--navy); }
+  nav.hnav { display: flex; gap: 20px; align-items: center; }
+  nav.hnav ul { display: flex; gap: 18px; list-style: none; }
+  nav.hnav a.navlink { font-size: 13px; color: var(--ink); font-weight: 500; white-space: nowrap; }
+  nav.hnav a.navlink:hover { color: var(--blue); }
+  .back { font-size: 13px; color: var(--blue); }
+
+  /* Hero */
+  .hero { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 60%, var(--navy-light)); color: var(--white); padding: 96px 0 88px; }
+  .hero .label { font-size: 12px; letter-spacing: .2em; color: var(--gold); font-weight: 700; }
+  .hero h1 { font-size: 40px; margin: 14px 0 20px; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p.sub { color: #C7D3E4; max-width: 640px; font-size: 16px; margin-bottom: 36px; }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .hero-note { font-size: 13px; color: #9FB0C7; margin-top: 18px; }
+
+  .section-label { display: block; font-size: 13px; letter-spacing: .18em; color: var(--gold); font-weight: 700; margin-bottom: 12px; }
+  .section-title { font-size: 32px; color: var(--navy); margin-bottom: 18px; }
+  .section-lead { color: var(--gray); max-width: 660px; margin-bottom: 48px; }
+  .bg-soft { background: var(--bg-soft); }
+
+  /* こんな会社向け */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .p-card { background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--navy); border-radius: 6px; padding: 30px 26px; }
+  .p-card .who { font-size: 12px; color: var(--blue); font-weight: 700; letter-spacing: .05em; margin-bottom: 10px; }
+  .p-card h3 { font-size: 18px; color: var(--navy); margin-bottom: 12px; }
+  .p-card p { font-size: 14px; color: var(--gray); }
+
+  /* カリキュラム */
+  .cur-list { display: flex; flex-direction: column; gap: 22px; }
+  .cur-card { border: 1px solid var(--line); border-radius: 8px; padding: 32px 32px; display: grid; grid-template-columns: 96px 1fr; gap: 28px; align-items: start; background: var(--white); }
+  .cur-round { text-align: center; }
+  .cur-round .no { font-family: 'Noto Serif JP', serif; font-size: 30px; font-weight: 700; color: var(--gold); line-height: 1; }
+  .cur-round .no small { display: block; font-family: 'Noto Sans JP', sans-serif; font-size: 11px; color: var(--gray); font-weight: 500; margin-top: 6px; letter-spacing: .1em; }
+  .cur-body .tag { display: inline-block; font-size: 11.5px; font-weight: 700; color: var(--blue); background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; padding: 3px 14px; margin-bottom: 10px; }
+  .cur-body h3 { font-size: 21px; color: var(--navy); margin-bottom: 10px; }
+  .cur-body p.desc { font-size: 14px; color: var(--gray); margin-bottom: 16px; }
+  .cur-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .cur-chips span { font-size: 12.5px; background: var(--bg-soft); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; }
+  .cur-note { margin-top: 24px; font-size: 13.5px; color: var(--gray); border-left: 4px solid var(--gold); background: var(--bg-soft); padding: 14px 18px; border-radius: 4px; }
+  .cur-note strong { color: var(--navy); }
+  @media (max-width: 640px) {
+    .cur-card { grid-template-columns: 1fr; }
+    .cur-round { display: flex; align-items: baseline; gap: 10px; text-align: left; }
+    .cur-round .no small { margin-top: 0; }
+  }
+
+  /* 特徴 */
+  .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+  .feat-card { border: 1px solid var(--line); border-radius: 8px; padding: 30px 26px; background: var(--white); }
+  .feat-card .f-num { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+  .feat-card h3 { font-size: 18px; color: var(--navy); margin-bottom: 10px; }
+  .feat-card p { font-size: 14px; color: var(--gray); }
+  .feat-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+  .feat-links a { font-size: 12.5px; font-weight: 700; color: var(--navy); background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; }
+  .feat-links a:hover { border-color: var(--navy); }
+
+  /* 料金 */
+  .price-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: stretch; }
+  .plan2 { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 36px 30px; display: flex; flex-direction: column; }
+  .plan2 .name { font-family: 'Noto Serif JP', serif; font-size: 19px; color: var(--navy); }
+  .plan2 .position { font-size: 12px; color: var(--blue); font-weight: 700; margin-bottom: 18px; }
+  .plan2 .amount { font-family: 'Noto Serif JP', serif; font-size: 34px; font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 6px; }
+  .plan2 .amount small { font-size: 13px; font-weight: 400; color: var(--gray); }
+  .plan2 ul { list-style: none; margin: 18px 0 26px; flex: 1; }
+  .plan2 li { font-size: 13.5px; padding: 8px 0 8px 24px; position: relative; border-bottom: 1px dashed var(--line); color: var(--ink); }
+  .plan2 li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .plan2 .btn { text-align: center; }
+  .plan-komon { background: var(--navy); border: none; color: var(--white); }
+  .plan-komon .name, .plan-komon .amount { color: var(--white); }
+  .plan-komon .position { color: var(--gold); }
+  .plan-komon .amount small { color: #C7D3E4; }
+  .plan-komon li { color: #DCE6F5; border-bottom-color: rgba(255,255,255,.15); }
+  .plan-komon li::before { color: var(--gold); }
+  .price-note { text-align: center; font-size: 13px; color: var(--gray); margin-top: 32px; }
+
+  /* 助成金 */
+  .disclaimer-box { background: var(--bg-soft); border-left: 4px solid var(--gold); padding: 20px 24px; font-size: 13.5px; color: var(--ink); max-width: 860px; border-radius: 4px; }
+  .disclaimer-box p + p { margin-top: 10px; color: var(--gray); font-size: 12.5px; }
+
+  /* 進め方 */
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 26px 22px; background: var(--white); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+
+  /* FAQ */
+  details { border-bottom: 1px solid var(--line); padding: 4px 0; }
+  summary { cursor: pointer; font-weight: 700; font-size: 15.5px; color: var(--navy); padding: 20px 40px 20px 0; list-style: none; position: relative; }
+  summary::after { content: "＋"; position: absolute; right: 8px; color: var(--gold); font-size: 20px; }
+  details[open] summary::after { content: "－"; }
+  details p { padding: 0 8px 22px; font-size: 14.5px; color: var(--gray); }
+
+  /* CTA */
+  .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; }
+  .cta h2 { font-size: 30px; margin-bottom: 16px; }
+  .cta p { color: #C7D3E4; margin-bottom: 32px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 32px 0; text-align: center; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 860px) {
+    section { padding: 56px 0; }
+    .hero h1 { font-size: 28px; }
+    .section-title { font-size: 24px; }
+    nav.hnav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">AI顧問室</a>
+    <nav class="hnav">
+      <ul>
+        <li><a class="navlink" href="#curriculum">カリキュラム</a></li>
+        <li><a class="navlink" href="#pricing">料金</a></li>
+        <li><a class="navlink" href="#flow">進め方</a></li>
+        <li><a class="navlink" href="#faq">よくある質問</a></li>
+      </ul>
+      <a href="index.html" class="back">← 公式サイトへ</a>
+      <a href="index.html#contact" class="btn btn-gold" style="padding:9px 22px; font-size:13px;">無料相談</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="label">AI TRAINING</span>
+    <h1>社員が<em>「AIを使える人」</em>に変わる研修。</h1>
+    <p class="sub">講義で聞いて終わり、では会社は変わりません。自社の実業務データを使って演習し、翌日から実際の仕事でAIを使える状態にする——それがAI顧問室の研修です。</p>
+    <div class="hero-ctas">
+      <a href="index.html#contact" class="btn btn-gold">無料相談を予約する（60分）</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff;">1分レベル診断を受ける</a>
+    </div>
+    <p class="hero-note">※ 御社のAI活用レベルに合わせて、研修の回数・内容をカスタマイズします。</p>
+  </div>
+</div>
+
+<section id="who">
+  <div class="container">
+    <span class="section-label">FOR WHO</span>
+    <h2 class="section-title">こんな会社に向いています</h2>
+    <p class="section-lead">「うちの会社もそろそろ研修を」と思ったら、次のいずれかに当てはまるか確認してみてください。</p>
+    <div class="card-grid">
+      <div class="p-card">
+        <div class="who">CASE 01｜社長だけが使っている</div>
+        <h3>社長だけがChatGPTを使っている</h3>
+        <p>自分では日常的にAIを使っていて手応えもある。しかし社員に教える時間もノウハウもなく、会社全体の生産性向上にはつながっていない。</p>
+      </div>
+      <div class="p-card">
+        <div class="who">CASE 02｜教え方が分からない</div>
+        <h3>社員に広げたいが、教え方が分からない</h3>
+        <p>「使ってみて」と伝えても社員はなかなか動かない。何をどう教えれば安全に、かつ実務で使えるようになるのか判断がつかない。</p>
+      </div>
+      <div class="p-card">
+        <div class="who">CASE 03｜Lv.1から先へ進みたい</div>
+        <h3>レベルマップのLv.1→Lv.2に上がりたい</h3>
+        <p>「ChatGPTを触ってみた」段階から、「みんなが毎日使う」段階へ。会社としてAI活用を一段階引き上げるきっかけを探している。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft" id="curriculum">
+  <div class="container">
+    <span class="section-label">CURRICULUM</span>
+    <h2 class="section-title">カリキュラム（標準3回構成）</h2>
+    <p class="section-lead">「安心して使える」→「自分の仕事で使う」→「作れるようになる」の3段階で設計しています。1回だけの受講から始めることもできます。</p>
+    <div class="cur-list">
+      <div class="cur-card">
+        <div class="cur-round"><span class="no">01<small>基礎</small></span></div>
+        <div class="cur-body">
+          <span class="tag">全員が安心して使える状態に</span>
+          <h3>第1回 基礎</h3>
+          <p class="desc">まずは全社員が「安全に、正しく」AIを使える状態を作ります。ここを飛ばして応用に進むと、社内に不安と誤用が残ります。</p>
+          <div class="cur-chips">
+            <span>ChatGPTの安全な使い方</span>
+            <span>やってはいけないこと（情報漏えい・著作権など）</span>
+            <span>社内ルールの作り方</span>
+            <span>職種を問わない基本プロンプト</span>
+          </div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-round"><span class="no">02<small>実務</small></span></div>
+        <div class="cur-body">
+          <span class="tag">自分の仕事で使う</span>
+          <h3>第2回 実務</h3>
+          <p class="desc">営業・事務・現場など職種別のワークを行い、自社の実データ（見積・メール・議事録など）を使って演習します。「自分の仕事に使える」という実感を持って帰っていただきます。</p>
+          <div class="cur-chips">
+            <span>職種別ワーク（営業／事務／現場）</span>
+            <span>自社の見積・メールを使った演習</span>
+            <span>自社の議事録を使った演習</span>
+            <span>すぐ使える自分専用プロンプト集</span>
+          </div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-round"><span class="no">03<small>応用</small></span></div>
+        <div class="cur-body">
+          <span class="tag">作れる社員を育てる</span>
+          <h3>第3回 応用</h3>
+          <p class="desc">「使う」から一歩進んで、「自分の仕事用のAIを作る」段階へ。文書テンプレのAI化や簡単な自動化、ツールを選ぶときの目利きの考え方を身につけます。</p>
+          <div class="cur-chips">
+            <span>文書テンプレのAI化</span>
+            <span>簡単な自動化の考え方</span>
+            <span>ツールの目利き（何を選び、何を避けるか）</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="cur-note"><strong>回数・内容は御社のレベルに合わせてカスタマイズします。</strong>すでにLv.2まで進んでいる会社には第2回・第3回だけを、初めての会社には第1回を厚めに、といった組み方も可能です。無料相談で御社に合った構成をご提案します。</p>
+  </div>
+</section>
+
+<section id="features">
+  <div class="container">
+    <span class="section-label">FEATURES</span>
+    <h2 class="section-title">3つの特徴</h2>
+    <p class="section-lead">よくある「一般論の研修」で終わらせないための工夫です。</p>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="f-num">01</div>
+        <h3>御社の実業務データで演習</h3>
+        <p>市販の汎用教材は使いません。御社の見積書・メール文面・議事録など、実際の業務データを題材に演習します。研修中に作った成果物を、そのまま翌日から使えます。</p>
+      </div>
+      <div class="feat-card">
+        <div class="f-num">02</div>
+        <h3>研修後30日のチャット質問サポート付き</h3>
+        <p>研修は受けた瞬間がピークで、日が経つと忘れてしまいがちです。研修後30日間、実際に使ってみて出てきた疑問をチャットで質問できるサポートを付けています。</p>
+      </div>
+      <div class="feat-card">
+        <div class="f-num">03</div>
+        <h3>「作れるようになったもの」を実物で見せます</h3>
+        <p>研修が目指す到達点は「自分の仕事用のAIを作れる」状態です。実際にAI顧問室が構築した成果物のサンプルを、先に見て・触っていただけます。</p>
+        <div class="feat-links">
+          <a href="works.html">作品ショーケースを見る →</a>
+          <a href="demos.html">構築デモを試す →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft" id="pricing">
+  <div class="container">
+    <span class="section-label">PRICING</span>
+    <h2 class="section-title">料金（目安・税別）</h2>
+    <p class="section-lead">単発の研修としても、顧問契約の一部としても受けられます。人数や内容によって前後するため、正式な金額は無料相談で概算をお伝えします。</p>
+    <div class="price-grid2">
+      <div class="plan2">
+        <div class="name">半日研修 1回</div>
+        <div class="position">まずは1回、試してみたい</div>
+        <div class="amount">15<small>万円〜（税別）</small></div>
+        <ul>
+          <li>1回あたり約3時間・〜20名まで</li>
+          <li>第1回（基礎）を想定した標準内容</li>
+          <li>御社の実データを使った演習を含む</li>
+          <li>研修後30日のチャットサポート</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan2">
+        <div class="name">3回パック</div>
+        <div class="position">基礎・実務・応用を通しで</div>
+        <div class="amount">40<small>万円〜（税別）</small></div>
+        <ul>
+          <li>第1〜3回のフルカリキュラム</li>
+          <li>職種別ワーク・自社データ演習</li>
+          <li>各回後30日のチャットサポート</li>
+          <li>実施間隔・順番はご相談に応じて調整</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-navy">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan2 plan-komon">
+        <div class="name">顧問契約に含める</div>
+        <div class="position">継続的にAI活用を広げたい</div>
+        <div class="amount">15<small>万円/月〜（税別）</small></div>
+        <ul>
+          <li>スタンダードプラン：研修 四半期1回</li>
+          <li>プレミアムプラン：研修 毎月・対面開催可</li>
+          <li>研修以外の相談・実装もまとめて依頼できる</li>
+          <li>単発研修より継続的に社内へ定着しやすい</li>
+        </ul>
+        <a href="index.html#pricing" class="btn btn-gold">顧問プランの詳細を見る →</a>
+      </div>
+    </div>
+    <p class="price-note">交通費・会場費は別途となる場合があります。人数・実施場所（オンライン／対面）によりお見積りが変わります。デジタル化・AI導入補助金（旧IT導入補助金）など活用できる補助金のご提案も可能です。</p>
+  </div>
+</section>
+
+<section id="subsidy">
+  <div class="container">
+    <span class="section-label">SUBSIDY</span>
+    <h2 class="section-title">研修費用に使える制度について</h2>
+    <p class="section-lead">研修には、公的な助成金・補助金を活用できる場合があります。</p>
+    <div class="disclaimer-box">
+      <p>人材開発支援助成金など、研修に活用できる制度のご提案も行います。御社の状況（従業員数・雇用形態・研修内容など）に応じて、活用可能性のある制度をご案内します。</p>
+      <p>※ 助成金・補助金の採択や支給を保証するものではありません。制度の対象要件・申請手続き・支給の可否は、社会保険労務士や労働局など専門機関の審査・判断によります。最終的な適用可否については、必ず専門家・所轄の労働局等にご確認ください。</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-soft" id="flow">
+  <div class="container">
+    <span class="section-label">FLOW</span>
+    <h2 class="section-title">研修実施までの流れ</h2>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>無料相談</h3>
+        <p>現状のAI活用状況や、研修で解決したい課題をヒアリングします。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>レベル診断</h3>
+        <p>御社のAI活用レベルを診断し、いま必要な研修内容を見極めます。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>カリキュラム提案</h3>
+        <p>診断結果をもとに、回数・内容・対象職種をカスタマイズしてご提案します。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">4</div>
+        <h3>研修実施</h3>
+        <p>オンライン・対面いずれも対応。実データを使った演習を中心に進めます。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">5</div>
+        <h3>30日サポート</h3>
+        <p>研修後、実際に使ってみて出てきた疑問をチャットでフォローします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">よくある質問</h2>
+    <details>
+      <summary>オンラインでも受けられますか？</summary>
+      <p>はい、オンライン・対面どちらも対応しています。全国どこからでもオンラインで受講いただけます。プレミアムプランのお客様は対面開催も可能です。</p>
+    </details>
+    <details>
+      <summary>何人から受けられますか？また上限はありますか？</summary>
+      <p>1名からご相談いただけます。1回あたりの目安は〜20名程度で、実データを使った演習がしやすい人数です。それ以上の人数をご希望の場合はご相談ください。</p>
+    </details>
+    <details>
+      <summary>PC操作が苦手な社員でも大丈夫ですか？</summary>
+      <p>問題ありません。専門用語を使わず、スマートフォンやPCの基本操作から丁寧にご説明します。第1回（基礎）は特に、AIに不慣れな方を前提に設計しています。</p>
+    </details>
+    <details>
+      <summary>1回だけの受講でも申し込めますか？</summary>
+      <p>可能です。まずは半日研修1回から試していただき、手応えを見てから3回パックや顧問契約に進むお客様も多く想定しています。</p>
+    </details>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>まずは御社の現在地を、確かめませんか。</h2>
+    <p>無料相談で研修のご希望をお聞きするか、1分のレベル診断で今の立ち位置を確認してから、最適なカリキュラムをご提案します。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">1分レベル診断を受ける</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
+  </div>
+</footer>
+
+</body>
+</html>
