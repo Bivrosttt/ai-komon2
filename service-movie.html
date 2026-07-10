@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI顧問室 解説ムービー（55秒）｜AI顧問室</title>
+<meta name="description" content="AI顧問室のサービスを55秒で解説するモーションムービー。動画編集ソフトを一切使わず、コード（HTML/CSS/JS）だけで制作しています。これも「AIで作れるもの」のサンプルです。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="AI顧問室 解説ムービー（55秒）｜AI顧問室">
+<meta property="og:description" content="サービスの全体像を55秒で。動画編集ソフト不使用、コードだけで作ったモーションムービー。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/service-movie.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D;
+    --blue: #2D6CB5; --gold: #C9A227; --ink: #1A2433; --gray: #5B6B7F;
+    --line: #DDE4EC; --bg-soft: #F4F7FA; --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); background: var(--white); line-height: 1.9; }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.96); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo strong { font-family: 'Noto Serif JP', serif; font-size: 22px; color: var(--navy); }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; margin-left: 8px; }
+  .header-right { display: flex; gap: 20px; align-items: center; }
+  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); font-weight: 700; border-radius: 4px; padding: 10px 24px; font-size: 14px; }
+
+  .page-hero { background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-light) 100%); color: #fff; padding: 64px 0 48px; }
+  .page-hero .label { display: inline-block; border: 1px solid rgba(255,255,255,0.4); border-radius: 999px; font-size: 13px; padding: 6px 18px; color: #DCE6F5; margin-bottom: 20px; }
+  .page-hero h1 { font-size: 34px; }
+  .page-hero h1 em { font-style: normal; color: var(--gold); }
+  .page-hero p { color: #C7D3E4; max-width: 640px; margin-top: 12px; font-size: 15px; }
+
+  .stage-wrap { padding: 56px 0 24px; }
+  .stage {
+    position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden;
+    background: var(--navy-deep); box-shadow: 0 14px 40px rgba(11,36,71,0.25);
+    font-size: clamp(8px, 1.6vw, 17px);
+  }
+  .scene { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
+  .scene.on { opacity: 1; }
+  .scene .inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4%; }
+
+  /* 共通アニメ部品（シーンがonになった時だけ再生） */
+  .scene .a { opacity: 0; }
+  .scene.on .a { animation: riseIn 0.7s ease forwards; }
+  .scene.on .a.d1 { animation-delay: 0.35s; }
+  .scene.on .a.d2 { animation-delay: 0.9s; }
+  .scene.on .a.d3 { animation-delay: 1.5s; }
+  .scene.on .a.d4 { animation-delay: 2.1s; }
+  .scene.on .a.d5 { animation-delay: 2.7s; }
+  .scene.on .a.d6 { animation-delay: 3.4s; }
+  @keyframes riseIn { from { opacity: 0; transform: translateY(1.2em); } to { opacity: 1; transform: none; } }
+
+  /* S1 opening */
+  #sc1 { background: radial-gradient(130% 130% at 30% 20%, var(--navy-light) 0%, var(--navy-deep) 75%); }
+  #sc1 .kicker { color: var(--gold); letter-spacing: 0.3em; font-size: 0.85em; font-weight: 700; }
+  #sc1 h2 { color: #fff; font-size: 2.6em; margin-top: 0.6em; font-weight: 900; }
+  #sc1 h2 em { font-style: normal; color: var(--gold); }
+  #sc1 .brand { margin-top: 1.4em; font-family: 'Noto Serif JP', serif; font-size: 1.5em; color: #DCE6F5; letter-spacing: 0.2em; }
+  #sc1::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 40% at 50% 110%, rgba(201,162,39,0.18), transparent 70%); }
+
+  /* S2 problems */
+  #sc2 { background: linear-gradient(160deg, #F4F7FA 0%, #E7EDF4 100%); }
+  #sc2 h2 { color: var(--navy); font-size: 1.7em; margin-bottom: 1em; }
+  #sc2 .rows { display: flex; gap: 1em; width: 88%; }
+  #sc2 .prob { flex: 1; background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--navy); border-radius: 8px; padding: 1.1em 1em; font-size: 0.95em; }
+  #sc2 .prob b { color: var(--navy); display: block; font-size: 1.02em; line-height: 1.6; }
+  #sc2 .databand { margin-top: 1.6em; width: 74%; background: #fff; border-radius: 8px; border: 1px solid var(--line); padding: 1em 1.4em; text-align: left; }
+  #sc2 .db-title { font-size: 0.8em; color: var(--gray); margin-bottom: 0.5em; }
+  #sc2 .bar { display: flex; align-items: center; gap: 0.8em; margin-top: 0.45em; }
+  #sc2 .bar .who { width: 5.2em; font-size: 0.8em; color: var(--navy); font-weight: 700; }
+  #sc2 .bar .track { flex: 1; height: 1.1em; background: var(--bg-soft); border-radius: 999px; overflow: hidden; }
+  #sc2 .bar .fill { height: 100%; width: 0; border-radius: 999px; }
+  #sc2 .bar .num { width: 3.6em; font-weight: 900; color: var(--navy); font-size: 0.95em; }
+  #sc2.on .fill.big { background: var(--navy); animation: grow591 1.2s 1.6s ease forwards; }
+  #sc2.on .fill.small { background: var(--gold); animation: grow323 1.2s 1.9s ease forwards; }
+  @keyframes grow591 { to { width: 59.1%; } }
+  @keyframes grow323 { to { width: 32.3%; } }
+  #sc2 .src { font-size: 0.62em; color: var(--gray); margin-top: 0.6em; }
+
+  /* S3 level map */
+  #sc3 { background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 70%); }
+  #sc3 h2 { color: #fff; font-size: 1.7em; margin-bottom: 0.4em; }
+  #sc3 .sub { color: #C7D3E4; font-size: 0.9em; margin-bottom: 1.4em; }
+  #sc3 .stairs { display: flex; align-items: flex-end; gap: 0.5em; height: 9.5em; }
+  #sc3 .st { width: 6.2em; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.22); border-radius: 6px 6px 0 0; position: relative; display: flex; align-items: flex-start; justify-content: center; padding-top: 0.5em; }
+  #sc3 .st span { color: #DCE6F5; font-size: 0.72em; font-weight: 700; line-height: 1.5; }
+  #sc3 .st.gold { background: rgba(201,162,39,0.25); border-color: var(--gold); }
+  #sc3 .st.gold span { color: var(--gold); }
+  #sc3 .walker { position: absolute; top: -1.5em; left: 50%; transform: translateX(-50%); font-size: 1.2em; }
+  #sc3 .note { color: var(--gold); font-family: 'Noto Serif JP', serif; font-size: 1.15em; margin-top: 1.2em; font-weight: 700; }
+
+  /* S4 method */
+  #sc4 { background: linear-gradient(160deg, #F4F7FA 0%, #EDF3FA 100%); }
+  #sc4 h2 { color: var(--navy); font-size: 1.7em; margin-bottom: 1.2em; }
+  #sc4 .flow { display: flex; align-items: center; gap: 0.9em; }
+  #sc4 .stepbox { background: #fff; border: 1.5px solid var(--navy); border-radius: 10px; padding: 1.3em 1.5em; width: 13em; }
+  #sc4 .stepbox .no { color: var(--gold); font-family: 'Noto Serif JP', serif; font-weight: 900; font-size: 1.3em; }
+  #sc4 .stepbox b { color: var(--navy); font-size: 1.05em; display: block; margin-top: 0.2em; }
+  #sc4 .stepbox p { font-size: 0.75em; color: var(--gray); line-height: 1.7; margin-top: 0.3em; }
+  #sc4 .arw { color: var(--gold); font-size: 1.6em; font-weight: 900; }
+  #sc4 .bottom { margin-top: 1.4em; color: var(--navy); font-family: 'Noto Serif JP', serif; font-size: 1.1em; font-weight: 700; }
+  #sc4 .bottom em { font-style: normal; color: var(--gold); }
+
+  /* S5 works montage */
+  #sc5 { background: var(--navy-deep); }
+  #sc5 h2 { color: #fff; font-size: 1.6em; margin-bottom: 1em; }
+  #sc5 .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8em; width: 88%; }
+  #sc5 .shot { border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.25); background: #000; }
+  #sc5 .shot img { width: 100%; height: 8.5em; object-fit: cover; display: block; }
+  #sc5 .shot .cap { font-size: 0.68em; color: #DCE6F5; padding: 0.5em 0.7em; text-align: left; background: rgba(255,255,255,0.06); }
+  #sc5 .punch { margin-top: 1.2em; color: var(--gold); font-family: 'Noto Serif JP', serif; font-size: 1.25em; font-weight: 700; }
+
+  /* S6 pricing */
+  #sc6 { background: linear-gradient(160deg, #F4F7FA 0%, #E7EDF4 100%); }
+  #sc6 h2 { color: var(--navy); font-size: 1.7em; margin-bottom: 1em; }
+  #sc6 .plans { display: flex; gap: 1em; align-items: stretch; }
+  #sc6 .pl { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 1.2em 1.4em; width: 12.5em; }
+  #sc6 .pl.feat { border: 2px solid var(--navy); position: relative; }
+  #sc6 .pl.feat::before { content: "いちばん選ばれています"; position: absolute; top: -1em; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--navy-deep); font-size: 0.62em; font-weight: 700; padding: 0.2em 1em; border-radius: 999px; white-space: nowrap; }
+  #sc6 .pl .nm { font-family: 'Noto Serif JP', serif; color: var(--navy); font-weight: 700; }
+  #sc6 .pl .pos { font-size: 0.7em; color: var(--blue); font-weight: 700; }
+  #sc6 .pl .pr { font-family: 'Noto Serif JP', serif; font-size: 1.9em; font-weight: 900; color: var(--navy); margin-top: 0.15em; }
+  #sc6 .pl .pr small { font-size: 0.42em; color: var(--gray); font-weight: 400; }
+  #sc6 .cmp { margin-top: 1.3em; font-size: 0.85em; color: var(--ink); background: #fff; border-left: 4px solid var(--gold); padding: 0.7em 1.2em; border-radius: 0 6px 6px 0; }
+  #sc6 .cmp b { color: var(--navy); }
+
+  /* S7 CTA */
+  #sc7 { background: radial-gradient(130% 130% at 70% 80%, var(--navy-light) 0%, var(--navy-deep) 70%); }
+  #sc7 h2 { color: #fff; font-size: 2.1em; font-weight: 900; }
+  #sc7 .url { margin-top: 1em; color: var(--gold); font-size: 1.05em; font-weight: 700; letter-spacing: 0.04em; }
+  #sc7 .pill { margin-top: 1.6em; background: var(--gold); color: var(--navy-deep); font-weight: 900; border-radius: 999px; padding: 0.7em 2.4em; font-size: 1.05em; animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+  #sc7 .small { margin-top: 1.2em; color: #9FB0C7; font-size: 0.72em; }
+
+  /* オーバーレイ・コントロール */
+  .overlay {
+    position: absolute; inset: 0; z-index: 20; display: flex; flex-direction: column; gap: 14px;
+    align-items: center; justify-content: center; background: rgba(7,26,53,0.82); color: #fff;
+    cursor: pointer; transition: opacity 0.35s ease;
+  }
+  .overlay.hide { opacity: 0; pointer-events: none; }
+  .overlay .playbtn { width: 84px; height: 84px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--navy-deep); box-shadow: 0 8px 30px rgba(201,162,39,0.45); }
+  .overlay p { font-size: 15px; color: #DCE6F5; }
+  .overlay p b { color: #fff; }
+
+  .ctrl { display: flex; align-items: center; gap: 14px; margin-top: 16px; flex-wrap: wrap; }
+  .ctrl button { border: 1.5px solid var(--line); background: #fff; border-radius: 999px; padding: 9px 20px; font-family: 'Noto Sans JP', sans-serif; font-size: 13.5px; font-weight: 700; color: var(--navy); cursor: pointer; }
+  .ctrl button:hover { border-color: var(--navy); }
+  .bar-wrap { flex: 1; min-width: 200px; display: flex; align-items: center; gap: 10px; }
+  .ptrack { flex: 1; height: 8px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; cursor: pointer; position: relative; }
+  .pfill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; background: var(--gold); border-radius: 999px; }
+  .tlabel { font-size: 12px; color: var(--gray); font-variant-numeric: tabular-nums; width: 84px; text-align: right; }
+
+  .made-note { background: var(--bg-soft); border-left: 4px solid var(--gold); border-radius: 4px; padding: 18px 22px; margin: 40px 0 0; font-size: 14px; color: var(--gray); }
+  .made-note strong { color: var(--navy); }
+
+  .cta-band { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: #fff; text-align: center; padding: 72px 0; margin-top: 72px; }
+  .cta-band h2 { font-size: 28px; margin-bottom: 14px; }
+  .cta-band p { color: #C7D3E4; margin-bottom: 28px; }
+  .cta-band .btn-gold { font-size: 16px; padding: 16px 40px; display: inline-block; }
+
+  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 40px 0; text-align: center; }
+
+  @media (max-width: 820px) {
+    .page-hero h1 { font-size: 24px; }
+    .stage { font-size: 6.8px; }
+    #sc2 .rows { flex-direction: column; gap: 0.5em; width: 92%; }
+    #sc2 .prob { padding: 0.6em 0.8em; }
+    #sc4 .flow { flex-direction: column; gap: 0.4em; }
+    #sc4 .stepbox { width: 17em; padding: 0.7em 1em; }
+    #sc5 .grid { grid-template-columns: repeat(2, 1fr); }
+    #sc5 .shot img { height: 5.5em; }
+    #sc6 .plans { gap: 0.5em; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-right">
+      <a href="works.html" class="textlink">作品一覧へ</a>
+      <a href="index.html#contact" class="btn-gold">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="label">解説ムービー｜55秒</span>
+    <h1>AI顧問室のすべてを、<em>55秒</em>で。</h1>
+    <p>サービスの全体像を1本にまとめた解説ムービーです。動画編集ソフトは一切使わず、コード（HTML/CSS/JS）だけで動いています——これ自体が「AIで作れるもの」のサンプルです。</p>
+  </div>
+</div>
+
+<div class="stage-wrap">
+  <div class="container">
+    <div class="stage" id="stage">
+
+      <!-- S1 オープニング -->
+      <div class="scene" id="sc1">
+        <div class="inner">
+          <div class="kicker a">FOR SMALL &amp; MEDIUM COMPANIES</div>
+          <h2 class="a d1">AI人材を雇う前に、<br><em>「AI顧問」</em>という選択。</h2>
+          <div class="brand a d3">— AI顧問室 —</div>
+        </div>
+      </div>
+
+      <!-- S2 課題 -->
+      <div class="scene" id="sc2">
+        <div class="inner">
+          <h2 class="a">こんな状態のまま、止まっていませんか</h2>
+          <div class="rows">
+            <div class="prob a d1"><b>「AIをやらなきゃとは思うが、よく分からない」</b></div>
+            <div class="prob a d2"><b>「社長の自分だけがChatGPTを使っている」</b></div>
+            <div class="prob a d3"><b>「判断を任せられる相談相手がいない」</b></div>
+          </div>
+          <div class="databand a d4">
+            <div class="db-title">生成AIを活用している企業の割合</div>
+            <div class="bar"><span class="who">大企業</span><div class="track"><div class="fill big"></div></div><span class="num">59.1%</span></div>
+            <div class="bar"><span class="who">中小企業</span><div class="track"><div class="fill small"></div></div><span class="num">32.3%</span></div>
+            <div class="src">出典：東京商工リサーチ（2026年3〜4月調査・n=6,327）</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- S3 レベルマップ -->
+      <div class="scene" id="sc3">
+        <div class="inner">
+          <h2 class="a">会社のAI活用には「レベル」があります</h2>
+          <div class="sub a d1">レベルを飛ばした導入は失敗します。1段ずつが、最短です。</div>
+          <div class="stairs">
+            <div class="st a d1" style="height:22%;"><span>Lv.0<br>未導入</span></div>
+            <div class="st a d2" style="height:36%;"><span>Lv.1<br>お試し</span></div>
+            <div class="st a d3" style="height:50%;"><span>Lv.2<br>日常化</span></div>
+            <div class="st a d4" style="height:64%;"><span>Lv.3<br>業務に組込</span></div>
+            <div class="st a d5" style="height:78%;"><span>Lv.4<br>自動化</span></div>
+            <div class="st gold a d6" style="height:94%;"><span>Lv.5<br>エージェント経営</span><span class="walker">🚩</span></div>
+          </div>
+          <div class="note a d6">AI顧問室は、御社のレベルを1段ずつ上げる伴走者です。</div>
+        </div>
+      </div>
+
+      <!-- S4 3つの流儀 -->
+      <div class="scene" id="sc4">
+        <div class="inner">
+          <h2 class="a">やり方は、シンプルです</h2>
+          <div class="flow">
+            <div class="stepbox a d1"><div class="no">1</div><b>顧問が作って見せる</b><p>動画・3D・自動化ツール。まず実物を御社の目の前で作ります</p></div>
+            <div class="arw a d2">→</div>
+            <div class="stepbox a d2"><div class="no">2</div><b>作り方を教える</b><p>社員向け研修で、ツールの目利きと使い方をそのまま渡します</p></div>
+            <div class="arw a d3">→</div>
+            <div class="stepbox a d3"><div class="no">3</div><b>御社が自走する</b><p>顧問がいなくても回る状態がゴール。囲い込みません</p></div>
+          </div>
+          <div class="bottom a d4">成果物ではなく、<em>「作れる会社」</em>を残します。</div>
+        </div>
+      </div>
+
+      <!-- S5 作品モンタージュ -->
+      <div class="scene" id="sc5">
+        <div class="inner">
+          <h2 class="a">口だけではありません。すべて実物があります。</h2>
+          <div class="grid">
+            <div class="shot a d1"><img src="assets/works/videos/house-promo-poster.jpg" alt="AI生成の住宅プロモ動画"><div class="cap">実写品質の住宅PR動画（AI生成・15秒）</div></div>
+            <div class="shot a d2"><img src="assets/thumbs/works-3d.jpg" alt="間取り図から作った3D"><div class="cap">間取り図→実寸3D内見モデル</div></div>
+            <div class="shot a d3"><img src="assets/thumbs/demo-voice.jpg" alt="AI電話受付"><div class="cap">AI電話受付（実音声66秒）</div></div>
+            <div class="shot a d4"><img src="assets/thumbs/demo-staging.jpg" alt="バーチャルステージング"><div class="cap">空室→家具ありのAI合成</div></div>
+          </div>
+          <div class="punch a d5">撮影なし・外注なし。AIとOSSだけ。</div>
+        </div>
+      </div>
+
+      <!-- S6 料金 -->
+      <div class="scene" id="sc6">
+        <div class="inner">
+          <h2 class="a">料金は、関与の深さで3つ</h2>
+          <div class="plans">
+            <div class="pl a d1"><div class="nm">ライト</div><div class="pos">AI経営の相談役</div><div class="pr">15<small>万円/月</small></div></div>
+            <div class="pl feat a d2"><div class="nm">スタンダード</div><div class="pos">AI導入の伴走者</div><div class="pr">25<small>万円/月</small></div></div>
+            <div class="pl a d3"><div class="nm">プレミアム</div><div class="pos">社外AI役員</div><div class="pr">50<small>万円/月</small></div></div>
+          </div>
+          <div class="cmp a d4">AIがわかる人材の採用は<b>年600万円〜＋採用6ヶ月</b>。<br>AI顧問室なら<b>月15万円から、契約したその月に</b>始まります。</div>
+        </div>
+      </div>
+
+      <!-- S7 CTA -->
+      <div class="scene" id="sc7">
+        <div class="inner">
+          <h2 class="a">まずは60分、<br>話してみませんか。</h2>
+          <div class="url a d2">rakansens.github.io/ai-komon2</div>
+          <div class="pill a d3">無料相談を予約する</div>
+          <div class="small a d4">売り込みは一切しません。相談だけでも「何から始めるか」を持ち帰れます。</div>
+        </div>
+      </div>
+
+      <!-- 再生オーバーレイ -->
+      <div class="overlay" id="overlay">
+        <div class="playbtn">▶</div>
+        <p><b>55秒の解説ムービーを再生</b><br>音は出ません。動画編集ソフト不使用・コードのみで動いています</p>
+      </div>
+    </div>
+
+    <div class="ctrl">
+      <button id="btnPlay">▶ 再生</button>
+      <button id="btnReplay">↺ もう一度</button>
+      <div class="bar-wrap">
+        <div class="ptrack" id="ptrack"><div class="pfill" id="pfill"></div></div>
+        <div class="tlabel" id="tlabel">0:00 / 0:55</div>
+      </div>
+    </div>
+
+    <div class="made-note">
+      <strong>このムービー、動画編集ソフトを一切使っていません。</strong>
+      すべてコード（HTML/CSS/JS）で動いており、文言・色・秒数の変更は一瞬、ファイルサイズはわずか数十KBです。
+      御社の会社紹介・採用・サービス説明も、この方式なら「作って終わり」でなく自社で更新し続けられます——作り方ごとお渡しするのがAI顧問室のやり方です。
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <div class="container">
+    <h2>この作り方、御社の武器にしませんか</h2>
+    <p>まずは無料相談で、御社で使えそうな場面を一緒に探しましょう。</p>
+    <a href="index.html#contact" class="btn-gold">無料相談を予約する</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</div>
+</footer>
+
+<script>
+(function () {
+  var SCENES = [
+    { id: "sc1", start: 0,    end: 7 },
+    { id: "sc2", start: 7,    end: 16 },
+    { id: "sc3", start: 16,   end: 25 },
+    { id: "sc4", start: 25,   end: 33.5 },
+    { id: "sc5", start: 33.5, end: 42 },
+    { id: "sc6", start: 42,   end: 49 },
+    { id: "sc7", start: 49,   end: 55 }
+  ];
+  var DUR = 55;
+
+  var overlay = document.getElementById("overlay");
+  var btnPlay = document.getElementById("btnPlay");
+  var btnReplay = document.getElementById("btnReplay");
+  var ptrack = document.getElementById("ptrack");
+  var pfill = document.getElementById("pfill");
+  var tlabel = document.getElementById("tlabel");
+  var els = {};
+  SCENES.forEach(function (s) { els[s.id] = document.getElementById(s.id); });
+
+  var playing = false;
+  var t = 0;
+  var lastTs = null;
+  var raf = null;
+  var current = null;
+
+  function fmt(sec) {
+    sec = Math.max(0, Math.min(DUR, sec));
+    var m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+    return m + ":" + (s < 10 ? "0" : "") + s;
+  }
+
+  function setScene(id) {
+    if (current === id) return;
+    SCENES.forEach(function (s) {
+      els[s.id].classList.toggle("on", s.id === id);
+    });
+    current = id;
+  }
+
+  function sceneAt(time) {
+    for (var i = 0; i < SCENES.length; i++) {
+      if (time >= SCENES[i].start && time < SCENES[i].end) return SCENES[i].id;
+    }
+    return SCENES[SCENES.length - 1].id;
+  }
+
+  function renderTime() {
+    pfill.style.width = (t / DUR * 100) + "%";
+    tlabel.textContent = fmt(t) + " / " + fmt(DUR);
+    setScene(sceneAt(t));
+  }
+
+  function tick(ts) {
+    if (!playing) return;
+    if (lastTs === null) lastTs = ts;
+    t += (ts - lastTs) / 1000;
+    lastTs = ts;
+    if (t >= DUR) {
+      t = DUR;
+      playing = false;
+      btnPlay.textContent = "▶ 再生";
+      renderTime();
+      return;
+    }
+    renderTime();
+    raf = requestAnimationFrame(tick);
+  }
+
+  function play() {
+    if (t >= DUR) t = 0;
+    overlay.classList.add("hide");
+    playing = true;
+    lastTs = null;
+    btnPlay.textContent = "⏸ 一時停止";
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(tick);
+  }
+  function pause() {
+    playing = false;
+    btnPlay.textContent = "▶ 再生";
+  }
+
+  overlay.addEventListener("click", play);
+  btnPlay.addEventListener("click", function () { playing ? pause() : play(); });
+  btnReplay.addEventListener("click", function () {
+    t = 0; current = null;
+    // シーン内アニメを最初から再生し直すためクラスを一旦全部外す
+    SCENES.forEach(function (s) { els[s.id].classList.remove("on"); });
+    play();
+  });
+  ptrack.addEventListener("click", function (e) {
+    var r = ptrack.getBoundingClientRect();
+    var ratio = (e.clientX - r.left) / r.width;
+    t = Math.max(0, Math.min(DUR, ratio * DUR));
+    current = null;
+    SCENES.forEach(function (s) { els[s.id].classList.remove("on"); });
+    renderTime();
+    if (!playing) { overlay.classList.add("hide"); }
+  });
+
+  renderTime();
+})();
+</script>
+
+</body>
+</html>
