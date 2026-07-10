@@ -188,34 +188,51 @@
     .mobile-cta .mc-consult { background: var(--gold); color: var(--navy-deep); }
   }
 
-  /* Levels */
+  /* Movie band */
+  .movie-band { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 70%); color: #fff; }
+  .movie-band .inner { display: flex; gap: 40px; align-items: center; padding: 56px 0; flex-wrap: wrap; }
+  .mv-thumb { position: relative; flex: 0 0 400px; max-width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 12px 32px rgba(0,0,0,.35); display: block; }
+  .mv-thumb img { width: 100%; display: block; }
+  .mv-thumb .playwrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(7,26,53,.35); transition: background .2s; }
+  .mv-thumb .playbtn { width: 64px; height: 64px; border-radius: 50%; background: var(--gold); color: var(--navy-deep); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; box-shadow: 0 6px 20px rgba(201,162,39,.5); }
+  .mv-thumb:hover .playwrap { background: rgba(7,26,53,.12); }
+  .mv-copy { flex: 1; min-width: 260px; }
+  .mv-copy h2 { font-family: 'Noto Serif JP', serif; font-size: 26px; margin-bottom: 10px; }
+  .mv-copy h2 em { font-style: normal; color: var(--gold); }
+  .mv-copy p { color: #C7D3E4; font-size: 14.5px; max-width: 480px; }
+  .mv-copy .btn { margin-top: 20px; }
+
+  /* Levels（横型ステップ） */
   .levels { background: var(--white); }
-  .level-list { max-width: 860px; }
-  .level-row { display: flex; gap: 18px; align-items: flex-start; background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 20px 22px; margin-bottom: 12px; max-width: 680px; position: relative; }
-  .level-list .level-row:nth-child(2) { margin-left: 5%; }
-  .level-list .level-row:nth-child(3) { margin-left: 10%; }
-  .level-list .level-row:nth-child(4) { margin-left: 15%; }
-  .level-list .level-row:nth-child(5) { margin-left: 20%; }
-  .level-list .level-row:nth-child(6) { margin-left: 25%; }
-  .lv-num { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 15px; background: var(--navy); color: var(--white); border-radius: 4px; padding: 8px 0; width: 58px; text-align: center; flex-shrink: 0; }
-  .level-row.faded .lv-num { background: #8A97A8; }
-  .level-row.goal .lv-num { background: var(--gold); color: var(--navy-deep); }
-  .lv-body h3 { font-size: 17px; color: var(--navy); margin-bottom: 4px; }
-  .lv-body p { font-size: 13px; color: var(--gray); }
-  .lv-tag { position: absolute; top: -12px; right: 16px; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; background: var(--navy); color: var(--white); }
-  .level-row.target { border: 2px solid var(--navy); }
-  .level-row.goal { border: 2px solid var(--gold); }
-  .level-row.goal .lv-tag { background: var(--gold); color: var(--navy-deep); }
-  .lv-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .lv-stairs { display: flex; align-items: flex-end; gap: 10px; max-width: 940px; padding-top: 18px; }
+  .lv-step { flex: 1; min-width: 0; border: 1px solid var(--line); border-bottom: 4px solid var(--navy); border-radius: 8px 8px 0 0; background: var(--bg-soft); cursor: pointer; position: relative; padding: 12px 6px 8px; text-align: center; font-family: 'Noto Sans JP', sans-serif; height: var(--h); display: flex; flex-direction: column; align-items: center; gap: 6px; transition: background .2s, border-color .2s, transform .15s; }
+  .lv-step:hover { transform: translateY(-3px); }
+  .lv-step .n { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 13px; background: var(--navy); color: #fff; border-radius: 4px; padding: 3px 10px; }
+  .lv-step .t { font-size: 12.5px; font-weight: 700; color: var(--navy); line-height: 1.5; }
+  .lv-step .s { font-size: 10.5px; color: var(--gray); line-height: 1.55; }
+  .lv-step.faded .n { background: #8A97A8; }
+  .lv-step.goal { border-bottom-color: var(--gold); }
+  .lv-step.goal .n { background: var(--gold); color: var(--navy-deep); }
+  .lv-step.active { background: #EDF3FA; border-color: var(--navy); border-bottom-width: 4px; }
+  .lv-step.goal.active { border-color: var(--gold); background: #FBF6E7; }
+  .lv-step .ribbon { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--navy); color: #fff; }
+  .lv-step.goal .ribbon { background: var(--gold); color: var(--navy-deep); }
+  .lv-detail { max-width: 940px; margin-top: 16px; border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 6px; background: var(--white); padding: 20px 24px; min-height: 128px; }
+  .lv-detail h3 { font-size: 17px; color: var(--navy); margin-bottom: 6px; }
+  .lv-detail p { font-size: 13.5px; color: var(--gray); }
+  .lv-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
   .lv-chips span { font-size: 11px; background: var(--bg-soft); color: var(--navy); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; }
   .lv-ex { display: inline-block; font-size: 12px; font-weight: 700; color: var(--navy); background: #EDF3FA; border-radius: 4px; padding: 4px 12px; margin-top: 10px; }
-  .levels-close { max-width: 680px; margin-top: 28px; font-size: 15px; }
+  .levels-close { max-width: 940px; margin-top: 24px; font-size: 15px; }
   .levels-close strong { color: var(--navy); }
   .mid-cta { text-align: center; margin-top: 40px; }
   .mid-cta p { font-family: 'Noto Serif JP', serif; font-size: 19px; color: var(--navy); margin-bottom: 18px; }
   @media (max-width: 820px) {
-    .level-list .level-row { margin-left: 0 !important; }
     .diag-banner .container { justify-content: center; text-align: center; }
+    .lv-stairs { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6px; }
+    .lv-step { min-width: 108px; }
+    .movie-band .inner { padding: 40px 0; gap: 24px; }
+    .mv-thumb { flex-basis: 100%; }
   }
 
   /* Demo teaser */
@@ -401,6 +418,21 @@
   </div>
 </div>
 
+<div class="movie-band">
+  <div class="container inner">
+    <a class="mv-thumb" href="service-movie.html" aria-label="55秒の解説ムービーを再生">
+      <img src="assets/thumbs/service-movie.jpg" alt="AI顧問室 解説ムービーのワンシーン" loading="lazy">
+      <span class="playwrap"><span class="playbtn">▶</span></span>
+    </a>
+    <div class="mv-copy">
+      <span class="section-label">MOVIE</span>
+      <h2><em>55秒</em>でわかる、AI顧問室。</h2>
+      <p>課題 → レベルマップ → 進め方 → 料金まで、サービスの全体像を1本のムービーにまとめました。動画編集ソフトは不使用、コードだけで動いています——これ自体が「AIで作れるもの」のサンプルです。</p>
+      <a href="service-movie.html" class="btn btn-gold">▶ ムービーを見る（55秒）</a>
+    </div>
+  </div>
+</div>
+
 <section class="problems" id="problems">
   <div class="container">
     <span class="section-label">PROBLEMS</span>
@@ -446,58 +478,46 @@
     <span class="section-label">ROADMAP</span>
     <h2 class="section-title">会社のAI活用には「レベル」があります</h2>
     <p class="section-lead">「ChatGPTを触ってみた」から「AIに仕事を任せる」まで、会社のAI活用は段階的に進みます。AI顧問室の仕事は、御社のレベルを1段ずつ確実に上げることです。</p>
-    <div class="level-list">
-      <div class="level-row faded">
-        <div class="lv-num">Lv.0</div>
-        <div class="lv-body">
-          <h3>未導入 ——「AIはまだ様子見」</h3>
-          <p>何も使っていない。ニュースを見て焦りだけが募っている状態。</p>
-        </div>
-      </div>
-      <div class="level-row target">
-        <span class="lv-tag">多くのお客様はここから</span>
-        <div class="lv-num">Lv.1</div>
-        <div class="lv-body">
-          <h3>お試し ——「ChatGPTを触ってみた」</h3>
-          <p>社長や一部の社員がたまに使っている。でも業務は何も変わっていない。「使い方が分からない」「これで合ってるのか不安」。</p>
-        </div>
-      </div>
-      <div class="level-row">
-        <div class="lv-num">Lv.2</div>
-        <div class="lv-body">
-          <h3>日常化 ——「みんなが毎日使う」</h3>
-          <p>全社員が文章作成・調べ物・企画づくりに日常的に活用。社内ルールと研修が整い、「AIを使うのが当たり前」の空気になる。</p>
-          <div class="lv-chips"><span>社内ルール整備</span><span>社員研修</span><span>有料プランの使い分け</span></div>
-        </div>
-      </div>
-      <div class="level-row">
-        <div class="lv-num">Lv.3</div>
-        <div class="lv-body">
-          <h3>業務組み込み ——「御社専用のAIがある」</h3>
-          <p>見積AI・議事録AIなど、御社の書式とルールを覚えた専用AIが業務に組み込まれ、仕事の手順そのものが変わる。</p>
-          <div class="lv-chips"><span>見積書AI</span><span>営業メール・提案書AI</span><span>議事録AI</span></div>
-          <span class="lv-ex">例：見積書づくり 1件2時間 → AIが下書き、人は確認だけ（約15分）</span>
-        </div>
-      </div>
-      <div class="level-row">
-        <div class="lv-num">Lv.4</div>
-        <div class="lv-body">
-          <h3>自動化 ——「人が起点でなくても回る」</h3>
-          <p>問い合わせが来たら自動で一次対応。SNSは自動で運用。人が指示しなくても業務が流れ始める。</p>
-          <div class="lv-chips"><span>LINE自動応答</span><span>SNS自動運用</span><span>見込み客への追客シナリオ</span></div>
-          <span class="lv-ex">例：問い合わせ対応が24時間・返信漏れゼロに。担当者は最終確認だけ</span>
-        </div>
-      </div>
-      <div class="level-row goal">
-        <span class="lv-tag">顧問がめざすゴール</span>
-        <div class="lv-num">Lv.5</div>
-        <div class="lv-body">
-          <h3>エージェント経営 ——「AIに仕事を任せる」</h3>
-          <p>「競合を調べて資料にまとめて」と指示すれば、AIエージェントが調査から実行までこなす。AIが「道具」から「働き手」に変わる段階。</p>
-          <div class="lv-chips"><span>AIエージェント</span><span>AI社員</span><span>業務の自律実行</span></div>
-        </div>
-      </div>
+    <div class="lv-stairs" id="lvStairs" role="tablist" aria-label="AI活用レベル">
+      <button class="lv-step faded" data-lv="0" style="--h:120px;" role="tab"><span class="n">Lv.0</span><span class="t">未導入</span><span class="s">まだ様子見</span></button>
+      <button class="lv-step" data-lv="1" style="--h:148px;" role="tab"><span class="ribbon">多くのお客様はここから</span><span class="n">Lv.1</span><span class="t">お試し</span><span class="s">ChatGPTを<br>触ってみた</span></button>
+      <button class="lv-step" data-lv="2" style="--h:176px;" role="tab"><span class="n">Lv.2</span><span class="t">日常化</span><span class="s">みんなが<br>毎日使う</span></button>
+      <button class="lv-step" data-lv="3" style="--h:204px;" role="tab"><span class="n">Lv.3</span><span class="t">業務組み込み</span><span class="s">御社専用の<br>AIがある</span></button>
+      <button class="lv-step" data-lv="4" style="--h:232px;" role="tab"><span class="n">Lv.4</span><span class="t">自動化</span><span class="s">人が起点で<br>なくても回る</span></button>
+      <button class="lv-step goal" data-lv="5" style="--h:260px;" role="tab"><span class="ribbon">顧問がめざすゴール</span><span class="n">Lv.5</span><span class="t">エージェント経営</span><span class="s">AIに仕事を<br>任せる</span></button>
     </div>
+    <div class="lv-detail" id="lvDetail" role="tabpanel"></div>
+    <script>
+    (function () {
+      var LV = [
+        { title: "Lv.0 未導入 ——「AIはまだ様子見」", desc: "何も使っていない。ニュースを見て焦りだけが募っている状態。", chips: [], ex: "" },
+        { title: "Lv.1 お試し ——「ChatGPTを触ってみた」", desc: "社長や一部の社員がたまに使っている。でも業務は何も変わっていない。「使い方が分からない」「これで合ってるのか不安」。", chips: [], ex: "" },
+        { title: "Lv.2 日常化 ——「みんなが毎日使う」", desc: "全社員が文章作成・調べ物・企画づくりに日常的に活用。社内ルールと研修が整い、「AIを使うのが当たり前」の空気になる。", chips: ["社内ルール整備", "社員研修", "有料プランの使い分け"], ex: "" },
+        { title: "Lv.3 業務組み込み ——「御社専用のAIがある」", desc: "見積AI・議事録AIなど、御社の書式とルールを覚えた専用AIが業務に組み込まれ、仕事の手順そのものが変わる。", chips: ["見積書AI", "営業メール・提案書AI", "議事録AI"], ex: "例：見積書づくり 1件2時間 → AIが下書き、人は確認だけ（約15分）" },
+        { title: "Lv.4 自動化 ——「人が起点でなくても回る」", desc: "問い合わせが来たら自動で一次対応。SNSは自動で運用。人が指示しなくても業務が流れ始める。", chips: ["LINE自動応答", "SNS自動運用", "見込み客への追客シナリオ"], ex: "例：問い合わせ対応が24時間・返信漏れゼロに。担当者は最終確認だけ" },
+        { title: "Lv.5 エージェント経営 ——「AIに仕事を任せる」", desc: "「競合を調べて資料にまとめて」と指示すれば、AIエージェントが調査から実行までこなす。AIが「道具」から「働き手」に変わる段階。", chips: ["AIエージェント", "AI社員", "業務の自律実行"], ex: "" }
+      ];
+      var stairs = document.getElementById("lvStairs");
+      var detail = document.getElementById("lvDetail");
+      function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+      function show(i) {
+        var d = LV[i];
+        var html = "<h3>" + esc(d.title) + "</h3><p>" + esc(d.desc) + "</p>";
+        if (d.chips.length) html += '<div class="lv-chips">' + d.chips.map(function (c) { return "<span>" + esc(c) + "</span>"; }).join("") + "</div>";
+        if (d.ex) html += '<span class="lv-ex">' + esc(d.ex) + "</span>";
+        detail.innerHTML = html;
+        Array.prototype.forEach.call(stairs.children, function (b) {
+          b.classList.toggle("active", b.getAttribute("data-lv") == i);
+          b.setAttribute("aria-selected", b.getAttribute("data-lv") == i ? "true" : "false");
+        });
+      }
+      stairs.addEventListener("click", function (e) {
+        var btn = e.target.closest(".lv-step");
+        if (btn) show(parseInt(btn.getAttribute("data-lv"), 10));
+      });
+      show(1);
+    })();
+    </script>
     <p class="levels-close">大事なのは、レベルを飛ばさないこと。<strong>Lv.1の会社にいきなり自動化を売りつける業者</strong>がうまくいかないのは、社内がついてこないからです。AI顧問室は御社の現在地を診断し、<strong>1段ずつ、確実に</strong>登る道筋を設計します。そして最終ゴールは、顧問がいなくても御社だけで登り続けられる<strong>「自走」</strong>です。</p>
     <div class="mid-cta">
       <p>御社はいま、どのレベルでしたか？</p>
