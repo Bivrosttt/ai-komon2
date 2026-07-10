@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ある製造業の、90日間の記録。｜AI顧問室</title>
+<meta name="description" content="従業員28名の製造業が、AI顧問との90日間でどう変わったか。架空のモデルケースで振り返る、AI顧問室の実際の90日プログラム。">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="ある製造業の、90日間の記録。｜AI顧問室">
+<meta property="og:description" content="従業員28名の製造業が、AI顧問との90日間でどう変わったか。架空のモデルケースで振り返る、AI顧問室の実際の90日プログラム。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/lp-story.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --paper: #FBF9F4;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.95;
+    background: var(--white);
+    letter-spacing: 0.01em;
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  .container-wide { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); }
+  .btn-outline-w { border: 1.5px solid rgba(255,255,255,.55); color: #fff; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.97);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    max-width: 1000px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 62px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 19px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 10.5px; color: var(--gray); letter-spacing: 0.08em; }
+  .header-cta { padding: 9px 20px; font-size: 13px; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 84px 0 64px;
+    text-align: center;
+  }
+  .hero .kicker {
+    display: inline-block;
+    font-size: 12.5px; letter-spacing: 0.35em; color: var(--gold);
+    font-weight: 700; margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: 40px; margin-bottom: 18px; letter-spacing: 0.02em;
+  }
+  .hero h1 small {
+    display: block; font-size: 16px; font-weight: 500; color: #C7D3E4;
+    margin-top: 14px; letter-spacing: 0.06em;
+  }
+  .hero .byline {
+    font-size: 13px; color: #9FB0C7; letter-spacing: 0.08em; margin-top: 26px;
+  }
+
+  .notice {
+    max-width: 640px; margin: 40px auto 0;
+    border: 1px solid rgba(201,162,39,.5);
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+    padding: 22px 26px;
+    text-align: left;
+    font-size: 13.5px;
+    color: #E4EAF3;
+    line-height: 1.9;
+  }
+  .notice b { color: var(--gold); }
+
+  /* TOC */
+  .toc {
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--line);
+  }
+  .toc-inner {
+    max-width: 1000px; margin: 0 auto; padding: 18px 24px;
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  }
+  .toc a {
+    font-size: 12.5px; font-weight: 700; color: var(--navy);
+    border: 1px solid var(--line); background: var(--white);
+    border-radius: 999px; padding: 7px 16px; white-space: nowrap;
+  }
+  .toc a:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Lede */
+  .lede {
+    padding: 72px 0 8px;
+  }
+  .lede p {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 19px;
+    line-height: 2.05;
+    color: var(--navy);
+  }
+
+  /* Day sections */
+  .day {
+    position: relative;
+    padding: 72px 0 60px;
+    border-top: 1px solid var(--line);
+  }
+  .day:nth-child(odd) { background: var(--paper); }
+  .day-num {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 15px;
+    letter-spacing: 0.25em;
+    margin-bottom: 10px;
+  }
+  .day h2 {
+    font-size: 27px;
+    color: var(--navy);
+    margin-bottom: 30px;
+    max-width: 560px;
+  }
+  .day p {
+    font-size: 15.5px;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  .day p.lead-p {
+    font-size: 16.5px;
+  }
+
+  blockquote {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 17px;
+    color: var(--navy);
+    border-left: 3px solid var(--gold);
+    padding: 4px 0 4px 26px;
+    margin: 34px 0;
+    line-height: 1.9;
+  }
+
+  .aside {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--navy);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 30px 0;
+    font-size: 13.5px;
+    color: var(--gray);
+  }
+  .aside .label {
+    display: block;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--navy); margin-bottom: 8px;
+  }
+  .aside a { color: var(--blue); font-weight: 700; }
+
+  .note-inline {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--gray);
+    background: var(--bg-soft);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-left: 4px;
+  }
+
+  .day-close {
+    font-size: 12px;
+    color: #97A5B7;
+    margin-top: 34px;
+  }
+
+  .divider {
+    text-align: center;
+    color: var(--gold);
+    letter-spacing: 0.6em;
+    font-size: 12px;
+    padding: 4px 0 0;
+  }
+
+  /* Turn section */
+  .turn {
+    background: var(--navy);
+    color: var(--white);
+    padding: 96px 0 88px;
+    text-align: center;
+  }
+  .turn .kicker { font-size: 12.5px; letter-spacing: 0.3em; color: var(--gold); font-weight: 700; margin-bottom: 20px; display: inline-block; }
+  .turn h2 { font-size: 30px; margin-bottom: 22px; }
+  .turn h2 em { font-style: normal; color: var(--gold); }
+  .turn p { font-size: 15px; color: #C7D3E4; max-width: 560px; margin: 0 auto 8px; }
+
+  /* Program section */
+  .program { background: var(--bg-soft); padding: 88px 0; }
+  .section-label {
+    display: block;
+    font-size: 12.5px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 30px; color: var(--navy); margin-bottom: 16px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin: 0 auto 48px; font-size: 14.5px; }
+  .program .container-wide { text-align: center; }
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; text-align: left; margin-bottom: 56px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 26px 24px; background: var(--white); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .f-step h3 { font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+
+  /* Pricing */
+  .pricing { background: var(--white); padding: 88px 0; }
+  .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px; align-items: stretch; text-align: left; }
+  .plan {
+    background: var(--white); border: 1px solid var(--line); border-radius: 8px;
+    padding: 36px 28px; display: flex; flex-direction: column; position: relative;
+  }
+  .plan.featured { border: 2px solid var(--navy); }
+  .plan-badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--navy-deep); font-size: 11.5px; font-weight: 700;
+    padding: 4px 16px; border-radius: 999px; white-space: nowrap;
+  }
+  .plan .name { font-family: 'Noto Serif JP', serif; font-size: 19px; color: var(--navy); }
+  .plan .position { font-size: 11.5px; color: var(--blue); font-weight: 700; margin-bottom: 18px; }
+  .plan .amount { font-family: 'Noto Serif JP', serif; font-size: 36px; font-weight: 700; color: var(--navy); line-height: 1.2; }
+  .plan .amount small { font-size: 13px; font-weight: 400; color: var(--gray); }
+  .plan ul { list-style: none; margin: 20px 0 26px; flex: 1; }
+  .plan li { font-size: 13px; padding: 8px 0 8px 24px; position: relative; border-bottom: 1px solid var(--bg-soft); color: var(--ink); }
+  .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .plan .btn { text-align: center; font-size: 13.5px; padding: 12px 0; }
+  .price-note { text-align: center; font-size: 12.5px; color: var(--gray); margin-top: 30px; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+  /* Final CTA */
+  .cta {
+    background: linear-gradient(160deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+    padding: 88px 0 96px;
+  }
+  .cta h2 { font-size: 30px; margin-bottom: 18px; }
+  .cta p { color: #C7D3E4; margin-bottom: 34px; font-size: 14.5px; }
+  .cta-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .cta .note { margin-top: 22px; font-size: 12px; color: #8FA3BE; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 12.5px;
+    padding: 34px 0; text-align: center;
+  }
+  footer .logo { justify-content: center; margin-bottom: 8px; }
+  footer .logo strong { color: var(--white); font-size: 16px; }
+
+  /* Mobile sticky CTA */
+  .mobile-cta { display: none; }
+  @media (max-width: 780px) {
+    .mobile-cta { display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 300; background: var(--white); border-top: 1px solid var(--line); padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); gap: 10px; box-shadow: 0 -4px 16px rgba(11,36,71,.10); transform: translateY(110%); transition: transform .3s; }
+    .mobile-cta.show { transform: translateY(0); }
+    .mobile-cta a { flex: 1; text-align: center; padding: 12px 0; border-radius: 4px; font-weight: 700; font-size: 13.5px; }
+    .mobile-cta .mc-diag { border: 1.5px solid var(--navy); color: var(--navy); }
+    .mobile-cta .mc-consult { background: var(--gold); color: var(--navy-deep); }
+  }
+
+  @media (max-width: 780px) {
+    .hero { padding: 56px 0 44px; }
+    .hero h1 { font-size: 28px; }
+    .hero h1 small { font-size: 14px; }
+    .lede { padding: 48px 0 4px; }
+    .lede p { font-size: 17px; }
+    .day { padding: 48px 0 40px; }
+    .day h2 { font-size: 22px; }
+    .day p { font-size: 14.5px; }
+    blockquote { font-size: 15.5px; }
+    .turn { padding: 64px 0 56px; }
+    .turn h2 { font-size: 24px; }
+    .program, .pricing { padding: 60px 0; }
+    .section-title { font-size: 24px; }
+    .cta { padding: 60px 0 96px; }
+    .cta h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <a href="index.html#contact" class="btn btn-gold header-cta">無料相談を予約する</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="kicker">REPORT — 90 DAYS</span>
+    <h1>ある製造業の、<br>90日間の記録。
+      <small>従業員28名の会社が、AI顧問と歩いた90日を、正直に書き起こしました。</small>
+    </h1>
+    <p class="byline">FIELD NOTE ／ AI顧問室</p>
+
+    <div class="notice">
+      <b>※お断り</b><br>
+      これは、AI顧問室の90日プログラムの一般的な進み方をもとに構成した、<b>架空のモデルケース</b>です。登場する会社・人物・数字はすべて想定であり、実在の企業・お客様ではありません。文中の作業時間や件数は、実際の効果を保証するものではなく、進め方のイメージとしてお読みください。
+    </div>
+  </div>
+</div>
+
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#day1">Day 1</a>
+    <a href="#day30">Day 30</a>
+    <a href="#day60">Day 60</a>
+    <a href="#day90">Day 90</a>
+    <a href="#turn">本物の90日へ</a>
+    <a href="#pricing">料金プラン</a>
+  </div>
+</nav>
+
+<section class="lede">
+  <div class="container">
+    <p>金属部品の加工を営む、従業員28名の会社。取引先からのデジタル化要請が増え、社長は「何かしなければ」と感じながらも、何から手をつけていいか分からずにいた。そんな会社が、AI顧問室に無料相談を申し込んだところから、この記録は始まる。</p>
+  </div>
+</section>
+
+<section class="day" id="day1">
+  <div class="container">
+    <span class="day-num">DAY 1</span>
+    <h2>「何から始めればいいか、正直わからない」</h2>
+    <p class="lead-p">相談は、雑談に近い雰囲気で始まった。社長が最初に口にしたのは、「ChatGPTは触ってみた。でも、会社としては何も変わっていない」という率直な感想だった。特別な準備をしてきたわけではなく、思っていることをそのまま話しに来た、という様子だった。</p>
+    <p>顧問は、業種や社内体制、これまでのAI活用の状況を聞きながら、簡単な現状診断を行った。結果は「Lv.1 お試し」——多くの会社が最初に立つ地点だった。特別に遅れているわけでも、特別に進んでいるわけでもない、ごく普通のスタート地点だ。</p>
+    <blockquote>
+      「うちみたいな規模でも、意味あるんですかね」<br>
+      ——相談の終わり際、社長が漏らした一言。
+    </blockquote>
+    <p>60分の相談の最後に渡されたのは、大げさな提案書ではなく、「まず業務を棚卸ししましょう」という、ごく地味な次の一歩だった。</p>
+    <div class="aside">
+      <span class="label">同じ診断を試す</span>
+      御社が今どのレベルか、1分でわかる診断があります。<br>
+      <a href="diagnosis.html">▶ 1分でできるレベル診断を試す</a>
+    </div>
+    <p class="day-close">Lv.1〜Lv.5のレベルマップについて詳しくは <a href="index.html#levels" style="color:var(--blue); font-weight:700;">公式サイトのロードマップ</a> を参照。</p>
+  </div>
+</section>
+
+<div class="divider">● ● ●</div>
+
+<section class="day" id="day30">
+  <div class="container">
+    <span class="day-num">DAY 30</span>
+    <h2>見積書に、1件2時間かかっていた</h2>
+    <p class="lead-p">契約から1ヶ月。最初の定例では、日々の業務をひとつずつ棚卸しした。見積もり作成、受発注、問い合わせ対応、勤怠管理……。特に時間を食っていたのが、見積書だった。</p>
+    <p>過去の類似案件を探し、単価表と照合し、フォーマットに手入力する。担当者いわく「1件あたりおよそ2時間<span class="note-inline">想定</span>」。ベテラン営業が3人がかりで回している状態だった。</p>
+    <p>顧問はこれを最初の着手先に選んだ。派手な自動化ではなく、「一番地味に時間を溶かしている作業」から始めるのが定石だという。過去の見積データと単価表を渡してもらい、この会社専用の見積書AIの構築が始まった。</p>
+    <div class="aside">
+      <span class="label">顧問メモ</span>
+      最初に選ぶのは「効果が大きい」業務より、「毎日発生していて、みんなが嫌々やっている」業務。効果が実感しやすく、社内の空気が変わりやすいから。
+    </div>
+  </div>
+</section>
+
+<div class="divider">● ● ●</div>
+
+<section class="day" id="day60">
+  <div class="container">
+    <span class="day-num">DAY 60</span>
+    <h2>「また新しいツールか」という空気から</h2>
+    <p class="lead-p">見積書AIの試用版ができ、社内研修の日を迎えた。反応は一様ではなかった。</p>
+    <p>若手の営業担当はその場でスマホやPCで触りはじめ、「単価を間違えなくて良いですね」と声を上げた。一方で、長年紙とExcelでやってきたベテラン社員からは、「また新しいツールか」という空気も正直あった。使い慣れた手順を変えることへの抵抗は、思っていたより大きかった。</p>
+    <p>顧問は無理に使わせるのではなく、まず本人が担当している見積もりを、一緒にAIに通してみせるところから始めた。出てきた数字が自分の作業より速く、かつ大きく外れていないとわかると、態度は少しずつ軟化していった。それでも研修後の2週間は、AIと手作業が混在する状態が続いた。</p>
+    <blockquote>
+      「正直、最初は半信半疑でした。でも一度使うと、後戻りする理由がなくなった」<br>
+      ——のちに、ベテラン社員が振り返った言葉。
+    </blockquote>
+    <p>全員がすぐに切り替わったわけではない。それでも、月末には社内の見積書の大半がAI経由に変わっていた。</p>
+  </div>
+</section>
+
+<div class="divider">● ● ●</div>
+
+<section class="day" id="day90">
+  <div class="container">
+    <span class="day-num">DAY 90</span>
+    <h2>見積は、「確認するだけ」に</h2>
+    <p class="lead-p">契約から90日。見積書づくりにかかる時間は、平均して1件あたり約15分<span class="note-inline">想定</span>まで短縮された。AIが下書きをつくり、人が数字と条件を確認して送るだけの作業になった。空いた時間で、営業担当は既存顧客への提案活動に時間を割けるようになったという。</p>
+    <p>この90日で見えてきたのは、「次にやるべきこと」だった。問い合わせ対応の遅れが、実はもうひとつの機会損失になっている——という次のロードマップが、定例の中で見え始めていた。90日はゴールではなく、ここからが本番だ。</p>
+    <p class="day-close">※本文中の作業時間・件数はすべて想定例であり、実際の効果を保証するものではありません。</p>
+  </div>
+</section>
+
+<section class="turn" id="turn">
+  <div class="container">
+    <span class="kicker">FROM STORY TO PROGRAM</span>
+    <h2>これは<em>架空の話</em>です。<br>でも、90日の進め方は本物です。</h2>
+    <p>登場した会社も、社員のやりとりも、この記事のために構成したものです。ただし「無料相談 → 棚卸し → 最初の成果 → 定着」という進み方そのものは、AI顧問室が実際にお客様と歩んでいる90日プログラムに基づいています。</p>
+  </div>
+</section>
+
+<section class="program" id="program">
+  <div class="container-wide">
+    <span class="section-label">FIRST 90 DAYS</span>
+    <h2 class="section-title">契約後、最初の90日でやること</h2>
+    <p class="section-lead">「顧問」と聞くと何をしてくれるのか曖昧に感じるかもしれません。最初の3ヶ月の動きを、あらかじめお見せします。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1ヶ月目</div>
+        <h3>業務の棚卸しと診断</h3>
+        <p>主要な業務をヒアリングし、「どこにAIを入れると最も利益に効くか」を優先順位付きのロードマップにまとめます。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2ヶ月目</div>
+        <h3>最初の成果をひとつ</h3>
+        <p>効果が出やすい業務をひとつ選び、実際に自動化・効率化します。「目に見える変化」をまず社内に作ります。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3ヶ月目</div>
+        <h3>定着と次の一手</h3>
+        <p>使われ方を検証して定着させ、ロードマップの次の施策へ。以降はこのサイクルを毎月回していきます。</p>
+      </div>
+    </div>
+    <a href="index.html#first90" class="btn btn-outline">公式サイトで90日の流れを詳しく見る →</a>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container-wide">
+    <span class="section-label" style="text-align:center;">PRICING</span>
+    <h2 class="section-title" style="text-align:center;">料金プラン</h2>
+    <p class="section-lead">関与の深さで選べる3つのプラン。まずは無料相談で、御社に最適なプランをご提案します。</p>
+    <div class="price-grid">
+      <div class="plan">
+        <div class="name">ライト</div>
+        <div class="position">AI経営の相談役</div>
+        <div class="amount">15<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（平日随時）</li>
+          <li>定例ミーティング 月1回60分</li>
+          <li>対応はオンライン完結</li>
+          <li>AIツール選定・活用アドバイス</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">おすすめ</div>
+        <div class="name">スタンダード</div>
+        <div class="position">AI導入の伴走者</div>
+        <div class="amount">25<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（平日随時）</li>
+          <li>定例ミーティング 月2回・訪問月1回まで可</li>
+          <li>AI導入ロードマップ策定・伴走</li>
+          <li>小規模な自動化の実装 月1件</li>
+          <li>社員向けAI研修 四半期1回</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-gold" style="color:var(--navy-deep);">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan">
+        <div class="name">プレミアム</div>
+        <div class="position">社外AI役員</div>
+        <div class="amount">50<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（優先対応）</li>
+          <li>定例ミーティング 月2回・訪問回数制限なし</li>
+          <li>AI経営戦略の立案・推進</li>
+          <li>業務自動化の実装 月3件目安</li>
+          <li>社員向けAI研修 毎月・対面開催可</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+    </div>
+    <p class="price-note">最低契約期間は3ヶ月。プランは途中変更できます。実装内容が大きい場合は個別にお見積りします。<br>デジタル化・AI導入補助金（旧IT導入補助金）・人材開発支援助成金など、活用できる補助金・助成金のご提案も行っています。</p>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の90日は、まだ書かれていません。</h2>
+    <p>この記録はモデルケースですが、進め方は本物です。まずは60分、御社の現在地から話してみませんか。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する（60分）</a>
+      <a href="diagnosis.html" class="btn btn-outline-w" style="font-size:15px; padding:15px 32px;">1分でレベル診断</a>
+    </div>
+    <p class="note">※ 無料相談だけでも「自社が何から始めるべきか」が明確になります。売り込みは一切しません。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container-wide">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026</p>
+  </div>
+</footer>
+
+<div class="mobile-cta" id="mobile-cta">
+  <a href="diagnosis.html" class="mc-diag">1分レベル診断</a>
+  <a href="index.html#contact" class="mc-consult">無料相談を予約</a>
+</div>
+
+<script>
+(function () {
+  var bar = document.getElementById('mobile-cta');
+  var shown = false;
+  window.addEventListener('scroll', function () {
+    var s = window.scrollY > 600;
+    if (s !== shown) { shown = s; bar.classList.toggle('show', s); }
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>AI人材を1人雇う前に、電卓を叩いてください。｜AI顧問室</title>
+<meta name="description" content="年600万円+採用6ヶ月 vs 月15万円+契約翌日から。AI人材を正社員で採用する前に、コストを比較してください。中小企業向けAI顧問サービス、無料相談受付中。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="AI人材を1人雇う前に、電卓を叩いてください。｜AI顧問室">
+<meta property="og:description" content="年600万円+採用6ヶ月 vs 月15万円+契約翌日から。AI人材を正社員で採用する前に、コストを比較してください。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/lp-cost.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111111;
+    --white:#ffffff;
+    --red:#FF3B30;
+    --red-soft:#FFF3F1;
+    --gray:#6B6B6B;
+    --line:#E4E4E4;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:'Noto Sans JP', sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  .num{ font-family:'IBM Plex Mono', monospace; font-variant-numeric:tabular-nums; }
+  img{ max-width:100%; }
+  a{ text-decoration:none; color:inherit; }
+  .container{ max-width:980px; margin:0 auto; padding:0 24px; }
+  section{ padding:88px 0; }
+  .eyebrow{
+    display:inline-block; font-size:12px; font-weight:700; letter-spacing:.18em;
+    color:var(--red); border:1px solid var(--red); border-radius:999px;
+    padding:5px 14px; margin-bottom:22px;
+  }
+  h2{ font-size:clamp(24px,3.4vw,32px); font-weight:900; margin-bottom:14px; letter-spacing:-.01em; }
+  .lead{ color:var(--gray); font-size:15px; max-width:640px; margin-bottom:48px; }
+
+  /* ---- header ---- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px; max-width:980px; margin:0 auto; padding:0 24px;
+  }
+  .logo{ font-weight:900; font-size:16px; letter-spacing:.02em; }
+  .logo span{ color:var(--red); }
+  .btn{
+    display:inline-block; font-weight:700; font-size:14px;
+    padding:12px 22px; border-radius:3px; transition:opacity .2s, transform .15s;
+  }
+  .btn:active{ transform:scale(.98); }
+  .btn-primary{ background:var(--red); color:#fff; }
+  .btn-primary:hover{ opacity:.88; }
+  .btn-dark{ background:var(--ink); color:#fff; }
+  .btn-dark:hover{ opacity:.85; }
+  .btn-outline{ border:1.5px solid var(--ink); color:var(--ink); }
+  .btn-outline:hover{ background:var(--ink); color:#fff; }
+  .header-cta{ padding:9px 18px; font-size:13px; }
+
+  /* ---- hero ---- */
+  .hero{ padding:76px 0 72px; text-align:center; }
+  .hero h1{
+    font-size:clamp(26px,4.6vw,44px);
+    font-weight:900; letter-spacing:-.02em; line-height:1.45;
+    margin:0 auto 12px;
+    max-width:760px;
+  }
+  .hero h1 em{ font-style:normal; color:var(--red); }
+  .hero-sub{ color:var(--gray); font-size:14px; margin-bottom:56px; }
+
+  .compare-hero{
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch; gap:0 22px;
+    max-width:880px; margin:0 auto;
+  }
+  .c-block{
+    border-radius:6px; padding:36px 24px; text-align:center;
+  }
+  .c-block.cost{ background:var(--red-soft); border:2px solid var(--red); }
+  .c-block.advisor{ background:var(--ink); color:#fff; }
+  .c-tag{ font-size:12px; font-weight:700; letter-spacing:.1em; margin-bottom:16px; opacity:.75; }
+  .c-block.cost .c-tag{ color:var(--red); }
+  .c-num{
+    font-size:clamp(2.2rem,6.4vw,3.6rem); font-weight:700; line-height:1;
+    display:flex; align-items:baseline; justify-content:center; gap:4px; margin-bottom:6px;
+  }
+  .c-num small{ font-size:.34em; font-weight:600; }
+  .c-block.cost .c-num{ color:var(--red); }
+  .c-plus{
+    font-size:clamp(1.1rem,2.6vw,1.5rem); font-weight:700; margin:14px 0 4px;
+  }
+  .c-block.cost .c-plus{ color:var(--red); }
+  .c-desc{ font-size:12.5px; line-height:1.7; }
+  .c-block.cost .c-desc{ color:#8a2c24; }
+  .c-block.advisor .c-desc{ color:rgba(255,255,255,.72); }
+  .vs{
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:14px; color:var(--gray);
+  }
+
+  .stat-note{
+    max-width:640px; margin:40px auto 0; text-align:center;
+    font-size:13px; color:var(--gray); border-top:1px solid var(--line); padding-top:24px;
+  }
+  .stat-note strong{ color:var(--ink); }
+
+  @media (max-width:680px){
+    .compare-hero{ grid-template-columns:1fr; gap:14px; }
+    .vs{ padding:2px 0; }
+  }
+
+  /* ---- section: 内訳比較 ---- */
+  .table-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table.compare{
+    width:100%; border-collapse:collapse; min-width:560px; font-size:14px;
+  }
+  table.compare th, table.compare td{
+    padding:16px 18px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top;
+  }
+  table.compare thead th{
+    font-size:12px; letter-spacing:.06em; color:var(--gray); font-weight:700; border-bottom:2px solid var(--ink);
+  }
+  table.compare th:first-child, table.compare td:first-child{
+    width:20%; font-weight:700; color:var(--gray); font-size:12.5px;
+  }
+  table.compare td.bad{ color:#8a2c24; }
+  table.compare td.bad::before{ content:"× "; color:var(--red); font-weight:700; }
+  table.compare td.good{ font-weight:600; }
+  table.compare td.good::before{ content:"○ "; color:var(--red); font-weight:700; }
+  table.compare thead th:nth-child(3){ color:var(--ink); }
+
+  /* ---- section: 差額の使い道 ---- */
+  .delta-box{
+    background:var(--ink); color:#fff; border-radius:8px; padding:48px 32px; text-align:center;
+  }
+  .delta-num{
+    font-size:clamp(2.4rem,7vw,4.2rem); font-weight:700; color:var(--red); margin-bottom:4px;
+  }
+  .delta-formula{ font-size:13px; color:rgba(255,255,255,.6); margin-bottom:32px; }
+  .delta-list{ list-style:none; text-align:left; max-width:520px; margin:0 auto; display:grid; gap:12px; }
+  .delta-list li{
+    display:flex; justify-content:space-between; gap:16px;
+    border-bottom:1px solid rgba(255,255,255,.15); padding-bottom:12px; font-size:14px;
+  }
+  .delta-list li b{ font-family:'IBM Plex Mono',monospace; white-space:nowrap; color:var(--red); }
+  .delta-caveat{ font-size:11.5px; color:rgba(255,255,255,.45); margin-top:28px; }
+
+  /* ---- section: pricing ---- */
+  .price-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  }
+  .plan{
+    border:1.5px solid var(--line); border-radius:8px; padding:30px 24px; text-align:center;
+    display:flex; flex-direction:column;
+  }
+  .plan.featured{ border:2px solid var(--red); position:relative; }
+  .plan-badge{
+    position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+    background:var(--red); color:#fff; font-size:11px; font-weight:700;
+    padding:4px 14px; border-radius:999px; letter-spacing:.05em;
+  }
+  .plan .pname{ font-size:13px; font-weight:700; color:var(--gray); margin-bottom:6px; letter-spacing:.04em; }
+  .plan .pamount{
+    font-size:clamp(2.2rem,5vw,2.7rem); font-weight:700; margin-bottom:2px; line-height:1;
+  }
+  .plan .pamount small{ font-size:.32em; font-weight:600; color:var(--gray); }
+  .plan .ppos{ font-size:12px; color:var(--gray); margin-bottom:20px; }
+  .plan .btn{ margin-top:auto; }
+  .price-note{ text-align:center; font-size:12.5px; color:var(--gray); margin-top:28px; }
+
+  @media (max-width:720px){
+    .price-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---- final CTA ---- */
+  .final-cta{ background:var(--ink); color:#fff; text-align:center; padding:96px 0; }
+  .final-cta h2{ color:#fff; }
+  .final-cta .lead{ color:rgba(255,255,255,.65); margin-left:auto; margin-right:auto; }
+  .cta-btns{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:12px; }
+  .cta-btns .btn{ padding:17px 34px; font-size:15.5px; }
+  .cta-sub{ margin-top:20px; font-size:13px; }
+  .cta-sub a{ color:rgba(255,255,255,.8); border-bottom:1px solid rgba(255,255,255,.4); }
+  .cta-sub a:hover{ color:#fff; border-color:#fff; }
+
+  footer{ padding:28px 0; text-align:center; font-size:11.5px; color:var(--gray); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">AI顧問室<span>.</span></div>
+    <a href="index.html#contact" class="btn btn-dark header-cta">無料相談を予約する</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">COST SIMULATION</span>
+    <h1>AI人材を1人雇う前に、<br><em>電卓</em>を叩いてください。</h1>
+    <p class="hero-sub">感情ではなく、数字で決めてください。</p>
+
+    <div class="compare-hero">
+      <div class="c-block cost">
+        <div class="c-tag">正社員でAI人材を採用</div>
+        <div class="c-num"><small>年</small>600<small>万円〜</small></div>
+        <div class="c-plus">+ 立ち上がりまで平均 6ヶ月</div>
+        <div class="c-desc">想定年収＋社会保険料の会社負担＋人材紹介手数料の目安（実際は企業・職種により変動）</div>
+      </div>
+      <div class="vs">VS</div>
+      <div class="c-block advisor">
+        <div class="c-tag">AI顧問室と契約</div>
+        <div class="c-num"><small>月</small>15<small>万円〜</small></div>
+        <div class="c-plus">契約翌日から相談スタート</div>
+        <div class="c-desc">ライトプラン・税別・最低契約期間3ヶ月。今月から動けます。</div>
+      </div>
+    </div>
+
+    <p class="stat-note">中小企業の<strong>65.6%</strong>が「人手不足」と回答（東京商工会議所 2024年調査・n=6,013）。採らずに、借りる。<br>AI活用率も大企業59.1%に対し中小32.3%と差が開いています（東京商工リサーチ 2026年3-4月・n=6,327）。</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <span class="eyebrow">BREAKDOWN</span>
+    <h2>内訳を、並べてみます。</h2>
+    <p class="lead">採用してAI人材を育てる場合と、AI顧問と契約する場合。同じ「AI活用の推進力を得る」という目的に対して、かかるコストと時間が違います。</p>
+    <div class="table-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>正社員でAI人材を採用</th>
+            <th>AI顧問室と契約</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>初期費用</td>
+            <td class="bad">人材紹介手数料 想定100万円前後（年収の30〜35%目安）</td>
+            <td class="good">0円（初期費用なし）</td>
+          </tr>
+          <tr>
+            <td>立ち上がり</td>
+            <td class="bad">求人〜内定〜研修で平均6ヶ月想定</td>
+            <td class="good">契約翌日から相談開始</td>
+          </tr>
+          <tr>
+            <td>毎月の固定費</td>
+            <td class="bad">想定50万円前後（年収÷12＋社保）＋管理コスト</td>
+            <td class="good">15万円〜（プランは3段階から選択）</td>
+          </tr>
+          <tr>
+            <td>合わなかった場合</td>
+            <td class="bad">雇用契約の解除は容易でなく、再度採用活動が発生</td>
+            <td class="good">契約は月単位。プラン変更・解約が容易</td>
+          </tr>
+          <tr>
+            <td>視点の数</td>
+            <td class="bad">採用した1人の知見・視野に依存</td>
+            <td class="good">経営歴15年×AI歴4年の顧問が経営目線で伴走</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <span class="eyebrow">WHAT IF</span>
+    <h2>その差額で、何ができるか。</h2>
+    <p class="lead">年600万円の採用コストと、AI顧問室ライトプラン（月15万円＝年180万円）の差額を計算すると——。</p>
+    <div class="delta-box">
+      <div class="delta-num">年間 約420万円</div>
+      <div class="delta-formula">600万円（採用想定） − 180万円（ライトプラン年額） ＝ 差額（想定）</div>
+      <ul class="delta-list">
+        <li>全社員向けAI研修（1回20万円想定）<b>約20回分</b></li>
+        <li>業務効率化ツールのライセンス（1名分/年 想定8千円）<b>約50名×1年分</b></li>
+        <li>プレミアムプラン（月50万円）に乗り換えても<b>約8ヶ月継続できる計算</b></li>
+      </ul>
+      <p class="delta-caveat">※上記はいずれも想定に基づく試算例であり、効果や金額を保証するものではありません。実際の採用コスト・活用効果は企業により異なります。</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="container">
+    <span class="eyebrow">PRICING</span>
+    <h2>料金プラン</h2>
+    <p class="lead">関与の深さで選べる3つのプラン。すべて月額・税別、最低契約期間3ヶ月です。</p>
+    <div class="price-grid">
+      <div class="plan">
+        <div class="pname">LIGHT</div>
+        <div class="pamount">15<small>万円/月</small></div>
+        <div class="ppos">AI経営の相談役</div>
+        <a href="index.html#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">おすすめ</div>
+        <div class="pname">STANDARD</div>
+        <div class="pamount">25<small>万円/月</small></div>
+        <div class="ppos">AI導入の伴走者</div>
+        <a href="index.html#contact" class="btn btn-primary">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan">
+        <div class="pname">PREMIUM</div>
+        <div class="pamount">50<small>万円/月</small></div>
+        <div class="ppos">社外AI役員</div>
+        <a href="index.html#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+    </div>
+    <p class="price-note">最低契約期間は3ヶ月。プランは途中で見直せます。デジタル化・AI導入補助金など、活用できる補助金・助成金のご提案も行っています。</p>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container">
+    <span class="eyebrow" style="border-color:var(--red);">TALK TO US</span>
+    <h2>採用前に、一度、話しませんか。</h2>
+    <p class="lead">60分の無料相談で、御社の場合の「採用コストvs顧問料」を一緒に電卓を叩きます。</p>
+    <div class="cta-btns">
+      <a href="index.html#contact" class="btn btn-primary">無料相談を予約する（60分）</a>
+    </div>
+    <p class="cta-sub"><a href="diagnosis.html">まずは1分でレベル診断 →</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">&copy; 2026 AI顧問室</div>
+</footer>
+
+</body>
+</html>

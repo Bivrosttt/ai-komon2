@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>AIのこと、ぜんぶ任せられる相手。｜AI顧問室</title>
+<meta name="description" content="相談する。作ってもらう。教わる。中小企業のためのAI顧問、月15万円から。まず60分、話しませんか。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="AIのこと、ぜんぶ任せられる相手。｜AI顧問室">
+<meta property="og:description" content="相談する。作ってもらう。教わる。中小企業のためのAI顧問、月15万円から。まず60分、話しませんか。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/lp-simple.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #14140F;
+    --paper: #FAF9F5;
+    --accent: #A8781E;
+    --faint: #9A968A;
+    --line: #E5E2D8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+  h1, h2 { font-family: 'Noto Serif JP', serif; font-weight: 600; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; }
+
+  /* mark */
+  .mark {
+    position: fixed; top: 28px; left: 28px; z-index: 50;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px; letter-spacing: 0.18em;
+    color: var(--ink); opacity: 0.7;
+  }
+  .mark a:hover { opacity: 1; }
+  .progress {
+    position: fixed; top: 0; left: 0; height: 2px; background: var(--accent);
+    width: 0%; z-index: 60; transition: width .1s linear;
+  }
+
+  section.screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px;
+    position: relative;
+  }
+
+  /* fade utility */
+  .fade {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1.1s ease, transform 1.1s ease;
+  }
+  .fade.in { opacity: 1; transform: translateY(0); }
+  .fade.d1 { transition-delay: .15s; }
+  .fade.d2 { transition-delay: .38s; }
+  .fade.d3 { transition-delay: .6s; }
+
+  /* Screen 1: hero */
+  .hero .eyebrow {
+    font-size: 12px; letter-spacing: 0.3em; color: var(--faint);
+    margin-bottom: 40px; text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 6.4vw, 78px);
+    letter-spacing: 0.01em;
+    max-width: 18em;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .sub {
+    margin-top: 36px;
+    font-size: clamp(13px, 1.6vw, 16px);
+    color: var(--faint);
+    letter-spacing: 0.08em;
+  }
+  .scroll-cue {
+    position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%);
+    font-size: 11px; color: var(--faint); letter-spacing: 0.2em;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+  }
+  .scroll-cue .line { width: 1px; height: 36px; background: var(--line); position: relative; overflow: hidden; }
+  .scroll-cue .line::after {
+    content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 100%;
+    background: var(--accent); animation: cue 1.8s ease-in-out infinite;
+  }
+  @keyframes cue { 0% { top: -100%; } 60% { top: 100%; } 100% { top: 100%; } }
+
+  /* Screen 2: verbs */
+  .verbs { gap: 0; }
+  .verb-list { display: flex; flex-direction: column; gap: clamp(18px, 3vw, 30px); }
+  .verb-list .v {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(30px, 7vw, 68px);
+    font-weight: 600;
+  }
+  .verb-list .v .num {
+    display: inline-block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px; color: var(--faint); letter-spacing: 0.2em;
+    vertical-align: super; margin-right: 10px;
+  }
+
+  /* Screen 3: price headline */
+  .headline h2 {
+    font-size: clamp(30px, 6vw, 64px);
+    max-width: 16em;
+  }
+  .headline .note {
+    margin-top: 30px;
+    font-size: 13px; color: var(--faint); letter-spacing: 0.06em;
+  }
+
+  /* Screen 4: pricing */
+  .pricing-screen { padding-top: 100px; padding-bottom: 100px; }
+  .p-label {
+    font-size: 12px; letter-spacing: 0.3em; color: var(--faint);
+    text-transform: uppercase; margin-bottom: 56px;
+  }
+  .plans {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    max-width: 920px; width: 100%;
+    border-top: 1px solid var(--line);
+  }
+  .plan {
+    padding: 44px 26px;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .plan:last-child { border-right: none; }
+  .plan .role {
+    font-size: 11px; letter-spacing: 0.14em; color: var(--faint); margin-bottom: 18px;
+  }
+  .plan .role.featured { color: var(--accent); }
+  .plan .name {
+    font-family: 'Noto Serif JP', serif; font-size: 20px; margin-bottom: 22px;
+  }
+  .plan .amount {
+    font-family: 'Noto Serif JP', serif; font-size: 40px; margin-bottom: 6px;
+  }
+  .plan .amount small { font-family: 'Noto Sans JP', sans-serif; font-size: 13px; color: var(--faint); margin-left: 4px; }
+  .plan .unit { font-size: 12px; color: var(--faint); }
+  .plans-note {
+    margin-top: 30px; font-size: 12px; color: var(--faint); max-width: 560px; letter-spacing: 0.02em;
+  }
+
+  /* Screen 5: CTA */
+  .final h2 {
+    font-size: clamp(30px, 6vw, 60px);
+    margin-bottom: 52px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 20px 52px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 15px; letter-spacing: 0.08em; font-weight: 500;
+    border-radius: 2px;
+    transition: transform .25s ease, opacity .25s ease;
+  }
+  .btn:hover { transform: translateY(-2px); opacity: 0.88; }
+  .sub-link {
+    display: block; margin-top: 26px;
+    font-size: 13px; color: var(--faint); letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--line); padding-bottom: 2px;
+  }
+  .sub-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  footer {
+    text-align: center; padding: 40px 24px 56px;
+    font-size: 11px; color: var(--faint); letter-spacing: 0.1em;
+  }
+  footer a { border-bottom: 1px solid var(--line); }
+  footer a:hover { color: var(--accent); border-color: var(--accent); }
+
+  @media (max-width: 720px) {
+    .plans { grid-template-columns: 1fr; }
+    .plan { border-right: none; }
+    .mark { top: 20px; left: 20px; font-size: 11px; }
+    section.screen { padding: 100px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="mark"><a href="index.html">AI顧問室</a></div>
+
+<section class="screen hero">
+  <p class="eyebrow fade in">AI ADVISOR FOR SMALL BUSINESS</p>
+  <h1 class="fade in d1">AIのこと、<br>ぜんぶ<span class="accent">任せられる</span>相手。</h1>
+  <p class="sub fade in d2">中小企業のためのAI顧問</p>
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</section>
+
+<section class="screen verbs">
+  <div class="verb-list">
+    <div class="v fade"><span class="num">01</span>相談する。</div>
+    <div class="v fade d1"><span class="num">02</span>作ってもらう。</div>
+    <div class="v fade d2"><span class="num">03</span>教わる。</div>
+  </div>
+</section>
+
+<section class="screen headline">
+  <h2 class="fade">月15万円から。<br>今月から。</h2>
+  <p class="note fade d1">最低契約期間3ヶ月。契約したその月から、稼働します。</p>
+</section>
+
+<section class="screen pricing-screen" id="pricing">
+  <p class="p-label fade">PLAN</p>
+  <div class="plans">
+    <div class="plan fade">
+      <div class="role">AI経営の相談役</div>
+      <div class="name">ライト</div>
+      <div class="amount">15<small>万円/月</small></div>
+      <div class="unit">税別・最低3ヶ月〜</div>
+    </div>
+    <div class="plan fade d1">
+      <div class="role featured">AI導入の伴走者</div>
+      <div class="name">スタンダード</div>
+      <div class="amount">25<small>万円/月</small></div>
+      <div class="unit">税別・最低3ヶ月〜</div>
+    </div>
+    <div class="plan fade d2">
+      <div class="role">社外AI役員</div>
+      <div class="name">プレミアム</div>
+      <div class="amount">50<small>万円/月</small></div>
+      <div class="unit">税別・最低3ヶ月〜</div>
+    </div>
+  </div>
+  <p class="plans-note fade d2">どのプランが合うかは、話してから決めれば十分です。</p>
+</section>
+
+<section class="screen final" id="contact">
+  <h2 class="fade">まず、<br>60分話しませんか。</h2>
+  <a href="index.html#contact" class="btn fade d1">無料相談を予約する（60分）</a>
+  <a href="diagnosis.html" class="sub-link fade d2">1分でレベル診断</a>
+</section>
+
+<footer>
+  <p>© AI顧問室 ｜ <a href="index.html">サービス詳細を見る</a></p>
+</footer>
+
+<script>
+(function () {
+  var els = document.querySelectorAll('.fade');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  els.forEach(function (el) { io.observe(el); });
+
+  var bar = document.getElementById('progress');
+  function onScroll() {
+    var h = document.documentElement;
+    var pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    bar.style.width = (isFinite(pct) ? pct : 0) + '%';
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+</body>
+</html>

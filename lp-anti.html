@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>AIコンサルは、たぶん要りません。｜AI顧問室からの手紙</title>
+<meta name="description" content="AI顧問室が正直に書いた手紙です。ChatGPTは無料で始められるし、情報はネットに全部あります。それでも2年間足踏みしている会社にだけ、読んでほしい話。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="AIコンサルは、たぶん要りません。｜AI顧問室からの手紙">
+<meta property="og:description" content="AI顧問室が正直に書いた手紙です。ChatGPTは無料で始められるし、情報はネットに全部あります。それでも2年間足踏みしている会社にだけ、読んでほしい話。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/lp-anti.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1C1C1C;
+    --gray: #6B6B6B;
+    --line: #D8D5CC;
+    --link: #0B2447;
+    --accent: #A5811A;
+    --paper: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 2;
+    letter-spacing: 0.02em;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; }
+  a {
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--line);
+  }
+  a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+
+  .sheet { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+
+  /* header */
+  .letterhead {
+    padding: 28px 0 20px;
+  }
+  .letterhead .row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+  }
+  .letterhead a { color: var(--gray); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .letterhead a:hover { color: var(--accent); border-color: var(--accent); }
+  .letterhead .brand { font-family: 'Noto Serif JP', serif; font-size: 15px; color: var(--ink); }
+
+  hr.fold {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0;
+  }
+
+  /* body copy */
+  main { padding: 56px 0 40px; }
+  .date-line {
+    text-align: right;
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 40px;
+  }
+  .salutation {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.7;
+    margin: 0 0 40px;
+  }
+  h2 {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 56px 0 20px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+  }
+  section:first-of-type h2 { border-top: none; padding-top: 0; }
+  p { margin-bottom: 22px; }
+  p.lead { font-size: 16px; }
+  strong { font-weight: 700; }
+  ul.list {
+    list-style: none;
+    margin: 0 0 22px;
+    padding: 0;
+  }
+  ul.list li {
+    position: relative;
+    padding-left: 1.5em;
+    margin-bottom: 16px;
+  }
+  ul.list li::before {
+    content: "－";
+    position: absolute;
+    left: 0;
+    color: var(--gray);
+  }
+  ul.list li .sub {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13.5px;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+
+  .three-line {
+    margin: 0 0 24px;
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .three-line .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .three-line .step:last-child { margin-bottom: 0; }
+  .three-line .no {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    flex-shrink: 0;
+    width: 1.2em;
+  }
+
+  /* pricing as plain text, not cards */
+  .price-lines { margin: 0 0 24px; }
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    gap: 8px 16px;
+  }
+  .price-row:first-child { border-top: 1px solid var(--line); }
+  .price-row .name { font-weight: 700; font-size: 16px; }
+  .price-row .desc {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13.5px;
+    color: var(--gray);
+    flex-basis: 100%;
+  }
+  .price-row .amount {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .price-note {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 16px;
+  }
+
+  /* CTA */
+  .cta-block {
+    margin: 56px 0 32px;
+    padding: 36px 28px;
+    border: 1px solid var(--ink);
+    text-align: center;
+  }
+  .cta-block p { margin-bottom: 20px; }
+  .cta-block .btn {
+    display: inline-block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--paper);
+    background: var(--ink);
+    text-decoration: none;
+    padding: 16px 40px;
+    margin-bottom: 18px;
+    transition: background 0.2s;
+  }
+  .cta-block .btn:hover { background: var(--accent); color: var(--paper); }
+  .cta-block .sub-link {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13.5px;
+  }
+  .cta-block .sub-link a { color: var(--gray); text-decoration-color: var(--line); }
+
+  .ps {
+    font-size: 15px;
+    color: var(--gray);
+    margin-top: 40px;
+  }
+
+  .sign-off {
+    margin-top: 56px;
+    text-align: right;
+    font-size: 16px;
+  }
+  .sign-off .name { margin-top: 8px; font-weight: 700; }
+
+  footer {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12.5px;
+    color: var(--gray);
+    text-align: center;
+    padding: 32px 0 48px;
+  }
+  footer a { color: var(--gray); }
+
+  @media (max-width: 480px) {
+    body { font-size: 16px; }
+    h1 { font-size: 22px; }
+    h2 { font-size: 17.5px; }
+    .cta-block { padding: 28px 18px; }
+    .price-row .amount { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="letterhead">
+  <div class="sheet row">
+    <a href="index.html">AI顧問室</a>
+    <span>中小企業のためのAI顧問サービス</span>
+  </div>
+</header>
+<hr class="fold">
+
+<main class="sheet">
+
+  <p class="date-line">AI顧問室</p>
+
+  <p class="salutation">この文章を読んでいる、経営者の方へ</p>
+
+  <h1>AIコンサルは、<br>たぶん要りません。</h1>
+
+  <section>
+    <p class="lead">
+      いきなりこんな見出しで恐縮ですが、正直に書きます。<br>
+      御社にAIコンサルは、たぶん必要ありません。
+    </p>
+    <p>
+      ChatGPTは無料で始められます。使い方の解説記事もYouTube動画も、検索すればいくらでも出てきます。
+      「中小企業　AI活用　事例」で調べれば、似たような会社の取り組みも読めるでしょう。
+      本気で自分で調べて、自分で手を動かせば、たいていのことは独学でできてしまいます。
+    </p>
+    <p>
+      それなのに月15万円〜のお金を払って、外部の人間に相談する意味が本当にあるのか。<br>
+      まずそこを、こちらから先に疑ってかかるべきだと思っています。
+    </p>
+  </section>
+
+  <section>
+    <h2>実際、こういう会社は契約しないでください</h2>
+    <p>
+      無料相談でお話をうかがって、次のどれかに当てはまると感じたら、こちらからお断りすることもあります。
+      先に正直に書いておきます。
+    </p>
+    <ul class="list">
+      <li>
+        社内に、自分で調べて自分で手を動かせる人がすでにいる会社
+        <span class="sub">その方に時間を渡すだけで、外部の人間より速く進むことがほとんどです。</span>
+      </li>
+      <li>
+        すでにAI活用がレベル3以上まで進んでいる会社
+        <span class="sub">業務にAIが組み込まれ、成果が出ている段階なら、私たちより社内の知見の方が資産になっています。</span>
+      </li>
+      <li>
+        「丸投げすれば魔法のように成果が出る」と期待している会社
+        <span class="sub">AIも顧問も魔法の杖ではありません。実際に手を動かすのは、最終的には御社の方たちです。</span>
+      </li>
+    </ul>
+    <p>
+      当てはまる方は、ここで読むのをやめていただいて大丈夫です。時間を使わせてすみません。
+    </p>
+  </section>
+
+  <section>
+    <h2>それでも、こういう状態なら手伝えます</h2>
+    <p>
+      逆に、次のような状態が続いているなら、外部の目が入ることで動き出すケースを何度も見てきました。
+    </p>
+    <ul class="list">
+      <li>
+        「AIを使わないと」と思いながら、2年くらい様子見のままになっている
+      </li>
+      <li>
+        社長だけがChatGPTを使っていて、社員には広がっていない
+      </li>
+      <li>
+        情報は集めたけれど、結局何から手をつければいいのか分からない
+      </li>
+    </ul>
+    <p>
+      情報が足りないのではなく、「決めて、動かして、社内に定着させる」ところで止まっている。
+      そういう会社には、経営目線で一緒に決めて、実装まで手を動かす人間が一人いるだけで、状況が変わります。
+    </p>
+  </section>
+
+  <section>
+    <h2>私たちがすることは、シンプルに3つです</h2>
+    <div class="three-line">
+      <div class="step">
+        <span class="no">1</span>
+        <span><strong>相談</strong>　経営目線で、何から着手すべきか一緒に決めます。</span>
+      </div>
+      <div class="step">
+        <span class="no">2</span>
+        <span><strong>構築</strong>　実際にツールを選定し、業務に組み込むところまで手を動かします。</span>
+      </div>
+      <div class="step">
+        <span class="no">3</span>
+        <span><strong>教育</strong>　社員が自分たちで使い、改善できるようになるまで伴走します。</span>
+      </div>
+    </div>
+    <p>
+      そして、御社が自分たちだけで回せるようになったら、契約を続ける理由はなくなります。
+      そのときは無理に引き止めず、卒業していただいて構いません。
+    </p>
+  </section>
+
+  <section>
+    <h2>料金は、正直にそのまま書きます</h2>
+    <div class="price-lines">
+      <div class="price-row">
+        <span class="name">ライト</span>
+        <span class="amount">月15万円（税別）</span>
+        <span class="desc">月1回の相談だけで十分、社内に実行役がいる会社向け</span>
+      </div>
+      <div class="price-row">
+        <span class="name">スタンダード</span>
+        <span class="amount">月25万円（税別）</span>
+        <span class="desc">相談だけでなく、実装まで一緒に進めたい会社向け</span>
+      </div>
+      <div class="price-row">
+        <span class="name">プレミアム</span>
+        <span class="amount">月50万円（税別）</span>
+        <span class="desc">社外のAI役員として、深く経営に関わってほしい会社向け</span>
+      </div>
+    </div>
+    <p class="price-note">
+      最低契約期間は3ヶ月。それ以降は月単位で見直せます。プランを下げることも、やめることもできます。
+      料金プランの詳細は<a href="index.html#pricing">こちら</a>でも確認できます。
+    </p>
+  </section>
+
+  <section>
+    <div class="cta-block">
+      <p>
+        ここまで読んで、それでも「一度話してみたい」と思ったなら、<br>
+        まず60分、無料で話しましょう。<br>
+        話してみて「これは要らなそうだ」と思ったら、こちらからそう言います。
+      </p>
+      <a href="index.html#contact" class="btn">無料相談を予約する（60分）</a>
+      <span class="sub-link">いきなり相談は気が早いという方は<br><a href="diagnosis.html">1分でレベル診断する →</a></span>
+    </div>
+
+    <p class="ps">
+      追伸　この手紙は、売り込むために書いたものではありません。<br>
+      「売り込まない」ことが、いちばん正直な自己紹介になると思ったので、そのまま書きました。
+    </p>
+  </section>
+
+  <div class="sign-off">
+    <p>敬具</p>
+    <p class="name">AI顧問室</p>
+  </div>
+
+</main>
+
+<hr class="fold">
+<footer>
+  <p>提供：AI顧問室｜© 2026</p>
+</footer>
+
+</body>
+</html>
