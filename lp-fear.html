@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>様子見の1年で、差は開いた。｜AI顧問室</title>
+<meta name="description" content="大企業59.1%、中小32.3%。組織的な生成AI活用の格差は、1年足らずでさらに広がりました。検証済みの公表データだけを並べた、AI顧問室からの調査ノートです。">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="様子見の1年で、差は開いた。｜AI顧問室">
+<meta property="og:description" content="大企業59.1%、中小32.3%。組織的な生成AI活用の格差は、1年足らずでさらに広がりました。検証済みの公表データだけを並べた、AI顧問室からの調査ノートです。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/lp-fear.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-deeper: #04101F;
+    --navy-light: #19376D;
+    --gold: #C9A227;
+    --gold-soft: #E4C868;
+    --white: #FFFFFF;
+    --muted: #9FB0C7;
+    --muted-soft: #C7D3E4;
+    --line: rgba(255,255,255,0.14);
+    --bad: #D9765A;
+    --good: #6FBE8F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--muted-soft);
+    line-height: 1.9;
+    background: var(--navy-deeper);
+  }
+  h1, h2, h3, h4 { font-family: 'Noto Serif JP', serif; line-height: 1.5; color: var(--white); }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; position: relative; }
+  .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+  .section-label {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 12.5px; letter-spacing: 0.22em; color: var(--gold);
+    font-weight: 700; margin-bottom: 18px; text-transform: uppercase;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  .section-title { font-size: 32px; color: var(--white); margin-bottom: 18px; }
+  .section-lead { color: var(--muted); max-width: 660px; margin-bottom: 48px; font-size: 15px; }
+
+  .btn {
+    display: inline-block; padding: 15px 32px; border-radius: 3px;
+    font-weight: 700; font-size: 15px; transition: opacity .2s, transform .15s;
+    border: none; cursor: pointer; font-family: inherit;
+  }
+  .btn:hover { opacity: 0.87; transform: translateY(-1px); }
+  .btn-gold { background: var(--gold); color: var(--navy-deeper); }
+  .btn-outline { border: 1.5px solid rgba(255,255,255,0.4); color: var(--white); }
+  .btn-sm { padding: 11px 22px; font-size: 13.5px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(4,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  .logo { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: 0.03em; }
+  .logo span { color: var(--gold); }
+  .header-right { display: flex; align-items: center; gap: 18px; }
+  .back-link { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+  .back-link:hover { color: var(--muted-soft); }
+
+  /* Hero */
+  .hero {
+    padding: 84px 0 74px;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 44px),
+      linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-light) 130%);
+    border-bottom: 1px solid var(--line);
+  }
+  .report-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid var(--gold); color: var(--gold);
+    font-size: 12px; letter-spacing: 0.18em; font-weight: 700;
+    padding: 6px 16px; border-radius: 999px; margin-bottom: 28px;
+  }
+  .report-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  .hero h1 { font-size: 42px; margin-bottom: 22px; letter-spacing: 0.01em; }
+  .hero h1 em { font-style: normal; color: var(--gold-soft); }
+  .hero .lead { font-size: 16px; color: var(--muted-soft); max-width: 620px; margin-bottom: 48px; }
+
+  .snapshot {
+    display: flex; gap: 0; border: 1px solid var(--line); border-radius: 10px;
+    overflow: hidden; margin-bottom: 40px; max-width: 720px; background: rgba(255,255,255,0.03);
+  }
+  .snap-cell { flex: 1; padding: 26px 28px; }
+  .snap-cell + .snap-cell { border-left: 1px solid var(--line); }
+  .snap-val { font-size: 46px; font-weight: 900; color: var(--white); line-height: 1; }
+  .snap-cell.hi .snap-val { color: var(--gold-soft); }
+  .snap-label { font-size: 12.5px; color: var(--muted); margin-top: 10px; }
+  .snap-cell.gap { background: rgba(201,162,39,0.08); }
+  .snap-cell.gap .snap-val { color: var(--gold); font-size: 34px; }
+  .snap-cell.gap .snap-val::before { content: '差 '; font-size: 15px; color: var(--muted); font-weight: 500; }
+
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .hero-note { font-size: 12.5px; color: var(--muted); margin-top: 18px; }
+  .scroll-hint { margin-top: 46px; font-size: 12.5px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+
+  /* Data section */
+  .data-card {
+    border: 1px solid var(--line); border-radius: 12px; padding: 40px 36px;
+    background: rgba(255,255,255,0.025); margin-bottom: 28px;
+  }
+  .bar-chart {
+    display: flex; justify-content: center; gap: 64px; flex-wrap: wrap;
+    margin: 36px 0 8px;
+  }
+  .bar-group { display: flex; flex-direction: column; align-items: center; }
+  .bars { display: flex; align-items: flex-end; gap: 22px; height: 190px; }
+  .bar-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+  .bar-val { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .bar {
+    width: 52px; border-radius: 3px 3px 0 0;
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform 1.1s cubic-bezier(.2,.8,.2,1);
+  }
+  .bar.on { transform: scaleY(1); }
+  .bar.navy-bar { background: rgba(255,255,255,0.28); }
+  .bar.gold-bar { background: var(--gold); }
+  .bar-year { font-size: 11px; color: var(--muted); margin-top: 10px; }
+  .bar-group-label { font-size: 14px; font-weight: 700; color: var(--white); margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); width: 100%; text-align: center; }
+  .bar-group-sub { font-size: 11.5px; color: var(--muted); margin-top: 4px; }
+
+  .gap-callout {
+    display: flex; align-items: center; justify-content: center; gap: 22px;
+    background: rgba(201,162,39,0.09); border: 1px solid rgba(201,162,39,0.35);
+    border-radius: 10px; padding: 22px 28px; margin-top: 32px; flex-wrap: wrap; text-align: center;
+  }
+  .gap-callout .g-num { font-size: 20px; font-weight: 900; color: var(--muted); }
+  .gap-callout .g-num.now { color: var(--gold-soft); font-size: 26px; }
+  .gap-callout .g-arrow { color: var(--gold); font-size: 20px; }
+  .gap-callout .g-text { font-size: 13.5px; color: var(--muted-soft); max-width: 320px; text-align: left; }
+
+  .source {
+    font-size: 11.5px; color: var(--muted); margin-top: 22px; line-height: 1.8;
+    border-top: 1px dashed var(--line); padding-top: 14px;
+  }
+
+  /* Impact section */
+  .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 22px; }
+  .impact-card {
+    border: 1px solid var(--line); border-radius: 10px; padding: 28px 24px;
+    background: rgba(255,255,255,0.025);
+  }
+  .impact-card .ic-num { font-size: 12px; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 14px; }
+  .impact-card h3 { font-size: 16.5px; color: var(--white); margin-bottom: 12px; }
+  .impact-card p { font-size: 13.5px; color: var(--muted); line-height: 1.85; }
+  .impact-card p strong { color: var(--muted-soft); }
+
+  .disclaimer {
+    font-size: 12px; color: var(--muted); background: rgba(255,255,255,0.03);
+    border-left: 3px solid var(--line); padding: 12px 18px; border-radius: 4px; margin-bottom: 56px;
+  }
+
+  .movers {
+    border: 1px solid var(--line); border-radius: 12px; padding: 34px 36px;
+    background: rgba(255,255,255,0.03);
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  }
+  .movers-text h3 { font-size: 18px; color: var(--white); margin-bottom: 8px; }
+  .movers-text p { font-size: 13.5px; color: var(--muted); max-width: 480px; }
+  .movers-links { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* Pricing */
+  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .plan {
+    border: 1px solid var(--line); border-radius: 12px; padding: 30px 26px;
+    background: rgba(255,255,255,0.025); display: flex; flex-direction: column;
+  }
+  .plan.featured { border-color: var(--gold); background: rgba(201,162,39,0.07); position: relative; }
+  .plan-badge {
+    position: absolute; top: -13px; left: 26px; background: var(--gold); color: var(--navy-deeper);
+    font-size: 11.5px; font-weight: 700; padding: 4px 14px; border-radius: 999px;
+  }
+  .plan .name { font-size: 19px; color: var(--white); font-weight: 700; margin-bottom: 4px; }
+  .plan .position { font-size: 12.5px; color: var(--gold); margin-bottom: 18px; }
+  .plan .amount { font-family: 'Noto Serif JP', serif; font-size: 36px; font-weight: 900; color: var(--white); margin-bottom: 20px; }
+  .plan .amount small { font-size: 13px; color: var(--muted); font-weight: 500; font-family: 'Noto Sans JP', sans-serif; }
+  .plan ul { list-style: none; margin-bottom: 26px; flex: 1; }
+  .plan li { font-size: 13px; color: var(--muted-soft); padding: 8px 0 8px 22px; position: relative; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .plan li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .plan li.na { color: var(--muted); opacity: 0.5; }
+  .plan li.na::before { content: '−'; color: var(--muted); }
+  .plan .btn { text-align: center; }
+  .price-note { font-size: 12.5px; color: var(--muted); margin-top: 28px; line-height: 1.9; max-width: 760px; }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy-light));
+    text-align: center; border-top: 1px solid var(--line);
+  }
+  .cta-section h2 { font-size: 28px; margin-bottom: 16px; }
+  .cta-section p { color: var(--muted-soft); margin-bottom: 34px; font-size: 15px; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-note { font-size: 12.5px; color: var(--muted); margin-top: 20px; }
+
+  footer { background: var(--navy-deeper); color: var(--muted); font-size: 13px; padding: 30px 0; text-align: center; border-top: 1px solid var(--line); }
+
+  @media (max-width: 860px) {
+    section { padding: 60px 0; }
+    .hero { padding: 56px 0 52px; }
+    .hero h1 { font-size: 29px; }
+    .snapshot { flex-direction: column; max-width: 100%; }
+    .snap-cell + .snap-cell { border-left: none; border-top: 1px solid var(--line); }
+    .impact-grid { grid-template-columns: 1fr; }
+    .price-grid { grid-template-columns: 1fr; }
+    .bar-chart { gap: 32px; }
+    .bars { gap: 14px; height: 160px; }
+    .bar { width: 40px; }
+    .movers { flex-direction: column; align-items: flex-start; }
+    .section-title { font-size: 25px; }
+    .back-link { display: none; }
+    .header-inner { height: auto; min-height: 56px; padding: 10px 0; }
+    .logo { font-size: 16px; }
+    .logo span { display: none; }
+    .header-right { gap: 10px; }
+    .btn-sm { padding: 9px 14px; font-size: 12px; white-space: nowrap; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">AI顧問室<span>｜調査ノート</span></a>
+    <div class="header-right">
+      <a href="index.html" class="back-link">← 公式サイトへ</a>
+      <a href="index.html#contact" class="btn btn-gold btn-sm">無料相談を予約する</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <span class="report-tag"><span class="dot"></span>SPECIAL REPORT ／ 2026.07</span>
+    <h1>様子見の1年で、<br><em>差</em>は開いた。数字の話をします。</h1>
+    <p class="lead">煽るつもりはありません。公表されている調査データを、そのまま並べます。判断は、それをご覧になってからで十分です。</p>
+
+    <div class="snapshot">
+      <div class="snap-cell hi">
+        <div class="snap-val num">59.1<small style="font-size:22px;">%</small></div>
+        <div class="snap-label">大企業／組織的に生成AIを活用</div>
+      </div>
+      <div class="snap-cell">
+        <div class="snap-val num">32.3<small style="font-size:22px;">%</small></div>
+        <div class="snap-label">中小企業／組織的に生成AIを活用</div>
+      </div>
+      <div class="snap-cell gap">
+        <div class="snap-val num">26.8<small style="font-size:16px;">pt</small></div>
+        <div class="snap-label">東京商工リサーチ 2026年3-4月調査（n=6,327）</div>
+      </div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="index.html#contact" class="btn btn-gold">無料相談を予約する（60分）</a>
+      <a href="diagnosis.html" class="btn btn-outline">1分でレベル診断</a>
+    </div>
+    <p class="hero-note">価格は公式サイトと同一です。ライト15万／スタンダード25万／プレミアム50万（月額・税別）。</p>
+    <div class="scroll-hint">続きを読む　↓</div>
+  </div>
+</section>
+
+<!-- 01 DATA -->
+<section id="data">
+  <div class="container">
+    <span class="section-label">01 ／ DATA</span>
+    <h2 class="section-title">「43.3% → 59.1%」「23.4% → 32.3%」</h2>
+    <p class="section-lead">組織的に生成AIの活用を進めている企業の割合です。1年足らずの間に、両者ともに数値は伸びました。問題は、その伸び方です。</p>
+
+    <div class="data-card">
+      <div class="bar-chart">
+        <div class="bar-group">
+          <div class="bars">
+            <div class="bar-col">
+              <span class="bar-val num">43.3%</span>
+              <div class="bar navy-bar" data-h="108" style="height:108px;"></div>
+              <span class="bar-year">2025年8月</span>
+            </div>
+            <div class="bar-col">
+              <span class="bar-val num">59.1%</span>
+              <div class="bar gold-bar" data-h="148" style="height:148px;"></div>
+              <span class="bar-year">2026年3-4月</span>
+            </div>
+          </div>
+          <div class="bar-group-label">大企業</div>
+          <div class="bar-group-sub">+15.8pt</div>
+        </div>
+        <div class="bar-group">
+          <div class="bars">
+            <div class="bar-col">
+              <span class="bar-val num">23.4%</span>
+              <div class="bar navy-bar" data-h="59" style="height:59px;"></div>
+              <span class="bar-year">2025年8月</span>
+            </div>
+            <div class="bar-col">
+              <span class="bar-val num">32.3%</span>
+              <div class="bar gold-bar" data-h="81" style="height:81px;"></div>
+              <span class="bar-year">2026年3-4月</span>
+            </div>
+          </div>
+          <div class="bar-group-label">中小企業</div>
+          <div class="bar-group-sub">+8.9pt</div>
+        </div>
+      </div>
+
+      <div class="gap-callout">
+        <span class="g-num num">19.9pt</span>
+        <span class="g-arrow">→</span>
+        <span class="g-num now num">26.8pt</span>
+        <span class="g-text">大企業と中小企業の差は、この1年で縮まらず、むしろ6.9pt広がりました。（東京商工リサーチの公表値をもとに本レポートで算出）</span>
+      </div>
+
+      <p class="source">出典：東京商工リサーチ「生成AIの活用に関する企業アンケート」2026年3-4月調査（n=6,327）、2025年8月調査。調査により母集団・質問設計は異なるため、単純比較ではなく傾向としてご覧ください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 IMPACT -->
+<section id="impact" style="background:rgba(255,255,255,0.015); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="container">
+    <span class="section-label">02 ／ IMPACT</span>
+    <h2 class="section-title">これは、他社の話ではありません</h2>
+    <p class="section-lead">活用格差は社内にとどまらず、気づかないところで御社の外側にも及び始めています。落ち着いて、3つの場面を見てください。</p>
+
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="ic-num">01</div>
+        <h3>取引先とのやり取り</h3>
+        <p>取引先や金融機関との商談・与信のやり取りで、<strong>業務効率化やDX活用の状況</strong>を尋ねられる場面が増えています。答えを持っているかどうかで、印象は変わります。</p>
+      </div>
+      <div class="impact-card">
+        <div class="ic-num">02</div>
+        <h3>採用市場</h3>
+        <p>中小企業の<strong>65.6%が人手不足</strong>を感じる中（東京商工会議所 2024年調査・n=6,013）、応募者側も「効率化された職場かどうか」を、選ぶ基準のひとつにし始めています。</p>
+      </div>
+      <div class="impact-card">
+        <div class="ic-num">03</div>
+        <h3>見積もり・価格競争</h3>
+        <p>AI活用でコストや作業時間を下げた同業他社が、<strong>価格や納期</strong>で優位に立つ場面が増えています。同じ土俵で戦う相手の条件が、静かに変わってきています。</p>
+      </div>
+    </div>
+
+    <p class="disclaimer">※ 上記は各種公表データと現場で見られる一般的な傾向の整理であり、個別企業の業績・存続を保証または断定するものではありません。</p>
+
+    <div class="movers">
+      <div class="movers-text">
+        <h3>一方で、先に動き始めた会社もあります。</h3>
+        <p>議事録の自動化、AI電話受付、間取り図からの3D化、見積もりの自動生成——。AI顧問室が実際に構築したデモと作品を、無料でご覧いただけます。</p>
+      </div>
+      <div class="movers-links">
+        <a href="demos.html" class="btn btn-gold btn-sm">17の構築デモを見る →</a>
+        <a href="works.html" class="btn btn-outline btn-sm">作品ショーケースを見る →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 SOLUTION -->
+<section id="pricing">
+  <div class="container">
+    <span class="section-label">03 ／ SOLUTION</span>
+    <h2 class="section-title">この差に、今から追いつく方法</h2>
+    <p class="section-lead">AI人材を新たに採用するより先に、検討できる選択肢があります。関与の深さで選べる3つのプランです。</p>
+
+    <div class="price-grid">
+      <div class="plan">
+        <div class="name">ライト</div>
+        <div class="position">AI経営の相談役</div>
+        <div class="amount num">15<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（平日随時）</li>
+          <li>定例ミーティング 月1回60分</li>
+          <li>対応はオンライン完結</li>
+          <li>AIツール選定・活用アドバイス</li>
+          <li class="na">AI導入ロードマップ策定</li>
+          <li class="na">業務自動化の実装代行</li>
+          <li class="na">社員向けAI研修</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan featured">
+        <div class="plan-badge">おすすめ</div>
+        <div class="name">スタンダード</div>
+        <div class="position">AI導入の伴走者</div>
+        <div class="amount num">25<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（平日随時）</li>
+          <li>定例ミーティング 月2回</li>
+          <li>訪問対応 月1回まで可</li>
+          <li>AIツール選定・活用アドバイス</li>
+          <li>AI導入ロードマップ策定・伴走</li>
+          <li>小規模な自動化の実装 月1件</li>
+          <li>社員向けAI研修 四半期1回</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-gold">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan">
+        <div class="name">プレミアム</div>
+        <div class="position">社外AI役員</div>
+        <div class="amount num">50<small>万円/月（税別）</small></div>
+        <ul>
+          <li>チャット相談（優先対応）</li>
+          <li>定例ミーティング 月2回（経営会議同席可）</li>
+          <li>訪問対応（回数制限なし）</li>
+          <li>AI経営戦略の立案・推進</li>
+          <li>業務自動化の実装 月3件目安</li>
+          <li>社員向けAI研修 毎月・対面開催可</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+      </div>
+    </div>
+    <p class="price-note">最低契約期間は3ヶ月。プランは途中変更できます。実装内容が大きい場合は個別にお見積りします。デジタル化・AI導入補助金（旧IT導入補助金）・人材開発支援助成金など、活用できる補助金・助成金のご提案も行っています。</p>
+  </div>
+</section>
+
+<!-- 04 CTA -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <h2>数字は、もう出ています。<br>あとは判断だけです。</h2>
+    <p>様子見を続けるか、動き出すか。まずは60分の無料相談で、御社の現在地を一緒に確認しませんか。</p>
+    <div class="cta-btns">
+      <a href="index.html#contact" class="btn btn-gold">無料相談を予約する（60分）</a>
+      <a href="diagnosis.html" class="btn btn-outline">1分でレベル診断</a>
+    </div>
+    <p class="cta-note">しつこい営業は行いません。まずは現状のヒアリングからです。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">提供：AI顧問室｜© 2026</div>
+</footer>
+
+<script>
+  (function () {
+    var bars = document.querySelectorAll('.bar');
+    if (!('IntersectionObserver' in window) || !bars.length) {
+      bars.forEach(function (b) { b.classList.add('on'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('on');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    bars.forEach(function (b) { io.observe(b); });
+  })();
+</script>
+
+</body>
+</html>

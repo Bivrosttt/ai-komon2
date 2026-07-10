@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>御社のAI活用、今レベルいくつ？｜1分レベル診断｜AI顧問室</title>
+<meta name="description" content="Lv.0（未導入）〜Lv.5（エージェント経営）。5つの質問に答えるだけで、御社のAI活用レベルと次にやるべきことが1分で分かります。中小企業のためのAI顧問サービス「AI顧問室」提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="御社のAI活用、今レベルいくつ？｜1分レベル診断｜AI顧問室">
+<meta property="og:description" content="Lv.0（未導入）〜Lv.5（エージェント経営）。5つの質問に答えるだけで、御社のAI活用レベルと次にやるべきことが1分で分かります。中小企業のためのAI顧問サービス「AI顧問室」提供。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/lp-level.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --bg-card: #0F2C52;
+    --line: rgba(255,255,255,0.14);
+    --ink: #F2F4F8;
+    --gray: #96A6BE;
+    --gold: #C9A227;
+    --gold-bright: #F0D273;
+    --blue: #4A8FE0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--navy-deep);
+    color: var(--ink);
+    line-height: 1.85;
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 84px 0; }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 38px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15.5px;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    transition: transform .2s, box-shadow .2s, opacity .2s;
+  }
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+    color: #1A1206;
+    box-shadow: 0 0 0 1px rgba(240,210,115,.5), 0 10px 30px rgba(201,162,39,.35);
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(240,210,115,.7), 0 14px 36px rgba(201,162,39,.5); }
+  .btn-outline { border: 1.5px solid rgba(242,244,248,.35); color: var(--ink); }
+  .btn-outline:hover { border-color: var(--gold-bright); color: var(--gold-bright); }
+  .btn-sub {
+    display: inline-block; font-size: 13.5px; color: var(--gray);
+  }
+  .btn-sub a { color: var(--gold-bright); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(7,26,53,0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: 'Noto Serif JP', serif; font-size: 19px; font-weight: 700; color: var(--ink); letter-spacing: .02em; }
+  .logo span { color: var(--gold-bright); }
+  .header-cta { font-size: 12.5px; color: var(--gray); }
+  .header-cta a { color: var(--gray); text-decoration: underline; text-underline-offset: 3px; }
+  .header-cta a:hover { color: var(--gold-bright); }
+
+  /* Hero */
+  .hero {
+    padding: 76px 0 60px;
+    text-align: center;
+    background:
+      radial-gradient(ellipse 700px 420px at 50% -8%, rgba(201,162,39,.20), transparent 65%),
+      radial-gradient(ellipse 600px 380px at 90% 30%, rgba(74,143,224,.14), transparent 60%),
+      var(--navy-deep);
+  }
+  .hero-label {
+    display: inline-block;
+    font-size: 12px; letter-spacing: .28em; font-weight: 700; color: var(--gold-bright);
+    border: 1px solid rgba(240,210,115,.4); border-radius: 999px; padding: 6px 18px;
+    margin-bottom: 26px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 46px);
+    color: var(--ink);
+    max-width: 760px; margin: 0 auto 18px;
+  }
+  .hero h1 em { font-style: normal; color: var(--gold-bright); }
+  .hero p.sub { color: var(--gray); font-size: 15px; max-width: 520px; margin: 0 auto 46px; }
+
+  /* HUD gauge */
+  .hud {
+    max-width: 560px; margin: 0 auto 40px;
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.01));
+    border: 1px solid rgba(240,210,115,.35);
+    border-radius: 14px;
+    padding: 30px 28px 26px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.2) inset, 0 24px 60px rgba(0,0,0,.35);
+  }
+  .hud-top { display: flex; align-items: baseline; justify-content: center; gap: 14px; margin-bottom: 18px; }
+  .hud-lv {
+    font-family: 'Noto Serif JP', serif; font-weight: 700;
+    font-size: 52px; color: var(--gold-bright);
+    text-shadow: 0 0 18px rgba(240,210,115,.55);
+    min-width: 128px;
+    transition: text-shadow .3s;
+  }
+  .hud-name { font-size: 17px; font-weight: 700; color: var(--ink); }
+  .hud-bar { display: flex; gap: 5px; margin-bottom: 12px; }
+  .hud-seg {
+    flex: 1; height: 12px; border-radius: 999px;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.08);
+    transition: background .35s, box-shadow .35s;
+  }
+  .hud-seg.done {
+    background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+    box-shadow: 0 0 10px rgba(240,210,115,.6);
+    border-color: transparent;
+  }
+  .hud-caption { font-size: 12px; color: var(--gray); letter-spacing: .04em; }
+  .hud-caption strong { color: var(--gold-bright); }
+
+  .hero-ctas { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .hero-ctas .btn-gold { font-size: 17px; padding: 19px 48px; }
+
+  /* Level cards */
+  .levels { background: var(--navy); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .sec-head { text-align: center; margin-bottom: 48px; }
+  .sec-head .label { font-size: 12px; letter-spacing: .25em; color: var(--gold-bright); font-weight: 700; display: block; margin-bottom: 14px; }
+  .sec-head h2 { font-size: clamp(22px, 3.2vw, 30px); color: var(--ink); }
+  .sec-head p.note { color: var(--gray); font-size: 14px; margin-top: 14px; max-width: 560px; margin-left: auto; margin-right: auto; }
+
+  .lv-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  .lv-card {
+    position: relative;
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 22px 16px 18px; text-align: left;
+    transition: border-color .2s, transform .2s;
+  }
+  .lv-card:hover { border-color: rgba(240,210,115,.5); transform: translateY(-4px); }
+  .lv-card.hi { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(201,162,39,.35); }
+  .lv-ribbon {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: #1A1206; font-size: 10px; font-weight: 700;
+    padding: 3px 10px; border-radius: 999px; white-space: nowrap;
+  }
+  .lv-num { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 700; color: var(--gold-bright); }
+  .lv-name { font-size: 14px; font-weight: 700; color: var(--ink); margin: 6px 0 10px; }
+  .lv-desc { font-size: 12px; color: var(--gray); line-height: 1.7; }
+
+  @media (max-width: 980px) {
+    .lv-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 620px) {
+    .lv-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Pitfall */
+  .pitfall .container { max-width: 820px; text-align: center; }
+  .pitfall h2 { font-size: clamp(22px, 3.4vw, 32px); margin-bottom: 22px; }
+  .pitfall h2 em { font-style: normal; color: var(--gold-bright); }
+  .pitfall p { color: var(--gray); font-size: 14.5px; max-width: 660px; margin: 0 auto; }
+  .skip-compare { display: flex; gap: 18px; justify-content: center; margin: 40px 0; flex-wrap: wrap; }
+  .skip-box {
+    flex: 1; min-width: 240px; max-width: 320px;
+    border-radius: 10px; padding: 22px; text-align: left;
+  }
+  .skip-box.bad { background: rgba(200,60,60,.08); border: 1px solid rgba(220,90,90,.35); }
+  .skip-box.good { background: rgba(74,143,224,.08); border: 1px solid rgba(74,143,224,.4); }
+  .skip-box .tag { font-size: 12px; font-weight: 700; letter-spacing: .06em; margin-bottom: 10px; display: block; }
+  .skip-box.bad .tag { color: #E48787; }
+  .skip-box.good .tag { color: var(--blue); }
+  .skip-box .steps { display: flex; align-items: center; gap: 6px; font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 15px; margin-bottom: 12px; flex-wrap: wrap; }
+  .skip-box .steps span.arrow { color: var(--gray); font-family: inherit; font-weight: 400; }
+  .skip-box.bad .steps span.jump { color: #E48787; }
+  .skip-box.good .steps span.step { color: var(--gold-bright); }
+  .skip-box p { font-size: 12.5px; color: var(--gray); text-align: left; margin: 0; }
+
+  /* Reveal (what diagnosis shows) */
+  .reveal { background: var(--navy); border-bottom: 1px solid var(--line); }
+  .reveal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .reveal-card {
+    background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px; padding: 30px 26px; text-align: center;
+  }
+  .reveal-card .r-icon {
+    width: 52px; height: 52px; border-radius: 50%; margin: 0 auto 18px;
+    background: radial-gradient(circle, rgba(240,210,115,.25), transparent 70%);
+    border: 1.5px solid var(--gold-bright);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 18px; color: var(--gold-bright);
+  }
+  .reveal-card h3 { font-size: 16px; color: var(--ink); margin-bottom: 10px; }
+  .reveal-card p { font-size: 13px; color: var(--gray); }
+  @media (max-width: 820px) { .reveal-grid { grid-template-columns: 1fr; } }
+
+  .reveal-cta { text-align: center; margin-top: 44px; }
+
+  /* Pricing (sub) */
+  .pricing { padding-top: 70px; }
+  .pricing .sec-head .label { color: var(--gray); }
+  .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 880px; margin: 0 auto; }
+  .plan {
+    background: rgba(255,255,255,.03); border: 1px solid var(--line); border-radius: 8px;
+    padding: 26px 22px; text-align: center;
+  }
+  .plan.featured { border-color: rgba(201,162,39,.5); }
+  .plan .name { font-family: 'Noto Serif JP', serif; font-size: 16px; color: var(--ink); }
+  .plan .position { font-size: 11px; color: var(--gold-bright); font-weight: 700; margin: 6px 0 14px; }
+  .plan .amount { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 700; color: var(--ink); }
+  .plan .amount small { font-size: 12px; font-weight: 400; color: var(--gray); }
+  .price-note { text-align: center; font-size: 12.5px; color: var(--gray); margin-top: 24px; }
+
+  /* Final CTA */
+  .cta {
+    text-align: center;
+    background: radial-gradient(ellipse 700px 400px at 50% 10%, rgba(201,162,39,.16), transparent 65%), var(--navy-deep);
+    border-top: 1px solid var(--line);
+  }
+  .cta h2 { font-size: clamp(24px, 3.6vw, 34px); margin-bottom: 16px; }
+  .cta p { color: var(--gray); margin-bottom: 34px; font-size: 14.5px; }
+  .cta .btn-gold { font-size: 17px; padding: 19px 50px; }
+
+  footer { border-top: 1px solid var(--line); color: var(--gray); font-size: 11.5px; padding: 30px 0; text-align: center; }
+
+  /* Mobile sticky CTA */
+  .mobile-cta { display: none; }
+  @media (max-width: 820px) {
+    section { padding: 58px 0; }
+    .mobile-cta {
+      display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+      background: var(--navy); border-top: 1px solid var(--line);
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); gap: 10px;
+      transform: translateY(110%); transition: transform .3s;
+    }
+    .mobile-cta.show { transform: translateY(0); }
+    .mobile-cta a { flex: 1; text-align: center; padding: 13px 0; border-radius: 4px; font-weight: 700; font-size: 13.5px; }
+    .mobile-cta .mc-diag { background: linear-gradient(135deg, var(--gold-bright), var(--gold)); color: #1A1206; }
+    .mobile-cta .mc-consult { border: 1.5px solid rgba(242,244,248,.35); color: var(--ink); }
+    body { padding-bottom: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hud-seg, .hud-lv { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">AI顧問室<span>.</span></a>
+    <div class="header-cta">無料相談だけしたい方は <a href="index.html#contact">こちら →</a></div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="hero-label">AI KOMONSHITSU — LEVEL CHECK</span>
+    <h1>御社のAI活用、<br>今、<em>レベルいくつ</em>？</h1>
+    <p class="sub">Lv.0（未導入）〜Lv.5（エージェント経営）。5つの質問に答えるだけで、御社の現在地と次の一手が分かります。</p>
+
+    <div class="hud">
+      <div class="hud-top">
+        <div class="hud-lv" id="hudLv">Lv.0</div>
+        <div class="hud-name" id="hudName">未導入期</div>
+      </div>
+      <div class="hud-bar" id="hudBar">
+        <div class="hud-seg" data-i="0"></div>
+        <div class="hud-seg" data-i="1"></div>
+        <div class="hud-seg" data-i="2"></div>
+        <div class="hud-seg" data-i="3"></div>
+        <div class="hud-seg" data-i="4"></div>
+        <div class="hud-seg" data-i="5"></div>
+      </div>
+      <p class="hud-caption">▲ 自動再生中のサンプルです。<strong>御社の実際のレベル</strong>は診断で分かります</p>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="diagnosis.html" class="btn btn-gold">1分でレベル診断する →</a>
+      <p class="btn-sub">じっくり相談したい方は <a href="index.html#contact">無料相談</a> へ</p>
+    </div>
+  </div>
+</div>
+
+<section class="levels" id="levels">
+  <div class="container">
+    <div class="sec-head">
+      <span class="label">LEVEL MAP</span>
+      <h2>Lv.0〜Lv.5、御社はどこにいますか？</h2>
+      <p class="note">大事なのは、レベルを1段ずつ確実に上げること。まずは自社の現在地を知るところからです。</p>
+    </div>
+    <div class="lv-grid">
+      <div class="lv-card">
+        <div class="lv-num">Lv.0</div>
+        <div class="lv-name">未導入</div>
+        <div class="lv-desc">まだ何も使っていない。ニュースを見て焦りだけが募っている状態。</div>
+      </div>
+      <div class="lv-card hi">
+        <span class="lv-ribbon">多くのお客様はここから</span>
+        <div class="lv-num">Lv.1</div>
+        <div class="lv-name">お試し</div>
+        <div class="lv-desc">ChatGPTを触ってみた。でも業務はまだ何も変わっていない。</div>
+      </div>
+      <div class="lv-card">
+        <div class="lv-num">Lv.2</div>
+        <div class="lv-name">日常化</div>
+        <div class="lv-desc">全社員が毎日使っている。社内ルールと研修も整っている。</div>
+      </div>
+      <div class="lv-card">
+        <div class="lv-num">Lv.3</div>
+        <div class="lv-name">業務組み込み</div>
+        <div class="lv-desc">見積AI・議事録AIなど、御社専用のAIが業務に組み込まれている。</div>
+      </div>
+      <div class="lv-card">
+        <div class="lv-num">Lv.4</div>
+        <div class="lv-name">自動化</div>
+        <div class="lv-desc">問い合わせ対応やSNS運用が、人の指示なしでも回り始める。</div>
+      </div>
+      <div class="lv-card hi">
+        <span class="lv-ribbon">顧問がめざすゴール</span>
+        <div class="lv-num">Lv.5</div>
+        <div class="lv-name">エージェント経営</div>
+        <div class="lv-desc">AIエージェントが調査から実行までこなす。AIが「働き手」になる段階。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pitfall">
+  <div class="container">
+    <h2>レベルを<em>飛ばす</em>と、失敗します。</h2>
+    <p>Lv.1の会社にいきなり自動化AIを売り込んでも、社内がついてこず定着しません。逆に、いまのレベルに合った一歩なら、無理なく前に進めます。</p>
+    <div class="skip-compare">
+      <div class="skip-box bad">
+        <span class="tag">✕ よくある失敗</span>
+        <div class="steps">Lv.1 <span class="arrow jump">――――――――▶</span> Lv.4</div>
+        <p>いきなり全自動化を導入 → 社員が使いこなせず、結局元の業務に戻ってしまう。</p>
+      </div>
+      <div class="skip-box good">
+        <span class="tag">○ 顧問室のやり方</span>
+        <div class="steps"><span class="step">Lv.1</span><span class="arrow">▶</span><span class="step">Lv.2</span><span class="arrow">▶</span><span class="step">Lv.3</span><span class="arrow">▶</span>…</div>
+        <p>いまのレベルに合った次の一段だけを、確実に。1段ずつ登り、最終的には自社だけで登り続けられる「自走」をめざします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="container">
+    <div class="sec-head">
+      <span class="label">WHAT YOU'LL GET</span>
+      <h2>1分の診断で、3つが分かります。</h2>
+    </div>
+    <div class="reveal-grid">
+      <div class="reveal-card">
+        <div class="r-icon">①</div>
+        <h3>現在地</h3>
+        <p>5つの質問から、御社がLv.0〜5のどこにいるかが分かります。</p>
+      </div>
+      <div class="reveal-card">
+        <div class="r-icon">②</div>
+        <h3>次の一手</h3>
+        <p>いまのレベルから次に取り組むべきことを、具体的に示します。</p>
+      </div>
+      <div class="reveal-card">
+        <div class="r-icon">③</div>
+        <h3>進め方の目安</h3>
+        <p>レベルに応じた、無理のない支援の受け方の目安が分かります。</p>
+      </div>
+    </div>
+    <div class="reveal-cta">
+      <a href="diagnosis.html" class="btn btn-gold">1分でレベル診断する →</a>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="sec-head">
+      <span class="label">REFERENCE — 料金プラン（参考）</span>
+      <h2 style="font-size:20px;">本格的に伴走を依頼する場合の目安</h2>
+      <p class="note">プランは診断結果と無料相談を踏まえてご提案します。まずは診断からどうぞ。</p>
+    </div>
+    <div class="price-grid">
+      <div class="plan">
+        <div class="name">ライト</div>
+        <div class="position">AI経営の相談役</div>
+        <div class="amount">15<small>万円/月（税別）</small></div>
+      </div>
+      <div class="plan featured">
+        <div class="name">スタンダード</div>
+        <div class="position">AI導入の伴走者・おすすめ</div>
+        <div class="amount">25<small>万円/月（税別）</small></div>
+      </div>
+      <div class="plan">
+        <div class="name">プレミアム</div>
+        <div class="position">社外AI役員</div>
+        <div class="amount">50<small>万円/月（税別）</small></div>
+      </div>
+    </div>
+    <p class="price-note">最低契約期間は3ヶ月。詳しい内容は無料相談でご案内します。</p>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>まずは1分、レベルを診断しませんか？</h2>
+    <p>現在地が分かれば、次にやるべきことが見えてきます。</p>
+    <a href="diagnosis.html" class="btn btn-gold">1分でレベル診断する →</a>
+    <p class="btn-sub" style="margin-top:20px;">じっくり相談したい方は <a href="index.html#contact">無料相談を予約</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>提供：AI顧問室｜© 2026</p>
+  </div>
+</footer>
+
+<div class="mobile-cta" id="mobile-cta">
+  <a href="diagnosis.html" class="mc-diag">1分レベル診断</a>
+  <a href="index.html#contact" class="mc-consult">無料相談</a>
+</div>
+
+<script>
+(function () {
+  var bar = document.getElementById('mobile-cta');
+  var shown = false;
+  window.addEventListener('scroll', function () {
+    var s = window.scrollY > 500;
+    if (s !== shown) { shown = s; bar.classList.toggle('show', s); }
+  }, { passive: true });
+
+  var NAMES = ['未導入期', 'お試し期', '日常化期', '業務組み込み期', '自動化期', 'エージェント経営期'];
+  var hudLv = document.getElementById('hudLv');
+  var hudName = document.getElementById('hudName');
+  var segs = document.querySelectorAll('.hud-seg');
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setLevel(n) {
+    hudLv.textContent = 'Lv.' + n;
+    hudName.textContent = NAMES[n];
+    segs.forEach(function (seg) {
+      var i = parseInt(seg.getAttribute('data-i'), 10);
+      seg.classList.toggle('done', i <= n);
+    });
+  }
+
+  setLevel(1);
+
+  if (!reduced) {
+    var cur = 1;
+    var dir = 1;
+    setInterval(function () {
+      cur += dir;
+      if (cur >= 5) { cur = 5; dir = -1; }
+      else if (cur <= 0) { cur = 0; dir = 1; }
+      setLevel(cur);
+    }, 1300);
+  }
+})();
+</script>
+
+</body>
+</html>
