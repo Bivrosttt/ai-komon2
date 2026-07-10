@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>モーション動画サンプル｜AI顧問室</title>
+<meta name="description" content="20秒のモーション動画サンプルをブラウザで再生。AIとコードで動画クオリティのコンテンツも制作できることを、架空のベーカリー新商品紹介ムービーで実演します。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="モーション動画サンプル｜AI顧問室">
+<meta property="og:description" content="20秒のモーション動画サンプルをブラウザで再生。AIとコードで動画クオリティのコンテンツも制作できることを、架空のベーカリー新商品紹介ムービーで実演します。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-motion.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    --red: #B0432F;
+    /* bakery / movie palette */
+    --bk-cream: #F7ECD8;
+    --bk-cream-deep: #EFDCB6;
+    --bk-choco: #4A3222;
+    --bk-choco-deep: #2A1B10;
+    --bk-brown: #8B5E34;
+    --bk-gold: #C9972E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 68px; gap: 16px; flex-wrap: nowrap;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; flex-shrink: 0; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; white-space: nowrap; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; white-space: nowrap; }
+  .header-right a.textlink:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s, transform .1s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+  .header-cta { padding: 10px 24px; font-size: 14px; white-space: nowrap; }
+
+  /* Hero */
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 80px 0 64px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    color: #DCE6F5;
+  }
+  .demo-hero h1 { font-size: 38px; margin-bottom: 20px; }
+  .demo-hero h1 em { font-style: normal; color: var(--gold); }
+  .demo-hero p.sub { font-size: 16px; color: #C7D3E4; max-width: 640px; }
+
+  /* Note banner */
+  .note-banner { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding-top: 18px; padding-bottom: 18px; }
+  .note-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--white);
+    border-radius: 4px; padding: 14px 20px; font-size: 13.5px; color: var(--gray);
+    max-width: 900px;
+  }
+  .note-box .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .note-box strong { color: var(--ink); }
+
+  /* ===== Movie player ===== */
+  .movie-section { background: var(--white); }
+  .movie-wrap { max-width: 960px; margin: 0 auto; }
+
+  .movie-theater {
+    background: var(--bk-choco-deep);
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(11,36,71,0.22);
+    overflow: hidden;
+  }
+  .movie-titlebar {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 18px;
+    background: linear-gradient(180deg, #1c130c, #150e08);
+    color: #C9B9A6;
+    font-size: 12.5px;
+  }
+  .movie-titlebar .dot3 { display: flex; gap: 6px; flex-shrink: 0; }
+  .movie-titlebar .dot3 span { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.22); }
+  .movie-titlebar .movie-filename { letter-spacing: 0.03em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .movie-titlebar .movie-tag {
+    margin-left: auto; flex-shrink: 0;
+    font-size: 11px; letter-spacing: 0.06em; color: var(--bk-gold);
+    border: 1px solid rgba(201,151,46,0.5); border-radius: 999px; padding: 3px 12px;
+    white-space: nowrap;
+  }
+
+  .movie-frame-wrap { padding: 18px; }
+  .movie-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+    --mscale: 1;
+  }
+  .movie-frame::after {
+    content: "";
+    position: absolute; inset: 0;
+    box-shadow: inset 0 0 70px rgba(0,0,0,0.4);
+    pointer-events: none;
+    z-index: 8;
+  }
+
+  .scene {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    overflow: hidden;
+    will-change: opacity;
+  }
+
+  /* Scene 1: logotype intro */
+  #scene-s1 { background: radial-gradient(120% 120% at 30% 20%, var(--bk-cream) 0%, var(--bk-cream-deep) 100%); }
+  .s1-orb { position: absolute; border-radius: 50%; filter: blur(30px); opacity: 0.5; animation: s1float 7s ease-in-out infinite; }
+  .s1-orb.a { width: 30%; height: 30%; left: 6%; top: 12%; background: var(--bk-gold); animation-delay: 0s; }
+  .s1-orb.b { width: 22%; height: 22%; right: 8%; bottom: 14%; background: var(--bk-brown); opacity: 0.28; animation-delay: 2.4s; }
+  @keyframes s1float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4%); } }
+  .s1-inner { position: relative; text-align: center; z-index: 2; padding: 0 6%; }
+  .s1-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: calc(58px * var(--mscale));
+    color: var(--bk-choco);
+    text-transform: uppercase;
+    opacity: 0;
+    letter-spacing: 0.5em;
+  }
+  .s1-rule {
+    width: calc(140px * var(--mscale));
+    height: 2px;
+    background: var(--bk-gold);
+    margin: calc(18px * var(--mscale)) auto;
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  .s1-sub {
+    font-size: calc(16px * var(--mscale));
+    color: var(--bk-brown);
+    letter-spacing: 0.06em;
+    opacity: 0;
+  }
+
+  /* Scene 2: product + copy */
+  #scene-s2 { background: #000; }
+  .s2-media { position: absolute; inset: 0; }
+  .s2-media img {
+    width: 100%; height: 100%; object-fit: cover;
+    transform-origin: center center;
+    will-change: transform;
+  }
+  .s2-scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(20,10,5,0.88) 0%, rgba(20,10,5,0.35) 42%, rgba(20,10,5,0) 68%);
+  }
+  .s2-text {
+    position: absolute; left: calc(6% * var(--mscale) + 4%); right: 8%; bottom: 8%;
+    color: #FBF3E4; z-index: 2;
+  }
+  .s2-kicker {
+    display: inline-block;
+    background: var(--bk-gold); color: var(--bk-choco-deep);
+    font-weight: 700; letter-spacing: 0.05em;
+    font-size: calc(13px * var(--mscale));
+    padding: calc(5px * var(--mscale)) calc(14px * var(--mscale));
+    border-radius: 999px;
+    margin-bottom: calc(14px * var(--mscale));
+    opacity: 0;
+  }
+  .s2-headline {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 700;
+    font-size: calc(38px * var(--mscale));
+    line-height: 1.35;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.5);
+    opacity: 0;
+  }
+  .s2-desc {
+    margin-top: calc(12px * var(--mscale));
+    font-size: calc(15px * var(--mscale));
+    color: #E8DAC4;
+    opacity: 0;
+  }
+
+  /* Scene 3: features */
+  #scene-s3 { background: linear-gradient(160deg, var(--bk-cream) 0%, var(--bk-cream-deep) 100%); }
+  .s3-inner { text-align: center; width: 100%; padding: 0 5%; }
+  .s3-kicker {
+    font-size: calc(14px * var(--mscale));
+    letter-spacing: 0.1em;
+    color: var(--bk-brown);
+    font-weight: 700;
+    margin-bottom: calc(28px * var(--mscale));
+    opacity: 0;
+  }
+  .s3-badges {
+    display: flex; align-items: flex-start; justify-content: center;
+    gap: calc(28px * var(--mscale));
+  }
+  .s3-badge { display: flex; flex-direction: column; align-items: center; gap: calc(12px * var(--mscale)); opacity: 0; }
+  .s3-circle {
+    width: calc(96px * var(--mscale)); height: calc(96px * var(--mscale));
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--bk-gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: calc(38px * var(--mscale));
+    box-shadow: 0 8px 20px rgba(74,50,34,0.15);
+  }
+  .s3-label {
+    font-size: calc(14.5px * var(--mscale));
+    font-weight: 700;
+    color: var(--bk-choco);
+    line-height: 1.4;
+  }
+
+  /* Scene 4: price */
+  #scene-s4 { background: linear-gradient(160deg, var(--bk-cream-deep) 0%, var(--bk-cream) 60%, var(--bk-cream-deep) 100%); }
+  .s4-inner { position: relative; text-align: center; }
+  .s4-burst {
+    position: absolute; left: 50%; top: 46%;
+    width: calc(280px * var(--mscale)); height: calc(280px * var(--mscale));
+    transform: translate(-50%,-50%) scale(0);
+    border-radius: 50%;
+    background: repeating-conic-gradient(var(--bk-gold) 0deg 9deg, transparent 9deg 20deg);
+    opacity: 0;
+  }
+  .s4-price-row {
+    position: relative; z-index: 2;
+    display: flex; align-items: flex-end; justify-content: center; gap: calc(6px * var(--mscale));
+    transform: scale(0);
+    opacity: 0;
+  }
+  .s4-yen { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: calc(46px * var(--mscale)); color: var(--bk-choco); padding-bottom: calc(14px * var(--mscale)); }
+  .s4-price { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: calc(112px * var(--mscale)); color: var(--bk-choco); line-height: 1; }
+  .s4-tax { font-size: calc(18px * var(--mscale)); color: var(--bk-brown); font-weight: 700; padding-bottom: calc(18px * var(--mscale)); opacity: 0; }
+  .s4-sub {
+    position: relative; z-index: 2;
+    margin-top: calc(14px * var(--mscale));
+    font-size: calc(19px * var(--mscale));
+    color: var(--bk-choco);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    opacity: 0;
+  }
+
+  /* Scene 5: closing */
+  #scene-s5 { background: radial-gradient(120% 120% at 70% 80%, var(--bk-cream) 0%, var(--bk-cream-deep) 100%); }
+  .s5-inner { text-align: center; padding: 0 6%; }
+  .s5-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: calc(30px * var(--mscale));
+    letter-spacing: 0.4em;
+    color: var(--bk-choco);
+    text-transform: uppercase;
+    opacity: 0;
+  }
+  .s5-store {
+    margin-top: calc(16px * var(--mscale));
+    font-size: calc(19px * var(--mscale));
+    color: var(--bk-choco);
+    font-weight: 700;
+    opacity: 0;
+  }
+  .s5-hours {
+    margin-top: calc(8px * var(--mscale));
+    font-size: calc(14px * var(--mscale));
+    color: var(--bk-brown);
+    opacity: 0;
+  }
+
+  /* Poster / overlay */
+  .movie-poster {
+    position: absolute; inset: 0; z-index: 10;
+    background: rgba(20,12,6,0.5);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    cursor: pointer;
+    transition: opacity .35s ease;
+  }
+  .movie-poster.hidden { opacity: 0; pointer-events: none; }
+  .poster-btn {
+    width: 76px; height: 76px; border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    transition: transform .15s;
+  }
+  .movie-poster:hover .poster-btn { transform: scale(1.06); }
+  .poster-btn .tri {
+    width: 0; height: 0;
+    border-top: 14px solid transparent;
+    border-bottom: 14px solid transparent;
+    border-left: 22px solid var(--navy-deep);
+    margin-left: 6px;
+  }
+  .poster-btn .reload { font-size: 30px; color: var(--navy-deep); line-height: 1; }
+  .poster-caption { color: #F6EEDD; font-size: 13.5px; letter-spacing: 0.04em; }
+
+  /* Controls */
+  .movie-controls {
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 18px 18px;
+  }
+  .ctrl-btn {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.08);
+    color: #F1E7D6;
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 999px;
+    padding: 9px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .15s, border-color .15s;
+  }
+  .ctrl-btn:hover { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.3); }
+  .progress-track {
+    flex: 1; height: 6px; border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+    position: relative; cursor: pointer;
+  }
+  .progress-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; border-radius: 999px; background: var(--gold); }
+  .time-label {
+    font-size: 12.5px; color: #C9B9A6; min-width: 86px; text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .movie-caption { text-align: center; margin-top: 22px; font-size: 13.5px; color: var(--gray); }
+  .movie-caption strong { color: var(--navy); }
+
+  /* Explanation / chips */
+  .how { background: var(--bg-soft); }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+  .chip-heading { font-size: 13.5px; font-weight: 700; color: var(--navy); letter-spacing: 0.03em; }
+  .chip {
+    display: inline-flex; align-items: center;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: var(--white);
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .demo-hero h1 { font-size: 27px; }
+    .section-title { font-size: 26px; }
+    .demo-hero { padding: 56px 0 44px; }
+    .header-right a.textlink { display: none; }
+    .movie-frame-wrap { padding: 10px; }
+    .movie-controls { padding: 10px 12px 14px; gap: 10px; flex-wrap: wrap; }
+    .time-label { min-width: 72px; font-size: 11.5px; }
+    .ctrl-btn { padding: 8px 14px; font-size: 12px; }
+    .s3-badges { gap: calc(14px * var(--mscale)); }
+  }
+  @media (max-width: 480px) {
+    .movie-titlebar .movie-tag { display: none; }
+    .logo span { display: none; }
+    .logo strong { font-size: 19px; }
+    .header-cta { padding: 9px 16px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-right">
+      <a href="works.html" class="textlink">作品一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">作品サンプル｜モーション動画</span>
+    <h1>静止画だけじゃない。<br>AIとコードで、<em>動画クオリティ</em>まで。</h1>
+    <p class="sub">商品紹介・会社紹介・操作マニュアルなど、動画コンテンツもコードで設計・生成できます。下の再生ボタンから、実際の20秒サンプルムービーをご覧ください。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container">
+    <div class="note-box">
+      <span class="mark">※</span>
+      <span><strong>このムービーは架空の店舗「サンプルベーカリー」を題材にしたデモです。</strong>写真・商品名・価格はすべてサンプルであり、実在の店舗とは関係ありません。実際の制作では、御社の商品写真・ブランドカラー・コピーに合わせて一から設計します。</span>
+    </div>
+  </div>
+</div>
+
+<section class="movie-section" id="movie">
+  <div class="container">
+    <span class="section-label">SHOWCASE</span>
+    <h2 class="section-title">サンプルベーカリー 新商品紹介ムービー</h2>
+    <p class="section-lead">▶を押すと約20秒のムービーが再生されます。カット割り・テキストの動き・タイミングまで、すべてコードで設計しています。</p>
+
+    <div class="movie-wrap">
+      <div class="movie-theater">
+        <div class="movie-titlebar">
+          <span class="dot3"><span></span><span></span><span></span></span>
+          <span class="movie-filename">SAMPLE_BAKERY_PROMO_v3.mp4</span>
+          <span class="movie-tag">AI + Code 生成</span>
+        </div>
+
+        <div class="movie-frame-wrap">
+          <div class="movie-frame" id="movieFrame" style="--mscale:1;">
+
+            <div class="scene" id="scene-s1">
+              <div class="s1-orb a"></div>
+              <div class="s1-orb b"></div>
+              <div class="s1-inner">
+                <div class="s1-title" id="s1Title">SAMPLE BAKERY</div>
+                <div class="s1-rule" id="s1Rule"></div>
+                <div class="s1-sub" id="s1Sub">焼きたての、しあわせなひととき。</div>
+              </div>
+            </div>
+
+            <div class="scene" id="scene-s2">
+              <div class="s2-media"><img src="assets/works/product-danish.jpg" id="s2Img" alt="栗と発酵バターのデニッシュ"></div>
+              <div class="s2-scrim"></div>
+              <div class="s2-text">
+                <span class="s2-kicker" id="s2Kicker">秋の新商品</span>
+                <div class="s2-headline" id="s2Headline">栗と発酵バターの<br>デニッシュ</div>
+                <p class="s2-desc" id="s2Desc">ひとくちで香る、栗と発酵バターの余韻。</p>
+              </div>
+            </div>
+
+            <div class="scene" id="scene-s3">
+              <div class="s3-inner">
+                <div class="s3-kicker" id="s3Kicker">3つのこだわり</div>
+                <div class="s3-badges">
+                  <div class="s3-badge" id="s3B1">
+                    <span class="s3-circle">🌰</span>
+                    <span class="s3-label">国産栗の<br>渋皮煮</span>
+                  </div>
+                  <div class="s3-badge" id="s3B2">
+                    <span class="s3-circle">🧈</span>
+                    <span class="s3-label">発酵バター<br>100%</span>
+                  </div>
+                  <div class="s3-badge" id="s3B3">
+                    <span class="s3-circle">📅</span>
+                    <span class="s3-label">10月限定</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="scene" id="scene-s4">
+              <div class="s4-inner">
+                <div class="s4-burst" id="s4Burst"></div>
+                <div class="s4-price-row" id="s4PriceRow">
+                  <span class="s4-yen">¥</span><span class="s4-price">380</span><span class="s4-tax" id="s4Tax">(税込)</span>
+                </div>
+                <div class="s4-sub" id="s4Sub">毎朝10時焼きたて</div>
+              </div>
+            </div>
+
+            <div class="scene" id="scene-s5">
+              <div class="s5-inner">
+                <div class="s5-logo" id="s5Logo">SAMPLE BAKERY</div>
+                <div class="s5-store" id="s5Store">サンプルベーカリー 駅前本店</div>
+                <div class="s5-hours" id="s5Hours">営業時間 8:00-19:00（水曜定休）</div>
+              </div>
+            </div>
+
+            <div class="movie-poster" id="moviePoster">
+              <div class="poster-btn" id="posterBtn"><span class="tri"></span></div>
+              <div class="poster-caption" id="posterCaption">クリックしてムービーを再生（20秒）</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-controls">
+          <button type="button" class="ctrl-btn" id="playBtn">▶ 再生</button>
+          <button type="button" class="ctrl-btn" id="restartBtn">↺ もう一度</button>
+          <div class="progress-track" id="progressTrack">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <span class="time-label" id="timeLabel">0:00 / 0:23</span>
+        </div>
+      </div>
+
+      <p class="movie-caption">このムービーは<strong>コード（HTML/CSS/JavaScript）だけ</strong>で動いています。音楽やナレーションはなく、動きのリズムで魅せる構成です。</p>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="container">
+    <span class="section-label">HOW IT WORKS</span>
+    <h2 class="section-title">実際の制作では、こう活用します</h2>
+
+    <div class="note-box" style="margin-bottom:8px;">
+      <span class="mark">※</span>
+      <span>このムービーはコードで生成しています。実案件では<strong>Remotion等のOSS</strong>でMP4動画として書き出し、SNS広告・店頭サイネージ・採用動画などに使えます。写真はAI生成のサンプルです。</span>
+    </div>
+
+    <div class="chip-row" style="margin-top:40px;">
+      <span class="chip-heading" style="align-self:center; margin-right:6px;">コードから作れる動画コンテンツ：</span>
+      <span class="chip">商品紹介</span>
+      <span class="chip">会社紹介</span>
+      <span class="chip">操作マニュアル動画</span>
+      <span class="chip">採用ムービー</span>
+      <span class="chip">SNS広告</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>動画コンテンツの制作も、AI顧問室にご相談ください</h2>
+    <p>「こんな動画を作りたい」というイメージだけで構いません。<br>まずは無料相談で、御社のご要望をお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="works.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">他の作品を見る</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var TOTAL = 23000;
+  var FADE_IN = 400;
+
+  var SCENES = [
+    { id: "s1", start: 0,     end: 3200,  fadeOut: 400 },
+    { id: "s2", start: 2800,  end: 8400,  fadeOut: 400 },
+    { id: "s3", start: 8000,  end: 13400, fadeOut: 400 },
+    { id: "s4", start: 13000, end: 18400, fadeOut: 400 },
+    { id: "s5", start: 18000, end: 23000, fadeOut: 1800 }
+  ];
+
+  function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function easeOutCubic(x) { return 1 - Math.pow(1 - x, 3); }
+  function easeOutQuint(x) { return 1 - Math.pow(1 - x, 5); }
+  function easeInOutSine(x) { return -(Math.cos(Math.PI * x) - 1) / 2; }
+  function easeOutBack(x) {
+    var c1 = 1.70158, c3 = c1 + 1;
+    return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+  }
+  function easeOutElastic(x) {
+    var c4 = (2 * Math.PI) / 3;
+    if (x <= 0) return 0;
+    if (x >= 1) return 1;
+    return Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1;
+  }
+  function prog(localT, from, to, ease) {
+    var p = clamp01((localT - from) / (to - from));
+    return ease ? ease(p) : p;
+  }
+
+  function sceneOpacity(scene, t) {
+    var fadeInEnd = scene.start + FADE_IN;
+    var fadeOutStart = scene.end - scene.fadeOut;
+    if (t < scene.start) return 0;
+    if (t < fadeInEnd) return clamp01((t - scene.start) / FADE_IN);
+    if (t <= fadeOutStart) return 1;
+    if (t < scene.end) return clamp01(1 - (t - fadeOutStart) / scene.fadeOut);
+    return 0;
+  }
+
+  var movieFrame = document.getElementById("movieFrame");
+  var moviePoster = document.getElementById("moviePoster");
+  var posterBtn = document.getElementById("posterBtn");
+  var posterCaption = document.getElementById("posterCaption");
+  var playBtn = document.getElementById("playBtn");
+  var restartBtn = document.getElementById("restartBtn");
+  var progressTrack = document.getElementById("progressTrack");
+  var progressFill = document.getElementById("progressFill");
+  var timeLabel = document.getElementById("timeLabel");
+
+  var sceneEls = {};
+  SCENES.forEach(function (s) { sceneEls[s.id] = document.getElementById("scene-" + s.id); });
+
+  var s1Title = document.getElementById("s1Title");
+  var s1Rule = document.getElementById("s1Rule");
+  var s1Sub = document.getElementById("s1Sub");
+
+  var s2Img = document.getElementById("s2Img");
+  var s2Kicker = document.getElementById("s2Kicker");
+  var s2Headline = document.getElementById("s2Headline");
+  var s2Desc = document.getElementById("s2Desc");
+
+  var s3Kicker = document.getElementById("s3Kicker");
+  var s3B1 = document.getElementById("s3B1");
+  var s3B2 = document.getElementById("s3B2");
+  var s3B3 = document.getElementById("s3B3");
+
+  var s4Burst = document.getElementById("s4Burst");
+  var s4PriceRow = document.getElementById("s4PriceRow");
+  var s4Tax = document.getElementById("s4Tax");
+  var s4Sub = document.getElementById("s4Sub");
+
+  var s5Logo = document.getElementById("s5Logo");
+  var s5Store = document.getElementById("s5Store");
+  var s5Hours = document.getElementById("s5Hours");
+
+  var mscale = 1;
+  function updateScale() {
+    var w = movieFrame.getBoundingClientRect().width;
+    if (w > 0) {
+      mscale = w / 960;
+      movieFrame.style.setProperty("--mscale", mscale.toFixed(4));
+    }
+  }
+  updateScale();
+  window.addEventListener("resize", updateScale);
+  if (window.ResizeObserver) {
+    new ResizeObserver(updateScale).observe(movieFrame);
+  }
+
+  function renderS1(localT) {
+    var pTitle = prog(localT, 0, 1100, easeOutCubic);
+    s1Title.style.opacity = clamp01(localT / 700);
+    s1Title.style.letterSpacing = lerp(0.55, 0.14, pTitle) + "em";
+    s1Title.style.transform = "translateY(" + (lerp(10, 0, pTitle) * mscale) + "px)";
+
+    var pRule = prog(localT, 700, 1500, easeOutCubic);
+    s1Rule.style.transform = "scaleX(" + pRule + ")";
+    s1Rule.style.opacity = pRule > 0 ? 1 : 0;
+
+    var pSub = prog(localT, 500, 1300, easeOutCubic);
+    s1Sub.style.opacity = pSub;
+    s1Sub.style.transform = "translateY(" + (lerp(10, 0, pSub) * mscale) + "px)";
+  }
+
+  function renderS2(localT) {
+    var dur = 5600;
+    var kb = easeInOutSine(clamp01(localT / dur));
+    s2Img.style.transform = "scale(" + lerp(1.0, 1.16, kb) + ") translate(" + lerp(-2, 2, kb) + "%," + lerp(-1, 1, kb) + "%)";
+
+    var pKicker = prog(localT, 200, 700, easeOutCubic);
+    s2Kicker.style.opacity = pKicker;
+    s2Kicker.style.transform = "translateX(" + (lerp(-16, 0, pKicker) * mscale) + "px)";
+
+    var pHead = prog(localT, 550, 1250, easeOutQuint);
+    s2Headline.style.opacity = pHead;
+    s2Headline.style.transform = "translateY(" + (lerp(26, 0, pHead) * mscale) + "px)";
+
+    var pDesc = prog(localT, 1100, 1700, easeOutCubic);
+    s2Desc.style.opacity = pDesc;
+    s2Desc.style.transform = "translateY(" + (lerp(14, 0, pDesc) * mscale) + "px)";
+  }
+
+  function renderBadge(el, localT, from, to, globalT, phase) {
+    var p = prog(localT, from, to, easeOutBack);
+    var opac = clamp01((localT - from) / 200);
+    var bob = localT > to ? Math.sin(globalT / 450 + phase) * 3 : 0;
+    el.style.opacity = opac;
+    el.style.transform = "translateY(" + (bob * mscale) + "px) scale(" + Math.max(0, p) + ")";
+  }
+
+  function renderS3(localT, globalT) {
+    var pKicker = prog(localT, 0, 500, easeOutCubic);
+    s3Kicker.style.opacity = pKicker;
+    s3Kicker.style.transform = "translateY(" + (lerp(10, 0, pKicker) * mscale) + "px)";
+
+    renderBadge(s3B1, localT, 400, 1100, globalT, 0);
+    renderBadge(s3B2, localT, 1300, 2000, globalT, 0.6);
+    renderBadge(s3B3, localT, 2200, 2900, globalT, 1.2);
+  }
+
+  function renderS4(localT, globalT) {
+    var pBurst = prog(localT, 0, 700, easeOutBack);
+    s4Burst.style.transform = "translate(-50%,-50%) scale(" + Math.max(0, pBurst) + ") rotate(" + (globalT * 0.02) + "deg)";
+    s4Burst.style.opacity = clamp01(localT / 500) * 0.35;
+
+    var pPrice = prog(localT, 150, 1250, easeOutElastic);
+    s4PriceRow.style.transform = "scale(" + Math.max(0, pPrice) + ")";
+    s4PriceRow.style.opacity = clamp01((localT - 150) / 300);
+
+    var pTax = prog(localT, 950, 1450, easeOutCubic);
+    s4Tax.style.opacity = pTax;
+    s4Tax.style.transform = "translateX(" + (lerp(12, 0, pTax) * mscale) + "px)";
+
+    var pSub = prog(localT, 1550, 2150, easeOutCubic);
+    s4Sub.style.opacity = pSub;
+    s4Sub.style.transform = "translateY(" + (lerp(14, 0, pSub) * mscale) + "px)";
+  }
+
+  function renderS5(localT) {
+    var pLogo = prog(localT, 0, 900, easeOutCubic);
+    s5Logo.style.opacity = pLogo;
+    s5Logo.style.letterSpacing = lerp(0.4, 0.12, pLogo) + "em";
+
+    var pStore = prog(localT, 500, 1200, easeOutCubic);
+    s5Store.style.opacity = pStore;
+    s5Store.style.transform = "translateY(" + (lerp(10, 0, pStore) * mscale) + "px)";
+
+    var pHours = prog(localT, 900, 1600, easeOutCubic);
+    s5Hours.style.opacity = pHours;
+    s5Hours.style.transform = "translateY(" + (lerp(10, 0, pHours) * mscale) + "px)";
+  }
+
+  function formatTime(ms) {
+    var s = Math.round(ms / 1000);
+    var m = Math.floor(s / 60);
+    var r = s % 60;
+    return m + ":" + (r < 10 ? "0" : "") + r;
+  }
+
+  function render(t) {
+    SCENES.forEach(function (scene) {
+      var el = sceneEls[scene.id];
+      var op = sceneOpacity(scene, t);
+      el.style.opacity = op;
+      el.style.pointerEvents = op > 0.05 ? "auto" : "none";
+    });
+    renderS1(t - 0);
+    renderS2(t - 2800);
+    renderS3(t - 8000, t);
+    renderS4(t - 13000, t);
+    renderS5(t - 18000);
+
+    var ratio = clamp01(t / TOTAL);
+    progressFill.style.width = (ratio * 100) + "%";
+    timeLabel.textContent = formatTime(t) + " / " + formatTime(TOTAL);
+  }
+
+  render(0);
+
+  var playing = false;
+  var currentElapsed = 0;
+  var pausedAt = 0;
+  var rafStartPerf = null;
+  var rafId = null;
+
+  function loop(now) {
+    if (!playing) return;
+    var elapsed = pausedAt + (now - rafStartPerf);
+    if (elapsed >= TOTAL) {
+      currentElapsed = TOTAL;
+      render(TOTAL);
+      onEnded();
+      return;
+    }
+    currentElapsed = elapsed;
+    render(elapsed);
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function play() {
+    if (playing) return;
+    playing = true;
+    moviePoster.classList.add("hidden");
+    playBtn.textContent = "⏸ 一時停止";
+    rafStartPerf = performance.now();
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function pause() {
+    if (!playing) return;
+    playing = false;
+    if (rafId) cancelAnimationFrame(rafId);
+    pausedAt = currentElapsed;
+    playBtn.textContent = "▶ 再生";
+  }
+
+  function restart() {
+    pause();
+    pausedAt = 0;
+    currentElapsed = 0;
+    render(0);
+    moviePoster.classList.add("hidden");
+    play();
+  }
+
+  function onEnded() {
+    playing = false;
+    pausedAt = TOTAL;
+    playBtn.textContent = "▶ 再生";
+    moviePoster.classList.remove("hidden");
+    posterBtn.innerHTML = '<span class="reload">↺</span>';
+    posterCaption.textContent = "もう一度見る";
+  }
+
+  function seekToRatio(ratio) {
+    var wasPlaying = playing;
+    if (playing) pause();
+    pausedAt = clamp01(ratio) * TOTAL;
+    currentElapsed = pausedAt;
+    render(pausedAt);
+    if (pausedAt < TOTAL) {
+      moviePoster.classList.add("hidden");
+    }
+    if (wasPlaying && pausedAt < TOTAL) play();
+  }
+
+  moviePoster.addEventListener("click", function () {
+    posterBtn.innerHTML = '<span class="tri"></span>';
+    posterCaption.textContent = "クリックしてムービーを再生（20秒）";
+    if (pausedAt >= TOTAL) {
+      restart();
+    } else {
+      play();
+    }
+  });
+
+  playBtn.addEventListener("click", function () {
+    if (playing) {
+      pause();
+    } else {
+      if (pausedAt >= TOTAL) {
+        restart();
+      } else {
+        moviePoster.classList.add("hidden");
+        play();
+      }
+    }
+  });
+
+  restartBtn.addEventListener("click", function () {
+    posterBtn.innerHTML = '<span class="tri"></span>';
+    posterCaption.textContent = "クリックしてムービーを再生（20秒）";
+    restart();
+  });
+
+  progressTrack.addEventListener("click", function (e) {
+    var rect = progressTrack.getBoundingClientRect();
+    var ratio = (e.clientX - rect.left) / rect.width;
+    seekToRatio(ratio);
+  });
+})();
+</script>
+
+</body>
+</html>
