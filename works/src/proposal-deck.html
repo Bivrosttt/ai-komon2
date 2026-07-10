@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>浴室リフォームのご提案｜株式会社サンプル工務店</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#232120;
+    --charcoal2:#2E2B29;
+    --charcoal3:#3A3532;
+    --copper:#B0714A;
+    --copper-light:#CE9469;
+    --copper-deep:#8A5734;
+    --cream:#F3EEE5;
+    --paper:#FBF8F3;
+    --ink:#2A2724;
+    --gray:#786F65;
+    --gray-light:#A79E92;
+    --line:#DED2BF;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  @page{ size:254mm 142.9mm; margin:0; }
+  html,body{ font-family:'Zen Kaku Gothic New', sans-serif; color:var(--ink); background:#54504a; }
+  .serif{ font-family:'Shippori Mincho', serif; }
+  .slide{
+    width:960px; height:540px; page-break-after:always; position:relative;
+    overflow:hidden; background:var(--paper); margin:0 auto;
+  }
+  .slide.dark{ background:var(--charcoal); color:var(--cream); }
+
+  /* ---- shared blueprint grid texture ---- */
+  .blueprint{
+    position:absolute; inset:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(176,113,74,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(176,113,74,.05) 1px, transparent 1px);
+    background-size:24px 24px;
+  }
+
+  /* ---- header block used on content slides ---- */
+  .head{
+    position:relative; display:flex; align-items:flex-end; justify-content:space-between;
+    padding:38px 64px 16px; border-bottom:1px solid var(--line);
+  }
+  .head .kicker{ font-size:11px; letter-spacing:.32em; color:var(--copper); font-weight:700; margin-bottom:10px; }
+  .head h2{ font-size:27px; font-weight:700; color:var(--ink); letter-spacing:.02em; }
+  .head .idx{ font-family:'Shippori Mincho', serif; font-size:13px; color:var(--gray-light); letter-spacing:.15em; padding-bottom:4px; }
+
+  .foot{
+    position:absolute; left:0; right:0; bottom:0; height:34px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 64px; border-top:1px solid var(--line); font-size:9.5px; letter-spacing:.14em; color:var(--gray);
+  }
+  .slide.dark .foot{ border-top:1px solid rgba(255,255,255,.16); color:var(--gray-light); }
+  .foot .fnum{ font-family:'Shippori Mincho', serif; }
+
+  .body{ padding:26px 64px 0; position:relative; }
+
+  /* ============ 1. COVER ============ */
+  .cover{ display:flex; }
+  .cover .left{
+    width:520px; padding:52px 0 0 64px; display:flex; flex-direction:column; height:100%; position:relative; z-index:2;
+  }
+  .cover .right{
+    flex:1; position:relative; overflow:hidden;
+  }
+  .cover .right img{ width:100%; height:100%; object-fit:cover; object-position:35% 50%; display:block; filter:saturate(.92) brightness(.86); }
+  .cover .right::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(90deg, var(--charcoal) 0%, rgba(35,33,32,.65) 22%, rgba(35,33,32,0) 46%);
+  }
+  .cover .right::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 78%, rgba(0,0,0,.3) 100%);
+  }
+  .cover .kicker-row{ display:flex; align-items:center; gap:12px; margin-bottom:34px; }
+  .cover .kicker-row .dot{ width:6px; height:6px; background:var(--copper); border-radius:50%; }
+  .cover .kicker-row span{ font-size:10.5px; letter-spacing:.35em; color:var(--copper-light); font-weight:700; }
+  .cover h1{ font-size:44px; line-height:1.42; color:#fff; font-weight:700; letter-spacing:.03em; margin-bottom:22px; }
+  .cover .sub{ font-size:12.5px; color:#C9BFAF; line-height:1.9; letter-spacing:.03em; margin-bottom:auto; }
+  .cover .rule{ width:44px; height:1px; background:var(--copper); margin:26px 0 22px; }
+  .cover .meta{ font-size:12px; color:#D8CFC1; line-height:2.1; }
+  .cover .meta b{ font-size:17px; color:#fff; font-weight:700; letter-spacing:.02em; }
+  .cover .meta .datebadge{ color:#B7AC9B; font-size:10.5px; letter-spacing:.06em; }
+  .cover .brandblock{ padding-bottom:40px; }
+  .cover .brandblock .logotype{ font-family:'Shippori Mincho', serif; font-size:19px; color:#fff; letter-spacing:.12em; font-weight:700; }
+  .cover .brandblock .logotype span{ color:var(--copper-light); }
+  .cover .brandblock .logosub{ font-size:9.5px; letter-spacing:.22em; color:#9C9284; margin-top:6px; }
+  .cover .disclaimer{
+    position:absolute; right:28px; bottom:16px; z-index:3; font-size:8.5px; letter-spacing:.02em;
+    color:rgba(255,255,255,.55); text-align:right; line-height:1.6;
+  }
+  .cover .framecorner{
+    position:absolute; z-index:3; width:26px; height:26px; border-color:rgba(255,255,255,.55);
+  }
+  .cover .fc-tl{ top:26px; left:26px; border-top:1px solid; border-left:1px solid; }
+  .cover .fc-br{ bottom:26px; right:26px; border-bottom:1px solid; border-right:1px solid; }
+
+  /* ============ 2. PROBLEMS ============ */
+  .prob-lead{ font-size:12.5px; color:var(--gray); line-height:1.9; max-width:640px; margin-bottom:24px; }
+  .prob-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
+  .prob-card{ position:relative; padding-top:20px; }
+  .prob-card .barline{ position:absolute; top:0; left:0; width:34px; height:3px; background:var(--copper); }
+  .prob-card .pno{ font-family:'Shippori Mincho', serif; font-size:30px; font-weight:700; color:var(--line); margin-bottom:10px; line-height:1; }
+  .prob-card h3{ font-size:14.5px; font-weight:700; color:var(--ink); line-height:1.6; margin-bottom:12px; min-height:68px; }
+  .prob-card p{ font-size:11px; color:var(--gray); line-height:1.85; }
+  .prob-card .tagsmall{ display:inline-block; margin-top:12px; font-size:9px; letter-spacing:.1em; color:var(--copper-deep); border:1px solid var(--copper); border-radius:2px; padding:2px 8px; }
+  .prob-photo-strip{ position:absolute; right:64px; top:24px; width:160px; height:100px; overflow:hidden; border:1px solid var(--line); opacity:.9; }
+  .prob-photo-strip img{ width:100%; height:100%; object-fit:cover; filter:grayscale(.25) contrast(1.02); }
+
+  /* ============ 3. PROPOSAL OVERVIEW ============ */
+  .prop-lead{ font-size:12.5px; color:var(--gray); line-height:1.9; max-width:720px; margin-bottom:14px; }
+  .prop-cols{ display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--line); }
+  .prop-col{ padding:16px 26px 0 0; border-right:1px solid var(--line); }
+  .prop-col:last-child{ border-right:none; padding-left:26px; padding-right:0; }
+  .prop-col .ptag{ font-size:10px; letter-spacing:.22em; color:var(--copper); font-weight:700; margin-bottom:8px; }
+  .prop-col h3{ font-size:18px; font-weight:700; color:var(--ink); margin-bottom:14px; }
+  .prop-col ul{ list-style:none; }
+  .prop-col li{ font-size:11.5px; color:var(--ink); line-height:1.6; padding:6px 0; border-bottom:1px dashed var(--line); display:flex; gap:10px; }
+  .prop-col li .m{ color:var(--copper); font-weight:700; }
+  .prop-col li span.d{ color:var(--gray); font-size:10.5px; display:block; margin-top:2px; }
+  .prop-plus{ display:flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; border:1px solid var(--copper); color:var(--copper); font-family:'Shippori Mincho',serif; font-size:16px; position:absolute; left:50%; top:135px; transform:translate(-50%,-50%); background:var(--paper); z-index:2; }
+  .prop-summary{ margin-top:14px; background:var(--charcoal); color:#fff; padding:11px 24px; display:flex; align-items:center; gap:16px; }
+  .prop-summary .arrow-label{ font-size:10px; letter-spacing:.2em; color:var(--copper-light); font-weight:700; }
+  .prop-summary p{ font-size:11.5px; color:#E4DDD0; line-height:1.7; }
+
+  /* ============ 4. COMPLETION IMAGE ============ */
+  .hero-wrap{ position:relative; width:960px; height:540px; }
+  .hero-wrap img{ width:100%; height:100%; object-fit:cover; object-position:50% 46%; display:block; filter:saturate(.96); }
+  .hero-topgrad{ position:absolute; top:0; left:0; right:0; height:120px; background:linear-gradient(180deg, rgba(20,18,17,.72), rgba(20,18,17,0)); }
+  .hero-botgrad{ position:absolute; left:0; right:0; bottom:0; height:120px; background:linear-gradient(0deg, rgba(20,18,17,.78), rgba(20,18,17,0)); }
+  .hero-header{ position:absolute; top:0; left:0; right:0; padding:30px 64px 0; display:flex; justify-content:space-between; align-items:flex-start; z-index:3; }
+  .hero-header .kicker{ font-size:11px; letter-spacing:.32em; color:var(--copper-light); font-weight:700; margin-bottom:8px; }
+  .hero-header h2{ font-size:25px; font-weight:700; color:#fff; }
+  .hero-header .idx{ font-family:'Shippori Mincho', serif; font-size:13px; color:rgba(255,255,255,.7); letter-spacing:.15em; }
+  .callout{ position:absolute; z-index:4; display:flex; align-items:center; gap:9px; }
+  .callout .cnum{ width:24px; height:24px; border-radius:50%; background:var(--copper); color:#fff; font-family:'Shippori Mincho',serif; font-weight:700; font-size:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 0 0 3px rgba(35,33,32,.35); }
+  .callout .ctext{ background:rgba(35,33,32,.82); backdrop-filter:blur(2px); color:#fff; font-size:10.5px; line-height:1.5; padding:7px 12px; border-radius:2px; max-width:190px; border-left:2px solid var(--copper); }
+  .callout .ctext b{ display:block; font-size:11.5px; margin-bottom:2px; color:#F3E4D5; }
+  .hero-footer{ position:absolute; bottom:0; left:0; right:0; padding:0 64px 18px; display:flex; justify-content:space-between; align-items:flex-end; z-index:3; }
+  .hero-footer .cap{ font-size:10px; letter-spacing:.1em; color:rgba(255,255,255,.75); }
+  .hero-footer .pn{ font-family:'Shippori Mincho', serif; font-size:12px; color:rgba(255,255,255,.75); }
+
+  /* ============ 5. SCOPE TABLE ============ */
+  .scope-lead{ font-size:12px; color:var(--gray); line-height:1.8; max-width:700px; margin-bottom:18px; }
+  table.spec{ width:100%; border-collapse:collapse; }
+  table.spec thead th{ text-align:left; font-size:10px; letter-spacing:.16em; color:var(--copper-deep); font-weight:700; padding:0 14px 10px; border-bottom:2px solid var(--charcoal); }
+  table.spec tbody td{ font-size:11.5px; color:var(--ink); padding:9px 14px; border-bottom:1px solid var(--line); vertical-align:top; }
+  table.spec tbody tr:last-child td{ border-bottom:2px solid var(--charcoal); }
+  table.spec td.item{ font-weight:700; color:var(--ink); width:150px; white-space:nowrap; }
+  table.spec td.item .en{ display:block; font-size:8.5px; letter-spacing:.1em; color:var(--gray-light); margin-top:2px; font-weight:400; }
+  table.spec td.detail{ color:var(--ink); }
+  table.spec td.spec2{ color:var(--gray); width:270px; font-size:10.5px; line-height:1.7; }
+  table.spec td .idxnum{ font-family:'Shippori Mincho', serif; color:var(--copper); font-weight:700; margin-right:8px; }
+
+  /* ============ 6. ESTIMATE ============ */
+  .est-wrap{ display:grid; grid-template-columns:1.35fr 1fr; gap:34px; }
+  table.est{ width:100%; border-collapse:collapse; }
+  table.est thead th{ text-align:left; font-size:10px; letter-spacing:.16em; color:var(--copper-deep); font-weight:700; padding:0 4px 10px; border-bottom:2px solid var(--charcoal); }
+  table.est thead th.num{ text-align:right; }
+  table.est tbody td{ font-size:12px; padding:12px 4px; border-bottom:1px solid var(--line); }
+  table.est tbody td.num{ text-align:right; font-variant-numeric:tabular-nums; letter-spacing:.02em; }
+  table.est tfoot td{ padding:11px 4px; font-size:11.5px; border-bottom:none; }
+  table.est tfoot tr.subtotal td{ border-top:1px solid var(--charcoal); font-weight:700; }
+  table.est tfoot td.num{ text-align:right; font-variant-numeric:tabular-nums; }
+  .est-side{ background:var(--charcoal); color:#fff; padding:26px 26px; display:flex; flex-direction:column; justify-content:space-between; }
+  .est-side .label{ font-size:10px; letter-spacing:.24em; color:var(--copper-light); font-weight:700; margin-bottom:14px; }
+  .est-side .total{ font-family:'Shippori Mincho', serif; font-size:38px; font-weight:700; line-height:1.1; }
+  .est-side .total small{ font-size:14px; font-weight:400; margin-left:4px; color:#D9CFC0; }
+  .est-side .taxnote{ font-size:9.5px; color:#B7AC9B; margin-top:8px; letter-spacing:.02em; }
+  .est-side .divider{ height:1px; background:rgba(255,255,255,.2); margin:18px 0; }
+  .est-side .note{ font-size:10px; color:#C9BFAF; line-height:1.8; }
+  .est-note-foot{ font-size:9.5px; color:var(--gray-light); margin-top:14px; }
+
+  /* ============ 7. SCHEDULE ============ */
+  .sched-lead{ font-size:12px; color:var(--gray); line-height:1.8; margin-bottom:22px; }
+  .gantt{ display:grid; grid-template-columns:190px repeat(5, 1fr); border-top:1px solid var(--charcoal); }
+  .gantt .gh{ font-size:10.5px; letter-spacing:.08em; color:var(--gray); text-align:center; padding:8px 0; border-bottom:2px solid var(--charcoal); font-weight:700; }
+  .gantt .gh.rowlabel{ text-align:left; padding-left:4px; }
+  .gantt .grow-label{ font-size:11.5px; color:var(--ink); font-weight:700; padding:14px 4px; border-bottom:1px solid var(--line); display:flex; align-items:center; }
+  .gantt .gcell{ border-bottom:1px solid var(--line); border-left:1px solid var(--line); position:relative; min-height:46px; }
+  .gantt .bar{ position:absolute; top:10px; bottom:10px; left:6px; right:6px; background:var(--copper); border-radius:2px; display:flex; align-items:center; justify-content:center; }
+  .gantt .bar span{ color:#fff; font-size:9.5px; font-weight:700; letter-spacing:.02em; white-space:nowrap; }
+  .gantt .bar.light{ background:var(--cream); border:1px solid var(--copper); }
+  .gantt .bar.light span{ color:var(--copper-deep); }
+  .sched-note{ margin-top:22px; display:flex; gap:14px; align-items:flex-start; background:var(--cream); border-left:3px solid var(--copper); padding:14px 18px; }
+  .sched-note .nlabel{ font-size:10px; letter-spacing:.18em; color:var(--copper-deep); font-weight:700; flex-shrink:0; padding-top:1px; }
+  .sched-note p{ font-size:11px; color:var(--ink); line-height:1.8; }
+
+  /* ============ 8. CLOSING ============ */
+  .slide.closing{ display:flex; flex-direction:column; }
+  .slide.closing .head{ flex:none; }
+  .slide.closing .foot{ position:static; flex:none; }
+  .close-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:0; flex:1; min-height:0; }
+  .close-col{ padding:30px 40px 0; }
+  .close-col.left{ border-right:1px solid rgba(255,255,255,.16); }
+  .close-tag{ font-size:10px; letter-spacing:.24em; color:var(--copper-light); font-weight:700; margin-bottom:14px; }
+  .close-item{ margin-bottom:18px; }
+  .close-item h4{ font-size:13.5px; font-weight:700; color:#fff; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+  .close-item h4::before{ content:""; width:5px; height:5px; background:var(--copper); border-radius:50%; }
+  .close-item p{ font-size:11px; color:#C9BFAF; line-height:1.85; }
+  .contact-box{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.18); padding:20px 24px; margin-top:6px; }
+  .contact-box .cname{ font-family:'Shippori Mincho', serif; font-size:17px; font-weight:700; color:#fff; margin-bottom:10px; letter-spacing:.03em; }
+  .contact-box .crow{ display:flex; font-size:11px; color:#D8CFC1; padding:5px 0; border-top:1px solid rgba(255,255,255,.12); }
+  .contact-box .crow:first-of-type{ border-top:none; }
+  .contact-box .crow .k{ width:64px; color:var(--copper-light); letter-spacing:.08em; font-size:10px; flex-shrink:0; padding-top:1px; }
+  .thanks{ margin-top:20px; font-size:11.5px; color:#E4DDD0; line-height:2; }
+  .close-brand{ margin-top:22px; }
+  .close-brand .logotype{ font-family:'Shippori Mincho', serif; font-size:18px; color:#fff; letter-spacing:.1em; font-weight:700; }
+  .close-brand .logotype span{ color:var(--copper-light); }
+  .close-brand .logosub{ font-size:9px; letter-spacing:.2em; color:#9C9284; margin-top:5px; }
+</style>
+</head>
+<body>
+
+<!-- 1. 表紙 -->
+<div class="slide dark cover">
+  <div class="left">
+    <div class="kicker-row"><span class="dot"></span><span>PROPOSAL DOCUMENT</span></div>
+    <h1 class="serif">浴室リフォームの<br>ご提案</h1>
+    <p class="sub">築22年 戸建住宅｜タイル張り浴室からの全面改修<br>ユニットバス交換 + 断熱改修プラン</p>
+    <div class="rule"></div>
+    <div class="meta">
+      ご提案先<br>
+      <b>見本商事株式会社 様</b>
+    </div>
+    <div class="brandblock">
+      <div class="meta datebadge" style="margin-bottom:18px;">発行日　2026年7月10日【サンプル】</div>
+      <div class="logotype">株式会社<span>サンプル</span>工務店</div>
+      <div class="logosub">SAMPLE KOMUTEN CO., LTD. — 住まいの改修・リフォーム</div>
+    </div>
+  </div>
+  <div class="right">
+    <img src="../../assets/works/pers-interior.jpg" alt="内装イメージ">
+  </div>
+  <div class="framecorner fc-tl"></div>
+  <div class="framecorner fc-br"></div>
+  <div class="disclaimer">※本スライドはAI制作のデザインサンプルです（架空案件）</div>
+</div>
+
+<!-- 2. 現状の課題整理 -->
+<div class="slide">
+  <div class="blueprint"></div>
+  <div class="head">
+    <div>
+      <div class="kicker">01 — CURRENT SITUATION</div>
+      <h2 class="serif">現状の課題整理</h2>
+    </div>
+    <div class="idx">ISSUE / 01–08</div>
+  </div>
+  <div class="body">
+    <p class="prob-lead">築22年が経過し、在来工法のタイル張り浴室には経年による不具合が見られます。日々の暮らしの中で、次の3点が特に大きな負担となっています。</p>
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="barline"></div>
+        <div class="pno serif">01</div>
+        <h3>冬場の底冷え・<br>ヒヤッとする寒さ</h3>
+        <p>タイル＋モルタル造りの浴室は蓄熱性・断熱性が低く、特に冬場は壁や床が冷え込みやすい構造です。</p>
+        <span class="tagsmall">断熱性能</span>
+      </div>
+      <div class="prob-card">
+        <div class="barline"></div>
+        <div class="pno serif">02</div>
+        <h3>目地・シーリングの<br>カビと掃除の負担</h3>
+        <p>タイル目地やシーリング材は経年で劣化し、カビや黒ずみが発生しやすく、日常のお手入れに手間がかかります。</p>
+        <span class="tagsmall">メンテナンス性</span>
+      </div>
+      <div class="prob-card">
+        <div class="barline"></div>
+        <div class="pno serif">03</div>
+        <h3>寒暖差による<br>ヒートショックの一般的リスク</h3>
+        <p>暖かい居室と寒い浴室の温度差は、入浴時の身体への負担につながるとされ、一般的な注意点として広く知られています。</p>
+        <span class="tagsmall">安全・健康</span>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>SAMPLE KOMUTEN — 浴室リフォームご提案</span><span class="fnum">02 / 08</span></div>
+</div>
+
+<!-- 3. ご提案の全体像 -->
+<div class="slide">
+  <div class="blueprint"></div>
+  <div class="head">
+    <div>
+      <div class="kicker">02 — OUR PROPOSAL</div>
+      <h2 class="serif">ご提案の全体像</h2>
+    </div>
+    <div class="idx">PLAN / 02–08</div>
+  </div>
+  <div class="body">
+    <p class="prop-lead">課題の根本原因である「在来浴室そのものの構造」に対応するため、ユニットバスへの交換と、浴室まわりの断熱改修をあわせてご提案いたします。</p>
+    <div class="prop-cols">
+      <div class="prop-col">
+        <div class="ptag">01 — REPLACEMENT</div>
+        <h3 class="serif">ユニットバスへの交換</h3>
+        <ul>
+          <li><span class="m">＋</span><div>高断熱パネル・保温浴槽の採用<span class="d">冷めにくい構造で暖房負担を軽減</span></div></li>
+          <li><span class="m">＋</span><div>フラットな出入り口設計<span class="d">またぎやすくスリップにも配慮</span></div></li>
+          <li><span class="m">＋</span><div>汚れが付きにくい壁・床パネル<span class="d">目地レスで日々のお手入れが簡単に</span></div></li>
+        </ul>
+      </div>
+      <div class="prop-col">
+        <div class="ptag">02 — INSULATION</div>
+        <h3 class="serif">浴室まわりの断熱改修</h3>
+        <ul>
+          <li><span class="m">＋</span><div>窓まわりの断熱強化<span class="d">既存窓に断熱性の高い仕様を検討</span></div></li>
+          <li><span class="m">＋</span><div>壁・床下地の断熱材追加<span class="d">浴室ユニット設置にあわせて施工</span></div></li>
+          <li><span class="m">＋</span><div>ヒートショック対策として<span class="d">居室との温度差の緩和を目指す改修</span></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="prop-plus serif">+</div>
+    <div class="prop-summary">
+      <div class="arrow-label">CONCEPT</div>
+      <p>「交換」と「断熱」を同時に行うことで、見た目の刷新だけでなく、冬でも快適で、お手入れがしやすい浴室空間を実現します。</p>
+    </div>
+  </div>
+  <div class="foot"><span>SAMPLE KOMUTEN — 浴室リフォームご提案</span><span class="fnum">03 / 08</span></div>
+</div>
+
+<!-- 4. 完成イメージ -->
+<div class="slide">
+  <div class="hero-wrap">
+    <img src="../../assets/works/pers-bathroom.jpg" alt="浴室完成イメージ">
+    <div class="hero-topgrad"></div>
+    <div class="hero-botgrad"></div>
+    <div class="hero-header">
+      <div>
+        <div class="kicker">03 — COMPLETION IMAGE</div>
+        <h2 class="serif">完成イメージ</h2>
+      </div>
+      <div class="idx">VISUAL / 03–08</div>
+    </div>
+
+    <div class="callout" style="left:100px; top:330px;">
+      <div class="cnum serif">1</div>
+      <div class="ctext"><b>高断熱・保温浴槽</b>お湯が冷めにくく、暖房負担を軽減します</div>
+    </div>
+    <div class="callout" style="left:560px; top:190px;">
+      <div class="cnum serif">2</div>
+      <div class="ctext"><b>フラットな出入り口</b>段差を抑え、日々の使いやすさに配慮</div>
+    </div>
+    <div class="callout" style="left:700px; top:390px;">
+      <div class="cnum serif">3</div>
+      <div class="ctext"><b>お手入れしやすい洗面台</b>凹凸の少ないデザインで清掃性を向上</div>
+    </div>
+
+    <div class="hero-footer">
+      <span class="cap">パース・完成イメージ　※実際の仕上がりとは多少異なる場合がございます</span>
+      <span class="pn serif">04 / 08</span>
+    </div>
+  </div>
+</div>
+
+<!-- 5. 工事範囲と仕様 -->
+<div class="slide">
+  <div class="blueprint"></div>
+  <div class="head">
+    <div>
+      <div class="kicker">04 — SCOPE OF WORK</div>
+      <h2 class="serif">工事範囲と仕様</h2>
+    </div>
+    <div class="idx">SPEC / 04–08</div>
+  </div>
+  <div class="body">
+    <p class="scope-lead">解体から内装補修まで、一連の工事を一括してお引き受けいたします。以下は今回のご提案に含まれる工事範囲の一覧です。</p>
+    <table class="spec">
+      <thead><tr><th style="width:150px;">項目</th><th>工事内容</th><th style="width:270px;">主な仕様・備考</th></tr></thead>
+      <tbody>
+        <tr><td class="item"><span class="idxnum serif">01</span>解体・撤去<span class="en">DEMOLITION</span></td><td class="detail">既存タイル浴室（浴槽・壁・床・建具）の解体および撤去</td><td class="spec2">下地・躯体の状態を事前点検のうえ実施</td></tr>
+        <tr><td class="item"><span class="idxnum serif">02</span>給排水・電気<span class="en">PLUMBING</span></td><td class="detail">給排水管の更新、電気配線の点検・調整</td><td class="spec2">浴室暖房乾燥機用配線に対応</td></tr>
+        <tr><td class="item"><span class="idxnum serif">03</span>ユニットバス<br>本体・設置<span class="en">UNIT BATH</span></td><td class="detail">システムバス本体一式の搬入・組立・設置</td><td class="spec2">1616サイズ／高断熱パネル・保温浴槽仕様</td></tr>
+        <tr><td class="item"><span class="idxnum serif">04</span>内装補修<span class="en">INTERIOR</span></td><td class="detail">浴室まわりの壁・床・建具の補修、脱衣室クロス張替え</td><td class="spec2">既存内装との取り合い部を丁寧に仕上げ</td></tr>
+        <tr><td class="item"><span class="idxnum serif">05</span>諸経費<span class="en">EXPENSES</span></td><td class="detail">養生・産業廃棄物処理・現場管理費 等</td><td class="spec2">工事全体の品質・安全管理を含む</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="foot"><span>SAMPLE KOMUTEN — 浴室リフォームご提案</span><span class="fnum">05 / 08</span></div>
+</div>
+
+<!-- 6. お見積り -->
+<div class="slide">
+  <div class="blueprint"></div>
+  <div class="head">
+    <div>
+      <div class="kicker">05 — ESTIMATE</div>
+      <h2 class="serif">お見積り</h2>
+    </div>
+    <div class="idx">COST / 05–08</div>
+  </div>
+  <div class="body">
+    <div class="est-wrap">
+      <div>
+        <table class="est">
+          <thead><tr><th>工事項目</th><th class="num">金額（税別）</th></tr></thead>
+          <tbody>
+            <tr><td>解体・撤去</td><td class="num">¥ 80,000</td></tr>
+            <tr><td>給排水・電気</td><td class="num">¥ 120,000</td></tr>
+            <tr><td>ユニットバス本体・設置</td><td class="num">¥ 850,000</td></tr>
+            <tr><td>内装補修</td><td class="num">¥ 100,000</td></tr>
+            <tr><td>諸経費</td><td class="num">¥ 50,000</td></tr>
+          </tbody>
+          <tfoot>
+            <tr class="subtotal"><td>小計</td><td class="num">¥ 1,200,000</td></tr>
+            <tr><td>消費税（10%）</td><td class="num">¥ 120,000</td></tr>
+          </tfoot>
+        </table>
+        <p class="est-note-foot">※ 現地調査の結果により、内容・金額が変動する場合がございます。本見積りはサンプルです。</p>
+      </div>
+      <div class="est-side">
+        <div>
+          <div class="label">TOTAL AMOUNT</div>
+          <div class="total serif">¥1,320,000<small>（税込）</small></div>
+          <div class="taxnote">小計 ¥1,200,000 ＋ 消費税 ¥120,000</div>
+        </div>
+        <div>
+          <div class="divider"></div>
+          <p class="note">工事範囲・仕様は前頁の内容に基づきます。追加工事が発生する場合は事前にご説明・ご了承のうえ進めます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>SAMPLE KOMUTEN — 浴室リフォームご提案</span><span class="fnum">06 / 08</span></div>
+</div>
+
+<!-- 7. 工程表 -->
+<div class="slide">
+  <div class="blueprint"></div>
+  <div class="head">
+    <div>
+      <div class="kicker">06 — SCHEDULE</div>
+      <h2 class="serif">工程表</h2>
+    </div>
+    <div class="idx">TIMELINE / 06–08</div>
+  </div>
+  <div class="body">
+    <p class="sched-lead">着工から完了まで、standard な工期の目安は5日間です。天候や現場状況により前後する場合がございます。</p>
+    <div class="gantt">
+      <div class="gh rowlabel">工事内容</div>
+      <div class="gh">1日目</div><div class="gh">2日目</div><div class="gh">3日目</div><div class="gh">4日目</div><div class="gh">5日目</div>
+
+      <div class="grow-label">解体・撤去</div>
+      <div class="gcell"><div class="bar"><span>解体</span></div></div>
+      <div class="gcell"></div><div class="gcell"></div><div class="gcell"></div><div class="gcell"></div>
+
+      <div class="grow-label">給排水・電気工事</div>
+      <div class="gcell"></div>
+      <div class="gcell"><div class="bar"><span>配管・配線</span></div></div>
+      <div class="gcell"></div><div class="gcell"></div><div class="gcell"></div>
+
+      <div class="grow-label">ユニットバス設置</div>
+      <div class="gcell"></div><div class="gcell"></div>
+      <div class="gcell" style="grid-column:span 2;"><div class="bar"><span>本体組立・設置</span></div></div>
+      <div class="gcell"></div>
+
+      <div class="grow-label">内装補修・仕上げ</div>
+      <div class="gcell"></div><div class="gcell"></div><div class="gcell"></div><div class="gcell"></div>
+      <div class="gcell"><div class="bar light"><span>仕上げ・美装</span></div></div>
+    </div>
+    <div class="sched-note">
+      <div class="nlabel">NOTE</div>
+      <p>工事期間中もご自宅でのお住まいは可能です。浴室が使用できない期間は、近隣の入浴施設をご案内いたします。騒音・振動が出る作業は事前にご案内のうえ進めます。</p>
+    </div>
+  </div>
+  <div class="foot"><span>SAMPLE KOMUTEN — 浴室リフォームご提案</span><span class="fnum">07 / 08</span></div>
+</div>
+
+<!-- 8. 締め -->
+<div class="slide dark closing">
+  <div class="head" style="border-bottom:1px solid rgba(255,255,255,.16);">
+    <div>
+      <div class="kicker">07 — WARRANTY &amp; CONTACT</div>
+      <h2 class="serif" style="color:#fff;">保証・アフターサービス</h2>
+    </div>
+    <div class="idx" style="color:rgba(255,255,255,.5);">CLOSING / 07–08</div>
+  </div>
+  <div class="close-wrap">
+    <div class="close-col left">
+      <div class="close-tag">AFTER THE HANDOVER</div>
+      <div class="close-item">
+        <h4>工事保証（2年間）</h4>
+        <p>当社施工箇所について、お引き渡しから2年間の保証を行います。防水・取付不良など施工に起因する不具合に対応いたします。</p>
+      </div>
+      <div class="close-item">
+        <h4>メーカー保証（本体10年・例）</h4>
+        <p>ユニットバス本体の主要部材について、メーカー保証（例：10年相当）の対象となります。詳細は製品仕様書にてご案内いたします。</p>
+      </div>
+      <div class="close-item">
+        <h4>定期点検（1年後・3年後）</h4>
+        <p>お引き渡し後、1年・3年の節目で定期点検にお伺いします。気になる点があれば点検を待たずにご連絡ください。</p>
+      </div>
+    </div>
+    <div class="close-col">
+      <div class="close-tag">CONTACT</div>
+      <div class="contact-box">
+        <div class="cname">株式会社サンプル工務店</div>
+        <div class="crow"><div class="k">住所</div><div>【サンプル】〒000-0000 ○○県○○市○○ 0-0-0</div></div>
+        <div class="crow"><div class="k">TEL</div><div>【サンプル】00-0000-0000</div></div>
+        <div class="crow"><div class="k">Email</div><div>【サンプル】info@sample-komuten.example</div></div>
+        <div class="crow"><div class="k">担当</div><div>【サンプル】リフォーム担当　山田</div></div>
+      </div>
+      <p class="thanks">この度は数あるリフォーム会社の中から弊社にお声がけをいただき、誠にありがとうございます。ご不明な点、ご希望の変更などございましたら、お気軽にご相談ください。</p>
+      <div class="close-brand">
+        <div class="logotype">株式会社<span>サンプル</span>工務店</div>
+        <div class="logosub">SAMPLE KOMUTEN CO., LTD.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot" style="border-top:1px solid rgba(255,255,255,.16); color:rgba(255,255,255,.5);"><span>SAMPLE KOMUTEN — 浴室リフォームご提案</span><span class="fnum">08 / 08</span></div>
+</div>
+
+</body>
+</html>

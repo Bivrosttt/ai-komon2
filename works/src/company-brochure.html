@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>株式会社サンプル工務店 会社案内</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;600;700;900&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#1B3B2F;
+    --forest-deep:#0F241D;
+    --forest-soft:#2E4E40;
+    --cream:#F4F1E8;
+    --cream-deep:#EAE3D1;
+    --charcoal:#2A2823;
+    --charcoal-soft:#655F52;
+    --brass:#A9834E;
+    --brass-soft:#C7A876;
+    --line: rgba(27,59,47,.16);
+    --white:#FFFFFF;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  @page{ size:A4; margin:0; }
+  html,body{ font-family:'Noto Sans JP',sans-serif; color:var(--charcoal); background:#736c5c; }
+  .page{
+    width:794px; height:1122px; position:relative; overflow:hidden;
+    background:var(--cream); page-break-after:always;
+    box-shadow: inset 0 0 0 1px rgba(15,36,29,.06);
+  }
+  .page:last-child{ page-break-after:auto; }
+  h1,h2,h3,.serif{ font-family:'Noto Serif JP',serif; }
+
+  /* ---------- spine (all pages) ---------- */
+  .spine{
+    position:absolute; left:0; top:0; bottom:0; width:30px; background:var(--forest);
+    z-index:10; display:flex; flex-direction:column; align-items:center; justify-content:space-between; padding:26px 0;
+  }
+  .spine-brand{ writing-mode:vertical-rl; text-orientation:mixed; font-size:9.5px; letter-spacing:.42em; color:rgba(244,241,232,.82); font-weight:500; }
+  .spine-num{ width:22px; height:22px; border:1px solid rgba(244,241,232,.5); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Noto Serif JP',serif; font-size:10px; color:var(--cream); }
+
+  /* ---------- shared editorial atoms ---------- */
+  .kicker{ font-size:10.5px; letter-spacing:.32em; color:var(--brass); font-weight:700; text-transform:uppercase; margin-bottom:14px; }
+  .h2{ font-size:27px; color:var(--forest-deep); font-weight:700; line-height:1.55; margin-bottom:14px; max-width:480px; }
+  .lead{ font-size:11.8px; color:var(--charcoal-soft); line-height:1.95; max-width:520px; }
+  .running-header{ position:absolute; top:34px; right:56px; text-align:right; z-index:6; }
+  .running-header b{ display:block; font-size:11px; letter-spacing:.04em; color:var(--forest); margin-bottom:2px; }
+  .running-header span{ font-size:8.5px; letter-spacing:.16em; color:var(--charcoal-soft); }
+  .running-footer{
+    position:absolute; left:90px; right:56px; bottom:28px; display:flex; justify-content:space-between; align-items:baseline;
+    font-size:9px; letter-spacing:.06em; color:var(--charcoal-soft); border-top:1px solid var(--line); padding-top:9px;
+  }
+  .running-footer b{ color:var(--forest); font-weight:700; letter-spacing:.02em; }
+
+  /* ================= PAGE 1 — COVER ================= */
+  .cover-image{
+    position:absolute; left:30px; top:0; right:0; height:642px;
+    background:url('../../assets/works/pers-exterior.jpg') center/cover no-repeat;
+  }
+  .cover-image::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(15,36,29,0) 46%, rgba(15,36,29,.55) 82%, var(--forest-deep) 100%);
+  }
+  .cover-image-caption{ position:absolute; left:34px; bottom:16px; color:rgba(244,241,232,.9); font-size:9.5px; letter-spacing:.1em; z-index:2; }
+  .cover-badge{
+    position:absolute; top:32px; right:40px; z-index:2; text-align:right;
+    color:var(--cream); font-size:9.5px; letter-spacing:.2em; line-height:2.1;
+  }
+  .cover-badge b{ display:block; font-size:11px; letter-spacing:.1em; color:var(--brass-soft); margin-bottom:3px; }
+
+  .cover-panel{
+    position:absolute; left:30px; top:642px; right:0; bottom:0;
+    padding:38px 58px 34px 60px; display:flex; flex-direction:column; justify-content:center;
+  }
+  .cover-emblem{
+    position:absolute; top:-34px; right:56px; width:68px; height:68px; border-radius:50%;
+    background:var(--cream); border:1.5px solid var(--forest); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 16px rgba(15,36,29,.18);
+  }
+  .cover-emblem span{ font-family:'Noto Serif JP',serif; font-size:27px; color:var(--forest); font-weight:700; }
+  .cover-kicker{ font-size:11px; letter-spacing:.34em; color:var(--brass); font-weight:700; margin-bottom:16px; }
+  .cover-logo{ font-size:39px; line-height:1.42; color:var(--forest-deep); font-weight:900; letter-spacing:.02em; margin-bottom:16px; }
+  .cover-tagline{ font-size:19px; color:var(--forest); font-weight:600; margin-bottom:14px; letter-spacing:.03em; }
+  .cover-lead{ font-size:11.8px; color:var(--charcoal-soft); line-height:1.95; max-width:520px; margin-bottom:22px; }
+  .cover-meta{ display:flex; gap:28px; font-size:10px; color:var(--charcoal-soft); border-top:1px solid var(--line); padding-top:14px; letter-spacing:.03em; }
+  .cover-meta strong{ color:var(--forest); font-weight:700; margin-right:5px; }
+
+  /* ================= PAGE 2 — ABOUT ================= */
+  .content-wrap{ margin-left:30px; padding:64px 56px 0 60px; position:relative; height:100%; }
+
+  .about-text{ column-count:2; column-gap:38px; font-size:11.3px; line-height:1.98; color:var(--charcoal-soft); margin-top:6px; }
+  .about-text p{ margin-bottom:14px; text-align:justify; }
+  .about-text p.dropcap::first-letter{
+    font-family:'Noto Serif JP',serif; font-weight:700; font-size:42px; line-height:.72; color:var(--forest);
+    float:left; padding:6px 8px 0 0;
+  }
+  .pullquote{
+    column-span:all; margin:6px 0 16px; padding:16px 0; text-align:center;
+    border-top:1px solid var(--brass); border-bottom:1px solid var(--brass);
+    font-family:'Noto Serif JP',serif; font-size:18px; color:var(--forest); font-weight:600; letter-spacing:.02em; line-height:1.7;
+  }
+
+  .principles{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:26px; }
+  .p-card{ border-top:2px solid var(--forest); padding-top:14px; }
+  .p-card .p-no{ font-family:'Noto Serif JP',serif; font-size:11px; color:var(--brass); font-weight:700; letter-spacing:.1em; margin-bottom:8px; }
+  .p-card h3{ font-size:13.5px; color:var(--forest-deep); font-weight:700; margin-bottom:8px; line-height:1.55; }
+  .p-card p{ font-size:10.3px; color:var(--charcoal-soft); line-height:1.85; }
+
+  .stat-band{
+    margin-top:28px; margin-left:-60px; width:794px; background:var(--forest); padding:26px 60px 22px;
+    display:flex; justify-content:space-between; position:relative;
+  }
+  .stat-item{ text-align:center; flex:1; }
+  .stat-item .num{ font-family:'Noto Serif JP',serif; font-size:27px; color:var(--cream); font-weight:700; }
+  .stat-item .num small{ font-size:12px; font-weight:500; margin-left:1px; }
+  .stat-item .cap{ font-size:9px; color:rgba(244,241,232,.72); letter-spacing:.06em; margin-top:6px; }
+  .stat-note{ position:absolute; right:60px; bottom:6px; font-size:7.8px; color:rgba(244,241,232,.5); letter-spacing:.02em; }
+
+  .chip-row{ display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; }
+  .chip{ font-size:9.3px; color:var(--forest); border:1px solid var(--forest); border-radius:999px; padding:5px 14px; letter-spacing:.03em; }
+
+  /* ================= PAGE 3 — WORKS ================= */
+  .hero-shot{
+    margin-top:6px; width:678px; height:358px; border-radius:2px;
+    background:url('../../assets/works/pers-interior.jpg') center/cover no-repeat; position:relative;
+  }
+  .hero-shot::after{ content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px rgba(15,36,29,.15); }
+  .shot-caption{ display:flex; justify-content:space-between; font-size:9.3px; color:var(--charcoal-soft); margin-top:8px; letter-spacing:.03em; border-bottom:1px solid var(--line); padding-bottom:10px; }
+  .shot-caption b{ color:var(--forest); font-weight:700; }
+
+  .split-row{ display:flex; gap:26px; margin-top:16px; align-items:flex-start; }
+  .split-row .photo{ width:300px; height:196px; flex-shrink:0; background:url('../../assets/works/pers-bathroom.jpg') center/cover no-repeat; position:relative; }
+  .split-row .photo::after{ content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 1px rgba(15,36,29,.15); }
+  .split-row .photo-cap{ position:absolute; left:10px; bottom:8px; color:var(--cream); font-size:9px; letter-spacing:.06em; background:rgba(15,36,29,.55); padding:3px 9px; }
+  .split-row .text h3{ font-size:15.5px; color:var(--forest-deep); font-weight:700; margin-bottom:10px; line-height:1.6; }
+  .split-row .text p{ font-size:11px; color:var(--charcoal-soft); line-height:1.95; }
+
+  .flow-title{ font-size:14px; color:var(--forest-deep); font-weight:700; margin:20px 0 10px; display:flex; align-items:center; gap:10px; }
+  .flow-title::after{ content:""; flex:1; height:1px; background:var(--line); }
+  .flow{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .f-step{ background:var(--white); border:1px solid var(--line); border-bottom:3px solid var(--brass); padding:12px 14px; }
+  .f-step .f-no{ font-family:'Noto Serif JP',serif; font-size:18px; color:var(--forest); font-weight:700; margin-bottom:6px; }
+  .f-step h4{ font-size:11.5px; color:var(--forest-deep); font-weight:700; margin-bottom:6px; line-height:1.5; }
+  .f-step p{ font-size:9.3px; color:var(--charcoal-soft); line-height:1.7; }
+
+  .aftercare-note{
+    margin-top:12px; background:var(--cream-deep); border-left:3px solid var(--brass); padding:10px 16px;
+    font-size:10.3px; color:var(--charcoal-soft); line-height:1.85;
+  }
+  .aftercare-note b{ color:var(--forest); }
+
+  /* ================= PAGE 4 — PROFILE / CONTACT ================= */
+  .profile-table{ width:100%; border-collapse:collapse; margin-top:18px; }
+  .profile-table th,.profile-table td{ padding:9px 0; border-bottom:1px solid var(--line); font-size:10.8px; vertical-align:top; text-align:left; }
+  .profile-table th{ width:132px; color:var(--forest); font-weight:700; font-family:'Noto Serif JP',serif; font-size:11.3px; letter-spacing:.03em; }
+  .profile-table td{ color:var(--charcoal-soft); line-height:1.75; }
+
+  .contact-block{ display:flex; gap:18px; margin-top:18px; }
+  .contact-card{ flex:1; border:1px solid var(--line); padding:13px 16px; min-width:0; }
+  .contact-card .c-label{ font-size:9.5px; letter-spacing:.2em; color:var(--brass); font-weight:700; margin-bottom:7px; }
+  .contact-card .c-val{ font-family:'Noto Serif JP',serif; font-size:14.5px; color:var(--forest-deep); font-weight:700; margin-bottom:4px; white-space:nowrap; }
+  .contact-card .c-sub{ font-size:9px; color:var(--charcoal-soft); line-height:1.6; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+  .backcover{
+    position:absolute; left:30px; right:0; bottom:0; height:346px; background:var(--forest);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:var(--cream);
+  }
+  .backcover .bc-emblem{ width:52px; height:52px; border-radius:50%; border:1px solid rgba(244,241,232,.55); display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
+  .backcover .bc-emblem span{ font-family:'Noto Serif JP',serif; font-size:21px; color:var(--brass-soft); }
+  .backcover .bc-name{ font-family:'Noto Serif JP',serif; font-size:22px; font-weight:700; letter-spacing:.06em; margin-bottom:10px; }
+  .backcover .bc-tag{ font-size:13px; color:var(--brass-soft); letter-spacing:.04em; margin-bottom:26px; }
+  .backcover .bc-url{ font-size:10.5px; color:rgba(244,241,232,.75); letter-spacing:.08em; border-top:1px solid rgba(244,241,232,.25); border-bottom:1px solid rgba(244,241,232,.25); padding:10px 0; width:280px; }
+  .ai-disclaimer{ position:absolute; left:0; right:0; bottom:14px; text-align:center; font-size:8px; color:rgba(244,241,232,.42); letter-spacing:.04em; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 : 表紙 ============ -->
+<div class="page">
+  <div class="spine">
+    <div class="spine-brand">SAMPLE KOUMUTEN CO., LTD.</div>
+    <div class="spine-num">01</div>
+  </div>
+
+  <div class="cover-image">
+    <div class="cover-badge"><b>CORPORATE BROCHURE</b>会社案内 ／ 2026</div>
+    <div class="cover-image-caption">施工イメージ（モデルプラン・外観パース）</div>
+  </div>
+
+  <div class="cover-panel">
+    <div class="cover-emblem"><span>工</span></div>
+    <div class="cover-kicker">SAMPLE KOUMUTEN — 職人直営の工務店</div>
+    <h1 class="cover-logo">株式会社<br>サンプル工務店</h1>
+    <p class="cover-tagline">住まいの寿命を、家族の時間に。</p>
+    <p class="cover-lead">
+      設計から施工、水回りの改修、そして引き渡し後のメンテナンスまで。<br>
+      自社の職人が最後まで手を離さない家づくりで、地域の暮らしに長く寄り添います。
+    </p>
+    <div class="cover-meta">
+      <span><strong>創業</strong>1998年（※サンプル値）</span>
+      <span><strong>所在地</strong>東京都文京区【サンプル】</span>
+      <span><strong>専門</strong>注文住宅・水回りリフォーム</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 : 私たちについて ============ -->
+<div class="page">
+  <div class="spine">
+    <div class="spine-brand">SAMPLE KOUMUTEN CO., LTD.</div>
+    <div class="spine-num">02</div>
+  </div>
+  <div class="running-header"><b>株式会社サンプル工務店</b><span>ABOUT US</span></div>
+
+  <div class="content-wrap">
+    <div class="kicker">ABOUT US — 私たちについて</div>
+    <h2 class="h2">手を動かす人が、いちばん近くにいる工務店でありたい。</h2>
+    <p class="lead">図面を描いた人と、現場に立つ人が同じである。それが私たちの家づくりの出発点です。</p>
+
+    <div class="about-text">
+      <p class="dropcap">住まいは、暮らしを入れる器です。サンプル工務店は、設計から施工、そしてお引き渡し後の点検まで、自社の職人が一貫して携わることを何よりも大切にしてきました。図面と現場のあいだに、伝言ゲームはありません。</p>
+      <p>とりわけ力を入れているのが、キッチン・浴室・洗面・トイレといった水回りの改修です。配管や下地の状態は、経験を積んだ職人の目でなければ正しく見極められません。毎日使う場所だからこそ、見えない部分にまで手を抜かない仕事をお約束します。</p>
+      <blockquote class="pullquote">「直す」だけでなく、「暮らしが続く」工事を。</blockquote>
+      <p>創業以来、私たちが向き合ってきたのは建物ではなく、そこに暮らすご家族の時間そのものでした。引き渡しはゴールではなく、長いお付き合いの始まりだと考えています。10年後も、20年後も、気軽に相談できる工務店でありたい——それが私たちの変わらない姿勢です。</p>
+    </div>
+
+    <div class="principles">
+      <div class="p-card">
+        <div class="p-no">01 ／ 職人直営</div>
+        <h3>設計と現場をつなぐ、自社大工</h3>
+        <p>一級・二級建築士とベテラン大工が自社に在籍。設計意図を現場までそのまま届けます。</p>
+      </div>
+      <div class="p-card">
+        <div class="p-no">02 ／ 水回りに強い</div>
+        <h3>配管・下地から見極める確かな技術</h3>
+        <p>年間180件（※サンプル値）の水回り改修実績。長年の経験に裏づけられた診断力です。</p>
+      </div>
+      <div class="p-card">
+        <div class="p-no">03 ／ 長期のアフター</div>
+        <h3>引き渡し後も、定期点検で伴走</h3>
+        <p>お引き渡し後も定期点検を実施。10年、20年先まで安心をお届けします。</p>
+      </div>
+    </div>
+
+    <div class="stat-band">
+      <div class="stat-item"><div class="num">27<small>年</small></div><div class="cap">創業からの歩み</div></div>
+      <div class="stat-item"><div class="num">2,400<small>棟</small></div><div class="cap">累計施工実績</div></div>
+      <div class="stat-item"><div class="num">180<small>件/年</small></div><div class="cap">水回りリフォーム</div></div>
+      <div class="stat-item"><div class="num">98<small>%</small></div><div class="cap">お客様満足度</div></div>
+      <div class="stat-item"><div class="num">18<small>名</small></div><div class="cap">自社大工在籍数</div></div>
+      <div class="stat-note">※本パンフレット内の数値はデザインサンプルのため実在するものではありません</div>
+    </div>
+
+    <div class="chip-row">
+      <span class="chip">一級建築士事務所登録【サンプル】</span>
+      <span class="chip">JBN全国工務店協会 会員【サンプル】</span>
+      <span class="chip">長期優良住宅 施工実績あり【サンプル】</span>
+    </div>
+  </div>
+
+  <div class="running-footer"><b>SAMPLE KOUMUTEN</b><span>会社案内 — 私たちについて</span></div>
+</div>
+
+<!-- ============ PAGE 3 : 施工イメージ ============ -->
+<div class="page">
+  <div class="spine">
+    <div class="spine-brand">SAMPLE KOUMUTEN CO., LTD.</div>
+    <div class="spine-num">03</div>
+  </div>
+  <div class="running-header"><b>株式会社サンプル工務店</b><span>OUR WORKS</span></div>
+
+  <div class="content-wrap">
+    <div class="kicker">WORKS — 施工イメージ</div>
+    <h2 class="h2">光と水が、心地よく巡る家に。</h2>
+    <p class="lead">間取りだけでなく、光の入り方・素材の質感・水回りの動線まで丁寧に設計します。</p>
+
+    <div class="hero-shot"></div>
+    <div class="shot-caption"><span><b>Living &amp; Dining</b>　リビング・ダイニング施工イメージ</span><span>モデルプラン・パース</span></div>
+
+    <div class="split-row">
+      <div class="photo"><span class="photo-cap">Bathroom</span></div>
+      <div class="text">
+        <h3>水回りが変わると、暮らしのリズムが変わる。</h3>
+        <p>浴室・洗面まわりは、家族が一日に何度も使う場所。断熱と換気を見直し、掃除のしやすい素材を選ぶだけで、朝と夜の時間が驚くほど快適になります。給排水の位置から見直せるのも、自社施工の強みです。</p>
+      </div>
+    </div>
+
+    <div class="flow-title">RENOVATION FLOW — リフォームの流れ</div>
+    <div class="flow">
+      <div class="f-step"><div class="f-no">01</div><h4>ヒアリング・現地調査</h4><p>暮らし方や気になる点をじっくり伺い、建物の状態を職人が直接確認します。</p></div>
+      <div class="f-step"><div class="f-no">02</div><h4>プラン提案・お見積り</h4><p>調査をもとに、写真やパースを交えて分かりやすくご提案します。</p></div>
+      <div class="f-step"><div class="f-no">03</div><h4>ご契約・着工</h4><p>工程表を共有し、近隣へのご挨拶から丁寧に進めます。</p></div>
+      <div class="f-step"><div class="f-no">04</div><h4>完成・お引き渡し</h4><p>お引き渡し後も定期点検でアフターフォローを続けます。</p></div>
+    </div>
+
+    <div class="aftercare-note"><b>アフター保証について：</b>お引き渡し後1年・5年・10年の定期点検をご用意しています（※サンプル制度）。小さな不具合も、まずはお気軽にご連絡ください。</div>
+  </div>
+
+  <div class="running-footer"><b>SAMPLE KOUMUTEN</b><span>会社案内 — 施工イメージ</span></div>
+</div>
+
+<!-- ============ PAGE 4 : 会社概要・お問い合わせ ============ -->
+<div class="page">
+  <div class="spine">
+    <div class="spine-brand">SAMPLE KOUMUTEN CO., LTD.</div>
+    <div class="spine-num">04</div>
+  </div>
+  <div class="running-header"><b>株式会社サンプル工務店</b><span>COMPANY PROFILE</span></div>
+
+  <div class="content-wrap">
+    <div class="kicker">COMPANY PROFILE — 会社概要</div>
+    <h2 class="h2">住まいのご相談は、まずはお気軽に。</h2>
+    <p class="lead">無料相談・現地調査から承ります。ご不安な点は、契約前に何度でもご質問ください。</p>
+
+    <table class="profile-table">
+      <tr><th>商号</th><td>株式会社サンプル工務店</td></tr>
+      <tr><th>創業</th><td>1998年（※サンプル値）</td></tr>
+      <tr><th>所在地</th><td>〒112-0011　東京都文京区千石2丁目xx-x【サンプル住所】</td></tr>
+      <tr><th>代表者</th><td>代表取締役　サンプル　太郎</td></tr>
+      <tr><th>資本金</th><td>1,000万円【サンプル】</td></tr>
+      <tr><th>従業員数</th><td>32名（一級建築士5名・二級建築士8名・自社大工18名）【サンプル】</td></tr>
+      <tr><th>事業内容</th><td>注文住宅の設計・施工／リフォーム・リノベーション／水回り改修／外構工事／住宅アフターメンテナンス</td></tr>
+      <tr><th>許可・登録</th><td>東京都知事許可（般-XX）第XXXXX号／一級建築士事務所登録【サンプル】</td></tr>
+      <tr><th>加盟団体</th><td>JBN全国工務店協会【サンプル】</td></tr>
+    </table>
+
+    <div class="contact-block">
+      <div class="contact-card">
+        <div class="c-label">TEL</div>
+        <div class="c-val">03-xxxx-xxxx</div>
+        <div class="c-sub">受付 9:00-18:00（水曜定休）</div>
+      </div>
+      <div class="contact-card">
+        <div class="c-label">MAIL</div>
+        <div class="c-val" style="font-size:11.5px; letter-spacing:-.01em;">info@sample-koumuten.jp</div>
+        <div class="c-sub">お見積り・資料請求はこちらへ</div>
+      </div>
+      <div class="contact-card">
+        <div class="c-label">VISIT</div>
+        <div class="c-val" style="font-size:12.5px;">現地調査・無料相談</div>
+        <div class="c-sub">ご自宅に伺いご提案します</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="backcover">
+    <div class="bc-emblem"><span>工</span></div>
+    <div class="bc-name">株式会社サンプル工務店</div>
+    <div class="bc-tag">住まいの寿命を、家族の時間に。</div>
+    <div class="bc-url">https://sample-koumuten.example／【サンプルURL】</div>
+    <div class="ai-disclaimer">※本パンフレットはAI制作のデザインサンプルです（架空企業）</div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>請求書チェックAI かんたん操作マニュアル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0B2447; --navy-deep:#071733; --gold:#C9A227; --gold-light:#E7CE7A; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg-soft:#F4F7FA; --warn:#B4472A; --warn-bg:#FBEFEA; --ok:#2E7D5B; --ok-bg:#EDF7F1; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  @page { size: A4; margin: 0; }
+  html, body { background:#EEF1F5; }
+  body { font-family:'Noto Sans JP',sans-serif; color:var(--ink); width:794px; }
+  .page { width:794px; height:1122px; padding:0; position:relative; overflow:hidden; background:#fff; page-break-after:always; }
+  .page:last-child { page-break-after:auto; }
+  h1,h2,h3 { font-family:'Noto Serif JP',serif; }
+
+  /* ===== Cover header (P1) ===== */
+  .cover-head { background:linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%); color:#fff; padding:40px 64px 34px; position:relative; }
+  .cover-head::after { content:""; position:absolute; left:0; right:0; bottom:0; height:5px; background:linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%); }
+  .cover-eyebrow { font-size:10.5px; letter-spacing:0.32em; color:var(--gold-light); font-weight:700; margin-bottom:10px; }
+  .cover-title { font-size:30px; font-weight:900; line-height:1.5; }
+  .cover-title small { display:block; font-family:'Noto Sans JP',sans-serif; font-size:13px; font-weight:500; color:#C9D3E4; margin-top:8px; letter-spacing:0.02em; }
+  .cover-meta { position:absolute; top:40px; right:64px; text-align:right; font-size:10px; color:#C9D3E4; line-height:1.9; }
+  .cover-meta .badge { display:inline-block; background:rgba(201,162,39,0.18); border:1px solid var(--gold); color:var(--gold-light); font-size:10px; padding:4px 12px; border-radius:20px; font-weight:700; letter-spacing:0.08em; }
+
+  .body-pad { padding:30px 64px 0; }
+
+  /* section label */
+  .label { font-size:10px; letter-spacing:0.22em; color:var(--gold); font-weight:700; margin-bottom:8px; }
+  h2 { font-size:17px; color:var(--navy); margin-bottom:14px; }
+  section { margin-bottom:26px; }
+
+  /* ===== 3 features (P1) ===== */
+  .feat-grid { display:flex; gap:14px; }
+  .feat-card { flex:1; background:var(--bg-soft); border-top:3px solid var(--gold); border-radius:6px; padding:16px 16px 14px; }
+  .feat-num { font-family:'Noto Serif JP',serif; font-size:20px; font-weight:900; color:var(--navy); opacity:0.35; margin-bottom:4px; }
+  .feat-card h3 { font-family:'Noto Sans JP',sans-serif; font-size:13px; color:var(--navy); font-weight:700; margin-bottom:6px; }
+  .feat-card p { font-size:11px; color:var(--gray); line-height:1.75; }
+
+  /* ===== Flow (P1) ===== */
+  .flow { display:flex; align-items:stretch; gap:0; }
+  .flow-step { flex:1; background:#fff; border:1.5px solid var(--line); border-radius:8px; padding:16px 14px; position:relative; text-align:center; }
+  .flow-step .circ { width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff; font-family:'Noto Serif JP',serif; font-weight:700; font-size:15px; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; }
+  .flow-step h4 { font-size:12.5px; color:var(--navy); margin-bottom:5px; font-weight:700; }
+  .flow-step p { font-size:10px; color:var(--gray); line-height:1.6; }
+  .flow-arrow { flex:0 0 30px; display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:20px; font-weight:700; }
+
+  /* ===== Illustration band (P1) ===== */
+  .illust-wrap { margin-top:22px; border-radius:8px; overflow:hidden; border:1px solid var(--line); display:flex; }
+  .illust-wrap img { width:230px; height:172px; object-fit:cover; display:block; }
+  .illust-text { flex:1; background:var(--bg-soft); padding:18px 22px; display:flex; flex-direction:column; justify-content:center; }
+  .illust-text .tag { font-size:9.5px; color:var(--gold); font-weight:700; letter-spacing:0.15em; margin-bottom:6px; }
+  .illust-text p { font-size:12px; color:var(--ink); line-height:1.85; }
+  .illust-text b { color:var(--navy); }
+
+  /* footer */
+  .foot { position:absolute; bottom:0; left:0; right:0; padding:14px 64px; border-top:1px solid var(--line); font-size:9.5px; color:var(--gray); display:flex; justify-content:space-between; align-items:center; background:#fff; }
+  .foot .pg { font-family:'Noto Serif JP',serif; color:var(--navy); font-weight:700; }
+
+  /* page header (P2/P3) */
+  .ph { padding:26px 64px 16px; border-bottom:3px solid var(--navy); display:flex; justify-content:space-between; align-items:flex-end; }
+  .ph h1 { font-size:19px; color:var(--navy); }
+  .ph .brand { font-size:10.5px; color:var(--gold); font-weight:700; letter-spacing:0.1em; }
+
+  /* ===== Steps (P2) ===== */
+  .steps { display:flex; flex-direction:column; gap:12px; }
+  .step { display:flex; gap:14px; }
+  .step .snum { flex:0 0 30px; height:30px; border-radius:50%; background:var(--navy); color:#fff; font-family:'Noto Serif JP',serif; font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:center; }
+  .step .scontent { flex:1; border-bottom:1px dashed var(--line); padding-bottom:10px; }
+  .step h4 { font-size:12.5px; color:var(--navy); margin-bottom:4px; }
+  .step p { font-size:11px; color:var(--gray); line-height:1.7; }
+
+  /* chat mock */
+  .chatbox { margin-top:14px; border:1px solid var(--line); border-radius:10px; overflow:hidden; box-shadow:0 2px 10px rgba(11,36,71,0.06); }
+  .chatbox .cb-head { background:var(--navy); color:#fff; padding:9px 16px; font-size:11px; font-weight:700; display:flex; align-items:center; gap:8px; }
+  .chatbox .cb-head .dot { width:7px; height:7px; border-radius:50%; background:var(--gold); }
+  .chatbox .cb-body { background:#F7F9FC; padding:16px; display:flex; flex-direction:column; gap:10px; }
+  .bubble-user { align-self:flex-end; max-width:72%; background:var(--navy); color:#fff; font-size:11px; padding:10px 14px; border-radius:12px 12px 2px 12px; line-height:1.7; }
+  .bubble-user .file-chip { display:flex; align-items:center; gap:6px; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); border-radius:6px; padding:6px 10px; margin-bottom:6px; font-size:10px; }
+  .bubble-ai { align-self:flex-start; max-width:80%; background:#fff; border:1px solid var(--line); color:var(--ink); font-size:11px; padding:11px 14px; border-radius:12px 12px 12px 2px; line-height:1.8; }
+  .bubble-ai .ai-tag { font-size:9px; color:var(--gold); font-weight:700; letter-spacing:0.1em; margin-bottom:4px; }
+  .bubble-ai .result-ok { color:var(--ok); font-weight:700; }
+  .bubble-ai .result-warn { display:inline-flex; align-items:center; gap:4px; color:var(--warn); font-weight:700; background:var(--warn-bg); padding:2px 8px; border-radius:4px; }
+
+  .mini-illust { margin-top:16px; display:flex; align-items:center; gap:14px; background:var(--bg-soft); border-radius:8px; padding:12px 16px; }
+  .mini-illust img { width:88px; height:88px; object-fit:cover; border-radius:6px; flex:0 0 auto; }
+  .mini-illust p { font-size:11px; color:var(--ink); line-height:1.75; }
+  .mini-illust b { color:var(--navy); }
+
+  /* alert bands */
+  .band { display:flex; align-items:flex-start; gap:10px; border-radius:6px; padding:11px 14px; font-size:11px; line-height:1.75; margin-top:14px; }
+  .band .bicon { flex:0 0 auto; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:900; color:#fff; }
+  .band-warn { background:var(--warn-bg); border:1px solid #EBC6B7; }
+  .band-warn .bicon { background:var(--warn); }
+  .band-ok { background:var(--ok-bg); border:1px solid #BEE0CC; }
+  .band-ok .bicon { background:var(--ok); }
+
+  /* ===== FAQ (P3) ===== */
+  .faq { border:1px solid var(--line); border-radius:8px; margin-bottom:12px; overflow:hidden; }
+  .faq .q { background:var(--bg-soft); padding:10px 16px; display:flex; gap:10px; align-items:center; font-size:12px; font-weight:700; color:var(--navy); }
+  .faq .q .qmark { flex:0 0 20px; height:20px; border-radius:50%; background:var(--gold); color:#fff; font-size:11px; font-weight:900; display:flex; align-items:center; justify-content:center; font-family:'Noto Serif JP',serif; }
+  .faq .a { padding:10px 16px 12px 46px; font-size:11px; color:var(--gray); line-height:1.8; }
+  .faq .a b { color:var(--ink); }
+
+  .contact-band { margin-top:4px; background:linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%); color:#fff; border-radius:8px; padding:16px 20px; display:flex; align-items:center; gap:16px; }
+  .contact-band .cticon { width:42px; height:42px; border-radius:50%; background:var(--gold); color:var(--navy); font-size:18px; font-weight:900; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .contact-band .ctext { font-size:11px; line-height:1.8; }
+  .contact-band b { color:var(--gold-light); font-size:13px; }
+
+  table.hist { width:100%; border-collapse:collapse; font-size:10.5px; margin-top:10px; }
+  table.hist th, table.hist td { border:1px solid var(--line); padding:8px 12px; text-align:left; }
+  table.hist th { background:var(--navy); color:#fff; font-weight:700; font-size:10px; letter-spacing:0.05em; }
+  table.hist tr:nth-child(even) td { background:var(--bg-soft); }
+
+  .disclaimer { position:absolute; bottom:56px; left:64px; right:64px; font-size:8px; color:#A9B4C2; text-align:center; letter-spacing:0.02em; }
+</style>
+</head>
+<body>
+
+<!-- ========== PAGE 1 ========== -->
+<div class="page">
+  <div class="cover-head">
+    <div class="cover-eyebrow">SOCIAL TOOL MANUAL — SATO WORKS</div>
+    <div class="cover-title">請求書チェックAI<br>かんたん操作マニュアル
+      <small>PDFを送るだけ。金額のズレはAIが見つけます。</small>
+    </div>
+    <div class="cover-meta">
+      <span class="badge">社内共有版</span><br><br>
+      作成：情報システム担当　佐藤<br>
+      対象：全社員（PC操作に不慣れな方も歓迎）
+    </div>
+  </div>
+
+  <div class="body-pad">
+    <section>
+      <span class="label">WHAT YOU CAN DO</span>
+      <h2>このツールでできること</h2>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-num">01</div>
+          <h3>請求書とチェックすることを自動照合</h3>
+          <p>受け取った請求書PDFと発注データを、AIが自動で突き合わせます。手作業での見比べは不要です。</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">02</div>
+          <h3>金額・件数のズレを検知</h3>
+          <p>金額の不一致や数量の相違があれば、見落とさずアラートで知らせてくれます。</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-num">03</div>
+          <h3>チャット感覚で使える</h3>
+          <p>専門的な操作は不要です。ファイルを送って結果を読むだけの、普段のチャットと同じ感覚で使えます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="label">HOW IT WORKS</span>
+      <h2>全体の流れ（3ステップ）</h2>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="circ">1</div>
+          <h4>請求書を送る</h4>
+          <p>チャット画面に請求書PDFをドラッグ＆ドロップします</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="circ">2</div>
+          <h4>AIが照合する</h4>
+          <p>発注データと自動で突き合わせ、数十秒でチェックが完了します</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="circ">3</div>
+          <h4>結果を確認する</h4>
+          <p>チャット上に結果が表示されます。問題があれば内容を確認してください</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="illust-wrap">
+      <img src="../../assets/works/manual-illust-send.jpg" alt="請求書PDFをAIチャットに送るイメージ">
+      <div class="illust-text">
+        <div class="tag">POINT</div>
+        <p><b>難しい設定は一切不要です。</b>いつも使っているチャット画面に、請求書のPDFファイルをそのままドラッグ＆ドロップするだけで、AIによるチェックが始まります。次のページで、実際の操作手順を詳しくご案内します。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>請求書チェックAI 操作マニュアル｜demo-growth 社内ツール</span>
+    <span class="pg">P.1 / 3</span>
+  </div>
+</div>
+
+<!-- ========== PAGE 2 ========== -->
+<div class="page">
+  <div class="ph">
+    <h1>操作手順を見てみましょう</h1>
+    <span class="brand">HOW TO USE</span>
+  </div>
+
+  <div class="body-pad">
+    <section>
+      <span class="label">STEP BY STEP</span>
+      <div class="steps">
+        <div class="step">
+          <div class="snum">1</div>
+          <div class="scontent">
+            <h4>AIチャット画面を開く</h4>
+            <p>社内ポータルから「請求書チェックAI」を開いてください。ブラウザがあればすぐに使えます。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum">2</div>
+          <div class="scontent">
+            <h4>請求書PDFをドラッグ＆ドロップする</h4>
+            <p>チェックしたい請求書のPDFファイルを、チャット画面の入力欄にそのままドラッグ＆ドロップしてください。複数枚まとめて送っても大丈夫です。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum">3</div>
+          <div class="scontent">
+            <h4>そのまま送信する</h4>
+            <p>特別な指示文は不要です。ファイルを添付したら、そのまま送信してください。AIが自動で発注データと照合を始めます。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum">4</div>
+          <div class="scontent">
+            <h4>結果を確認する</h4>
+            <p>数十秒でAIから結果が返ってきます。「⚠不一致」の表示があれば、金額や件数を担当者に確認してください。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <span class="label">SCREEN SAMPLE</span>
+      <h2 style="margin-bottom:8px;">実際の画面イメージ</h2>
+      <div class="chatbox">
+        <div class="cb-head"><span class="dot"></span>請求書チェックAI — チャット</div>
+        <div class="cb-body">
+          <div class="bubble-user">
+            <div class="file-chip">📄 invoice_0709_ABC商事.pdf</div>
+            この請求書、チェックお願いします。
+          </div>
+          <div class="bubble-ai">
+            <div class="ai-tag">AI アシスタント</div>
+            ご依頼ありがとうございます。発注データと<b>3件</b>照合しました。<br>
+            結果：<span class="result-ok">2件は金額・数量とも一致</span>／<span class="result-warn">⚠ 1件で金額不一致</span><br>
+            該当：明細No.2「消耗品費」　請求額 ¥48,400 ／ 発注額 ¥44,000（差額 ¥4,400）
+          </div>
+        </div>
+      </div>
+      <div class="band band-warn">
+        <span class="bicon">!</span>
+        <span>「⚠不一致」が出た場合は、そのまま処理を進めず、発注担当者または取引先に金額の確認を行ってください。</span>
+      </div>
+    </section>
+
+    <div class="mini-illust">
+      <img src="../../assets/works/manual-illust-check.jpg" alt="チェックリスト画面のイラスト">
+      <p><b>チェック結果は履歴として残ります。</b>あとから見返したいときは、チャット画面をさかのぼるだけで、いつ・どの請求書を確認したかを確認できます。印刷やメール転送も可能です。</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>請求書チェックAI 操作マニュアル｜demo-growth 社内ツール</span>
+    <span class="pg">P.2 / 3</span>
+  </div>
+</div>
+
+<!-- ========== PAGE 3 ========== -->
+<div class="page">
+  <div class="ph">
+    <h1>よくある質問・お困りのときは</h1>
+    <span class="brand">FAQ &amp; SUPPORT</span>
+  </div>
+
+  <div class="body-pad">
+    <section>
+      <span class="label">FAQ</span>
+      <div class="faq">
+        <div class="q"><span class="qmark">Q1</span>読み取れないPDFが送られてきた場合はどうすればよいですか？</div>
+        <div class="a">スキャンの画質が粗い場合や、手書きの請求書の場合、AIがうまく読み取れないことがあります。その際は<b>「読み取れませんでした」</b>と表示されますので、お手数ですが金額の確認だけ手作業で行ってください。</div>
+      </div>
+      <div class="faq">
+        <div class="q"><span class="qmark">Q2</span>金額が合わないと表示されたときはどうすればよいですか？</div>
+        <div class="a">まずは<b>発注書の内容とAIが示した差額</b>をご確認ください。誤発注や単価変更が原因のことが多いです。原因が分からない場合は、取引先へ直接お問い合わせいただくか、下記の担当者までご相談ください。</div>
+      </div>
+      <div class="faq">
+        <div class="q"><span class="qmark">Q3</span>機密情報を含む請求書を送っても大丈夫ですか？</div>
+        <div class="a">送信されたファイルは<b>社内システム内でのみ処理</b>され、外部には送信されません。取引先名や金額などの情報も社外に公開されることはありませんので、安心してご利用ください。</div>
+      </div>
+      <div class="faq">
+        <div class="q"><span class="qmark">Q4</span>操作に困ったときは誰に聞けばよいですか？</div>
+        <div class="a">まずは本マニュアルをご確認いただき、それでも解決しない場合は<b>情報システム担当の佐藤</b>までお気軽にお声がけください。</div>
+      </div>
+    </section>
+
+    <div class="contact-band">
+      <div class="cticon">☎</div>
+      <div class="ctext">
+        困ったときの相談窓口：<b>社内AI担当　佐藤（情報システム部）</b><br>
+        内線：<b>1234</b>　／　チャット：社内チャット「#ai-tool-support」　／　受付：平日 9:00〜18:00
+      </div>
+    </div>
+
+    <div class="band band-ok" style="margin-top:16px;">
+      <span class="bicon">✓</span>
+      <span>迷ったときは「まずは1件、試しに送ってみる」のが一番の近道です。失敗しても大丈夫、AIチェックはやり直しがききます。</span>
+    </div>
+
+    <section style="margin-top:22px;">
+      <span class="label">REVISION HISTORY</span>
+      <h2 style="margin-bottom:6px;">改訂履歴</h2>
+      <table class="hist">
+        <tr><th style="width:110px;">日付</th><th style="width:70px;">版数</th><th>改訂内容</th><th style="width:110px;">担当</th></tr>
+        <tr><td>2026-05-12</td><td>v1.0</td><td>初版発行</td><td>佐藤</td></tr>
+        <tr><td>2026-06-03</td><td>v1.1</td><td>「機密情報の扱い」FAQを追加</td><td>佐藤</td></tr>
+        <tr><td>2026-07-09</td><td>v1.2</td><td>画面イメージを最新版に更新、連絡先を修正</td><td>佐藤</td></tr>
+      </table>
+    </section>
+  </div>
+
+  <div class="disclaimer">※本マニュアルはAI制作のデザインサンプルです（架空のツール）</div>
+
+  <div class="foot">
+    <span>請求書チェックAI 操作マニュアル｜demo-growth 社内ツール</span>
+    <span class="pg">P.3 / 3</span>
+  </div>
+</div>
+
+</body>
+</html>
