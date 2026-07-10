@@ -575,6 +575,7 @@
     }
     var delay = randDelay(idx > 0 ? EVENTS[idx - 1] : null, EVENTS[idx]);
     timer = setTimeout(function () {
+      if (!running || idx >= total) return;
       appendEvent(idx);
       scheduleNext();
     }, delay);
