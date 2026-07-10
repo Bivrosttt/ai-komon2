@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>バーチャルステージングAI 体験デモ｜AI顧問室</title>
+<meta name="description" content="空室写真をドラッグ操作で家具ありイメージに比較できる体験デモです。部屋の形はそのままに、AIが家具付きのステージング画像を数分で作成。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="バーチャルステージングAI 体験デモ｜AI顧問室">
+<meta property="og:description" content="空室写真をドラッグ操作で家具ありイメージに比較できる体験デモです。部屋の形はそのままに、AIが家具付きのステージング画像を数分で作成。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/demo-staging.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/works/staging-a-after.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    --red: #B0432F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; gap: 16px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; white-space: nowrap; }
+  .header-right a.textlink:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s, transform .1s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+  .header-cta { padding: 10px 24px; font-size: 14px; white-space: nowrap; }
+
+  /* Title / hero */
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 80px 0 64px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    color: #DCE6F5;
+  }
+  .demo-hero h1 { font-size: 40px; margin-bottom: 20px; }
+  .demo-hero h1 em { font-style: normal; color: var(--gold); }
+  .demo-hero p.sub { font-size: 16px; color: #C7D3E4; max-width: 640px; }
+
+  /* Note banner */
+  .note-banner { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding-top: 18px; padding-bottom: 18px; }
+  .note-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--white);
+    border-radius: 4px; padding: 14px 20px; font-size: 13.5px; color: var(--gray);
+    max-width: 900px;
+  }
+  .note-box .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .note-box strong { color: var(--ink); }
+  .note-box.warn { border-left-color: var(--red); }
+  .note-box.warn .mark { color: var(--red); }
+
+  /* Demo section */
+  .demo-section { background: var(--white); }
+  .demo-question {
+    font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy); margin-bottom: 12px;
+  }
+  .demo-sub-lead { font-size: 14px; color: var(--gray); margin-bottom: 32px; max-width: 640px; }
+
+  /* Room tabs */
+  .room-tabs { display: flex; gap: 10px; margin-bottom: 24px; }
+  .room-tab {
+    padding: 10px 26px; border: 1.5px solid var(--line); border-radius: 999px;
+    background: var(--white); color: var(--gray); font-size: 14px; font-weight: 700;
+    cursor: pointer; transition: all .15s; font-family: 'Noto Sans JP', sans-serif;
+  }
+  .room-tab:hover { border-color: var(--navy); color: var(--navy); }
+  .room-tab.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+
+  /* Compare grid */
+  .compare-grid { display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start; }
+
+  .compare-wrap { display: flex; flex-direction: column; gap: 14px; }
+  .compare-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 30px rgba(11,36,71,0.10);
+    cursor: ew-resize;
+    touch-action: none;
+    user-select: none;
+    background: var(--bg-soft);
+  }
+  .compare-img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+  .compare-after { z-index: 1; }
+  .compare-before { z-index: 2; clip-path: inset(0 50% 0 0); }
+
+  .compare-handle {
+    position: absolute; top: 0; bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none;
+  }
+  .compare-handle .handle-line {
+    position: absolute; top: 0; bottom: 0; left: 50%;
+    width: 2px; background: var(--white);
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px rgba(0,0,0,0.35);
+  }
+  .compare-handle .handle-knob {
+    position: relative;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    gap: 4px;
+    box-shadow: 0 4px 14px rgba(11,36,71,0.35);
+    font-size: 12px; color: var(--navy); font-weight: 700;
+  }
+
+  .compare-label {
+    position: absolute; bottom: 14px;
+    font-size: 12px; font-weight: 700; color: var(--white);
+    background: rgba(7,26,53,0.72);
+    padding: 5px 14px; border-radius: 999px;
+    letter-spacing: 0.03em; z-index: 4;
+    pointer-events: none;
+  }
+  .label-before { left: 14px; }
+  .label-after { right: 14px; }
+
+  .gen-note {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 13px; color: var(--gray); background: var(--bg-soft);
+    border-radius: 6px; padding: 14px 18px;
+  }
+  .gen-note .mark { color: var(--blue); font-weight: 700; flex-shrink: 0; }
+  .gen-note strong { color: var(--ink); }
+
+  /* AI panel (right side) */
+  .ai-panel {
+    border: 1px solid var(--line); border-radius: 8px; background: var(--bg-soft);
+    padding: 24px;
+  }
+  .ai-panel h4 {
+    font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy);
+    letter-spacing: 0.05em; margin-bottom: 18px; display: flex; align-items: center; gap: 6px;
+  }
+  .ai-panel h4::before { content: "◆"; color: var(--gold); font-size: 11px; }
+  .ai-row { margin-bottom: 18px; display: flex; gap: 10px; align-items: flex-start; }
+  .ai-row:last-child { margin-bottom: 0; }
+  .ai-row .num {
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--navy); color: var(--white); font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .ai-row .txt .k { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .ai-row .txt .v { font-size: 12.5px; color: var(--gray); line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Effect section */
+  .effect { background: var(--bg-soft); }
+  .use-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .use-card {
+    background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--gold);
+    border-radius: 6px; padding: 26px 24px;
+  }
+  .use-card .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .use-card h3 { font-size: 16px; color: var(--navy); margin-bottom: 10px; }
+  .use-card p { font-size: 13px; color: var(--gray); }
+
+  /* How it works */
+  .how { background: var(--white); }
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--bg-soft); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+
+  /* Related links */
+  .related { padding: 0 0 96px; }
+  .related-bar {
+    display: flex; flex-wrap: wrap; gap: 14px 32px; align-items: center;
+    border: 1px solid var(--line); border-radius: 8px; padding: 20px 26px;
+    background: var(--bg-soft);
+  }
+  .related-bar .lbl { font-size: 12.5px; font-weight: 700; color: var(--gray); letter-spacing: 0.04em; }
+  .related-bar a {
+    font-size: 14px; font-weight: 700; color: var(--navy);
+  }
+  .related-bar a:hover { color: var(--blue); }
+  .related-bar a::after { content: "→"; margin-left: 4px; }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .demo-hero h1 { font-size: 28px; }
+    .section-title { font-size: 26px; }
+    .demo-hero { padding: 56px 0 44px; }
+    .header-right a.textlink { display: none; }
+    .related { padding-bottom: 64px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-right">
+      <a href="demos.html" class="textlink">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">体験デモ｜バーチャルステージングAI（不動産向け）</span>
+    <h1>空室写真が、<br><em>数分で「暮らせる部屋」</em>に変わる。</h1>
+    <p class="sub">空室のままの写真では、お客様に生活イメージが伝わりません。空室写真をAIに渡すだけで、部屋の形や光源はそのままに、家具付きのステージング画像を作成します。ハンドルをドラッグして、ビフォー/アフターを比較してみてください。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container">
+    <div class="note-box">
+      <span class="mark">※</span>
+      <span><strong>このページはサンプル画像による体験デモです。</strong>表示しているビフォー/アフター画像は、実際にAIで生成したサンプルです。実際の導入では、御社が管理する物件写真を使って同様の処理を行います。</span>
+    </div>
+  </div>
+</div>
+
+<section class="demo-section" id="demo">
+  <div class="container">
+    <span class="section-label">TRY IT</span>
+    <h2 class="demo-question">ハンドルをドラッグして比較してください</h2>
+    <p class="demo-sub-lead">左が「空室」、右が「家具あり」。中央のハンドルを左右に動かすと境界が移動します。スマホでは指でスライドできます。</p>
+
+    <div class="room-tabs" id="roomTabs">
+      <button type="button" class="room-tab active" data-room="a">LDK</button>
+      <button type="button" class="room-tab" data-room="b">洋室</button>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-wrap">
+        <div class="compare-slider" id="compareSlider" role="slider" tabindex="0" aria-label="空室と家具ありイメージの比較スライダー" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img class="compare-img compare-after" id="imgAfter" src="assets/works/staging-a-after.jpg" alt="家具ありイメージ（AI生成）">
+          <img class="compare-img compare-before" id="imgBefore" src="assets/works/staging-a-before.jpg" alt="空室写真">
+          <div class="compare-label label-before">空室</div>
+          <div class="compare-label label-after">家具あり</div>
+          <div class="compare-handle" id="compareHandle">
+            <div class="handle-line"></div>
+            <div class="handle-knob"><span>◀</span><span>▶</span></div>
+          </div>
+        </div>
+        <div class="gen-note">
+          <span class="mark">ℹ</span>
+          <span><strong>このページの画像は、左の空室写真をAIに渡して生成しました。</strong>部屋の形はそのままに、家具だけを追加しています。所要 約1分/枚。</span>
+        </div>
+      </div>
+
+      <div class="ai-panel">
+        <h4>AIがやったこと</h4>
+        <div class="ai-row">
+          <div class="num">1</div>
+          <div class="txt">
+            <div class="k">部屋の構造・光源の維持</div>
+            <div class="v">壁・窓・床・天井の形はそのまま。日当たりや採光も変えずに家具だけを合成します。</div>
+          </div>
+        </div>
+        <div class="ai-row">
+          <div class="num">2</div>
+          <div class="txt">
+            <div class="k">家具の配置とスタイル指定</div>
+            <div class="v">部屋の広さに合わせて家具のサイズ・配置をAIが決定。北欧・モダン・和などスタイルも指定できます。</div>
+          </div>
+        </div>
+        <div class="ai-row">
+          <div class="num">3</div>
+          <div class="txt">
+            <div class="k">複数スタイルの出し分けも可能</div>
+            <div class="v">同じ部屋でも「北欧テイスト案」「モダン案」など、複数パターンを短時間で作成できます。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box warn" style="margin-top:32px;">
+      <span class="mark">※</span>
+      <span>AI生成のステージング画像を広告に使う際は「家具はCGイメージです」等の表記が必要です。掲載ルールは媒体・宅建業法の広告規制に従って運用します。</span>
+    </div>
+  </div>
+</section>
+
+<section class="effect">
+  <div class="container">
+    <span class="section-label">WHY IT WORKS</span>
+    <h2 class="section-title">空室のまま案内すると、生活イメージが湧きません</h2>
+    <p class="section-lead">「家具を入れたらどう見えるか」を言葉で説明するより、画像1枚を見せる方が伝わります。ステージング画像は、こんな場面で使われています。</p>
+    <div class="use-grid">
+      <div class="use-card">
+        <div class="no">01</div>
+        <h3>ポータル掲載</h3>
+        <p>物件写真をステージング画像に差し替えるだけで、一覧での目に留まりやすさ・反響率の向上が期待できます。</p>
+      </div>
+      <div class="use-card">
+        <div class="no">02</div>
+        <h3>内見前に送付</h3>
+        <p>予約が入った時点でステージング画像をメールやLINEで送付。来場前に部屋の魅力をあらかじめ伝えられます。</p>
+      </div>
+      <div class="use-card">
+        <div class="no">03</div>
+        <h3>内見中にタブレットで提示</h3>
+        <p>空室のままの現地でも、その場でタブレットを見せながら「家具を置くとこうなります」と説明できます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">HOW IT WORKS</span>
+    <h2 class="section-title">仕組み</h2>
+    <p class="section-lead">操作はシンプルです。写真を送って、スタイルを選ぶだけ。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>空室写真を送る</h3>
+        <p>スマホやカメラで撮影した空室写真をそのままAIに渡します。特別な機材や撮影方法は不要です。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>スタイルを選ぶ</h3>
+        <p>北欧・モダン・和など、物件の雰囲気に合わせて家具のスタイルを指定します。複数スタイルの同時生成も可能です。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>数分で複数案が届く</h3>
+        <p>部屋の形・光源はそのままに、家具付きのステージング画像が数分で複数案届きます。気に入った案をそのまま利用できます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="related">
+  <div class="container">
+    <div class="related-bar">
+      <span class="lbl">あわせて見る</span>
+      <a href="lp-fudosan.html">不動産会社向けサービスの詳細</a>
+      <a href="works.html">他の制作実績を見る</a>
+    </div>
+  </div>
+</div>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の物件写真で試したい方へ</h2>
+    <p>「うちの物件でもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、御社の内見・広告運用の現状をお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">1分でレベル診断を受ける</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var ROOMS = {
+    a: {
+      before: "assets/works/staging-a-before.jpg",
+      after: "assets/works/staging-a-after.jpg",
+      beforeAlt: "LDKの空室写真",
+      afterAlt: "LDKの家具ありイメージ（AI生成）"
+    },
+    b: {
+      before: "assets/works/staging-b-before.jpg",
+      after: "assets/works/staging-b-after.jpg",
+      beforeAlt: "洋室の空室写真",
+      afterAlt: "洋室の家具ありイメージ（AI生成）"
+    }
+  };
+
+  var slider = document.getElementById("compareSlider");
+  var handle = document.getElementById("compareHandle");
+  var imgBefore = document.getElementById("imgBefore");
+  var imgAfter = document.getElementById("imgAfter");
+  var roomTabs = document.getElementById("roomTabs");
+
+  var pos = 50;
+  var dragging = false;
+
+  function updateSlider(pct) {
+    pos = Math.max(0, Math.min(100, pct));
+    imgBefore.style.clipPath = "inset(0 " + (100 - pos) + "% 0 0)";
+    handle.style.left = pos + "%";
+    slider.setAttribute("aria-valuenow", Math.round(pos));
+  }
+
+  function setPosFromClientX(clientX) {
+    var rect = slider.getBoundingClientRect();
+    var x = clientX - rect.left;
+    var pct = (x / rect.width) * 100;
+    updateSlider(pct);
+  }
+
+  slider.addEventListener("pointerdown", function (e) {
+    dragging = true;
+    try { slider.setPointerCapture(e.pointerId); } catch (err) {}
+    setPosFromClientX(e.clientX);
+  });
+  slider.addEventListener("pointermove", function (e) {
+    if (!dragging) return;
+    setPosFromClientX(e.clientX);
+  });
+  slider.addEventListener("pointerup", function () { dragging = false; });
+  slider.addEventListener("pointercancel", function () { dragging = false; });
+  slider.addEventListener("lostpointercapture", function () { dragging = false; });
+
+  slider.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") { updateSlider(pos - 5); e.preventDefault(); }
+    if (e.key === "ArrowRight") { updateSlider(pos + 5); e.preventDefault(); }
+  });
+
+  roomTabs.addEventListener("click", function (e) {
+    var tab = e.target.closest(".room-tab");
+    if (!tab) return;
+    var key = tab.getAttribute("data-room");
+    var room = ROOMS[key];
+    if (!room) return;
+
+    var tabs = roomTabs.querySelectorAll(".room-tab");
+    for (var i = 0; i < tabs.length; i++) {
+      tabs[i].classList.toggle("active", tabs[i] === tab);
+    }
+
+    imgBefore.src = room.before;
+    imgAfter.src = room.after;
+    imgBefore.alt = room.beforeAlt;
+    imgAfter.alt = room.afterAlt;
+    updateSlider(50);
+  });
+
+  updateSlider(50);
+})();
+</script>
+
+</body>
+</html>
