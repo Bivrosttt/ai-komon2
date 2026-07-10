@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>顧問料15万円は、月何時間の削減で元が取れるか。｜AI顧問室</title>
+<meta name="description" content="AI顧問室の月額顧問料は、時給換算でおよそ何時間分の業務削減にあたるのか。時給と削減時間を動かすだけで試算できる電卓を用意しました。数字はすべて試算・想定であり、効果を保証するものではありません。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="顧問料15万円は、月何時間の削減で元が取れるか。｜AI顧問室">
+<meta property="og:description" content="AI顧問室の月額顧問料は、時給換算でおよそ何時間分の業務削減にあたるのか。時給と削減時間を動かすだけで試算できる電卓を用意しました。数字はすべて試算・想定であり、効果を保証するものではありません。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/lp-roi.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D; --blue: #2D6CB5;
+    --gold: #C9A227; --ink: #1A2433; --gray: #5B6B7F; --line: #DDE4EC; --bg-soft: #F4F7FA; --white: #FFF;
+    --good: #1E7A3D; --bad: #B4342B; --paper: rgba(11,36,71,.07);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.9; background: var(--white); }
+  h1, h2, h3, h4 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  .mono { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-variant-numeric: tabular-nums; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 76px 0; }
+  .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-weight: 700; font-size: 15px; transition: opacity .2s; border: none; cursor: pointer; font-family: inherit; }
+  .btn:hover { opacity: .85; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-outline { border: 1.5px solid rgba(255,255,255,.55); color: #fff; }
+  .btn-outline-navy { border: 1.5px solid var(--navy); color: var(--navy); }
+
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--navy); }
+  .back { font-size: 13px; color: var(--blue); }
+
+  .section-label { display: block; font-size: 12.5px; letter-spacing: .18em; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+  .section-title { font-size: 28px; color: var(--navy); margin-bottom: 14px; }
+  .section-lead { color: var(--gray); max-width: 680px; margin-bottom: 40px; font-size: 14.5px; }
+  .bg-soft { background: var(--bg-soft); }
+  .bg-paper {
+    background-color: var(--bg-soft);
+    background-image: linear-gradient(var(--paper) 1px, transparent 1px), linear-gradient(90deg, var(--paper) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+
+  /* ---------- hero ---------- */
+  .hero { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 60%, var(--navy-light)); color: var(--white); padding: 72px 0 68px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .hero .label { font-size: 12px; letter-spacing: .2em; color: var(--gold); font-weight: 700; }
+  .hero h1 { font-size: 34px; margin: 10px 0 18px; }
+  .hero h1 .accent { color: var(--gold); }
+  .hero p { color: #C7D3E4; max-width: 560px; font-size: 15px; margin-bottom: 28px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-note { margin-top: 20px; font-size: 12px; color: #9FB0C7; }
+
+  /* decorative calculator mock in hero */
+  .calc-body { max-width: 380px; margin: 0 auto; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 20px; box-shadow: 0 24px 64px rgba(0,0,0,.35); }
+  .calc-screen { background: #061529; border-radius: 10px; padding: 20px 18px; margin-bottom: 14px; border: 1px solid rgba(255,255,255,.1); }
+  .calc-eq { display: flex; align-items: baseline; justify-content: flex-end; gap: 6px; flex-wrap: wrap; }
+  .calc-num { color: #E7ECF3; font-size: 20px; }
+  .calc-op { color: var(--gold); font-size: 20px; }
+  .calc-unit { color: #7C8DA6; font-size: 12px; margin-right: 4px; }
+  .calc-eq .eq-mark { color: var(--gold); font-size: 20px; }
+  .calc-result-line { display: flex; align-items: baseline; justify-content: flex-end; gap: 8px; margin-top: 8px; border-top: 1px dashed rgba(255,255,255,.18); padding-top: 8px; }
+  .calc-result-line .r { color: var(--gold); font-size: 40px; font-weight: 700; }
+  .calc-result-line .u { color: #C7D3E4; font-size: 13px; }
+  .calc-eq-cap { color: #7C8DA6; font-size: 11px; margin-top: 10px; text-align: right; }
+  .calc-pad { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+  .calc-key { background: rgba(255,255,255,.05); border-radius: 8px; text-align: center; padding: 11px 0; color: #C7D3E4; font-size: 14px; }
+  .calc-key.op { background: rgba(201,162,39,.14); color: var(--gold); }
+  .calc-key.eq { background: var(--gold); color: var(--navy-deep); font-weight: 700; grid-column: span 2; }
+  .calc-key.wide { grid-column: span 2; }
+
+  /* ---------- ledger / calculator section ---------- */
+  .ledger { background: #fff; border: 2px solid var(--navy); border-radius: 12px; padding: 34px; display: grid; grid-template-columns: .95fr 1.15fr; gap: 40px; }
+  .ledger-inputs .roi-field { margin-bottom: 30px; }
+  .ledger-inputs .roi-field:last-child { margin-bottom: 0; }
+  .ledger-inputs label { display: flex; justify-content: space-between; align-items: baseline; font-size: 13.5px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .roi-field-val { color: var(--gold); font-size: 17px; }
+  input[type=range] { width: 100%; accent-color: var(--navy); height: 6px; cursor: pointer; }
+  .roi-hint { font-size: 11px; color: var(--gray); margin-top: 8px; }
+  .ledger-eq { background: var(--navy-deep); border-radius: 10px; padding: 22px 24px; margin-top: 4px; }
+  .ledger-eq .calc-eq .calc-num, .ledger-eq .calc-unit { color: #E7ECF3; }
+
+  .ledger-sheet { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 24px 26px; }
+  .sheet-title { font-size: 12.5px; color: var(--gray); letter-spacing: .05em; margin-bottom: 14px; text-transform: uppercase; }
+  table.ledger-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  table.ledger-table th { text-align: left; font-size: 11.5px; color: var(--gray); font-weight: 700; padding: 0 8px 10px; border-bottom: 2px solid var(--navy); }
+  table.ledger-table th.num, table.ledger-table td.num { text-align: right; }
+  table.ledger-table td { padding: 12px 8px; border-bottom: 1px dashed var(--line); vertical-align: middle; }
+  table.ledger-table tr.hit td { background: rgba(201,162,39,.08); }
+  table.ledger-table td.plan-name { font-weight: 700; color: var(--navy); }
+  .verdict { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 700; }
+  .verdict.good { background: rgba(30,122,61,.12); color: var(--good); }
+  .verdict.bad { background: rgba(180,52,43,.12); color: var(--bad); }
+  .verdict.even { background: rgba(91,107,127,.12); color: var(--gray); }
+
+  .ledger-note { font-size: 12.5px; color: var(--gray); margin-top: 22px; background: var(--white); border: 1px dashed var(--gray); padding: 14px 18px; border-radius: 6px; }
+  .ledger-note strong { color: var(--ink); }
+
+  /* ---------- breakdown receipt ---------- */
+  .receipt { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 8px 0; box-shadow: 0 2px 0 var(--line); max-width: 640px; margin: 0 auto; }
+  .receipt-head { text-align: center; padding: 20px 24px 14px; border-bottom: 1px dashed var(--line); }
+  .receipt-head .cap { font-size: 11.5px; letter-spacing: .1em; color: var(--gray); }
+  .receipt-head h3 { font-size: 18px; color: var(--navy); margin-top: 4px; }
+  .receipt-row { display: flex; align-items: baseline; gap: 10px; padding: 14px 24px; border-bottom: 1px dashed var(--line); }
+  .receipt-row .r-label { font-size: 13.5px; color: var(--ink); }
+  .receipt-row .r-sub { display: block; font-size: 11.5px; color: var(--gray); margin-top: 2px; }
+  .receipt-row .r-fill { flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-4px); }
+  .receipt-row .r-val { font-size: 14.5px; color: var(--navy); font-weight: 700; white-space: nowrap; }
+  .receipt-total { display: flex; justify-content: space-between; align-items: baseline; padding: 18px 24px; background: var(--navy-deep); color: #fff; border-radius: 0 0 10px 10px; }
+  .receipt-total .t-label { font-size: 14px; color: #C7D3E4; }
+  .receipt-total .t-val { font-size: 26px; color: var(--gold); font-weight: 700; }
+  .receipt-total .t-val .u { font-size: 13px; color: #C7D3E4; margin-left: 4px; }
+  .receipt-foot { font-size: 11.5px; color: var(--gray); text-align: center; padding: 14px 24px 20px; }
+
+  /* ---------- non-monetary returns ---------- */
+  .return-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .return-card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 28px 24px; }
+  .return-card .no { font-size: 12px; color: var(--gold); font-weight: 700; letter-spacing: .1em; margin-bottom: 10px; }
+  .return-card h3 { font-size: 17px; color: var(--navy); margin-bottom: 10px; }
+  .return-card p { font-size: 13.5px; color: var(--gray); }
+  .return-honest { margin-top: 26px; font-size: 13.5px; color: var(--ink); background: var(--bg-soft); border-left: 4px solid var(--gold); padding: 14px 18px; border-radius: 4px; max-width: 720px; }
+
+  /* ---------- pricing ---------- */
+  .price-grid-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .plan-mini { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 26px 22px; text-align: center; }
+  .plan-mini.featured { border: 2px solid var(--gold); position: relative; }
+  .plan-mini .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--navy-deep); font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 999px; }
+  .plan-mini .p-name { font-size: 12.5px; color: var(--gray); margin-bottom: 6px; }
+  .plan-mini .p-role { font-size: 14px; color: var(--navy); font-weight: 700; margin-bottom: 12px; }
+  .plan-mini .p-amount { font-size: 26px; color: var(--navy); font-weight: 700; margin-bottom: 6px; }
+  .plan-mini .p-amount small { font-size: 12px; color: var(--gray); font-weight: 400; }
+  .plan-mini .p-breakeven { font-size: 12px; color: var(--gray); margin-bottom: 18px; }
+  .plan-mini .p-breakeven strong { color: var(--gold); }
+  .price-note { font-size: 12px; color: var(--gray); text-align: center; margin-top: 24px; }
+
+  /* ---------- cta ---------- */
+  .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; }
+  .cta h2 { font-size: 27px; margin-bottom: 14px; }
+  .cta p { color: #C7D3E4; margin-bottom: 30px; font-size: 14.5px; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-disclaimer { margin-top: 24px; font-size: 11.5px; color: #9FB0C7; }
+
+  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 32px 0; text-align: center; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 860px) {
+    section { padding: 52px 0; }
+    .hero h1 { font-size: 24px; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .ledger { grid-template-columns: 1fr; padding: 24px; }
+    .return-grid { grid-template-columns: 1fr; }
+    .price-grid-mini { grid-template-columns: 1fr; }
+    .ledger-sheet { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table.ledger-table { font-size: 12.5px; min-width: 460px; }
+    table.ledger-table td, table.ledger-table th { white-space: nowrap; }
+    .calc-result-line .r { font-size: 32px; }
+    .receipt-row { flex-wrap: wrap; }
+    .receipt-row .r-fill { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">AI顧問室</a>
+    <nav style="display:flex; gap:20px; align-items:center;">
+      <a href="index.html" class="back">← 公式サイトへ</a>
+      <a href="index.html#contact" class="btn btn-gold" style="padding:9px 22px; font-size:13px; color:var(--navy-deep);">無料相談</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="label">ROI CALCULATOR</span>
+      <h1>答え：時給<span class="accent">2,500円</span>の仕事なら、<br>月<span class="accent">60時間</span>。</h1>
+      <p>AI顧問室の顧問料は、ライトプランで月15万円。これは「時給2,500円の仕事を月60時間分、削減・肩代わりできれば元が取れる」という水準です。この計算式が、御社にとって現実的かどうかを、このページの電卓で試算してください。</p>
+      <div class="hero-btns">
+        <a href="index.html#contact" class="btn btn-gold">無料相談を予約する（60分）</a>
+        <a href="diagnosis.html" class="btn btn-outline">1分でレベル診断</a>
+      </div>
+      <p class="hero-note">※ 「60時間」は顧問料15万円と時給2,500円から算出した損益分岐点の試算です。効果を保証するものではありません。</p>
+    </div>
+    <div>
+      <div class="calc-body">
+        <div class="calc-screen">
+          <div class="calc-eq">
+            <span class="calc-unit">顧問料</span><span class="calc-num">150,000</span><span class="calc-unit">円</span>
+            <span class="calc-op">÷</span>
+            <span class="calc-unit">時給</span><span class="calc-num">2,500</span><span class="calc-unit">円</span>
+          </div>
+          <div class="calc-result-line">
+            <span class="eq-mark">=</span><span class="r">60</span><span class="u">時間 / 月</span>
+          </div>
+          <div class="calc-eq-cap">損益分岐点（ライトプラン・試算）</div>
+        </div>
+        <div class="calc-pad">
+          <div class="calc-key">7</div><div class="calc-key">8</div><div class="calc-key">9</div><div class="calc-key op">÷</div>
+          <div class="calc-key">4</div><div class="calc-key">5</div><div class="calc-key">6</div><div class="calc-key op">×</div>
+          <div class="calc-key">1</div><div class="calc-key">2</div><div class="calc-key">3</div><div class="calc-key op">−</div>
+          <div class="calc-key wide">0</div><div class="calc-key">.</div><div class="calc-key eq">=</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALCULATOR -->
+<section class="bg-paper" id="calc">
+  <div class="container">
+    <span class="section-label">SIMULATOR</span>
+    <h2 class="section-title">御社の数字で試算する</h2>
+    <p class="section-lead">平均時給と、AI顧問室に依頼して月に削減できそうな時間を動かしてください。削減額と、3プランそれぞれの顧問料との差引がリアルタイムで計算されます。</p>
+
+    <div class="ledger">
+      <div class="ledger-inputs">
+        <div class="roi-field">
+          <label>平均時給換算 <span class="roi-field-val mono" id="v-wage">2,500円</span></label>
+          <input type="range" min="1500" max="5000" step="100" value="2500" id="s-wage">
+          <p class="roi-hint">※ 月給 ÷ 160時間 が目安の考え方です</p>
+        </div>
+        <div class="roi-field">
+          <label>月に削減できる想定時間 <span class="roi-field-val mono" id="v-hours">60時間</span></label>
+          <input type="range" min="10" max="100" step="5" value="60" id="s-hours">
+          <p class="roi-hint">※ 下の「60時間の内訳」も参考にしてください</p>
+        </div>
+
+        <div class="ledger-eq">
+          <div class="calc-eq">
+            <span class="calc-unit">時給</span><span class="calc-num mono" id="e-wage">2,500</span><span class="calc-unit">円</span>
+            <span class="calc-op">×</span>
+            <span class="calc-unit">時間</span><span class="calc-num mono" id="e-hours">60</span><span class="calc-unit">h</span>
+          </div>
+          <div class="calc-result-line">
+            <span class="eq-mark">=</span><span class="r mono" id="e-result">150,000</span><span class="u">円 / 月（削減額の試算）</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ledger-sheet">
+        <p class="sheet-title">収支計算シート（試算）</p>
+        <table class="ledger-table">
+          <thead>
+            <tr><th>プラン</th><th class="num">顧問料</th><th class="num">削減額</th><th class="num">差引</th><th class="num">判定</th></tr>
+          </thead>
+          <tbody>
+            <tr id="row-light">
+              <td class="plan-name">ライト</td>
+              <td class="num mono">150,000円</td>
+              <td class="num mono" id="sv-light">150,000円</td>
+              <td class="num mono" id="diff-light">±0円</td>
+              <td class="num" id="jd-light"><span class="verdict even">±0</span></td>
+            </tr>
+            <tr id="row-std">
+              <td class="plan-name">スタンダード</td>
+              <td class="num mono">250,000円</td>
+              <td class="num mono" id="sv-std">150,000円</td>
+              <td class="num mono" id="diff-std">▲100,000円</td>
+              <td class="num" id="jd-std"><span class="verdict bad">未達</span></td>
+            </tr>
+            <tr id="row-prm">
+              <td class="plan-name">プレミアム</td>
+              <td class="num mono">500,000円</td>
+              <td class="num mono" id="sv-prm">150,000円</td>
+              <td class="num mono" id="diff-prm">▲350,000円</td>
+              <td class="num" id="jd-prm"><span class="verdict bad">未達</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="ledger-note"><strong>※ この計算機はすべて試算です。</strong>入力された時給・削減時間に基づく単純計算であり、実際の削減効果や成果を保証するものではありません。時給の考え方や削減できる業務の範囲は会社によって異なります。御社の実態に即した試算は、無料相談（60分）で業務内容をお聞きしたうえで一緒に行います。</p>
+  </div>
+</section>
+
+<!-- BREAKDOWN -->
+<section id="breakdown">
+  <div class="container">
+    <span class="section-label">IS IT REALISTIC?</span>
+    <h2 class="section-title">「月60時間」は、現実的な数字か。</h2>
+    <p class="section-lead">ヒーローで示した損益分岐点「月60時間」を、実際の業務に分解するとどうなるか。よくある定型業務の想定時間を積み上げた一例です。</p>
+
+    <div class="receipt">
+      <div class="receipt-head">
+        <span class="cap">MONTHLY WORK ESTIMATE（想定例）</span>
+        <h3>削減余地60時間の内訳（一例）</h3>
+      </div>
+      <div class="receipt-row">
+        <span class="r-label">見積書・提案資料の作成<span class="r-sub">下書き〜たたき台づくりをAIに任せる想定</span></span>
+        <span class="r-fill"></span>
+        <span class="r-val mono">15時間/月</span>
+      </div>
+      <div class="receipt-row">
+        <span class="r-label">議事録・会議メモの整理<span class="r-sub">録音・メモから要点整理までを想定</span></span>
+        <span class="r-fill"></span>
+        <span class="r-val mono">10時間/月</span>
+      </div>
+      <div class="receipt-row">
+        <span class="r-label">定型メール・チャット対応<span class="r-sub">問い合わせ返信・社内連絡の下書きを想定</span></span>
+        <span class="r-fill"></span>
+        <span class="r-val mono">20時間/月</span>
+      </div>
+      <div class="receipt-row">
+        <span class="r-label">月次・週次報告書の作成<span class="r-sub">数値集計〜資料化の下準備を想定</span></span>
+        <span class="r-fill"></span>
+        <span class="r-val mono">15時間/月</span>
+      </div>
+      <div class="receipt-total">
+        <span class="t-label">合計（想定）</span>
+        <span class="t-val mono">60<span class="u">時間 / 月</span></span>
+      </div>
+      <p class="receipt-foot">※ すべて想定例です。業種・役職・担当者数により大きく変動します。実際の業務量は無料相談でヒアリングのうえ個別に見積もります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- NON-MONETARY RETURNS -->
+<section class="bg-soft">
+  <div class="container">
+    <span class="section-label">BEYOND THE HOURS</span>
+    <h2 class="section-title">時間換算できないリターンもある</h2>
+    <p class="section-lead">この電卓は「時間」だけを計算しています。ですが、AI顧問室に依頼する価値は時間削減だけではありません。ここは誠実に、金額に換算せずお伝えします。</p>
+
+    <div class="return-grid">
+      <div class="return-card">
+        <div class="no">01</div>
+        <h3>判断の質が上がる</h3>
+        <p>経営歴15年×AI歴4年の顧問が壁打ち相手になることで、「その場のノリで導入」ではなく、根拠のある判断がしやすくなります。</p>
+      </div>
+      <div class="return-card">
+        <div class="no">02</div>
+        <h3>属人化が解消される</h3>
+        <p>特定の社員しか使えないAI活用ではなく、顧問が伴走しながら仕組み化するため、担当者が変わっても回る状態を目指せます。</p>
+      </div>
+      <div class="return-card">
+        <div class="no">03</div>
+        <h3>社員の定着につながりうる</h3>
+        <p>定型業務の負担が減ることは、社員の働きやすさにも関わります。ただし定着率への影響は会社の状況によって異なります。</p>
+      </div>
+    </div>
+
+    <p class="return-honest">この3つは、いずれも金額換算していません。数字にできるものは数字で、数字にできないものは数字にしない。それが、私たちが試算に対して持っている誠実さです。</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <span class="section-label">PRICING</span>
+    <h2 class="section-title">料金プラン</h2>
+    <p class="section-lead">3つのプラン、いずれも月額固定・税別・最低契約期間3ヶ月です。上の計算機で、御社にとっての損益分岐点を確認してから選ぶこともできます。</p>
+
+    <div class="price-grid-mini">
+      <div class="plan-mini">
+        <div class="p-name">ライト</div>
+        <div class="p-role">AI経営の相談役</div>
+        <div class="p-amount">15<small>万円/月（税別）</small></div>
+        <div class="p-breakeven">損益分岐：時給2,500円 × <strong>60時間/月</strong></div>
+        <a href="index.html#contact" class="btn btn-outline-navy">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan-mini featured">
+        <div class="badge">おすすめ</div>
+        <div class="p-name">スタンダード</div>
+        <div class="p-role">AI導入の伴走者</div>
+        <div class="p-amount">25<small>万円/月（税別）</small></div>
+        <div class="p-breakeven">損益分岐：時給2,500円 × <strong>100時間/月</strong></div>
+        <a href="index.html#contact" class="btn btn-outline-navy">無料相談で詳しく聞く</a>
+      </div>
+      <div class="plan-mini">
+        <div class="p-name">プレミアム</div>
+        <div class="p-role">社外AI役員</div>
+        <div class="p-amount">50<small>万円/月（税別）</small></div>
+        <div class="p-breakeven">損益分岐：時給2,500円 × <strong>200時間/月</strong></div>
+        <a href="index.html#contact" class="btn btn-outline-navy">無料相談で詳しく聞く</a>
+      </div>
+    </div>
+    <p class="price-note">損益分岐の時間はいずれも試算値です（顧問料 ÷ 時給2,500円で算出）。実際の必要時間・削減余地は会社により異なります。プランは途中変更可能で、実装内容が大きい場合は個別にお見積りします。デジタル化・AI導入補助金（旧IT導入補助金）などの活用提案も行っています。</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>この試算、御社の実際の数字で計算し直しませんか。</h2>
+    <p>無料相談（60分）では、御社の時給水準・削減できそうな業務を一緒に洗い出し、この電卓をより精緻な試算に更新します。まずは今のAI活用レベルを知りたい方は、レベル診断もご活用ください。</p>
+    <div class="cta-btns">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 44px;">無料相談を予約する（60分）</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="font-size:15px; padding:15px 36px;">1分でレベル診断</a>
+    </div>
+    <p class="cta-disclaimer">※ 本ページに掲載する数字はすべて試算・想定例であり、導入効果や削減時間を保証するものではありません。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var sWage = document.getElementById('s-wage');
+  var sHours = document.getElementById('s-hours');
+  var vWage = document.getElementById('v-wage');
+  var vHours = document.getElementById('v-hours');
+  var eWage = document.getElementById('e-wage');
+  var eHours = document.getElementById('e-hours');
+  var eResult = document.getElementById('e-result');
+
+  var PLANS = [
+    { key: 'light', fee: 150000, rowId: 'row-light', svId: 'sv-light', diffId: 'diff-light', jdId: 'jd-light' },
+    { key: 'std', fee: 250000, rowId: 'row-std', svId: 'sv-std', diffId: 'diff-std', jdId: 'jd-std' },
+    { key: 'prm', fee: 500000, rowId: 'row-prm', svId: 'sv-prm', diffId: 'diff-prm', jdId: 'jd-prm' }
+  ];
+
+  function yen(n) {
+    return n.toLocaleString('ja-JP') + '円';
+  }
+
+  function update() {
+    var wage = parseInt(sWage.value, 10);
+    var hours = parseInt(sHours.value, 10);
+    var savings = wage * hours;
+
+    vWage.textContent = wage.toLocaleString('ja-JP') + '円';
+    vHours.textContent = hours + '時間';
+    eWage.textContent = wage.toLocaleString('ja-JP');
+    eHours.textContent = hours;
+    eResult.textContent = savings.toLocaleString('ja-JP');
+
+    PLANS.forEach(function (p) {
+      var diff = savings - p.fee;
+      document.getElementById(p.svId).textContent = yen(savings);
+      var diffEl = document.getElementById(p.diffId);
+      var jdEl = document.getElementById(p.jdId);
+      var rowEl = document.getElementById(p.rowId);
+
+      if (diff > 0) {
+        diffEl.textContent = '+' + yen(diff);
+        jdEl.innerHTML = '<span class="verdict good">黒字</span>';
+        rowEl.classList.add('hit');
+      } else if (diff < 0) {
+        diffEl.textContent = '▲' + yen(Math.abs(diff));
+        jdEl.innerHTML = '<span class="verdict bad">未達</span>';
+        rowEl.classList.remove('hit');
+      } else {
+        diffEl.textContent = '±0円';
+        jdEl.innerHTML = '<span class="verdict even">±0</span>';
+        rowEl.classList.add('hit');
+      }
+    });
+  }
+
+  [sWage, sHours].forEach(function (el) {
+    el.addEventListener('input', update);
+  });
+
+  update();
+})();
+</script>
+
+</body>
+</html>
