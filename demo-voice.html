@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI電話受付 体験デモ｜AI顧問室</title>
+<meta name="description" content="不動産会社への内見予約電話を、AIが最初から最後まで応対する実際の音声を聴ける体験デモです。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="AI電話受付 体験デモ｜AI顧問室">
+<meta property="og:description" content="不動産会社への内見予約電話を、AIが最初から最後まで応対する実際の音声を聴ける体験デモです。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/demo-voice.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    --red: #B0432F;
+    --green: #2E7D4F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; gap: 16px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; white-space: nowrap; }
+  .header-right a.textlink:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s, transform .1s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+  .header-cta { padding: 10px 24px; font-size: 14px; white-space: nowrap; }
+
+  /* Title / hero */
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 80px 0 64px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    color: #DCE6F5;
+  }
+  .demo-hero h1 { font-size: 40px; margin-bottom: 20px; }
+  .demo-hero h1 em { font-style: normal; color: var(--gold); }
+  .demo-hero p.sub { font-size: 16px; color: #C7D3E4; max-width: 640px; }
+
+  /* Note banner */
+  .note-banner { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding-top: 18px; padding-bottom: 18px; }
+  .note-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--white);
+    border-radius: 4px; padding: 14px 20px; font-size: 13.5px; color: var(--gray);
+    max-width: 900px;
+  }
+  .note-box .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .note-box strong { color: var(--ink); }
+
+  /* Demo section */
+  .demo-section { background: var(--white); }
+  .demo-step-label {
+    font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 10px;
+  }
+  .demo-question {
+    font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy); margin-bottom: 32px;
+  }
+
+  .call-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* Phone call card */
+  .phone-card {
+    background: linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-light) 100%);
+    border-radius: 32px;
+    padding: 32px 24px 28px;
+    color: var(--white);
+    box-shadow: 0 20px 50px rgba(11,36,71,0.25);
+    position: sticky;
+    top: 92px;
+  }
+  .phone-topbar {
+    display: flex; justify-content: center; margin-bottom: 20px;
+  }
+  .phone-notch {
+    width: 70px; height: 6px; border-radius: 999px; background: rgba(255,255,255,0.25);
+  }
+  .phone-avatar {
+    width: 76px; height: 76px; border-radius: 50%; margin: 4px auto 18px;
+    background: linear-gradient(135deg, var(--gold), #e8c869);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: var(--navy-deep); font-weight: 700;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .phone-name { text-align: center; font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .phone-role { text-align: center; font-size: 12.5px; color: #B9C7DC; letter-spacing: 0.03em; margin-bottom: 20px; }
+  .phone-status { text-align: center; font-size: 13px; color: #DCE6F5; margin-bottom: 6px; min-height: 18px; }
+  .phone-timer {
+    text-align: center; font-size: 32px; font-weight: 700; letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums; margin-bottom: 20px; color: var(--white);
+  }
+
+  .waveform {
+    display: flex; align-items: flex-end; justify-content: center; gap: 3px;
+    height: 44px; margin-bottom: 26px;
+  }
+  .waveform span {
+    width: 4px; border-radius: 3px; background: var(--gold);
+    height: 6px; opacity: 0.5;
+    transition: opacity .2s;
+  }
+  .waveform.playing span {
+    animation: wavebar 1.1s ease-in-out infinite;
+    opacity: 1;
+  }
+  .waveform span:nth-child(1) { animation-delay: 0s; }
+  .waveform span:nth-child(2) { animation-delay: .08s; }
+  .waveform span:nth-child(3) { animation-delay: .16s; }
+  .waveform span:nth-child(4) { animation-delay: .24s; }
+  .waveform span:nth-child(5) { animation-delay: .32s; }
+  .waveform span:nth-child(6) { animation-delay: .4s; }
+  .waveform span:nth-child(7) { animation-delay: .48s; }
+  .waveform span:nth-child(8) { animation-delay: .56s; }
+  .waveform span:nth-child(9) { animation-delay: .64s; }
+  .waveform span:nth-child(10) { animation-delay: .72s; }
+  .waveform span:nth-child(11) { animation-delay: .8s; }
+  .waveform span:nth-child(12) { animation-delay: .88s; }
+  .waveform span:nth-child(13) { animation-delay: .96s; }
+  .waveform span:nth-child(14) { animation-delay: 1.04s; }
+  .waveform span:nth-child(15) { animation-delay: 1.12s; }
+  @keyframes wavebar {
+    0%, 100% { height: 6px; }
+    50% { height: 40px; }
+  }
+
+  .phone-controls { display: flex; justify-content: center; margin-bottom: 18px; }
+  .play-btn {
+    width: 76px; height: 76px; border-radius: 50%;
+    background: var(--gold); color: var(--navy-deep);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 10px 24px rgba(201,162,39,0.35);
+    transition: transform .1s, opacity .2s;
+  }
+  .play-btn:hover { opacity: 0.9; }
+  .play-btn:active { transform: scale(0.96); }
+  .play-btn svg { width: 26px; height: 26px; }
+
+  .phone-progress-wrap { padding: 0 4px; }
+  .phone-progress-bar {
+    width: 100%; height: 4px; border-radius: 999px; background: rgba(255,255,255,0.2);
+    overflow: hidden; margin-bottom: 6px;
+  }
+  .phone-progress-fill { height: 100%; width: 0%; background: var(--gold); border-radius: 999px; }
+  .phone-progress-labels { display: flex; justify-content: space-between; font-size: 11px; color: #9FB0C7; }
+
+  /* Transcript */
+  .transcript-panel {
+    border: 1px solid var(--line); border-radius: 10px; background: var(--white);
+    padding: 8px 0; min-height: 200px;
+  }
+  .transcript-head {
+    padding: 16px 24px; border-bottom: 1px solid var(--line);
+    font-size: 13px; font-weight: 700; color: var(--navy); letter-spacing: 0.03em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .transcript-head .live-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--line); flex-shrink: 0;
+  }
+  .transcript-head .live-dot.on { background: #E4574C; animation: pulse-dot 1.2s infinite; }
+  @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+  .transcript-body {
+    padding: 22px 24px; display: flex; flex-direction: column; gap: 14px;
+    max-height: 520px; overflow-y: auto;
+  }
+  .bubble-row { display: flex; }
+  .bubble-row.ai { justify-content: flex-start; }
+  .bubble-row.customer { justify-content: flex-end; }
+  .bubble {
+    max-width: 78%; padding: 12px 16px; border-radius: 14px; font-size: 14px; line-height: 1.75;
+    opacity: 0; transform: translateY(6px); transition: opacity .35s ease, transform .35s ease;
+  }
+  .bubble-row.revealed .bubble { opacity: 1; transform: translateY(0); }
+  .bubble-row.ai .bubble {
+    background: var(--navy); color: var(--white); border-bottom-left-radius: 4px;
+  }
+  .bubble-row.customer .bubble {
+    background: var(--bg-soft); color: var(--ink); border: 1px solid var(--line);
+    border-bottom-right-radius: 4px;
+  }
+  .bubble-tag {
+    font-size: 10.5px; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 4px; display: block;
+  }
+  .bubble-row.ai .bubble-tag { color: #9FB0C7; }
+  .bubble-row.customer .bubble-tag { color: var(--gray); text-align: right; }
+  .transcript-empty {
+    text-align: center; color: var(--gray); font-size: 13.5px; padding: 60px 20px;
+  }
+
+  /* Result panel: what happened */
+  .result-panel {
+    margin-top: 40px; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--bg-soft); padding: 28px 28px 22px;
+  }
+  .result-panel h3 {
+    font-size: 16px; color: var(--navy); margin-bottom: 18px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .result-panel h3::before { content: "◆"; color: var(--gold); font-size: 12px; }
+  .check-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--ink);
+    background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px;
+    opacity: 0.4; transition: opacity .3s ease, border-color .3s ease;
+  }
+  .check-item.done { opacity: 1; border-color: #BFE0CC; }
+  .check-item .cbox {
+    width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--line);
+    flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--white); transition: background .3s, border-color .3s;
+  }
+  .check-item.done .cbox { background: var(--green); border-color: var(--green); }
+
+  /* Chips */
+  .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .chip {
+    font-size: 13px; color: var(--navy); background: var(--white); border: 1px solid var(--line);
+    border-radius: 999px; padding: 8px 16px; font-weight: 500;
+  }
+
+  .integrity-note {
+    margin-top: 28px; border-left: 4px solid var(--blue); background: #EEF3FA;
+    border-radius: 4px; padding: 16px 20px; font-size: 13px; color: var(--gray); line-height: 1.8;
+  }
+  .integrity-note strong { color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .call-layout { grid-template-columns: 1fr; }
+    .phone-card { position: static; max-width: 340px; margin: 0 auto; }
+  }
+
+  /* How it works */
+  .how { background: var(--bg-soft); }
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+  .how-note { text-align: center; margin-top: 40px; font-size: 14px; color: var(--gray); }
+  .how-note strong { color: var(--navy); }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .demo-hero h1 { font-size: 28px; }
+    .section-title { font-size: 26px; }
+    .demo-hero { padding: 56px 0 44px; }
+    .header-right a.textlink { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-right">
+      <a href="demos.html" class="textlink">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">体験デモ｜AI電話受付</span>
+    <h1>電話が鳴ったら、<br><em>AIが最初から最後まで応対する。</em></h1>
+    <p class="sub">内見予約の電話を、AIが実際の声で応対したサンプル音声です。物件の確認、空き枠の案内、予約の確定、追加質問への回答まで——実際に再生してお聴きください。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container">
+    <div class="note-box">
+      <span class="mark">※</span>
+      <span><strong>このページはサンプル音声による体験デモです。</strong>再生される通話は、AIが生成した合成音声によるやり取りです。実際の導入では御社の業務・商品知識・対応ルールを学習したAIを構築し、電話システムと接続します。</span>
+    </div>
+  </div>
+</div>
+
+<section class="demo-section" id="demo">
+  <div class="container">
+    <span class="section-label">TRY IT</span>
+    <div class="demo-step-label">SAMPLE CALL</div>
+    <h2 class="demo-question">再生ボタンを押して、実際の通話を聴いてみてください</h2>
+
+    <div class="call-layout">
+      <div class="phone-card">
+        <div class="phone-topbar"><div class="phone-notch"></div></div>
+        <div class="phone-avatar">AI</div>
+        <div class="phone-name">サンプル不動産</div>
+        <div class="phone-role">AI受付アシスタント</div>
+        <div class="phone-status" id="phoneStatus">タップして通話を再生</div>
+        <div class="phone-timer" id="phoneTimer">00:00</div>
+
+        <div class="waveform" id="waveform">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="phone-controls">
+          <button type="button" class="play-btn" id="playBtn" aria-label="通話を再生">
+            <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+        </div>
+
+        <div class="phone-progress-wrap">
+          <div class="phone-progress-bar"><div class="phone-progress-fill" id="progressFill"></div></div>
+          <div class="phone-progress-labels">
+            <span id="curTime">00:00</span>
+            <span id="totalTime">00:00</span>
+          </div>
+        </div>
+
+        <audio id="callAudio" src="assets/works/voice-call.m4a" preload="metadata"></audio>
+      </div>
+
+      <div class="transcript-panel">
+        <div class="transcript-head">
+          <span class="live-dot" id="liveDot"></span>
+          <span>通話トランスクリプト（全文）</span>
+        </div>
+        <div class="transcript-body" id="transcriptBody">
+          <div class="transcript-empty" id="transcriptEmpty">再生を開始すると、会話が順番に表示されます。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-panel">
+      <h3>この通話で起きたこと</h3>
+      <div class="check-list" id="checkList">
+        <div class="check-item" data-check="0"><span class="cbox">✓</span><span>物件の特定（グランサンプル駅前301号室）</span></div>
+        <div class="check-item" data-check="1"><span class="cbox">✓</span><span>内見の空き枠を2候補提示</span></div>
+        <div class="check-item" data-check="2"><span class="cbox">✓</span><span>日時を確定し予約を完了</span></div>
+        <div class="check-item" data-check="3"><span class="cbox">✓</span><span>確認SMS送信への承諾を取得</span></div>
+        <div class="check-item" data-check="4"><span class="cbox">✓</span><span>駐車場に関する追加質問に回答</span></div>
+      </div>
+    </div>
+
+    <div class="integrity-note">
+      <strong>この音声はAIで生成したサンプルです（両方の話者ともAIの合成音声）。</strong>実運用では電話システムとの連携構築・聞き取れない場合の人への転送設計・録音の同意アナウンス等が必要です。
+    </div>
+
+    <div class="chip-row" style="margin-top:28px;">
+      <span class="chip">内見予約の一次受付</span>
+      <span class="chip">営業時間外の電話対応</span>
+      <span class="chip">修理・サポート受付</span>
+      <span class="chip">予約変更・キャンセル対応</span>
+      <span class="chip">折返し予約</span>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">HOW TO CUSTOMIZE</span>
+    <h2 class="section-title">これを御社仕様にするには</h2>
+    <p class="section-lead">今お聴きいただいたのはサンプル音声ですが、実際の導入では御社の電話応対内容をもとに、御社専用のAI受付を段階的に構築していきます。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>よくある電話の流れと回答方針を学習</h3>
+        <p>過去の受電内容や、御社の対応マニュアル（トーン、確認事項、案内の順序など）をAIに学習させます。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>クラウド電話システムに接続</h3>
+        <p>既存の電話番号やクラウドPBXにAIを接続し、営業時間内外を問わず自動で応対できる状態にします。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>複雑な要件は人に引き継ぐ設計</h3>
+        <p>AIが判断できない相談や、聞き取りが難しい場合は、あらかじめ設計したルールに沿って担当者へスムーズに転送します。</p>
+      </div>
+    </div>
+    <p class="how-note">いきなり全自動化はしません。<strong>「人への引き継ぎ」を前提に設計しながら、御社が安心できるペースで自動応対の範囲を広げる</strong>のがAI顧問室のやり方です。</p>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の電話対応で試したい方へ</h2>
+    <p>「うちの電話対応でもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、御社の電話対応の現状をお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">1分でレベル診断を受ける</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var TRANSCRIPT = [
+    { role: "ai", time: 0, text: "お電話ありがとうございます。サンプル不動産、AIアシスタントが承ります。" },
+    { role: "customer", time: 5, text: "あ、すみません。ポータルサイトで見た、駅前のマンションなんですけど、まだ空いてますか？" },
+    { role: "ai", time: 11, text: "グランサンプル駅前、301号室ですね。はい、現在もご案内可能です。よろしければ、内見のご予約をお取りしましょうか？" },
+    { role: "customer", time: 20, text: "お願いします。今週の土曜って空いてますか？" },
+    { role: "ai", time: 25, text: "土曜日ですと、午前11時と、午後2時にご案内できます。ご都合はいかがでしょうか？" },
+    { role: "customer", time: 32, text: "じゃあ、午後2時で。" },
+    { role: "ai", time: 35, text: "かしこまりました。7月12日土曜日、午後2時、現地でのご案内で承りました。当日は担当の佐藤がご案内いたします。確認のショートメッセージをお送りしてもよろしいですか？" },
+    { role: "customer", time: 47, text: "はい、お願いします。あ、あと、駐車場ってありますか？" },
+    { role: "ai", time: 52, text: "はい、敷地内に月極駐車場がございます。空き状況は、当日担当より詳しくご説明いたしますね。" },
+    { role: "customer", time: 60, text: "わかりました。ありがとうございます。" },
+    { role: "ai", time: 62, text: "ご予約ありがとうございました。土曜日、お会いできるのを楽しみにしております。失礼いたします。" }
+  ];
+
+  // マッピング: transcriptの何行目までが確定した時点で、どのチェック項目をONにするか
+  var CHECK_TRIGGERS = [
+    { index: 2, check: 0 },  // 物件特定（AIの301号室応答）
+    { index: 4, check: 1 },  // 空き枠提示
+    { index: 6, check: 2 },  // 予約確定
+    { index: 6, check: 3 },  // SMS送信の提案（承諾は次の客の発話だが、ここで承諾取得完了とみなす）
+    { index: 8, check: 4 }   // 駐車場の質問に回答
+  ];
+
+  var audio = document.getElementById("callAudio");
+  var playBtn = document.getElementById("playBtn");
+  var playIcon = document.getElementById("playIcon");
+  var pauseIcon = document.getElementById("pauseIcon");
+  var phoneStatus = document.getElementById("phoneStatus");
+  var phoneTimer = document.getElementById("phoneTimer");
+  var waveform = document.getElementById("waveform");
+  var progressFill = document.getElementById("progressFill");
+  var curTimeEl = document.getElementById("curTime");
+  var totalTimeEl = document.getElementById("totalTime");
+  var transcriptBody = document.getElementById("transcriptBody");
+  var transcriptEmpty = document.getElementById("transcriptEmpty");
+  var liveDot = document.getElementById("liveDot");
+  var checkItems = document.querySelectorAll(".check-item");
+
+  var revealedCount = 0;
+  var checkedSet = {};
+  var started = false;
+
+  function fmt(sec) {
+    if (!isFinite(sec) || sec < 0) sec = 0;
+    var m = Math.floor(sec / 60);
+    var s = Math.floor(sec % 60);
+    return (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+  }
+
+  function revealBubble(item) {
+    var row = document.createElement("div");
+    row.className = "bubble-row " + item.role;
+    var tagLabel = item.role === "ai" ? "AI受付" : "お客様";
+    row.innerHTML =
+      '<div class="bubble"><span class="bubble-tag">' + tagLabel + '</span>' + item.text + '</div>';
+    transcriptBody.appendChild(row);
+    // force reflow then reveal for transition
+    void row.offsetWidth;
+    row.classList.add("revealed");
+    transcriptBody.scrollTop = transcriptBody.scrollHeight;
+  }
+
+  function applyChecks(upToIndex) {
+    for (var i = 0; i < CHECK_TRIGGERS.length; i++) {
+      var trig = CHECK_TRIGGERS[i];
+      if (upToIndex >= trig.index && !checkedSet[trig.check]) {
+        checkedSet[trig.check] = true;
+        var el = document.querySelector('.check-item[data-check="' + trig.check + '"]');
+        if (el) el.classList.add("done");
+      }
+    }
+  }
+
+  function updateTranscript(currentTime) {
+    while (revealedCount < TRANSCRIPT.length && TRANSCRIPT[revealedCount].time <= currentTime) {
+      if (revealedCount === 0 && transcriptEmpty) {
+        transcriptEmpty.remove();
+        transcriptEmpty = null;
+      }
+      revealBubble(TRANSCRIPT[revealedCount]);
+      applyChecks(revealedCount);
+      revealedCount++;
+    }
+  }
+
+  function resetTranscript() {
+    revealedCount = 0;
+    checkedSet = {};
+    transcriptBody.innerHTML = '<div class="transcript-empty" id="transcriptEmpty">再生を開始すると、会話が順番に表示されます。</div>';
+    transcriptEmpty = document.getElementById("transcriptEmpty");
+    for (var i = 0; i < checkItems.length; i++) checkItems[i].classList.remove("done");
+  }
+
+  function setPlayingUI(isPlaying) {
+    playIcon.style.display = isPlaying ? "none" : "block";
+    pauseIcon.style.display = isPlaying ? "block" : "none";
+    waveform.classList.toggle("playing", isPlaying);
+    liveDot.classList.toggle("on", isPlaying);
+    phoneStatus.textContent = isPlaying ? "通話中…" : (audio.ended ? "通話終了" : "一時停止中");
+  }
+
+  playBtn.addEventListener("click", function () {
+    if (audio.paused) {
+      started = true;
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  });
+
+  audio.addEventListener("play", function () { setPlayingUI(true); });
+  audio.addEventListener("pause", function () { setPlayingUI(false); });
+
+  audio.addEventListener("loadedmetadata", function () {
+    totalTimeEl.textContent = fmt(audio.duration);
+  });
+
+  audio.addEventListener("timeupdate", function () {
+    var t = audio.currentTime;
+    phoneTimer.textContent = fmt(t);
+    curTimeEl.textContent = fmt(t);
+    if (audio.duration) {
+      progressFill.style.width = Math.min(100, (t / audio.duration) * 100) + "%";
+    }
+    updateTranscript(t);
+  });
+
+  audio.addEventListener("ended", function () {
+    setPlayingUI(false);
+    phoneStatus.textContent = "通話終了";
+    updateTranscript(999999);
+  });
+
+  audio.addEventListener("error", function () {
+    phoneStatus.textContent = "音声を読み込めませんでした";
+  });
+})();
+</script>
+
+</body>
+</html>
