@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D住宅ビューア（制作サンプル）｜AI顧問室</title>
+<meta name="description" content="ブラウザで動く簡易3D住宅ビューアの制作サンプルです。OSSの3Dコンポーネント model-viewer と、CC0の3Dモデル素材を目利きして組み合わせ、モダン住宅の模型をマウス操作で確認できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="3D住宅ビューア（制作サンプル）｜AI顧問室">
+<meta property="og:description" content="ブラウザで動く簡易3D住宅ビューアの制作サンプルです。OSSの3Dコンポーネント model-viewer と、CC0の3Dモデル素材を目利きして組み合わせ、モダン住宅の模型をマウス操作で確認できます。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-3d.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    --red: #B0432F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 40px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; gap: 16px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; white-space: nowrap; }
+  .header-right a.textlink:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s, transform .1s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+  .header-cta { padding: 10px 24px; font-size: 14px; white-space: nowrap; }
+
+  /* Hero */
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 80px 0 64px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    color: #DCE6F5;
+  }
+  .demo-hero h1 { font-size: 40px; margin-bottom: 20px; }
+  .demo-hero h1 em { font-style: normal; color: var(--gold); }
+  .demo-hero p.sub { font-size: 16px; color: #C7D3E4; max-width: 640px; }
+
+  /* Note banner */
+  .note-banner { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding-top: 18px; padding-bottom: 18px; }
+  .note-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--white);
+    border-radius: 4px; padding: 14px 20px; font-size: 13.5px; color: var(--gray);
+    max-width: 900px;
+  }
+  .note-box .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .note-box strong { color: var(--ink); }
+
+  /* Viewer section */
+  .viewer-section { background: var(--white); }
+  .viewer-controls {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 16px; margin-bottom: 20px;
+  }
+  .time-toggle { display: inline-flex; border: 1.5px solid var(--line); border-radius: 999px; padding: 4px; gap: 4px; background: var(--bg-soft); }
+  .time-btn {
+    border: none; background: transparent; cursor: pointer;
+    padding: 9px 22px; border-radius: 999px; font-size: 14px; font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif; color: var(--gray);
+    transition: background .2s, color .2s;
+  }
+  .time-btn.active { background: var(--navy); color: var(--white); }
+  .drag-hint { font-size: 12.5px; color: var(--gray); display: flex; align-items: center; gap: 6px; }
+  .drag-hint .ico { color: var(--gold); }
+
+  .viewer-frame {
+    position: relative;
+    width: 100%;
+    height: 560px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #BFE0F0 0%, #DCEAE0 60%, #EDF3E7 100%);
+    box-shadow: 0 10px 30px rgba(11,36,71,0.12);
+    border: 1px solid var(--line);
+    transition: background 0.6s ease;
+  }
+  .viewer-frame.dusk {
+    background: linear-gradient(180deg, #7B5A8C 0%, #E1795A 55%, #F4B183 100%);
+  }
+  model-viewer {
+    width: 100%;
+    height: 100%;
+    display: block;
+    --poster-color: transparent;
+    transition: filter 0.6s ease;
+  }
+  .viewer-frame.dusk model-viewer {
+    filter: sepia(0.16) saturate(1.3) hue-rotate(-8deg) brightness(0.97);
+  }
+  .viewer-status {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 10px;
+    background: var(--navy-deep); color: #C7D3E4; font-size: 14px;
+    z-index: 5; pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .viewer-status.hide { opacity: 0; pointer-events: none; }
+  .viewer-status .spin {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.25); border-top-color: var(--gold);
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .viewer-status.err { background: var(--bg-soft); color: var(--red); }
+
+  .viewer-caption {
+    margin-top: 22px; font-size: 14px; color: var(--gray); max-width: 720px;
+  }
+  .viewer-caption strong { color: var(--navy); }
+  .credit-note { font-size: 12px; color: var(--gray); margin-top: 8px; }
+  .credit-note a { text-decoration: underline; }
+  .cdn-note { font-size: 12px; color: var(--gray); margin-top: 4px; }
+
+  .honesty-note {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--bg-soft);
+    border-radius: 4px; padding: 16px 20px; font-size: 13.5px; color: var(--gray);
+    max-width: 760px; margin-top: 28px;
+  }
+  .honesty-note .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .honesty-note strong { color: var(--ink); }
+
+  /* How it works */
+  .how { background: var(--bg-soft); }
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+  .how-note { text-align: center; margin-top: 40px; font-size: 14px; color: var(--gray); }
+  .how-note strong { color: var(--navy); }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .demo-hero h1 { font-size: 27px; }
+    .section-title { font-size: 26px; }
+    .demo-hero { padding: 56px 0 44px; }
+    .header-right a.textlink { display: none; }
+    .viewer-frame { height: 400px; }
+    .viewer-controls { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-right">
+      <a href="works.html" class="textlink">作品一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">制作サンプル｜3D住宅ビューア</span>
+    <h1>OSSを目利きして使えば、<br><em>ブラウザで動く3Dの住宅模型</em>も作れる。</h1>
+    <p class="sub">Googleが公開しているOSSの3D表示コンポーネント「&lt;model-viewer&gt;」と、CC0（パブリックドメイン相当）の3Dモデル素材を組み合わせ、住宅の模型をブラウザ上でぐるぐる回して確認できるビューアを作成しました。特別な高価なソフトやプラグインは使っていません。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container">
+    <div class="note-box">
+      <span class="mark">※</span>
+      <span><strong>このページは制作サンプルです。</strong>使用しているOSSとCC0素材の目利き・組み合わせ方さえ分かれば、御社サイトにもこうした簡易3Dコンテンツを追加費用を抑えて実装できます。</span>
+    </div>
+  </div>
+</div>
+
+<section class="viewer-section" id="viewer">
+  <div class="container">
+    <span class="section-label">3D VIEWER</span>
+    <h2 class="section-title">マウス・指の操作で家をぐるっと確認</h2>
+    <p class="section-lead">ドラッグで回転、ホイール（またはピンチ）でズームできます。何も操作しない間はゆっくり自動回転します。</p>
+
+    <div class="viewer-controls">
+      <div class="time-toggle" role="group" aria-label="時間帯の切り替え">
+        <button type="button" class="time-btn active" id="btnDay">☀ 昼</button>
+        <button type="button" class="time-btn" id="btnDusk">🌆 夕方</button>
+      </div>
+      <div class="drag-hint"><span class="ico">◎</span>ドラッグで回転／ホイール・ピンチでズーム</div>
+    </div>
+
+    <div class="viewer-frame" id="viewerFrame">
+      <model-viewer
+        id="houseViewer"
+        src="assets/works/models/house-diorama.glb"
+        alt="モダン住宅の3D模型（説明用の簡易モデル）"
+        camera-controls
+        touch-action="pan-y"
+        auto-rotate
+        auto-rotate-delay="1500"
+        rotation-per-second="18deg"
+        camera-orbit="35deg 68deg 12.5m"
+        camera-target="0m 1m 0m"
+        min-camera-orbit="auto auto 6m"
+        max-camera-orbit="auto 100deg 22m"
+        field-of-view="32deg"
+        exposure="1.05"
+        shadow-intensity="1"
+        shadow-softness="0.75"
+        environment-image="neutral"
+        interaction-prompt="none"
+        loading="eager"
+      ></model-viewer>
+      <div class="viewer-status" id="viewerStatus">
+        <div class="spin"></div>
+        <div>3Dシーンを読み込み中…</div>
+      </div>
+    </div>
+
+    <p class="viewer-caption">このビューアはOSSの3D表示コンポーネント「<strong>&lt;model-viewer&gt;</strong>」（Google製・Apache-2.0）で構築しています。図面や敷地の形状に合わせたモデルは、実案件では専用に構築します。</p>
+    <p class="credit-note">3Dモデル：Kenney「City Kit (Suburban)」を加工して使用（<a href="https://kenney.nl/assets/city-kit-suburban" target="_blank" rel="noopener">kenney.nl</a>／CC0 1.0 パブリックドメイン）</p>
+    <p class="cdn-note">※ &lt;model-viewer&gt;をCDNから読み込むため、表示にはインターネット接続が必要です（file://で直接開いた場合は動作しないことがあります）。</p>
+
+    <div class="honesty-note">
+      <span class="mark">※</span>
+      <span>形状は説明用の簡易モデルです。実案件では図面に基づくモデリング・フォトリアルなパースと組み合わせます。</span>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">HOW TO CUSTOMIZE</span>
+    <h2 class="section-title">これを御社仕様にするには</h2>
+    <p class="section-lead">今ご覧いただいたのは説明用の様式化モデルですが、実際の案件では御社の図面・敷地条件・仕様に合わせて構築します。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>図面・敷地データをもとにモデリング</h3>
+        <p>平面図や敷地測量図をもとに、実寸に合わせた3Dモデルを作成。外壁材・屋根形状・建具なども再現します。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>フォトリアルなパース表現に対応</h3>
+        <p>簡易ビューアだけでなく、光の反射や質感まで作り込んだフォトリアルなパース・ウォークスルー動画も制作可能です。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>サイト・提案資料に埋め込み</h3>
+        <p>完成した3Dビューアは自社サイトの物件ページや、商談時の提案資料にそのまま埋め込んで活用できます。</p>
+      </div>
+    </div>
+    <p class="how-note">OSSとCC0素材を正しく目利きして組み合わせれば、<strong>大きな開発費をかけずにこうした体験もサイトに追加できます。</strong></p>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>こうした制作を自社サイトに取り入れたい方へ</h2>
+    <p>「うちの物件・サービスでもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、実現したいイメージをお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="works.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">ほかの制作サンプルを見る</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<script>
+(function () {
+  var frame = document.getElementById("viewerFrame");
+  var statusEl = document.getElementById("viewerStatus");
+  var btnDay = document.getElementById("btnDay");
+  var btnDusk = document.getElementById("btnDusk");
+  var mv = document.getElementById("houseViewer");
+
+  if (!("customElements" in window)) {
+    statusEl.classList.add("err");
+    statusEl.innerHTML = "<div>お使いのブラウザは3D表示コンポーネントに対応していません。<br>最新のブラウザでご覧ください。</div>";
+    return;
+  }
+
+  function hideStatus() { statusEl.classList.add("hide"); }
+  function showError(msg) {
+    statusEl.classList.remove("hide");
+    statusEl.classList.add("err");
+    statusEl.innerHTML = "<div>" + msg + "</div>";
+  }
+
+  mv.addEventListener("load", hideStatus);
+  mv.addEventListener("error", function () {
+    showError("3Dモデルの読み込みに失敗しました。<br>インターネット接続をご確認のうえ、再読み込みしてください。");
+  });
+
+  // Safety net: some environments (or slow connections) don't reliably fire
+  // the load event promptly, so also poll the .loaded property briefly.
+  var tries = 0;
+  var poll = setInterval(function () {
+    tries++;
+    if (mv.loaded) { hideStatus(); clearInterval(poll); }
+    if (tries > 40) clearInterval(poll); // ~10s
+  }, 250);
+
+  btnDay.addEventListener("click", function () {
+    frame.classList.remove("dusk");
+    mv.setAttribute("exposure", "1.05");
+    mv.setAttribute("shadow-intensity", "1");
+    mv.setAttribute("shadow-softness", "0.75");
+    btnDay.classList.add("active");
+    btnDusk.classList.remove("active");
+  });
+
+  btnDusk.addEventListener("click", function () {
+    frame.classList.add("dusk");
+    mv.setAttribute("exposure", "0.85");
+    mv.setAttribute("shadow-intensity", "1.15");
+    mv.setAttribute("shadow-softness", "0.55");
+    btnDusk.classList.add("active");
+    btnDay.classList.remove("active");
+  });
+})();
+</script>
+
+</body>
+</html>
