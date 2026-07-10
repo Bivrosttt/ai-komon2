@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>社員さんは、もう限界かもしれない。｜AI顧問室</title>
+<meta name="description" content="また見積もりで残業、議事録は私ですか、返信が追いつかない——現場の付箋を、経営者の目線で読んでみませんか。1枚ずつAIで剥がしていく、現場負担の構造改善。月15万円から。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="社員さんは、もう限界かもしれない。｜AI顧問室">
+<meta property="og:description" content="また見積もりで残業、議事録は私ですか、返信が追いつかない——現場の付箋を、経営者の目線で読んでみませんか。1枚ずつAIで剥がしていく、現場負担の構造改善。月15万円から。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/lp-genba.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wall: #EDEAE1;
+    --wall-deep: #E2DED2;
+    --board: #FDFCF8;
+    --frame: #B9C0C7;
+    --frame-dark: #8B939C;
+    --ink: #2B2E33;
+    --sub: #6B7280;
+    --navy: #1F3A5F;
+    --gold: #C9A227;
+    --line: #DEDACB;
+    --yellow: #FFE07A;
+    --yellow-dark: #E8C349;
+    --pink: #FFB6C8;
+    --pink-dark: #F492AA;
+    --blue: #A9DBF5;
+    --blue-dark: #7EC3E4;
+    --green: #B9EFC4;
+    --green-dark: #8FDE9F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    background: var(--wall);
+    line-height: 1.9;
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.55; color: var(--navy); }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; }
+  .container { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 100px 0; position: relative; }
+
+  /* Header */
+  .mark-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 30px; background: rgba(253,252,248,0.9); backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .mark {
+    font-family: 'Noto Serif JP', serif; font-size: 16px; letter-spacing: 0.08em;
+    color: var(--navy); font-weight: 700;
+  }
+  .mark-cta {
+    font-size: 13px; letter-spacing: 0.03em; color: #fff; font-weight: 700;
+    background: var(--navy); border-radius: 5px;
+    padding: 10px 22px; opacity: 0; transform: translateY(-6px);
+    transition: opacity .3s, transform .3s, background .2s;
+  }
+  .mark-cta.show { opacity: 1; transform: translateY(0); }
+  .mark-cta:hover { background: var(--gold); color: var(--navy); }
+  @media (max-width: 640px) { .mark-cta { display: none; } }
+
+  /* fade utility */
+  .fade { opacity: 0; transform: translateY(20px); transition: opacity .9s ease, transform .9s ease; }
+  .fade.in { opacity: 1; transform: translateY(0); }
+  .fade.d1 { transition-delay: .12s; }
+  .fade.d2 { transition-delay: .26s; }
+  .fade.d3 { transition-delay: .4s; }
+
+  /* Hero */
+  .hero {
+    padding: 150px 24px 90px;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(201,162,39,0.10), transparent 60%),
+      var(--wall);
+    text-align: center;
+  }
+  .hero .eyebrow { font-size: 13.5px; letter-spacing: 0.1em; color: var(--sub); margin-bottom: 30px; }
+
+  /* Whiteboard */
+  .board-wrap { max-width: 860px; margin: 0 auto 46px; }
+  .board {
+    background: var(--board);
+    border: 10px solid var(--frame);
+    border-radius: 6px;
+    box-shadow: 0 18px 40px rgba(30,40,55,0.16), inset 0 0 0 2px rgba(255,255,255,0.5);
+    padding: 42px 30px 30px;
+    position: relative;
+    min-height: 380px;
+  }
+  .board::after {
+    content: ""; position: absolute; left: 50%; bottom: -20px; transform: translateX(-50%);
+    width: 66%; height: 14px; background: var(--frame-dark); border-radius: 0 0 6px 6px;
+  }
+  .tray { position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
+  .tray span { width: 20px; height: 8px; border-radius: 3px; box-shadow: 0 2px 3px rgba(0,0,0,0.25); }
+  .tray span:nth-child(1) { background: #2A6FB0; }
+  .tray span:nth-child(2) { background: #C23B3B; }
+  .tray span:nth-child(3) { background: #2B2E33; }
+  .notes {
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+    gap: 20px 16px;
+  }
+  .sticky {
+    font-family: 'Klee One', sans-serif;
+    width: 168px; min-height: 128px; padding: 20px 16px 16px;
+    font-size: 15px; line-height: 1.55; color: var(--ink);
+    box-shadow: 3px 6px 14px rgba(30,25,10,0.20);
+    position: relative;
+  }
+  .sticky::before {
+    content: ""; position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+    width: 15px; height: 15px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff, #c0392b 60%, #8e2a1f);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.35);
+  }
+  .sticky.y { background: var(--yellow); transform: rotate(-4deg); }
+  .sticky.p { background: var(--pink); transform: rotate(3deg); margin-top: 14px; }
+  .sticky.b { background: var(--blue); transform: rotate(-2deg); }
+  .sticky.y2 { background: var(--yellow); transform: rotate(4deg); margin-top: 10px; }
+  .sticky.p2 { background: var(--pink); transform: rotate(-3deg); }
+  .sticky.b2 { background: var(--blue); transform: rotate(2deg); margin-top: 18px; }
+  .board-note {
+    text-align: center; font-size: 12px; color: var(--sub); margin-top: 20px; letter-spacing: 0.02em;
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 44px); margin: 0 auto 22px; max-width: 15em; letter-spacing: 0.01em;
+  }
+  .hero .sub {
+    font-size: clamp(13.5px, 1.6vw, 15.5px); color: var(--sub); max-width: 32em; margin: 0 auto;
+    line-height: 2;
+  }
+  .scroll-cue {
+    margin: 56px auto 0; font-size: 10.5px; color: var(--sub); letter-spacing: 0.22em;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+  }
+  .scroll-cue .line { width: 1px; height: 34px; background: var(--frame-dark); position: relative; overflow: hidden; }
+  .scroll-cue .line::after {
+    content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 100%;
+    background: var(--gold); animation: cue 2s ease-in-out infinite;
+  }
+  @keyframes cue { 0% { top: -100%; } 60% { top: 100%; } 100% { top: 100%; } }
+
+  .s-label {
+    display: block; font-size: 11.5px; letter-spacing: 0.28em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 16px; font-weight: 700;
+  }
+
+  /* Reality */
+  .reality { background: var(--wall-deep); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .reality .lead { font-family: 'Noto Serif JP', serif; font-size: clamp(19px, 2.6vw, 25px); color: var(--navy); font-weight: 600; margin-bottom: 6px; }
+  .reality .turn { font-family: 'Noto Serif JP', serif; font-size: clamp(21px, 3vw, 28px); color: var(--gold); font-weight: 700; margin: 34px 0 52px; }
+  .reasons-list { display: flex; flex-direction: column; max-width: 640px; border-top: 1px solid var(--line); }
+  .reason { display: flex; gap: 22px; align-items: flex-start; padding: 26px 4px; border-bottom: 1px solid var(--line); }
+  .reason .num { font-family: 'Noto Serif JP', serif; font-size: 13px; color: var(--gold); font-weight: 700; padding-top: 3px; flex-shrink: 0; }
+  .reason h3 { font-size: 16.5px; margin-bottom: 6px; color: var(--navy); }
+  .reason p { font-size: 13.5px; color: var(--sub); line-height: 1.85; }
+  .reality .close { margin-top: 44px; font-size: 14.5px; color: var(--sub); max-width: 640px; line-height: 2; }
+  .reality .close strong { color: var(--navy); font-weight: 700; }
+
+  /* Solution peel */
+  .peel-list { display: flex; flex-direction: column; gap: 30px; max-width: 780px; margin: 0 auto; }
+  .peel-row {
+    display: grid; grid-template-columns: 190px 44px 1fr; align-items: center; gap: 6px;
+  }
+  .peel-before {
+    font-family: 'Klee One', sans-serif; font-size: 14.5px; padding: 18px 16px 14px;
+    box-shadow: 2px 4px 10px rgba(30,25,10,0.16); position: relative; text-align: center;
+    opacity: 0.72;
+  }
+  .peel-before::before {
+    content: ""; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+    width: 13px; height: 13px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff, #c0392b 60%, #8e2a1f);
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+  }
+  .peel-before.y { background: var(--yellow); transform: rotate(-3deg); }
+  .peel-before.p { background: var(--pink); transform: rotate(2deg); }
+  .peel-before.b { background: var(--blue); transform: rotate(-2deg); }
+  .peel-arrow { text-align: center; font-size: 20px; color: var(--gold); font-weight: 700; }
+  .peel-after {
+    background: var(--green); border-radius: 6px; padding: 18px 22px;
+    box-shadow: 2px 4px 10px rgba(30,25,10,0.10);
+  }
+  .peel-after .tag { font-size: 11px; letter-spacing: 0.08em; color: #1F6B3A; font-weight: 700; margin-bottom: 6px; }
+  .peel-after p { font-size: 14px; color: #1B3A24; line-height: 1.75; }
+
+  /* Value */
+  .value { background: var(--wall-deep); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .value h2 { text-align: center; font-size: clamp(24px, 4vw, 34px); margin-bottom: 16px; }
+  .value .lead { text-align: center; font-size: 14.5px; color: var(--sub); max-width: 34em; margin: 0 auto 56px; line-height: 2; }
+  .v-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .v-card { background: var(--board); border: 1px solid var(--line); border-top: 4px solid var(--gold); border-radius: 6px; padding: 30px 26px; }
+  .v-card .who { font-size: 11.5px; color: var(--gold); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 10px; }
+  .v-card p { font-size: 13.5px; color: var(--sub); line-height: 1.9; }
+  .value .caveat { text-align: center; font-size: 12px; color: var(--sub); margin-top: 30px; }
+
+  /* Process + Pricing */
+  .process h2 { text-align: center; font-size: clamp(24px, 4vw, 34px); margin-bottom: 48px; }
+  .p-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto 90px; }
+  .p-step { text-align: center; padding: 0 10px; }
+  .p-step .no { font-family: 'Noto Serif JP', serif; font-size: 26px; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+  .p-step p { font-size: 13.5px; color: var(--sub); line-height: 1.85; }
+
+  .pricing h2 { text-align: center; font-size: clamp(24px, 4vw, 34px); margin-bottom: 16px; }
+  .pricing .lead { text-align: center; font-size: 14px; color: var(--sub); max-width: 32em; margin: 0 auto 52px; line-height: 1.95; }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .plan { padding: 40px 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; background: var(--board); }
+  .plan.featured { background: #FBF6E7; }
+  .plan .role { font-size: 11px; letter-spacing: 0.1em; color: var(--sub); margin-bottom: 16px; }
+  .plan .role.featured { color: var(--gold); font-weight: 700; }
+  .plan .name { font-family: 'Noto Serif JP', serif; font-size: 18px; margin-bottom: 18px; }
+  .plan .amount { font-family: 'Noto Serif JP', serif; font-size: 34px; margin-bottom: 6px; color: var(--navy); }
+  .plan .amount small { font-family: 'Noto Sans JP', sans-serif; font-size: 12px; color: var(--sub); margin-left: 3px; }
+  .plan .unit { font-size: 11px; color: var(--sub); }
+  .price-note { margin-top: 32px; font-size: 12.5px; color: var(--sub); text-align: center; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.9; }
+
+  /* Final CTA */
+  .cta-final {
+    text-align: center; background: var(--navy); color: #fff; padding: 120px 0;
+  }
+  .cta-final h2 { color: #fff; font-size: clamp(26px, 5vw, 42px); margin-bottom: 22px; }
+  .cta-final p { font-size: 14px; color: #C7D3E4; max-width: 30em; margin: 0 auto 42px; line-height: 2; }
+  .btn {
+    display: inline-block; padding: 18px 46px; background: var(--gold);
+    color: var(--navy); font-size: 15px; letter-spacing: 0.03em; font-weight: 700;
+    border-radius: 4px; transition: transform .2s ease, background .2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); background: #E0BC4E; }
+  .sub-link {
+    display: block; margin-top: 26px; font-size: 13px; color: #C7D3E4;
+    border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 3px; display: inline-block;
+  }
+  .sub-link:hover { color: var(--gold); border-color: var(--gold); }
+
+  footer {
+    text-align: center; padding: 40px 24px 60px; font-size: 11.5px;
+    color: var(--sub); letter-spacing: 0.05em; background: var(--wall);
+  }
+
+  /* mobile sticky cta */
+  .mobile-cta { display: none; }
+  @media (max-width: 720px) {
+    .mobile-cta {
+      display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+      background: #fff; border-top: 1px solid var(--line);
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); gap: 10px;
+      transform: translateY(110%); transition: transform .3s;
+      box-shadow: 0 -4px 16px rgba(30,40,55,.1);
+    }
+    .mobile-cta.show { transform: translateY(0); }
+    .mobile-cta a { flex: 1; text-align: center; padding: 13px 0; border-radius: 4px; font-weight: 700; font-size: 13.5px; }
+    .mobile-cta .mc-diag { border: 1px solid var(--navy); color: var(--navy); }
+    .mobile-cta .mc-consult { background: var(--gold); color: var(--navy); }
+  }
+
+  @media (max-width: 780px) {
+    section { padding: 70px 0; }
+    .board { padding: 34px 16px 24px; }
+    .sticky { width: 44%; min-width: 130px; }
+    .v-grid { grid-template-columns: 1fr; }
+    .p-steps { grid-template-columns: 1fr; gap: 30px; }
+    .plans { grid-template-columns: 1fr; }
+    .plan { border-right: none; }
+    .peel-row { grid-template-columns: 1fr; text-align: center; }
+    .peel-arrow { transform: rotate(90deg); padding: 4px 0; }
+    .reason { flex-direction: column; gap: 8px; }
+    .cta-final { padding: 80px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="mark-bar">
+  <a href="index.html" class="mark">AI顧問室</a>
+  <a href="index.html#contact" class="mark-cta" id="markCta">無料相談を予約する</a>
+</header>
+
+<section class="hero">
+  <p class="eyebrow fade in">月曜の朝、休憩室のホワイトボードを覗いてみると。</p>
+
+  <div class="board-wrap fade in d1">
+    <div class="board">
+      <div class="notes">
+        <div class="sticky y">また見積もりで<br>残業…</div>
+        <div class="sticky p">議事録、<br>私ですか…？</div>
+        <div class="sticky b">返信、<br>追いついてません</div>
+        <div class="sticky y2">この作業、<br>私じゃなくても<br>いいのに</div>
+        <div class="sticky p2">今月も<br>定時に帰れなかった</div>
+        <div class="sticky b2">AIって聞くけど、<br>覚える余裕もない</div>
+      </div>
+      <div class="tray"><span></span><span></span><span></span></div>
+    </div>
+    <p class="board-note">※現場でよくある声を一般化した例です。特定の人物・企業の発言ではありません。</p>
+  </div>
+
+  <h1 class="fade in d2">社員さんは、<br>もう限界かもしれない。</h1>
+  <p class="sub fade in d3">経営者の目には見えていない負担が、現場には積もっています。<br>まずは、そのホワイトボードを、一緒に眺めてみませんか。</p>
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</section>
+
+<section class="reality">
+  <div class="container">
+    <span class="s-label fade">REALITY</span>
+    <p class="lead fade d1">「もっと頑張れ」の号令だけでは、もう変わらない現場があります。</p>
+    <p class="turn fade d2">積もっているのは、やる気ではなく、仕事量です。</p>
+    <div class="reasons-list">
+      <div class="reason fade">
+        <span class="num">01</span>
+        <div><h3>事務作業は、増え続ける</h3><p>見積もり、請求、報告書、取引先対応、社内共有。売上を直接生まない仕事ほど、気づかないうちに膨らんでいきます。</p></div>
+      </div>
+      <div class="reason fade d1">
+        <span class="num">02</span>
+        <div><h3>人は、簡単には増やせない</h3><p>採用が難しい時代に、事務担当をすぐ増やせる中小企業は多くありません。今いる人数で回すしかないのが現実です。</p></div>
+      </div>
+      <div class="reason fade d2">
+        <span class="num">03</span>
+        <div><h3>「効率化する時間」すらない</h3><p>忙しいからこそ、やり方を変える余裕が持てない——これは多くの現場に共通する悪循環です。</p></div>
+      </div>
+    </div>
+    <p class="close fade">これは根性論ではなく、<strong>構造の問題</strong>です。<br>構造を変えるには、外からの手が要ります。</p>
+  </div>
+</section>
+
+<section class="solution">
+  <div class="container">
+    <span class="s-label fade" style="text-align:center; display:block;">SOLUTION</span>
+    <h2 class="fade d1" style="text-align:center; font-size:clamp(24px,4vw,34px); margin-bottom:16px;">その付箋、1枚ずつ、<br>剥がしていきましょう。</h2>
+    <p class="fade d2" style="text-align:center; font-size:14px; color:var(--sub); max-width:34em; margin:0 auto 56px; line-height:2;">AI顧問室がまず手をつけるのは、現場で一番よく聞く声からです。</p>
+    <div class="peel-list">
+      <div class="peel-row fade">
+        <div class="peel-before y">また見積もりで<br>残業…</div>
+        <div class="peel-arrow">→</div>
+        <div class="peel-after"><div class="tag">見積もりAI</div><p>走り書きのメモから、AIが見積もりのたたき台を数分で作成。人は確認するだけになります。</p></div>
+      </div>
+      <div class="peel-row fade d1">
+        <div class="peel-before p">議事録、<br>私ですか…？</div>
+        <div class="peel-arrow">→</div>
+        <div class="peel-after"><div class="tag">議事録AI</div><p>会議の録音から、決定事項と宿題を整理した議事録をAIが自動で作成します。</p></div>
+      </div>
+      <div class="peel-row fade d2">
+        <div class="peel-before b">返信、<br>追いついてません</div>
+        <div class="peel-arrow">→</div>
+        <div class="peel-after"><div class="tag">一次対応AI</div><p>よくある問い合わせは、AIがまず返信案を用意。担当者は最終確認だけで済みます。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="value">
+  <div class="container">
+    <span class="s-label fade" style="text-align:center; display:block;">VALUE</span>
+    <h2 class="fade d1">社員を責めない解決、という選択。</h2>
+    <p class="lead fade d2">現場に「もっと頑張れ」と言うのではなく、業務量そのものを減らす。<br>それが、AI活用の本来の意味だと考えています。</p>
+    <div class="v-grid">
+      <div class="v-card fade">
+        <div class="who">残業</div>
+        <p>一般的に、事務作業の負担が減れば、残業時間にも良い影響が期待されます。頑張りではなく、仕組みで減らす発想です。</p>
+      </div>
+      <div class="v-card fade d1">
+        <div class="who">雰囲気</div>
+        <p>「もっと頑張れ」ではなく「仕組みを変える」という姿勢は、現場の空気を変えるきっかけになり得ると言われています。</p>
+      </div>
+      <div class="v-card fade d2">
+        <div class="who">定着</div>
+        <p>負担が減り、働きやすさが伝われば、人材の定着にもプラスに働くと一般的に語られています。</p>
+      </div>
+    </div>
+    <p class="caveat fade d3">※効果には個人差・会社差があります。特定の成果を保証するものではありません。</p>
+  </div>
+</section>
+
+<section class="process">
+  <div class="container">
+    <span class="s-label fade" style="text-align:center; display:block;">PROCESS</span>
+    <h2 class="fade d1">AI顧問室の進め方</h2>
+    <div class="p-steps">
+      <div class="p-step fade">
+        <div class="no">1</div>
+        <p>まずは無料相談で、<br>現場の負担を聞かせてください。</p>
+      </div>
+      <div class="p-step fade d1">
+        <div class="no">2</div>
+        <p>一番負担の重い業務から、<br>AIで解決策を一緒に作ります。</p>
+      </div>
+      <div class="p-step fade d2">
+        <div class="no">3</div>
+        <p>社員の方が使えるように、<br>顧問が直接教えます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <span class="s-label fade" style="text-align:center; display:block;">PLAN</span>
+    <h2 class="fade d1">料金プラン</h2>
+    <p class="lead fade d2">関与の深さで選べる3つのプラン。まずは60分の相談で、御社に合う関わり方を一緒に決めましょう。</p>
+    <div class="plans fade d2">
+      <div class="plan">
+        <div class="role">AI経営の相談役</div>
+        <div class="name">ライト</div>
+        <div class="amount">15<small>万円/月</small></div>
+        <div class="unit">税別・最低3ヶ月〜</div>
+      </div>
+      <div class="plan featured">
+        <div class="role featured">AI導入の伴走者</div>
+        <div class="name">スタンダード</div>
+        <div class="amount">25<small>万円/月</small></div>
+        <div class="unit">税別・最低3ヶ月〜</div>
+      </div>
+      <div class="plan">
+        <div class="role">社外AI役員</div>
+        <div class="name">プレミアム</div>
+        <div class="amount">50<small>万円/月</small></div>
+        <div class="unit">税別・最低3ヶ月〜</div>
+      </div>
+    </div>
+    <p class="price-note fade d3">最低契約期間は3ヶ月です。どのプランが合うかは、話してから決めれば十分です。</p>
+  </div>
+</section>
+
+<section class="cta-final" id="contact">
+  <div class="container">
+    <h2 class="fade">現場が変わる60分、<br>話しませんか。</h2>
+    <p class="fade d1">AIの説明会ではありません。今、現場で一番負担になっていることを、率直にお聞かせください。売り込みは一切しません。</p>
+    <a href="index.html#contact" class="btn fade d2">無料相談を予約する（60分）</a>
+    <a href="diagnosis.html" class="sub-link fade d3">1分でレベル診断</a>
+  </div>
+</section>
+
+<footer>
+  <p>提供：AI顧問室｜© 2026</p>
+</footer>
+
+<div class="mobile-cta" id="mobile-cta">
+  <a href="diagnosis.html" class="mc-diag">1分レベル診断</a>
+  <a href="index.html#contact" class="mc-consult">無料相談を予約</a>
+</div>
+
+<script>
+(function () {
+  var els = document.querySelectorAll('.fade');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function (el) { io.observe(el); });
+
+  var markCta = document.getElementById('markCta');
+  var mobileBar = document.getElementById('mobile-cta');
+  var shown = false;
+  window.addEventListener('scroll', function () {
+    var s = window.scrollY > 480;
+    if (s !== shown) {
+      shown = s;
+      markCta.classList.toggle('show', s);
+      mobileBar.classList.toggle('show', s);
+    }
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>
