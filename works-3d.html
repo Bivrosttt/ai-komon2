@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3D住宅ビューア（制作サンプル）｜AI顧問室</title>
-<meta name="description" content="ブラウザで動く簡易3D住宅ビューアの制作サンプルです。OSSの3Dコンポーネント model-viewer と、CC0の3Dモデル素材を目利きして組み合わせ、モダン住宅の模型をマウス操作で確認できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<title>間取り図→実寸3D内見モデル（制作サンプル）｜AI顧問室</title>
+<meta name="description" content="1LDKの間取り図をもとに、壁・建具・家具まで実寸で再現した3D内見モデル。AIがOSSの3DソフトBlenderを操作して構築し、ブラウザでぐるぐる回して内見できます。中小企業向けAI顧問サービス「AI顧問室」の制作サンプル。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
 <meta property="og:title" content="3D住宅ビューア（制作サンプル）｜AI顧問室">
@@ -250,9 +250,9 @@
 
 <div class="demo-hero">
   <div class="container">
-    <span class="hero-label">制作サンプル｜3D住宅ビューア</span>
-    <h1>OSSを目利きして使えば、<br><em>ブラウザで動く3Dの住宅模型</em>も作れる。</h1>
-    <p class="sub">Googleが公開しているOSSの3D表示コンポーネント「&lt;model-viewer&gt;」と、CC0（パブリックドメイン相当）の3Dモデル素材を組み合わせ、住宅の模型をブラウザ上でぐるぐる回して確認できるビューアを作成しました。特別な高価なソフトやプラグインは使っていません。</p>
+    <span class="hero-label">制作サンプル｜間取り図→実寸3D内見モデル</span>
+    <h1>2Dの間取り図が、<br><em>ブラウザで内見できる実寸3D</em>になる。</h1>
+    <p class="sub">1LDK（7.0m×7.0m）の間取り図をもとに、壁・建具・水回り・家具まで実寸で再現した3Dモデルです。AIがOSSの3DソフトBlenderを直接操作して構築し、無料のOSSコンポーネント「&lt;model-viewer&gt;」で表示しています。高価な専用ソフトは使っていません。</p>
   </div>
 </div>
 
@@ -268,8 +268,8 @@
 <section class="viewer-section" id="viewer">
   <div class="container">
     <span class="section-label">3D VIEWER</span>
-    <h2 class="section-title">マウス・指の操作で家をぐるっと確認</h2>
-    <p class="section-lead">ドラッグで回転、ホイール（またはピンチ）でズームできます。何も操作しない間はゆっくり自動回転します。</p>
+    <h2 class="section-title">間取り図どおりの1LDKを、上から・中から確認</h2>
+    <p class="section-lead">ドラッグで回転、ホイール（またはピンチ）でズーム。天井を外したドールハウス表示なので、ズームインすればLDK・洋室・水回りの中まで覗けます。何も操作しない間はゆっくり自動回転します。</p>
 
     <div class="viewer-controls">
       <div class="time-toggle" role="group" aria-label="時間帯の切り替え">
@@ -282,19 +282,19 @@
     <div class="viewer-frame" id="viewerFrame">
       <model-viewer
         id="houseViewer"
-        src="assets/works/models/house-diorama.glb"
-        alt="モダン住宅の3D模型（説明用の簡易モデル）"
+        src="assets/works/models/flat-1ldk.glb"
+        alt="間取り図から起こした1LDKの実寸3Dモデル（天井なしのドールハウス表示）"
         camera-controls
         touch-action="pan-y"
         auto-rotate
         auto-rotate-delay="1500"
-        rotation-per-second="18deg"
-        camera-orbit="35deg 68deg 12.5m"
-        camera-target="0m 1m 0m"
-        min-camera-orbit="auto auto 6m"
-        max-camera-orbit="auto 100deg 22m"
+        rotation-per-second="12deg"
+        camera-orbit="-30deg 55deg 13m"
+        camera-target="3.5m 0.8m -3.6m"
+        min-camera-orbit="auto 20deg 4m"
+        max-camera-orbit="auto 88deg 24m"
         field-of-view="32deg"
-        exposure="1.05"
+        exposure="1.0"
         shadow-intensity="1"
         shadow-softness="0.75"
         environment-image="neutral"
@@ -307,13 +307,13 @@
       </div>
     </div>
 
-    <p class="viewer-caption">このビューアはOSSの3D表示コンポーネント「<strong>&lt;model-viewer&gt;</strong>」（Google製・Apache-2.0）で構築しています。図面や敷地の形状に合わせたモデルは、実案件では専用に構築します。</p>
-    <p class="credit-note">3Dモデル：Kenney「City Kit (Suburban)」を加工して使用（<a href="https://kenney.nl/assets/city-kit-suburban" target="_blank" rel="noopener">kenney.nl</a>／CC0 1.0 パブリックドメイン）</p>
+    <p class="viewer-caption">この3Dモデルは、<strong>2Dの間取り図（<a href="demo-madori.html" style="text-decoration:underline;">こちらのデモ</a>と同じ図面）</strong>をもとに、AIがOSSの3DCGソフト<strong>Blender</strong>を直接操作して実寸で構築したものです。表示はOSSコンポーネント「<strong>&lt;model-viewer&gt;</strong>」（Google製・Apache-2.0）を使用。</p>
+    <p class="credit-note">家具・床材テクスチャ：<a href="https://polyhaven.com" target="_blank" rel="noopener">Poly Haven</a>（CC0 1.0 パブリックドメイン）＋一部造作モデリング</p>
     <p class="cdn-note">※ &lt;model-viewer&gt;をCDNから読み込むため、表示にはインターネット接続が必要です（file://で直接開いた場合は動作しないことがあります）。</p>
 
     <div class="honesty-note">
       <span class="mark">※</span>
-      <span>形状は説明用の簡易モデルです。実案件では図面に基づくモデリング・フォトリアルなパースと組み合わせます。</span>
+      <span>この間取り・家具はサンプルです（実在の物件・商品ではありません）。実案件では御社の図面をもとに同じ手順で構築し、フォトリアルなパース画像とセットで納品できます。</span>
     </div>
   </div>
 </section>
