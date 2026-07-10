@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>間取り図→3D化AI 体験デモ｜AI顧問室</title>
+<meta name="description" content="2Dの間取り図をAIが読み取り、ボタン一つで回せる3Dモデルに変換する体験デモです。広さ・天井高・動線がお客様に一瞬で伝わる、不動産会社向け顧客説明ツール。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="間取り図→3D化AI 体験デモ｜AI顧問室">
+<meta property="og:description" content="2Dの間取り図をAIが読み取り、ボタン一つで回せる3Dモデルに変換する体験デモです。広さ・天井高・動線がお客様に一瞬で伝わる、不動産会社向け顧客説明ツール。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/demo-madori.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    --red: #B0432F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 48px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; gap: 16px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; white-space: nowrap; }
+  .header-right a.textlink:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s, transform .1s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+  .header-cta { padding: 10px 24px; font-size: 14px; white-space: nowrap; }
+
+  /* Hero */
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 80px 0 64px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    color: #DCE6F5;
+  }
+  .demo-hero h1 { font-size: 38px; margin-bottom: 20px; }
+  .demo-hero h1 em { font-style: normal; color: var(--gold); }
+  .demo-hero p.sub { font-size: 16px; color: #C7D3E4; max-width: 660px; }
+
+  /* Note banner */
+  .note-banner { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding-top: 18px; padding-bottom: 18px; }
+  .note-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--white);
+    border-radius: 4px; padding: 14px 20px; font-size: 13.5px; color: var(--gray);
+    max-width: 900px;
+  }
+  .note-box .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .note-box strong { color: var(--ink); }
+
+  /* STEP1: floor plan card */
+  .demo-section { background: var(--white); }
+  .demo-step-label {
+    font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 10px;
+  }
+  .demo-question {
+    font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy); margin-bottom: 32px;
+  }
+  .plan-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: 10px;
+    padding: 28px; max-width: 640px; margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(11,36,71,0.08);
+  }
+  .plan-card svg { width: 100%; height: auto; display: block; }
+  .plan-caption {
+    text-align: center; margin-top: 16px; font-size: 13.5px; color: var(--gray);
+  }
+  .plan-caption strong { color: var(--navy); }
+  .plan-cta { text-align: center; margin-top: 36px; }
+  .plan-cta .hint { margin-top: 12px; font-size: 12.5px; color: var(--gray); }
+
+  /* STEP2/3: 3D viewer */
+  .demo-result { margin-top: 64px; display: none; }
+  .demo-result.active { display: block; animation: fadein .3s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .loading-box {
+    border: 1px dashed var(--line); border-radius: 6px; padding: 64px 24px;
+    text-align: center; color: var(--gray); font-size: 15px; background: var(--bg-soft);
+  }
+  .dots { display: inline-flex; gap: 6px; margin-left: 8px; vertical-align: middle; }
+  .dots span {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+    animation: bounce 1.1s infinite ease-in-out;
+  }
+  .dots span:nth-child(2) { animation-delay: .15s; }
+  .dots span:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce { 0%, 80%, 100% { opacity: .25; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1.1); } }
+
+  .viewer-wrap { display: none; }
+  .viewer-wrap.active { display: block; }
+
+  .viewer-controls {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 16px; margin-bottom: 20px;
+  }
+  .view-toggle { display: inline-flex; border: 1.5px solid var(--line); border-radius: 999px; padding: 4px; gap: 4px; background: var(--bg-soft); }
+  .view-btn {
+    border: none; background: transparent; cursor: pointer;
+    padding: 9px 20px; border-radius: 999px; font-size: 13.5px; font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif; color: var(--gray);
+    transition: background .2s, color .2s; white-space: nowrap;
+  }
+  .view-btn.active { background: var(--navy); color: var(--white); }
+  .drag-hint { font-size: 12.5px; color: var(--gray); display: flex; align-items: center; gap: 6px; }
+  .drag-hint .ico { color: var(--gold); }
+
+  .viewer-frame {
+    position: relative;
+    width: 100%;
+    height: 580px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #EDF1F5 0%, #DCE3EC 55%, #C9D2DE 100%);
+    box-shadow: 0 10px 30px rgba(11,36,71,0.12);
+    border: 1px solid var(--line);
+    touch-action: none;
+  }
+  .viewer-frame canvas { display: block; width: 100%; height: 100%; }
+  .viewer-status {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 10px;
+    background: var(--navy-deep); color: #C7D3E4; font-size: 14px;
+    z-index: 5;
+  }
+  .viewer-status.hide { display: none; }
+  .viewer-status .spin {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.25); border-top-color: var(--gold);
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .viewer-status.err { background: var(--bg-soft); color: var(--red); }
+
+  .view-badge {
+    position: absolute; top: 14px; left: 14px; z-index: 4;
+    background: rgba(11,36,71,0.72); color: #fff; font-size: 12px; font-weight: 700;
+    padding: 7px 14px; border-radius: 999px; letter-spacing: 0.03em;
+    pointer-events: none; backdrop-filter: blur(2px);
+  }
+  .viewer-bottom-hint {
+    position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); z-index: 4;
+    background: rgba(11,36,71,0.6); color: #E9EEF5; font-size: 11.5px;
+    padding: 6px 14px; border-radius: 999px; pointer-events: none; white-space: nowrap;
+  }
+
+  .viewer-caption { margin-top: 22px; font-size: 14px; color: var(--gray); max-width: 720px; }
+  .viewer-caption strong { color: var(--navy); }
+  .cdn-note { font-size: 12px; color: var(--gray); margin-top: 8px; }
+
+  .honesty-note {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--bg-soft);
+    border-radius: 4px; padding: 16px 20px; font-size: 13.5px; color: var(--gray);
+    max-width: 780px; margin-top: 28px;
+  }
+  .honesty-note .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .honesty-note strong { color: var(--ink); }
+
+  /* Use cases */
+  .use { background: var(--bg-soft); }
+  .use-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .use-card {
+    border: 1px solid var(--line); border-top: 4px solid var(--gold); border-radius: 6px;
+    padding: 28px 24px; background: var(--white);
+  }
+  .use-card .n { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .use-card h3 { font-size: 16.5px; color: var(--navy); margin-bottom: 10px; }
+  .use-card p { font-size: 13.5px; color: var(--gray); }
+
+  /* How it works */
+  .how { background: var(--white); }
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+  .how-note { text-align: center; margin-top: 40px; font-size: 14px; color: var(--gray); }
+  .how-note strong { color: var(--navy); }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-sublink { margin-top: 24px; font-size: 13px; }
+  .cta-sublink a { color: #C7D3E4; text-decoration: underline; }
+  .cta-sublink a:hover { color: var(--gold); }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  @media (max-width: 900px) {
+    .viewer-frame { height: 460px; }
+  }
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .demo-hero h1 { font-size: 26px; }
+    .section-title { font-size: 26px; }
+    .demo-hero { padding: 56px 0 44px; }
+    .header-right a.textlink { display: none; }
+    .viewer-controls { flex-direction: column; align-items: stretch; }
+    .view-toggle { flex-direction: column; width: 100%; }
+    .view-btn { width: 100%; text-align: center; padding: 10px 14px; }
+    .viewer-frame { height: 380px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-right">
+      <a href="demos.html" class="textlink">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">体験デモ｜間取り図→3D化AI</span>
+    <h1>紙の間取り図では伝わらない広さが、<br><em>ボタン一つで3D化</em>すれば一瞬で伝わる。</h1>
+    <p class="sub">2Dの間取り図をAIが読み取り、そのまま回せる3Dモデルに変換する体験デモです。俯瞰でお部屋全体を、内見視点で室内の広さ・天井高・動線を、お客様と一緒にその場で確認できます。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container">
+    <div class="note-box">
+      <span class="mark">※</span>
+      <span><strong>このページはサンプルの間取り図による体験デモです。</strong>表示される2D間取り図・3Dモデルはあらかじめ用意したものです。実際の導入では、お預かりした間取り図をもとに個別の3Dモデルを構築します。</span>
+    </div>
+  </div>
+</div>
+
+<section class="demo-section" id="demo">
+  <div class="container">
+    <span class="section-label">TRY IT</span>
+    <div class="demo-step-label">STEP 1</div>
+    <h2 class="demo-question">サンプルの間取り図です</h2>
+
+    <div class="plan-card">
+      <svg viewBox="0 0 560 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="1LDKの間取り図">
+        <rect x="0" y="0" width="560" height="600" fill="#FDFCF9"/>
+
+        <!-- room fills -->
+        <rect x="84" y="126" width="257.6" height="235.2" fill="#F6EFDD"/>
+        <rect x="341.6" y="126" width="134.4" height="235.2" fill="#EEF3F0"/>
+        <rect x="162.4" y="411.6" width="84" height="106.4" fill="#E3F0F5"/>
+        <rect x="246.4" y="411.6" width="67.2" height="106.4" fill="#E3F0F5"/>
+        <rect x="84" y="361.2" width="78.4" height="156.8" fill="#F1EEE7"/>
+        <rect x="162.4" y="361.2" width="313.6" height="50.4" fill="#F1EEE7"/>
+        <rect x="313.6" y="411.6" width="162.4" height="106.4" fill="#F1EEE7"/>
+        <rect x="100.8" y="70" width="358.4" height="56" fill="#E9EFEA"/>
+
+        <!-- balcony hatch + railing -->
+        <g stroke="#B9C6C0" stroke-width="1">
+          <line x1="110" y1="70" x2="110" y2="126"/>
+          <line x1="140" y1="70" x2="140" y2="126"/>
+          <line x1="170" y1="70" x2="170" y2="126"/>
+          <line x1="200" y1="70" x2="200" y2="126"/>
+          <line x1="230" y1="70" x2="230" y2="126"/>
+          <line x1="260" y1="70" x2="260" y2="126"/>
+          <line x1="290" y1="70" x2="290" y2="126"/>
+          <line x1="320" y1="70" x2="320" y2="126"/>
+          <line x1="350" y1="70" x2="350" y2="126"/>
+          <line x1="380" y1="70" x2="380" y2="126"/>
+          <line x1="410" y1="70" x2="410" y2="126"/>
+          <line x1="440" y1="70" x2="440" y2="126"/>
+        </g>
+        <line x1="100.8" y1="70" x2="459.2" y2="70" stroke="#0B2447" stroke-width="4"/>
+
+        <!-- furniture: LDK -->
+        <g fill="#D8C9A3" stroke="#0B2447" stroke-width="0.75">
+          <rect x="84" y="241" width="34" height="112" rx="2"/>
+        </g>
+        <circle cx="101" cy="270" r="4" fill="#8B5E3C"/>
+        <circle cx="101" cy="284" r="4" fill="#8B5E3C"/>
+        <rect x="90" y="310" width="18" height="20" fill="#33404D" rx="1"/>
+
+        <g fill="#E4D3AE" stroke="#0B2447" stroke-width="0.75">
+          <rect x="173.6" y="288.4" width="72.8" height="44.8" rx="2"/>
+        </g>
+        <circle cx="182" cy="280" r="5" fill="none" stroke="#0B2447" stroke-width="0.75"/>
+        <circle cx="182" cy="341" r="5" fill="none" stroke="#0B2447" stroke-width="0.75"/>
+        <circle cx="238" cy="280" r="5" fill="none" stroke="#0B2447" stroke-width="0.75"/>
+        <circle cx="238" cy="341" r="5" fill="none" stroke="#0B2447" stroke-width="0.75"/>
+
+        <g fill="#C7D2CE" stroke="#0B2447" stroke-width="0.75">
+          <rect x="173.6" y="196" width="100.8" height="42" rx="8"/>
+          <rect x="201.6" y="168" width="44.8" height="22.4" rx="2"/>
+        </g>
+        <rect x="316.4" y="260.4" width="22.4" height="56" fill="#8B98A8" stroke="#0B2447" stroke-width="0.75"/>
+
+        <!-- furniture: bedroom -->
+        <g fill="#DCE6F0" stroke="#0B2447" stroke-width="0.75">
+          <rect x="397.6" y="126" width="78.4" height="112" rx="3"/>
+        </g>
+        <rect x="404" y="132" width="26" height="18" fill="#fff" stroke="#0B2447" stroke-width="0.5" rx="2"/>
+        <rect x="436" y="132" width="26" height="18" fill="#fff" stroke="#0B2447" stroke-width="0.5" rx="2"/>
+        <rect x="397.6" y="196" width="78.4" height="42" fill="#5B6B7F" opacity="0.35"/>
+        <g fill="none" stroke="#0B2447" stroke-width="0.75">
+          <rect x="344.4" y="260.4" width="22.4" height="89.6"/>
+          <line x1="344.4" y1="260.4" x2="366.8" y2="350"/>
+          <line x1="366.8" y1="260.4" x2="344.4" y2="350"/>
+        </g>
+        <rect x="381.2" y="134.4" width="16.4" height="19.6" fill="#EFE7D6" stroke="#0B2447" stroke-width="0.5"/>
+
+        <!-- furniture: bath / toilet -->
+        <rect x="170.8" y="420" width="36.4" height="89.6" rx="10" fill="#fff" stroke="#0B2447" stroke-width="0.9"/>
+        <rect x="268.4" y="492.8" width="23.2" height="14" fill="#fff" stroke="#0B2447" stroke-width="0.9"/>
+        <ellipse cx="280" cy="480" rx="13" ry="10" fill="#fff" stroke="#0B2447" stroke-width="0.9"/>
+
+        <!-- walls: exterior -->
+        <g stroke="#0B2447" stroke-width="7" stroke-linecap="square">
+          <line x1="84" y1="518" x2="100.8" y2="518"/>
+          <line x1="140" y1="518" x2="476" y2="518"/>
+          <line x1="84" y1="126" x2="140" y2="126"/>
+          <line x1="280" y1="126" x2="476" y2="126"/>
+          <line x1="84" y1="518" x2="84" y2="126"/>
+          <line x1="476" y1="518" x2="476" y2="126"/>
+        </g>
+
+        <!-- window / sliding glass to balcony -->
+        <g stroke="#2D6CB5" stroke-width="2.4">
+          <line x1="140" y1="123.6" x2="280" y2="123.6"/>
+          <line x1="140" y1="128.4" x2="280" y2="128.4"/>
+        </g>
+
+        <!-- walls: interior -->
+        <g stroke="#0B2447" stroke-width="4.5" stroke-linecap="square">
+          <line x1="341.6" y1="361.2" x2="341.6" y2="210"/>
+          <line x1="341.6" y1="165.2" x2="341.6" y2="126"/>
+          <line x1="84" y1="361.2" x2="100.8" y2="361.2"/>
+          <line x1="145.6" y1="361.2" x2="375.2" y2="361.2"/>
+          <line x1="420" y1="361.2" x2="476" y2="361.2"/>
+          <line x1="162.4" y1="518" x2="162.4" y2="411.6"/>
+          <line x1="246.4" y1="518" x2="246.4" y2="411.6"/>
+          <line x1="313.6" y1="518" x2="313.6" y2="411.6"/>
+          <line x1="162.4" y1="411.6" x2="179.2" y2="411.6"/>
+          <line x1="218.4" y1="411.6" x2="263.2" y2="411.6"/>
+          <line x1="296.8" y1="411.6" x2="313.6" y2="411.6"/>
+        </g>
+
+        <!-- sliding door symbol: LDK <-> bedroom -->
+        <g stroke="#2D6CB5" stroke-width="2">
+          <line x1="339.2" y1="210" x2="339.2" y2="165.2"/>
+          <line x1="343.8" y1="210" x2="343.8" y2="165.2"/>
+        </g>
+
+        <!-- swing door symbols -->
+        <g fill="none" stroke="#0B2447" stroke-width="1.4">
+          <path d="M140,518 A39.2,39.2 0 0 0 100.8,478.8"/>
+          <line x1="100.8" y1="518" x2="100.8" y2="478.8"/>
+          <path d="M145.6,361.2 A44.8,44.8 0 0 0 100.8,316.4"/>
+          <line x1="100.8" y1="361.2" x2="100.8" y2="316.4"/>
+          <path d="M420,361.2 A44.8,44.8 0 0 0 375.2,316.4"/>
+          <line x1="375.2" y1="361.2" x2="375.2" y2="316.4"/>
+          <path d="M218.4,411.6 A39.2,39.2 0 0 0 179.2,372.4"/>
+          <line x1="179.2" y1="411.6" x2="179.2" y2="372.4"/>
+          <path d="M296.8,411.6 A33.6,33.6 0 0 0 263.2,378"/>
+          <line x1="263.2" y1="411.6" x2="263.2" y2="378"/>
+        </g>
+
+        <!-- dimension lines -->
+        <g stroke="#5B6B7F" stroke-width="1" fill="#5B6B7F">
+          <line x1="84" y1="540" x2="84" y2="550"/>
+          <line x1="476" y1="540" x2="476" y2="550"/>
+          <line x1="84" y1="545" x2="476" y2="545"/>
+          <polygon points="84,545 92,542 92,548"/>
+          <polygon points="476,545 468,542 468,548"/>
+          <line x1="494" y1="126" x2="504" y2="126"/>
+          <line x1="494" y1="518" x2="504" y2="518"/>
+          <line x1="499" y1="126" x2="499" y2="518"/>
+          <polygon points="499,126 496,134 502,134"/>
+          <polygon points="499,518 496,510 502,510"/>
+        </g>
+        <text x="280" y="562" text-anchor="middle" font-size="12" fill="#5B6B7F" font-family="'Noto Sans JP',sans-serif">7.0m</text>
+        <text x="522" y="326" text-anchor="middle" font-size="12" fill="#5B6B7F" font-family="'Noto Sans JP',sans-serif" transform="rotate(90 522 326)">7.0m</text>
+
+        <!-- room labels -->
+        <g font-family="'Noto Serif JP',serif" fill="#0B2447" text-anchor="middle">
+          <text x="213" y="220" font-size="20" font-weight="700">LDK</text>
+          <text x="213" y="240" font-size="12" fill="#5B6B7F" font-family="'Noto Sans JP',sans-serif">12.0帖</text>
+          <text x="409" y="220" font-size="18" font-weight="700">洋室</text>
+          <text x="409" y="240" font-size="12" fill="#5B6B7F" font-family="'Noto Sans JP',sans-serif">6.0帖</text>
+          <text x="204" y="468" font-size="13" font-weight="700">バス</text>
+          <text x="280" y="468" font-size="13" font-weight="700">トイレ</text>
+          <text x="319" y="389" font-size="13" font-weight="700">廊下</text>
+          <text x="280" y="102" font-size="12" fill="#5B6B7F" font-family="'Noto Sans JP',sans-serif">バルコニー</text>
+        </g>
+
+        <!-- entrance label -->
+        <g font-family="'Noto Sans JP',sans-serif" fill="#5B6B7F">
+          <text x="120" y="536" font-size="11">玄関</text>
+        </g>
+
+        <!-- north arrow -->
+        <g transform="translate(500,44)">
+          <circle cx="0" cy="0" r="16" fill="#fff" stroke="#0B2447" stroke-width="1.2"/>
+          <polygon points="0,-10 4,4 0,0 -4,4" fill="#0B2447"/>
+          <text x="0" y="-18" text-anchor="middle" font-size="10" fill="#0B2447" font-family="'Noto Sans JP',sans-serif" font-weight="700">N</text>
+        </g>
+      </svg>
+    </div>
+    <p class="plan-caption"><strong>1LDK</strong>／専有面積目安 42.0㎡（サンプル間取り）</p>
+
+    <div class="plan-cta">
+      <button type="button" class="btn btn-gold" id="btnGenerate" style="font-size:16px; padding:16px 44px;">この間取りをAIに3D化させる →</button>
+      <p class="hint">クリックすると、AIが間取りを読み取り3Dモデルを生成します（約1.5秒・要ネット接続）</p>
+    </div>
+
+    <div class="demo-result" id="demoResult">
+      <div class="demo-step-label" style="margin-top:8px;">STEP 2</div>
+      <h2 class="demo-question" id="resultTitle" style="font-size:20px;">AIが生成した3Dモデル</h2>
+
+      <div id="loadingBox" class="loading-box">
+        間取りを読み取り、3Dモデルを生成しています<span class="dots"><span></span><span></span><span></span></span>
+      </div>
+
+      <div class="viewer-wrap" id="viewerWrap">
+        <div class="viewer-controls">
+          <div class="view-toggle" role="group" aria-label="視点の切り替え">
+            <button type="button" class="view-btn active" id="btnDollhouse">俯瞰（ドールハウス視点）</button>
+            <button type="button" class="view-btn" id="btnInterior">内見視点（LDKから）</button>
+          </div>
+          <div class="drag-hint" id="dragHint"><span class="ico">◎</span>ドラッグで回転・ホイールでズーム</div>
+        </div>
+
+        <div class="viewer-frame" id="viewerFrame">
+          <div class="viewer-status" id="viewerStatus">
+            <div class="spin"></div>
+            <div>3Dライブラリを準備中…</div>
+          </div>
+          <div class="view-badge" id="viewBadge">俯瞰ビュー</div>
+          <div class="viewer-bottom-hint">自動でゆっくり回転しています（操作すると停止）</div>
+        </div>
+
+        <p class="viewer-caption">同じ間取りのまま、<strong>壁の厚み・天井高・部屋ごとの床材</strong>まで再現した3Dモデルです。俯瞰では壁を腰の高さでカットし、中の部屋割りが一目でわかります。</p>
+        <p class="cdn-note">※ 3Dライブラリ（three.js）をCDNから読み込むため、表示にはインターネット接続が必要です。</p>
+      </div>
+
+      <div class="honesty-note">
+        <span class="mark">※</span>
+        <span>このデモは見本の間取りで事前構築したモデルです。実案件では間取り図から個別にモデルを構築します（自動化の程度は要件によります）。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="use">
+  <div class="container">
+    <span class="section-label">USE CASES</span>
+    <h2 class="section-title">こんな場面で使えます</h2>
+    <p class="section-lead">紙の間取り図だけでは伝わりにくい「広さ・天井高・動線」を、お客様に一瞬で伝えるための顧客説明ツールです。</p>
+    <div class="use-grid">
+      <div class="use-card">
+        <div class="n">01</div>
+        <h3>内見前にお客様へ送る</h3>
+        <p>現地に行く前に、スマホでぐるっと部屋の雰囲気を確認いただけます。内見の候補を絞り込む段階で特に効果的です。</p>
+      </div>
+      <div class="use-card">
+        <div class="n">02</div>
+        <h3>店頭・オンライン商談で見せる</h3>
+        <p>紙の図面を指差しながら説明するより、その場で回して見せられる3Dモデルの方が説得力があり、成約までの検討期間を短縮できます。</p>
+      </div>
+      <div class="use-card">
+        <div class="n">03</div>
+        <h3>リフォーム提案の完成イメージ共有</h3>
+        <p>工事後の空間イメージをその場で共有でき、「思っていたのと違う」という認識のズレを事前に防げます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">HOW TO CUSTOMIZE</span>
+    <h2 class="section-title">これを御社仕様にするには</h2>
+    <p class="section-lead">今ご覧いただいたのはサンプルですが、実際の導入では御社がお持ちの間取り図から3Dモデルを構築します。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>間取り図をお預かり</h3>
+        <p>PDF・画像データはもちろん、紙の図面を撮影したものでも構いません。既存の物件資料をそのままお送りください。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>寸法・部屋割りをもとに3Dモデルを構築</h3>
+        <p>間取り図の寸法・部屋名・建具の位置をもとに3Dモデルを制作します。どこまで自動化するかは物件数や更新頻度など御社の要件により調整します。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>サイト・提案資料・LINEなどで共有</h3>
+        <p>完成した3Dモデルは物件ページへの埋め込みはもちろん、商談時の提案資料やLINEでの送付にもそのまま活用できます。</p>
+      </div>
+    </div>
+    <p class="how-note">物件数が多い会社ほど、<strong>制作フローの一部を自動化することで無理なく展開できます。</strong></p>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の間取り図で試したい方へ</h2>
+    <p>「うちの物件でもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、御社の物件・間取り図の状況をお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">1分でレベル診断を受ける</a>
+    </div>
+    <p class="cta-sublink">不動産会社向けのご提案はこちら → <a href="lp-fudosan.html">lp-fudosan.html</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // ================= Floor plan data (meters) — shared source of truth =================
+  // X: 0-7.0 (west->east). Z: 0 (south / entrance) -> 7.0 (north wall) -> 8.0 (balcony outer edge).
+  var ROOMS = [
+    { x1: 0,   z1: 2.8, x2: 4.6, z2: 7.0, type: "ldk"     },
+    { x1: 4.6, z1: 2.8, x2: 7.0, z2: 7.0, type: "room"    },
+    { x1: 1.4, z1: 0,   x2: 2.9, z2: 1.9, type: "wet"     },
+    { x1: 2.9, z1: 0,   x2: 4.1, z2: 1.9, type: "wet"     },
+    { x1: 0,   z1: 0,   x2: 1.4, z2: 2.8, type: "hall"    },
+    { x1: 1.4, z1: 1.9, x2: 7.0, z2: 2.8, type: "hall"    },
+    { x1: 4.1, z1: 0,   x2: 7.0, z2: 1.9, type: "hall"    },
+    { x1: 0.3, z1: 7.0, x2: 6.7, z2: 8.0, type: "balcony" }
+  ];
+
+  var WALL_H = 2.4;
+  var WALLS = [
+    // exterior (thickness 0.15)
+    { x1: 0,   z1: 0,   x2: 0.3, z2: 0,   t: 0.15 },
+    { x1: 1.0, z1: 0,   x2: 7.0, z2: 0,   t: 0.15 },
+    { x1: 0,   z1: 7.0, x2: 1.0, z2: 7.0, t: 0.15 },
+    { x1: 3.5, z1: 7.0, x2: 7.0, z2: 7.0, t: 0.15 },
+    { x1: 0,   z1: 0,   x2: 0,   z2: 7.0, t: 0.15 },
+    { x1: 7.0, z1: 0,   x2: 7.0, z2: 7.0, t: 0.15 },
+    // interior (thickness 0.1)
+    { x1: 4.6, z1: 2.8, x2: 4.6, z2: 5.5, t: 0.1 },
+    { x1: 4.6, z1: 6.3, x2: 4.6, z2: 7.0, t: 0.1 },
+    { x1: 0,   z1: 2.8, x2: 0.3, z2: 2.8, t: 0.1 },
+    { x1: 1.1, z1: 2.8, x2: 5.2, z2: 2.8, t: 0.1 },
+    { x1: 6.0, z1: 2.8, x2: 7.0, z2: 2.8, t: 0.1 },
+    { x1: 1.4, z1: 0,   x2: 1.4, z2: 1.9, t: 0.1 },
+    { x1: 2.9, z1: 0,   x2: 2.9, z2: 1.9, t: 0.1 },
+    { x1: 4.1, z1: 0,   x2: 4.1, z2: 1.9, t: 0.1 },
+    { x1: 1.4, z1: 1.9, x2: 1.7, z2: 1.9, t: 0.1 },
+    { x1: 2.4, z1: 1.9, x2: 3.2, z2: 1.9, t: 0.1 },
+    { x1: 3.8, z1: 1.9, x2: 4.1, z2: 1.9, t: 0.1 }
+  ];
+
+  var frame = document.getElementById("viewerFrame");
+  var statusEl = document.getElementById("viewerStatus");
+  var viewBadge = document.getElementById("viewBadge");
+  var btnGenerate = document.getElementById("btnGenerate");
+  var demoResult = document.getElementById("demoResult");
+  var loadingBox = document.getElementById("loadingBox");
+  var viewerWrap = document.getElementById("viewerWrap");
+  var btnDollhouse = document.getElementById("btnDollhouse");
+  var btnInterior = document.getElementById("btnInterior");
+  var dragHint = document.getElementById("dragHint");
+
+  var threeReady = (typeof THREE !== "undefined");
+
+  var renderer, scene, camera, clipPlane;
+  var revealed = false;
+  var sceneBuilt = false;
+
+  // ---------------- helpers ----------------
+  function canvasTexture(draw, w, h) {
+    var c = document.createElement("canvas");
+    c.width = w; c.height = h;
+    var ctx = c.getContext("2d");
+    draw(ctx, w, h);
+    var tex = new THREE.CanvasTexture(c);
+    tex.wrapS = THREE.RepeatWrapping;
+    tex.wrapT = THREE.RepeatWrapping;
+    if (THREE.sRGBEncoding) tex.encoding = THREE.sRGBEncoding;
+    return tex;
+  }
+
+  function woodTexture(base, dark, light) {
+    return canvasTexture(function (ctx, w, h) {
+      ctx.fillStyle = base;
+      ctx.fillRect(0, 0, w, h);
+      var plankH = h / 8;
+      for (var i = 0; i < 8; i++) {
+        ctx.fillStyle = (i % 2 === 0) ? light : base;
+        ctx.globalAlpha = 0.35;
+        ctx.fillRect(0, i * plankH, w, plankH);
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = dark;
+        ctx.globalAlpha = 0.5;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, i * plankH);
+        ctx.lineTo(w, i * plankH);
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+      ctx.globalAlpha = 0.12;
+      ctx.strokeStyle = dark;
+      for (var g = 0; g < 40; g++) {
+        var y = Math.random() * h;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.bezierCurveTo(w * 0.3, y + (Math.random() - 0.5) * 6, w * 0.7, y + (Math.random() - 0.5) * 6, w, y);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }, 256, 256);
+  }
+
+  function tileTexture(base, line) {
+    return canvasTexture(function (ctx, w, h) {
+      ctx.fillStyle = base;
+      ctx.fillRect(0, 0, w, h);
+      ctx.strokeStyle = line;
+      ctx.lineWidth = 2;
+      var n = 4;
+      for (var i = 0; i <= n; i++) {
+        var p = (i / n) * w;
+        ctx.beginPath(); ctx.moveTo(p, 0); ctx.lineTo(p, h); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, p); ctx.lineTo(w, p); ctx.stroke();
+      }
+    }, 256, 256);
+  }
+
+  function box(w, h, d, color, rough, metal) {
+    var geo = new THREE.BoxGeometry(w, h, d);
+    var mat = new THREE.MeshStandardMaterial({ color: color, roughness: (rough === undefined ? 0.8 : rough), metalness: (metal === undefined ? 0.05 : metal) });
+    var m = new THREE.Mesh(geo, mat);
+    m.castShadow = true; m.receiveShadow = true;
+    return m;
+  }
+
+  function put(mesh, x, y, z, group) {
+    mesh.position.set(x, y, z);
+    group.add(mesh);
+    return mesh;
+  }
+
+  // ---------------- environment (procedural "room" for PMREM, no extra CDN file) ----------------
+  function buildEnvironment(renderer) {
+    var pmrem = new THREE.PMREMGenerator(renderer);
+    pmrem.compileEquirectangularShader();
+    var envScene = new THREE.Scene();
+    var geo = new THREE.BoxGeometry(30, 30, 30);
+    geo.scale(-1, 1, 1);
+    var materials = [
+      new THREE.MeshBasicMaterial({ color: 0xC7CED9 }),
+      new THREE.MeshBasicMaterial({ color: 0xC7CED9 }),
+      new THREE.MeshBasicMaterial({ color: 0xEDEEF0 }),
+      new THREE.MeshBasicMaterial({ color: 0x9FA9B8 }),
+      new THREE.MeshBasicMaterial({ color: 0xD9CFAE }),
+      new THREE.MeshBasicMaterial({ color: 0xD9CFAE })
+    ];
+    var envBox = new THREE.Mesh(geo, materials);
+    envScene.add(envBox);
+    var l1 = new THREE.PointLight(0xffffff, 4, 40);
+    l1.position.set(6, 10, 4);
+    envScene.add(l1);
+    var l2 = new THREE.PointLight(0xDCE6FF, 2, 40);
+    l2.position.set(-8, 6, -6);
+    envScene.add(l2);
+    var rt = pmrem.fromScene(envScene, 0.04);
+    pmrem.dispose();
+    return rt.texture;
+  }
+
+  function gradientBackground() {
+    return canvasTexture(function (ctx, w, h) {
+      var g = ctx.createLinearGradient(0, 0, 0, h);
+      g.addColorStop(0, "#DCE3EC");
+      g.addColorStop(0.45, "#BCC7D6");
+      g.addColorStop(1, "#8994A6");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, w, h);
+    }, 8, 512);
+  }
+
+  // ---------------- scene build ----------------
+  var CAM = {
+    mode: "dollhouse",
+    theta: 0.6, phi: 0.78, distance: 10.5,
+    minD: 6, maxD: 17,
+    yaw: 0, pitch: -0.05,
+    fov: 45,
+    targetDh: null, eyeInt: null,
+    userInteracted: false,
+    transition: { active: false, t: 0, duration: 0.85, start: null, end: null }
+  };
+
+  function computeDollhouse() {
+    var pos = new THREE.Vector3(
+      CAM.targetDh.x + CAM.distance * Math.sin(CAM.phi) * Math.sin(CAM.theta),
+      CAM.targetDh.y + CAM.distance * Math.cos(CAM.phi),
+      CAM.targetDh.z + CAM.distance * Math.sin(CAM.phi) * Math.cos(CAM.theta)
+    );
+    return { pos: pos, look: CAM.targetDh.clone(), fov: 45 };
+  }
+  function computeInterior() {
+    var dir = new THREE.Vector3(
+      Math.cos(CAM.pitch) * Math.sin(CAM.yaw),
+      Math.sin(CAM.pitch),
+      Math.cos(CAM.pitch) * Math.cos(CAM.yaw)
+    );
+    var look = CAM.eyeInt.clone().add(dir);
+    return { pos: CAM.eyeInt.clone(), look: look, fov: 55 };
+  }
+  function computeCurrent() {
+    return CAM.mode === "dollhouse" ? computeDollhouse() : computeInterior();
+  }
+
+  function applyClipping(mode) {
+    if (mode === "dollhouse") {
+      renderer.clippingPlanes = [clipPlane];
+    } else {
+      renderer.clippingPlanes = [];
+    }
+  }
+
+  function switchMode(mode) {
+    if (CAM.mode === mode && !CAM.transition.active) return;
+    var start = computeCurrent();
+    CAM.mode = mode;
+    if (mode === "dollhouse") {
+      CAM.theta = 0.6; CAM.phi = 0.78; CAM.distance = 13;
+    } else {
+      CAM.yaw = 0; CAM.pitch = -0.05;
+    }
+    var end = computeCurrent();
+    applyClipping(mode);
+    CAM.userInteracted = false;
+    CAM.transition.active = true;
+    CAM.transition.t = 0;
+    CAM.transition.start = start;
+    CAM.transition.end = end;
+
+    btnDollhouse.classList.toggle("active", mode === "dollhouse");
+    btnInterior.classList.toggle("active", mode === "interior");
+    viewBadge.textContent = mode === "dollhouse" ? "俯瞰ビュー" : "内見ビュー（LDK）";
+    dragHint.innerHTML = mode === "dollhouse"
+      ? '<span class="ico">◎</span>ドラッグで回転・ホイールでズーム'
+      : '<span class="ico">◎</span>ドラッグで見回せます・ホイールでズーム';
+  }
+
+  function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+
+  function buildScene() {
+    if (!threeReady) return;
+
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    if (THREE.sRGBEncoding) renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 0.98;
+    renderer.localClippingEnabled = true;
+    frame.insertBefore(renderer.domElement, statusEl);
+
+    scene = new THREE.Scene();
+    scene.background = gradientBackground();
+    scene.environment = buildEnvironment(renderer);
+
+    camera = new THREE.PerspectiveCamera(45, 1, 0.05, 100);
+
+    clipPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 1.05);
+
+    CAM.targetDh = new THREE.Vector3(3.5, 0.35, 3.9);
+    CAM.eyeInt = new THREE.Vector3(2.3, 1.55, 3.35);
+
+    // ---------------- lights ----------------
+    var hemi = new THREE.HemisphereLight(0xF3F6FA, 0x8D8676, 0.42);
+    scene.add(hemi);
+
+    var sun = new THREE.DirectionalLight(0xFFF0D8, 2.0);
+    sun.position.set(8, 11, 5);
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.camera.left = -8; sun.shadow.camera.right = 8;
+    sun.shadow.camera.top = 8; sun.shadow.camera.bottom = -8;
+    sun.shadow.camera.near = 1; sun.shadow.camera.far = 30;
+    sun.shadow.radius = 3;
+    sun.shadow.bias = -0.0015;
+    scene.add(sun);
+
+    var fill = new THREE.DirectionalLight(0xCBD9F5, 0.45);
+    fill.position.set(-6, 5, -4);
+    scene.add(fill);
+
+    var rim = new THREE.DirectionalLight(0xFFFFFF, 0.3);
+    rim.position.set(-3, 6, 9);
+    scene.add(rim);
+
+    // ---------------- materials ----------------
+    var matFloorLDK = new THREE.MeshStandardMaterial({ map: woodTexture("#C9A26B", "#8B5E3C", "#E0C594"), roughness: 0.72 });
+    matFloorLDK.map.repeat.set(4.6 / 1.4, 4.2 / 1.4);
+    var matFloorRoom = new THREE.MeshStandardMaterial({ map: woodTexture("#E7DFC9", "#C9BFA0", "#F3EDDB"), roughness: 0.75 });
+    matFloorRoom.map.repeat.set(2.4 / 1.4, 4.2 / 1.4);
+    var matFloorWet = new THREE.MeshStandardMaterial({ map: tileTexture("#DCE6EA", "#B9C7CE"), roughness: 0.4, metalness: 0.05 });
+    var matFloorHall = new THREE.MeshStandardMaterial({ map: tileTexture("#EDEAE2", "#D8D2C2"), roughness: 0.55 });
+    var matFloorBalcony = new THREE.MeshStandardMaterial({ map: tileTexture("#C7CDCB", "#A9B2AF"), roughness: 0.85 });
+    var matWall = new THREE.MeshStandardMaterial({ color: 0xEFEAE0, roughness: 0.92, clippingPlanes: [] });
+    var matGlass = new THREE.MeshPhysicalMaterial({ color: 0xBFE0F5, transparent: true, opacity: 0.28, roughness: 0.05, metalness: 0, transmission: 0.6, side: THREE.DoubleSide });
+    var matFrame = new THREE.MeshStandardMaterial({ color: 0x9AA6B2, roughness: 0.4, metalness: 0.6 });
+
+    var root = new THREE.Group();
+    scene.add(root);
+
+    // ---------------- podium (grounding disc for a "product shot" feel) ----------------
+    (function () {
+      var podGeo = new THREE.CircleGeometry(7.6, 48);
+      var podMat = new THREE.MeshStandardMaterial({ color: 0x9099A8, roughness: 0.95 });
+      var pod = new THREE.Mesh(podGeo, podMat);
+      pod.rotation.x = -Math.PI / 2;
+      pod.position.set(3.5, -0.03, 3.6);
+      pod.receiveShadow = true;
+      root.add(pod);
+    })();
+
+    // ---------------- floors ----------------
+    ROOMS.forEach(function (r) {
+      var w = r.x2 - r.x1, d = r.z2 - r.z1;
+      var mat = r.type === "ldk" ? matFloorLDK : r.type === "room" ? matFloorRoom : r.type === "wet" ? matFloorWet : r.type === "balcony" ? matFloorBalcony : matFloorHall;
+      var geo = new THREE.PlaneGeometry(w, d);
+      var mesh = new THREE.Mesh(geo, mat);
+      mesh.rotation.x = -Math.PI / 2;
+      mesh.position.set((r.x1 + r.x2) / 2, 0, (r.z1 + r.z2) / 2);
+      mesh.receiveShadow = true;
+      root.add(mesh);
+    });
+
+    // ---------------- walls ----------------
+    WALLS.forEach(function (w) {
+      var vertical = (w.x1 === w.x2);
+      var len = vertical ? Math.abs(w.z2 - w.z1) : Math.abs(w.x2 - w.x1);
+      var geo = vertical ? new THREE.BoxGeometry(w.t, WALL_H, len) : new THREE.BoxGeometry(len, WALL_H, w.t);
+      var mesh = new THREE.Mesh(geo, matWall);
+      mesh.position.set((w.x1 + w.x2) / 2, WALL_H / 2, (w.z1 + w.z2) / 2);
+      mesh.castShadow = true; mesh.receiveShadow = true;
+      mesh.material = matWall.clone();
+      mesh.material.clippingPlanes = [clipPlane];
+      root.add(mesh);
+    });
+
+    // glass sliding wall to balcony (x 1.0-3.5, z=7.0)
+    (function () {
+      var glass = box(2.5, 2.2, 0.05, 0xBFE0F5, 0.05, 0);
+      glass.material = matGlass;
+      glass.castShadow = false;
+      put(glass, 2.25, 1.2, 7.0, root);
+      var frTop = box(2.5, 0.1, 0.15, 0x9AA6B2, 0.4, 0.6);
+      frTop.material = matFrame;
+      put(frTop, 2.25, 2.35, 7.0, root);
+      var frBottom = frTop.clone();
+      put(frBottom, 2.25, 0.05, 7.0, root);
+      var mullion = box(0.05, 2.2, 0.08, 0x9AA6B2, 0.4, 0.6);
+      mullion.material = matFrame;
+      put(mullion, 2.25, 1.2, 7.0, root);
+    })();
+
+    // sliding fusuma door LDK <-> bedroom (partial open)
+    (function () {
+      var leaf = box(0.04, 2.0, 0.62, 0xEDE3C8, 0.7, 0);
+      put(leaf, 4.53, 1.05, 5.86, root);
+    })();
+
+    buildLDKFurniture(root);
+    buildBedroomFurniture(root);
+    buildBathFurniture(root);
+    buildToiletFurniture(root);
+    buildBalcony(root, matFrame);
+
+    applyClipping(CAM.mode);
+
+    window.addEventListener("resize", onResize);
+    installControls();
+    sceneBuilt = true;
+  }
+
+  function buildLDKFurniture(root) {
+    var wood = 0x7A4E30, worktop = 0xF2F0EA, cab = 0x5A3A22, fabric = 0x45566B, fabricDk = 0x2F3D4E, lightWood = 0xBB8F58;
+
+    // kitchen (west wall)
+    put(box(0.6, 0.85, 2.0, cab), 0.35, 0.425, 3.95, root);
+    put(box(0.7, 0.05, 2.1, worktop), 0.35, 0.875, 3.95, root);
+    put(box(0.3, 0.02, 0.5, 0x33404D), 0.3, 0.905, 3.85, root);
+    var b1 = box(0.09, 0.03, 0.09, 0x2B2F36, 0.5, 0.6); put(b1, 0.35, 0.905, 4.4, root);
+    var b2 = b1.clone(); put(b2, 0.35, 0.905, 4.65, root);
+    put(box(0.35, 0.55, 1.2, cab), 0.2, 1.75, 3.55, root);
+
+    // dining table + chairs
+    put(box(1.3, 0.05, 0.8, lightWood), 2.25, 0.74, 3.7, root);
+    [[1.68, 3.34], [1.68, 4.06], [2.82, 3.34], [2.82, 4.06]].forEach(function (p) {
+      var leg = box(0.05, 0.72, 0.05, lightWood);
+      put(leg, p[0], 0.36, p[1], root);
+    });
+    [[1.85, 3.0, 0], [2.65, 3.0, 0], [1.85, 4.4, Math.PI], [2.65, 4.4, Math.PI]].forEach(function (c) {
+      var seat = box(0.38, 0.06, 0.38, fabricDk);
+      put(seat, c[0], 0.44, c[1], root);
+      var back = box(0.38, 0.34, 0.05, fabricDk);
+      var by = 0.44 + 0.17;
+      var bz = c[1] + (c[2] === 0 ? -0.18 : 0.18);
+      put(back, c[0], by, bz, root);
+      [-0.16, 0.16].forEach(function (dx) {
+        [-0.16, 0.16].forEach(function (dz) {
+          put(box(0.04, 0.44, 0.04, lightWood), c[0] + dx, 0.22, c[1] + dz, root);
+        });
+      });
+    });
+
+    // sofa + coffee table + rug
+    var rug = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 2.0), new THREE.MeshStandardMaterial({ color: 0xB9C2CE, roughness: 0.95 }));
+    rug.rotation.x = -Math.PI / 2; rug.position.set(2.5, 0.006, 5.65); rug.receiveShadow = true;
+    root.add(rug);
+
+    put(box(1.8, 0.42, 0.8, fabric), 2.5, 0.21, 5.35, root);
+    put(box(1.8, 0.36, 0.18, fabric), 2.5, 0.6, 5.0, root);
+    put(box(0.16, 0.5, 0.8, fabricDk), 1.68, 0.25, 5.35, root);
+    put(box(0.16, 0.5, 0.8, fabricDk), 3.32, 0.25, 5.35, root);
+    [0.35].forEach(function () {});
+    [[2.15, 5.35], [2.85, 5.35]].forEach(function (p) {
+      put(box(0.28, 0.14, 0.42, 0xE6E1D2), p[0], 0.5, p[1], root);
+    });
+
+    put(box(0.8, 0.38, 0.5, lightWood), 2.5, 0.19, 6.05, root);
+    put(box(0.85, 0.03, 0.55, 0xEDEAE2), 2.5, 0.39, 6.05, root);
+
+    // TV unit against east wall
+    put(box(0.4, 0.45, 1.0, cab), 4.32, 0.225, 4.1, root);
+    put(box(0.06, 0.6, 0.85, 0x1C222B, 0.3, 0.2), 4.55, 0.75, 4.1, root);
+  }
+
+  function buildBedroomFurniture(root) {
+    var frame = 0x8B5E3C, mattress = 0xF2EEE3, blanket = 0x2D6CB5, pillow = 0xFFFFFF, wood = 0x8B5E3C;
+
+    put(box(1.4, 0.25, 2.0, frame), 6.3, 0.125, 6.0, root);
+    put(box(1.32, 0.22, 1.92, mattress), 6.3, 0.36, 6.0, root);
+    put(box(1.4, 0.5, 0.1, frame), 6.3, 0.72, 6.95, root);
+    put(box(0.5, 0.14, 0.34, pillow), 5.95, 0.5, 6.75, root);
+    put(box(0.5, 0.14, 0.34, pillow), 6.65, 0.5, 6.75, root);
+    put(box(1.3, 0.1, 0.85, blanket), 6.3, 0.5, 5.65, root);
+
+    // wardrobe (west wall of bedroom)
+    put(box(0.4, 2.0, 1.6, wood), 4.85, 1.0, 3.8, root);
+    put(box(0.02, 1.8, 0.02, 0x2B2F36, 0.3, 0.3), 5.05, 1.0, 3.06, root);
+
+    // nightstand + lamp
+    put(box(0.3, 0.5, 0.35, wood), 5.45, 0.25, 6.68, root);
+    put(box(0.03, 0.28, 0.03, 0xC9A227, 0.3, 0.6), 5.45, 0.64, 6.68, root);
+    var shade = new THREE.Mesh(new THREE.ConeGeometry(0.09, 0.12, 12, 1, true), new THREE.MeshStandardMaterial({ color: 0xF3E9CE, side: THREE.DoubleSide, roughness: 0.6 }));
+    shade.position.set(5.45, 0.84, 6.68);
+    root.add(shade);
+  }
+
+  function buildBathFurniture(root) {
+    var white = 0xF3F0E8;
+    put(box(0.65, 0.45, 1.6, white, 0.35, 0.1), 2.075, 0.225, 0.95, root);
+    put(box(0.53, 0.1, 1.44, 0xEAF3F7, 0.2, 0.2), 2.075, 0.42, 0.95, root);
+    put(box(0.4, 0.06, 0.35, 0xFFFFFF), 1.55, 0.85, 0.4, root);
+  }
+
+  function buildToiletFurniture(root) {
+    var white = 0xFAFAF6;
+    put(box(0.4, 0.4, 0.16, white, 0.3, 0.1), 3.5, 0.55, 0.28, root);
+    var pedestal = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.19, 0.38, 16), new THREE.MeshStandardMaterial({ color: white, roughness: 0.3 }));
+    put(pedestal, 3.5, 0.19, 0.75, root);
+    var bowl = new THREE.Mesh(new THREE.SphereGeometry(0.22, 16, 12), new THREE.MeshStandardMaterial({ color: white, roughness: 0.3 }));
+    bowl.scale.set(1, 0.55, 1.3);
+    put(bowl, 3.5, 0.42, 0.72, root);
+  }
+
+  function buildBalcony(root, matFrame) {
+    var postGeo = new THREE.CylinderGeometry(0.02, 0.02, 0.95, 8);
+    var postMat = matFrame;
+    for (var x = 0.5; x <= 6.5; x += 0.55) {
+      var p = new THREE.Mesh(postGeo, postMat);
+      p.position.set(x, 0.475, 7.95);
+      p.castShadow = true;
+      root.add(p);
+    }
+    var rail = new THREE.Mesh(new THREE.BoxGeometry(6.4, 0.05, 0.05), postMat);
+    rail.position.set(3.5, 0.95, 7.95);
+    root.add(rail);
+    var panel = new THREE.Mesh(new THREE.BoxGeometry(6.3, 0.85, 0.02), new THREE.MeshPhysicalMaterial({ color: 0xE7EEF2, transparent: true, opacity: 0.28, roughness: 0.2, transmission: 0.5 }));
+    panel.position.set(3.5, 0.45, 7.95);
+    root.add(panel);
+    [7.0, 8.0].forEach(function () {});
+    var sidePostGeo = postGeo;
+    [0.3, 6.7].forEach(function (x) {
+      for (var z = 7.05; z <= 7.95; z += 0.55) {
+        var sp = new THREE.Mesh(sidePostGeo, postMat);
+        sp.position.set(x, 0.475, z);
+        root.add(sp);
+      }
+    });
+    // small plant
+    var pot = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.11, 0.22, 12), new THREE.MeshStandardMaterial({ color: 0x8B5E3C, roughness: 0.8 }));
+    put(pot, 0.6, 0.11, 7.6, root);
+    var leafMat = new THREE.MeshStandardMaterial({ color: 0x4C7A4A, roughness: 0.7 });
+    [[0, 0.35, 0], [0.08, 0.3, 0.06], [-0.08, 0.32, -0.05]].forEach(function (o) {
+      var leaf = new THREE.Mesh(new THREE.SphereGeometry(0.12, 8, 8), leafMat);
+      leaf.scale.set(0.7, 1.3, 0.7);
+      put(leaf, 0.6 + o[0], 0.35 + o[1], 7.6 + o[2], root);
+    });
+  }
+
+  // ---------------- controls (pointer + wheel, mouse & touch unified) ----------------
+  function installControls() {
+    var el = renderer.domElement;
+    var pointers = new Map();
+    var lastSingle = null;
+    var pinchDist = 0;
+
+    function dist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+
+    function rotateBy(dx, dy) {
+      CAM.userInteracted = true;
+      if (CAM.mode === "dollhouse") {
+        CAM.theta -= dx * 0.006;
+        CAM.phi -= dy * 0.006;
+        CAM.phi = Math.max(0.35, Math.min(1.2, CAM.phi));
+      } else {
+        CAM.yaw -= dx * 0.005;
+        CAM.pitch -= dy * 0.005;
+        CAM.pitch = Math.max(-0.5, Math.min(0.5, CAM.pitch));
+      }
+    }
+    function zoomBy(factor) {
+      CAM.userInteracted = true;
+      if (CAM.mode === "dollhouse") {
+        CAM.distance = Math.max(CAM.minD, Math.min(CAM.maxD, CAM.distance * factor));
+      } else {
+        CAM.fov = Math.max(32, Math.min(75, CAM.fov * (2 - factor)));
+      }
+    }
+
+    el.addEventListener("pointerdown", function (e) {
+      el.setPointerCapture(e.pointerId);
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pointers.size === 1) {
+        lastSingle = { x: e.clientX, y: e.clientY };
+      } else if (pointers.size === 2) {
+        var pts = Array.from(pointers.values());
+        pinchDist = dist(pts[0], pts[1]);
+      }
+    });
+    el.addEventListener("pointermove", function (e) {
+      if (!pointers.has(e.pointerId)) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pointers.size === 1 && lastSingle) {
+        var dx = e.clientX - lastSingle.x, dy = e.clientY - lastSingle.y;
+        rotateBy(dx, dy);
+        lastSingle = { x: e.clientX, y: e.clientY };
+      } else if (pointers.size === 2) {
+        var pts = Array.from(pointers.values());
+        var d = dist(pts[0], pts[1]);
+        if (pinchDist > 0) {
+          zoomBy(pinchDist / d);
+        }
+        pinchDist = d;
+      }
+    });
+    function endPointer(e) {
+      pointers.delete(e.pointerId);
+      if (pointers.size === 1) {
+        var remain = Array.from(pointers.values())[0];
+        lastSingle = { x: remain.x, y: remain.y };
+      } else if (pointers.size === 0) {
+        lastSingle = null; pinchDist = 0;
+      }
+    }
+    el.addEventListener("pointerup", endPointer);
+    el.addEventListener("pointercancel", endPointer);
+    el.addEventListener("pointerleave", function (e) { if (pointers.size <= 1) endPointer(e); });
+
+    el.addEventListener("wheel", function (e) {
+      e.preventDefault();
+      var factor = 1 + Math.sign(e.deltaY) * 0.08;
+      zoomBy(factor);
+    }, { passive: false });
+  }
+
+  function onResize() {
+    if (!renderer || !revealed) return;
+    var w = frame.clientWidth, h = frame.clientHeight;
+    if (w === 0 || h === 0) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+
+  var clock = new THREE.Clock ? null : null;
+  var lastT = performance.now();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (!sceneBuilt || !revealed) return;
+    var now = performance.now();
+    var dtRaw = Math.min(1.0, (now - lastT) / 1000);
+    var dt = Math.min(0.05, dtRaw);
+    lastT = now;
+
+    if (CAM.transition.active) {
+      CAM.transition.t += dtRaw / CAM.transition.duration;
+      var e = ease(Math.min(1, CAM.transition.t));
+      var s = CAM.transition.start, en = CAM.transition.end;
+      camera.position.lerpVectors(s.pos, en.pos, e);
+      var look = new THREE.Vector3().lerpVectors(s.look, en.look, e);
+      camera.fov = s.fov + (en.fov - s.fov) * e;
+      camera.updateProjectionMatrix();
+      camera.lookAt(look);
+      if (CAM.transition.t >= 1) CAM.transition.active = false;
+    } else {
+      if (!CAM.userInteracted) {
+        if (CAM.mode === "dollhouse") { CAM.theta += dt * 0.09; }
+        else { CAM.yaw += dt * 0.045; }
+      }
+      var cur = computeCurrent();
+      camera.position.copy(cur.pos);
+      camera.fov += (cur.fov - camera.fov) * Math.min(1, dt * 6);
+      camera.updateProjectionMatrix();
+      camera.lookAt(cur.look);
+    }
+
+    renderer.render(scene, camera);
+  }
+
+  // ---------------- UI wiring ----------------
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
+    statusEl.classList.add("hide");
+    onResize();
+    switchMode("dollhouse");
+    CAM.transition.active = false; // start directly at default framing
+    var cur = computeCurrent();
+    camera.position.copy(cur.pos);
+    camera.fov = cur.fov;
+    camera.updateProjectionMatrix();
+    camera.lookAt(cur.look);
+  }
+
+  btnGenerate.addEventListener("click", function () {
+    demoResult.classList.add("active");
+    loadingBox.style.display = "block";
+    viewerWrap.classList.remove("active");
+    demoResult.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (!threeReady) {
+      setTimeout(function () {
+        loadingBox.style.display = "none";
+        viewerWrap.classList.add("active");
+        statusEl.classList.remove("hide");
+        statusEl.classList.add("err");
+        statusEl.innerHTML = "<div>3Dライブラリ（three.js）の読み込みに失敗しました。<br>インターネット接続をご確認のうえ、再読み込みしてください。</div>";
+      }, 1500);
+      return;
+    }
+
+    if (!sceneBuilt) buildScene();
+
+    setTimeout(function () {
+      loadingBox.style.display = "none";
+      viewerWrap.classList.add("active");
+      reveal();
+    }, 1500);
+  });
+
+  btnDollhouse.addEventListener("click", function () { switchMode("dollhouse"); });
+  btnInterior.addEventListener("click", function () { switchMode("interior"); });
+
+  if (threeReady) {
+    requestAnimationFrame(animate);
+  } else {
+    statusEl.innerHTML = "<div>3Dライブラリを読み込めませんでした。<br>インターネット接続をご確認ください。</div>";
+    statusEl.classList.add("err");
+  }
+})();
+</script>
+
+</body>
+</html>
