@@ -919,15 +919,14 @@
     btn.disabled = true; btn.textContent = "送信中…";
     var from = "";
     try { from = sessionStorage.getItem("ak_from") || ""; } catch (e) {}
-    var memoParts = ["【経由: AI顧問室" + (from ? "/" + from : "") + "】"];
-    if (form.size.value) memoParts.push("従業員数: " + form.size.value);
-    if (form.memo.value) memoParts.push(form.memo.value);
     var fd = new FormData();
     fd.append("entry.1831717163", form.company.value);
     fd.append("entry.1528434750", form.name.value);
     fd.append("entry.1216521943", form.tel.value || "");
     fd.append("entry.486964774", form.email.value);
-    fd.append("entry.146547974", memoParts.join(" / "));
+    fd.append("entry.146547974", form.memo.value || "");
+    fd.append("entry.1104944249", form.size.value || "");
+    fd.append("entry.254574837", "AI顧問室" + (from ? "/" + from : ""));
     function done() {
       form.closest(".contact-card").innerHTML =
         '<div style="text-align:center; padding:26px 8px;">' +
