@@ -202,11 +202,7 @@
   /* Movie band */
   .movie-band { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 70%); color: #fff; }
   .movie-band .inner { display: flex; gap: 40px; align-items: center; padding: 56px 0; flex-wrap: wrap; }
-  .mv-thumb { position: relative; flex: 0 0 400px; max-width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 12px 32px rgba(0,0,0,.35); display: block; }
-  .mv-thumb img { width: 100%; display: block; }
-  .mv-thumb .playwrap { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(7,26,53,.35); transition: background .2s; }
-  .mv-thumb .playbtn { width: 64px; height: 64px; border-radius: 50%; background: var(--gold); color: var(--navy-deep); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; box-shadow: 0 6px 20px rgba(201,162,39,.5); }
-  .mv-thumb:hover .playwrap { background: rgba(7,26,53,.12); }
+  .mv-player { flex: 0 0 480px; max-width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 12px 32px rgba(0,0,0,.35); }
   .mv-copy { flex: 1; min-width: 260px; }
   .mv-copy h2 { font-family: 'Noto Serif JP', serif; font-size: 26px; margin-bottom: 10px; }
   .mv-copy h2 em { font-style: normal; color: var(--gold); }
@@ -449,15 +445,17 @@
 
 <div class="movie-band">
   <div class="container inner">
-    <a class="mv-thumb" href="service-movie.html" aria-label="42秒のブランドムービーを再生">
-      <img src="assets/works/videos/brand-movie-poster.jpg" alt="AI顧問室 ブランドムービーのタイトルカード" loading="lazy">
-      <span class="playwrap"><span class="playbtn">▶</span></span>
-    </a>
+    <div class="mv-player">
+      <video id="brandMovie" controls playsinline preload="metadata"
+             poster="assets/works/videos/brand-movie-poster.jpg"
+             style="width:100%; display:block; aspect-ratio:16/9; border-radius:10px; background:#071A35;">
+        <source src="assets/works/videos/brand-movie-42s.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="mv-copy">
       <span class="section-label">MOVIE</span>
       <h2><em>42秒</em>でわかる、AI顧問室。<span style="font-size:15px; color:var(--gold); margin-left:10px;">♪ 音声つき</span></h2>
-      <p>課題 → レベルマップ → 3つの流儀 → 料金まで、サービスの全体像をナレーションつきの1本に。映像はコードから、声はAIから——編集ソフトも収録も使わずに作ったブランドムービーです。</p>
-      <a href="service-movie.html" class="btn btn-gold">▶ ムービーを見る（42秒・音声つき）</a>
+      <p>課題 → レベルマップ → 3つの流儀 → 料金まで、サービスの全体像をナレーションつきの1本に。その場で再生できます。</p>
     </div>
   </div>
 </div>
