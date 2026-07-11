@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AIプレゼンター（出演者ゼロの案内動画）｜AI顧問室</title>
+<meta name="description" content="この受付スタッフ、実在しません。写真はAI画像生成、声はAI音声合成。1枚も撮影せず、1秒も収録せず作った出演者ゼロの会社案内デモです。顔出しできる社員がいない中小企業のための提案。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="AIプレゼンター（出演者ゼロの案内動画）｜AI顧問室">
+<meta property="og:description" content="この受付スタッフ、実在しません。写真も声もAI生成。出演者ゼロの会社案内・採用動画・研修動画を作るデモです。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-presenter.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/works/presenter/presenter.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://rakansens.github.io/ai-komon2/works-presenter.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.8; background: var(--bg-soft); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+  .btn { display: inline-block; padding: 12px 26px; border-radius: 4px; font-weight: 700; font-size: 14px; transition: opacity .2s, transform .1s; }
+  .btn:hover { opacity: .86; }
+  .btn:active { transform: scale(.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-outline { border: 1px solid rgba(255,255,255,.4); color: #fff; }
+  .btn-outline:hover { background: rgba(255,255,255,.08); opacity: 1; }
+  .btn-line { border: 1px solid var(--line); color: var(--navy); }
+  .btn-line:hover { background: var(--bg-soft); opacity: 1; }
+
+  /* ---------- header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 14px; }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .back-link {
+    display: grid; place-items: center; flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--line); color: var(--navy); font-size: 16px; transition: background .2s, border-color .2s;
+  }
+  .back-link:hover { background: var(--bg-soft); border-color: var(--navy); }
+  .title-wrap { min-width: 0; }
+  .title-wrap strong { display: block; font-family: 'Noto Serif JP', serif; font-size: 15.5px; color: var(--navy); letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .title-wrap span { display: block; font-size: 9.5px; letter-spacing: .1em; color: var(--gray); white-space: nowrap; }
+  .header-cta { flex: 0 0 auto; padding: 9px 20px; font-size: 13px; }
+
+  /* ---------- page intro ---------- */
+  .intro { padding: 34px 0 22px; }
+  .intro .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 10px; }
+  .intro h1 { font-size: clamp(24px, 4.4vw, 34px); color: var(--navy); margin-bottom: 12px; }
+  .intro p { max-width: 640px; font-size: 13.5px; color: var(--gray); margin-bottom: 8px; }
+  .intro .ai-note {
+    display: inline-flex; align-items: center; gap: 7px; margin-top: 10px; padding: 7px 14px;
+    border: 1px solid var(--line); border-radius: 999px; background: var(--white);
+    font-size: 11.5px; color: var(--gray); font-weight: 700;
+  }
+  .intro .ai-note b { color: var(--navy); }
+
+  /* ---------- presenter section ---------- */
+  .presenter { padding-bottom: 20px; }
+  .presenter-grid { display: grid; grid-template-columns: 320px 1fr; gap: 30px; align-items: start; }
+
+  .id-card {
+    background: var(--white); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 18px 44px rgba(11,36,71,.12); border: 1px solid var(--line);
+  }
+  .id-photo-wrap { position: relative; width: 100%; aspect-ratio: 9 / 16; background: #E6ECF2; overflow: hidden; }
+  .id-photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .id-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    padding: 5px 12px; border-radius: 999px; background: rgba(7,26,53,.76); color: #fff;
+    font-size: 10px; font-weight: 700; letter-spacing: .05em; backdrop-filter: blur(4px);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .id-badge::before { content: "✦"; color: var(--gold); }
+  .id-plate {
+    padding: 16px 18px 18px; border-top: 3px solid var(--gold);
+    background: linear-gradient(180deg, var(--white), #FAFBFD);
+  }
+  .id-plate .id-name { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; color: var(--navy); }
+  .id-plate .id-tag { display: inline-block; margin-top: 4px; font-size: 10.5px; font-weight: 700; color: var(--blue); }
+  .id-plate .id-role { margin-top: 8px; font-size: 11.5px; color: var(--gray); border-top: 1px dashed var(--line); padding-top: 8px; }
+
+  .voice-col {}
+  .voice-card { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 22px; box-shadow: 0 14px 40px rgba(11,36,71,.06); }
+  .voice-card h2 { font-size: 15.5px; color: var(--navy); margin-bottom: 4px; }
+  .voice-card .voice-sub { font-size: 11.5px; color: var(--gray); margin-bottom: 16px; }
+
+  .voice-player { display: flex; align-items: center; gap: 16px; }
+  .vp-play {
+    flex: 0 0 auto; width: 58px; height: 58px; border-radius: 50%; background: var(--gold);
+    display: grid; place-items: center; box-shadow: 0 8px 20px rgba(201,162,39,.35);
+    transition: transform .15s, box-shadow .2s;
+  }
+  .vp-play:hover { transform: scale(1.05); }
+  .vp-play:active { transform: scale(.96); }
+  .vp-play .icon-play {
+    width: 0; height: 0; margin-left: 4px;
+    border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 17px solid var(--navy-deep);
+  }
+  .vp-play .icon-pause { display: none; gap: 5px; }
+  .vp-play .icon-pause span { width: 5px; height: 19px; background: var(--navy-deep); border-radius: 1px; }
+  .vp-play.playing .icon-play { display: none; }
+  .vp-play.playing .icon-pause { display: flex; }
+
+  .vp-body { flex: 1 1 auto; min-width: 0; }
+  .vp-bars { display: flex; align-items: flex-end; gap: 2.5px; height: 40px; margin-bottom: 10px; }
+  .vp-bar {
+    flex: 1 1 auto; min-width: 2px; max-width: 5px; height: var(--h, 30%);
+    background: var(--line); border-radius: 2px; transform-origin: bottom;
+    transition: background .3s;
+  }
+  .vp-bars.playing .vp-bar { background: var(--gold); animation: vpPulse .9s ease-in-out infinite alternate; }
+  @keyframes vpPulse { from { transform: scaleY(.55); } to { transform: scaleY(1.15); } }
+
+  .vp-meta { display: flex; align-items: center; gap: 10px; }
+  .vp-meta span { font-size: 11px; color: var(--gray); font-variant-numeric: tabular-nums; flex: 0 0 auto; }
+  .vp-progress { flex: 1 1 auto; height: 6px; border-radius: 999px; background: var(--bg-soft); position: relative; cursor: pointer; }
+  .vp-progress-fill { position: absolute; inset: 0 auto 0 0; width: 0%; background: var(--gold); border-radius: 999px; }
+
+  .transcript {
+    margin-top: 20px; padding: 16px 18px; background: var(--bg-soft); border-radius: 10px;
+    border-left: 4px solid var(--gold);
+  }
+  .transcript h3 { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; color: var(--navy); margin-bottom: 8px; }
+  .transcript p { font-size: 13px; color: var(--ink); line-height: 1.9; }
+
+  .format-note { margin-top: 16px; font-size: 11.5px; color: var(--gray); line-height: 1.8; }
+  .format-note b { color: var(--navy); }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .meta-chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 999px;
+    background: var(--bg-soft); font-size: 11px; color: var(--navy); font-weight: 700; border: 1px solid var(--line);
+  }
+
+  .disclaimer-bar {
+    display: flex; gap: 8px; align-items: flex-start; margin-top: 16px; padding: 12px 16px;
+    background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 6px;
+    font-size: 11.5px; color: var(--gray); line-height: 1.7;
+  }
+  .disclaimer-bar b { color: var(--navy); }
+
+  /* ---------- reveal section (種明かし) ---------- */
+  .reveal { padding: 60px 0; background: linear-gradient(135deg, var(--navy-deep), var(--navy) 65%, var(--navy-light)); color: #fff; margin-top: 30px; }
+  .reveal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .reveal .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 12px; }
+  .reveal h2 { font-size: clamp(22px, 3.6vw, 28px); margin-bottom: 16px; }
+  .reveal h2 em { font-style: normal; color: var(--gold); }
+  .reveal p { color: #C7D3E4; font-size: 13.5px; margin-bottom: 14px; }
+  .reveal .btn-gold { margin-top: 6px; padding: 14px 30px; font-size: 14.5px; }
+  .reveal-diagram {
+    display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+    padding: 22px; border: 1px solid rgba(255,255,255,.18); border-radius: 14px; background: rgba(255,255,255,.05);
+  }
+  .rd-step { text-align: center; font-size: 11.5px; color: #DCE6F5; max-width: 108px; }
+  .rd-step .rd-box { width: 78px; height: 58px; border-radius: 8px; margin: 0 auto 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); display: grid; place-items: center; font-size: 20px; }
+  .rd-arrow { color: var(--gold); font-size: 18px; }
+
+  /* ---------- lipsync section ---------- */
+  .lipsync { padding: 56px 0; }
+  .lipsync-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .lipsync .eyebrow-chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px;
+    border: 1px solid var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; letter-spacing: .04em; margin-bottom: 14px;
+  }
+  .lipsync h2 { font-size: clamp(22px, 3.6vw, 27px); color: var(--navy); margin-bottom: 14px; }
+  .lipsync p { font-size: 13.5px; color: var(--gray); margin-bottom: 12px; }
+  .lipsync-diagram {
+    display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+    padding: 24px; background: var(--white); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: 0 14px 40px rgba(11,36,71,.06);
+  }
+  .ld-step { text-align: center; font-size: 11.5px; color: var(--gray); max-width: 108px; }
+  .ld-step .ld-box { width: 78px; height: 58px; border-radius: 8px; margin: 0 auto 8px; background: var(--bg-soft); border: 1px solid var(--line); display: grid; place-items: center; font-size: 20px; }
+  .ld-arrow { color: var(--gold); font-size: 18px; }
+
+  /* ---------- use cases ---------- */
+  .usecases { padding: 10px 0 56px; }
+  .usecases .section-head { text-align: center; margin-bottom: 30px; }
+  .usecases .eyebrow { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 10px; }
+  .usecases h2 { font-size: clamp(20px, 3.2vw, 25px); color: var(--navy); }
+  .usecase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .usecase-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 22px 18px;
+    box-shadow: 0 10px 26px rgba(11,36,71,.05);
+  }
+  .usecase-card .uc-icon { font-size: 24px; margin-bottom: 12px; }
+  .usecase-card h3 { font-size: 13.5px; color: var(--navy); margin-bottom: 8px; }
+  .usecase-card p { font-size: 12px; color: var(--gray); line-height: 1.75; }
+
+  /* ---------- integrity notice ---------- */
+  .integrity { padding-bottom: 50px; }
+  .integrity-box {
+    display: flex; gap: 14px; align-items: flex-start; padding: 20px 22px; background: var(--white);
+    border: 1px solid var(--line); border-left: 5px solid var(--gold); border-radius: 10px;
+  }
+  .integrity-box .ib-icon { font-size: 20px; flex: 0 0 auto; }
+  .integrity-box h3 { font-size: 13px; color: var(--navy); margin-bottom: 6px; }
+  .integrity-box p { font-size: 12px; color: var(--gray); line-height: 1.8; }
+
+  /* ---------- closing CTA ---------- */
+  .closing { padding: 50px 0 60px; text-align: center; }
+  .closing h2 { font-size: clamp(20px, 3.4vw, 27px); color: var(--navy); margin-bottom: 12px; }
+  .closing p { font-size: 13.5px; color: var(--gray); margin-bottom: 22px; }
+  .closing .btn-gold { padding: 14px 32px; font-size: 14.5px; margin-right: 10px; }
+
+  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 12.5px; padding: 26px 0; text-align: center; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 900px) {
+    .presenter-grid { grid-template-columns: 1fr; }
+    .id-card { max-width: 320px; margin: 0 auto; }
+    .reveal-grid { grid-template-columns: 1fr; }
+    .reveal-diagram { order: -1; }
+    .lipsync-grid { grid-template-columns: 1fr; }
+    .lipsync-diagram { order: -1; }
+    .usecase-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .header-inner { height: 58px; }
+    .title-wrap span { display: none; }
+    .header-cta { padding: 8px 14px; font-size: 12px; }
+    .id-card { max-width: 100%; }
+    .voice-card { padding: 18px; }
+    .voice-player { gap: 12px; }
+    .vp-play { width: 52px; height: 52px; }
+    .usecase-grid { grid-template-columns: 1fr; }
+    .closing .btn-gold { margin-right: 0; margin-bottom: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="brand">
+      <a class="back-link" href="works.html" aria-label="作品一覧へ戻る">←</a>
+      <div class="title-wrap">
+        <strong>AIプレゼンター</strong>
+        <span>AI-GENERATED PRESENTER DEMO</span>
+      </div>
+    </div>
+    <a class="btn btn-gold header-cta" href="index.html#contact">無料相談</a>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="container">
+    <span class="eyebrow">出演者ゼロの案内動画（AI画像生成 × AI音声合成）</span>
+    <h1>この受付スタッフ、実在しません。</h1>
+    <p>写真も声も、すべてAIが生成しました。カメラマンも、スタジオも、収録も使っていません。「会社の顔として出せる社員がいない」という中小企業でも、案内・採用・研修の動画をゼロから作れることを確かめるデモです。</p>
+    <span class="ai-note"><b>⚠ AI生成物です。</b>このページの人物・写真・音声は実在しません。</span>
+  </div>
+</section>
+
+<section class="presenter">
+  <div class="container">
+    <div class="presenter-grid">
+
+      <div class="id-card">
+        <div class="id-photo-wrap">
+          <span class="id-badge">AI生成・架空の人物</span>
+          <img src="assets/works/presenter/presenter.jpg" alt="AI画像生成でつくった受付スタッフ風の人物写真。紺のブレザーを着た女性で、実在する人物ではありません。" width="768" height="1376">
+        </div>
+        <div class="id-plate">
+          <div class="id-name">AI受付・如月 あかり</div>
+          <span class="id-tag">（架空の人物／AI生成）</span>
+          <div class="id-role">AI顧問室 ご案内担当　※実在の人物・社員ではありません</div>
+        </div>
+      </div>
+
+      <div class="voice-col">
+        <div class="voice-card">
+          <h2>ナレーションを再生する</h2>
+          <p class="voice-sub">声もAI音声合成で生成しています。実際に読み上げた収録音声はありません。</p>
+
+          <div class="voice-player">
+            <button class="vp-play" id="vpPlay" type="button" aria-label="ナレーションを再生">
+              <span class="icon-play" aria-hidden="true"></span>
+              <span class="icon-pause" aria-hidden="true"><span></span><span></span></span>
+            </button>
+            <div class="vp-body">
+              <div class="vp-bars" id="vpBars" aria-hidden="true"></div>
+              <div class="vp-meta">
+                <span id="vpTime">0:00</span>
+                <div class="vp-progress" id="vpProgress" role="slider" aria-label="再生位置" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+                  <div class="vp-progress-fill" id="vpFill"></div>
+                </div>
+                <span id="vpDuration">0:16</span>
+              </div>
+            </div>
+            <audio id="vpAudio" src="assets/works/presenter/presenter-voice.mp3" preload="metadata"></audio>
+          </div>
+
+          <div class="transcript">
+            <h3>ナレーション全文（音を出せない環境向け）</h3>
+            <p>「こんにちは、AI顧問室のご案内です。実は私、実在しません。この顔も、声も、口の動きも、すべてAIで作られています。御社のご案内動画も、出演者ゼロで作れます。」</p>
+          </div>
+
+          <p class="format-note"><b>※このデモの形式について：</b>今回は「静止画＋音声」でお届けしています。ナレーション内で触れている「口の動き」まで音声に同期させる動画版の仕組みは、このページ下の「さらに口も動きます」でご紹介します。</p>
+
+          <div class="meta-chips">
+            <span class="meta-chip">🖼 写真：AI画像生成</span>
+            <span class="meta-chip">🎙 音声：AI音声合成（Gemini TTS）</span>
+            <span class="meta-chip">⏱ 制作時間：数分</span>
+          </div>
+        </div>
+
+        <div class="disclaimer-bar">
+          <span>⚠</span>
+          <span><b>この人物・写真・音声はすべてAIによる生成物であり、実在しません。</b>実在の人物に似ている場合がありましても、それは偶然であり、特定の人物を撮影・収録したものではありません。</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="container">
+    <div class="reveal-grid">
+      <div>
+        <span class="eyebrow">種明かし</span>
+        <h2>写真も声も、<em>1秒も</em>収録していません。</h2>
+        <p>写真は画像生成AIで作成しました。カメラも、モデルも、スタジオも使っていません。同じ人物に見えるよう、AIに繰り返し指示を出して仕上げています。</p>
+        <p>声はGoogleの音声合成AI「Gemini TTS」で生成しました。ナレーション原稿を打ち込むだけで、抑揚のある自然な読み上げ音声ができあがります。</p>
+        <p>このデモの制作時間は、写真の生成から音声の書き出しまで合わせて数分程度です。撮影日程の調整も、スタジオの手配も必要ありませんでした。</p>
+        <a class="btn btn-gold" href="index.html#contact">御社の案内動画も相談する</a>
+      </div>
+      <div class="reveal-diagram" aria-hidden="true">
+        <div class="rd-step"><div class="rd-box">📝</div>ナレーション原稿</div>
+        <div class="rd-arrow">→</div>
+        <div class="rd-step"><div class="rd-box">🖼️</div>AI画像生成で写真を作成</div>
+        <div class="rd-arrow">→</div>
+        <div class="rd-step"><div class="rd-box">🎙️</div>AI音声合成で声を生成</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lipsync">
+  <div class="container">
+    <div class="lipsync-grid">
+      <div>
+        <span class="eyebrow-chip">✦ 対応可能な技術</span>
+        <h2>さらに、口も動かせます。</h2>
+        <p>この写真と音声を組み合わせ、口の動きを音声に同期させる「リップシンク」技術を使えば、まるで実際に話しているように見える動画へ仕上げることもできます。</p>
+        <p>今回のデモは「静止画＋音声」でご紹介していますが、同じ写真・同じ声から、口が動く動画版を制作することも可能です。案内動画をより自然な見た目にしたい場合にご提案しています。</p>
+      </div>
+      <div class="lipsync-diagram" aria-hidden="true">
+        <div class="ld-step"><div class="ld-box">🖼️</div>写真＋🎙️声</div>
+        <div class="ld-arrow">→</div>
+        <div class="ld-step"><div class="ld-box">🤖</div>AIリップシンク</div>
+        <div class="ld-arrow">→</div>
+        <div class="ld-step"><div class="ld-box">🎬</div>口が動く動画</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="usecases">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">こんな場面で使えます</span>
+      <h2>「顔出しできる社員がいない」を、AIで解決する。</h2>
+    </div>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <div class="uc-icon">🏢</div>
+        <h3>受付・店頭サイネージ</h3>
+        <p>来店・来訪されたお客様への案内を、常に同じ品質・同じ声で繰り返し流せます。</p>
+      </div>
+      <div class="usecase-card">
+        <div class="uc-icon">🎓</div>
+        <h3>採用動画のナレーター</h3>
+        <p>社員の顔出しに抵抗があっても、会社の魅力を語る採用動画を作れます。</p>
+      </div>
+      <div class="usecase-card">
+        <div class="uc-icon">📘</div>
+        <h3>研修・マニュアル動画</h3>
+        <p>内容が変わりやすい研修も、原稿を差し替えるだけで最新版に更新できます。</p>
+      </div>
+      <div class="usecase-card">
+        <div class="uc-icon">🌏</div>
+        <h3>多言語版の展開</h3>
+        <p>同じ人物・同じ見た目のまま、多言語ナレーションに差し替えられます。収録し直しは不要です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="integrity">
+  <div class="container">
+    <div class="integrity-box">
+      <span class="ib-icon">🛡️</span>
+      <div>
+        <h3>誠実な表記について</h3>
+        <p>このページに登場する人物「AI受付・如月あかり」は架空の存在であり、実在しません。写真・音声ともにAIによって生成したものです。実在の人物に似ている場合がありましても、それは偶然であり、特定の人物を撮影・収録・模倣したものではありません。実際の制作では、御社の意向に応じてオリジナルの人物像・声を一から設計します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="container">
+    <h2>出演者がいなくても、案内動画は作れます。</h2>
+    <p>御社の業種・用途に合わせて、人物像から声、原稿まで一緒に設計します。まずは無料相談でご相談ください。</p>
+    <a class="btn btn-gold" href="index.html#contact">無料相談を申し込む</a>
+    <a class="btn btn-line" href="works.html">ほかの制作事例を見る</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+   * 波形バーの生成（装飾のみ・機能には無関係）
+   * ============================================================ */
+  var barsWrap = document.getElementById('vpBars');
+  var BAR_COUNT = 32;
+  for (var i = 0; i < BAR_COUNT; i++) {
+    var bar = document.createElement('span');
+    bar.className = 'vp-bar';
+    var h = 28 + Math.round(Math.abs(Math.sin(i * 0.85)) * 40 + Math.random() * 18);
+    h = Math.max(18, Math.min(92, h));
+    bar.style.setProperty('--h', h + '%');
+    bar.style.animationDelay = (i * 0.045) + 's';
+    barsWrap.appendChild(bar);
+  }
+
+  /* ============================================================
+   * カスタム音声プレーヤー
+   * ============================================================ */
+  var audio = document.getElementById('vpAudio');
+  var playBtn = document.getElementById('vpPlay');
+  var fill = document.getElementById('vpFill');
+  var timeEl = document.getElementById('vpTime');
+  var durEl = document.getElementById('vpDuration');
+  var progressWrap = document.getElementById('vpProgress');
+
+  function formatTime(sec) {
+    if (!isFinite(sec) || sec < 0) sec = 0;
+    var m = Math.floor(sec / 60);
+    var s = Math.floor(sec % 60);
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function setPlayingUI(playing) {
+    playBtn.classList.toggle('playing', playing);
+    barsWrap.classList.toggle('playing', playing);
+    playBtn.setAttribute('aria-label', playing ? 'ナレーションを一時停止' : 'ナレーションを再生');
+  }
+
+  audio.addEventListener('loadedmetadata', function () {
+    if (isFinite(audio.duration)) durEl.textContent = formatTime(audio.duration);
+  });
+
+  // 再生/一時停止の切替。audio自体の状態を正として二重再生を防ぐ。
+  playBtn.addEventListener('click', function () {
+    if (audio.paused || audio.ended) {
+      var playPromise = audio.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(function () { /* 自動再生制限などは無視 */ });
+      }
+    } else {
+      audio.pause();
+    }
+  });
+
+  audio.addEventListener('play', function () { setPlayingUI(true); });
+  audio.addEventListener('pause', function () { setPlayingUI(false); });
+
+  // 終了時は先頭にリセットして表示も戻す。
+  audio.addEventListener('ended', function () {
+    setPlayingUI(false);
+    audio.currentTime = 0;
+    fill.style.width = '0%';
+    timeEl.textContent = '0:00';
+    progressWrap.setAttribute('aria-valuenow', '0');
+  });
+
+  audio.addEventListener('timeupdate', function () {
+    if (!audio.duration) return;
+    var pct = (audio.currentTime / audio.duration) * 100;
+    fill.style.width = pct + '%';
+    timeEl.textContent = formatTime(audio.currentTime);
+    progressWrap.setAttribute('aria-valuenow', Math.round(pct).toString());
+  });
+
+  function seekFromClientX(clientX) {
+    if (!audio.duration) return;
+    var rect = progressWrap.getBoundingClientRect();
+    var ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+    audio.currentTime = ratio * audio.duration;
+  }
+
+  progressWrap.addEventListener('click', function (event) {
+    seekFromClientX(event.clientX);
+  });
+
+  progressWrap.addEventListener('keydown', function (event) {
+    if (!audio.duration) return;
+    if (event.key === 'ArrowRight') {
+      audio.currentTime = Math.min(audio.duration, audio.currentTime + 2);
+    } else if (event.key === 'ArrowLeft') {
+      audio.currentTime = Math.max(0, audio.currentTime - 2);
+    }
+  });
+})();
+</script>
+</body>
+</html>
