@@ -51,6 +51,10 @@
   .prompt-box { background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 0 8px 8px 0; padding: 24px 28px; }
   .prompt-box .p-label { font-size: 11px; letter-spacing: .15em; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
   .prompt-box p { font-size: 14px; color: var(--ink); }
+  .prompt-box .p-teaser { position: relative; max-height: 3.6em; overflow: hidden; }
+  .prompt-box .p-teaser::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2.6em; background: linear-gradient(to bottom, rgba(255,255,255,0), var(--white) 85%); }
+  .prompt-box .p-hook { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); font-size: 13px; color: var(--gray); }
+  .prompt-box .p-hook strong { color: var(--navy); }
   .point-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 36px; }
   .point { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 24px; }
   .point h3 { font-size: 16px; color: var(--navy); margin-bottom: 8px; }
@@ -108,8 +112,11 @@
 <section class="note-band">
   <div class="container" style="padding-top:64px; padding-bottom:64px;">
     <div class="prompt-box">
-      <div class="p-label">この映像を作った「指示文」（実際に使ったプロンプト）</div>
-      <p>「夕暮れのモダンな日本の戸建て住宅の、シネマティックな不動産プロモーション動画。白壁と濃い木目のファサード。<strong>カット1（0〜5秒）</strong>：正面からゆっくり前進、窓から漏れる暖かい室内光、庭の植栽が微風で揺れる。<strong>カット2（5〜10秒）</strong>：そのまま玄関を抜けて明るいモダンなリビングへ、木の床、大きな窓、柔らかい夕方の光。<strong>カット3（10〜15秒）</strong>：カメラが外に引きながら上昇するクレーンショットで、マジックアワーの空の下、家と庭の全景を見せる。」</p>
+      <div class="p-label">この映像を作った「指示文」（実際に使ったプロンプトの冒頭）</div>
+      <div class="p-teaser">
+        <p>「夕暮れのモダンな日本の戸建て住宅の、シネマティックな不動産プロモーション動画。白壁と濃い木目のファサード……」</p>
+      </div>
+      <div class="p-hook">この続きには、カメラワークを3カットに割る指示や光の入れ方まで書き込んでいます。<strong>指示文の全文と組み立て方は、無料相談でそのままお見せします。</strong></div>
     </div>
 
     <div class="point-grid">
