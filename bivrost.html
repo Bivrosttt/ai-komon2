@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社Bivrost｜テクノロジーと現場のあいだに、橋を架ける。</title>
+<meta name="description" content="株式会社Bivrost（Bivrost Inc.）は、AI・ソフトウェアの実装力で中小企業やクリエイターの現場に伴走する会社です。AI顧問室、AiMangaの研究開発、アプリ・システム受託開発を展開しています。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Bivrost Inc.">
+<meta property="og:title" content="株式会社Bivrost｜テクノロジーと現場のあいだに、橋を架ける。">
+<meta property="og:description" content="株式会社Bivrost（Bivrost Inc.）は、AI・ソフトウェアの実装力で中小企業やクリエイターの現場に伴走する会社です。AI顧問室、AiMangaの研究開発、アプリ・システム受託開発を展開しています。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/bivrost.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://rakansens.github.io/ai-komon2/bivrost.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E1420;
+    --bg-deep: #090D15;
+    --panel: #141B2A;
+    --panel-line: #232E42;
+    --ink: #E9EDF4;
+    --ink-soft: #A7B2C4;
+    --ink-faint: #6E7A8F;
+    --aurora-1: #3FD3C6;
+    --aurora-2: #6C8EF5;
+    --aurora-3: #B387F5;
+    --komon-navy: #0B2447;
+    --komon-gold: #C9A227;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    font-family:'Noto Sans JP',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  a { color:inherit; }
+  h1, h2, h3 { font-family:'Noto Serif JP',serif; font-weight:700; letter-spacing:.01em; }
+  .container { max-width:1080px; margin:0 auto; padding:0 24px; }
+  .container.narrow { max-width:860px; }
+
+  /* Aurora gradient line — the "bridge" motif */
+  .bridge-line {
+    height:2px;
+    width:100%;
+    background:linear-gradient(90deg, transparent 0%, var(--aurora-1) 20%, var(--aurora-2) 50%, var(--aurora-3) 80%, transparent 100%);
+    opacity:.7;
+  }
+  .bridge-arc {
+    position:relative;
+    width:100%;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .bridge-arc svg { width:100%; height:auto; display:block; }
+
+  /* Header */
+  header {
+    position:sticky; top:0; z-index:50;
+    background:rgba(14,20,32,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--panel-line);
+  }
+  .header-inner { display:flex; align-items:center; justify-content:space-between; height:72px; gap:16px; }
+  .logo { display:flex; flex-direction:column; text-decoration:none; line-height:1.1; }
+  .logo .mark { font-family:'Noto Serif JP',serif; font-size:19px; font-weight:700; letter-spacing:.12em; color:var(--ink); }
+  .logo .sub { font-size:10.5px; letter-spacing:.06em; color:var(--ink-faint); margin-top:2px; }
+  .header-nav { display:flex; align-items:center; gap:22px; font-size:13.5px; }
+  .header-nav a.ghost { color:var(--ink-soft); text-decoration:none; }
+  .header-nav a.ghost:hover { color:var(--ink); }
+  .btn-header {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:9px 18px; border-radius:999px;
+    background:linear-gradient(90deg, var(--aurora-1), var(--aurora-2));
+    color:#0A1220; font-weight:700; font-size:13px; text-decoration:none;
+    white-space:nowrap;
+  }
+
+  /* Hero */
+  .hero { padding:88px 0 64px; text-align:center; position:relative; overflow:hidden; }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(63,211,198,.12), transparent 70%),
+      radial-gradient(ellipse 50% 35% at 80% 20%, rgba(179,135,245,.10), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-eyebrow {
+    display:inline-block; font-size:12px; letter-spacing:.22em; color:var(--aurora-1);
+    text-transform:uppercase; margin-bottom:22px; position:relative; z-index:1;
+  }
+  .hero h1 {
+    font-size:15px; letter-spacing:.32em; color:var(--ink-faint); font-family:'Noto Sans JP',sans-serif;
+    font-weight:700; margin-bottom:10px; position:relative; z-index:1;
+  }
+  .hero .company-name {
+    font-size:clamp(28px, 5vw, 42px); font-family:'Noto Serif JP',serif; font-weight:700;
+    color:var(--ink); margin-bottom:28px; position:relative; z-index:1;
+  }
+  .hero .tagline {
+    font-size:clamp(20px, 3.2vw, 30px); font-family:'Noto Serif JP',serif; font-weight:700;
+    background:linear-gradient(90deg, var(--aurora-1), var(--aurora-2) 55%, var(--aurora-3));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin-bottom:20px; position:relative; z-index:1;
+  }
+  .hero .lead {
+    max-width:620px; margin:0 auto 44px; color:var(--ink-soft); font-size:15px; position:relative; z-index:1;
+  }
+  .hero .arc-wrap { margin-top:12px; position:relative; z-index:1; }
+
+  /* About */
+  section { padding:80px 0; }
+  .section-head { text-align:center; margin-bottom:48px; }
+  .section-eyebrow { font-size:12px; letter-spacing:.2em; color:var(--aurora-2); text-transform:uppercase; margin-bottom:14px; }
+  .section-head h2 { font-size:clamp(22px, 3vw, 28px); color:var(--ink); }
+  .about-body { max-width:720px; margin:0 auto; text-align:center; color:var(--ink-soft); font-size:15.5px; }
+  .about-body p + p { margin-top:18px; }
+  .about-body strong { color:var(--ink); font-weight:700; }
+
+  .section-alt { background:var(--panel); border-top:1px solid var(--panel-line); border-bottom:1px solid var(--panel-line); }
+
+  /* Products */
+  .cards { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; }
+  .card {
+    background:var(--bg-deep); border:1px solid var(--panel-line); border-radius:16px;
+    padding:32px 26px; display:flex; flex-direction:column; gap:14px; position:relative; overflow:hidden;
+  }
+  .card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, var(--aurora-1), var(--aurora-2), var(--aurora-3));
+    opacity:.55;
+  }
+  .card.primary {
+    border-color:rgba(63,211,198,.4);
+    box-shadow:0 0 0 1px rgba(63,211,198,.12), 0 20px 40px -20px rgba(63,211,198,.25);
+  }
+  .card.primary::before { opacity:1; height:4px; }
+  .card-tag {
+    display:inline-block; font-size:11px; letter-spacing:.08em; padding:4px 10px; border-radius:999px;
+    width:fit-content;
+  }
+  .card-tag.main { background:rgba(63,211,198,.15); color:var(--aurora-1); }
+  .card-tag.rd { background:rgba(179,135,245,.15); color:var(--aurora-3); }
+  .card-tag.dev { background:rgba(108,142,245,.15); color:var(--aurora-2); }
+  .card h3 { font-size:19px; color:var(--ink); }
+  .card p { font-size:14px; color:var(--ink-soft); flex:1; }
+  .card .price { font-size:13px; color:var(--ink-faint); }
+  .card .card-link {
+    margin-top:6px; font-size:13.5px; font-weight:700; text-decoration:none;
+    color:var(--aurora-1); display:inline-flex; align-items:center; gap:4px;
+  }
+  .card .card-link.disabled { color:var(--ink-faint); font-weight:500; }
+
+  /* Company table */
+  .info-table { border-top:1px solid var(--panel-line); }
+  .info-row { display:flex; border-bottom:1px solid var(--panel-line); }
+  .info-row dt {
+    width:180px; flex-shrink:0; padding:20px 20px; font-size:13.5px; font-weight:700;
+    color:var(--ink-soft); background:rgba(255,255,255,.02);
+  }
+  .info-row dd { padding:20px 20px; font-size:14.5px; color:var(--ink); flex:1; }
+  .info-row dd a { color:var(--aurora-1); text-decoration:underline; }
+  .info-row dd ul { padding-left:18px; }
+  .info-row dd li { margin-bottom:4px; }
+
+  /* Contact */
+  .contact-box {
+    max-width:640px; margin:0 auto; text-align:center;
+    border:1px solid var(--panel-line); border-radius:20px; padding:48px 32px;
+    background:linear-gradient(180deg, rgba(63,211,198,.05), transparent 60%);
+  }
+  .contact-box h2 { font-size:22px; margin-bottom:16px; }
+  .contact-box .mail {
+    display:inline-block; font-size:16px; color:var(--aurora-1); text-decoration:none; margin-bottom:28px; word-break:break-all;
+  }
+  .contact-actions { display:flex; flex-direction:column; gap:14px; align-items:center; }
+  .btn-primary {
+    display:inline-flex; align-items:center; gap:8px; padding:15px 34px; border-radius:999px;
+    background:linear-gradient(90deg, var(--aurora-1), var(--aurora-2) 60%, var(--aurora-3));
+    color:#0A1220; font-weight:700; font-size:15px; text-decoration:none;
+  }
+  .contact-note { font-size:13px; color:var(--ink-faint); }
+
+  /* Footer */
+  footer { border-top:1px solid var(--panel-line); padding:36px 0; text-align:center; }
+  footer .foot-links { font-size:13px; color:var(--ink-soft); margin-bottom:10px; }
+  footer .foot-links a { text-decoration:underline; color:var(--ink-soft); }
+  footer .foot-copy { font-size:12px; color:var(--ink-faint); }
+
+  @media (max-width:860px) {
+    .cards { grid-template-columns:1fr; }
+  }
+  @media (max-width:640px) {
+    .header-inner { height:64px; }
+    .header-nav { gap:12px; }
+    .header-nav a.ghost { display:none; }
+    .hero { padding:64px 0 48px; }
+    section { padding:56px 0; }
+    .info-row { flex-direction:column; }
+    .info-row dt { width:100%; padding:14px 16px 4px; }
+    .info-row dd { padding:6px 16px 18px; }
+    .contact-box { padding:36px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="bivrost.html" class="logo">
+      <span class="mark">BIVROST</span>
+      <span class="sub">株式会社Bivrost</span>
+    </a>
+    <nav class="header-nav">
+      <a href="index.html" class="ghost">AI顧問室 公式サイトへ</a>
+      <a href="index.html#contact" class="btn-header">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Corporate Profile</p>
+    <h1>BIVROST</h1>
+    <p class="company-name">株式会社Bivrost</p>
+    <p class="tagline">テクノロジーと現場のあいだに、橋を架ける。</p>
+    <p class="lead">
+      Bivrost（ビフレスト）は、北欧神話で神々の世界と人の世界を結ぶ「虹の橋」の名。<br class="pc-only">
+      私たちは、AIという新しい技術と、日々の仕事の現場とのあいだに橋を架けることを使命としています。
+    </p>
+    <div class="arc-wrap bridge-arc">
+      <svg viewBox="0 0 640 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#3FD3C6" stop-opacity="0"/>
+            <stop offset="20%" stop-color="#3FD3C6"/>
+            <stop offset="50%" stop-color="#6C8EF5"/>
+            <stop offset="80%" stop-color="#B387F5"/>
+            <stop offset="100%" stop-color="#B387F5" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M20,110 Q320,-10 620,110" fill="none" stroke="url(#arcGrad)" stroke-width="2"/>
+        <path d="M60,110 Q320,20 580,110" fill="none" stroke="url(#arcGrad)" stroke-width="1.4" opacity=".55"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container narrow">
+    <div class="section-head">
+      <p class="section-eyebrow">About Us</p>
+      <h2>私たちについて</h2>
+    </div>
+    <div class="about-body">
+      <p>
+        株式会社Bivrostは、<strong>AI・ソフトウェアの実装力</strong>を軸に、中小企業やクリエイターの現場に伴走する会社です。
+        「AIを知っている」だけでは現場は変わりません。私たちは、業務やクリエイティブの実際の手触りに寄り添いながら、
+        使える形にして届けるところまでを一貫して担います。
+      </p>
+      <p>
+        経営とAI技術の両方の視点を持ち、大がかりなシステム導入ではなく、<strong>今の現場ですぐに使える一手</strong>から
+        一緒に考えることを大切にしています。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt" id="business">
+  <div class="container">
+    <div class="section-head">
+      <p class="section-eyebrow">Our Business</p>
+      <h2>事業・プロダクト</h2>
+    </div>
+    <div class="cards">
+      <div class="card primary">
+        <span class="card-tag main">MAIN BUSINESS</span>
+        <h3>AI顧問室</h3>
+        <p>中小企業のためのAI顧問サービス。経営目線でAI活用を伴走支援します。</p>
+        <p class="price">月額15万円〜（税別）</p>
+        <a href="index.html" class="card-link">サービスサイトを見る →</a>
+      </div>
+      <div class="card">
+        <span class="card-tag rd">R&amp;D</span>
+        <h3>AiManga</h3>
+        <p>AIによる漫画・コンテンツ制作技術の研究開発に取り組んでいます。</p>
+        <p class="price">準備中</p>
+        <span class="card-link disabled">詳細は近日公開</span>
+      </div>
+      <div class="card">
+        <span class="card-tag dev">DEVELOPMENT</span>
+        <h3>アプリ・システム受託開発</h3>
+        <p>業務システムやWebアプリケーションの企画から開発・運用までを支援します。</p>
+        <p class="price">個別見積り</p>
+        <a href="implementation.html" class="card-link">詳しく見る →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="company">
+  <div class="container narrow">
+    <div class="section-head">
+      <p class="section-eyebrow">Company Profile</p>
+      <h2>会社概要</h2>
+    </div>
+    <dl class="info-table">
+      <div class="info-row">
+        <dt>会社名</dt>
+        <dd>株式会社Bivrost（Bivrost Inc.）</dd>
+      </div>
+      <div class="info-row">
+        <dt>所在地</dt>
+        <dd>〒160-0022 東京都新宿区新宿5丁目10番10号 海老沢ビル202</dd>
+      </div>
+      <div class="info-row">
+        <dt>連絡先</dt>
+        <dd><a href="mailto:koki.otsuka@bivrost.co.jp">koki.otsuka@bivrost.co.jp</a><br>070-3848-1352</dd>
+      </div>
+      <div class="info-row">
+        <dt>事業内容</dt>
+        <dd>
+          <ul>
+            <li>AI顧問サービス</li>
+            <li>AI研修・導入支援</li>
+            <li>アプリ・システム受託開発</li>
+            <li>AIコンテンツ技術の研究開発</li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section id="contact" class="section-alt">
+  <div class="container narrow">
+    <div class="contact-box">
+      <h2>お問い合わせ</h2>
+      <a href="mailto:koki.otsuka@bivrost.co.jp" class="mail">koki.otsuka@bivrost.co.jp</a>
+      <div class="contact-actions">
+        <a href="index.html#contact" class="btn-primary">AI活用のご相談はAI顧問室の無料相談へ →</a>
+        <p class="contact-note">取材・お仕事のご相談はメールにてお気軽にご連絡ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p class="foot-links">
+      <a href="tokushoho.html">特定商取引法に基づく表記</a>｜<a href="privacy.html">プライバシーポリシー</a>｜<a href="index.html">AI顧問室 トップへ</a>
+    </p>
+    <p class="foot-copy">© 2026 Bivrost Inc.</p>
+  </div>
+</footer>
+
+</body>
+</html>
