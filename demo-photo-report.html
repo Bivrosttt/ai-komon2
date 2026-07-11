@@ -341,8 +341,16 @@
   .info-row .txt .d { font-size: 12.5px; color: var(--gray); line-height: 1.7; }
 
   .reselect-row { text-align: center; margin-top: 32px; }
-  .reselect-row a { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; }
-  .reselect-row a:hover { color: var(--navy); }
+  .reselect-row button.reselect-btn {
+    font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer;
+    background: none; border: none; padding: 10px; font-family: 'Noto Sans JP', sans-serif;
+  }
+  .reselect-row button.reselect-btn:hover { color: var(--navy); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .doc-block { transition: none; opacity: 1; transform: none; }
+  }
 
   @media (max-width: 900px) {
     .result-grid { grid-template-columns: 1fr; }
@@ -427,9 +435,9 @@
         <span class="case-tag">CASE 01｜基礎工事現場</span>
         <h3>○○邸新築工事（基礎工事）</h3>
         <div class="card-photos">
-          <div class="photo-thumb p-rebar"><span class="photo-lens"></span></div>
-          <div class="photo-thumb p-formwork"><span class="photo-lens"></span></div>
-          <div class="photo-thumb p-tarp"><span class="photo-lens"></span></div>
+          <div class="photo-thumb p-rebar"><span class="photo-lens"></span><span class="photo-time">09:12</span></div>
+          <div class="photo-thumb p-formwork"><span class="photo-lens"></span><span class="photo-time">10:40</span></div>
+          <div class="photo-thumb p-tarp"><span class="photo-lens"></span><span class="photo-time">16:05</span></div>
         </div>
         <div class="memo-block">
           <span class="memo-label">現場からのメモ</span>
@@ -441,9 +449,9 @@
         <span class="case-tag">CASE 02｜内装リフォーム現場</span>
         <h3>△△様邸 内装リフォーム工事</h3>
         <div class="card-photos">
-          <div class="photo-thumb p-cloth-a"><span class="photo-lens"></span></div>
-          <div class="photo-thumb p-cloth-b"><span class="photo-lens"></span></div>
-          <div class="photo-thumb p-outlet"><span class="photo-lens"></span><span class="photo-outlet-mark"></span></div>
+          <div class="photo-thumb p-cloth-a"><span class="photo-lens"></span><span class="photo-time">09:30</span></div>
+          <div class="photo-thumb p-cloth-b"><span class="photo-lens"></span><span class="photo-time">11:15</span></div>
+          <div class="photo-thumb p-outlet"><span class="photo-lens"></span><span class="photo-outlet-mark"></span><span class="photo-time">14:50</span></div>
         </div>
         <div class="memo-block">
           <span class="memo-label">現場からのメモ</span>
@@ -455,9 +463,9 @@
         <span class="case-tag">CASE 03｜外構工事現場</span>
         <h3>□□様邸 外構工事（ブロック塀・駐車場）</h3>
         <div class="card-photos">
-          <div class="photo-thumb p-rain"><span class="photo-lens"></span></div>
-          <div class="photo-thumb p-block"><span class="photo-lens"></span></div>
-          <div class="photo-thumb p-yard"><span class="photo-lens"></span></div>
+          <div class="photo-thumb p-rain"><span class="photo-lens"></span><span class="photo-time">08:05</span></div>
+          <div class="photo-thumb p-block"><span class="photo-lens"></span><span class="photo-time">15:20</span></div>
+          <div class="photo-thumb p-yard"><span class="photo-lens"></span><span class="photo-time">16:40</span></div>
         </div>
         <div class="memo-block">
           <span class="memo-label">現場からのメモ</span>
@@ -477,7 +485,7 @@
         AIが報告書を作成しています<span class="dots"><span></span><span></span><span></span></span>
       </div>
 
-      <div class="result-grid" id="resultGrid" style="display:none;">
+      <div class="result-grid" id="resultGrid" style="display:none;" aria-live="polite">
         <div>
           <div class="report-doc" id="reportDoc">
             <div class="report-titlebar">
@@ -543,7 +551,7 @@
       </div>
 
       <div class="reselect-row">
-        <a id="reselectLink">別の現場を選び直す</a>
+        <button type="button" id="reselectLink" class="reselect-btn">別の現場を選び直す</button>
       </div>
     </div>
   </div>

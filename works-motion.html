@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>モーション動画サンプル｜AI顧問室</title>
-<meta name="description" content="20秒のモーション動画サンプルをブラウザで再生。AIとコードで動画クオリティのコンテンツも制作できることを、架空のベーカリー新商品紹介ムービーで実演します。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta name="description" content="23秒のモーション動画サンプルをブラウザで再生。AIとコードで動画クオリティのコンテンツも制作できることを、架空のベーカリー新商品紹介ムービーで実演します。中小企業向けAI顧問サービス「AI顧問室」が提供。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
 <meta property="og:title" content="モーション動画サンプル｜AI顧問室">
-<meta property="og:description" content="20秒のモーション動画サンプルをブラウザで再生。AIとコードで動画クオリティのコンテンツも制作できることを、架空のベーカリー新商品紹介ムービーで実演します。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:description" content="23秒のモーション動画サンプルをブラウザで再生。AIとコードで動画クオリティのコンテンツも制作できることを、架空のベーカリー新商品紹介ムービーで実演します。中小企業向けAI顧問サービス「AI顧問室」が提供。">
 <meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-motion.html">
 <meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -396,11 +396,12 @@
   }
   .ctrl-btn:hover { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.3); }
   .progress-track {
-    flex: 1; height: 6px; border-radius: 999px;
-    background: rgba(255,255,255,0.15);
+    flex: 1; height: 6px; padding: 8px 0; box-sizing: content-box;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15); background-clip: content-box;
     position: relative; cursor: pointer;
   }
-  .progress-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; border-radius: 999px; background: var(--gold); }
+  .progress-fill { position: absolute; left: 0; top: 8px; bottom: 8px; width: 0%; border-radius: 999px; background: var(--gold); }
   .time-label {
     font-size: 12.5px; color: #C9B9A6; min-width: 86px; text-align: right;
     font-variant-numeric: tabular-nums;
@@ -476,7 +477,7 @@
   <div class="container">
     <span class="hero-label">作品サンプル｜モーション動画</span>
     <h1>静止画だけじゃない。<br>AIとコードで、<em>動画クオリティ</em>まで。</h1>
-    <p class="sub">商品紹介・会社紹介・操作マニュアルなど、動画コンテンツもコードで設計・生成できます。下の再生ボタンから、実際の20秒サンプルムービーをご覧ください。</p>
+    <p class="sub">商品紹介・会社紹介・操作マニュアルなど、動画コンテンツもコードで設計・生成できます。下の再生ボタンから、実際の23秒サンプルムービーをご覧ください。</p>
   </div>
 </div>
 
@@ -493,7 +494,7 @@
   <div class="container">
     <span class="section-label">SHOWCASE</span>
     <h2 class="section-title">サンプルベーカリー 新商品紹介ムービー</h2>
-    <p class="section-lead">▶を押すと約20秒のムービーが再生されます。カット割り・テキストの動き・タイミングまで、すべてコードで設計しています。</p>
+    <p class="section-lead">▶を押すと約23秒のムービーが再生されます。カット割り・テキストの動き・タイミングまで、すべてコードで設計しています。</p>
 
     <div class="movie-wrap">
       <div class="movie-theater">
@@ -517,7 +518,7 @@
             </div>
 
             <div class="scene" id="scene-s2">
-              <div class="s2-media"><img src="assets/works/product-danish.jpg" id="s2Img" alt="栗と発酵バターのデニッシュ"></div>
+              <div class="s2-media"><img src="assets/works/product-danish.jpg" id="s2Img" alt="栗と発酵バターのデニッシュ" width="1024" height="1024" decoding="async"></div>
               <div class="s2-scrim"></div>
               <div class="s2-text">
                 <span class="s2-kicker" id="s2Kicker">秋の新商品</span>
@@ -531,15 +532,15 @@
                 <div class="s3-kicker" id="s3Kicker">3つのこだわり</div>
                 <div class="s3-badges">
                   <div class="s3-badge" id="s3B1">
-                    <span class="s3-circle"><img src="assets/works/motion-kuri.jpg" alt="国産栗の渋皮煮"></span>
+                    <span class="s3-circle"><img src="assets/works/motion-kuri.jpg" alt="国産栗の渋皮煮" width="1024" height="1024" decoding="async"></span>
                     <span class="s3-label">国産栗の<br>渋皮煮</span>
                   </div>
                   <div class="s3-badge" id="s3B2">
-                    <span class="s3-circle"><img src="assets/works/motion-butter.jpg" alt="発酵バター"></span>
+                    <span class="s3-circle"><img src="assets/works/motion-butter.jpg" alt="発酵バター" width="1024" height="1024" decoding="async"></span>
                     <span class="s3-label">発酵バター<br>100%</span>
                   </div>
                   <div class="s3-badge" id="s3B3">
-                    <span class="s3-circle"><img src="assets/works/motion-autumn.jpg" alt="10月限定"></span>
+                    <span class="s3-circle"><img src="assets/works/motion-autumn.jpg" alt="10月限定" width="1024" height="1024" decoding="async"></span>
                     <span class="s3-label">10月限定</span>
                   </div>
                 </div>
@@ -566,7 +567,7 @@
 
             <div class="movie-poster" id="moviePoster">
               <div class="poster-btn" id="posterBtn"><span class="tri"></span></div>
-              <div class="poster-caption" id="posterCaption">クリックしてムービーを再生（20秒）</div>
+              <div class="poster-caption" id="posterCaption">クリックしてムービーを再生（23秒）</div>
             </div>
           </div>
         </div>
@@ -859,7 +860,7 @@
     if (playing) return;
     playing = true;
     moviePoster.classList.add("hidden");
-    playBtn.textContent = "⏸ 一時停止";
+    playBtn.textContent = "❚❚ 一時停止";
     rafStartPerf = performance.now();
     rafId = requestAnimationFrame(loop);
   }
@@ -904,7 +905,7 @@
 
   moviePoster.addEventListener("click", function () {
     posterBtn.innerHTML = '<span class="tri"></span>';
-    posterCaption.textContent = "クリックしてムービーを再生（20秒）";
+    posterCaption.textContent = "クリックしてムービーを再生（23秒）";
     if (pausedAt >= TOTAL) {
       restart();
     } else {
@@ -927,7 +928,7 @@
 
   restartBtn.addEventListener("click", function () {
     posterBtn.innerHTML = '<span class="tri"></span>';
-    posterCaption.textContent = "クリックしてムービーを再生（20秒）";
+    posterCaption.textContent = "クリックしてムービーを再生（23秒）";
     restart();
   });
 

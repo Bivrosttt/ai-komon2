@@ -316,8 +316,17 @@
   .next-box { border-left: 4px solid var(--navy); background: var(--bg-soft); border-radius: 4px; padding: 22px 26px; }
 
   .reselect-row { text-align: center; margin-top: 40px; }
-  .reselect-row a { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; }
-  .reselect-row a:hover { color: var(--navy); }
+  .reselect-row button.reselect-btn {
+    font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer;
+    background: none; border: none; padding: 10px; font-family: 'Noto Sans JP', sans-serif;
+  }
+  .reselect-row button.reselect-btn:hover { color: var(--navy); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .dashboard.show .fade-block { animation: none; opacity: 1; transform: none; }
+    .hbar-fill { transition: none; }
+  }
 
   /* Operation band */
   .band {
@@ -493,7 +502,7 @@
             <div class="kpi-card">
               <div class="num">185<span class="unit">万円</span></div>
               <div class="lbl">今週の売上</div>
-              <div class="sub">前週データはデモでは省略（初回集計）</div>
+              <div class="sub">前週比 +12%（サンプル値）</div>
             </div>
             <div class="kpi-card">
               <div class="num">1<span class="unit">件</span></div>
@@ -608,7 +617,7 @@
       </div>
 
       <div class="reselect-row">
-        <a id="resetLink">もう一度見る</a>
+        <button type="button" id="resetLink" class="reselect-btn">もう一度見る</button>
       </div>
     </div>
   </div>

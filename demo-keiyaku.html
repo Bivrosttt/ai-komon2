@@ -288,8 +288,14 @@
   .ai-did-item .d { font-size: 11.5px; color: var(--gray); line-height: 1.6; }
 
   .reselect-row { text-align: center; margin-top: 32px; }
-  .reselect-row a { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; }
-  .reselect-row a:hover { color: var(--navy); }
+  .reselect-row button.reselect-btn {
+    font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer;
+    background: none; border: none; padding: 10px; font-family: 'Noto Sans JP', sans-serif;
+  }
+  .reselect-row button.reselect-btn:hover { color: var(--navy); }
+  .risk-quote { cursor: pointer; }
+  .risk-quote:hover { background: #EDF2F8; }
+  .p-article.jump-flash { background: #FBF3DC !important; }
 
   @media (max-width: 900px) {
     .contract-grid { grid-template-columns: 1fr; }
@@ -444,7 +450,7 @@
                 <div class="ai-did-item">
                   <div class="no">1</div>
                   <div class="t">条文の構造化</div>
-                  <div class="d">全12条前後の条文を、目的・お金・期間・義務などの項目ごとに整理しました。</div>
+                  <div class="d">契約書全体の条文を、目的・お金・期間・義務などの項目ごとに整理しました。</div>
                 </div>
                 <div class="ai-did-item">
                   <div class="no">2</div>
@@ -463,7 +469,7 @@
       </div>
 
       <div class="reselect-row">
-        <a id="reselectLink">別の契約書を選び直す</a>
+        <button type="button" id="reselectLink" class="reselect-btn">別の契約書を選び直す</button>
       </div>
     </div>
   </div>
@@ -542,19 +548,19 @@
         {
           sev: "high", articleNo: 8, title: "損害賠償の上限なし",
           quote: "第8条「甲又は乙は、本契約に違反し、相手方に損害を与えた場合、相手方に対しその損害を賠償する責任を負う。」",
-          risk: "賠償額の上限が定められていないため、軽微な業務ミスであっても想定外の高額請求に発展するリスクの可能性があります。",
+          risk: "賠償額の上限が定められていないため、軽微な業務ミスであっても想定外の高額請求に発展するおそれがあります。",
           nego: "「損害賠償額は委託料の◯ヶ月分を上限とする」といった上限条項の追加を打診できる余地の例があります。"
         },
         {
           sev: "high", articleNo: 5, title: "成果物の権利が相手方に帰属",
           quote: "第5条「乙が本契約に基づき作成した成果物にかかる著作権及びその他一切の知的財産権は、乙に留保されるものとし…」",
-          risk: "対価を支払って作成させた成果物であっても、権利は受注者側に残るため、二次利用や改変が制限されるリスクの可能性があります。",
+          risk: "対価を支払って作成させた成果物であっても、権利は受注者側に残るため、二次利用や改変が制限される可能性があります。",
           nego: "「成果物の著作権は引渡しをもって甲に譲渡する」形への変更を相談できる余地の例があります。"
         },
         {
           sev: "mid", articleNo: 9, title: "中途解約の予告期間が長い（3ヶ月）",
           quote: "第9条「解約希望日の3ヶ月前までに書面により相手方に通知するものとする。」",
-          risk: "業務内容や取引先の状況が変わっても、3ヶ月間は契約関係を解消できず、機動的な見直しがしづらくなるリスクの可能性があります。",
+          risk: "業務内容や取引先の状況が変わっても、3ヶ月間は契約関係を解消できず、機動的な見直しがしづらくなる懸念があります。",
           nego: "予告期間を「1ヶ月前」など短縮できないか相談できる余地の例があります。"
         }
       ]
@@ -584,19 +590,19 @@
         {
           sev: "high", articleNo: 8, title: "原状回復の範囲が広い",
           quote: "第8条「使用開始前の原状（新築時の状態を含む）に回復…経年劣化及び通常損耗分についても乙の負担とする。」",
-          risk: "通常の使用による自然な劣化分まで借主負担とされており、退去時の原状回復費用が想定より高額になるリスクの可能性があります。",
+          risk: "通常の使用による自然な劣化分まで借主負担とされており、退去時の原状回復費用が想定より高額になりかねません。",
           nego: "「経年劣化・通常損耗は貸主負担」という一般的な考え方に沿った修正を相談できる余地の例があります。"
         },
         {
           sev: "high", articleNo: 7, title: "中途解約時の違約金",
           quote: "第7条「解約希望日の6か月前までに…違約金として賃料の6か月分相当額を甲に支払うものとする。」",
-          risk: "事業縮小や移転などで早期解約が必要になった場合、賃料6ヶ月分という大きな負担が発生するリスクの可能性があります。",
+          risk: "事業縮小や移転などで早期解約が必要になった場合、賃料6ヶ月分という大きな負担が発生するおそれがあります。",
           nego: "違約金の算定方法や、期間経過に応じた減額の余地について確認・調整できる例があります。"
         },
         {
           sev: "mid", articleNo: 5, title: "更新料の負担",
           quote: "第5条「更新料として新賃料の2か月分を、更新の都度支払うものとする。」",
-          risk: "更新のたびに賃料2ヶ月分の負担が発生し、長期利用になるほどコスト増につながるリスクの可能性があります。",
+          risk: "更新のたびに賃料2ヶ月分の負担が発生し、長期利用になるほどコスト増につながる可能性があります。",
           nego: "更新料の減額や、複数年契約による更新料免除を打診できる余地の例があります。"
         }
       ]
@@ -627,19 +633,19 @@
         {
           sev: "high", articleNo: 3, title: "最低購入数量のコミット",
           quote: "第3条「四半期ごとに甲の定める最低購入数量を購入するものとし、これを下回った場合、甲は乙の代理店資格を解除できるものとする。」",
-          risk: "需要が想定より下振れした場合でも購入義務が発生し、在庫リスクや資金繰りの負担につながるリスクの可能性があります。",
+          risk: "需要が想定より下振れした場合でも購入義務が発生し、在庫リスクや資金繰りの負担につながる懸念があります。",
           nego: "最低購入数量の見直し条項や、未達時の猶予期間の設定を相談できる余地の例があります。"
         },
         {
           sev: "mid", articleNo: 4, title: "競合品取扱い禁止",
           quote: "第4条「契約終了後1年間、甲の事前の書面による承諾なく、本製品と競合する製品を取り扱ってはならない。」",
-          risk: "契約終了後も1年間は事業の選択肢が制限され、取引先の分散や新規事業の展開がしづらくなるリスクの可能性があります。",
+          risk: "契約終了後も1年間は事業の選択肢が制限され、取引先の分散や新規事業の展開に支障が出かねません。",
           nego: "制限期間の短縮や、対象製品の範囲を限定する形への変更を相談できる余地の例があります。"
         },
         {
           sev: "mid", articleNo: 8, title: "自動更新",
           quote: "第8条「期間満了の3か月前までに…意思表示がない限り、本契約は同一条件で自動的に1年間更新されるものとし…」",
-          risk: "見直しのタイミングを逃すと、不利な条件のまま契約が継続してしまうリスクの可能性があります。",
+          risk: "見直しのタイミングを逃すと、不利な条件のまま契約が継続してしまうおそれがあります。",
           nego: "社内での更新判断リマインドの仕組みに加え、更新時の条件見直し協議を契約に盛り込めないか相談できる余地の例があります。"
         }
       ]
@@ -689,7 +695,7 @@
       var sevLabel = r.sev === "high" ? "重要度：高" : "重要度：中";
       html += '<div class="risk-card ' + (sevClass === "mid" ? "mid" : "") + '">' +
         '<div class="risk-head"><span class="sev-badge ' + sevClass + '">' + sevLabel + '</span><span class="rt">' + escapeHtml(r.title) + '</span></div>' +
-        '<div class="risk-quote">⚠ ' + escapeHtml(r.quote) + '</div>' +
+        '<div class="risk-quote" data-article-no="' + r.articleNo + '" title="クリックで原文の該当条文を表示">⚠ ' + escapeHtml(r.quote) + '</div>' +
         '<div class="risk-body-row risk"><span class="lbl">何がリスクか：</span>' + escapeHtml(r.risk) + '</div>' +
         '<div class="risk-body-row nego"><span class="lbl">交渉の余地の例：</span>' + escapeHtml(r.nego) + '</div>' +
         '</div>';
@@ -770,6 +776,16 @@
   analyzeBtn.addEventListener("click", function () {
     if (analyzeBtn.hasAttribute("disabled")) return;
     runAnalysis();
+  });
+
+  riskList.addEventListener("click", function (e) {
+    var quote = e.target.closest(".risk-quote");
+    if (!quote) return;
+    var el = document.getElementById("art-" + quote.getAttribute("data-article-no"));
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.classList.add("jump-flash");
+    setTimeout(function () { el.classList.remove("jump-flash"); }, 1200);
   });
 
   reselectLink.addEventListener("click", function () {

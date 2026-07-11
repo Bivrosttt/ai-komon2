@@ -165,6 +165,10 @@
     font-size: 12.5px; color: var(--gray); background: var(--bg-soft); border-radius: 4px;
     padding: 10px 12px; line-height: 1.7; max-height: 6.6em; overflow: hidden; position: relative;
   }
+  .case-card .snippet::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.8em;
+    background: linear-gradient(to bottom, rgba(244,247,250,0), var(--bg-soft));
+  }
   .case-card .snippet b { color: var(--ink); }
   .case-card .pick { font-size: 13px; font-weight: 700; color: var(--navy); margin-top: 4px; }
   .case-card .pick::after { content: "→"; margin-left: 4px; }
@@ -274,8 +278,8 @@
   .t-strong { font-size: 13px; color: var(--navy); font-weight: 700; line-height: 1.7; }
 
   .reselect-row { text-align: center; margin-top: 32px; }
-  .reselect-row a { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; }
-  .reselect-row a:hover { color: var(--navy); }
+  .reselect-row button { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; background: none; border: none; font-family: inherit; padding: 12px 16px; }
+  .reselect-row button:hover { color: var(--navy); }
 
   @media (max-width: 900px) {
     .result-grid { grid-template-columns: 1fr; }
@@ -428,7 +432,7 @@
       </div>
 
       <div class="reselect-row">
-        <a id="reselectLink">別の会社を選び直す</a>
+        <button type="button" id="reselectLink">別の会社を選び直す</button>
       </div>
     </div>
   </div>
@@ -460,7 +464,7 @@
   </div>
 </section>
 
-<section class="cta" id="contact">
+<section class="cta" id="demo-cta">
   <div class="container">
     <h2>御社の採用でも試したい方へ</h2>
     <p>「うちの求人でもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、御社の採用の悩みをお聞かせください。</p>

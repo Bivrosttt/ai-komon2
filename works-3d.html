@@ -7,8 +7,8 @@
 <meta name="description" content="間取りデータをもとに、壁・建具・家具まで実寸で再現した3D内見モデル。AIがOSSの3DソフトBlenderを操作して構築し、ブラウザでぐるぐる回して内見できます。中小企業向けAI顧問サービス「AI顧問室」の制作サンプル。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
-<meta property="og:title" content="3D住宅ビューア（制作サンプル）｜AI顧問室">
-<meta property="og:description" content="ブラウザで動く簡易3D住宅ビューアの制作サンプルです。OSSの3Dコンポーネント model-viewer と、CC0の3Dモデル素材を目利きして組み合わせ、モダン住宅の模型をマウス操作で確認できます。">
+<meta property="og:title" content="間取り図→実寸3D内見モデル（制作サンプル）｜AI顧問室">
+<meta property="og:description" content="間取り図をもとに、壁・建具・水回り・家具まで実寸で再現した3D内見モデル。AIがOSSの3DソフトBlenderを操作して構築し、ブラウザで俯瞰・一人称の両方から内見できます。">
 <meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-3d.html">
 <meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -266,7 +266,7 @@
   <div class="container">
     <div class="note-box">
       <span class="mark">※</span>
-      <span><strong>このページは制作サンプルです。</strong>使用しているOSSとCC0素材の目利き・組み合わせ方さえ分かれば、御社サイトにもこうした簡易3Dコンテンツを追加費用を抑えて実装できます。</span>
+      <span><strong>このページは制作サンプルです。</strong>使用しているOSSとフリー素材（ライセンス確認済み）の目利き・組み合わせ方さえ分かれば、御社サイトにもこうした簡易3Dコンテンツを追加費用を抑えて実装できます。</span>
     </div>
   </div>
 </div>
@@ -310,7 +310,7 @@
       ></model-viewer>
       <div class="viewer-status" id="viewerStatus">
         <div class="spin"></div>
-        <div>3Dシーンを読み込み中…</div>
+        <div id="viewerStatusText">3Dシーンを読み込み中…（約12MBあります）</div>
       </div>
     </div>
 
@@ -347,7 +347,7 @@
         <p>完成した3Dビューアは自社サイトの物件ページや、商談時の提案資料にそのまま埋め込んで活用できます。</p>
       </div>
     </div>
-    <p class="how-note">OSSとCC0素材を正しく目利きして組み合わせれば、<strong>大きな開発費をかけずにこうした体験もサイトに追加できます。</strong></p>
+    <p class="how-note">OSSとフリー素材（ライセンス確認済み）を正しく目利きして組み合わせれば、<strong>大きな開発費をかけずにこうした体験もサイトに追加できます。</strong></p>
   </div>
 </section>
 
@@ -374,6 +374,7 @@
 (function () {
   var frame = document.getElementById("viewerFrame");
   var statusEl = document.getElementById("viewerStatus");
+  var statusText = document.getElementById("viewerStatusText");
   var btnDay = document.getElementById("btnDay");
   var btnDusk = document.getElementById("btnDusk");
   var mv = document.getElementById("houseViewer");
@@ -391,6 +392,11 @@
     statusEl.innerHTML = "<div>" + msg + "</div>";
   }
 
+  mv.addEventListener("progress", function (e) {
+    var ratio = e.detail && typeof e.detail.totalProgress === "number" ? e.detail.totalProgress : 0;
+    var pct = Math.round(ratio * 100);
+    statusText.textContent = "3Dシーンを読み込み中…" + pct + "%（約12MBあります）";
+  });
   mv.addEventListener("load", hideStatus);
   mv.addEventListener("error", function () {
     showError("3Dモデルの読み込みに失敗しました。<br>インターネット接続をご確認のうえ、再読み込みしてください。");

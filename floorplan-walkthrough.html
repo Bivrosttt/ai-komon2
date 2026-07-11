@@ -56,6 +56,8 @@
   }
   .icon-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.28); }
   .icon-btn span { font-size: 12px; }
+  .icon-btn.gold { background: var(--gold); border-color: var(--gold); color: var(--navy-deep); font-weight: 700; }
+  .icon-btn.gold:hover { background: var(--gold); filter: brightness(1.08); border-color: var(--gold); }
 
   #stage { position: fixed; inset: 62px 0 0; overflow: hidden; background: radial-gradient(circle at 50% 35%, #33485c, #0b1724 70%); }
   #stage canvas { display: block; width: 100%; height: 100%; outline: none; touch-action: none; }
@@ -87,7 +89,7 @@
     border-radius: 18px; background: rgba(6, 22, 44, .9); box-shadow: 0 24px 70px rgba(0,0,0,.35);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   }
-  .eyebrow { margin-bottom: 8px; color: #dfc45e; font-size: 11px; font-weight: 700; letter-spacing: .18em; }
+  .eyebrow { margin-bottom: 8px; color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: .18em; }
   .start-card h2 { margin: 0 0 12px; font-family: 'Noto Serif JP', serif; font-size: clamp(23px, 5vw, 31px); line-height: 1.45; }
   .start-card > p { margin: 0 auto 22px; max-width: 370px; color: var(--muted); font-size: 13px; line-height: 1.8; }
   .key-row { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; color: #d9e4f2; font-size: 11px; }
@@ -132,7 +134,7 @@
   .map-head { display: flex; justify-content: space-between; margin: 0 4px 6px; color: var(--muted); font-size: 9px; letter-spacing: .12em; }
   .map-image { position: relative; aspect-ratio: 6 / 7; overflow: hidden; border-radius: 8px; background: #d9d4c8; }
   .map-image img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: .9; }
-  .map-marker { position: absolute; width: 10px; height: 10px; border: 2px solid #fff; border-radius: 50%; background: #e8b83e; box-shadow: 0 0 0 4px rgba(232,184,62,.28), 0 2px 5px rgba(0,0,0,.5); transform: translate(-50%,-50%); transition: left .08s linear, top .08s linear; }
+  .map-marker { position: absolute; width: 10px; height: 10px; border: 2px solid #fff; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(201,162,39,.28), 0 2px 5px rgba(0,0,0,.5); transform: translate(-50%,-50%); transition: left .08s linear, top .08s linear; }
 
   .credits {
     position: absolute; z-index: 35; inset: 12px 12px 12px auto; width: min(390px, calc(100vw - 24px));
@@ -144,7 +146,7 @@
   .credits h2 { margin: 0 0 10px; font-family: 'Noto Serif JP', serif; font-size: 19px; }
   .credits p, .credits li { color: var(--muted); font-size: 12px; }
   .credits ul { padding-left: 18px; }
-  .credits a { text-decoration: underline; color: #e6cc72; }
+  .credits a { text-decoration: underline; color: var(--gold); }
   .credits-close { float: right; border: 1px solid var(--line); border-radius: 50%; width: 30px; height: 30px; background: rgba(255,255,255,.06); cursor: pointer; }
 
   .mobile-controls { display: none; }
@@ -162,6 +164,7 @@
     .title-wrap strong { font-size: 14px; }
     .title-wrap span, .icon-btn span { display: none; }
     .icon-btn { width: 36px; justify-content: center; padding: 0; }
+    .icon-btn.gold { width: auto; padding: 0 14px; }
     .hud { top: 12px; left: 12px; min-width: 145px; padding: 10px 12px; }
     .minimap { width: 118px; right: 12px; bottom: 112px; }
     .map-head { display: none; }
@@ -200,6 +203,7 @@
     <button class="icon-btn" id="resetBtn" type="button" aria-label="開始位置へ戻る">↺ <span>リセット</span></button>
     <button class="icon-btn" id="creditBtn" type="button" aria-label="モデル情報を表示">ⓘ <span>モデル情報</span></button>
     <button class="icon-btn" id="fullscreenBtn" type="button" aria-label="全画面表示">⛶ <span>全画面</span></button>
+    <a class="icon-btn gold" href="index.html#contact">無料相談</a>
   </div>
 </header>
 
@@ -218,7 +222,7 @@
     <div class="start-card">
       <div class="eyebrow">FIRST-PERSON WALKTHROUGH</div>
       <h2>この部屋の中を、<br>自由に歩いてみる</h2>
-      <p id="startDescription">開始後はマウスドラッグで周囲を見渡し、WASDキーで移動できます。Escキーでいつでも停止できます。</p>
+      <p id="startDescription">開始後はマウスドラッグで周囲を見渡し、WASDキーで移動できます。Escキーでいつでも停止できます。<br>※間取り図から作成したコンセプトモデルです（寸法は推定）</p>
       <div class="key-row" aria-hidden="true">
         <div class="key-guide"><kbd>WASD</kbd><span>移動</span></div>
         <div class="key-guide"><kbd>Drag</kbd><span>視点</span></div>

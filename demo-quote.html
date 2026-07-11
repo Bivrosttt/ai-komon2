@@ -211,6 +211,7 @@
   }
   .quote-total-banner .label { font-size: 14px; letter-spacing: 0.06em; }
   .quote-total-banner .value { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 700; color: var(--gold); }
+  .quote-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   table.quote-table { width: 100%; border-collapse: collapse; font-size: 14px; }
   .quote-table thead th {
     background: var(--navy); color: var(--white); font-weight: 700; font-size: 12.5px;
@@ -315,7 +316,7 @@
   <div class="container">
     <span class="hero-label">体験デモ｜見積書AI</span>
     <h1>営業メモが、<em>整った見積書</em>になるまで。</h1>
-    <p class="sub">1件2時間かかっていた見積書づくりが、AIの下書きを確認するだけの仕事に変わります。実際の走り書きメモを選んで、体験してみてください。</p>
+    <p class="sub">例えば1件2時間かかっていた見積書づくりが、AIの下書きを確認するだけの仕事に変わります。実際の現場にありそうな走り書きメモを選んで、体験してみてください。</p>
     <p class="breadcrumb"><a href="demos.html">デモ一覧</a> ＞ 見積書AI</p>
   </div>
 </div>
@@ -565,10 +566,10 @@
             '</div>' +
           '</div>' +
           '<div class="quote-total-banner"><span class="label">ご 合 計（税込）</span><span class="value">' + yen(total) + '</span></div>' +
-          '<table class="quote-table">' +
+          '<div class="quote-table-wrap"><table class="quote-table">' +
             '<thead><tr><th>品目</th><th class="num">数量</th><th class="num">単位</th><th class="num">単価</th><th class="num">金額</th></tr></thead>' +
             '<tbody>' + rowsHtml + '</tbody>' +
-          '</table>' +
+          '</table></div>' +
           '<div class="quote-sums">' +
             '<div><span>小計</span><span>' + yen(subtotal) + '</span></div>' +
             '<div><span>消費税（10%）</span><span>' + yen(tax) + '</span></div>' +

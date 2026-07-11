@@ -208,10 +208,15 @@
   .chip:hover { border-color: var(--navy); box-shadow: 0 6px 18px rgba(11,36,71,0.10); transform: translateY(-1px); }
   .chip:active { transform: translateY(0); }
   .chip .num { color: var(--gold); font-weight: 700; margin-right: 6px; }
+  .chip.answered { opacity: 0.6; }
+  .chip .check { color: var(--gold); font-weight: 700; margin-left: 6px; }
 
   .reselect-row { text-align: center; margin-top: 28px; }
-  .reselect-row a { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; }
-  .reselect-row a:hover { color: var(--navy); }
+  .reselect-row button.reselect-btn {
+    font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer;
+    background: none; border: none; padding: 10px; font-family: 'Noto Sans JP', sans-serif;
+  }
+  .reselect-row button.reselect-btn:hover { color: var(--navy); }
 
   /* AI actions panel */
   .ai-actions {
@@ -325,7 +330,7 @@
     </div>
 
     <div class="reselect-row">
-      <a id="resetLink">会話をリセット</a>
+      <button type="button" id="resetLink" class="reselect-btn">会話をリセット</button>
     </div>
 
     <div class="ai-actions">
@@ -374,7 +379,7 @@
   </div>
 </section>
 
-<section class="cta" id="contact">
+<section class="cta" id="demo-cta">
   <div class="container">
     <h2>御社の「よくある質問」対応で試したい方へ</h2>
     <p>「うちの規程・マニュアルでもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、御社の総務・経理に寄せられる質問の現状をお聞かせください。</p>
@@ -438,7 +443,7 @@
       ],
       citation: "就業規則 第40条（在宅勤務）／在宅勤務規程（該当箇所の記載なし）",
       escalate: true,
-      escalateText: "※この質問はルールが曖昧なため、総務担当にも通知しました。追って正式な回答が届く場合があります。"
+      escalateText: "※この質問はルールが曖昧なため、総務担当にも通知しました。追って正式な回答が届く場合があります。（デモのため実際の通知は行われません）"
     }
   };
 
@@ -503,6 +508,16 @@
     scrollToBottom();
   }
 
+  function markAnswered(key) {
+    var chip = chipRow.querySelector('[data-q="' + key + '"]');
+    if (!chip || chip.classList.contains("answered")) return;
+    chip.classList.add("answered");
+    var check = document.createElement("span");
+    check.className = "check";
+    check.textContent = "✓";
+    chip.appendChild(check);
+  }
+
   function askQuestion(key) {
     var q = QUESTIONS[key];
     if (!q || busy) return;
@@ -515,6 +530,7 @@
       setTimeout(function () {
         typingRow.remove();
         appendAnswer(q);
+        markAnswered(key);
         busy = false;
       }, 1200);
     }, 200);
@@ -529,6 +545,11 @@
   resetLink.addEventListener("click", function () {
     busy = false;
     chatMessages.innerHTML = initialHTML;
+    chipRow.querySelectorAll(".chip.answered").forEach(function (chip) {
+      chip.classList.remove("answered");
+      var check = chip.querySelector(".check");
+      if (check) check.remove();
+    });
   });
 })();
 </script>

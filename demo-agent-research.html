@@ -230,6 +230,7 @@
   .web-mark.mid { background: #FBF1DA; color: #96790F; }
   .web-mark.ng { background: #FBE7E2; color: var(--red); }
   .table-note { margin-top: 12px; font-size: 12px; color: var(--gray); }
+  .table-note-scroll { display: none; }
 
   .proposal-card .pnum {
     display: inline-flex; align-items: center; justify-content: center;
@@ -324,6 +325,7 @@
     .header-right a.textlink { display: none; }
     .player-shell { padding: 22px 18px 26px; }
     .cmp-table { display: block; overflow-x: auto; white-space: nowrap; }
+    .table-note-scroll { display: block; }
     .lv5-callout { padding: 24px 22px; }
   }
 </style>
@@ -481,6 +483,7 @@
           '<tbody>' + rows + '</tbody>' +
         '</table>' +
         '<p class="table-note">※社名はすべて架空です。実在の企業とは関係ありません。</p>' +
+        '<p class="table-note table-note-scroll">※表は横にスクロールできます</p>' +
       '</div>'
     );
   }
@@ -552,7 +555,7 @@
         '<div class="think-card">' +
           '<h4>🤖 わかったこと</h4>' +
           '<ul>' +
-            '<li>5社中<b>4社は「総合リフォーム型」</b>を掲げており、<b>水回りに特化した打ち出しをしている会社はゼロ</b></li>' +
+            '<li>5社<b>すべてが「総合リフォーム型」</b>を掲げており、<b>水回りに特化した打ち出しをしている会社はゼロ</b></li>' +
             '<li>価格帯を明示しているのは仮設リノベ見本の<b>1社のみ</b>。残り4社はすべて「問い合わせ制」で価格が見えない</li>' +
             '<li>施工事例の掲載数はダミー建装社（15件）が最多。事例の"量"ではすでに差がついている</li>' +
             '<li>Web集客が強い（○）のは3社。差別化ではなく「露出量」で競っている状態</li>' +
@@ -567,7 +570,7 @@
         '<div class="artifact-card proposal-card">' +
           '<div class="ptitle"><span class="pnum">1</span>「水回り専門」を前面に打ち出す</div>' +
           '<p>競合5社はすべて総合型で、水回りに特化した打ち出しをしている会社はゼロ。「なんでも屋」ではなく「水回りならここ」という指名理由をつくります。</p>' +
-          '<div class="basis"><b>根拠：</b>比較表「得意分野」欄 — 5社中4社が総合型、水回り特化の明示はゼロ</div>' +
+          '<div class="basis"><b>根拠：</b>比較表「得意分野」欄 — 5社中5社が総合型、水回り特化の明示はゼロ</div>' +
         '</div>'
     },
     {
@@ -577,7 +580,7 @@
         '<div class="tl-label artifact"><span class="chip">成果物</span>打ち出し方の提案 2/3</div>' +
         '<div class="artifact-card proposal-card">' +
           '<div class="ptitle"><span class="pnum">2</span>職人直営・中間マージンなしを訴求する</div>' +
-          '<p>下請け構造が透けて見える会社が多い中、「職人直営」という体制そのものを、価格の納得感につながる差別化ポイントとして明示します。</p>' +
+          '<p>比較表では5社中4社が価格を非公開にしており、価格の根拠が伝わりにくい状態です。「職人直営」という体制そのものを、中間マージンのない価格の納得感につながる差別化ポイントとして明示します。</p>' +
           '<div class="basis"><b>根拠：</b>比較表「価格帯の見せ方」欄 — 4社が価格非公開＝価格の根拠が伝わりにくい状態</div>' +
         '</div>'
     },

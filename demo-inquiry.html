@@ -127,6 +127,7 @@
 
   /* Demo section */
   .demo-section { background: var(--white); }
+  #demo { scroll-margin-top: 84px; }
   .demo-step-label {
     font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 10px;
   }
@@ -158,7 +159,7 @@
   .case-card .pick::after { content: "→"; margin-left: 4px; }
 
   /* Result area */
-  .demo-result { margin-top: 48px; display: none; }
+  .demo-result { margin-top: 48px; display: none; scroll-margin-top: 84px; }
   .demo-result.active { display: block; animation: fadein .3s ease; }
   @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -234,8 +235,8 @@
   .temp-caution { background: #FBE7E2; color: var(--red); }
 
   .reselect-row { text-align: center; margin-top: 32px; }
-  .reselect-row a { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; }
-  .reselect-row a:hover { color: var(--navy); }
+  .reselect-row button { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; background: none; border: none; font-family: inherit; padding: 12px 16px; }
+  .reselect-row button:hover { color: var(--navy); }
 
   @media (max-width: 900px) {
     .result-grid { grid-template-columns: 1fr; }
@@ -369,7 +370,7 @@
       </div>
 
       <div class="reselect-row">
-        <a id="reselectLink">別の問い合わせを選び直す</a>
+        <button type="button" id="reselectLink">別の問い合わせを選び直す</button>
       </div>
     </div>
   </div>
@@ -509,14 +510,14 @@
       from: "お客様（注文番号 SB-12345）",
       fromEmail: "customer-12345@example.jp",
       to: "サンプル建材株式会社 ご担当者様",
-      subject: "【至急】ご注文商品の納期についてご連絡ください（注文番号12345）",
+      subject: "【至急】ご注文商品の納期についてご連絡ください（注文番号SB-12345）",
       body:
 "サンプル建材株式会社\nご担当者様\n\n" +
 "先週注文した商品（注文番号：SB-12345）についてですが、当初のご案内では今週火曜日到着予定とのことでしたが、\n本日時点でまだ届いておりません。\n\n" +
 "現場の工程にも影響が出ており、正直かなり困っています。\n何度か問い合わせフォームからも連絡していますが、返信がなく困惑しております。\n" +
 "状況を早急にご確認のうえ、いつ届くのか、はっきりとご回答いただけますでしょうか。\n\n" +
 "よろしくお願いします。",
-      replySubject: "Re: 【至急】ご注文商品の納期についてご連絡ください（注文番号12345）",
+      replySubject: "Re: 【至急】ご注文商品の納期についてご連絡ください（注文番号SB-12345）",
       replyFrom: "サンプル建材株式会社　カスタマーサポート担当",
       replyTo: "お客様（注文番号 SB-12345）",
       replyBody:

@@ -494,12 +494,12 @@
 
     <div class="plan-cta">
       <button type="button" class="btn btn-gold" id="btnGenerate" style="font-size:16px; padding:16px 44px;">この間取りをAIに3D化させる →</button>
-      <p class="hint">クリックすると、AIが間取りを読み取り3Dモデルを生成します（約1.5秒・要ネット接続）</p>
+      <p class="hint">クリックすると3Dモデルを表示します（デモでは事前構築モデルを読み込みます・約1.5秒・要ネット接続）</p>
     </div>
 
     <div class="demo-result" id="demoResult">
       <div class="demo-step-label" style="margin-top:8px;">STEP 2</div>
-      <h2 class="demo-question" id="resultTitle" style="font-size:20px;">AIが生成した3Dモデル</h2>
+      <h2 class="demo-question" id="resultTitle" style="font-size:20px;">3Dモデル（サンプル）</h2>
 
       <div id="loadingBox" class="loading-box">
         間取りを読み取り、3Dモデルを生成しています<span class="dots"><span></span><span></span><span></span></span>
@@ -594,7 +594,7 @@
       <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
       <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">1分でレベル診断を受ける</a>
     </div>
-    <p class="cta-sublink">不動産会社向けのご提案はこちら → <a href="lp-fudosan.html">lp-fudosan.html</a></p>
+    <p class="cta-sublink">不動産会社向けのご提案はこちら → <a href="lp-fudosan.html">不動産会社向けのご提案ページへ</a></p>
   </div>
 </section>
 
@@ -1017,7 +1017,6 @@
     put(box(1.8, 0.36, 0.18, fabric), 2.5, 0.6, 5.0, root);
     put(box(0.16, 0.5, 0.8, fabricDk), 1.68, 0.25, 5.35, root);
     put(box(0.16, 0.5, 0.8, fabricDk), 3.32, 0.25, 5.35, root);
-    [0.35].forEach(function () {});
     [[2.15, 5.35], [2.85, 5.35]].forEach(function (p) {
       put(box(0.28, 0.14, 0.42, 0xE6E1D2), p[0], 0.5, p[1], root);
     });
@@ -1084,7 +1083,6 @@
     var panel = new THREE.Mesh(new THREE.BoxGeometry(6.3, 0.85, 0.02), new THREE.MeshPhysicalMaterial({ color: 0xE7EEF2, transparent: true, opacity: 0.28, roughness: 0.2, transmission: 0.5 }));
     panel.position.set(3.5, 0.45, 7.95);
     root.add(panel);
-    [7.0, 8.0].forEach(function () {});
     var sidePostGeo = postGeo;
     [0.3, 6.7].forEach(function (x) {
       for (var z = 7.05; z <= 7.95; z += 0.55) {

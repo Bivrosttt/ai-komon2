@@ -215,6 +215,7 @@
   .mini-mail .mm-subject { font-weight: 700; color: var(--navy); font-size: 13px; margin-bottom: 6px; }
   .mini-mail .mm-body { white-space: pre-wrap; font-size: 13px; color: var(--ink); line-height: 1.8; }
 
+  .est-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .est-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
   .est-table th, .est-table td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; }
   .est-table th { color: var(--gray); font-weight: 700; font-size: 12px; }
@@ -376,7 +377,7 @@
           </tr>
         </tbody>
       </table>
-      <p class="salary-note">※見積AI社員は、AI社員採用センターの「事務AI社員」（見積書・請求書作成が主業務／月給30,000円）に該当します。金額は税別・体（AI社員1人分）あたりの月給です。</p>
+      <p class="salary-note">※見積AI社員は、AI社員採用センターの「事務AI社員」（見積書・請求書作成が主業務／月給30,000円）に該当します。金額は税別・AI社員1人あたりの月給です。</p>
       <div class="salary-cta">
         <p>個別に採用すると合計<strong>月15万円</strong>。<br><strong>AI部署セット（月15万円）</strong>なら、まさにこのチームが丸ごと雇えます。</p>
         <a href="ai-shain.html" class="btn btn-navy" style="padding:12px 26px; font-size:14px;">AI社員採用センターを見る</a>
@@ -420,7 +421,7 @@
   </div>
 </section>
 
-<section class="cta" id="contact">
+<section class="cta" id="cta">
   <div class="container">
     <h2>御社の業務でも、AI社員チームは組めるか。</h2>
     <p>「うちの場合、どこまで任せられそうか」を知りたい段階で構いません。<br>まずは無料相談で、御社の業務フローをお聞かせください。</p>
@@ -452,7 +453,7 @@
   var EVENTS = [
     {
       type: "system", role: "system", time: "19:20",
-      title: "Webフォームから問い合わせが着信",
+      title: "7月10日（木）19:20 Webフォームから問い合わせが着信",
       html:
         '<div class="tl-msg">' +
           '<div class="mini-mail">' +
@@ -491,7 +492,7 @@
         '<div class="tl-msg">' +
           '<span class="tl-action-tag" style="background:#0E7A5F;">見積下書き</span>' +
           'ユニットバス交換工事一式（1坪タイプ／築22年）の内訳です。' +
-          '<table class="est-table">' +
+          '<div class="est-table-wrap"><table class="est-table">' +
             '<thead><tr><th>工事項目</th><th class="num">金額（税別）</th></tr></thead>' +
             '<tbody>' +
               '<tr><td>解体・撤去工事</td><td class="num">80,000円</td></tr>' +
@@ -503,7 +504,7 @@
               '<tr><td>消費税（10%）</td><td class="num">120,000円</td></tr>' +
               '<tr class="total"><td>合計（税込）</td><td class="num">1,320,000円</td></tr>' +
             '</tbody>' +
-          '</table>' +
+          '</table></div>' +
           '<div class="est-note">※実際の金額は現地確認の結果により変動する場合があります。</div>' +
         '</div>'
     },

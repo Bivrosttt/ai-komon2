@@ -287,14 +287,14 @@
 
     <p class="demo-panel-title"><span class="step-no">1</span>会議の録音（文字起こし）を選んでください</p>
     <div class="picker-grid">
-      <div class="picker-card" data-demo="sales" onclick="selectDemo('sales')">
+      <div class="picker-card" data-demo="sales" onclick="selectDemo('sales')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectDemo('sales')}">
         <span class="tag">営業会議・30分・4人</span>
         <h3>今月の数字と、値引き・展示会の判断</h3>
         <div class="meta">今月の受注確認／新規案件の進捗／値引き判断／展示会出展の検討</div>
         <p>脱線や言い直しも含む、実際の営業定例会議に近いリアルな文字起こしです。</p>
         <div class="go">この文字起こしを見る →</div>
       </div>
-      <div class="picker-card" data-demo="process" onclick="selectDemo('process')">
+      <div class="picker-card" data-demo="process" onclick="selectDemo('process')" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectDemo('process')}">
         <span class="tag">工程会議・20分・3人</span>
         <h3>納期遅れ案件と、人員・資材の判断</h3>
         <div class="meta">納期遅れ案件の対応／人員配置／資材発注の判断</div>
@@ -312,7 +312,7 @@
             <h3 id="transcriptTitle">会議の文字起こし</h3>
             <p id="transcriptSub"></p>
           </div>
-          <span class="link-reset" onclick="resetDemo()">← 別の録音を選び直す</span>
+          <span class="link-reset" onclick="resetDemo()" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();resetDemo()}">← 別の録音を選び直す</span>
         </div>
         <div class="transcript-box" id="transcriptList"></div>
         <div class="stage-actions">
@@ -355,7 +355,7 @@
         </div>
       </div>
       <div class="restart-wrap">
-        <span class="link-reset" onclick="resetDemo()">← もう一つの録音も試してみる</span>
+        <span class="link-reset" onclick="resetDemo()" tabindex="0" role="button" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();resetDemo()}">← もう一つの録音も試してみる</span>
       </div>
     </div>
 
@@ -445,8 +445,8 @@
         datetime: '2026年7月9日(木) 10:00〜10:30',
         attendees: '佐藤部長、田中、鈴木、高橋',
         decisions: [
-          '今月の受注は目標比92%で着地する見込み。追加のてこ入れは不要と判断',
-          'B社は担当者交代のため、来週中（火〜水目標）に鈴木が改めてアポイントを取り、提案をゼロから仕組み直す',
+          '今月受注は目標比92%、月末までに達成見込みと共有',
+          'B社は担当者交代のため、来週中（火〜水目標）に鈴木が改めてアポイントを取り、提案をゼロから組み直す',
           'C社への値引き交渉は8%を上限とする方針で臨む（正式な回答は保留）'
         ],
         pending: [

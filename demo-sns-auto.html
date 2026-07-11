@@ -157,7 +157,7 @@
   .cal-legend .dot { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: middle; }
   .cal-legend .dot.planned { background: var(--white); border: 1.5px dashed #C7CFDA; }
   .cal-legend .dot.done { background: var(--gold); }
-  .calendar-scroll { overflow-x: auto; }
+  .calendar-scroll { overflow-x: auto; position: relative; }
   .calendar-grid { display: grid; grid-template-columns: 92px repeat(5, minmax(96px, 1fr)); gap: 8px; min-width: 620px; }
   .cal-corner { }
   .cal-daylabel { text-align: center; font-size: 12.5px; font-weight: 700; color: var(--navy); padding: 6px 0; }
@@ -367,6 +367,12 @@
     .replay-body { max-height: 500px; }
     .chat-row, .approval-row { max-width: 96%; }
     .calendar-panel { padding: 18px; }
+    .calendar-scroll::after {
+      content: "→"; position: absolute; top: 0; right: 0; bottom: 0; width: 28px;
+      display: flex; align-items: center; justify-content: flex-end; padding-right: 2px;
+      color: var(--gray); font-size: 13px; pointer-events: none;
+      background: linear-gradient(to right, rgba(255,255,255,0), var(--white) 70%);
+    }
   }
 </style>
 </head>
@@ -392,7 +398,7 @@
 
 <div class="lv-bridge">
   <div class="container">
-    <p>投稿文を作るAI（Lv.3）はこちら → <a href="demo-sns.html">demo-sns.html</a>。このデモはその先、"投稿まで自動で回る"Lv.4です。</p>
+    <p><a href="demo-sns.html">投稿文づくりを体験するデモ（Lv.3）はこちら</a>。このデモはその先、"投稿まで自動で回る"Lv.4です。</p>
   </div>
 </div>
 
@@ -665,6 +671,8 @@
     for (var i = 0; i < PLAN.length; i++) {
       setCalPlanned(PLAN[i].day, PLAN[i].platform, PLAN[i].title);
     }
+    calCell("mon", "ig").innerHTML = '<span class="cal-icon">📝</span><span class="cal-txt">計画作成・承認日</span>';
+    calCell("mon", "x").innerHTML = '<span class="cal-icon">📝</span><span class="cal-txt">計画作成・承認日</span>';
   }
 
   function findPlanTitle(day, platform) {
