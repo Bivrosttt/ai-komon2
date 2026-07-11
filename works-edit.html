@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>動画編集Before/After（字幕・ナレーション・テロップ）｜AI顧問室</title>
+<meta name="description" content="同じ15秒の住宅プロモ動画で、素材（BGMのみ）と完成版（ナレーション・字幕・テロップ入り）をワンタップで見比べ。編集ソフトを使わず、AI音声とffmpeg（コード）だけで仕上げたBefore/Afterデモです。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="動画編集Before/After（字幕・ナレーション・テロップ）｜AI顧問室">
+<meta property="og:description" content="同じ動画の素材と完成版をワンタップで見比べ。編集ソフト不使用、AI音声とffmpeg（コード）だけで字幕・ナレーション・テロップを仕上げました。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-edit.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/works/videos/house-promo-edited-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://rakansens.github.io/ai-komon2/works-edit.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D; --blue: #2D6CB5;
+    --gold: #C9A227; --ink: #1A2433; --gray: #5B6B7F; --line: #DDE4EC; --bg-soft: #F4F7FA; --white: #FFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.9; background: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; }
+  .container { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 72px 0; }
+  .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-weight: 700; font-size: 15px; transition: opacity .2s, transform .1s; }
+  .btn:hover { opacity: .85; }
+  .btn:active { transform: scale(.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--navy); }
+  .back { font-size: 13px; color: var(--blue); }
+  nav.header-nav { display: flex; gap: 20px; align-items: center; }
+
+  /* ---------- hero ---------- */
+  .hero { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 60%, var(--navy-light)); color: var(--white); padding: 68px 0 56px; }
+  .hero .label { font-size: 12px; letter-spacing: .2em; color: var(--gold); font-weight: 700; }
+  .hero h1 { font-size: clamp(24px, 4vw, 34px); margin: 10px 0 14px; }
+  .hero p { color: #C7D3E4; max-width: 660px; font-size: 15px; }
+
+  /* ---------- theater (video compare) ---------- */
+  .theater { background: #0A0A0A; padding: 40px 0 44px; }
+  .theater .frame { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  .mode-tabs { display: inline-flex; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 4px; gap: 4px; margin-bottom: 18px; }
+  .mode-tab { padding: 10px 24px; min-height: 44px; border-radius: 999px; font-size: 13.5px; font-weight: 700; color: #C7D3E4; transition: background .2s, color .2s; }
+  .mode-tab:hover { color: #fff; }
+  .mode-tab.active { background: var(--gold); color: var(--navy-deep); }
+
+  .stage-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+  .stage-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .22s ease; }
+  .stage-video.front { opacity: 1; z-index: 2; }
+
+  .play-toggle { position: absolute; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 5; }
+  .play-icon {
+    width: 76px; height: 76px; border-radius: 50%; background: rgba(7,26,53,.72); border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center; font-size: 26px; color: #fff;
+    transition: opacity .25s ease, transform .2s ease;
+  }
+  .play-icon .pause-glyph { display: none; }
+  .stage-frame.is-playing .play-icon { opacity: 0; transform: scale(.9); }
+  .stage-frame.is-playing .play-toggle:hover .play-icon,
+  .stage-frame.is-playing .play-toggle:focus-visible .play-icon { opacity: .9; transform: scale(1); }
+  .stage-frame.is-playing .play-icon .play-glyph { display: none; }
+  .stage-frame.is-playing .play-icon .pause-glyph { display: block; }
+
+  .stage-badge {
+    position: absolute; top: 14px; left: 14px; z-index: 5; padding: 5px 12px; border-radius: 999px;
+    background: rgba(7,26,53,.72); color: #fff; font-size: 10.5px; font-weight: 700; letter-spacing: .06em;
+    pointer-events: none;
+  }
+  .stage-spinner {
+    position: absolute; inset: 0; z-index: 4; display: grid; place-items: center;
+    background: rgba(0,0,0,.28); opacity: 0; visibility: hidden; transition: opacity .18s, visibility .18s; pointer-events: none;
+  }
+  .stage-frame.is-buffering .stage-spinner { opacity: 1; visibility: visible; }
+  .spinner-ring { width: 38px; height: 38px; border-radius: 50%; border: 3px solid rgba(255,255,255,.2); border-top-color: var(--gold); animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .theater .meta { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 16px; font-size: 12px; color: #9FB0C7; }
+  .theater .meta strong { color: #E4EBF5; font-weight: 700; }
+
+  /* ---------- process section ---------- */
+  .note-band { background: var(--bg-soft); }
+  .section-head { max-width: 640px; margin-bottom: 36px; }
+  .section-head .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 10px; }
+  .section-head h2 { font-size: clamp(21px, 3.4vw, 27px); color: var(--navy); margin-bottom: 10px; }
+  .section-head p { font-size: 13.5px; color: var(--gray); }
+
+  .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+  .step-card { background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 22px; position: relative; }
+  .step-num { font-family: 'Noto Serif JP', serif; font-size: 13px; font-weight: 700; color: var(--gold); letter-spacing: .06em; margin-bottom: 8px; }
+  .step-card h3 { font-size: 15.5px; color: var(--navy); margin-bottom: 8px; }
+  .step-card p { font-size: 12.5px; color: var(--gray); margin-bottom: 10px; }
+  .step-quote { background: var(--bg-soft); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; padding: 10px 12px; font-size: 11.5px; color: var(--ink); margin-bottom: 10px; }
+  .step-quote span { display: block; }
+  .step-quote span + span { margin-top: 4px; }
+  .step-tech { display: inline-block; font-size: 10.5px; font-weight: 700; color: var(--navy); background: rgba(201,162,39,.12); border: 1px solid rgba(201,162,39,.35); border-radius: 999px; padding: 3px 10px; }
+
+  .chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 40px; align-items: center; }
+  .chip { font-size: 12.5px; background: var(--white); border: 1px solid var(--line); color: var(--navy); border-radius: 999px; padding: 5px 16px; }
+  .chip-heading { font-size: 13px; font-weight: 700; color: var(--navy); }
+
+  .disclaimer { background: var(--white); border-left: 4px solid var(--gold); padding: 14px 18px; font-size: 12.5px; color: var(--gray); margin-top: 32px; line-height: 1.8; }
+  .disclaimer strong { color: var(--ink); }
+
+  .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; }
+  .cta h2 { font-size: 26px; margin-bottom: 12px; }
+  .cta p { color: #C7D3E4; margin-bottom: 30px; }
+
+  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 32px 0; text-align: center; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 820px) { .hero h1 { font-size: 25px; } section { padding: 52px 0; } }
+  @media (max-width: 480px) {
+    .header-inner { height: 58px; }
+    .mode-tab { padding: 9px 18px; font-size: 12.5px; }
+    .play-icon { width: 64px; height: 64px; font-size: 22px; }
+    .theater { padding: 32px 0 36px; }
+    .theater .meta { font-size: 11px; }
+    .step-card { padding: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">AI顧問室</a>
+    <nav class="header-nav">
+      <a href="works.html" class="back">← 作品一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold" style="padding:9px 22px; font-size:13px;">無料相談</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="label">AI VIDEO EDIT</span>
+    <h1>編集ソフトなしで、ここまで。</h1>
+    <p>下は同じ15秒の住宅プロモ動画です。BGMだけの「素材」と、ナレーション・字幕・テロップまで仕上げた「完成版」を、タブでワンタップ見比べられます。Premiere等の編集ソフトは一切使わず、AI音声とコード（ffmpeg）だけで仕上げました。</p>
+  </div>
+</div>
+
+<div class="theater">
+  <div class="frame">
+    <div class="mode-tabs" role="tablist" aria-label="素材と完成版の切り替え">
+      <button type="button" class="mode-tab active" id="tabRaw" role="tab" aria-selected="true">素材</button>
+      <button type="button" class="mode-tab" id="tabEdited" role="tab" aria-selected="false">完成版</button>
+    </div>
+
+    <div class="stage-frame" id="stageFrame">
+      <video
+        class="stage-video front"
+        id="vidRaw"
+        poster="assets/works/videos/house-promo-poster.jpg"
+        preload="metadata"
+        playsinline
+        loop
+        muted
+        width="1280" height="720">
+        <source src="assets/works/videos/house-promo-15s.mp4" type="video/mp4">
+        お使いのブラウザは動画再生に対応していません。
+      </video>
+      <video
+        class="stage-video"
+        id="vidEdited"
+        poster="assets/works/videos/house-promo-edited-poster.jpg"
+        preload="metadata"
+        playsinline
+        loop
+        muted
+        width="1280" height="720">
+        <source src="assets/works/videos/house-promo-edited.mp4" type="video/mp4">
+        お使いのブラウザは動画再生に対応していません。
+      </video>
+
+      <span class="stage-badge" id="stageBadge">素材（BGMのみ）</span>
+
+      <button type="button" class="play-toggle" id="playToggle" aria-label="再生・一時停止を切り替え">
+        <span class="play-icon">
+          <span class="play-glyph">▶</span>
+          <span class="pause-glyph">‖‖</span>
+        </span>
+      </button>
+
+      <div class="stage-spinner" id="stageSpinner" aria-hidden="true"><div class="spinner-ring"></div></div>
+    </div>
+
+    <div class="meta">
+      <span id="metaLeft"><strong>素材：</strong>BGMのみ・字幕なし（1280×720・15秒）</span>
+      <span id="metaRight">編集ソフト不使用｜タブで完成版と比較できます</span>
+    </div>
+  </div>
+</div>
+
+<section class="note-band">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">HOW IT WAS MADE</span>
+      <h2>完成版に施した5つの工程</h2>
+      <p>ナレーション録音も、字幕焼き込みも、テロップ合成も——専門の映像編集者もPremiereも使っていません。すべてAIとオープンソースのツール（ffmpeg）、そしてコードで実行しています。</p>
+    </div>
+
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>AI音声でナレーションを2本生成</h3>
+        <div class="step-quote">
+          <span>「夕暮れとともに、家は表情を変えます。」</span>
+          <span>「ミライホーム、モデルハウス公開中です。」</span>
+        </div>
+        <p>台本を書いてAI音声合成に読ませるだけ。ナレーターの手配・スタジオ収録は不要です。</p>
+        <span class="step-tech">Gemini TTS</span>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>BGMを35%にダッキングしてミックス</h3>
+        <p>ナレーションが入る箇所だけBGM音量を自動的に下げ（ダッキング）、声を聞き取りやすくミックスしています。</p>
+        <span class="step-tech">ffmpeg（音声ミキシング）</span>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>字幕3枚を焼き込み</h3>
+        <p>半透明の帯＋白文字の字幕を3枚合成。締めのメッセージだけゴールドで強調し、ブランドの世界観を統一しました。</p>
+        <span class="step-tech">ffmpeg（drawtext）</span>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h3>「AI制作サンプル」透かしを合成</h3>
+        <p>右上に出所を明示する透かしをオーバーレイ。誠実な運用のため、AI生成であることが一目でわかるようにしています。</p>
+        <span class="step-tech">ffmpeg（overlay）</span>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <h3>すべてコードで実行、編集ソフトは未使用</h3>
+        <p>ここまでの工程はすべてffmpeg（無料のOSS）とコマンドの組み合わせ。動画編集ソフトのタイムライン操作は一切していません。</p>
+        <span class="step-tech">ffmpeg CLI（無料OSS）</span>
+      </div>
+    </div>
+
+    <div class="chip-row">
+      <span class="chip-heading">御社なら、同じ作り方で内製化できるもの：</span>
+      <span class="chip">お知らせ動画</span>
+      <span class="chip">物件・商品紹介動画</span>
+      <span class="chip">採用動画</span>
+      <span class="chip">SNS動画</span>
+    </div>
+
+    <div class="disclaimer">
+      ※ このデモは<strong>架空の企業「ミライホーム」</strong>を題材にしたサンプルです。素材となった住宅プロモ映像自体も、撮影ではなく動画生成AIで作成した架空の住宅・架空の映像です。編集の工程（ナレーション・字幕・テロップ・BGMミックス）のみを、実際にAI音声とffmpegで制作しています。
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の動画も、内製化してみませんか。</h2>
+    <p>無料相談で、御社の題材に合わせた作り方と費用感をお話しします。</p>
+    <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 44px;">無料相談を予約する</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var stageFrame = document.getElementById('stageFrame');
+  var stageBadge = document.getElementById('stageBadge');
+  var metaLeft = document.getElementById('metaLeft');
+  var metaRight = document.getElementById('metaRight');
+  var tabRaw = document.getElementById('tabRaw');
+  var tabEdited = document.getElementById('tabEdited');
+  var playToggle = document.getElementById('playToggle');
+
+  var videos = {
+    raw: document.getElementById('vidRaw'),
+    edited: document.getElementById('vidEdited')
+  };
+
+  var COPY = {
+    raw: {
+      badge: '素材（BGMのみ）',
+      metaLeft: '<strong>素材：</strong>BGMのみ・字幕なし（1280×720・15秒）',
+      metaRight: '編集ソフト不使用｜タブで完成版と比較できます'
+    },
+    edited: {
+      badge: '完成版（AI編集）',
+      metaLeft: '<strong>完成版：</strong>ナレーション2本＋字幕3枚＋テロップを合成',
+      metaRight: '制作：AI音声（Gemini TTS）＋ffmpeg（コード）のみ／編集ソフト不使用'
+    }
+  };
+
+  var activeKey = 'raw';
+  var isPlaying = false;
+
+  function otherKey(key) {
+    return key === 'raw' ? 'edited' : 'raw';
+  }
+
+  function updateCopy(key) {
+    var c = COPY[key];
+    stageBadge.textContent = c.badge;
+    metaLeft.innerHTML = c.metaLeft;
+    metaRight.textContent = c.metaRight;
+  }
+
+  function updateTabUI(key) {
+    var rawActive = key === 'raw';
+    tabRaw.classList.toggle('active', rawActive);
+    tabRaw.setAttribute('aria-selected', rawActive ? 'true' : 'false');
+    tabEdited.classList.toggle('active', !rawActive);
+    tabEdited.setAttribute('aria-selected', !rawActive ? 'true' : 'false');
+  }
+
+  // 表示中の動画のみ音を出す。非表示側は必ず muted + pause にして二重再生を防ぐ。
+  function switchTo(key) {
+    if (key === activeKey) return;
+
+    var from = videos[activeKey];
+    var to = videos[key];
+    var t = from.currentTime;
+
+    // 再生位置を引き継ぐ
+    if (isFinite(t)) {
+      try { to.currentTime = t; } catch (e) { /* seekable 範囲外は無視 */ }
+    }
+
+    from.classList.remove('front');
+    to.classList.add('front');
+
+    if (isPlaying) {
+      from.pause();
+      from.muted = true;
+      to.muted = false;
+      var p = to.play();
+      if (p && typeof p.catch === 'function') { p.catch(function () {}); }
+    } else {
+      from.pause();
+      to.pause();
+      from.muted = true;
+      to.muted = true;
+    }
+
+    activeKey = key;
+    updateTabUI(key);
+    updateCopy(key);
+  }
+
+  function play() {
+    var active = videos[activeKey];
+    var other = videos[otherKey(activeKey)];
+    other.pause();
+    other.muted = true;
+    active.muted = false;
+    var p = active.play();
+    if (p && typeof p.catch === 'function') {
+      p.catch(function () {
+        // 自動再生がブロックされた場合はミュート状態を維持したまま停止
+        isPlaying = false;
+        stageFrame.classList.remove('is-playing');
+      });
+    }
+    isPlaying = true;
+    stageFrame.classList.add('is-playing');
+  }
+
+  function pause() {
+    videos[activeKey].pause();
+    isPlaying = false;
+    stageFrame.classList.remove('is-playing');
+  }
+
+  playToggle.addEventListener('click', function () {
+    if (isPlaying) { pause(); } else { play(); }
+  });
+
+  tabRaw.addEventListener('click', function () { switchTo('raw'); });
+  tabEdited.addEventListener('click', function () { switchTo('edited'); });
+
+  // バッファリング中はスピナーを表示（切替直後の読み込み待ちを可視化）
+  Object.keys(videos).forEach(function (key) {
+    var v = videos[key];
+    v.addEventListener('waiting', function () {
+      if (key === activeKey && isPlaying) { stageFrame.classList.add('is-buffering'); }
+    });
+    v.addEventListener('playing', function () {
+      stageFrame.classList.remove('is-buffering');
+    });
+  });
+
+  // 初期状態：両方とも一時停止・ミュートで安全な状態にしておく
+  videos.raw.muted = true;
+  videos.edited.muted = true;
+  updateCopy('raw');
+  updateTabUI('raw');
+})();
+</script>
+
+</body>
+</html>

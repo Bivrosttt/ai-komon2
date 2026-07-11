@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ブランドクリエイティブ一式（ロゴ・バナー・チラシ・SNS）｜AI顧問室</title>
+<meta name="description" content="架空のベーカリー「小麦と栗」を題材に、ロゴ3案・カラーパレット・バナー広告3サイズ・A4チラシ・SNS投稿・30秒の縦型動画広告・コピー案10本まで、1つの商売の販促物一式をAIとコードで制作したサンプルです。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="ブランドクリエイティブ一式（ロゴ・バナー・チラシ・SNS）｜AI顧問室">
+<meta property="og:description" content="架空のベーカリー「小麦と栗」を題材に、ロゴ3案からバナー広告・A4チラシ・SNS投稿・30秒動画広告・コピー案まで、1つの商売の販促物一式をAI＋コードで制作したサンプルです。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-creative.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/works/creative/hero-bread.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://rakansens.github.io/ai-komon2/works-creative.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    /* ---- 「小麦と栗」ブランドカラー（画像から起こした想定パレット） ---- */
+    --br-choco: #4A2E1E;
+    --br-wheat: #C9A24A;
+    --br-cream: #F3E9DA;
+    --br-navy: #1F3350;
+    --br-terracotta: #C1652D;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.8; background: var(--bg-soft); overflow-x: hidden; }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+  .btn { display: inline-block; padding: 12px 26px; border-radius: 4px; font-weight: 700; font-size: 14px; transition: opacity .2s, transform .1s; }
+  .btn:hover { opacity: .86; }
+  .btn:active { transform: scale(.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-outline { border: 1px solid var(--line); color: var(--navy); }
+  .btn-outline:hover { background: var(--white); border-color: var(--navy); }
+
+  /* ---------- header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 14px; }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .back-link {
+    display: grid; place-items: center; flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--line); color: var(--navy); font-size: 16px; transition: background .2s, border-color .2s;
+  }
+  .back-link:hover { background: var(--bg-soft); border-color: var(--navy); }
+  .title-wrap { min-width: 0; }
+  .title-wrap strong { display: block; font-family: 'Noto Serif JP', serif; font-size: 15.5px; color: var(--navy); letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .title-wrap span { display: block; font-size: 9.5px; letter-spacing: .1em; color: var(--gray); white-space: nowrap; }
+  .header-cta { flex: 0 0 auto; padding: 9px 20px; font-size: 13px; }
+
+  /* ---------- disclaimer ---------- */
+  .disclaimer-top {
+    background: var(--br-cream); border-bottom: 1px solid var(--line);
+    font-size: 11.5px; color: var(--br-choco); text-align: center; padding: 8px 16px; line-height: 1.6;
+  }
+  .disclaimer-top b { font-weight: 700; }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; padding: 56px 0 46px; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(7,26,53,.92) 0%, rgba(7,26,53,.82) 38%, rgba(7,26,53,.42) 68%, rgba(7,26,53,.15) 100%); }
+  .hero-inner { position: relative; z-index: 1; color: #fff; max-width: 680px; }
+  .hero .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 14px; }
+  .hero h1 { font-size: clamp(28px, 5vw, 42px); margin-bottom: 16px; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p { font-size: 14.5px; color: #D6E0EF; max-width: 560px; margin-bottom: 22px; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .hero-tag { font-size: 11px; font-weight: 700; letter-spacing: .04em; padding: 6px 13px; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); }
+
+  /* ---------- section shared ---------- */
+  section.block { padding: 56px 0; }
+  section.block.alt { background: var(--white); }
+  .sec-head { max-width: 680px; margin: 0 auto 34px; text-align: center; }
+  .sec-head .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 10px; }
+  .sec-head h2 { font-size: clamp(21px, 3.4vw, 28px); color: var(--navy); margin-bottom: 10px; }
+  .sec-head p { font-size: 13.5px; color: var(--gray); }
+
+  /* ---------- 1. logo proposals ---------- */
+  .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .logo-card { background: var(--white); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 14px 36px rgba(11,36,71,.07); display: flex; flex-direction: column; }
+  .logo-plate { aspect-ratio: 1 / 1; background: #FBF7F0; display: flex; align-items: center; justify-content: center; padding: 22px; }
+  .logo-plate img { width: 62%; height: 62%; object-fit: contain; }
+  .logo-body { padding: 18px 20px 22px; border-top: 1px solid var(--line); flex: 1; display: flex; flex-direction: column; }
+  .logo-tag { display: inline-block; align-self: flex-start; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: var(--gold); background: rgba(201,162,39,.12); padding: 4px 10px; border-radius: 999px; margin-bottom: 12px; }
+  .logotype { margin-bottom: 10px; }
+  .logotype .lt-jp { display: block; font-family: 'Noto Serif JP', serif; font-weight: 700; }
+  .logotype .lt-en { display: block; letter-spacing: .22em; }
+  .lt-a .lt-jp { font-size: 22px; color: var(--br-choco); }
+  .lt-a .lt-en { font-size: 10px; color: var(--br-wheat); font-weight: 700; margin-top: 4px; }
+  .lt-b .lt-jp { font-size: 20px; color: var(--br-navy); font-weight: 600; letter-spacing: .12em; }
+  .lt-b .lt-en { font-size: 9px; color: var(--gray); font-weight: 500; margin-top: 4px; }
+  .lt-c .lt-jp { font-size: 21px; color: var(--br-terracotta); font-weight: 700; }
+  .lt-c .lt-en { font-size: 9.5px; color: var(--br-choco); font-weight: 700; margin-top: 4px; letter-spacing: .3em; }
+  .logo-desc { font-size: 12px; color: var(--gray); line-height: 1.75; margin-top: auto; }
+  .logo-desc b { color: var(--navy); }
+
+  /* ---------- 2. color & type ---------- */
+  .style-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 30px; align-items: start; }
+  .swatch-card { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 24px; box-shadow: 0 14px 36px rgba(11,36,71,.07); }
+  .swatch-card h3 { font-size: 14px; color: var(--navy); margin-bottom: 16px; }
+  .color-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .color-chip { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+  .chip-fill { height: 62px; }
+  .chip-label { padding: 8px 6px; text-align: center; background: var(--white); }
+  .chip-label .name { display: block; font-size: 10.5px; font-weight: 700; color: var(--ink); }
+  .chip-label .hex { display: block; font-size: 9.5px; color: var(--gray); letter-spacing: .03em; margin-top: 2px; }
+  .type-card { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 24px; box-shadow: 0 14px 36px rgba(11,36,71,.07); margin-top: 20px; }
+  .type-card h3 { font-size: 14px; color: var(--navy); margin-bottom: 16px; }
+  .type-row { padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .type-row:last-child { border-bottom: none; }
+  .type-row .type-label { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: var(--gold); margin-bottom: 6px; }
+  .type-row .type-sample-h { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 24px; color: var(--br-choco); }
+  .type-row .type-sample-b { font-family: 'Noto Sans JP', sans-serif; font-size: 14px; color: var(--ink); }
+  .type-row .type-meta { font-size: 10.5px; color: var(--gray); margin-top: 4px; }
+  .guide-card { background: linear-gradient(150deg, var(--br-cream), #fff); border: 1px solid var(--line); border-radius: 16px; padding: 28px 24px; box-shadow: 0 14px 36px rgba(11,36,71,.06); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 10px; }
+  .guide-card .guide-mark { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 34px; color: var(--br-choco); }
+  .guide-card .guide-en { letter-spacing: .3em; font-size: 11px; color: var(--br-wheat); font-weight: 700; }
+  .guide-card .guide-note { font-size: 11.5px; color: var(--gray); margin-top: 10px; line-height: 1.8; }
+
+  /* ---------- 3. banners ---------- */
+  .banner-list { display: flex; flex-direction: column; gap: 40px; align-items: center; }
+  .banner-block { width: 100%; max-width: 660px; text-align: center; }
+  .banner-block h3 { font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .banner-block .banner-spec { font-size: 11.5px; color: var(--gray); margin-bottom: 14px; }
+  .banner-scroll { overflow-x: auto; padding: 6px 0; }
+  .banner-frame {
+    --scale: 1;
+    width: calc(var(--bw) * 1px * var(--scale));
+    height: calc(var(--bh) * 1px * var(--scale));
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden; position: relative;
+    border: 1px solid var(--line); border-radius: 10px; background: #fff;
+    box-shadow: 0 14px 34px rgba(11,36,71,.14);
+  }
+  .banner-canvas {
+    width: calc(var(--bw) * 1px);
+    height: calc(var(--bh) * 1px);
+    transform: scale(var(--scale)); transform-origin: top left;
+    position: relative; overflow: hidden;
+  }
+  .banner-square { --bw: 1080; --bh: 1080; --scale: 0.24; }
+  .banner-rect   { --bw: 300;  --bh: 250;  --scale: 0.85; }
+  .banner-leader { --bw: 728;  --bh: 90;   --scale: 0.36; }
+  @media (min-width: 640px) {
+    .banner-square { --scale: 0.42; }
+    .banner-rect   { --scale: 1; }
+    .banner-leader { --scale: 0.82; }
+  }
+
+  .bn-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .bn-shade { position: absolute; inset: 0; }
+  .bn-copy { position: absolute; z-index: 2; color: #fff; }
+
+  /* square (1080) */
+  .banner-square .bn-shade { background: linear-gradient(0deg, rgba(7,26,53,.88) 0%, rgba(7,26,53,.42) 42%, rgba(7,26,53,0) 66%); }
+  .banner-square .bn-copy { left: 64px; right: 64px; bottom: 58px; }
+  .banner-square .bn-eyebrow { font-size: 26px; font-weight: 700; letter-spacing: .12em; color: var(--gold); margin-bottom: 14px; display: block; }
+  .banner-square .bn-h { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 56px; line-height: 1.35; margin-bottom: 18px; }
+  .banner-square .bn-sub { font-size: 24px; color: #E6ECF7; }
+  .banner-square .bn-brand { position: absolute; top: 48px; left: 64px; z-index: 2; font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 26px; color: #fff; letter-spacing: .06em; }
+
+  /* rectangle (300x250) */
+  .banner-rect { background: var(--br-cream); }
+  .banner-rect .bn-img { top: 0; left: 0; right: 0; bottom: 40%; height: auto; }
+  .banner-rect .bn-shade { top: 0; left: 0; right: 0; bottom: 40%; background: linear-gradient(0deg, rgba(7,26,53,.55) 0%, rgba(7,26,53,0) 60%); }
+  .banner-rect .bn-lower { position: absolute; left: 0; right: 0; bottom: 0; height: 40%; background: #fff; padding: 14px 16px; text-align: left; z-index: 2; }
+  .banner-rect .bn-lower .bn-h2 { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 17px; color: var(--br-choco); margin-bottom: 6px; }
+  .banner-rect .bn-lower .bn-cta { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; background: var(--br-terracotta); padding: 6px 14px; border-radius: 999px; }
+  .banner-rect .bn-copy2 { position: absolute; left: 14px; bottom: 46%; font-size: 12px; color: #fff; font-weight: 700; z-index: 2; }
+
+  /* leaderboard (728x90) */
+  .banner-leader { background: var(--br-navy); display: flex; align-items: center; }
+  .banner-leader .bn-canvas-row { display: flex; align-items: center; width: 100%; height: 100%; padding: 0 26px; gap: 20px; }
+  .banner-leader .bn-mark { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 26px; color: var(--gold); white-space: nowrap; }
+  .banner-leader .bn-lead-copy { font-size: 18px; color: #fff; flex: 1; }
+  .banner-leader .bn-lead-cta { flex: 0 0 auto; font-size: 15px; font-weight: 700; color: var(--br-navy); background: #fff; padding: 10px 22px; border-radius: 999px; white-space: nowrap; }
+
+  /* ---------- 4. flyer ---------- */
+  .flyer-wrap { display: grid; grid-template-columns: 320px 1fr; gap: 34px; align-items: center; }
+  .flyer-preview-card { display: block; background: var(--navy-deep); border-radius: 16px; padding: 26px; text-align: center; box-shadow: 0 20px 44px rgba(11,36,71,.22); transition: transform .2s; }
+  .flyer-preview-card:hover { transform: translateY(-3px); }
+  .flyer-frame { width: 100%; aspect-ratio: 210 / 297; background: #fff; border-radius: 6px; overflow: hidden; position: relative; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+  .flyer-frame iframe { position: absolute; top: 0; left: 0; width: 400%; height: 400%; transform: scale(.25); transform-origin: top left; border: 0; pointer-events: none; }
+  .flyer-preview-card .flyer-label { display: block; margin-top: 16px; font-size: 12.5px; font-weight: 700; color: #fff; }
+  .flyer-preview-card .flyer-sub { display: block; margin-top: 4px; font-size: 10.5px; color: #9FB0C7; }
+  .flyer-copy h3 { font-size: 18px; color: var(--navy); margin-bottom: 12px; }
+  .flyer-copy p { font-size: 13.5px; color: var(--gray); margin-bottom: 16px; }
+  .flyer-copy ul { list-style: none; margin-bottom: 20px; }
+  .flyer-copy li { font-size: 12.5px; color: var(--ink); padding: 7px 0 7px 22px; position: relative; border-bottom: 1px dashed var(--line); }
+  .flyer-copy li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+  /* ---------- 5. sns ---------- */
+  .sns-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .sns-card { background: var(--white); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 14px 34px rgba(11,36,71,.07); }
+  .sns-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; }
+  .sns-avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--br-wheat), var(--br-terracotta)); display: grid; place-items: center; color: #fff; font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 13px; flex: 0 0 auto; }
+  .sns-head .sns-name { font-size: 12.5px; font-weight: 700; color: var(--ink); }
+  .sns-head .sns-handle { font-size: 10.5px; color: var(--gray); }
+  .sns-img { aspect-ratio: 1 / 1; overflow: hidden; }
+  .sns-img img { width: 100%; height: 100%; object-fit: cover; }
+  .sns-icons { display: flex; gap: 14px; padding: 12px 14px 4px; font-size: 17px; color: var(--ink); }
+  .sns-body { padding: 8px 14px 16px; }
+  .sns-body .sns-caption { font-size: 12px; color: var(--ink); line-height: 1.7; margin-bottom: 8px; }
+  .sns-body .sns-caption b { font-weight: 700; }
+  .sns-tags { font-size: 11.5px; color: var(--navy-light); line-height: 1.7; }
+
+  /* ---------- 5.5 video ad ---------- */
+  .video-grid { display: grid; grid-template-columns: 340px 1fr; gap: 40px; align-items: center; justify-content: center; }
+  .phone-frame {
+    width: 100%; max-width: 300px; margin: 0 auto;
+    background: #10141B; border-radius: 38px; padding: 12px;
+    box-shadow: 0 24px 56px rgba(11,36,71,.28), inset 0 0 0 2px rgba(255,255,255,.06);
+    position: relative;
+  }
+  .phone-frame::before {
+    content: ""; position: absolute; top: 22px; left: 50%; transform: translateX(-50%);
+    width: 88px; height: 20px; border-radius: 999px; background: #10141B; z-index: 3;
+  }
+  .phone-screen { border-radius: 27px; overflow: hidden; background: #000; }
+  .phone-screen video { display: block; width: 100%; aspect-ratio: 9 / 16; object-fit: cover; background: #000; }
+  .phone-caption { text-align: center; margin-top: 14px; font-size: 11px; color: var(--gray); }
+  .video-copy h3 { font-size: 18px; color: var(--navy); margin-bottom: 12px; }
+  .video-copy > p { font-size: 13.5px; color: var(--gray); margin-bottom: 18px; }
+  .video-steps { list-style: none; counter-reset: vstep; margin-bottom: 20px; }
+  .video-steps li {
+    counter-increment: vstep; position: relative;
+    padding: 10px 0 10px 44px; border-bottom: 1px dashed var(--line);
+    font-size: 12.5px; color: var(--ink); line-height: 1.7;
+  }
+  .video-steps li::before {
+    content: counter(vstep); position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 28px; height: 28px; border-radius: 50%; background: var(--bg-soft);
+    color: var(--navy); font-size: 12px; font-weight: 700; display: grid; place-items: center;
+  }
+  .video-steps li b { color: var(--navy); }
+  .video-note { font-size: 11.5px; color: var(--gray); padding: 12px 16px; background: var(--bg-soft); border-left: 4px solid var(--gold); border-radius: 6px; line-height: 1.7; }
+  .video-note b { color: var(--navy); }
+
+  /* ---------- 6. copy ---------- */
+  .copy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .copy-item { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start; }
+  .copy-num { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%; background: var(--bg-soft); color: var(--navy); font-size: 11.5px; font-weight: 700; display: grid; place-items: center; }
+  .copy-tag { display: inline-block; font-size: 9.5px; font-weight: 700; letter-spacing: .06em; color: var(--gold); background: rgba(201,162,39,.12); padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; }
+  .copy-text { font-size: 13.5px; color: var(--ink); font-weight: 500; line-height: 1.6; }
+
+  /* ---------- 7. reveal ---------- */
+  .reveal { padding: 60px 0; background: linear-gradient(135deg, var(--navy-deep), var(--navy) 65%, var(--navy-light)); color: #fff; }
+  .reveal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .reveal .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 12px; }
+  .reveal h2 { font-size: clamp(22px, 3.6vw, 28px); margin-bottom: 16px; }
+  .reveal h2 em { font-style: normal; color: var(--gold); }
+  .reveal p { color: #C7D3E4; font-size: 13.5px; margin-bottom: 14px; }
+  .reveal .btn-gold { margin-top: 6px; padding: 14px 30px; font-size: 14.5px; }
+  .reveal-diagram { display: flex; flex-direction: column; gap: 10px; padding: 22px; border: 1px solid rgba(255,255,255,.18); border-radius: 14px; background: rgba(255,255,255,.05); }
+  .rd-row { display: flex; align-items: center; gap: 12px; font-size: 12.5px; color: #DCE6F5; }
+  .rd-icon { flex: 0 0 auto; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); display: grid; place-items: center; font-size: 17px; }
+
+  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 12.5px; padding: 26px 0; text-align: center; }
+  footer a { text-decoration: underline; }
+  .footer-note { margin-top: 8px; font-size: 10.5px; color: #6E80A0; max-width: 640px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    .logo-grid { grid-template-columns: 1fr; }
+    .style-grid { grid-template-columns: 1fr; }
+    .color-row { grid-template-columns: repeat(5, 1fr); }
+    .flyer-wrap { grid-template-columns: 1fr; }
+    .flyer-preview-card { max-width: 280px; margin: 0 auto; }
+    .sns-grid { grid-template-columns: 1fr; }
+    .video-grid { grid-template-columns: 1fr; gap: 30px; }
+    .phone-frame { max-width: 260px; }
+    .copy-grid { grid-template-columns: 1fr; }
+    .reveal-grid { grid-template-columns: 1fr; }
+    .reveal-diagram { order: -1; }
+  }
+  @media (max-width: 480px) {
+    .header-inner { height: 58px; }
+    .title-wrap span { display: none; }
+    .header-cta { padding: 8px 14px; font-size: 12px; }
+    section.block { padding: 42px 0; }
+    .hero { padding: 40px 0 34px; }
+    .banner-square .bn-eyebrow { font-size: 22px; }
+    .banner-square .bn-h { font-size: 46px; margin-bottom: 14px; }
+    .banner-square .bn-sub { font-size: 20px; }
+    .banner-square .bn-copy { left: 44px; right: 44px; bottom: 44px; }
+    .banner-square .bn-brand { top: 34px; left: 44px; font-size: 22px; }
+    .color-row { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .chip-fill { height: 46px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="brand">
+      <a class="back-link" href="works.html" aria-label="作品一覧へ戻る">←</a>
+      <div class="title-wrap">
+        <strong>ブランドクリエイティブ一式</strong>
+        <span>AI-GENERATED BRAND ASSETS SAMPLE</span>
+      </div>
+    </div>
+    <a class="btn btn-gold header-cta" href="index.html#contact">無料相談</a>
+  </div>
+</header>
+
+<div class="disclaimer-top">
+  <b>このページは架空のベーカリー「小麦と栗」を題材にしたAI制作サンプルです。</b>店舗・住所・実績は実在しません。ロゴ・写真・動画・ナレーション音声はすべてAI生成です。
+</div>
+
+<section class="hero">
+  <div class="hero-bg"><img src="assets/works/creative/hero-bread.jpg" alt="小麦と栗の店内に並ぶパンとダニッシュ" loading="eager"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <span class="eyebrow">ブランディング一式（ロゴ・カラー・バナー・チラシ・SNS）｜AI生成＋コード制作</span>
+      <h1>1つの商売の販促物、<em>ぜんぶ。</em></h1>
+      <p>架空のベーカリー「小麦と栗」を題材に、ロゴ提案からバナー広告、A4チラシ、SNS投稿、30秒の動画広告、キャッチコピーまで———お店を開くときに必要な販促物一式を、AIとコードだけで揃えました。デザイン会社に発注せずとも、ここまで内製できることのサンプルです。</p>
+      <div class="hero-tags">
+        <span class="hero-tag">ロゴ 3案</span>
+        <span class="hero-tag">カラー＆フォント</span>
+        <span class="hero-tag">バナー広告 3サイズ</span>
+        <span class="hero-tag">A4チラシ</span>
+        <span class="hero-tag">SNS投稿 3本</span>
+        <span class="hero-tag">動画広告 30秒</span>
+        <span class="hero-tag">コピー案 10本</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 1. ロゴ提案 -->
+<section class="block" id="logo">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">STEP 1｜ロゴ提案</span>
+      <h2>まずは3方向で提案し、選んで磨き込む。</h2>
+      <p>実際の制作現場と同じ流れで、雰囲気の異なる3案をAI生成。ここから店主に選んでもらい、選ばれた1案をロゴタイプ（文字組み）まで仕上げます。</p>
+    </div>
+    <div class="logo-grid">
+
+      <div class="logo-card">
+        <div class="logo-plate"><img src="assets/works/creative/logo-a.jpg" alt="ロゴ案A：小麦と栗をあしらった円形エンブレム・金茶色" loading="lazy"></div>
+        <div class="logo-body">
+          <span class="logo-tag">案A｜クラシック・エンブレム</span>
+          <div class="logotype lt-a">
+            <span class="lt-jp">小麦と栗</span>
+            <span class="lt-en">KOMUGI TO KURI</span>
+          </div>
+          <p class="logo-desc"><b>金茶×焦げ茶</b>の重厚な配色で、老舗然とした信頼感を演出。看板・パッケージの型押しにも映える案です。</p>
+        </div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-plate"><img src="assets/works/creative/logo-b.jpg" alt="ロゴ案B：ネイビーの線画で描いたパンのシンボルマーク" loading="lazy"></div>
+        <div class="logo-body">
+          <span class="logo-tag">案B｜ミニマル・線画</span>
+          <div class="logotype lt-b">
+            <span class="lt-jp">komugi to kuri</span>
+            <span class="lt-en">BAKERY &amp; CAFE</span>
+          </div>
+          <p class="logo-desc"><b>紺の細い線1本</b>で焼きたてパンを表現。カフェ併設・女性客の多い立地など、軽やかな世界観に向く案です。</p>
+        </div>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-plate"><img src="assets/works/creative/logo-c.jpg" alt="ロゴ案C：栗と朝日を幾何学的に組んだテラコッタ色のマーク" loading="lazy"></div>
+        <div class="logo-body">
+          <span class="logo-tag">案C｜幾何学・モダン</span>
+          <div class="logotype lt-c">
+            <span class="lt-jp">KOMUGI-KURI</span>
+            <span class="lt-en">EST. TOKYO</span>
+          </div>
+          <p class="logo-desc"><b>テラコッタの幾何学モチーフ</b>で、栗と朝日を重ねた新しさのある案。SNS・アプリアイコンなど小さく使う場面に強い案です。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 2. カラー＆フォント -->
+<section class="block alt" id="style">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">STEP 2｜スタイルガイド</span>
+      <h2>カラーパレットとフォントを固定し、全素材で統一。</h2>
+      <p>選ばれたロゴ（案A）から色を抽出し、以降のバナー・チラシ・SNSすべてに同じ配色とフォントを一貫して使用しています。</p>
+    </div>
+    <div class="style-grid">
+      <div>
+        <div class="swatch-card">
+          <h3>ブランドカラー（案Aより抽出・想定パレット）</h3>
+          <div class="color-row">
+            <div class="color-chip"><div class="chip-fill" style="background:var(--br-choco)"></div><div class="chip-label"><span class="name">チョコブラウン</span><span class="hex">#4A2E1E</span></div></div>
+            <div class="color-chip"><div class="chip-fill" style="background:var(--br-wheat)"></div><div class="chip-label"><span class="name">ウィートゴールド</span><span class="hex">#C9A24A</span></div></div>
+            <div class="color-chip"><div class="chip-fill" style="background:var(--br-cream); border-bottom:1px solid var(--line)"></div><div class="chip-label"><span class="name">クリーム</span><span class="hex">#F3E9DA</span></div></div>
+            <div class="color-chip"><div class="chip-fill" style="background:var(--br-navy)"></div><div class="chip-label"><span class="name">ディープネイビー</span><span class="hex">#1F3350</span></div></div>
+            <div class="color-chip"><div class="chip-fill" style="background:var(--br-terracotta)"></div><div class="chip-label"><span class="name">テラコッタ</span><span class="hex">#C1652D</span></div></div>
+          </div>
+        </div>
+        <div class="type-card">
+          <h3>フォント指定</h3>
+          <div class="type-row">
+            <span class="type-label">見出し</span>
+            <div class="type-sample-h">小麦と栗</div>
+            <div class="type-meta">Noto Serif JP / Bold・Semibold — ロゴタイプ、商品名、価格見出しに使用</div>
+          </div>
+          <div class="type-row">
+            <span class="type-label">本文</span>
+            <div class="type-sample-b">秋の新作、栗とバターのダニッシュ。数量限定で店頭に並びます。</div>
+            <div class="type-meta">Noto Sans JP / Regular・Medium — 説明文、SNS投稿文、チラシ本文に使用</div>
+          </div>
+        </div>
+      </div>
+      <div class="guide-card">
+        <div class="guide-mark">小麦と栗</div>
+        <div class="guide-en">KOMUGI TO KURI</div>
+        <p class="guide-note">1つのロゴ・1つの配色・2つのフォントを固定するだけで、バナーもチラシもSNSも「同じお店」に見えるようになります。<br>ここから先の素材はすべてこのスタイルガイドに沿って組んでいます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. バナー広告 -->
+<section class="block" id="banner">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">STEP 3｜バナー広告</span>
+      <h2>Web広告でよく使う3サイズを、実寸のコードで組む。</h2>
+      <p>画像1枚を作るのではなく、HTML/CSSでレイアウトを組んでいます。差し替え・多言語化・A/Bテスト用の文言違いも量産しやすいのが利点です。下の枠は実際のピクセル寸法を縮小表示しています。</p>
+    </div>
+
+    <div class="banner-list">
+
+      <div class="banner-block">
+        <h3>(a) SNS広告・正方形</h3>
+        <p class="banner-spec">1080 × 1080 px（Instagram/Facebookフィード想定）</p>
+        <div class="banner-scroll">
+          <div class="banner-frame banner-square">
+            <div class="banner-canvas">
+              <img class="bn-img" src="assets/works/product-danish.jpg" alt="栗とバターのダニッシュのアップ写真">
+              <div class="bn-shade"></div>
+              <span class="bn-brand">小麦と栗</span>
+              <div class="bn-copy">
+                <span class="bn-eyebrow">AUTUMN LIMITED</span>
+                <div class="bn-h">秋の新作、<br>栗とバターのダニッシュ。</div>
+                <div class="bn-sub">数量限定・毎朝焼きたて</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="banner-block">
+        <h3>(b) ディスプレイ広告・レクタングル</h3>
+        <p class="banner-spec">300 × 250 px（記事内バナー枠の定番サイズ）</p>
+        <div class="banner-scroll">
+          <div class="banner-frame banner-rect">
+            <div class="banner-canvas">
+              <img class="bn-img" src="assets/works/creative/lifestyle.jpg" alt="ダニッシュとラテのある食卓">
+              <div class="bn-shade"></div>
+              <span class="bn-copy2">AUTUMN LIMITED</span>
+              <div class="bn-lower">
+                <div class="bn-h2">栗とバターのダニッシュ</div>
+                <span class="bn-cta">詳しくみる</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="banner-block">
+        <h3>(c) ディスプレイ広告・スーパーバナー</h3>
+        <p class="banner-spec">728 × 90 px（PCサイト上部の横長枠）</p>
+        <div class="banner-scroll">
+          <div class="banner-frame banner-leader">
+            <div class="banner-canvas">
+              <div class="bn-canvas-row">
+                <span class="bn-mark">小麦と栗</span>
+                <span class="bn-lead-copy">秋の新作、栗とバターのダニッシュ。好評発売中。</span>
+                <span class="bn-lead-cta">詳しくみる</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 4. A4チラシ -->
+<section class="block alt" id="flyer">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">STEP 4｜印刷物</span>
+      <h2>店頭・ポスティング用のA4チラシも同じ流れで。</h2>
+      <p>Web用の素材と同じロゴ・配色のまま、印刷用のA4チラシを1枚組みました。ブラウザの印刷機能からそのままPDF出力できます。</p>
+    </div>
+    <div class="flyer-wrap">
+      <a class="flyer-preview-card" href="creative-flyer.html">
+        <div class="flyer-frame"><iframe src="creative-flyer.html" tabindex="-1" title="A4チラシのプレビュー"></iframe></div>
+        <span class="flyer-label">A4チラシを実物大で見る ▶</span>
+        <span class="flyer-sub">creative-flyer.html</span>
+      </a>
+      <div class="flyer-copy">
+        <h3>Webのバナーと、紙のチラシを同じ人が同じ日に作る。</h3>
+        <p>デザイン会社に発注すると別料金・別納期になりがちなWeb広告と印刷物ですが、コードで組んでいるため同じロゴデータ・同じ配色定義をそのまま使い回せます。</p>
+        <ul>
+          <li>A4サイズ（210×297mm）・印刷用CSSを最初から用意</li>
+          <li>店舗の住所・営業時間・地図枠つきの実用フォーマット</li>
+          <li>ブラウザの「印刷」→「PDFに保存」でそのまま入稿データに</li>
+        </ul>
+        <a class="btn btn-outline" href="creative-flyer.html">チラシのページを開く</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. SNS投稿 -->
+<section class="block" id="sns">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">STEP 5｜SNS投稿</span>
+      <h2>投稿文・ハッシュタグまでセットで3本。</h2>
+      <p>画像を作って終わりではなく、投稿文とハッシュタグまでを1セットとして用意。そのまま投稿できる状態まで仕上げます。</p>
+    </div>
+    <div class="sns-grid">
+
+      <div class="sns-card">
+        <div class="sns-head">
+          <span class="sns-avatar">小</span>
+          <div>
+            <div class="sns-name">小麦と栗</div>
+            <div class="sns-handle">@komugitokuri_bakery</div>
+          </div>
+        </div>
+        <div class="sns-img"><img src="assets/works/creative/lifestyle.jpg" alt="ダニッシュとカフェラテのテーブルフォト" loading="lazy"></div>
+        <div class="sns-icons"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="sns-body">
+          <p class="sns-caption"><b>小麦と栗</b> 秋の新作「栗とバターのダニッシュ」、本日より数量限定で店頭に並びました。サクサクの生地に栗の甘さとバターの香りがぎゅっと。ラテと一緒にどうぞ☕🌰</p>
+          <p class="sns-tags">#小麦と栗 #栗スイーツ #秋の新作 #ダニッシュ #ベーカリー巡り</p>
+        </div>
+      </div>
+
+      <div class="sns-card">
+        <div class="sns-head">
+          <span class="sns-avatar">小</span>
+          <div>
+            <div class="sns-name">小麦と栗</div>
+            <div class="sns-handle">@komugitokuri_bakery</div>
+          </div>
+        </div>
+        <div class="sns-img"><img src="assets/works/product-danish.jpg" alt="栗とバターのダニッシュのクローズアップ写真" loading="lazy"></div>
+        <div class="sns-icons"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="sns-body">
+          <p class="sns-caption"><b>小麦と栗</b> 断面を見てほしい……🌰 折り込んだバターがしっかり層になっているのが、今回いちばんこだわったポイントです。数量限定なので、午前中の来店がおすすめです。</p>
+          <p class="sns-tags">#栗とバターのダニッシュ #焼きたて #数量限定 #小麦と栗</p>
+        </div>
+      </div>
+
+      <div class="sns-card">
+        <div class="sns-head">
+          <span class="sns-avatar">小</span>
+          <div>
+            <div class="sns-name">小麦と栗</div>
+            <div class="sns-handle">@komugitokuri_bakery</div>
+          </div>
+        </div>
+        <div class="sns-img"><img src="assets/works/creative/storefront.jpg" alt="小麦と栗の店構え写真" loading="lazy"></div>
+        <div class="sns-icons"><span>♡</span><span>💬</span><span>↗</span></div>
+        <div class="sns-body">
+          <p class="sns-caption"><b>小麦と栗</b> 少し肌寒くなってきましたね。店先のオリーブの木も秋支度中です🍂 今日も焼きたてのパンをご用意してお待ちしています。ふらっと寄っていってください。</p>
+          <p class="sns-tags">#小麦と栗 #街のパン屋さん #秋の始まり #ベーカリー</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 5.5 動画広告 -->
+<section class="block alt" id="video">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">STEP 6｜動画広告</span>
+      <h2>30秒の縦型動画広告も、この一式に含めて。</h2>
+      <p>Instagramリール・TikTok・YouTubeショート想定の9:16縦型です。音声ありでご覧ください（自動再生はしません）。</p>
+    </div>
+    <div class="video-grid">
+      <div>
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <video src="assets/works/videos/bakery-ad-30s.mp4" poster="assets/works/videos/bakery-ad-poster.jpg" preload="metadata" controls playsinline></video>
+          </div>
+        </div>
+        <p class="phone-caption">1080×1920・30秒・音声つき（AI生成のサンプル映像）</p>
+      </div>
+      <div class="video-copy">
+        <h3>撮影ゼロ・ナレーター手配ゼロで、広告動画1本。</h3>
+        <p>この動画にカメラは1台も使っていません。素材の生成から編集・書き出しまで、全工程をAIとコードで完結させています。</p>
+        <ol class="video-steps">
+          <li><b>台本づくり</b>——30秒に収まる4カット構成の台本をAIと作成</li>
+          <li><b>AI画像生成</b>——9:16の縦型シーン画像を5枚生成</li>
+          <li><b>モーション付け</b>——コード（HyperFrames）でズーム・パン・場面転換を演出</li>
+          <li><b>AIナレーション</b>——Gemini TTSで音声4本を生成し、カットに同期</li>
+          <li><b>字幕・エンドカード</b>——ブランドカラーのまま字幕とロゴ入りエンドカードを追加</li>
+          <li><b>MP4書き出し</b>——SNS入稿できる形式でそのまま出力</li>
+        </ol>
+        <p class="video-note"><b>動画制作会社に発注すると、これ1本で別見積り・別納期になりがちな領域です。</b>バナーやチラシと同じ素材・同じ配色から作るため、ブランドの一貫性を保ったまま販促一式に動画まで含められます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. コピー案 -->
+<section class="block" id="copy">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">STEP 7｜キャッチコピー案</span>
+      <h2>方向性を変えて10本、一気に出す。</h2>
+      <p>1本に絞り込む前に、切り口の異なるコピーをまとめて出してから選ぶのがAI制作の強みです。</p>
+    </div>
+    <div class="copy-grid">
+      <div class="copy-item"><span class="copy-num">1</span><div><span class="copy-tag">王道</span><div class="copy-text">秋の新作、栗とバターのダニッシュ。</div></div></div>
+      <div class="copy-item"><span class="copy-num">2</span><div><span class="copy-tag">王道</span><div class="copy-text">焼きたてに、栗をひとつかみ。</div></div></div>
+      <div class="copy-item"><span class="copy-num">3</span><div><span class="copy-tag">情緒</span><div class="copy-text">栗の季節は、年に一度しかない。</div></div></div>
+      <div class="copy-item"><span class="copy-num">4</span><div><span class="copy-tag">情緒</span><div class="copy-text">午前中だけの、秋の匂い。</div></div></div>
+      <div class="copy-item"><span class="copy-num">5</span><div><span class="copy-tag">数字</span><div class="copy-text">層になったバター、その数27層。</div></div></div>
+      <div class="copy-item"><span class="copy-num">6</span><div><span class="copy-tag">数字</span><div class="copy-text">1日80個、焼きたてだけ。</div></div></div>
+      <div class="copy-item"><span class="copy-num">7</span><div><span class="copy-tag">呼びかけ</span><div class="copy-text">今日のおやつ、決まってますか。</div></div></div>
+      <div class="copy-item"><span class="copy-num">8</span><div><span class="copy-tag">呼びかけ</span><div class="copy-text">寄り道してでも、食べてほしい。</div></div></div>
+      <div class="copy-item"><span class="copy-num">9</span><div><span class="copy-tag">断言</span><div class="copy-text">栗好きに、これ以上の一皿はない。</div></div></div>
+      <div class="copy-item"><span class="copy-num">10</span><div><span class="copy-tag">断言</span><div class="copy-text">パン屋の秋は、これで決まり。</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 種明かし -->
+<section class="reveal" id="reveal">
+  <div class="container">
+    <div class="reveal-grid">
+      <div>
+        <span class="eyebrow">種明かし</span>
+        <h2>ロゴも写真も、<em>全部AI生成</em>です。</h2>
+        <p>「小麦と栗」という店は存在しません。ロゴ3案、店内・商品・店構えの写真、動画のシーン映像とナレーション、すべてAIで生成し、レイアウトと文字組みはコードで直接組んでいます。撮影も、デザイナーや動画制作会社への発注も一切していません。</p>
+        <p>ここまでで、実制作にかかった時間は数時間程度です。御社の実際の商品写真・店舗写真に差し替えれば、同じ一式（ロゴ・カラー・バナー・チラシ・SNS・動画広告・コピー）がそのまま作れます。</p>
+        <a class="btn btn-gold" href="index.html#contact">御社の商品でも同じ一式を作れるか相談する</a>
+      </div>
+      <div class="reveal-diagram" aria-hidden="true">
+        <div class="rd-row"><span class="rd-icon">🎨</span>AIでロゴ・写真素材を生成</div>
+        <div class="rd-row"><span class="rd-icon">🧩</span>コードで配色・フォントを統一</div>
+        <div class="rd-row"><span class="rd-icon">🖼️</span>バナー3サイズ・SNS投稿を量産</div>
+        <div class="rd-row"><span class="rd-icon">📄</span>同じ素材でA4チラシも印刷用に出力</div>
+        <div class="rd-row"><span class="rd-icon">🎬</span>AIナレーションつき30秒動画広告まで一気通貫</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
+    <p class="footer-note">本ページに登場する店舗「小麦と栗」は架空の事業者です。掲載の写真・ロゴ・動画・ナレーション音声・住所・電話番号・投稿文・数値はすべてAI生成またはサンプルであり、実在の店舗・人物・実績とは関係ありません。</p>
+  </div>
+</footer>
+
+</body>
+</html>
