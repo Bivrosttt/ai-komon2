@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>3Dウォークスルー内見｜AI顧問室</title>
+<meta name="description" content="間取り図から作成した家具付き住戸を、ブラウザ上の一人称視点で自由に歩ける3Dウォークスルーです。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="3Dウォークスルー内見｜AI顧問室">
+<meta property="og:description" content="LDK、仕事部屋、敷布団の7.1帖室、子供部屋をブラウザ上で自由に内見。">
+<meta property="og:image" content="assets/works/models/floorplan-furnished.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2447;
+    --navy-deep: #06162c;
+    --gold: #c9a227;
+    --white: #fff;
+    --glass: rgba(6, 22, 44, .78);
+    --line: rgba(255,255,255,.17);
+    --muted: #b7c5d8;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--white); background: #07101b; }
+  button, a { font: inherit; }
+  button { color: inherit; }
+  a { color: inherit; text-decoration: none; }
+
+  .topbar {
+    position: fixed; inset: 0 0 auto 0; z-index: 30; height: 62px;
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    padding: 0 max(18px, env(safe-area-inset-left));
+    background: rgba(5, 18, 36, .92); border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  }
+  .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+  .back-link {
+    display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--line); color: #d9e4f2; transition: background .2s;
+  }
+  .back-link:hover { background: rgba(255,255,255,.1); }
+  .title-wrap { min-width: 0; }
+  .title-wrap strong { display: block; font-family: 'Noto Serif JP', serif; font-size: 16px; letter-spacing: .04em; }
+  .title-wrap span { display: block; color: var(--muted); font-size: 10px; letter-spacing: .08em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .top-actions { display: flex; align-items: center; gap: 8px; }
+  .icon-btn {
+    display: inline-flex; align-items: center; gap: 7px; height: 36px; padding: 0 13px;
+    border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.06);
+    cursor: pointer; transition: background .2s, border-color .2s;
+  }
+  .icon-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.28); }
+  .icon-btn span { font-size: 12px; }
+
+  #stage { position: fixed; inset: 62px 0 0; overflow: hidden; background: radial-gradient(circle at 50% 35%, #33485c, #0b1724 70%); }
+  #stage canvas { display: block; width: 100%; height: 100%; outline: none; touch-action: none; }
+
+  .loading {
+    position: absolute; inset: 0; z-index: 24; display: grid; place-items: center;
+    background: linear-gradient(145deg, #071a35, #102d4c); transition: opacity .45s, visibility .45s;
+  }
+  .loading.done { opacity: 0; visibility: hidden; pointer-events: none; }
+  .loading-card { width: min(370px, calc(100vw - 40px)); text-align: center; }
+  .loading-mark {
+    width: 64px; height: 64px; margin: 0 auto 24px; border-radius: 18px; display: grid; place-items: center;
+    background: rgba(255,255,255,.08); border: 1px solid var(--line); font-size: 26px;
+  }
+  .loading h1 { font-family: 'Noto Serif JP', serif; font-size: 23px; margin: 0 0 9px; }
+  .loading p { margin: 0; color: var(--muted); font-size: 13px; }
+  .progress { height: 3px; margin-top: 25px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.12); }
+  .progress span { display: block; width: 4%; height: 100%; border-radius: inherit; background: var(--gold); transition: width .2s; }
+  .loading-percent { display: block; margin-top: 8px; color: #dce6f4; font-size: 11px; }
+
+  .start-overlay {
+    position: absolute; inset: 0; z-index: 18; display: grid; place-items: center; padding: 24px;
+    background: linear-gradient(rgba(2,10,20,.18), rgba(2,10,20,.68));
+    transition: opacity .25s, visibility .25s;
+  }
+  .start-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .start-card {
+    width: min(470px, 100%); padding: 30px; text-align: center; border: 1px solid var(--line);
+    border-radius: 18px; background: rgba(6, 22, 44, .9); box-shadow: 0 24px 70px rgba(0,0,0,.35);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  }
+  .eyebrow { margin-bottom: 8px; color: #dfc45e; font-size: 11px; font-weight: 700; letter-spacing: .18em; }
+  .start-card h2 { margin: 0 0 12px; font-family: 'Noto Serif JP', serif; font-size: clamp(23px, 5vw, 31px); line-height: 1.45; }
+  .start-card > p { margin: 0 auto 22px; max-width: 370px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+  .key-row { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; color: #d9e4f2; font-size: 11px; }
+  .key-guide { display: flex; align-items: center; gap: 7px; }
+  kbd { min-width: 25px; padding: 4px 7px; border-radius: 5px; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.09); box-shadow: inset 0 -2px rgba(0,0,0,.2); }
+  .start-btn {
+    width: 100%; min-height: 50px; border: 0; border-radius: 10px; background: var(--gold);
+    color: var(--navy-deep); font-weight: 700; cursor: pointer; transition: transform .15s, filter .2s;
+  }
+  .start-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+  .hud {
+    position: absolute; z-index: 10; top: 18px; left: 18px; min-width: 172px;
+    padding: 12px 15px; border: 1px solid var(--line); border-radius: 12px; background: var(--glass);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); pointer-events: none;
+  }
+  .hud-label { color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .18em; }
+  .room-name { margin-top: 3px; font-family: 'Noto Serif JP', serif; font-size: 16px; }
+  .hud-meta { display: flex; gap: 12px; margin-top: 7px; color: #d5e0ed; font-size: 10px; }
+  .status-dot { display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%; background: #61d095; box-shadow: 0 0 0 3px rgba(97,208,149,.13); }
+
+  .crosshair { position: absolute; z-index: 7; top: 50%; left: 50%; width: 12px; height: 12px; transform: translate(-50%,-50%); pointer-events: none; opacity: .62; }
+  .crosshair::before, .crosshair::after { content: ''; position: absolute; background: #fff; border-radius: 2px; box-shadow: 0 0 3px rgba(0,0,0,.7); }
+  .crosshair::before { width: 12px; height: 1px; top: 5px; }
+  .crosshair::after { width: 1px; height: 12px; left: 5px; }
+
+  .room-nav {
+    position: absolute; z-index: 12; left: 50%; bottom: max(18px, env(safe-area-inset-bottom));
+    display: flex; gap: 7px; max-width: calc(100vw - 330px); padding: 7px; transform: translateX(-50%);
+    border: 1px solid var(--line); border-radius: 999px; background: var(--glass); overflow-x: auto;
+    scrollbar-width: none; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  }
+  .room-nav::-webkit-scrollbar { display: none; }
+  .room-btn { flex: 0 0 auto; border: 0; border-radius: 999px; padding: 9px 14px; background: transparent; color: #dce6f2; font-size: 11px; cursor: pointer; }
+  .room-btn:hover, .room-btn.active { background: rgba(255,255,255,.13); color: #fff; }
+
+  .minimap {
+    position: absolute; z-index: 11; right: 18px; bottom: max(18px, env(safe-area-inset-bottom));
+    width: 190px; padding: 8px; border: 1px solid var(--line); border-radius: 13px; background: var(--glass);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  }
+  .map-head { display: flex; justify-content: space-between; margin: 0 4px 6px; color: var(--muted); font-size: 9px; letter-spacing: .12em; }
+  .map-image { position: relative; aspect-ratio: 6 / 7; overflow: hidden; border-radius: 8px; background: #d9d4c8; }
+  .map-image img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: .9; }
+  .map-marker { position: absolute; width: 10px; height: 10px; border: 2px solid #fff; border-radius: 50%; background: #e8b83e; box-shadow: 0 0 0 4px rgba(232,184,62,.28), 0 2px 5px rgba(0,0,0,.5); transform: translate(-50%,-50%); transition: left .08s linear, top .08s linear; }
+
+  .credits {
+    position: absolute; z-index: 35; inset: 12px 12px 12px auto; width: min(390px, calc(100vw - 24px));
+    padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: rgba(5,18,36,.97);
+    box-shadow: 0 20px 65px rgba(0,0,0,.45); transform: translateX(calc(100% + 24px)); transition: transform .25s;
+    overflow-y: auto; line-height: 1.75;
+  }
+  .credits.open { transform: translateX(0); }
+  .credits h2 { margin: 0 0 10px; font-family: 'Noto Serif JP', serif; font-size: 19px; }
+  .credits p, .credits li { color: var(--muted); font-size: 12px; }
+  .credits ul { padding-left: 18px; }
+  .credits a { text-decoration: underline; color: #e6cc72; }
+  .credits-close { float: right; border: 1px solid var(--line); border-radius: 50%; width: 30px; height: 30px; background: rgba(255,255,255,.06); cursor: pointer; }
+
+  .mobile-controls { display: none; }
+  .dpad { position: absolute; z-index: 14; left: 18px; bottom: max(18px, env(safe-area-inset-bottom)); width: 132px; height: 132px; }
+  .move-btn { position: absolute; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 12px; background: rgba(6,22,44,.72); color: #fff; font-size: 18px; touch-action: none; }
+  .move-btn[data-key="KeyW"] { top: 0; left: 45px; }
+  .move-btn[data-key="KeyA"] { top: 45px; left: 0; }
+  .move-btn[data-key="KeyS"] { top: 45px; left: 45px; }
+  .move-btn[data-key="KeyD"] { top: 45px; left: 90px; }
+  .touch-hint { position: absolute; z-index: 9; right: 22px; top: 22px; color: rgba(255,255,255,.68); font-size: 10px; pointer-events: none; }
+
+  @media (max-width: 760px), (pointer: coarse) {
+    .topbar { height: 56px; }
+    #stage { inset-top: 56px; top: 56px; }
+    .title-wrap strong { font-size: 14px; }
+    .title-wrap span, .icon-btn span { display: none; }
+    .icon-btn { width: 36px; justify-content: center; padding: 0; }
+    .hud { top: 12px; left: 12px; min-width: 145px; padding: 10px 12px; }
+    .minimap { width: 118px; right: 12px; bottom: 112px; }
+    .map-head { display: none; }
+    .room-nav { left: 12px; right: 12px; bottom: 10px; max-width: none; transform: none; border-radius: 12px; justify-content: flex-start; padding-left: 148px; }
+    .room-btn { padding: 9px 11px; }
+    .mobile-controls.active { display: block; }
+    .key-row { display: none; }
+    .start-card { padding: 26px 22px; }
+    .crosshair { opacity: .35; }
+  }
+  @media (max-height: 620px) {
+    .start-card { padding: 20px; }
+    .start-card > p { margin-bottom: 14px; }
+    .key-row { margin-bottom: 15px; }
+  }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <a class="back-link" href="works-3d.html" aria-label="3D作品ページへ戻る">←</a>
+    <div class="title-wrap">
+      <strong>3Dウォークスルー内見</strong>
+      <span>家具付き3LDK＋ホームオフィス｜POV VIEW</span>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button class="icon-btn" id="resetBtn" type="button" aria-label="開始位置へ戻る">↺ <span>リセット</span></button>
+    <button class="icon-btn" id="creditBtn" type="button" aria-label="モデル情報を表示">ⓘ <span>モデル情報</span></button>
+    <button class="icon-btn" id="fullscreenBtn" type="button" aria-label="全画面表示">⛶ <span>全画面</span></button>
+  </div>
+</header>
+
+<main id="stage" aria-label="3Dウォークスルービューア">
+  <div class="loading" id="loading">
+    <div class="loading-card">
+      <div class="loading-mark">⌂</div>
+      <h1>お部屋を準備しています</h1>
+      <p>家具・壁・テクスチャを読み込み中です</p>
+      <div class="progress"><span id="progressBar"></span></div>
+      <span class="loading-percent" id="progressText">0%</span>
+    </div>
+  </div>
+
+  <div class="start-overlay" id="startOverlay">
+    <div class="start-card">
+      <div class="eyebrow">FIRST-PERSON WALKTHROUGH</div>
+      <h2>この部屋の中を、<br>自由に歩いてみる</h2>
+      <p id="startDescription">開始後はマウスドラッグで周囲を見渡し、WASDキーで移動できます。Escキーでいつでも停止できます。</p>
+      <div class="key-row" aria-hidden="true">
+        <div class="key-guide"><kbd>WASD</kbd><span>移動</span></div>
+        <div class="key-guide"><kbd>Drag</kbd><span>視点</span></div>
+        <div class="key-guide"><kbd>Esc</kbd><span>停止</span></div>
+      </div>
+      <button class="start-btn" id="startBtn" type="button">ウォークスルーを開始</button>
+    </div>
+  </div>
+
+  <div class="hud">
+    <div class="hud-label">CURRENT ROOM</div>
+    <div class="room-name" id="roomName">LDK 23帖</div>
+    <div class="hud-meta"><span><i class="status-dot"></i>衝突判定 ON</span><span id="compass">N</span></div>
+  </div>
+
+  <div class="crosshair" aria-hidden="true"></div>
+
+  <nav class="room-nav" aria-label="部屋へ移動">
+    <button class="room-btn active" type="button" data-room="living">LDK</button>
+    <button class="room-btn" type="button" data-room="office">仕事部屋</button>
+    <button class="room-btn" type="button" data-room="futon">7.1帖・敷布団</button>
+    <button class="room-btn" type="button" data-room="kids">子供部屋</button>
+    <button class="room-btn" type="button" data-room="entry">玄関</button>
+  </nav>
+
+  <aside class="minimap" aria-label="現在位置マップ">
+    <div class="map-head"><span>FLOOR MAP</span><span>現在地</span></div>
+    <div class="map-image">
+      <img src="assets/works/models/floorplan-furnished-top.png" alt="家具配置の真上図">
+      <span class="map-marker" id="mapMarker"></span>
+    </div>
+  </aside>
+
+  <div class="mobile-controls" id="mobileControls" aria-label="移動操作">
+    <div class="touch-hint">画面をスワイプして視点移動</div>
+    <div class="dpad">
+      <button class="move-btn" type="button" data-key="KeyW" aria-label="前へ">↑</button>
+      <button class="move-btn" type="button" data-key="KeyA" aria-label="左へ">←</button>
+      <button class="move-btn" type="button" data-key="KeyS" aria-label="後ろへ">↓</button>
+      <button class="move-btn" type="button" data-key="KeyD" aria-label="右へ">→</button>
+    </div>
+  </div>
+
+  <aside class="credits" id="credits" aria-label="モデル情報">
+    <button class="credits-close" id="creditClose" type="button" aria-label="閉じる">×</button>
+    <h2>モデル・ライセンス情報</h2>
+    <p>元の間取り画像をもとに、Blenderで壁・開口・水回り・家具を構築したコンセプトモデルです。寸法は帖数から推定しており、施工用途には使用できません。</p>
+    <ul>
+      <li>3D表示：Three.js</li>
+      <li><a href="https://sketchfab.com/3d-models/minimalist-sofa-set-fabric-ff46f1044467431aa26e1fd48b49aa70" target="_blank" rel="noopener">Minimalist Sofa</a> by zackama — CC Attribution</li>
+      <li><a href="https://sketchfab.com/3d-models/modern-office-chair-high-fidelity-pbr-24996ee03a0d42eea481e3862326df18" target="_blank" rel="noopener">Modern Office Chair</a> by jvart_og — CC Attribution</li>
+    </ul>
+    <p>読み込み量を抑えるため、主要家具だけを実物調モデルにし、造作家具や水回りは軽量な専用形状で構成しています。</p>
+  </aside>
+</main>
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const stage = document.getElementById('stage');
+const loading = document.getElementById('loading');
+const progressBar = document.getElementById('progressBar');
+const progressText = document.getElementById('progressText');
+const startOverlay = document.getElementById('startOverlay');
+const startBtn = document.getElementById('startBtn');
+const roomName = document.getElementById('roomName');
+const compass = document.getElementById('compass');
+const marker = document.getElementById('mapMarker');
+const mobileControls = document.getElementById('mobileControls');
+const isTouch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0b1724);
+scene.fog = new THREE.Fog(0x0b1724, 20, 42);
+
+const camera = new THREE.PerspectiveCamera(68, stage.clientWidth / stage.clientHeight, 0.035, 80);
+camera.rotation.order = 'YXZ';
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+renderer.setSize(stage.clientWidth, stage.clientHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.18;
+stage.prepend(renderer.domElement);
+
+scene.add(new THREE.HemisphereLight(0xfff3dd, 0x405064, 1.55));
+const fill = new THREE.DirectionalLight(0xfff1d6, 2.3);
+fill.position.set(-4, 9, 4);
+fill.intensity = 1.25;
+scene.add(fill);
+const coolFill = new THREE.DirectionalLight(0xcfe9ff, .72);
+coolFill.position.set(12, 6, -13);
+scene.add(coolFill);
+scene.add(new THREE.AmbientLight(0xffffff, .42));
+
+const collisionMeshes = [];
+const keys = new Set();
+const raycaster = new THREE.Raycaster();
+const clock = new THREE.Clock();
+let ready = false;
+let mobileActive = false;
+
+const locations = {
+  living: { p: [1.18, 1.60, -4.45], yaw: -Math.PI / 2, label: 'LDK 23帖' },
+  office: { p: [8.28, 1.60, -10.35], yaw: 0, label: 'ホームオフィス 6帖' },
+  futon:  { p: [6.78, 1.60, -3.65], yaw: Math.PI, label: '洋室 7.1帖・敷布団' },
+  kids:   { p: [8.02, 1.60, -3.55], yaw: -2.55, label: '子供部屋 6.4帖' },
+  entry:  { p: [5.95, 1.60, -11.55], yaw: Math.PI, label: '玄関・ホール' }
+};
+
+function teleport(name) {
+  const loc = locations[name];
+  camera.position.set(...loc.p);
+  camera.rotation.set(0, loc.yaw, 0, 'YXZ');
+  roomName.textContent = loc.label;
+  document.querySelectorAll('.room-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.room === name));
+  updateHud();
+}
+teleport('living');
+
+const loader = new GLTFLoader();
+loader.load(
+  'assets/works/models/floorplan-walkthrough.glb',
+  gltf => {
+    gltf.scene.traverse(obj => {
+      if (!obj.isMesh) return;
+      collisionMeshes.push(obj);
+      obj.castShadow = false;
+      obj.receiveShadow = false;
+      const materials = Array.isArray(obj.material) ? obj.material : [obj.material];
+      materials.forEach(material => {
+        if (!material) return;
+        const n = material.name.toLowerCase();
+        if (n.includes('window glass')) {
+          material.transparent = true;
+          material.opacity = .28;
+          material.depthWrite = false;
+        }
+      });
+    });
+    scene.add(gltf.scene);
+    ready = true;
+    progressBar.style.width = '100%';
+    progressText.textContent = '100%';
+    setTimeout(() => loading.classList.add('done'), 250);
+  },
+  event => {
+    if (!event.total) return;
+    const percent = Math.min(99, Math.round(event.loaded / event.total * 100));
+    progressBar.style.width = percent + '%';
+    progressText.textContent = percent + '%';
+  },
+  error => {
+    console.error('3D model load failed', error);
+    progressText.textContent = '読み込みに失敗しました。ページを再読み込みしてください。';
+    progressText.style.color = '#ff9d8d';
+  }
+);
+
+function beginWalkthrough() {
+  if (!ready) return;
+  mobileActive = true;
+  if (isTouch) mobileControls.classList.add('active');
+  else renderer.domElement.style.cursor = 'grab';
+  startOverlay.classList.add('hidden');
+}
+startBtn.addEventListener('click', beginWalkthrough);
+
+function canMove(direction, distance) {
+  raycaster.set(camera.position, direction);
+  raycaster.near = 0.02;
+  raycaster.far = Math.max(.38, distance + .30);
+  const hit = raycaster.intersectObjects(collisionMeshes, false)[0];
+  return !hit || hit.distance > distance + .28;
+}
+
+function updateMovement(dt) {
+  if (!mobileActive) return;
+  const forwardAmount = (keys.has('KeyW') || keys.has('ArrowUp') ? 1 : 0) - (keys.has('KeyS') || keys.has('ArrowDown') ? 1 : 0);
+  const sideAmount = (keys.has('KeyD') || keys.has('ArrowRight') ? 1 : 0) - (keys.has('KeyA') || keys.has('ArrowLeft') ? 1 : 0);
+  if (!forwardAmount && !sideAmount) return;
+
+  const forward = new THREE.Vector3();
+  camera.getWorldDirection(forward);
+  forward.y = 0;
+  forward.normalize();
+  const right = new THREE.Vector3().crossVectors(forward, camera.up).normalize();
+  const desired = forward.multiplyScalar(forwardAmount).add(right.multiplyScalar(sideAmount)).normalize();
+  const distance = Math.min(.12, 2.05 * dt);
+  if (canMove(desired, distance)) camera.position.addScaledVector(desired, distance);
+
+  camera.position.x = THREE.MathUtils.clamp(camera.position.x, .20, 9.80);
+  camera.position.z = THREE.MathUtils.clamp(camera.position.z, -12.80, -.20);
+  camera.position.y = 1.60;
+}
+
+function detectRoom() {
+  const x = camera.position.x;
+  const y = -camera.position.z;
+  if (x < 4.72 && y < 8.5) return ['LDK 23帖', 'living'];
+  if (x > 6.72 && y > 8.5) return ['ホームオフィス 6帖', 'office'];
+  if (x > 4.70 && x < 7.50 && y < 4.55) return ['洋室 7.1帖・敷布団', 'futon'];
+  if (x >= 7.50 && y < 4.55) return ['子供部屋 6.4帖', 'kids'];
+  if (x < 5.30 && y > 8.50) return ['洋室 6.7帖', 'bedroom'];
+  if (x > 6.70 && y > 6.45 && y < 8.50) return ['洗面室', 'wash'];
+  if (x > 6.90 && y > 4.55 && y <= 6.45) return ['浴室', 'bath'];
+  return ['玄関・ホール', 'entry'];
+}
+
+function updateHud() {
+  const [label, key] = detectRoom();
+  roomName.textContent = label;
+  document.querySelectorAll('.room-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.room === key));
+  const x = camera.position.x;
+  const apartmentY = -camera.position.z;
+  marker.style.left = (18 + THREE.MathUtils.clamp(x / 10, 0, 1) * 72) + '%';
+  marker.style.top = (9 + THREE.MathUtils.clamp(apartmentY / 13, 0, 1) * 80) + '%';
+  const direction = new THREE.Vector3();
+  camera.getWorldDirection(direction);
+  const degrees = (Math.atan2(direction.x, -direction.z) * 180 / Math.PI + 360) % 360;
+  const points = ['N','NE','E','SE','S','SW','W','NW'];
+  compass.textContent = points[Math.round(degrees / 45) % 8] + ' ' + Math.round(degrees) + '°';
+}
+
+window.addEventListener('keydown', event => {
+  if (event.code === 'Escape') {
+    mobileActive = false;
+    mobileControls.classList.remove('active');
+    renderer.domElement.style.cursor = 'default';
+    startOverlay.classList.remove('hidden');
+    keys.clear();
+    return;
+  }
+  if (['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.code)) {
+    keys.add(event.code);
+    event.preventDefault();
+  }
+});
+window.addEventListener('keyup', event => keys.delete(event.code));
+window.addEventListener('blur', () => keys.clear());
+
+document.querySelectorAll('.move-btn').forEach(button => {
+  const key = button.dataset.key;
+  const down = event => { event.preventDefault(); keys.add(key); };
+  const up = event => { event.preventDefault(); keys.delete(key); };
+  button.addEventListener('pointerdown', down);
+  button.addEventListener('pointerup', up);
+  button.addEventListener('pointercancel', up);
+  button.addEventListener('pointerleave', up);
+});
+
+let touchId = null;
+let lastTouch = null;
+renderer.domElement.addEventListener('pointerdown', event => {
+  if (!mobileActive) return;
+  if (isTouch && event.pointerType !== 'touch') return;
+  if (!isTouch && event.pointerType !== 'mouse') return;
+  touchId = event.pointerId;
+  lastTouch = { x: event.clientX, y: event.clientY };
+  renderer.domElement.setPointerCapture(touchId);
+  if (!isTouch) renderer.domElement.style.cursor = 'grabbing';
+});
+renderer.domElement.addEventListener('pointermove', event => {
+  if (event.pointerId !== touchId || !lastTouch) return;
+  const dx = event.clientX - lastTouch.x;
+  const dy = event.clientY - lastTouch.y;
+  camera.rotation.y -= dx * .004;
+  camera.rotation.x = THREE.MathUtils.clamp(camera.rotation.x - dy * .003, -1.12, 1.12);
+  lastTouch = { x: event.clientX, y: event.clientY };
+});
+renderer.domElement.addEventListener('pointerup', event => {
+  if (event.pointerId === touchId) {
+    touchId = null;
+    lastTouch = null;
+    if (!isTouch && mobileActive) renderer.domElement.style.cursor = 'grab';
+  }
+});
+
+document.querySelectorAll('.room-btn').forEach(button => button.addEventListener('click', () => teleport(button.dataset.room)));
+document.getElementById('resetBtn').addEventListener('click', () => teleport('living'));
+document.getElementById('fullscreenBtn').addEventListener('click', async () => {
+  try {
+    if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+    else await document.exitFullscreen();
+  } catch (error) { console.warn('Fullscreen unavailable', error); }
+});
+
+const credits = document.getElementById('credits');
+document.getElementById('creditBtn').addEventListener('click', () => credits.classList.add('open'));
+document.getElementById('creditClose').addEventListener('click', () => credits.classList.remove('open'));
+
+window.addEventListener('resize', () => {
+  camera.aspect = stage.clientWidth / stage.clientHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(stage.clientWidth, stage.clientHeight);
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+  const dt = Math.min(clock.getDelta(), .05);
+  updateMovement(dt);
+  updateHud();
+  renderer.render(scene, camera);
+}
+animate();
+</script>
+</body>
+</html>
