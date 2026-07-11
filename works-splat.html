@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>実写3D都市ウォークスルー（3D Gaussian Splatting）｜AI顧問室</title>
+<meta name="description" content="実写写真から生成した3D Gaussian Splattingの都市空間を、ブラウザ上で一人称視点で歩ける技術デモです。同じ技術で御社の店舗・現場も写真だけでウェブ3D化できます。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="実写3D都市ウォークスルー（3D Gaussian Splatting）｜AI顧問室">
+<meta property="og:description" content="530万個のガウス点で再現した実写都市広場を、ブラウザでそのまま歩ける技術デモ。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-splat.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0b2447;
+    --navy-deep: #06162c;
+    --gold: #c9a227;
+    --white: #fff;
+    --glass: rgba(6, 22, 44, .78);
+    --line: rgba(255,255,255,.17);
+    --muted: #b7c5d8;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--white); background: #07101b; }
+  button, a { font: inherit; }
+  button { color: inherit; }
+  a { color: inherit; text-decoration: none; }
+
+  .topbar {
+    position: fixed; inset: 0 0 auto 0; z-index: 30; height: 62px;
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+    padding: 0 max(18px, env(safe-area-inset-left));
+    background: rgba(5, 18, 36, .92); border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  }
+  .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
+  .back-link {
+    display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--line); color: #d9e4f2; transition: background .2s; flex: 0 0 auto;
+  }
+  .back-link:hover { background: rgba(255,255,255,.1); }
+  .title-wrap { min-width: 0; }
+  .title-wrap strong { display: block; font-family: 'Noto Serif JP', serif; font-size: 16px; letter-spacing: .04em; }
+  .title-wrap span { display: block; color: var(--muted); font-size: 10px; letter-spacing: .08em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .top-actions { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+  .icon-btn {
+    display: inline-flex; align-items: center; gap: 7px; height: 36px; padding: 0 13px;
+    border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.06);
+    cursor: pointer; transition: background .2s, border-color .2s; white-space: nowrap;
+  }
+  .icon-btn:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.28); }
+  .icon-btn span { font-size: 12px; }
+  .icon-btn.gold { background: var(--gold); color: var(--navy-deep); border-color: var(--gold); font-weight: 700; }
+  .icon-btn.gold:hover { filter: brightness(1.08); background: var(--gold); }
+
+  #stage { position: fixed; inset: 62px 0 0; overflow: hidden; background: radial-gradient(circle at 50% 35%, #33485c, #0b1724 70%); }
+  #stage canvas { display: block; width: 100%; height: 100%; outline: none; touch-action: none; }
+
+  .loading {
+    position: absolute; inset: 0; z-index: 24; display: grid; place-items: center;
+    background: linear-gradient(145deg, #071a35, #102d4c); transition: opacity .45s, visibility .45s;
+    opacity: 0; visibility: hidden; pointer-events: none;
+  }
+  .loading.active { opacity: 1; visibility: visible; pointer-events: auto; }
+  .loading-card { width: min(370px, calc(100vw - 40px)); text-align: center; }
+  .loading-mark {
+    width: 64px; height: 64px; margin: 0 auto 24px; border-radius: 18px; display: grid; place-items: center;
+    background: rgba(255,255,255,.08); border: 1px solid var(--line); font-size: 26px;
+  }
+  .loading h1 { font-family: 'Noto Serif JP', serif; font-size: 22px; margin: 0 0 9px; }
+  .loading p { margin: 0; color: var(--muted); font-size: 13px; }
+  .progress { height: 3px; margin-top: 25px; overflow: hidden; border-radius: 99px; background: rgba(255,255,255,.12); }
+  .progress span { display: block; width: 4%; height: 100%; border-radius: inherit; background: var(--gold); transition: width .2s; }
+  .loading-percent { display: block; margin-top: 8px; color: #dce6f4; font-size: 11px; }
+
+  .start-overlay {
+    position: absolute; inset: 0; z-index: 18; display: grid; place-items: center; padding: 24px;
+    background: linear-gradient(rgba(2,10,20,.18), rgba(2,10,20,.68));
+    transition: opacity .25s, visibility .25s;
+  }
+  .start-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .start-card {
+    width: min(500px, 100%); padding: 30px; text-align: center; border: 1px solid var(--line);
+    border-radius: 18px; background: rgba(6, 22, 44, .9); box-shadow: 0 24px 70px rgba(0,0,0,.35);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  }
+  .eyebrow { margin-bottom: 8px; color: #dfc45e; font-size: 11px; font-weight: 700; letter-spacing: .18em; }
+  .start-card h2 { margin: 0 0 12px; font-family: 'Noto Serif JP', serif; font-size: clamp(22px, 5vw, 29px); line-height: 1.45; }
+  .start-card > p { margin: 0 auto 16px; max-width: 400px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+  .start-note {
+    margin: 0 auto 20px; max-width: 400px; padding: 10px 14px; border: 1px solid rgba(201,162,39,.35);
+    border-radius: 10px; background: rgba(201,162,39,.08); color: #e7d38f; font-size: 11.5px; line-height: 1.7; text-align: left;
+  }
+  .pitch-line {
+    margin: 0 auto 22px; max-width: 400px; padding: 12px 14px; border-radius: 10px;
+    background: rgba(255,255,255,.05); border: 1px solid var(--line); color: #d9e4f2; font-size: 12px; line-height: 1.8; text-align: left;
+  }
+  .pitch-line b { color: #fff; }
+  .key-row { display: flex; justify-content: center; gap: 16px; margin-bottom: 22px; color: #d9e4f2; font-size: 11px; flex-wrap: wrap; }
+  .key-guide { display: flex; align-items: center; gap: 7px; }
+  kbd { min-width: 25px; padding: 4px 7px; border-radius: 5px; border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.09); box-shadow: inset 0 -2px rgba(0,0,0,.2); }
+  .start-btn {
+    width: 100%; min-height: 50px; border: 0; border-radius: 10px; background: var(--gold);
+    color: var(--navy-deep); font-weight: 700; cursor: pointer; transition: transform .15s, filter .2s;
+  }
+  .start-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .start-btn:disabled { opacity: .6; cursor: default; transform: none; filter: none; }
+
+  .hud {
+    position: absolute; z-index: 10; top: 18px; left: 18px; max-width: 260px;
+    padding: 12px 15px; border: 1px solid var(--line); border-radius: 12px; background: var(--glass);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); pointer-events: none;
+    opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
+  }
+  .hud.active { opacity: 1; visibility: visible; }
+  .hud-label { color: var(--muted); font-size: 9px; font-weight: 700; letter-spacing: .18em; }
+  .hud-guide { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 8px; color: #d5e0ed; font-size: 10.5px; }
+  .hud-guide span { display: flex; align-items: center; gap: 5px; }
+  .hud-consult { display: block; margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--line); color: #e6cc72; font-size: 11px; font-weight: 700; pointer-events: auto; }
+  .hud-consult:hover { text-decoration: underline; }
+
+  .resume-hint {
+    position: absolute; z-index: 13; left: 50%; top: 50%; transform: translate(-50%,-50%);
+    padding: 10px 20px; border-radius: 999px; background: rgba(6,22,44,.85); border: 1px solid var(--line);
+    font-size: 12.5px; color: #fff; opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s; text-align: center;
+  }
+  .resume-hint.active { opacity: 1; visibility: visible; }
+
+  .crosshair { position: absolute; z-index: 7; top: 50%; left: 50%; width: 12px; height: 12px; transform: translate(-50%,-50%); pointer-events: none; opacity: 0; transition: opacity .2s; }
+  .crosshair.active { opacity: .62; }
+  .crosshair::before, .crosshair::after { content: ''; position: absolute; background: #fff; border-radius: 2px; box-shadow: 0 0 3px rgba(0,0,0,.7); }
+  .crosshair::before { width: 12px; height: 1px; top: 5px; }
+  .crosshair::after { width: 1px; height: 12px; left: 5px; }
+
+  .credits {
+    position: absolute; z-index: 35; inset: 12px 12px 12px auto; width: min(420px, calc(100vw - 24px));
+    padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: rgba(5,18,36,.97);
+    box-shadow: 0 20px 65px rgba(0,0,0,.45); transform: translateX(calc(100% + 24px)); transition: transform .25s;
+    overflow-y: auto; line-height: 1.75;
+  }
+  .credits.open { transform: translateX(0); }
+  .credits h2 { margin: 0 0 10px; font-family: 'Noto Serif JP', serif; font-size: 18px; }
+  .credits h3 { margin: 18px 0 6px; font-family: 'Noto Serif JP', serif; font-size: 14px; color: #e6cc72; }
+  .credits p, .credits li { color: var(--muted); font-size: 12px; }
+  .credits ul { padding-left: 18px; margin: 6px 0; }
+  .credits a { text-decoration: underline; color: #e6cc72; }
+  .credits-close { float: right; border: 1px solid var(--line); border-radius: 50%; width: 30px; height: 30px; background: rgba(255,255,255,.06); cursor: pointer; }
+  .credits .sales-note { margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: rgba(255,255,255,.05); border: 1px solid var(--line); color: #d9e4f2; }
+
+  /* --- mobile virtual controls --- */
+  .mobile-controls { display: none; }
+  .mobile-controls.active { display: block; }
+  .touch-zone { position: absolute; inset: 0; z-index: 6; }
+  .touch-zone.left { left: 0; width: 50%; }
+  .touch-zone.right { left: 50%; width: 50%; }
+  .stick-base {
+    position: absolute; z-index: 8; left: 26px; bottom: max(26px, env(safe-area-inset-bottom));
+    width: 108px; height: 108px; border-radius: 50%; border: 1px solid var(--line); background: rgba(6,22,44,.55);
+    opacity: 0; transition: opacity .15s; pointer-events: none;
+  }
+  .stick-base.show { opacity: 1; }
+  .stick-knob {
+    position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px;
+    border-radius: 50%; background: rgba(201,162,39,.85); border: 1px solid rgba(255,255,255,.5);
+  }
+  .touch-hint { position: absolute; z-index: 9; right: 22px; top: 14px; color: rgba(255,255,255,.7); font-size: 10px; pointer-events: none; text-align: right; line-height: 1.6; }
+  .touch-hint-left { position: absolute; z-index: 9; left: 22px; bottom: 148px; color: rgba(255,255,255,.7); font-size: 10px; pointer-events: none; }
+
+  @media (max-width: 760px), (pointer: coarse) {
+    .topbar { height: 56px; }
+    #stage { inset: 56px 0 0; }
+    .title-wrap strong { font-size: 14px; }
+    .title-wrap span, .icon-btn span { display: none; }
+    .icon-btn { width: 36px; justify-content: center; padding: 0; }
+    .icon-btn.gold { width: auto; padding: 0 14px; }
+    .icon-btn.gold span { display: inline; }
+    .hud { top: 12px; left: 12px; max-width: 200px; padding: 10px 12px; }
+    .hud-consult { display: none; }
+    .key-row { display: none; }
+    .start-card { padding: 26px 22px; }
+  }
+  @media (max-height: 620px) {
+    .start-card { padding: 20px; }
+    .start-card > p { margin-bottom: 12px; }
+    .key-row { margin-bottom: 14px; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <a class="back-link" href="works.html" aria-label="作品一覧へ戻る">←</a>
+    <div class="title-wrap">
+      <strong>実写3D都市ウォークスルー</strong>
+      <span>3D GAUSSIAN SPLATTING DEMO</span>
+    </div>
+  </div>
+  <div class="top-actions">
+    <a class="icon-btn gold" href="index.html#contact"><span>無料相談</span></a>
+    <button class="icon-btn" id="creditBtn" type="button" aria-label="技術・データ情報を表示">ⓘ <span>技術・データ情報</span></button>
+  </div>
+</header>
+
+<main id="stage" aria-label="3D Gaussian Splattingビューア">
+  <div class="loading" id="loading">
+    <div class="loading-card">
+      <div class="loading-mark">◎</div>
+      <h1>都市データを読み込んでいます</h1>
+      <p>530万個のガウス点データを転送中です</p>
+      <div class="progress"><span id="progressBar"></span></div>
+      <span class="loading-percent" id="progressText">0%</span>
+    </div>
+  </div>
+
+  <div class="start-overlay" id="startOverlay">
+    <div class="start-card">
+      <div class="eyebrow">3D GAUSSIAN SPLATTING</div>
+      <h2>実写から生成した3D都市を、<br>ブラウザで歩く</h2>
+      <p>これはポリゴンではなく、写真から再構成した530万個の「ガウス点」の集まりです。ドイツ・キール市の広場（女神像・石畳・レンガの建物）が、写真そのままの質感でブラウザ上に再現されています。</p>
+      <div class="start-note">⚠ 約70MBのデータをこの後ダウンロードします。Wi-Fi環境でのご利用を推奨します。</div>
+      <div class="pitch-line">これは公開データを使った<b>技術デモ</b>です。同じ技術で、御社の<b>店舗・ショールーム・施工現場・工場</b>を「写真を撮るだけ」でそのままウェブ3D化できます。</div>
+      <div class="key-row" aria-hidden="true">
+        <div class="key-guide"><kbd>WASD</kbd><span>移動</span></div>
+        <div class="key-guide"><kbd>Drag</kbd><span>視点</span></div>
+        <div class="key-guide"><kbd>Shift</kbd><span>速歩</span></div>
+        <div class="key-guide"><kbd>Esc</kbd><span>解除</span></div>
+      </div>
+      <button class="start-btn" id="startBtn" type="button">3D都市を読み込む</button>
+    </div>
+  </div>
+
+  <div class="hud" id="hud">
+    <div class="hud-label">CONTROLS</div>
+    <div class="hud-guide">
+      <span><kbd>WASD</kbd>移動</span>
+      <span><kbd>Drag</kbd>視点</span>
+      <span><kbd>Shift</kbd>速歩</span>
+      <span><kbd>Esc</kbd>解除</span>
+    </div>
+    <a class="hud-consult" href="index.html#contact">→ 御社の現場も3D化する（無料相談）</a>
+  </div>
+
+  <div class="resume-hint" id="resumeHint">クリックして操作を再開</div>
+
+  <div class="crosshair" id="crosshair" aria-hidden="true"></div>
+
+  <div class="mobile-controls" id="mobileControls" aria-label="移動・視点操作">
+    <div class="touch-hint">右側をスワイプ<br>視点を回転</div>
+    <div class="touch-hint-left">左側をドラッグ<br>移動</div>
+    <div class="touch-zone left" id="touchLeft"></div>
+    <div class="touch-zone right" id="touchRight"></div>
+    <div class="stick-base" id="stickBase"><div class="stick-knob" id="stickKnob"></div></div>
+  </div>
+
+  <aside class="credits" id="credits" aria-label="技術・データ情報">
+    <button class="credits-close" id="creditClose" type="button" aria-label="閉じる">×</button>
+    <h2>技術・データ情報</h2>
+    <p>実写写真の集合から「3D Gaussian Splatting」という手法で再構成した3D空間です。ポリゴンメッシュを一切使わず、530万個の色つき点（ガウス分布）だけで、写真そのままの質感・反射・ディテールをブラウザ上に再現しています。</p>
+    <ul>
+      <li>3D表示エンジン：<a href="https://playcanvas.com/" target="_blank" rel="noopener">PlayCanvas Engine</a>（MIT License）</li>
+      <li>データ形式：SOG（Spatially Ordered Gaussians）／5,322,990スプラット</li>
+    </ul>
+    <h3>データクレジット</h3>
+    <p>
+      「Kiel - Kilia」 by simonbethke（<a href="https://superspl.at/scene/d788138d" target="_blank" rel="noopener">superspl.at</a>） /
+      <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY 4.0</a>
+    </p>
+    <p>このシーンはドイツ・キール市の都市の女神「Kilia」像がある広場を撮影・再構成した第三者制作の公開データです。CC-BY 4.0（著作者表示・商用利用可）のライセンス条件に従い、著作者クレジットを明示のうえ使用しています。</p>
+    <div class="sales-note">これは公開データを使った技術デモです。同じ撮影〜3D化のプロセスで、御社の店舗・ショールーム・施工現場・工場の実写3D化にも応用できます。特別な機材は不要で、スマートフォン撮影から始められます。</div>
+  </aside>
+</main>
+
+<script src="assets/vendor/playcanvas/playcanvas.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+   * 調整用定数（マネージャーがブラウザ実機で向き・範囲を確認して調整する）
+   * ============================================================ */
+  const SPLAT_URL = 'assets/works/splats/kiel-kilia/meta.json';
+  // SuperSplat由来のスプラットはY軸下向き規約のため180度反転させる。
+  // 向きが逆さまになる場合はここを調整する。
+  const SPLAT_ROTATION = { x: 180, y: 0, z: 0 };
+  // 目線の高さ（ワールドY座標）。石畳の地面 + 約1.6m を想定した仮値。要目視調整。
+  const CAMERA_Y = 0.85;
+  // 参考値：地面からの目線の高さ
+  const EYE_HEIGHT = 1.6;
+  // 移動可能範囲（ワールドXZ座標のクランプ）。
+  // meta.jsonのmeans範囲（回転反映後）: X[-6.1,6.2] / Z[-5.8,6.1] を目安に内側へ余裕を持たせた仮値。要目視調整。
+  const WALK_BOUNDS = { minX: -5.0, maxX: 5.0, minZ: -5.0, maxZ: 5.0 };
+  // 開始位置：広場の端から像（原点付近）を見る構図。要目視調整。
+  const START_POSITION = { x: 4, z: 4 };
+  // 開始時に向く注視点（像の位置想定）
+  const LOOK_TARGET = { x: 0, y: CAMERA_Y, z: 0 };
+  // 移動速度（m/秒）。Shiftで SPRINT_MULTIPLIER 倍。
+  const MOVE_SPEED = 2.0;
+  const SPRINT_MULTIPLIER = 2.2;
+  // 視点感度（1pxあたりの角度[度]）
+  const LOOK_SENSITIVITY = 0.11;
+  const TOUCH_LOOK_SENSITIVITY = 0.26;
+  const PITCH_LIMIT = 85; // 見上げ/見下ろしの角度制限
+  const FOV = 65;
+  const NEAR_CLIP = 0.02;
+  const FAR_CLIP = 40;
+  const SKY_COLOR = [0.58, 0.66, 0.74];
+
+  /* ============================================================
+   * DOM参照
+   * ============================================================ */
+  const stage = document.getElementById('stage');
+  const loading = document.getElementById('loading');
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
+  const startOverlay = document.getElementById('startOverlay');
+  const startBtn = document.getElementById('startBtn');
+  const hud = document.getElementById('hud');
+  const crosshair = document.getElementById('crosshair');
+  const resumeHint = document.getElementById('resumeHint');
+  const mobileControls = document.getElementById('mobileControls');
+  const touchLeft = document.getElementById('touchLeft');
+  const touchRight = document.getElementById('touchRight');
+  const stickBase = document.getElementById('stickBase');
+  const stickKnob = document.getElementById('stickKnob');
+  const credits = document.getElementById('credits');
+  const creditBtn = document.getElementById('creditBtn');
+  const creditClose = document.getElementById('creditClose');
+
+  const isTouch = matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+
+  const canvas = document.createElement('canvas');
+  canvas.id = 'glcanvas';
+  stage.prepend(canvas);
+
+  let app = null;
+  let player = null;
+  let cameraEntity = null;
+  let ready = false;
+  let started = false;
+  let pointerLocked = false;
+
+  let yaw = 0;
+  let pitch = 0;
+
+  const keys = new Set();
+  let sprint = false;
+
+  /* ============================================================
+   * ロード開始（ボタンを押すまでデータは一切ダウンロードしない）
+   * ============================================================ */
+  function beginLoad() {
+    if (started) return;
+    started = true;
+    startBtn.disabled = true;
+    startOverlay.classList.add('hidden');
+    loading.classList.add('active');
+
+    app = new pc.Application(canvas, { graphicsDeviceOptions: { antialias: false } });
+    app.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
+    app.setCanvasResolution(pc.RESOLUTION_AUTO);
+    app.scene.ambientLight = new pc.Color(0.3, 0.3, 0.3);
+    app.start();
+
+    // プレイヤー（水平回転=yaw）と子のカメラ（上下回転=pitch）を分離し、
+    // オイラー角合成の向きの不確実性を排除する。
+    player = new pc.Entity('player');
+    player.setLocalPosition(START_POSITION.x, CAMERA_Y, START_POSITION.z);
+    app.root.addChild(player);
+
+    cameraEntity = new pc.Entity('camera');
+    cameraEntity.addComponent('camera', {
+      fov: FOV,
+      nearClip: NEAR_CLIP,
+      farClip: FAR_CLIP,
+      clearColor: new pc.Color(SKY_COLOR[0], SKY_COLOR[1], SKY_COLOR[2])
+    });
+    player.addChild(cameraEntity);
+
+    // 初期の注視方向を決める：一度だけlookAtし、結果のyawだけを取り出す。
+    player.lookAt(LOOK_TARGET.x, LOOK_TARGET.y, LOOK_TARGET.z);
+    yaw = player.getEulerAngles().y;
+    pitch = 0;
+    player.setLocalEulerAngles(0, yaw, 0);
+    cameraEntity.setLocalEulerAngles(0, 0, 0);
+
+    const asset = new pc.Asset('kiel-kilia', 'gsplat', { url: SPLAT_URL });
+    asset.on('load', () => {
+      const splatEntity = new pc.Entity('splat');
+      splatEntity.addComponent('gsplat', { asset });
+      splatEntity.setLocalEulerAngles(SPLAT_ROTATION.x, SPLAT_ROTATION.y, SPLAT_ROTATION.z);
+      app.root.addChild(splatEntity);
+
+      ready = true;
+      progressBar.style.width = '100%';
+      progressText.textContent = '100%';
+      setTimeout(onLoadComplete, 250);
+    });
+    asset.on('progress', (received, total) => {
+      if (!total) return;
+      const percent = Math.min(99, Math.round((received / total) * 100));
+      progressBar.style.width = percent + '%';
+      progressText.textContent = percent + '%';
+    });
+    asset.on('error', (err) => {
+      console.error('Splat load failed', err);
+      progressText.textContent = '読み込みに失敗しました。ページを再読み込みしてください。';
+      progressText.style.color = '#ff9d8d';
+    });
+    app.assets.add(asset);
+    app.assets.load(asset);
+
+    app.on('update', onUpdate);
+    window.addEventListener('resize', onResize);
+  }
+  startBtn.addEventListener('click', beginLoad);
+
+  function onLoadComplete() {
+    loading.classList.remove('active');
+    hud.classList.add('active');
+    if (isTouch) {
+      mobileControls.classList.add('active');
+    } else {
+      crosshair.classList.add('active');
+      canvas.style.cursor = 'grab';
+    }
+  }
+
+  function onResize() {
+    if (app && app.resizeCanvas) app.resizeCanvas();
+  }
+
+  /* ============================================================
+   * 移動・視点の更新ループ
+   * ============================================================ */
+  function onUpdate(dt) {
+    if (!ready) return;
+
+    player.setLocalEulerAngles(0, yaw, 0);
+    cameraEntity.setLocalEulerAngles(pitch, 0, 0);
+
+    let moveForward = 0;
+    let moveRight = 0;
+    if (keys.has('KeyW') || keys.has('ArrowUp')) moveForward += 1;
+    if (keys.has('KeyS') || keys.has('ArrowDown')) moveForward -= 1;
+    if (keys.has('KeyD') || keys.has('ArrowRight')) moveRight += 1;
+    if (keys.has('KeyA') || keys.has('ArrowLeft')) moveRight -= 1;
+    moveForward += stickVector.y;
+    moveRight += stickVector.x;
+
+    if (moveForward !== 0 || moveRight !== 0) {
+      const forward = player.forward.clone();
+      forward.y = 0;
+      if (forward.length() > 0) forward.normalize();
+      const right = player.right.clone();
+      right.y = 0;
+      if (right.length() > 0) right.normalize();
+
+      const delta = new pc.Vec3();
+      delta.add(forward.mulScalar(moveForward));
+      delta.add(right.mulScalar(moveRight));
+      if (delta.length() > 1) delta.normalize();
+
+      const speed = MOVE_SPEED * (sprint ? SPRINT_MULTIPLIER : 1) * dt;
+      delta.mulScalar(speed);
+
+      const pos = player.getLocalPosition();
+      const nx = pc.math.clamp(pos.x + delta.x, WALK_BOUNDS.minX, WALK_BOUNDS.maxX);
+      const nz = pc.math.clamp(pos.z + delta.z, WALK_BOUNDS.minZ, WALK_BOUNDS.maxZ);
+      player.setLocalPosition(nx, CAMERA_Y, nz);
+    }
+  }
+
+  /* ============================================================
+   * デスクトップ操作：クリックでPointer Lock、WASD＋Shift、Esc解除
+   * ============================================================ */
+  canvas.addEventListener('click', () => {
+    if (!ready || isTouch) return;
+    if (document.pointerLockElement !== canvas) {
+      canvas.requestPointerLock();
+    }
+  });
+
+  document.addEventListener('pointerlockchange', () => {
+    pointerLocked = document.pointerLockElement === canvas;
+    if (pointerLocked) {
+      canvas.style.cursor = 'none';
+      resumeHint.classList.remove('active');
+    } else {
+      canvas.style.cursor = 'grab';
+      keys.clear();
+      if (ready && !isTouch) resumeHint.classList.add('active');
+    }
+  });
+
+  document.addEventListener('mousemove', (event) => {
+    if (!pointerLocked) return;
+    yaw -= event.movementX * LOOK_SENSITIVITY;
+    pitch -= event.movementY * LOOK_SENSITIVITY;
+    pitch = pc.math.clamp(pitch, -PITCH_LIMIT, PITCH_LIMIT);
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.code === 'Escape') {
+      if (document.pointerLockElement === canvas) document.exitPointerLock();
+      return;
+    }
+    if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') sprint = true;
+    if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.code)) {
+      keys.add(event.code);
+      event.preventDefault();
+    }
+  });
+  window.addEventListener('keyup', (event) => {
+    if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') sprint = false;
+    keys.delete(event.code);
+  });
+  window.addEventListener('blur', () => { keys.clear(); sprint = false; });
+
+  /* ============================================================
+   * モバイル操作：左半分ドラッグ＝移動スティック、右半分スワイプ＝視点
+   * ============================================================ */
+  const stickVector = { x: 0, y: 0 };
+  const STICK_RADIUS = 54;
+  let stickPointerId = null;
+  let stickOrigin = { x: 0, y: 0 };
+
+  touchLeft.addEventListener('pointerdown', (event) => {
+    if (!ready) return;
+    stickPointerId = event.pointerId;
+    const rect = stickBase.getBoundingClientRect();
+    stickOrigin = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+    stickBase.classList.add('show');
+    touchLeft.setPointerCapture(stickPointerId);
+    event.preventDefault();
+  });
+  touchLeft.addEventListener('pointermove', (event) => {
+    if (event.pointerId !== stickPointerId) return;
+    let dx = event.clientX - stickOrigin.x;
+    let dy = event.clientY - stickOrigin.y;
+    const dist = Math.min(STICK_RADIUS, Math.sqrt(dx * dx + dy * dy));
+    const angle = Math.atan2(dy, dx);
+    dx = Math.cos(angle) * dist;
+    dy = Math.sin(angle) * dist;
+    stickKnob.style.transform = `translate(${dx}px, ${dy}px)`;
+    stickVector.x = dx / STICK_RADIUS;
+    stickVector.y = -dy / STICK_RADIUS;
+    event.preventDefault();
+  });
+  function releaseStick(event) {
+    if (event.pointerId !== stickPointerId) return;
+    stickPointerId = null;
+    stickVector.x = 0;
+    stickVector.y = 0;
+    stickKnob.style.transform = 'translate(0, 0)';
+    stickBase.classList.remove('show');
+  }
+  touchLeft.addEventListener('pointerup', releaseStick);
+  touchLeft.addEventListener('pointercancel', releaseStick);
+  touchLeft.addEventListener('pointerleave', releaseStick);
+
+  let lookPointerId = null;
+  let lastLook = null;
+  touchRight.addEventListener('pointerdown', (event) => {
+    if (!ready) return;
+    lookPointerId = event.pointerId;
+    lastLook = { x: event.clientX, y: event.clientY };
+    touchRight.setPointerCapture(lookPointerId);
+    event.preventDefault();
+  });
+  touchRight.addEventListener('pointermove', (event) => {
+    if (event.pointerId !== lookPointerId || !lastLook) return;
+    const dx = event.clientX - lastLook.x;
+    const dy = event.clientY - lastLook.y;
+    yaw -= dx * TOUCH_LOOK_SENSITIVITY;
+    pitch -= dy * TOUCH_LOOK_SENSITIVITY;
+    pitch = pc.math.clamp(pitch, -PITCH_LIMIT, PITCH_LIMIT);
+    lastLook = { x: event.clientX, y: event.clientY };
+    event.preventDefault();
+  });
+  function releaseLook(event) {
+    if (event.pointerId !== lookPointerId) return;
+    lookPointerId = null;
+    lastLook = null;
+  }
+  touchRight.addEventListener('pointerup', releaseLook);
+  touchRight.addEventListener('pointercancel', releaseLook);
+  touchRight.addEventListener('pointerleave', releaseLook);
+
+  /* ============================================================
+   * 技術・データ情報モーダル
+   * ============================================================ */
+  creditBtn.addEventListener('click', () => credits.classList.add('open'));
+  creditClose.addEventListener('click', () => credits.classList.remove('open'));
+})();
+</script>
+</body>
+</html>
