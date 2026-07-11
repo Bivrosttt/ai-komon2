@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>外壁カラーシミュレーター（塗装会社向け営業デモ）｜AI顧問室</title>
+<meta name="description" content="同じ家・同じアングルの外壁写真が9色をクリックで即切替。塗料グレード別の概算価格、現状と比べる分割スライダーも搭載した、施主との色決め商談を支援する営業デモです。1枚の基準写真からAIが9枚の色違い写真を生成しました。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="外壁カラーシミュレーター（塗装会社向け営業デモ）｜AI顧問室">
+<meta property="og:description" content="同じ家の外壁写真が9色をクリックで即切替。塗料グレード別の概算価格、現状と比べる比較スライダーも搭載した色決め商談デモです。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-paint.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/works/paint/navy.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://rakansens.github.io/ai-komon2/works-paint.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.8; background: var(--bg-soft); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+  .btn { display: inline-block; padding: 12px 26px; border-radius: 4px; font-weight: 700; font-size: 14px; transition: opacity .2s, transform .1s; }
+  .btn:hover { opacity: .86; }
+  .btn:active { transform: scale(.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+
+  /* ---------- header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 14px; }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .back-link {
+    display: grid; place-items: center; flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--line); color: var(--navy); font-size: 16px; transition: background .2s, border-color .2s;
+  }
+  .back-link:hover { background: var(--bg-soft); border-color: var(--navy); }
+  .title-wrap { min-width: 0; }
+  .title-wrap strong { display: block; font-family: 'Noto Serif JP', serif; font-size: 15.5px; color: var(--navy); letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .title-wrap span { display: block; font-size: 9.5px; letter-spacing: .1em; color: var(--gray); white-space: nowrap; }
+  .header-cta { flex: 0 0 auto; padding: 9px 20px; font-size: 13px; }
+
+  /* ---------- page intro ---------- */
+  .intro { padding: 34px 0 22px; }
+  .intro .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 10px; }
+  .intro h1 { font-size: clamp(22px, 4vw, 30px); color: var(--navy); margin-bottom: 10px; }
+  .intro p { max-width: 640px; font-size: 13.5px; color: var(--gray); }
+
+  /* ---------- simulator layout ---------- */
+  .simulator { padding-bottom: 20px; }
+  .sim-grid { display: grid; grid-template-columns: 1fr 380px; gap: 26px; align-items: start; }
+
+  .stage-col {}
+  .stage-card { background: var(--white); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 14px 40px rgba(11,36,71,.08); }
+
+  .stage-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 18px; border-bottom: 1px solid var(--line); }
+  .stage-mode-label { font-size: 11.5px; font-weight: 700; color: var(--gray); letter-spacing: .04em; }
+  .compare-toggle { display: flex; align-items: center; gap: 8px; padding: 6px 4px; min-height: 44px; }
+  .toggle-track { position: relative; width: 38px; height: 21px; border-radius: 999px; background: var(--line); transition: background .2s; flex: 0 0 auto; }
+  .toggle-thumb { position: absolute; top: 2px; left: 2px; width: 17px; height: 17px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3); transition: transform .2s; }
+  .compare-toggle[aria-pressed="true"] .toggle-track { background: var(--gold); }
+  .compare-toggle[aria-pressed="true"] .toggle-thumb { transform: translateX(17px); }
+  .toggle-label { font-size: 12.5px; font-weight: 700; color: var(--navy); white-space: nowrap; }
+
+  .stage-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #E6ECF2; overflow: hidden; }
+  .stage-wrap img.stage-layer {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; transition: opacity .3s ease;
+  }
+  .stage-wrap img.stage-layer.front { opacity: 1; }
+  .stage-badge {
+    position: absolute; top: 14px; left: 14px; z-index: 5;
+    padding: 5px 12px; border-radius: 999px; background: rgba(7,26,53,.72); color: #fff;
+    font-size: 10.5px; font-weight: 700; letter-spacing: .06em; backdrop-filter: blur(4px);
+  }
+  .stage-spinner {
+    position: absolute; inset: 0; z-index: 6; display: grid; place-items: center;
+    background: rgba(244,247,250,.72); opacity: 0; visibility: hidden; transition: opacity .18s, visibility .18s;
+  }
+  .stage-spinner.active { opacity: 1; visibility: visible; }
+  .spinner-ring { width: 40px; height: 40px; border-radius: 50%; border: 3px solid rgba(11,36,71,.15); border-top-color: var(--gold); animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- compare (before/after) mode ---------- */
+  .compare-stage {
+    position: absolute; inset: 0; z-index: 2; display: none;
+    cursor: ew-resize; touch-action: none; user-select: none;
+  }
+  .stage-wrap.compare-mode .compare-stage { display: block; }
+  .stage-wrap.compare-mode .stage-layer { display: none; }
+  .stage-wrap.compare-mode .stage-badge { display: none; }
+
+  .compare-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+  .compare-after { z-index: 1; }
+  .compare-before { z-index: 2; clip-path: inset(0 50% 0 0); }
+
+  .compare-handle { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+  .compare-handle .handle-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--white); transform: translateX(-50%); box-shadow: 0 0 8px rgba(0,0,0,.35); }
+  .compare-handle .handle-knob {
+    position: relative; width: 48px; height: 48px; border-radius: 50%; background: var(--white);
+    border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; gap: 3px;
+    box-shadow: 0 4px 14px rgba(11,36,71,.35); font-size: 11px; color: var(--navy); font-weight: 700;
+  }
+  .compare-label {
+    position: absolute; bottom: 14px; font-size: 11.5px; font-weight: 700; color: #fff;
+    background: rgba(7,26,53,.72); padding: 5px 13px; border-radius: 999px; letter-spacing: .03em;
+    z-index: 4; pointer-events: none;
+  }
+  .label-before { left: 14px; }
+  .label-after { right: 14px; }
+
+  .price-bar { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 18px 22px; border-top: 1px solid var(--line); }
+  .price-bar .price-label { font-size: 11.5px; font-weight: 700; letter-spacing: .1em; color: var(--gray); }
+  .price-bar .price-main { font-size: clamp(24px, 4vw, 32px); font-weight: 700; color: var(--navy); font-family: 'Noto Serif JP', serif; }
+  .price-bar .price-main span#priceValue { color: var(--gold); }
+  .price-bar .price-sub { font-size: 12.5px; color: var(--gray); font-weight: 400; }
+  .price-bar .price-selection { flex: 1 1 100%; font-size: 12px; color: var(--gray); }
+  .price-bar .price-note { flex: 1 1 100%; font-size: 11px; color: var(--gray); padding-top: 4px; border-top: 1px dashed var(--line); margin-top: 2px; }
+
+  .disclaimer-bar {
+    display: flex; gap: 8px; align-items: flex-start; margin-top: 14px; padding: 12px 16px;
+    background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 6px;
+    font-size: 11.5px; color: var(--gray); line-height: 1.7;
+  }
+  .disclaimer-bar b { color: var(--navy); }
+
+  /* ---------- panel ---------- */
+  .panel-col { position: sticky; top: 84px; }
+  .panel-card { background: var(--white); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 14px 40px rgba(11,36,71,.06); }
+  .panel-body { padding: 20px; }
+
+  .swatch-group h4, .grade-group h4 { font-size: 12px; font-weight: 700; color: var(--navy); letter-spacing: .04em; margin-bottom: 10px; }
+  .swatch-group { margin-bottom: 22px; }
+  .swatch-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .swatch {
+    display: flex; flex-direction: column; align-items: center; gap: 5px; width: 72px;
+    padding: 8px 4px 9px; border-radius: 10px; border: 1px solid transparent; transition: background .2s, border-color .2s;
+    min-height: 44px;
+  }
+  .swatch:hover { background: var(--bg-soft); }
+  .swatch.active { border-color: var(--gold); background: rgba(201,162,39,.08); }
+  .swatch-dot {
+    width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(11,36,71,.14);
+    box-shadow: inset 0 -3px 6px rgba(0,0,0,.12), inset 0 2px 3px rgba(255,255,255,.35);
+  }
+  .swatch.active .swatch-dot { box-shadow: 0 0 0 3px rgba(201,162,39,.35), inset 0 -3px 6px rgba(0,0,0,.12); }
+  .swatch-name { font-size: 10.5px; color: var(--ink); text-align: center; line-height: 1.3; }
+  .swatch-tag { font-size: 9.5px; font-weight: 700; color: var(--gold); visibility: hidden; }
+  .swatch-tag.show { visibility: visible; }
+
+  .grade-group { margin-bottom: 4px; }
+  .grade-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .grade-btn {
+    flex: 1 1 auto; min-width: 92px; padding: 11px 10px; text-align: center;
+    border: 1px solid var(--line); border-radius: 10px; transition: border-color .2s, background .2s;
+    min-height: 44px;
+  }
+  .grade-btn:hover { background: var(--bg-soft); }
+  .grade-btn.active { border-color: var(--gold); background: rgba(201,162,39,.08); }
+  .grade-btn .grade-name { font-size: 12.5px; font-weight: 700; color: var(--navy); }
+  .grade-btn .grade-price { font-size: 10.5px; color: var(--blue); font-weight: 700; margin-top: 3px; }
+  .grade-btn.active .grade-price { color: var(--gold); }
+  .grade-note { margin-top: 10px; font-size: 10.5px; color: var(--gray); }
+
+  .panel-hint { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 11px; color: var(--gray); }
+
+  /* ---------- reveal section ---------- */
+  .reveal { padding: 60px 0; background: linear-gradient(135deg, var(--navy-deep), var(--navy) 65%, var(--navy-light)); color: #fff; margin-top: 10px; }
+  .reveal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .reveal .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 12px; }
+  .reveal h2 { font-size: clamp(22px, 3.6vw, 28px); margin-bottom: 16px; }
+  .reveal h2 em { font-style: normal; color: var(--gold); }
+  .reveal p { color: #C7D3E4; font-size: 13.5px; margin-bottom: 14px; }
+  .reveal .btn-gold { margin-top: 6px; padding: 14px 30px; font-size: 14.5px; }
+  .reveal-diagram {
+    display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+    padding: 22px; border: 1px solid rgba(255,255,255,.18); border-radius: 14px; background: rgba(255,255,255,.05);
+  }
+  .rd-step { text-align: center; font-size: 11.5px; color: #DCE6F5; max-width: 96px; }
+  .rd-step .rd-box { width: 78px; height: 58px; border-radius: 8px; margin: 0 auto 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); display: grid; place-items: center; font-size: 20px; }
+  .rd-arrow { color: var(--gold); font-size: 18px; }
+
+  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 12.5px; padding: 26px 0; text-align: center; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 900px) {
+    .sim-grid { grid-template-columns: 1fr; }
+    .panel-col { position: static; }
+    .reveal-grid { grid-template-columns: 1fr; }
+    .reveal-diagram { order: -1; }
+  }
+  @media (max-width: 480px) {
+    .header-inner { height: 58px; }
+    .title-wrap span { display: none; }
+    .header-cta { padding: 8px 14px; font-size: 12px; }
+    .stage-toolbar { padding: 10px 14px; }
+    .toggle-label { font-size: 11.5px; }
+    .price-bar { padding: 14px 16px; }
+    .panel-body { padding: 16px; }
+    .swatch { width: 30%; min-width: 68px; }
+    .grade-btn { min-width: 86px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="brand">
+      <a class="back-link" href="works.html" aria-label="作品一覧へ戻る">←</a>
+      <div class="title-wrap">
+        <strong>外壁カラーシミュレーター</strong>
+        <span>PHOTO-REALISTIC AI COLOR SIMULATOR</span>
+      </div>
+    </div>
+    <a class="btn btn-gold header-cta" href="index.html#contact">無料相談</a>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="container">
+    <span class="eyebrow">商品シミュレーター（AI写真生成）｜塗装会社向け</span>
+    <h1>外壁の色を、本物そっくりの写真でその場決め。</h1>
+    <p>3DCGの着色ではなく、AIが生成した「本物の写真にしか見えない」画像をクリックで即切替。施主宅の玄関先で「うちはどの色にしよう」をその場で決められる、色決め商談を想定したデモです。</p>
+  </div>
+</section>
+
+<section class="simulator">
+  <div class="container">
+    <div class="sim-grid">
+
+      <div class="stage-col">
+        <div class="stage-card">
+          <div class="stage-toolbar">
+            <span class="stage-mode-label" id="stageModeLabel">写真プレビュー</span>
+            <button class="compare-toggle" id="compareToggle" type="button" aria-pressed="false">
+              <span class="toggle-track" aria-hidden="true"><span class="toggle-thumb"></span></span>
+              <span class="toggle-label">現状と比べる</span>
+            </button>
+          </div>
+
+          <div class="stage-wrap" id="stageWrap">
+            <span class="stage-badge" id="stageBadge">現状（アイボリー）</span>
+
+            <img class="stage-layer front" id="stageImgA" src="assets/works/paint/ivory.jpg" alt="外壁写真：アイボリー（現状）" width="1280" height="720">
+            <img class="stage-layer" id="stageImgB" src="" alt="">
+
+            <div class="compare-stage" id="compareStage" role="slider" tabindex="0" aria-label="現状と選択色の比較スライダー" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <img class="compare-img compare-after" id="compareAfterImg" src="assets/works/paint/ivory.jpg" alt="外壁写真：選択色">
+              <img class="compare-img compare-before" id="compareBeforeImg" src="assets/works/paint/ivory.jpg" alt="外壁写真：アイボリー（現状）">
+              <div class="compare-label label-before">現状</div>
+              <div class="compare-label label-after" id="compareAfterLabel">現状</div>
+              <div class="compare-handle" id="compareHandle" aria-hidden="true">
+                <span class="handle-line"></span>
+                <span class="handle-knob">◀▶</span>
+              </div>
+            </div>
+
+            <div class="stage-spinner" id="stageSpinner" aria-hidden="true"><div class="spinner-ring"></div></div>
+          </div>
+
+          <div class="price-bar">
+            <div>
+              <div class="price-label">概算</div>
+              <div class="price-main"><span id="priceValue">88</span>万円〜 <span class="price-sub">（30坪想定・税別）</span></div>
+            </div>
+            <div class="price-selection" id="priceSelection">外壁色：アイボリー（現状）／塗料：シリコン</div>
+            <div class="price-note">※塗料グレードで概算は変わりますが、外壁色そのものでは価格は変わりません。足場・高圧洗浄込みの概算です。</div>
+          </div>
+        </div>
+
+        <div class="disclaimer-bar">
+          <span>⚠</span>
+          <span><b>価格・建物はすべて架空のサンプルです。</b>画像はAI生成イメージです。実際の色味は現地の光条件・素材で変わるため、<b>最終決定は実物色見本をご使用ください。</b></span>
+        </div>
+      </div>
+
+      <div class="panel-col">
+        <div class="panel-card">
+          <div class="panel-body">
+            <div class="swatch-group">
+              <h4>外壁色を選ぶ（9色）</h4>
+              <div class="swatch-row" id="colorSwatches"></div>
+            </div>
+
+            <div class="grade-group">
+              <h4>塗料グレードを選ぶ（価格に反映）</h4>
+              <div class="grade-row" id="gradeRow"></div>
+              <div class="grade-note">シリコン・フッ素・無機の順で耐久性が上がり、価格も上がります。</div>
+            </div>
+
+            <div class="panel-hint">色をクリックすると写真が切り替わります。「現状と比べる」をONにすると、中央のハンドルをドラッグ（スマホは指でスライド）して現状色との境界を動かせます。</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="container">
+    <div class="reveal-grid">
+      <div>
+        <span class="eyebrow">種明かし</span>
+        <h2><em>9枚とも</em>、実在しない家です。</h2>
+        <p>撮影したのは、たった1枚の基準写真だけです。そこから「外壁の色だけ」を差し替えるAI画像編集で、同じ家・同じアングル・同じ光の当たり方のまま、9枚の色違い写真を生成しました。</p>
+        <p>御社なら、施主宅の実際の写真からこれと同じものが数時間で作れます。色見本帳を見せて「イメージが湧かないので持ち帰って検討します」となっていた商談を、その場での色決め・クロージング短縮につなげられます。</p>
+        <a class="btn btn-gold" href="index.html#contact">御社の施工写真でも作れるか相談する</a>
+      </div>
+      <div class="reveal-diagram" aria-hidden="true">
+        <div class="rd-step"><div class="rd-box">📷</div>基準写真 1枚</div>
+        <div class="rd-arrow">→</div>
+        <div class="rd-step"><div class="rd-box">🎨</div>AI画像編集で外壁色だけ差替</div>
+        <div class="rd-arrow">→</div>
+        <div class="rd-step"><div class="rd-box">🖼️</div>色違い写真 9枚</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+   * 調整用定数（色リスト・価格表はここを編集すれば反映される）
+   * ============================================================ */
+  const PAINT_DIR = 'assets/works/paint/';
+  const CURRENT_KEY = 'ivory'; // 「現状」として扱う色（比較モードの左側に固定表示）
+
+  const COLORS = [
+    { key: 'ivory',     label: 'アイボリー',   full: 'アイボリー（現状）', hex: '#E7DEC8', current: true },
+    { key: 'white',     label: 'ピュアホワイト', full: 'ピュアホワイト',   hex: '#F5F4EF' },
+    { key: 'beige',     label: 'サンドベージュ', full: 'サンドベージュ',   hex: '#D9C4A0' },
+    { key: 'lightgray', label: 'ライトグレー',   full: 'ライトグレー',     hex: '#B7BCC0' },
+    { key: 'charcoal',  label: 'チャコール',     full: 'チャコール',       hex: '#3A3B3D' },
+    { key: 'navy',      label: 'ネイビー',       full: 'ネイビー',         hex: '#1F3350' },
+    { key: 'moss',      label: 'モスグリーン',   full: 'モスグリーン',     hex: '#5C6B47' },
+    { key: 'brown',     label: 'モカブラウン',   full: 'モカブラウン',     hex: '#6B4A34' },
+    { key: 'twotone',   label: 'ツートン',       full: 'ツートン（1階チャコール×2階ホワイト）', hex: 'linear-gradient(135deg, #3A3B3D 50%, #F5F4EF 50%)' }
+  ];
+
+  const GRADES = [
+    { key: 'silicon',   label: 'シリコン', price: 88,  priceLabel: '88万円〜' },
+    { key: 'fluorine',  label: 'フッ素',   price: 118, priceLabel: '118万円〜' },
+    { key: 'inorganic', label: '無機',     price: 145, priceLabel: '145万円〜' }
+  ];
+
+  /* ============================================================
+   * DOM参照
+   * ============================================================ */
+  const stageWrap = document.getElementById('stageWrap');
+  const stageImgA = document.getElementById('stageImgA');
+  const stageImgB = document.getElementById('stageImgB');
+  const stageBadge = document.getElementById('stageBadge');
+  const stageSpinner = document.getElementById('stageSpinner');
+  const compareToggle = document.getElementById('compareToggle');
+  const compareStage = document.getElementById('compareStage');
+  const compareHandle = document.getElementById('compareHandle');
+  const compareAfterImg = document.getElementById('compareAfterImg');
+  const compareBeforeImg = document.getElementById('compareBeforeImg');
+  const compareAfterLabel = document.getElementById('compareAfterLabel');
+  const priceValue = document.getElementById('priceValue');
+  const priceSelection = document.getElementById('priceSelection');
+  const colorSwatchWrap = document.getElementById('colorSwatches');
+  const gradeRowWrap = document.getElementById('gradeRow');
+
+  let currentColor = CURRENT_KEY;
+  let currentGrade = 'silicon';
+  let compareMode = false;
+  let displayedPrice = GRADES[0].price;
+  let priceAnimId = null;
+  let sliderPos = 50;
+  let dragging = false;
+
+  let frontLayer = stageImgA;
+  let backLayer = stageImgB;
+
+  const loaded = new Set(['ivory.jpg']);
+
+  function findColor(key) { return COLORS.find(function (c) { return c.key === key; }); }
+  function findGrade(key) { return GRADES.find(function (g) { return g.key === key; }); }
+
+  /* ============================================================
+   * スウォッチ／グレードボタンの生成
+   * ============================================================ */
+  function buildSwatches() {
+    COLORS.forEach(function (c) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'swatch color-swatch';
+      btn.dataset.key = c.key;
+      btn.title = c.full;
+      btn.setAttribute('aria-pressed', c.key === currentColor ? 'true' : 'false');
+      btn.innerHTML =
+        '<span class="swatch-dot" style="background:' + c.hex + '"></span>' +
+        '<span class="swatch-name">' + c.label + '</span>' +
+        '<span class="swatch-tag' + (c.current ? ' show' : '') + '">現状</span>';
+      btn.addEventListener('click', function () { selectColor(c.key); });
+      colorSwatchWrap.appendChild(btn);
+    });
+
+    GRADES.forEach(function (g) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'grade-btn';
+      btn.dataset.key = g.key;
+      btn.setAttribute('aria-pressed', g.key === currentGrade ? 'true' : 'false');
+      btn.innerHTML =
+        '<div class="grade-name">' + g.label + '</div>' +
+        '<div class="grade-price">概算 ' + g.priceLabel + '</div>';
+      btn.addEventListener('click', function () { selectGrade(g.key); });
+      gradeRowWrap.appendChild(btn);
+    });
+  }
+
+  function updateSwatchActive() {
+    colorSwatchWrap.querySelectorAll('.swatch').forEach(function (el) {
+      const active = el.dataset.key === currentColor;
+      el.classList.toggle('active', active);
+      el.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  function updateGradeActive() {
+    gradeRowWrap.querySelectorAll('.grade-btn').forEach(function (el) {
+      const active = el.dataset.key === currentGrade;
+      el.classList.toggle('active', active);
+      el.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  /* ============================================================
+   * 選択ロジック
+   * ============================================================ */
+  function selectColor(key) {
+    currentColor = key;
+    updateSwatchActive();
+    updateStageBadge();
+    updatePriceSelectionText();
+
+    if (compareMode) {
+      setCompareAfter(key);
+    } else {
+      const color = findColor(key);
+      setStageImage(key + '.jpg', '外壁写真：' + color.full);
+    }
+  }
+
+  function selectGrade(key) {
+    currentGrade = key;
+    updateGradeActive();
+    const grade = findGrade(key);
+    animatePrice(grade.price);
+    updatePriceSelectionText();
+  }
+
+  function updatePriceSelectionText() {
+    const color = findColor(currentColor);
+    const grade = findGrade(currentGrade);
+    priceSelection.textContent = '外壁色：' + color.full + '／塗料：' + grade.label;
+  }
+
+  function updateStageBadge() {
+    const color = findColor(currentColor);
+    stageBadge.textContent = color.current ? '現状（' + color.label + '）' : 'AI生成イメージ｜' + color.label;
+  }
+
+  /* ============================================================
+   * ステージ写真のクロスフェード切替（通常モード）
+   * ============================================================ */
+  function setStageImage(filename, altText) {
+    const src = PAINT_DIR + filename;
+    if (loaded.has(filename)) {
+      crossfadeTo(src, altText);
+      return;
+    }
+    showSpinner();
+    const preloadImg = new Image();
+    preloadImg.onload = function () {
+      loaded.add(filename);
+      hideSpinner();
+      crossfadeTo(src, altText);
+    };
+    preloadImg.onerror = function () {
+      hideSpinner();
+    };
+    preloadImg.src = src;
+  }
+
+  function crossfadeTo(src, altText) {
+    backLayer.src = src;
+    backLayer.alt = altText || '';
+    requestAnimationFrame(function () {
+      frontLayer.classList.remove('front');
+      backLayer.classList.add('front');
+      const tmp = frontLayer;
+      frontLayer = backLayer;
+      backLayer = tmp;
+    });
+  }
+
+  function showSpinner() { stageSpinner.classList.add('active'); }
+  function hideSpinner() { stageSpinner.classList.remove('active'); }
+
+  /* ============================================================
+   * 比較（現状と比べる）モード
+   * ============================================================ */
+  function setCompareAfter(key) {
+    const color = findColor(key);
+    compareAfterImg.src = PAINT_DIR + key + '.jpg';
+    compareAfterImg.alt = '外壁写真：' + color.full;
+    compareAfterLabel.textContent = color.current ? '現状' : color.label;
+  }
+
+  function setCompareMode(on) {
+    compareMode = on;
+    compareToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+    stageWrap.classList.toggle('compare-mode', on);
+    if (on) {
+      const currentColorData = findColor(CURRENT_KEY);
+      compareBeforeImg.src = PAINT_DIR + CURRENT_KEY + '.jpg';
+      compareBeforeImg.alt = '外壁写真：' + currentColorData.full;
+      setCompareAfter(currentColor);
+      updateSliderPos(50);
+      stageModeLabel().textContent = '比較スライダー';
+    } else {
+      stageModeLabel().textContent = '写真プレビュー';
+    }
+    updateStageBadge();
+  }
+
+  function stageModeLabel() { return document.getElementById('stageModeLabel'); }
+
+  compareToggle.addEventListener('click', function () {
+    setCompareMode(!compareMode);
+  });
+
+  /* ---- 分割スライダーのドラッグ操作（マウス／タッチ共通：Pointer Events） ---- */
+  function updateSliderPos(pct) {
+    sliderPos = Math.max(0, Math.min(100, pct));
+    compareBeforeImg.style.clipPath = 'inset(0 ' + (100 - sliderPos) + '% 0 0)';
+    compareHandle.style.left = sliderPos + '%';
+    compareStage.setAttribute('aria-valuenow', Math.round(sliderPos));
+  }
+
+  function setSliderFromClientX(clientX) {
+    const rect = compareStage.getBoundingClientRect();
+    const x = clientX - rect.left;
+    updateSliderPos((x / rect.width) * 100);
+  }
+
+  compareStage.addEventListener('pointerdown', function (e) {
+    dragging = true;
+    try { compareStage.setPointerCapture(e.pointerId); } catch (err) { /* noop */ }
+    setSliderFromClientX(e.clientX);
+  });
+  compareStage.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    setSliderFromClientX(e.clientX);
+  });
+  compareStage.addEventListener('pointerup', function () { dragging = false; });
+  compareStage.addEventListener('pointercancel', function () { dragging = false; });
+  compareStage.addEventListener('lostpointercapture', function () { dragging = false; });
+
+  compareStage.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { updateSliderPos(sliderPos - 5); e.preventDefault(); e.stopPropagation(); }
+    if (e.key === 'ArrowRight') { updateSliderPos(sliderPos + 5); e.preventDefault(); e.stopPropagation(); }
+  });
+
+  /* ============================================================
+   * 価格カウントアップ演出（約0.4秒）
+   * ============================================================ */
+  function animatePrice(target) {
+    if (priceAnimId) cancelAnimationFrame(priceAnimId);
+    const start = displayedPrice;
+    const startTime = performance.now();
+    const duration = 400;
+    function step(now) {
+      const t = Math.min(1, (now - startTime) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.round(start + (target - start) * eased);
+      priceValue.textContent = val;
+      if (t < 1) {
+        priceAnimId = requestAnimationFrame(step);
+      } else {
+        priceValue.textContent = target;
+        displayedPrice = target;
+        priceAnimId = null;
+      }
+    }
+    priceAnimId = requestAnimationFrame(step);
+  }
+
+  /* ============================================================
+   * キーボード操作：←→で外壁色を送る（比較スライダーにフォーカス中は除く）
+   * ============================================================ */
+  window.addEventListener('keydown', function (event) {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    if (document.activeElement === compareStage) return; // スライダー操作を優先
+    const idx = COLORS.findIndex(function (c) { return c.key === currentColor; });
+    const dir = event.key === 'ArrowRight' ? 1 : -1;
+    const next = (idx + dir + COLORS.length) % COLORS.length;
+    selectColor(COLORS[next].key);
+  });
+
+  /* ============================================================
+   * 9枚の順次プリロード（初回表示のivoryは除く）
+   * ============================================================ */
+  function preloadRemaining() {
+    const files = [];
+    COLORS.forEach(function (c) {
+      const f = c.key + '.jpg';
+      if (!loaded.has(f)) files.push(f);
+    });
+
+    let i = 0;
+    function next() {
+      if (i >= files.length) return;
+      const f = files[i++];
+      const img = new Image();
+      img.onload = function () { loaded.add(f); next(); };
+      img.onerror = next;
+      img.src = PAINT_DIR + f;
+    }
+    next();
+  }
+
+  /* ============================================================
+   * 初期化
+   * ============================================================ */
+  buildSwatches();
+  updateSwatchActive();
+  updateGradeActive();
+  updatePriceSelectionText();
+  priceValue.textContent = GRADES[0].price;
+  window.addEventListener('load', function () {
+    setTimeout(preloadRemaining, 300);
+  });
+})();
+</script>
+</body>
+</html>

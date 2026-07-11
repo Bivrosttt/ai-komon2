@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>キッチンカラーシミュレーター（写真で選べる打合せデモ）｜AI顧問室</title>
+<meta name="description" content="扉カラー5色×ワークトップ3種、本物そっくりのAI生成写真をクリックで即切替。概算価格も連動する、施主とその場で色を決められる打合せデモです。1枚の基準写真から19枚の差分写真をAIが生成しました。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="キッチンカラーシミュレーター（写真で選べる打合せデモ）｜AI顧問室">
+<meta property="og:description" content="扉カラー5色×ワークトップ3種、本物そっくりのAI生成写真をクリックで即切替。概算価格も連動する打合せデモです。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-kitchen.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/works/kitchen/navy-stone.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://rakansens.github.io/ai-komon2/works-kitchen.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.8; background: var(--bg-soft); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+  .btn { display: inline-block; padding: 12px 26px; border-radius: 4px; font-weight: 700; font-size: 14px; transition: opacity .2s, transform .1s; }
+  .btn:hover { opacity: .86; }
+  .btn:active { transform: scale(.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+
+  /* ---------- header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 14px; }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .back-link {
+    display: grid; place-items: center; flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--line); color: var(--navy); font-size: 16px; transition: background .2s, border-color .2s;
+  }
+  .back-link:hover { background: var(--bg-soft); border-color: var(--navy); }
+  .title-wrap { min-width: 0; }
+  .title-wrap strong { display: block; font-family: 'Noto Serif JP', serif; font-size: 15.5px; color: var(--navy); letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .title-wrap span { display: block; font-size: 9.5px; letter-spacing: .1em; color: var(--gray); white-space: nowrap; }
+  .header-cta { flex: 0 0 auto; padding: 9px 20px; font-size: 13px; }
+
+  /* ---------- page intro ---------- */
+  .intro { padding: 34px 0 22px; }
+  .intro .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 10px; }
+  .intro h1 { font-size: clamp(22px, 4vw, 30px); color: var(--navy); margin-bottom: 10px; }
+  .intro p { max-width: 640px; font-size: 13.5px; color: var(--gray); }
+
+  /* ---------- simulator layout ---------- */
+  .simulator { padding-bottom: 20px; }
+  .sim-grid { display: grid; grid-template-columns: 1fr 380px; gap: 26px; align-items: start; }
+
+  .stage-col {}
+  .stage-card { background: var(--white); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 14px 40px rgba(11,36,71,.08); }
+  .stage-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #E6ECF2; overflow: hidden; }
+  .stage-wrap img.stage-layer {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; transition: opacity .3s ease;
+  }
+  .stage-wrap img.stage-layer.front { opacity: 1; }
+  .stage-badge {
+    position: absolute; top: 14px; left: 14px; z-index: 3;
+    padding: 5px 12px; border-radius: 999px; background: rgba(7,26,53,.72); color: #fff;
+    font-size: 10.5px; font-weight: 700; letter-spacing: .06em; backdrop-filter: blur(4px);
+  }
+  .stage-spinner {
+    position: absolute; inset: 0; z-index: 4; display: grid; place-items: center;
+    background: rgba(244,247,250,.72); opacity: 0; visibility: hidden; transition: opacity .18s, visibility .18s;
+  }
+  .stage-spinner.active { opacity: 1; visibility: visible; }
+  .spinner-ring { width: 40px; height: 40px; border-radius: 50%; border: 3px solid rgba(11,36,71,.15); border-top-color: var(--gold); animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .price-bar { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 18px 22px; border-top: 1px solid var(--line); }
+  .price-bar .price-label { font-size: 11.5px; font-weight: 700; letter-spacing: .1em; color: var(--gray); }
+  .price-bar .price-main { font-size: clamp(24px, 4vw, 32px); font-weight: 700; color: var(--navy); font-family: 'Noto Serif JP', serif; }
+  .price-bar .price-main span#priceValue { color: var(--gold); }
+  .price-bar .price-selection { flex: 1 1 100%; font-size: 12px; color: var(--gray); }
+
+  .disclaimer-bar {
+    display: flex; gap: 8px; align-items: flex-start; margin-top: 14px; padding: 12px 16px;
+    background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 6px;
+    font-size: 11.5px; color: var(--gray); line-height: 1.7;
+  }
+  .disclaimer-bar b { color: var(--navy); }
+
+  /* ---------- panel ---------- */
+  .panel-col { position: sticky; top: 84px; }
+  .panel-card { background: var(--white); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 14px 40px rgba(11,36,71,.06); }
+  .tabs { display: flex; border-bottom: 1px solid var(--line); }
+  .tab-btn {
+    flex: 1; padding: 15px 10px; font-size: 13px; font-weight: 700; color: var(--gray);
+    border-bottom: 3px solid transparent; transition: color .2s, border-color .2s;
+  }
+  .tab-btn.active { color: var(--navy); border-bottom-color: var(--gold); }
+  .tab-panel { display: none; padding: 20px; }
+  .tab-panel.active { display: block; }
+
+  .swatch-group h4 { font-size: 12px; font-weight: 700; color: var(--navy); letter-spacing: .04em; margin-bottom: 10px; }
+  .swatch-group { margin-bottom: 22px; }
+  .swatch-group:last-child { margin-bottom: 0; }
+  .swatch-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .swatch {
+    display: flex; flex-direction: column; align-items: center; gap: 5px; width: 72px;
+    padding: 8px 4px 9px; border-radius: 10px; border: 1px solid transparent; transition: background .2s, border-color .2s;
+    min-height: 44px;
+  }
+  .swatch:hover { background: var(--bg-soft); }
+  .swatch.active { border-color: var(--gold); background: rgba(201,162,39,.08); }
+  .swatch-dot {
+    width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(11,36,71,.14);
+    box-shadow: inset 0 -3px 6px rgba(0,0,0,.12), inset 0 2px 3px rgba(255,255,255,.35);
+  }
+  .swatch.active .swatch-dot { box-shadow: 0 0 0 3px rgba(201,162,39,.35), inset 0 -3px 6px rgba(0,0,0,.12); }
+  .swatch-name { font-size: 10.5px; color: var(--ink); text-align: center; line-height: 1.3; }
+  .swatch-price { font-size: 10px; color: var(--blue); font-weight: 700; }
+  .swatch.active .swatch-price { color: var(--gold); }
+
+  .style-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .style-card {
+    text-align: left; border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+    transition: border-color .2s, box-shadow .2s; min-height: 44px;
+  }
+  .style-card:hover { border-color: var(--navy); }
+  .style-card.active { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(201,162,39,.3); }
+  .style-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .style-card .style-body { padding: 8px 10px 10px; }
+  .style-card .style-name { font-size: 11.5px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+  .style-card .style-price { font-size: 10.5px; color: var(--blue); font-weight: 700; }
+  .style-card.active .style-price { color: var(--gold); }
+
+  .panel-hint { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 11px; color: var(--gray); }
+
+  /* ---------- reveal section ---------- */
+  .reveal { padding: 60px 0; background: linear-gradient(135deg, var(--navy-deep), var(--navy) 65%, var(--navy-light)); color: #fff; margin-top: 10px; }
+  .reveal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .reveal .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 12px; }
+  .reveal h2 { font-size: clamp(22px, 3.6vw, 28px); margin-bottom: 16px; }
+  .reveal h2 em { font-style: normal; color: var(--gold); }
+  .reveal p { color: #C7D3E4; font-size: 13.5px; margin-bottom: 14px; }
+  .reveal .btn-gold { margin-top: 6px; padding: 14px 30px; font-size: 14.5px; }
+  .reveal-diagram {
+    display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+    padding: 22px; border: 1px solid rgba(255,255,255,.18); border-radius: 14px; background: rgba(255,255,255,.05);
+  }
+  .rd-step { text-align: center; font-size: 11.5px; color: #DCE6F5; max-width: 96px; }
+  .rd-step .rd-box { width: 78px; height: 58px; border-radius: 8px; margin: 0 auto 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); display: grid; place-items: center; font-size: 20px; }
+  .rd-arrow { color: var(--gold); font-size: 18px; }
+
+  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 12.5px; padding: 26px 0; text-align: center; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 900px) {
+    .sim-grid { grid-template-columns: 1fr; }
+    .panel-col { position: static; }
+    .reveal-grid { grid-template-columns: 1fr; }
+    .reveal-diagram { order: -1; }
+  }
+  @media (max-width: 480px) {
+    .header-inner { height: 58px; }
+    .title-wrap span { display: none; }
+    .header-cta { padding: 8px 14px; font-size: 12px; }
+    .price-bar { padding: 14px 16px; }
+    .tab-panel { padding: 16px; }
+    .swatch { width: 30%; min-width: 68px; }
+    .style-grid { gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="brand">
+      <a class="back-link" href="works.html" aria-label="作品一覧へ戻る">←</a>
+      <div class="title-wrap">
+        <strong>キッチンカラーシミュレーター</strong>
+        <span>PHOTO-REALISTIC AI COLOR SIMULATOR</span>
+      </div>
+    </div>
+    <a class="btn btn-gold header-cta" href="index.html#contact">無料相談</a>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="container">
+    <span class="eyebrow">商品シミュレーター（AI写真生成）</span>
+    <h1>扉色×天板を、本物そっくりの写真で選ぶ。</h1>
+    <p>3DCGではなく、AIが生成した「本物の写真にしか見えない」画像をクリックで即切替。夜、施主がスマホで「うちはどの色にしよう」と選べる打合せツールを想定したデモです。</p>
+  </div>
+</section>
+
+<section class="simulator">
+  <div class="container">
+    <div class="sim-grid">
+
+      <div class="stage-col">
+        <div class="stage-card">
+          <div class="stage-wrap" id="stageWrap">
+            <span class="stage-badge">AI生成イメージ写真</span>
+            <img class="stage-layer front" id="stageImgA" src="assets/works/kitchen/white-stainless.jpg" alt="キッチン写真：ピュアホワイトの扉とステンレスのワークトップ" width="1280" height="720">
+            <img class="stage-layer" id="stageImgB" src="" alt="">
+            <div class="stage-spinner" id="stageSpinner" aria-hidden="true"><div class="spinner-ring"></div></div>
+          </div>
+          <div class="price-bar">
+            <div>
+              <div class="price-label">概算</div>
+              <div class="price-main"><span id="priceValue">68</span>万円〜（税別・工事費別）</div>
+            </div>
+            <div class="price-selection" id="priceSelection">扉：ピュアホワイト／天板：ステンレス</div>
+          </div>
+        </div>
+        <div class="disclaimer-bar">
+          <span>⚠</span>
+          <span><b>価格・商品はすべて架空のサンプルです。</b>実在のメーカー・商品とは関係ありません。画像はAI生成イメージです。</span>
+        </div>
+      </div>
+
+      <div class="panel-col">
+        <div class="panel-card">
+          <div class="tabs" role="tablist">
+            <button class="tab-btn active" type="button" data-tab="color" role="tab" aria-selected="true">カラーを選ぶ</button>
+            <button class="tab-btn" type="button" data-tab="style" role="tab" aria-selected="false">テイストで選ぶ</button>
+          </div>
+
+          <div class="tab-panel active" data-panel="color" role="tabpanel">
+            <div class="swatch-group">
+              <h4>扉カラー</h4>
+              <div class="swatch-row" id="doorSwatches"></div>
+            </div>
+            <div class="swatch-group">
+              <h4>ワークトップ</h4>
+              <div class="swatch-row" id="topSwatches"></div>
+            </div>
+            <div class="panel-hint">扉色×天板の組み合わせで15パターン。クリックすると写真が切り替わり、概算価格も連動します。</div>
+          </div>
+
+          <div class="tab-panel" data-panel="style" role="tabpanel">
+            <div class="swatch-group" style="margin-bottom:0;">
+              <h4>おすすめテイスト（パッケージ）</h4>
+              <div class="style-grid" id="styleCards"></div>
+            </div>
+            <div class="panel-hint">扉・天板・小物まで一式コーディネートした提案パッケージです。価格はパッケージ一式の概算です。</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="container">
+    <div class="reveal-grid">
+      <div>
+        <span class="eyebrow">種明かし</span>
+        <h2>この<em>19枚</em>、撮影していません。</h2>
+        <p>使ったのは、たった1枚の基準写真だけです。そこから「扉だけ」「天板だけ」を差し替えるAI画像編集で、同じアングル・同じ照明のまま19枚の差分写真を生成しました。</p>
+        <p>御社の実商品写真と実際の価格表を使えば、同じ仕組みが自社ショールームやサイトに作れます。全色・全パターンをカタログ用に撮影する必要はもうありません。</p>
+        <a class="btn btn-gold" href="index.html#contact">御社の商品でも作れるか相談する</a>
+      </div>
+      <div class="reveal-diagram" aria-hidden="true">
+        <div class="rd-step"><div class="rd-box">📷</div>基準写真 1枚</div>
+        <div class="rd-arrow">→</div>
+        <div class="rd-step"><div class="rd-box">🎨</div>AI画像編集で部位だけ差替</div>
+        <div class="rd-arrow">→</div>
+        <div class="rd-step"><div class="rd-box">🖼️</div>差分写真 19枚</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ============================================================
+   * 調整用定数（価格表はここを編集すれば反映される）
+   * ============================================================ */
+  const KITCHEN_DIR = 'assets/works/kitchen/';
+  const BASE_PRICE = 68; // 基本プラン（万円・架空）
+
+  const DOORS = [
+    { key: 'white',  label: 'ピュアホワイト',   color: '#F6F4EE', price: 0 },
+    { key: 'oak',    label: 'ナチュラルオーク', color: '#C99A62', price: 4 },
+    { key: 'greige', label: 'グレージュ',       color: '#AFA290', price: 4 },
+    { key: 'navy',   label: 'スモークネイビー', color: '#31465A', price: 7 },
+    { key: 'black',  label: 'マットブラック',   color: '#1E1E1E', price: 9 }
+  ];
+  const TOPS = [
+    { key: 'stainless', label: 'ステンレス',           color: '#C7CDD3', price: 0 },
+    { key: 'stone',     label: '人工大理石ホワイト',   color: '#EFEBE2', price: 8 },
+    { key: 'ceramic',   label: 'セラミックブラック',   color: '#242424', price: 15 }
+  ];
+  const STYLES = [
+    { key: 'natural', label: '北欧ナチュラル', price: 92 },
+    { key: 'hotel',   label: 'ホテルライク',   price: 145 },
+    { key: 'cafe',    label: 'カフェ風',       price: 118 },
+    { key: 'japandi', label: 'ジャパンディ',   price: 128 }
+  ];
+
+  /* ============================================================
+   * DOM参照
+   * ============================================================ */
+  const stageImgA = document.getElementById('stageImgA');
+  const stageImgB = document.getElementById('stageImgB');
+  const stageSpinner = document.getElementById('stageSpinner');
+  const priceValue = document.getElementById('priceValue');
+  const priceSelection = document.getElementById('priceSelection');
+  const doorSwatchWrap = document.getElementById('doorSwatches');
+  const topSwatchWrap = document.getElementById('topSwatches');
+  const styleCardWrap = document.getElementById('styleCards');
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  let currentDoor = 'white';
+  let currentTop = 'stainless';
+  let currentMode = 'color'; // 'color' | 'style'
+  let currentStyle = null;
+  let displayedPrice = BASE_PRICE;
+  let priceAnimId = null;
+
+  let frontLayer = stageImgA;
+  let backLayer = stageImgB;
+
+  const loaded = new Set(['white-stainless.jpg']);
+
+  function findDoor(key) { return DOORS.find(function (d) { return d.key === key; }); }
+  function findTop(key) { return TOPS.find(function (t) { return t.key === key; }); }
+  function findStyle(key) { return STYLES.find(function (s) { return s.key === key; }); }
+
+  /* ============================================================
+   * スウォッチ／テイストカードの生成
+   * ============================================================ */
+  function buildSwatches() {
+    DOORS.forEach(function (d) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'swatch door-swatch';
+      btn.dataset.key = d.key;
+      btn.setAttribute('aria-pressed', d.key === currentDoor ? 'true' : 'false');
+      btn.innerHTML =
+        '<span class="swatch-dot" style="background:' + d.color + '"></span>' +
+        '<span class="swatch-name">' + d.label + '</span>' +
+        '<span class="swatch-price">' + (d.price > 0 ? '+' + d.price + '万円' : '標準') + '</span>';
+      btn.addEventListener('click', function () { selectDoor(d.key); });
+      doorSwatchWrap.appendChild(btn);
+    });
+
+    TOPS.forEach(function (t) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'swatch top-swatch';
+      btn.dataset.key = t.key;
+      btn.setAttribute('aria-pressed', t.key === currentTop ? 'true' : 'false');
+      btn.innerHTML =
+        '<span class="swatch-dot" style="background:' + t.color + '"></span>' +
+        '<span class="swatch-name">' + t.label + '</span>' +
+        '<span class="swatch-price">' + (t.price > 0 ? '+' + t.price + '万円' : '標準') + '</span>';
+      btn.addEventListener('click', function () { selectTop(t.key); });
+      topSwatchWrap.appendChild(btn);
+    });
+
+    STYLES.forEach(function (s) {
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'style-card';
+      card.dataset.key = s.key;
+      card.setAttribute('aria-pressed', 'false');
+      card.innerHTML =
+        '<img src="' + KITCHEN_DIR + 'style-' + s.key + '.jpg" alt="テイスト提案：' + s.label + '" loading="lazy" width="400" height="300">' +
+        '<span class="style-body">' +
+          '<span class="style-name">' + s.label + '</span><br>' +
+          '<span class="style-price">' + s.price + '万円〜（パッケージ）</span>' +
+        '</span>';
+      card.addEventListener('click', function () { selectStyle(s.key); });
+      styleCardWrap.appendChild(card);
+    });
+  }
+
+  function updateSwatchActive() {
+    doorSwatchWrap.querySelectorAll('.swatch').forEach(function (el) {
+      const active = currentMode === 'color' && el.dataset.key === currentDoor;
+      el.classList.toggle('active', active);
+      el.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+    topSwatchWrap.querySelectorAll('.swatch').forEach(function (el) {
+      const active = currentMode === 'color' && el.dataset.key === currentTop;
+      el.classList.toggle('active', active);
+      el.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  function updateStyleActive() {
+    styleCardWrap.querySelectorAll('.style-card').forEach(function (el) {
+      const active = currentMode === 'style' && el.dataset.key === currentStyle;
+      el.classList.toggle('active', active);
+      el.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  /* ============================================================
+   * 選択ロジック
+   * ============================================================ */
+  function selectDoor(key) {
+    currentDoor = key;
+    currentMode = 'color';
+    updateSwatchActive();
+    updateStyleActive();
+    applyColorSelection();
+  }
+
+  function selectTop(key) {
+    currentTop = key;
+    currentMode = 'color';
+    updateSwatchActive();
+    updateStyleActive();
+    applyColorSelection();
+  }
+
+  function applyColorSelection() {
+    const filename = currentDoor + '-' + currentTop + '.jpg';
+    const door = findDoor(currentDoor);
+    const top = findTop(currentTop);
+    setStageImage(filename, '扉色' + door.label + '×天板' + top.label);
+    priceSelection.textContent = '扉：' + door.label + '／天板：' + top.label;
+    animatePrice(BASE_PRICE + door.price + top.price);
+  }
+
+  function selectStyle(key) {
+    currentMode = 'style';
+    currentStyle = key;
+    updateSwatchActive();
+    updateStyleActive();
+    const style = findStyle(key);
+    setStageImage('style-' + key + '.jpg', 'テイスト提案' + style.label);
+    priceSelection.textContent = 'テイスト提案：' + style.label + '（コーディネート一式）';
+    animatePrice(style.price);
+  }
+
+  /* ============================================================
+   * ステージ写真のクロスフェード切替
+   * ============================================================ */
+  function setStageImage(filename, altText) {
+    const src = KITCHEN_DIR + filename;
+    if (loaded.has(filename)) {
+      crossfadeTo(src, altText);
+      return;
+    }
+    showSpinner();
+    const preloadImg = new Image();
+    preloadImg.onload = function () {
+      loaded.add(filename);
+      hideSpinner();
+      crossfadeTo(src, altText);
+    };
+    preloadImg.onerror = function () {
+      hideSpinner();
+    };
+    preloadImg.src = src;
+  }
+
+  function crossfadeTo(src, altText) {
+    backLayer.src = src;
+    backLayer.alt = altText || '';
+    // setTimeoutで次ティックに回す（requestAnimationFrameはタブが非アクティブ／
+    // バックグラウンドだと発火が止まるため、確実性を優先してタイマーを使う）。
+    setTimeout(function () {
+      frontLayer.classList.remove('front');
+      backLayer.classList.add('front');
+      const tmp = frontLayer;
+      frontLayer = backLayer;
+      backLayer = tmp;
+    }, 16);
+  }
+
+  function showSpinner() { stageSpinner.classList.add('active'); }
+  function hideSpinner() { stageSpinner.classList.remove('active'); }
+
+  /* ============================================================
+   * 価格カウントアップ演出（約0.4秒）
+   * requestAnimationFrameはタブが非アクティブだと発火が止まり、
+   * 価格が更新されなくなる恐れがあるためsetTimeoutで実装する。
+   * ============================================================ */
+  function animatePrice(target) {
+    if (priceAnimId) clearTimeout(priceAnimId);
+    const start = displayedPrice;
+    const startTime = Date.now();
+    const duration = 400;
+    function step() {
+      const t = Math.min(1, (Date.now() - startTime) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const val = Math.round(start + (target - start) * eased);
+      priceValue.textContent = val;
+      if (t < 1) {
+        priceAnimId = setTimeout(step, 16);
+      } else {
+        priceValue.textContent = target;
+        displayedPrice = target;
+        priceAnimId = null;
+      }
+    }
+    step();
+  }
+
+  /* ============================================================
+   * タブ切替
+   * ============================================================ */
+  function switchTab(tab) {
+    tabButtons.forEach(function (b) {
+      const active = b.dataset.tab === tab;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    tabPanels.forEach(function (p) {
+      p.classList.toggle('active', p.dataset.panel === tab);
+    });
+  }
+  tabButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () { switchTab(btn.dataset.tab); });
+  });
+
+  /* ============================================================
+   * キーボード操作：←→で扉色を送る（カラータブ時）
+   * ============================================================ */
+  window.addEventListener('keydown', function (event) {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    const idx = DOORS.findIndex(function (d) { return d.key === currentDoor; });
+    const dir = event.key === 'ArrowRight' ? 1 : -1;
+    const next = (idx + dir + DOORS.length) % DOORS.length;
+    switchTab('color');
+    selectDoor(DOORS[next].key);
+  });
+
+  /* ============================================================
+   * 19枚の順次プリロード（初回表示のwhite-stainlessは除く）
+   * ============================================================ */
+  function preloadRemaining() {
+    const files = [];
+    DOORS.forEach(function (d) {
+      TOPS.forEach(function (t) {
+        const f = d.key + '-' + t.key + '.jpg';
+        if (!loaded.has(f)) files.push(f);
+      });
+    });
+    STYLES.forEach(function (s) { files.push('style-' + s.key + '.jpg'); });
+
+    let i = 0;
+    function next() {
+      if (i >= files.length) return;
+      const f = files[i++];
+      const img = new Image();
+      img.onload = function () { loaded.add(f); next(); };
+      img.onerror = next;
+      img.src = KITCHEN_DIR + f;
+    }
+    next();
+  }
+
+  /* ============================================================
+   * 初期化
+   * ============================================================ */
+  buildSwatches();
+  updateSwatchActive();
+  window.addEventListener('load', function () {
+    setTimeout(preloadRemaining, 300);
+  });
+})();
+</script>
+</body>
+</html>

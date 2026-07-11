@@ -79,6 +79,11 @@
   footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 32px 0; text-align: center; }
   footer a { text-decoration: underline; }
 
+  @media (max-width: 600px) {
+    .header-inner nav a.back:nth-child(2) { display: none; }
+    .header-inner nav { gap: 12px; }
+    .header-inner nav a.back { font-size: 13px; }
+  }
   @media (max-width: 820px) {
     section { padding: 56px 0; }
     .hero h1 { font-size: 27px; }
@@ -222,6 +227,34 @@
         </div>
       </a>
 
+      <a class="work-card" href="works-kitchen.html">
+        <div class="work-visual">
+          <span class="work-badge" style="background:var(--gold); color:var(--navy-deep);">触って選べます</span>
+          <img src="assets/thumbs/works-kitchen.jpg" alt="キッチンカラーシミュレーターのイメージ" loading="lazy">
+        </div>
+        <div class="work-body">
+          <div class="cat">商品シミュレーター（AI写真生成）</div>
+          <h3>キッチンカラーシミュレーター</h3>
+          <p>扉色5色×天板3種の組み合わせを本物風の写真で即切替、概算価格も連動。撮影せず、AIが差分写真を生成した打合せ用デモです。</p>
+          <div class="work-meta"><span>AI画像生成×差分編集</span><span>概算価格連動</span></div>
+          <span class="try">▶ 色を選んでみる</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="works-paint.html">
+        <div class="work-visual">
+          <span class="work-badge" style="background:var(--gold); color:var(--navy-deep);">現状と比べられます</span>
+          <img src="assets/thumbs/works-paint.jpg" alt="外壁カラーシミュレーターの現状比較スライダー" loading="lazy">
+        </div>
+        <div class="work-body">
+          <div class="cat">商品シミュレーター（AI写真生成）</div>
+          <h3>外壁カラーシミュレーター</h3>
+          <p>外壁9色を本物風の写真で即切替、スライダーで現状と比較。塗料グレードで概算も変わる、塗装会社の色決め商談を想定したデモです。</p>
+          <div class="work-meta"><span>AI画像生成×差分編集</span><span>現状比較スライダー</span></div>
+          <span class="try">▶ 外壁の色を試す</span>
+        </div>
+      </a>
+
       <a class="work-card" href="works/user-manual.pdf" target="_blank">
         <div class="work-visual">
           <span class="work-badge">PDFで見る</span>
@@ -238,7 +271,7 @@
 
       <a class="work-card" href="#gallery">
         <div class="work-visual">
-          <span class="work-badge">6枚掲載</span>
+          <span class="work-badge">8枚掲載</span>
           <img src="assets/works/pers-exterior.jpg" alt="AI生成画像ギャラリー" loading="lazy" style="object-position: center 30%;">
         </div>
         <div class="work-body">
@@ -261,7 +294,7 @@
     <div class="ig-grid">
       <div class="ig-item"><img src="assets/works/pers-exterior.jpg" alt="住宅外観パース" loading="lazy"><div class="cap"><b>住宅外観パース</b><small>不動産・工務店の完成イメージ、物件広告に</small></div></div>
       <div class="ig-item"><img src="assets/works/pers-interior.jpg" alt="内装パース" loading="lazy"><div class="cap"><b>内装パース（LDK）</b><small>リフォーム提案・モデルルーム訴求に</small></div></div>
-      <div class="ig-item"><img src="assets/works/pers-bathroom.jpg" alt="浴室パース" loading="lazy"><div class="cap"><b>浴室リフォーム完成イメージ</b><small>提案書のビジュアルに（左のスライド作品で使用）</small></div></div>
+      <div class="ig-item"><img src="assets/works/pers-bathroom.jpg" alt="浴室パース" loading="lazy"><div class="cap"><b>浴室リフォーム完成イメージ</b><small>提案書のビジュアルに（スライド作品でも使用）</small></div></div>
       <div class="ig-item"><img src="assets/works/product-danish.jpg" alt="商品写真" loading="lazy"><div class="cap"><b>商品写真（ベーカリー）</b><small>SNS投稿・メニュー・ECサイトに</small></div></div>
       <div class="ig-item"><img src="assets/works/manual-illust-send.jpg" alt="マニュアル挿絵1" loading="lazy"><div class="cap"><b>マニュアル挿絵（操作フロー）</b><small>社内文書・研修資料の図解に</small></div></div>
       <div class="ig-item"><img src="assets/works/manual-illust-check.jpg" alt="マニュアル挿絵2" loading="lazy"><div class="cap"><b>マニュアル挿絵（チェック画面）</b><small>手順書・ヘルプページの図解に</small></div></div>
@@ -277,7 +310,7 @@
 <div class="growth-band">
   <div class="container">
     <h2>これを、<em>御社の社員が</em>作れるようになります。</h2>
-    <p>AI顧問室の研修と伴走のゴールは「自走」。道具の目利きと使い方を移植すれば、ここにある品質は特別なものではなくなります。AI未経験の社員が90日でどう変わるか、リプレイでご覧ください。</p>
+    <p>AI顧問室の研修と伴走のゴールは「自走」。道具の目利きと使い方を移植すれば、ここにある品質は特別なものではなくなります。AI未経験の社員が90日でどう変わるか、無料相談で具体的にご説明します。</p>
     <a href="index.html#contact" class="btn btn-gold">研修・自走化の進め方を相談する</a>
   </div>
 </div>
