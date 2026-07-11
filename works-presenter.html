@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AIプレゼンター（出演者ゼロの案内動画）｜AI顧問室</title>
-<meta name="description" content="この受付スタッフ、実在しません。写真はAI画像生成、声はAI音声合成。1枚も撮影せず、1秒も収録せず作った出演者ゼロの会社案内デモです。顔出しできる社員がいない中小企業のための提案。">
+<meta name="description" content="この受付スタッフ、実在しません。写真はAI画像生成、声はAI音声合成、口を動かして話す動画はAI動画生成（Google Veo）。1枚も撮影せず、1秒も収録せず作った出演者ゼロの会社案内デモです。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
 <meta property="og:title" content="AIプレゼンター（出演者ゼロの案内動画）｜AI顧問室">
-<meta property="og:description" content="この受付スタッフ、実在しません。写真も声もAI生成。出演者ゼロの会社案内・採用動画・研修動画を作るデモです。">
+<meta property="og:description" content="この受付スタッフ、実在しません。写真も声も、話す動画もAI生成。出演者ゼロの会社案内・採用動画・研修動画を作るデモです。">
 <meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-presenter.html">
 <meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/works/presenter/presenter.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -178,23 +178,35 @@
   .rd-step .rd-box { width: 78px; height: 58px; border-radius: 8px; margin: 0 auto 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); display: grid; place-items: center; font-size: 20px; }
   .rd-arrow { color: var(--gold); font-size: 18px; }
 
-  /* ---------- lipsync section ---------- */
+  /* ---------- lipsync video section ---------- */
   .lipsync { padding: 56px 0; }
-  .lipsync-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .lipsync-grid { display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: center; }
   .lipsync .eyebrow-chip {
     display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px;
     border: 1px solid var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; letter-spacing: .04em; margin-bottom: 14px;
   }
   .lipsync h2 { font-size: clamp(22px, 3.6vw, 27px); color: var(--navy); margin-bottom: 14px; }
   .lipsync p { font-size: 13.5px; color: var(--gray); margin-bottom: 12px; }
-  .lipsync-diagram {
-    display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
-    padding: 24px; background: var(--white); border: 1px solid var(--line); border-radius: 14px;
-    box-shadow: 0 14px 40px rgba(11,36,71,.06);
+  .video-quote {
+    margin: 4px 0 14px; padding: 12px 16px; background: var(--white); border: 1px solid var(--line);
+    border-left: 4px solid var(--gold); border-radius: 6px; font-size: 12.5px; color: var(--ink); line-height: 1.85;
   }
-  .ld-step { text-align: center; font-size: 11.5px; color: var(--gray); max-width: 108px; }
-  .ld-step .ld-box { width: 78px; height: 58px; border-radius: 8px; margin: 0 auto 8px; background: var(--bg-soft); border: 1px solid var(--line); display: grid; place-items: center; font-size: 20px; }
-  .ld-arrow { color: var(--gold); font-size: 18px; }
+  .video-quote b { display: block; font-size: 11px; letter-spacing: .06em; color: var(--navy); margin-bottom: 4px; }
+  .video-card {
+    max-width: 320px; margin: 0 auto; background: var(--white); border: 1px solid var(--line); border-radius: 16px;
+    overflow: hidden; box-shadow: 0 18px 44px rgba(11,36,71,.12);
+  }
+  .video-frame { position: relative; width: 100%; aspect-ratio: 9 / 16; background: #E6ECF2; overflow: hidden; }
+  .video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .video-badge {
+    position: absolute; top: 12px; left: 12px; z-index: 2; pointer-events: none;
+    padding: 5px 12px; border-radius: 999px; background: rgba(7,26,53,.76); color: #fff;
+    font-size: 10px; font-weight: 700; letter-spacing: .05em; backdrop-filter: blur(4px);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .video-badge::before { content: "✦"; color: var(--gold); }
+  .video-caption { padding: 12px 16px; border-top: 3px solid var(--gold); font-size: 11px; color: var(--gray); line-height: 1.7; }
+  .video-caption b { color: var(--navy); }
 
   /* ---------- use cases ---------- */
   .usecases { padding: 10px 0 56px; }
@@ -235,7 +247,7 @@
     .reveal-grid { grid-template-columns: 1fr; }
     .reveal-diagram { order: -1; }
     .lipsync-grid { grid-template-columns: 1fr; }
-    .lipsync-diagram { order: -1; }
+    .video-card { max-width: 320px; }
     .usecase-grid { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 480px) {
@@ -268,10 +280,10 @@
 
 <section class="intro">
   <div class="container">
-    <span class="eyebrow">出演者ゼロの案内動画（AI画像生成 × AI音声合成）</span>
+    <span class="eyebrow">出演者ゼロの案内動画（AI画像生成 × AI音声合成 × AI動画生成）</span>
     <h1>この受付スタッフ、実在しません。</h1>
-    <p>写真も声も、すべてAIが生成しました。カメラマンも、スタジオも、収録も使っていません。「会社の顔として出せる社員がいない」という中小企業でも、案内・採用・研修の動画をゼロから作れることを確かめるデモです。</p>
-    <span class="ai-note"><b>⚠ AI生成物です。</b>このページの人物・写真・音声は実在しません。</span>
+    <p>写真も、声も、口を動かして話す動画も、すべてAIが生成しました。カメラマンも、スタジオも、収録も使っていません。「会社の顔として出せる社員がいない」という中小企業でも、案内・採用・研修の動画をゼロから作れることを確かめるデモです。</p>
+    <span class="ai-note"><b>⚠ AI生成物です。</b>このページの人物・写真・音声・動画は実在しません。</span>
   </div>
 </section>
 
@@ -319,18 +331,19 @@
             <p>「こんにちは、AI顧問室のご案内です。実は私、実在しません。この顔も、声も、口の動きも、すべてAIで作られています。御社のご案内動画も、出演者ゼロで作れます。」</p>
           </div>
 
-          <p class="format-note"><b>※このデモの形式について：</b>今回は「静止画＋音声」でお届けしています。ナレーション内で触れている「口の動き」まで音声に同期させる動画版の仕組みは、このページ下の「さらに口も動きます」でご紹介します。</p>
+          <p class="format-note"><b>※このデモの形式について：</b>ここでは「静止画＋音声」でお届けしています。ナレーション内で触れている「口の動き」は、このページ下の「<a href="#talking-video" style="color:var(--blue);text-decoration:underline;">口も、動きます。</a>」で実際にご覧いただけます。</p>
 
           <div class="meta-chips">
             <span class="meta-chip">🖼 写真：AI画像生成</span>
             <span class="meta-chip">🎙 音声：AI音声合成（Gemini TTS）</span>
+            <span class="meta-chip">🎬 動画：Google Veo 3.1（リップシンク・音声つき動画生成）</span>
             <span class="meta-chip">⏱ 制作時間：数分</span>
           </div>
         </div>
 
         <div class="disclaimer-bar">
           <span>⚠</span>
-          <span><b>この人物・写真・音声はすべてAIによる生成物であり、実在しません。</b>実在の人物に似ている場合がありましても、それは偶然であり、特定の人物を撮影・収録したものではありません。</span>
+          <span><b>この人物・写真・音声・動画はすべてAIによる生成物であり、実在しません。</b>実在の人物に似ている場合がありましても、それは偶然であり、特定の人物を撮影・収録したものではありません。</span>
         </div>
       </div>
 
@@ -346,7 +359,8 @@
         <h2>写真も声も、<em>1秒も</em>収録していません。</h2>
         <p>写真は画像生成AIで作成しました。カメラも、モデルも、スタジオも使っていません。同じ人物に見えるよう、AIに繰り返し指示を出して仕上げています。</p>
         <p>声はGoogleの音声合成AI「Gemini TTS」で生成しました。ナレーション原稿を打ち込むだけで、抑揚のある自然な読み上げ音声ができあがります。</p>
-        <p>このデモの制作時間は、写真の生成から音声の書き出しまで合わせて数分程度です。撮影日程の調整も、スタジオの手配も必要ありませんでした。</p>
+        <p>口を動かして話す動画は、Googleの動画生成AI「Veo 3.1」に写真を参照させて生成しました。リップシンク（口の動きと音声の同期）も声も自動生成です。</p>
+        <p>このデモの制作時間は、写真の生成から動画の書き出しまで合わせて数分程度です。撮影日程の調整も、スタジオの手配も必要ありませんでした。</p>
         <a class="btn btn-gold" href="index.html#contact">御社の案内動画も相談する</a>
       </div>
       <div class="reveal-diagram" aria-hidden="true">
@@ -355,26 +369,32 @@
         <div class="rd-step"><div class="rd-box">🖼️</div>AI画像生成で写真を作成</div>
         <div class="rd-arrow">→</div>
         <div class="rd-step"><div class="rd-box">🎙️</div>AI音声合成で声を生成</div>
+        <div class="rd-arrow">→</div>
+        <div class="rd-step"><div class="rd-box">🎬</div>AI動画生成で話す動画に</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="lipsync">
+<section class="lipsync" id="talking-video">
   <div class="container">
     <div class="lipsync-grid">
-      <div>
-        <span class="eyebrow-chip">✦ 対応可能な技術</span>
-        <h2>さらに、口も動かせます。</h2>
-        <p>この写真と音声を組み合わせ、口の動きを音声に同期させる「リップシンク」技術を使えば、まるで実際に話しているように見える動画へ仕上げることもできます。</p>
-        <p>今回のデモは「静止画＋音声」でご紹介していますが、同じ写真・同じ声から、口が動く動画版を制作することも可能です。案内動画をより自然な見た目にしたい場合にご提案しています。</p>
+      <div class="video-card">
+        <div class="video-frame">
+          <span class="video-badge">AI生成動画・架空の人物</span>
+          <video src="assets/works/presenter/presenter-talking.mp4" poster="assets/works/presenter/presenter-talking-poster.jpg" controls preload="metadata" playsinline width="720" height="1280" aria-label="AI生成のプレゼンターが実際に口を動かして話す動画。人物・映像・音声はすべてAI生成で、実在しません。"></video>
+        </div>
+        <div class="video-caption"><b>▶ 音声つき・8秒。</b>上の写真と同一人物が、実際に口を動かして話します。映像・音声ともAI生成です。</div>
       </div>
-      <div class="lipsync-diagram" aria-hidden="true">
-        <div class="ld-step"><div class="ld-box">🖼️</div>写真＋🎙️声</div>
-        <div class="ld-arrow">→</div>
-        <div class="ld-step"><div class="ld-box">🤖</div>AIリップシンク</div>
-        <div class="ld-arrow">→</div>
-        <div class="ld-step"><div class="ld-box">🎬</div>口が動く動画</div>
+      <div>
+        <span class="eyebrow-chip">✦ 実物をご覧いただけます</span>
+        <h2>口も、動きます。</h2>
+        <p>上の名刺カードと同じ人物が、実際に口を動かして話す動画です。もとになった素材は、あの写真1枚だけ。口の動き・声・まばたき・自然な頭の動きまで、すべてAI（Googleの動画生成AI「Veo」）が生成しました。</p>
+        <p>収録も、撮影も、出演者もゼロ。写真に原稿を添えるだけで、リップシンク（口の動きと音声の同期）まで済んだ「話す案内動画」ができあがります。</p>
+        <div class="video-quote">
+          <b>動画内のセリフ（音を出せない環境向け）</b>
+          「実は私、実在しません。この顔も、この声も、すべてAIで作られています。」
+        </div>
       </div>
     </div>
   </div>
@@ -417,7 +437,7 @@
       <span class="ib-icon">🛡️</span>
       <div>
         <h3>誠実な表記について</h3>
-        <p>このページに登場する人物「AI受付・如月あかり」は架空の存在であり、実在しません。写真・音声ともにAIによって生成したものです。実在の人物に似ている場合がありましても、それは偶然であり、特定の人物を撮影・収録・模倣したものではありません。実際の制作では、御社の意向に応じてオリジナルの人物像・声を一から設計します。</p>
+        <p>このページに登場する人物「AI受付・如月あかり」は架空の存在であり、実在しません。写真・音声・動画のすべてをAIによって生成したものです。実在の人物に似ている場合がありましても、それは偶然であり、特定の人物を撮影・収録・模倣したものではありません。実際の制作では、御社の意向に応じてオリジナルの人物像・声を一から設計します。</p>
       </div>
     </div>
   </div>
