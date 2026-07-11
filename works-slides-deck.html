@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1920, height=1080" />
+<meta name="robots" content="noindex" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: #101820; font-family: 'Noto Sans JP', sans-serif; }
+  .scene { position: absolute; inset: 0; opacity: 0; visibility: hidden; pointer-events: none; }
+  .scene.is-active { opacity: 1; visibility: visible; pointer-events: auto; }
+  .serif { font-family: 'Noto Serif JP', serif; }
+  .wood { color: #C08A3E; }
+  .inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .eyebrow { font-size: 26px; letter-spacing: 0.3em; color: #C08A3E; font-weight: 700; }
+  .brandtag { position: absolute; top: 44px; left: 60px; font-family: 'Noto Serif JP', serif; font-size: 28px; color: rgba(255,255,255,0.9); letter-spacing: 0.08em; z-index: 5; }
+  .pagenum { position: absolute; bottom: 40px; right: 60px; font-size: 20px; color: rgba(255,255,255,0.5); z-index: 5; }
+  .fictional { position: absolute; bottom: 40px; left: 60px; font-size: 18px; color: rgba(255,255,255,0.45); z-index: 5; }
+
+  /* S1 cover */
+  #cover-bg { position: absolute; inset: 0; background: url('assets/works/pers-exterior.jpg') center/cover; }
+  #cover-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16,24,32,0.35) 0%, rgba(16,24,32,0.75) 100%); }
+  #s-cover h1 { position: relative; font-size: 92px; font-weight: 900; color: #fff; line-height: 1.5; text-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+  #s-cover .co { position: relative; margin-top: 40px; font-size: 40px; color: #fff; letter-spacing: 0.2em; }
+  #s-cover .hint { position: relative; margin-top: 70px; font-size: 22px; color: rgba(255,255,255,0.75); }
+
+  /* S2 numbers */
+  #s-numbers { background: linear-gradient(160deg, #16212C 0%, #101820 100%); }
+  #s-numbers h2 { font-size: 64px; font-weight: 900; color: #fff; margin-bottom: 80px; }
+  .numrow { display: flex; gap: 60px; }
+  .numcard { width: 460px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); border-radius: 16px; padding: 60px 30px; opacity: 0; }
+  .numcard .big { font-family: 'Noto Serif JP', serif; font-size: 96px; font-weight: 900; color: #C08A3E; line-height: 1; }
+  .numcard .big small { font-size: 40px; }
+  .numcard .lab { margin-top: 18px; font-size: 28px; color: #E8E2D8; font-weight: 700; }
+
+  /* S3 works */
+  #s-works { background: linear-gradient(160deg, #101820 0%, #16212C 100%); }
+  #s-works h2 { font-size: 64px; font-weight: 900; color: #fff; margin-bottom: 60px; }
+  .shots { display: flex; gap: 36px; }
+  .shot { width: 520px; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.2); }
+  .shot img { width: 100%; height: 380px; object-fit: cover; display: block; }
+  .shot .cap { background: rgba(255,255,255,0.06); color: #E8E2D8; font-size: 22px; padding: 14px; }
+  #s-works .spot-hint { margin-top: 46px; font-size: 24px; color: #C08A3E; border: 1.5px dashed rgba(192,138,62,0.6); border-radius: 999px; padding: 12px 34px; }
+
+  /* S4 strengths */
+  #s-strengths { background: linear-gradient(160deg, #16212C 0%, #101820 100%); }
+  #s-strengths h2 { font-size: 64px; font-weight: 900; color: #fff; margin-bottom: 80px; }
+  .strow { display: flex; gap: 50px; }
+  .stcard { width: 480px; background: #F6F1E7; border-radius: 16px; padding: 56px 40px; opacity: 0; }
+  .stcard .no { font-family: 'Noto Serif JP', serif; font-size: 48px; font-weight: 900; color: #C08A3E; }
+  .stcard b { display: block; margin-top: 14px; font-size: 38px; color: #2B3A49; font-weight: 900; }
+  .stcard p { margin-top: 12px; font-size: 24px; color: #5E6B78; line-height: 1.7; }
+
+  /* S5 flow */
+  #s-flow { background: linear-gradient(160deg, #101820 0%, #16212C 100%); }
+  #s-flow h2 { font-size: 64px; font-weight: 900; color: #fff; margin-bottom: 90px; }
+  .flowrow { display: flex; align-items: center; gap: 24px; }
+  .fstep { width: 280px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 40px 20px; }
+  .fstep .no { font-family: 'Noto Serif JP', serif; font-size: 40px; color: #C08A3E; font-weight: 900; }
+  .fstep b { display: block; margin-top: 12px; font-size: 28px; color: #fff; }
+  .fstep p { margin-top: 8px; font-size: 19px; color: #A9B4BE; line-height: 1.6; }
+  .farrow { font-size: 40px; color: #C08A3E; }
+
+  /* S6 contact */
+  #s-contact { background: linear-gradient(160deg, #16212C 0%, #0D141B 100%); }
+  #s-contact h2 { font-size: 88px; font-weight: 900; color: #fff; line-height: 1.5; }
+  #s-contact .pill { margin-top: 60px; background: #C08A3E; color: #101820; font-size: 40px; font-weight: 900; padding: 26px 80px; border-radius: 999px; }
+  #s-contact .small { margin-top: 40px; font-size: 24px; color: #A9B4BE; }
+
+  /* branch: ai-secret */
+  #s-secret { background: linear-gradient(160deg, #0B2447 0%, #071A35 100%); }
+  #s-secret .eyebrow { color: #C9A227; }
+  #s-secret h2 { font-size: 72px; font-weight: 900; color: #fff; line-height: 1.55; margin-top: 24px; }
+  #s-secret h2 em { font-style: normal; color: #C9A227; }
+  #s-secret .facts { display: flex; gap: 40px; margin-top: 70px; }
+  .fact { width: 480px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 40px 34px; }
+  .fact b { display: block; font-size: 30px; color: #C9A227; }
+  .fact p { margin-top: 10px; font-size: 22px; color: #DCE6F5; line-height: 1.7; }
+  #s-secret .by { margin-top: 60px; font-size: 26px; color: #9FB0C7; }
+  #s-secret .by strong { color: #fff; font-family: 'Noto Serif JP', serif; }
+</style>
+</head>
+<body>
+
+<script type="application/hyperframes-slideshow+json">
+{
+  "slides": [
+    { "sceneId": "cover", "notes": "表紙。社名と一言。→で進む。" },
+    { "sceneId": "numbers", "notes": "数字3つはクリックで1枚ずつ出る。", "fragments": [8.3, 8.6, 8.9] },
+    { "sceneId": "works", "notes": "施工イメージ。右下の点線ボタンがホットスポット（AIの種明かしへ分岐）。",
+      "hotspots": [
+        { "id": "h-ai", "label": "実はこのパース、AIで作りました", "target": "ai-secret", "region": { "x": 30, "y": 84, "w": 40, "h": 11 } }
+      ]
+    },
+    { "sceneId": "strengths", "notes": "3つの約束もクリックで1枚ずつ。", "fragments": [24.3, 24.6, 24.9] },
+    { "sceneId": "flow", "notes": "家づくりの流れ5ステップ。" },
+    { "sceneId": "contact", "notes": "締め。モデルハウス誘導。" }
+  ],
+  "slideSequences": [
+    {
+      "id": "ai-secret",
+      "label": "このプレゼンの種明かし",
+      "slides": [ { "sceneId": "secret", "notes": "パースも、このプレゼン自体もAI+コード製という種明かし。戻るボタンで本編へ。" } ]
+    }
+  ]
+}
+</script>
+
+<!-- S1 cover 0-8 -->
+<div id="s-cover" class="scene" data-composition-id="cover" data-start="0" data-duration="8" data-label="表紙" data-width="1920" data-height="1080">
+  <div id="cover-bg"></div>
+  <div id="cover-shade"></div>
+  <div class="brandtag">株式会社サンプル工務店</div>
+  <div class="inner">
+    <div class="eyebrow" data-anim>COMPANY PROFILE 2026</div>
+    <h1 class="serif" data-anim>手を動かす人が、<br>いちばん近くにいる<span class="wood">工務店</span>。</h1>
+    <div class="co serif" data-anim>株式会社サンプル工務店</div>
+    <div class="hint" data-anim>← → キー、またはクリックで進みます</div>
+  </div>
+  <div class="fictional">※ 架空の企業によるサンプルプレゼンテーションです</div>
+</div>
+
+<!-- S2 numbers 8-16 -->
+<div id="s-numbers" class="scene" data-composition-id="numbers" data-start="8" data-duration="8" data-label="数字" data-width="1920" data-height="1080">
+  <div class="brandtag">株式会社サンプル工務店</div>
+  <div class="inner">
+    <h2 class="serif" data-anim>数字で見る、サンプル工務店。</h2>
+    <div class="numrow">
+      <div class="numcard" id="num-1"><div class="big">32<small>年</small></div><div class="lab">地域で創業</div></div>
+      <div class="numcard" id="num-2"><div class="big">640<small>棟</small></div><div class="lab">累計施工実績</div></div>
+      <div class="numcard" id="num-3"><div class="big">14<small>名</small></div><div class="lab">自社職人</div></div>
+    </div>
+  </div>
+  <div class="fictional">※ 数字はすべて架空の想定値です</div>
+  <div class="pagenum">2 / 6</div>
+</div>
+
+<!-- S3 works 16-24 -->
+<div id="s-works" class="scene" data-composition-id="works" data-start="16" data-duration="8" data-label="施工イメージ" data-width="1920" data-height="1080">
+  <div class="brandtag">株式会社サンプル工務店</div>
+  <div class="inner">
+    <h2 class="serif" data-anim>光と木を、ていねいに設計する。</h2>
+    <div class="shots">
+      <div class="shot" data-anim><img src="assets/works/pers-interior.jpg" alt=""><div class="cap">吹き抜けのリビング</div></div>
+      <div class="shot" data-anim><img src="assets/works/pers-bathroom.jpg" alt=""><div class="cap">ホテルライクな浴室</div></div>
+      <div class="shot" data-anim><img src="assets/works/staging-a-after.jpg" alt=""><div class="cap">家具までコーディネート</div></div>
+    </div>
+  </div>
+  <div class="pagenum">3 / 6</div>
+</div>
+
+<!-- S4 strengths 24-32 -->
+<div id="s-strengths" class="scene" data-composition-id="strengths" data-start="24" data-duration="8" data-label="3つの約束" data-width="1920" data-height="1080">
+  <div class="brandtag">株式会社サンプル工務店</div>
+  <div class="inner">
+    <h2 class="serif" data-anim>サンプル工務店の、3つの約束。</h2>
+    <div class="strow">
+      <div class="stcard" id="st-1"><div class="no">壱</div><b>自社職人が施工</b><p>下請けに丸投げしない。棟梁が最初から最後まで御家族の担当です。</p></div>
+      <div class="stcard" id="st-2"><div class="no">弐</div><b>見積もりは一式にしない</b><p>材料・手間をすべて明細で。「一式」の見積書は出しません。</p></div>
+      <div class="stcard" id="st-3"><div class="no">参</div><b>引き渡し後も50年</b><p>定期点検は50年先まで。建てた後の暮らしに責任を持ちます。</p></div>
+    </div>
+  </div>
+  <div class="fictional">※ 内容は架空の想定です</div>
+  <div class="pagenum">4 / 6</div>
+</div>
+
+<!-- S5 flow 32-40 -->
+<div id="s-flow" class="scene" data-composition-id="flow" data-start="32" data-duration="8" data-label="家づくりの流れ" data-width="1920" data-height="1080">
+  <div class="brandtag">株式会社サンプル工務店</div>
+  <div class="inner">
+    <h2 class="serif" data-anim>家づくりは、この5歩で。</h2>
+    <div class="flowrow" data-anim>
+      <div class="fstep"><div class="no">1</div><b>ご相談</b><p>暮らしの希望を伺います（無料）</p></div>
+      <div class="farrow">→</div>
+      <div class="fstep"><div class="no">2</div><b>敷地調査</b><p>土地と法規を確認</p></div>
+      <div class="farrow">→</div>
+      <div class="fstep"><div class="no">3</div><b>プラン提案</b><p>間取りと概算をご提示</p></div>
+      <div class="farrow">→</div>
+      <div class="fstep"><div class="no">4</div><b>ご契約・着工</b><p>明細見積もりに合意後</p></div>
+      <div class="farrow">→</div>
+      <div class="fstep"><div class="no">5</div><b>お引き渡し</b><p>ここから50年のお付き合い</p></div>
+    </div>
+  </div>
+  <div class="pagenum">5 / 6</div>
+</div>
+
+<!-- S6 contact 40-48 -->
+<div id="s-contact" class="scene" data-composition-id="contact" data-start="40" data-duration="8" data-label="ご案内" data-width="1920" data-height="1080">
+  <div class="brandtag">株式会社サンプル工務店</div>
+  <div class="inner">
+    <h2 class="serif" data-anim>まずは、モデルハウスで<br>木の香りを確かめてください。</h2>
+    <div class="pill" data-anim>見学のご予約はお電話で</div>
+    <div class="small" data-anim>※ 架空の企業によるサンプルプレゼンテーションです</div>
+  </div>
+  <div class="pagenum">6 / 6</div>
+</div>
+
+<!-- branch: secret 48-56 -->
+<div id="s-secret" class="scene" data-composition-id="secret" data-start="48" data-duration="8" data-label="種明かし" data-width="1920" data-height="1080">
+  <div class="inner">
+    <div class="eyebrow" data-anim>BEHIND THE SCENES</div>
+    <h2 class="serif" data-anim>このパースも、このプレゼン自体も、<br><em>AIとコード</em>で作られています。</h2>
+    <div class="facts">
+      <div class="fact" data-anim><b>パース3枚：AI生成</b><p>撮影も外注もなし。文章の指示から画像生成AIが制作しました。</p></div>
+      <div class="fact" data-anim><b>このプレゼン：コード製</b><p>PowerPoint不使用。ウェブと同じ技術で動く「動くプレゼン」です。</p></div>
+      <div class="fact" data-anim><b>制作時間：約1時間</b><p>修正はテキストの書き換えだけ。営業ごとの差し替えも一瞬です。</p></div>
+    </div>
+    <div class="by" data-anim>この作り方を、御社の営業にも。 — <strong>AI顧問室</strong></div>
+  </div>
+</div>
+
+<script>
+  window.__timelines = window.__timelines || {};
+  var TOTAL = 56;
+
+  // root タイムライン（シーク可能な自前クロック）
+  var root = gsap.timeline({ paused: true });
+  root.to({}, { duration: TOTAL }, 0);
+  window.__timelines["root"] = root;
+
+  var scenes = [
+    { id: "cover", el: "s-cover", start: 0, duration: 8 },
+    { id: "numbers", el: "s-numbers", start: 8, duration: 8 },
+    { id: "works", el: "s-works", start: 16, duration: 8 },
+    { id: "strengths", el: "s-strengths", start: 24, duration: 8 },
+    { id: "flow", el: "s-flow", start: 32, duration: 8 },
+    { id: "contact", el: "s-contact", start: 40, duration: 8 },
+    { id: "secret", el: "s-secret", start: 48, duration: 8 }
+  ];
+
+  // フラグメント（絶対時刻・シーン頭に密集させて連打で気持ちよく出す）
+  var fragments = [
+    { time: 8.3, id: "num-1", revealed: false, scene: "numbers" },
+    { time: 8.6, id: "num-2", revealed: false, scene: "numbers" },
+    { time: 8.9, id: "num-3", revealed: false, scene: "numbers" },
+    { time: 24.3, id: "st-1", revealed: false, scene: "strengths" },
+    { time: 24.6, id: "st-2", revealed: false, scene: "strengths" },
+    { time: 24.9, id: "st-3", revealed: false, scene: "strengths" }
+  ];
+
+  function fireEntrance(sceneEl) {
+    var els = sceneEl.querySelectorAll("[data-anim]");
+    if (!els.length) return;
+    gsap.from(els, { opacity: 0, y: 28, duration: 0.45, stagger: 0.08, ease: "power2.out", overwrite: true });
+  }
+
+  function revealFragment(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    gsap.fromTo(el, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out", overwrite: true });
+  }
+
+  var lastActiveId = null;
+  function updateVisibility() {
+    var t = root.time();
+    var activeScene = null;
+    for (var i = 0; i < scenes.length; i++) {
+      var s = scenes[i];
+      var active = t >= s.start && t < s.start + s.duration;
+      var el = document.getElementById(s.el);
+      el.classList.toggle("is-active", active);
+      if (active) activeScene = s;
+    }
+    if (activeScene && activeScene.id !== lastActiveId) {
+      lastActiveId = activeScene.id;
+      fireEntrance(document.getElementById(activeScene.el));
+      // シーン再入場でフラグメントをリセット
+      fragments.forEach(function (f) {
+        if (f.scene === activeScene.id) {
+          f.revealed = false;
+          var el = document.getElementById(f.id);
+          if (el) gsap.set(el, { opacity: 0, clearProps: "transform" });
+        }
+      });
+    }
+    for (var j = 0; j < fragments.length; j++) {
+      if (!fragments[j].revealed && t >= fragments[j].time) {
+        fragments[j].revealed = true;
+        revealFragment(fragments[j].id);
+      }
+    }
+  }
+  root.eventCallback("onUpdate", updateVisibility);
+  // 初期表示
+  root.seek(4).pause();
+  updateVisibility();
+
+  // scenes bootstrap postMessage（wrapperのslideshowコントローラに時間表を渡す）
+  (function () {
+    var FPS = 30;
+    function postTimeline() {
+      parent.postMessage({
+        source: "hf-preview",
+        type: "timeline",
+        durationInFrames: TOTAL * FPS,
+        scenes: scenes.map(function (s) { return { id: s.id, start: s.start, duration: s.duration }; })
+      }, "*");
+    }
+    if (document.readyState === "complete") setTimeout(postTimeline, 300);
+    else window.addEventListener("load", function () { setTimeout(postTimeline, 300); });
+  })();
+</script>
+
+</body>
+</html>

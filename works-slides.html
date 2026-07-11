@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>動くプレゼン（クリック進行型スライドショー）｜AI顧問室</title>
+<meta name="description" content="架空の工務店の会社紹介を、クリックで進む「動くプレゼン」に。PowerPoint不使用、コードだけで動くスライドショーの制作サンプルです。矢印キーまたはクリックで進みます。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="動くプレゼン（クリック進行型スライドショー）｜AI顧問室">
+<meta property="og:description" content="架空の工務店の会社紹介を、クリックで進む「動くプレゼン」に。PowerPoint不使用、コードだけで動くスライドショー。">
+<meta property="og:url" content="https://rakansens.github.io/ai-komon2/works-slides.html">
+<meta property="og:image" content="https://rakansens.github.io/ai-komon2/assets/works/pers-exterior.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script src="assets/vendor/hyperframes/hyperframes-player.global.js"></script>
+<script src="assets/vendor/hyperframes/hyperframes-slideshow.global.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #0D141B; }
+  .backbar {
+    position: fixed; top: 14px; left: 16px; z-index: 1000;
+    display: flex; gap: 10px; align-items: center;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .backbar a {
+    color: rgba(255,255,255,0.85); background: rgba(13,20,27,0.65);
+    border: 1px solid rgba(255,255,255,0.25); border-radius: 999px;
+    padding: 8px 18px; font-size: 13px; text-decoration: none; backdrop-filter: blur(4px);
+  }
+  .backbar a:hover { background: rgba(255,255,255,0.12); }
+</style>
+</head>
+<body>
+
+<div class="backbar">
+  <a href="works.html">← 作品一覧へ</a>
+  <a href="index.html#contact">無料相談</a>
+</div>
+
+<hyperframes-slideshow tabindex="0" style="display:block; position:relative; width:100vw; height:100vh;">
+  <hyperframes-player interactive style="position:absolute; inset:0;" src="works-slides-deck.html"></hyperframes-player>
+
+  <!-- DUPLICATED ISLAND — works-slides-deck.html内のislandと同期を保つこと -->
+  <script type="application/hyperframes-slideshow+json">
+  {
+    "slides": [
+      { "sceneId": "cover", "notes": "表紙。社名と一言。→で進む。" },
+      { "sceneId": "numbers", "notes": "数字3つはクリックで1枚ずつ出る。", "fragments": [8.3, 8.6, 8.9] },
+      { "sceneId": "works", "notes": "施工イメージ。右下の点線ボタンがホットスポット（AIの種明かしへ分岐）。",
+        "hotspots": [
+          { "id": "h-ai", "label": "実はこのパース、AIで作りました", "target": "ai-secret", "region": { "x": 30, "y": 84, "w": 40, "h": 11 } }
+        ]
+      },
+      { "sceneId": "strengths", "notes": "3つの約束もクリックで1枚ずつ。", "fragments": [24.3, 24.6, 24.9] },
+      { "sceneId": "flow", "notes": "家づくりの流れ5ステップ。" },
+      { "sceneId": "contact", "notes": "締め。モデルハウス誘導。" }
+    ],
+    "slideSequences": [
+      {
+        "id": "ai-secret",
+        "label": "このプレゼンの種明かし",
+        "slides": [ { "sceneId": "secret", "notes": "パースも、このプレゼン自体もAI+コード製という種明かし。戻るボタンで本編へ。" } ]
+      }
+    ]
+  }
+  </script>
+</hyperframes-slideshow>
+
+<script>
+  // 直開き（standalone）対策:
+  // カスタム要素のconnectedCallbackは子要素（island）のパース前に走ることがあり、
+  // その場合initが黙って中断してナビが出ない。load後にinitを再実行する。
+  window.addEventListener("load", function () {
+    var deck = document.querySelector("hyperframes-slideshow");
+    if (!deck) return;
+    setTimeout(function () {
+      var hasNav = deck.querySelector("button");
+      if (!hasNav && typeof deck.init === "function") {
+        deck.initInFlight = false;
+        deck.init();
+      }
+      deck.focus();
+    }, 400);
+  });
+</script>
+
+</body>
+</html>
