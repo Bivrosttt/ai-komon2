@@ -1,0 +1,20 @@
+{
+  "keyword": "損益分岐点 計算",
+  "slug": "break-even-calculator",
+  "title": "損益分岐点計算機",
+  "description": "固定費・販売価格・変動費から、利益がゼロになる販売数量を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "fixedCost", "label": "固定費（円）", "default": 500000, "step": 10000},
+    {"id": "salesPrice", "label": "1個あたり販売価格（円）", "default": 10000, "step": 100},
+    {"id": "variableCost", "label": "1個あたり変動費（円）", "default": 4000, "step": 100}
+  ],
+  "result": {"label": "損益分岐点の販売数量", "unit": "個", "formula": "fixedCost / (salesPrice - variableCost)"},
+  "explanations": ["固定費を、1個売るごとに残る限界利益で割って、利益がゼロになる販売数量を確認します。", "実際の計画では、値引き、返品、季節変動、追加人員などを別途見込んでください。"],
+  "related_tools": [
+    {"label": "粗利率計算機", "url": "/tools/gross-margin-calculator/", "description": "売上と原価から粗利率を確認します。"},
+    {"label": "見積利益率計算機", "url": "/tools/quote-margin-calculator/", "description": "目標利益を残す価格を計算します。"}
+  ],
+  "cta": {"label": "事業計画を相談する", "url": "/diagnosis.html"}
+}

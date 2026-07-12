@@ -4,13 +4,13 @@
   <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>会議コスト計算機 | AI顧問室</title>
-  <meta name="description" content="参加人数・会議時間・月間回数・人件費から、会議にかかる月間工数とコストを計算します。">
-  <link rel="canonical" href="https://ai-komon.bivrost.co.jp/tools/meeting-cost-calculator/">
-  <meta property="og:title" content="会議コスト計算機 | AI顧問室">
-  <meta property="og:description" content="参加人数・会議時間・月間回数・人件費から、会議にかかる月間工数とコストを計算します。">
+  <title>納期バッファ計算機 | AI顧問室</title>
+  <meta name="description" content="基準日数と不確実性の割合から、無理のない計画日数とバッファを計算します。">
+  <link rel="canonical" href="https://ai-komon.bivrost.co.jp/tools/deadline-buffer-calculator/">
+  <meta property="og:title" content="納期バッファ計算機 | AI顧問室">
+  <meta property="og:description" content="基準日数と不確実性の割合から、無理のない計画日数とバッファを計算します。">
   <meta property="og:site_name" content="AI顧問室">
-  <meta property="og:url" content="https://ai-komon.bivrost.co.jp/tools/meeting-cost-calculator/">
+  <meta property="og:url" content="https://ai-komon.bivrost.co.jp/tools/deadline-buffer-calculator/">
   <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
@@ -28,22 +28,22 @@
 <body>
 <main>
   <div class="site-header"><div class="site-header-inner"><a class="wordmark" href="/">AI顧問室</a><a class="back-link" href="/tools/">無料ツール一覧へ</a></div></div>
-  <header><p class="eyebrow">AI KOMON / FREE TOOL</p><h1>会議コスト計算機</h1><p class="lead">参加人数・会議時間・月間回数・人件費から、会議にかかる月間工数とコストを計算します。</p></header>
-  <section class="tool-section" aria-labelledby="tool-heading"><h2 id="tool-heading">使う</h2><div class="tool-card"><form id="tool-form"><div class="two-col"><label class="field"><span>参加人数</span><input id="participants" name="participants" type="number" inputmode="decimal" step="1" value="5"></label><label class="field"><span>1回の会議時間（分）</span><input id="minutes" name="minutes" type="number" inputmode="decimal" step="5" value="60"></label><label class="field"><span>月間の開催回数</span><input id="meetingsPerMonth" name="meetingsPerMonth" type="number" inputmode="decimal" step="1" value="4"></label><label class="field"><span>1人あたりの時間単価（円）</span><input id="hourlyRate" name="hourlyRate" type="number" inputmode="decimal" step="100" value="3000"></label></div><button type="submit">計算する</button></form><div id="calc-results"><output id="calc-monthly-hours" aria-live="polite">月間の会議工数がここに表示されます</output><output id="calc-monthly-cost" aria-live="polite">月間の会議コストがここに表示されます</output></div></div></section>
-  <section aria-labelledby="about-heading"><h2 id="about-heading">このツールについて</h2><p>会議の回数ではなく、参加者の時間を合計して、見えにくい会議コストを把握します。</p><p class="muted">削減だけを目的にせず、意思決定に必要な会議と共有のための会議を分けて見直してください。</p></section>
-  <section aria-labelledby="faq-heading"><h2 id="faq-heading">注意点とFAQ</h2><details><summary>会議室代や移動時間も入れられますか？</summary><p>現在は参加者の時間コストに絞っています。会議室代や移動時間は別途加算してください。</p></details><details><summary>計算結果は保存されますか？</summary><p>いいえ。入力値はブラウザ内で計算し、サーバーへ送信しません。</p></details></section>
-  <section aria-labelledby="related-heading"><h2 id="related-heading">関連する無料ツール</h2><div class="related-grid"><a class="related" href="/tools/gijiroku-template/"><strong>議事録テンプレート</strong><span>会議後の決定事項とToDoを整理します。</span></a><a class="related" href="/tools/project-capacity-planner/"><strong>チーム稼働キャパシティ計算</strong><span>会議を含むチームの稼働余力を確認します。</span></a></div></section>
-  <section class="cta-wrap"><h2>業務に合わせて整える</h2><p>入力内容はブラウザ内で処理します。個別の業務設計や導入相談はこちら。</p><a class="cta" href="/diagnosis.html">会議業務の改善を相談する</a></section>
+  <header><p class="eyebrow">AI KOMON / FREE TOOL</p><h1>納期バッファ計算機</h1><p class="lead">基準日数と不確実性の割合から、無理のない計画日数とバッファを計算します。</p></header>
+  <section class="tool-section" aria-labelledby="tool-heading"><h2 id="tool-heading">使う</h2><div class="tool-card"><form id="tool-form"><div class="two-col"><label class="field"><span>基準の作業日数</span><input id="baseDays" name="baseDays" type="number" inputmode="decimal" step="1" value="10"></label><label class="field"><span>バッファ率（%）</span><input id="bufferRate" name="bufferRate" type="number" inputmode="decimal" step="5" value="20"></label></div><button type="submit">計算する</button></form><div id="calc-results"><output id="calc-buffer-days" aria-live="polite">見込むバッファがここに表示されます</output><output id="calc-recommended-days" aria-live="polite">計画に置く日数がここに表示されます</output></div></div></section>
+  <section aria-labelledby="about-heading"><h2 id="about-heading">このツールについて</h2><p>作業そのものの日数と、不確実性に備えるバッファを分けて計画します。</p><p class="muted">休日、承認待ち、外部依存、仕様変更がある場合は、割合だけでなく個別の待ち時間も加えてください。</p></section>
+  <section aria-labelledby="faq-heading"><h2 id="faq-heading">注意点とFAQ</h2><details><summary>無料で使えますか？</summary><p>はい。ブラウザから登録なしで利用できます。</p></details><details><summary>入力データは保存されますか？</summary><p>このページの計算処理はブラウザ内で行い、入力値をサーバーへ送信しません。</p></details></section>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">関連する無料ツール</h2><div class="related-grid"><a class="related" href="/tools/project-capacity-planner/"><strong>チーム稼働キャパシティ計算機</strong><span>期間中に使える稼働時間を確認します。</span></a><a class="related" href="/tools/task-time-calculator/"><strong>タスク時間計算機</strong><span>タスク件数から必要時間を見積もります。</span></a></div></section>
+  <section class="cta-wrap"><h2>業務に合わせて整える</h2><p>入力内容はブラウザ内で処理します。個別の業務設計や導入相談はこちら。</p><a class="cta" href="/diagnosis.html">業務計画を相談する</a></section>
   <footer><a href="/">AI顧問室</a> / <a href="/privacy.html">プライバシーポリシー</a></footer>
 </main>
 <script>
-const runtime = {"type": "calculator", "results": [{"id": "monthly-hours", "label": "月間の会議工数", "unit": "時間", "formula": "participants * minutes / 60 * meetingsPerMonth"}, {"id": "monthly-cost", "label": "月間の会議コスト", "unit": "円", "formula": "participants * minutes / 60 * meetingsPerMonth * hourlyRate"}]};
+const runtime = {"type": "calculator", "results": [{"id": "buffer-days", "label": "見込むバッファ", "unit": "日", "formula": "baseDays * bufferRate / 100"}, {"id": "recommended-days", "label": "計画に置く日数", "unit": "日", "formula": "baseDays * (1 + bufferRate / 100)"}]};
 
 const form = document.getElementById('tool-form');
-if (form) form.addEventListener('submit', event => { event.preventDefault(); try { const values = Object.fromEntries(["participants", "minutes", "meetingsPerMonth", "hourlyRate"].map(id => [id, Number(document.getElementById(id).value) || 0]));
-const { participants, minutes, meetingsPerMonth, hourlyRate } = values;
-const resultValue0 = participants * minutes / 60 * meetingsPerMonth; document.getElementById('calc-monthly-hours').textContent = Number.isFinite(resultValue0) ? "月間の会議工数" + ': ' + new Intl.NumberFormat('ja-JP').format(resultValue0) + ' ' + "時間" : '入力値を確認してください';
-const resultValue1 = participants * minutes / 60 * meetingsPerMonth * hourlyRate; document.getElementById('calc-monthly-cost').textContent = Number.isFinite(resultValue1) ? "月間の会議コスト" + ': ' + new Intl.NumberFormat('ja-JP').format(resultValue1) + ' ' + "円" : '入力値を確認してください'; } catch (error) { const target = document.getElementById('tool-result') || document.getElementById('risk-result') || document.getElementById('mt-output'); if (target) target.textContent = '入力値を確認してください'; } });
+if (form) form.addEventListener('submit', event => { event.preventDefault(); try { const values = Object.fromEntries(["baseDays", "bufferRate"].map(id => [id, Number(document.getElementById(id).value) || 0]));
+const { baseDays, bufferRate } = values;
+const resultValue0 = baseDays * bufferRate / 100; document.getElementById('calc-buffer-days').textContent = Number.isFinite(resultValue0) ? "見込むバッファ" + ': ' + new Intl.NumberFormat('ja-JP').format(resultValue0) + ' ' + "日" : '入力値を確認してください';
+const resultValue1 = baseDays * (1 + bufferRate / 100); document.getElementById('calc-recommended-days').textContent = Number.isFinite(resultValue1) ? "計画に置く日数" + ': ' + new Intl.NumberFormat('ja-JP').format(resultValue1) + ' ' + "日" : '入力値を確認してください'; } catch (error) { const target = document.getElementById('tool-result') || document.getElementById('risk-result') || document.getElementById('mt-output'); if (target) target.textContent = '入力値を確認してください'; } });
 </script>
 </body>
 </html>

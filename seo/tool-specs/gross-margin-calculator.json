@@ -1,0 +1,22 @@
+{
+  "keyword": "粗利率 計算",
+  "slug": "gross-margin-calculator",
+  "title": "粗利率計算機",
+  "description": "売上と原価を入力して、粗利額と粗利率を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "sales", "label": "売上（円）", "default": 500000, "step": 1000},
+    {"id": "cost", "label": "原価（円）", "default": 300000, "step": 1000}
+  ],
+  "results": [
+    {"id": "gross-profit", "label": "粗利額", "unit": "円", "formula": "sales - cost"},
+    {"id": "margin-rate", "label": "粗利率", "unit": "%", "formula": "(sales - cost) / sales * 100"}
+  ],
+  "explanations": ["売上と原価の差額を粗利として確認し、売上に対する割合で比較します。", "会計上の定義や原価の範囲は会社ごとに異なります。社内の管理会計ルールに合わせてください。"],
+  "related_tools": [
+    {"label": "見積利益率計算機", "url": "/tools/quote-margin-calculator/", "description": "目標利益率から提示価格を逆算します。"},
+    {"label": "営業・見積もり工数シミュレーター", "url": "/tools/sales-estimate-roi/", "description": "見積業務の工数と削減額を試算します。"}
+  ],
+  "cta": {"label": "収益改善を相談する", "url": "/diagnosis.html"}
+}

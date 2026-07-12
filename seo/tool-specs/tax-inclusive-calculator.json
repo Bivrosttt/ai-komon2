@@ -1,0 +1,22 @@
+{
+  "keyword": "税込価格 計算",
+  "slug": "tax-inclusive-calculator",
+  "title": "税込価格計算機",
+  "description": "税抜価格と税率を入力して、消費税額と税込価格を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "netPrice", "label": "税抜価格（円）", "default": 10000, "step": 100},
+    {"id": "taxRate", "label": "税率（%）", "default": 10, "step": 1}
+  ],
+  "results": [
+    {"id": "tax-amount", "label": "消費税額", "unit": "円", "formula": "netPrice * taxRate / 100"},
+    {"id": "gross-price", "label": "税込価格", "unit": "円", "formula": "netPrice * (1 + taxRate / 100)"}
+  ],
+  "explanations": ["税抜価格から、消費税額と税込の支払額を確認できます。", "端数処理や軽減税率の扱いは、実際の請求ルールに合わせて調整してください。"],
+  "related_tools": [
+    {"label": "割引計算機", "url": "/tools/discount-calculator/", "description": "値引き後の支払額を確認します。"},
+    {"label": "見積利益率計算機", "url": "/tools/quote-margin-calculator/", "description": "原価と利益率から見積価格を逆算します。"}
+  ],
+  "cta": {"label": "見積・請求業務を相談する", "url": "/demo-quote.html"}
+}

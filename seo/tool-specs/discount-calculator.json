@@ -1,0 +1,22 @@
+{
+  "keyword": "割引 計算",
+  "slug": "discount-calculator",
+  "title": "割引計算機",
+  "description": "元の価格と割引率を入力して、割引額と支払金額をすぐに計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "originalPrice", "label": "元の価格（円）", "default": 10000, "step": 100},
+    {"id": "discountRate", "label": "割引率（%）", "default": 10, "step": 1}
+  ],
+  "results": [
+    {"id": "discount-amount", "label": "割引額", "unit": "円", "formula": "originalPrice * discountRate / 100"},
+    {"id": "final-price", "label": "支払金額", "unit": "円", "formula": "originalPrice * (1 - discountRate / 100)"}
+  ],
+  "explanations": ["価格と割引率から、値引き額と支払額を分けて確認できます。", "実際の請求では税・送料・クーポン条件を別途確認してください。"],
+  "related_tools": [
+    {"label": "税込価格計算機", "url": "/tools/tax-inclusive-calculator/", "description": "税抜価格から税込価格を確認します。"},
+    {"label": "単価計算機", "url": "/tools/unit-price-calculator/", "description": "合計金額を数量で割って単価を確認します。"}
+  ],
+  "cta": {"label": "価格設計を相談する", "url": "/diagnosis.html"}
+}

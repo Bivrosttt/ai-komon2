@@ -1,0 +1,20 @@
+{
+  "keyword": "営業歩合 計算",
+  "slug": "commission-calculator",
+  "title": "営業歩合計算機",
+  "description": "売上金額・歩合率・固定ボーナスから、営業担当の支給額を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "salesAmount", "label": "売上金額（円）", "default": 1000000, "step": 10000},
+    {"id": "commissionRate", "label": "歩合率（%）", "default": 5, "step": 0.5},
+    {"id": "fixedBonus", "label": "固定ボーナス（円）", "default": 0, "step": 1000}
+  ],
+  "result": {"label": "歩合込み支給額", "unit": "円", "formula": "salesAmount * commissionRate / 100 + fixedBonus"},
+  "explanations": ["売上に応じた歩合と固定ボーナスを合算して、支給額の目安を確認します。", "実際の制度では対象売上、控除、上限、支給タイミングなどの社内規程を優先してください。"],
+  "related_tools": [
+    {"label": "粗利率計算機", "url": "/tools/gross-margin-calculator/", "description": "売上と原価から粗利を確認します。"},
+    {"label": "1時間の人件費計算機", "url": "/tools/hourly-cost-calculator/", "description": "人件費を時間単価に換算します。"}
+  ],
+  "cta": {"label": "営業制度の設計を相談する", "url": "/diagnosis.html"}
+}

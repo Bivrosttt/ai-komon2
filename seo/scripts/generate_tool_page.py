@@ -67,8 +67,9 @@ def tool_body(spec: dict) -> tuple[str, str, str, dict]:
         field_ids = [field["id"] for field in fields]
         destructure = ", ".join(field_ids)
         lines = [f"const values = Object.fromEntries({json.dumps(field_ids, ensure_ascii=False)}.map(id => [id, Number(document.getElementById(id).value) || 0]));", f"const {{ {destructure} }} = values;"]
-        for result in normalized_results:
-            lines.append(f"document.getElementById('calc-{result['id']}').textContent = {json.dumps(result['label'], ensure_ascii=False)} + ': ' + new Intl.NumberFormat('ja-JP').format({result['formula']}) + ' ' + {json.dumps(result['unit'], ensure_ascii=False)};")
+        for index, result in enumerate(normalized_results):
+            value_name = f"resultValue{index}"
+            lines.append(f"const {value_name} = {result['formula']}; document.getElementById('calc-{result['id']}').textContent = Number.isFinite({value_name}) ? {json.dumps(result['label'], ensure_ascii=False)} + ': ' + new Intl.NumberFormat('ja-JP').format({value_name}) + ' ' + {json.dumps(result['unit'], ensure_ascii=False)} : '入力値を確認してください';")
         return body, "", "\n".join(lines), {"type": tool_type, "results": normalized_results}
     if tool_type == "minutes-template":
         body = '''<div class="tool-card"><form id="tool-form"><div class="two-col">
@@ -155,6 +156,8 @@ def main() -> int:
   <meta property="og:image" content="{esc(base_url)}/assets/ogp.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
+  <script src="../../analytics-config.js"></script>
+  <script src="../../analytics.js"></script>
   <style>
     :root {{ color-scheme: light; --ink:#15243a; --muted:#68778a; --line:#d9e1ea; --brand:#1769aa; --soft:#f5f8fb; }}
     * {{ box-sizing:border-box; }} body {{ margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif; color:var(--ink); line-height:1.7; background:#fff; }}
