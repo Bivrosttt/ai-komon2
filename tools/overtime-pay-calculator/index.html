@@ -5,10 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>残業代計算機 | AI顧問室</title>
-  <meta name="description" content="基準時給・残業時間・割増率から、残業代の目安を計算します。">
+  <meta name="description" content="基準時給と通常残業・深夜・休日・月60時間超の時間から、残業代の内訳を試算します。">
   <link rel="canonical" href="https://ai-komon.bivrost.co.jp/tools/overtime-pay-calculator/">
   <meta property="og:title" content="残業代計算機 | AI顧問室">
-  <meta property="og:description" content="基準時給・残業時間・割増率から、残業代の目安を計算します。">
+  <meta property="og:description" content="基準時給と通常残業・深夜・休日・月60時間超の時間から、残業代の内訳を試算します。">
   <meta property="og:site_name" content="AI顧問室">
   <meta property="og:url" content="https://ai-komon.bivrost.co.jp/tools/overtime-pay-calculator/">
   <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
@@ -28,21 +28,25 @@
 <body>
 <main>
   <div class="site-header"><div class="site-header-inner"><a class="wordmark" href="/">AI顧問室</a><a class="back-link" href="/tools/">無料ツール一覧へ</a></div></div>
-  <header><p class="eyebrow">AI KOMON / FREE TOOL</p><h1>残業代計算機</h1><p class="lead">基準時給・残業時間・割増率から、残業代の目安を計算します。</p></header>
-  <section class="tool-section" aria-labelledby="tool-heading"><h2 id="tool-heading">使う</h2><div class="tool-card"><form id="tool-form"><div class="two-col"><label class="field"><span>基準時給（円）</span><input id="baseHourly" name="baseHourly" type="number" inputmode="decimal" step="50" value="1500"></label><label class="field"><span>残業時間（時間）</span><input id="overtimeHours" name="overtimeHours" type="number" inputmode="decimal" step="0.5" value="10"></label><label class="field"><span>割増率（%）</span><input id="premiumRate" name="premiumRate" type="number" inputmode="decimal" step="1" value="25"></label></div><button type="submit">計算する</button></form><div id="calc-results"><output id="calc-result-0" aria-live="polite">残業代の目安がここに表示されます</output></div></div></section>
-  <section aria-labelledby="about-heading"><h2 id="about-heading">このツールについて</h2><p>基準時給と残業時間、割増率から残業部分の金額を確認します。</p><p class="muted">深夜・休日・月60時間超などの割増や就業規則、法令上の扱いは別途確認してください。</p></section>
+  <header><p class="eyebrow">AI KOMON / FREE TOOL</p><h1>残業代計算機</h1><p class="lead">基準時給と通常残業・深夜・休日・月60時間超の時間から、残業代の内訳を試算します。</p></header>
+  <section class="tool-section" aria-labelledby="tool-heading"><h2 id="tool-heading">使う</h2><div class="tool-card"><form id="tool-form"><div class="two-col"><label class="field"><span>基準時給（円）</span><input id="baseHourly" name="baseHourly" type="number" inputmode="decimal" step="50" value="1500"></label><label class="field"><span>通常残業時間（時間）</span><input id="regularOvertimeHours" name="regularOvertimeHours" type="number" inputmode="decimal" step="0.5" value="10"></label><label class="field"><span>深夜残業時間（時間）</span><input id="nightOvertimeHours" name="nightOvertimeHours" type="number" inputmode="decimal" step="0.5" value="0"></label><label class="field"><span>法定休日労働時間（時間）</span><input id="holidayHours" name="holidayHours" type="number" inputmode="decimal" step="0.5" value="0"></label><label class="field"><span>月60時間超の残業時間（時間）</span><input id="over60Hours" name="over60Hours" type="number" inputmode="decimal" step="0.5" value="0"></label></div><button type="submit">計算する</button></form><div id="calc-results"><output id="calc-regular-pay" aria-live="polite">通常残業代の目安がここに表示されます</output><output id="calc-night-pay" aria-live="polite">深夜残業代の目安がここに表示されます</output><output id="calc-holiday-pay" aria-live="polite">休日労働代の目安がここに表示されます</output><output id="calc-over60-premium" aria-live="polite">60時間超の追加割増目安がここに表示されます</output><output id="calc-total-pay" aria-live="polite">残業代合計の目安がここに表示されます</output></div></div></section>
+  <section aria-labelledby="about-heading"><h2 id="about-heading">このツールについて</h2><p>通常残業・深夜・法定休日・月60時間超を分けて入力し、残業代の内訳を確認します。</p><p class="muted">時間の重複や法定内残業、固定残業代、手当の扱いは勤務先の規程や専門家への確認が必要です。</p></section>
   <section aria-labelledby="faq-heading"><h2 id="faq-heading">注意点とFAQ</h2><details><summary>無料で使えますか？</summary><p>はい。ブラウザから登録なしで利用できます。</p></details><details><summary>入力データは保存されますか？</summary><p>このページの計算処理はブラウザ内で行い、入力値をサーバーへ送信しません。</p></details></section>
   <section aria-labelledby="related-heading"><h2 id="related-heading">関連する無料ツール</h2><div class="related-grid"><a class="related" href="/tools/hourly-cost-calculator/"><strong>1時間の人件費計算機</strong><span>雇用コストを含めた1時間あたりの費用を確認します。</span></a><a class="related" href="/tools/monthly-payment-calculator/"><strong>月額支払計算機</strong><span>まとまった費用を月額に分けて確認します。</span></a></div></section>
   <section class="cta-wrap"><h2>業務に合わせて整える</h2><p>入力内容はブラウザ内で処理します。個別の業務設計や導入相談はこちら。</p><a class="cta" href="/diagnosis.html">労務業務を相談する</a></section>
   <footer><a href="/">AI顧問室</a> / <a href="/privacy.html">プライバシーポリシー</a></footer>
 </main>
 <script>
-const runtime = {"type": "calculator", "results": [{"id": "result-0", "label": "残業代の目安", "unit": "円", "formula": "baseHourly * overtimeHours * (1 + premiumRate / 100)"}]};
+const runtime = {"type": "calculator", "results": [{"id": "regular-pay", "label": "通常残業代の目安", "unit": "円", "formula": "baseHourly * regularOvertimeHours * 1.25"}, {"id": "night-pay", "label": "深夜残業代の目安", "unit": "円", "formula": "baseHourly * nightOvertimeHours * 1.5"}, {"id": "holiday-pay", "label": "休日労働代の目安", "unit": "円", "formula": "baseHourly * holidayHours * 1.35"}, {"id": "over60-premium", "label": "60時間超の追加割増目安", "unit": "円", "formula": "baseHourly * over60Hours * 0.25"}, {"id": "total-pay", "label": "残業代合計の目安", "unit": "円", "formula": "baseHourly * (regularOvertimeHours * 1.25 + nightOvertimeHours * 1.5 + holidayHours * 1.35 + over60Hours * 0.25)"}]};
 
 const form = document.getElementById('tool-form');
-if (form) form.addEventListener('submit', event => { event.preventDefault(); try { const values = Object.fromEntries(["baseHourly", "overtimeHours", "premiumRate"].map(id => [id, Number(document.getElementById(id).value) || 0]));
-const { baseHourly, overtimeHours, premiumRate } = values;
-const resultValue0 = baseHourly * overtimeHours * (1 + premiumRate / 100); document.getElementById('calc-result-0').textContent = Number.isFinite(resultValue0) ? "残業代の目安" + ': ' + new Intl.NumberFormat('ja-JP').format(resultValue0) + ' ' + "円" : '入力値を確認してください'; } catch (error) { const target = document.getElementById('tool-result') || document.getElementById('risk-result') || document.getElementById('mt-output'); if (target) target.textContent = '入力値を確認してください'; } });
+if (form) form.addEventListener('submit', event => { event.preventDefault(); try { const values = Object.fromEntries(["baseHourly", "regularOvertimeHours", "nightOvertimeHours", "holidayHours", "over60Hours"].map(id => [id, Number(document.getElementById(id).value) || 0]));
+const { baseHourly, regularOvertimeHours, nightOvertimeHours, holidayHours, over60Hours } = values;
+const resultValue0 = baseHourly * regularOvertimeHours * 1.25; document.getElementById('calc-regular-pay').textContent = Number.isFinite(resultValue0) ? "通常残業代の目安" + ': ' + new Intl.NumberFormat('ja-JP').format(resultValue0) + ' ' + "円" : '入力値を確認してください';
+const resultValue1 = baseHourly * nightOvertimeHours * 1.5; document.getElementById('calc-night-pay').textContent = Number.isFinite(resultValue1) ? "深夜残業代の目安" + ': ' + new Intl.NumberFormat('ja-JP').format(resultValue1) + ' ' + "円" : '入力値を確認してください';
+const resultValue2 = baseHourly * holidayHours * 1.35; document.getElementById('calc-holiday-pay').textContent = Number.isFinite(resultValue2) ? "休日労働代の目安" + ': ' + new Intl.NumberFormat('ja-JP').format(resultValue2) + ' ' + "円" : '入力値を確認してください';
+const resultValue3 = baseHourly * over60Hours * 0.25; document.getElementById('calc-over60-premium').textContent = Number.isFinite(resultValue3) ? "60時間超の追加割増目安" + ': ' + new Intl.NumberFormat('ja-JP').format(resultValue3) + ' ' + "円" : '入力値を確認してください';
+const resultValue4 = baseHourly * (regularOvertimeHours * 1.25 + nightOvertimeHours * 1.5 + holidayHours * 1.35 + over60Hours * 0.25); document.getElementById('calc-total-pay').textContent = Number.isFinite(resultValue4) ? "残業代合計の目安" + ': ' + new Intl.NumberFormat('ja-JP').format(resultValue4) + ' ' + "円" : '入力値を確認してください'; } catch (error) { const target = document.getElementById('tool-result') || document.getElementById('risk-result') || document.getElementById('mt-output'); if (target) target.textContent = '入力値を確認してください'; } });
 </script>
 </body>
 </html>

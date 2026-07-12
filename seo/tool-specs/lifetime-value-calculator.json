@@ -9,10 +9,14 @@
     {"id": "averageOrderValue", "label": "平均購入単価（円）", "default": 10000, "step": 100},
     {"id": "purchasesPerYear", "label": "年間購入回数（回）", "default": 4, "step": 0.5},
     {"id": "relationshipYears", "label": "継続年数（年）", "default": 3, "step": 0.5},
-    {"id": "grossMarginRate", "label": "粗利率（%）", "default": 40, "step": 1}
+    {"id": "grossMarginRate", "label": "粗利率（%）", "default": 40, "step": 1},
+    {"id": "customerAcquisitionCost", "label": "顧客獲得単価（円）", "default": 20000, "step": 1000}
   ],
-  "result": {"label": "粗利ベースのLTV", "unit": "円", "formula": "averageOrderValue * purchasesPerYear * relationshipYears * grossMarginRate / 100"},
-  "explanations": ["顧客が継続期間にもたらす売上に粗利率を掛け、粗利ベースのLTVを試算します。", "解約率や購入頻度は実績期間で見直し、顧客獲得単価と同じ期間・定義で比較してください。"],
+  "results": [
+    {"id": "ltv", "label": "粗利ベースのLTV", "unit": "円", "formula": "averageOrderValue * purchasesPerYear * relationshipYears * grossMarginRate / 100"},
+    {"id": "ltv-cac", "label": "LTV／顧客獲得単価", "unit": "倍", "formula": "(averageOrderValue * purchasesPerYear * relationshipYears * grossMarginRate / 100) / customerAcquisitionCost"}
+  ],
+  "explanations": ["平均購入単価・購入頻度・継続年数・粗利率からLTVを試算し、顧客獲得単価との比率も確認します。", "LTVは推計値です。解約率や購入頻度は実績で見直し、LTVとCACの期間・定義を揃えて判断してください。"],
   "related_tools": [
     {"label": "顧客獲得単価計算機", "url": "/tools/customer-acquisition-cost-calculator/", "description": "新規顧客を獲得するための費用を確認します。"},
     {"label": "粗利率計算機", "url": "/tools/gross-margin-calculator/", "description": "売上と原価から粗利率を確認します。"}
