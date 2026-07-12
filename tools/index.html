@@ -53,47 +53,48 @@
     .nav a:hover { color: var(--ink); }
     .nav .nav-cta { padding: 8px 13px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); }
     .nav .nav-cta:hover { border-color: var(--accent); color: var(--accent); }
-    .hero { padding: 72px 0 40px; }
-    .crumb { margin: 0 0 20px; color: var(--muted); font-size: .78rem; }
+    .hero { padding: 52px 0 28px; }
+    .crumb { margin: 0 0 14px; color: var(--muted); font-size: .75rem; }
     h1, h2, h3, p { margin-top: 0; }
-    h1 { max-width: 680px; margin-bottom: 14px; font-size: clamp(2.35rem, 5vw, 4.45rem); line-height: 1.1; letter-spacing: -.07em; }
-    .hero-lead { max-width: 610px; margin-bottom: 28px; color: var(--muted); font-size: 1rem; }
-    .search { display: flex; max-width: 650px; align-items: center; gap: 10px; padding: 8px 9px 8px 17px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); box-shadow: 0 5px 18px rgb(24 42 73 / 6%); }
+    h1 { max-width: 680px; margin-bottom: 10px; font-size: clamp(2.25rem, 4.6vw, 3.8rem); line-height: 1.1; letter-spacing: -.07em; }
+    .hero-lead { max-width: 610px; margin-bottom: 20px; color: var(--muted); font-size: .9rem; }
+    .search { display: flex; max-width: 570px; align-items: center; gap: 8px; padding: 5px 6px 5px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
     .search label { color: var(--muted); font-size: .84rem; white-space: nowrap; }
     .search input { min-width: 0; flex: 1; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: .9rem; }
     .search input::placeholder { color: var(--muted); }
-    .search button { border: 0; border-radius: 999px; padding: 10px 17px; background: var(--accent); color: #fff; font-size: .82rem; font-weight: 800; cursor: pointer; }
-    .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 23px 0 17px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .search button { border: 0; border-radius: 999px; padding: 7px 13px; background: var(--accent); color: #fff; font-size: .76rem; font-weight: 800; cursor: pointer; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0 11px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .filters { display: flex; flex-wrap: wrap; gap: 8px; }
-    .filter { border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; background: transparent; color: var(--muted); font-size: .78rem; cursor: pointer; }
+    .filter { border: 1px solid var(--line); border-radius: 999px; padding: 6px 11px; background: transparent; color: var(--muted); font-size: .74rem; cursor: pointer; }
     .filter:hover, .filter[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
     .result-count { margin: 0; color: var(--muted); font-size: .78rem; }
-    .listing { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; padding: 28px 0 84px; }
+    .listing { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 26px; padding: 18px 0 56px; }
     .listing > li { list-style: none; }
     .listing > li.featured-item { grid-column: 1 / -1; }
-    .tool-card { position: relative; display: block; min-height: 200px; padding: 27px 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); text-decoration: none; transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }
-    .tool-card:hover { border-color: var(--accent); box-shadow: 0 10px 24px rgb(24 42 73 / 8%); }
-    .tool-card.featured { grid-column: 1 / -1; min-height: 210px; background: var(--surface-soft); border-color: #b9cce2; }
+    .tool-card { position: relative; display: block; min-height: 145px; padding: 20px 0; border: 0; border-radius: 0; background: transparent; text-decoration: none; transition: background .2s ease; }
+    .tool-card:hover { background: var(--surface-soft); box-shadow: none; }
+    .tool-card.featured { grid-column: 1 / -1; min-height: 165px; background: var(--surface-soft); border: 0; padding: 24px 18px; }
+    .listing > li { border-bottom: 1px solid var(--line); }
     .card-main { min-width: 0; }
     .category { color: var(--accent); font-size: .69rem; font-weight: 800; letter-spacing: .12em; }
     .card-arrow { color: var(--accent); font-size: 1.15rem; }
     .tool-card h2, .tool-card h3 { max-width: 760px; min-width: 0; margin-bottom: 0; font-family: "Noto Serif JP", serif; font-size: clamp(1.5rem, 2.7vw, 2.2rem); line-height: 1.35; letter-spacing: -.045em; color: #0b2447; }
     .tool-card.featured h2 { font-size: clamp(1.65rem, 3vw, 2.45rem); }
-    .card-arrow { position: absolute; top: 25px; right: 27px; color: var(--accent); font-size: 1.4rem; line-height: 1; }
+    .card-arrow { position: absolute; top: 20px; right: 0; color: var(--accent); font-size: 1.15rem; line-height: 1; }
     .empty { grid-column: 1 / -1; padding: 36px 20px; border: 1px dashed var(--line); border-radius: var(--radius); color: var(--muted); text-align: center; }
-    .content-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); gap: 15px; padding: 28px 0 82px; border-top: 1px solid var(--line); }
+    .content-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); gap: 15px; padding: 22px 0 58px; border-top: 1px solid var(--line); }
     .content-row h2 { margin-bottom: 10px; font-size: clamp(1.8rem, 3.6vw, 2.65rem); line-height: 1.18; letter-spacing: -.06em; }
     .content-row > div > p { max-width: 560px; margin-bottom: 0; color: var(--muted); font-size: .9rem; }
     .reading-list { display: grid; gap: 10px; }
-    .reading-link { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 17px 19px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-decoration: none; font-size: .86rem; font-weight: 700; }
-    .reading-link:hover { border-color: var(--accent); }
+    .reading-link { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 12px 0; border-bottom: 1px solid var(--line); background: transparent; text-decoration: none; font-size: .82rem; font-weight: 700; }
+    .reading-link:hover { color: var(--accent); }
     .reading-link > span:first-child { min-width: 0; overflow-wrap: anywhere; }
     .reading-link > span:last-child { flex: 0 0 auto; color: var(--accent); font-size: .76rem; }
-    .cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px 0 72px; border-top: 1px solid var(--line); }
+    .cta { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 0 52px; border-top: 1px solid var(--line); }
     .cta h2 { margin-bottom: 5px; font-size: 1.35rem; letter-spacing: -.04em; }
     .cta p { margin-bottom: 0; color: var(--muted); font-size: .86rem; }
-    .cta a { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 8px; border-radius: 999px; padding: 12px 17px; background: var(--accent); color: #fff; text-decoration: none; font-size: .8rem; font-weight: 800; }
-    .cta a:hover { filter: brightness(1.08); }
+    .cta a { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 8px; padding: 0; color: var(--accent); text-decoration: none; font-size: .8rem; font-weight: 800; }
+    .cta a:hover { text-decoration: underline; }
     .site-footer { display: flex; justify-content: space-between; gap: 16px; padding: 22px 0 42px; border-top: 1px solid var(--line); color: var(--muted); font-size: .77rem; }
     .site-footer a { text-decoration: none; }
     .site-footer a:hover { color: var(--ink); }
@@ -107,8 +108,8 @@
       .card-main { display: block; }
       .category { display: block; margin-bottom: 9px; }
       .tool-card h2, .tool-card h3, .tool-card.featured h2 { font-size: clamp(1.35rem, 5.8vw, 1.85rem); }
-      .tool-card { min-height: 190px; }
-      .tool-card.featured { min-height: 200px; }
+      .tool-card { min-height: 130px; }
+      .tool-card.featured { min-height: 145px; padding: 20px 0; }
       .content-row { gap: 26px; }
     }
     @media (max-width: 520px) {
