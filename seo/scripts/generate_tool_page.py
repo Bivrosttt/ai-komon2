@@ -142,6 +142,7 @@ def main() -> int:
     html_page = f'''<!doctype html>
 <html lang="ja">
 <head>
+  <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{esc(title)} | AI顧問室</title>
@@ -149,6 +150,10 @@ def main() -> int:
   <link rel="canonical" href="{esc(canonical)}">
   <meta property="og:title" content="{esc(title)} | AI顧問室">
   <meta property="og:description" content="{esc(description)}">
+  <meta property="og:site_name" content="AI顧問室">
+  <meta property="og:url" content="{esc(canonical)}">
+  <meta property="og:image" content="{esc(base_url)}/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
   <style>
     :root {{ color-scheme: light; --ink:#18222d; --muted:#647180; --line:#dfe6ed; --brand:#1769aa; --soft:#f3f7fb; }}
