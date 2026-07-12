@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>タスク優先度スコア計算機 | AI顧問室</title>
+  <meta name="description" content="緊急度・影響度・作業量を1〜5で入力して、着手順を決めるための優先度スコアを計算します。">
+  <link rel="canonical" href="https://ai-komon.bivrost.co.jp/tools/task-priority-score/">
+  <meta property="og:title" content="タスク優先度スコア計算機 | AI顧問室">
+  <meta property="og:description" content="緊急度・影響度・作業量を1〜5で入力して、着手順を決めるための優先度スコアを計算します。">
+  <meta property="og:site_name" content="AI顧問室">
+  <meta property="og:url" content="https://ai-komon.bivrost.co.jp/tools/task-priority-score/">
+  <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <style>
+    :root { color-scheme: light; --ink:#18222d; --muted:#647180; --line:#dfe6ed; --brand:#1769aa; --soft:#f3f7fb; }
+    * { box-sizing:border-box; } body { margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif; color:var(--ink); line-height:1.8; background:#fff; }
+    main { width:min(960px,calc(100% - 32px)); margin:auto; } header { padding:64px 0 32px; } h1 { margin:0 0 8px; font-size:clamp(2rem,5vw,3.5rem); line-height:1.2; letter-spacing:-.03em; } h2 { margin:48px 0 12px; font-size:1.5rem; } h3 { margin-top:28px; } .lead { color:var(--muted); font-size:1.1rem; } @media (max-width:680px) { main { width:calc(100% - 24px); } header { padding:42px 0 22px; } h1 { font-size:clamp(2rem,10vw,2.8rem); } h2 { margin-top:36px; } .two-col { grid-template-columns:1fr; } .tool-card { padding:18px; border-radius:14px; } .tool-actions { flex-direction:column; align-items:stretch; } button,.cta { width:100%; text-align:center; } }
+    .tool-card { padding:24px; border:1px solid var(--line); border-radius:20px; background:var(--soft); box-shadow:0 10px 30px #18334d12; } .field { display:grid; gap:6px; margin:14px 0; font-weight:700; } input,textarea { width:100%; border:1px solid #b8c7d5; border-radius:10px; padding:12px; background:#fff; font:inherit; } button,.cta { display:inline-block; border:0; border-radius:999px; padding:12px 20px; background:var(--brand); color:#fff; font:inherit; font-weight:700; cursor:pointer; text-decoration:none; } .button-secondary { background:#fff; color:var(--brand); border:1px solid var(--brand); } output { display:block; margin-top:18px; font-size:1.35rem; font-weight:800; } .two-col { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; } .tool-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; } .result-pre { white-space:pre-wrap; overflow:auto; background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px; min-height:140px; } fieldset { border:1px solid var(--line); border-radius:14px; margin:18px 0; padding:14px; } legend { font-weight:800; padding:0 8px; } .check-item { display:flex; gap:10px; align-items:flex-start; padding:9px 0; font-weight:500; } .check-item input { width:auto; margin-top:7px; } .score-card { margin-top:20px; padding:18px; border-radius:14px; background:#fff; border:1px solid var(--line); } .score-number { display:block; font-size:2rem; font-weight:800; color:var(--brand); } .score-card li { margin:6px 0; } .muted { color:var(--muted); } .related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; } .related { display:grid; gap:2px; border:1px solid var(--line); border-radius:14px; padding:14px; color:inherit; text-decoration:none; } .related span { color:var(--muted); font-size:.9rem; } details { border-bottom:1px solid var(--line); padding:14px 0; } summary { cursor:pointer; font-weight:700; } .cta-wrap { margin:40px 0; padding:24px; border-radius:18px; background:#172432; color:#fff; } .cta-wrap p { color:#d7e2ec; } footer { margin-top:64px; padding:24px 0 48px; color:var(--muted); border-top:1px solid var(--line); font-size:.9rem; }
+  </style>
+</head>
+<body>
+<main>
+  <header><p>AI顧問室 無料ツール</p><h1>タスク優先度スコア計算機</h1><p class="lead">緊急度・影響度・作業量を1〜5で入力して、着手順を決めるための優先度スコアを計算します。</p></header>
+  <section aria-labelledby="tool-heading"><h2 id="tool-heading">ツールを使う</h2><div class="tool-card"><form id="tool-form"><div class="two-col"><label class="field"><span>緊急度（1〜5）</span><input id="urgency" name="urgency" type="number" inputmode="decimal" step="1" value="3"></label><label class="field"><span>影響度（1〜5）</span><input id="impact" name="impact" type="number" inputmode="decimal" step="1" value="3"></label><label class="field"><span>作業量（1〜5）</span><input id="effort" name="effort" type="number" inputmode="decimal" step="1" value="2"></label></div><button type="submit">計算する</button></form><div id="calc-results"><output id="calc-result-0" aria-live="polite">優先度スコアがここに表示されます</output></div></div></section>
+  <section aria-labelledby="about-heading"><h2 id="about-heading">このツールでできること</h2><p>タスクを感覚だけで並べず、急ぎか、影響が大きいか、どれだけ時間がかかるかを分けて考えます。</p><p>スコアは会話を始めるための目安です。締切、依存関係、担当者の状況も合わせて最終判断してください。</p></section>
+  <section aria-labelledby="how-heading"><h2 id="how-heading">使い方と注意点</h2><p>入力値と結果は用途に合わせて確認してください。判断に影響する数値は、実際の業務条件や最新情報と照合して利用してください。</p><p>このページの標準処理はブラウザ内で行います。入力データを保存・送信する仕様に変更する場合は、公開前に保持期間と第三者提供を明記してください。</p></section>
+  <section aria-labelledby="faq-heading"><h2 id="faq-heading">よくある質問</h2><details><summary>何点以上なら最優先ですか？</summary><p>固定の基準はありません。同じ基準で複数タスクを比較し、締切や依存関係を加味してください。</p></details><details><summary>作業量が0の場合はどうなりますか？</summary><p>作業量は1以上で入力してください。0ではスコアを比較できません。</p></details></section>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">関連する無料ツール</h2><div class="related-grid"><a class="related" href="/tools/project-capacity-planner/"><strong>チーム稼働キャパシティ計算</strong><span>優先タスクを処理できる稼働余力を確認します。</span></a><a class="related" href="/tools/text-counter/"><strong>文章文字数カウンター</strong><span>依頼文やタスクのメモを短く整えます。</span></a></div></section>
+  <section class="cta-wrap"><h2>業務に合わせたAI活用も相談できます</h2><p>無料ツールで整理した課題を、実際の業務フローに合わせて設計・導入したい場合はこちら。</p><a class="cta" href="/diagnosis.html">業務の整理方法を相談する</a></section>
+  <footer><a href="/">AI顧問室</a> / <a href="/privacy.html">プライバシーポリシー</a></footer>
+</main>
+<script>
+const runtime = {"type": "calculator", "results": [{"id": "result-0", "label": "優先度スコア", "unit": "点", "formula": "urgency * impact / effort"}]};
+
+const form = document.getElementById('tool-form');
+if (form) form.addEventListener('submit', event => { event.preventDefault(); try { const values = Object.fromEntries(["urgency", "impact", "effort"].map(id => [id, Number(document.getElementById(id).value) || 0]));
+const { urgency, impact, effort } = values;
+document.getElementById('calc-result-0').textContent = "優先度スコア" + ': ' + new Intl.NumberFormat('ja-JP').format(urgency * impact / effort) + ' ' + "点"; } catch (error) { const target = document.getElementById('tool-result') || document.getElementById('risk-result') || document.getElementById('mt-output'); if (target) target.textContent = '入力値を確認してください'; } });
+</script>
+</body>
+</html>

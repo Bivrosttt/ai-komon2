@@ -1,0 +1,22 @@
+{
+  "status": "ready-for-review",
+  "keyword": "文字数カウント",
+  "slug": "text-counter",
+  "title": "文章文字数カウンター",
+  "description": "文章を貼り付けるだけで、文字数をブラウザ内ですぐに数えられる無料ツールです。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "text-counter",
+  "explanations": [
+    "企画書、求人票、メール、SNS投稿など、文字数に上限がある文章をすばやく確認できます。",
+    "入力した文章はブラウザ内で数えます。外部送信やサーバー保存は行いません。"
+  ],
+  "faq": [
+    {"q": "空白や改行も数えますか？", "a": "入力された文字列をそのまま数えます。空白や改行を除いた文字数が必要な場合は、文章から削除して確認してください。"},
+    {"q": "入力内容は保存されますか？", "a": "いいえ。入力内容はブラウザ内で計算し、サーバーへ送信しません。"}
+  ],
+  "related_tools": [
+    {"label": "タスク優先度スコア計算機", "url": "/tools/task-priority-score/", "description": "依頼文やタスクの重要度を整理します。"},
+    {"label": "議事録テンプレート", "url": "/tools/gijiroku-template/", "description": "会議の内容を共有しやすい形に整えます。"}
+  ],
+  "cta": {"label": "文章業務の改善を相談する", "url": "/diagnosis.html"}
+}
