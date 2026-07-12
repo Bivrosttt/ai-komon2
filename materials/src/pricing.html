@@ -9,7 +9,12 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   @page { size: A4; margin: 0; }
   body { font-family:'Noto Sans JP',sans-serif; color:var(--ink); width:794px; }
-  .page { width:794px; height:1122px; padding:56px 64px; position:relative; }
+  .page { width:794px; height:1122px; padding:56px 64px; position:relative; page-break-after:always; overflow:hidden; }
+  .page:last-of-type { page-break-after:auto; }
+  .menu-table { margin-top:6px; }
+  .menu-table th { font-family:'Noto Serif JP',serif; font-size:12px; }
+  .menu-table td:first-child { width:auto; }
+  h2.sect { font-size:15px; color:var(--navy); margin-bottom:10px; }
   h1,h2 { font-family:'Noto Serif JP',serif; }
   .head { border-bottom:3px solid var(--navy); padding-bottom:16px; margin-bottom:24px; display:flex; justify-content:space-between; align-items:flex-end; }
   .head .brand { font-family:'Noto Serif JP',serif; font-size:16px; color:var(--navy); font-weight:700; }
@@ -86,6 +91,54 @@
   <div class="foot">
     <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
     <span>https://ai-komon.bivrost.co.jp/</span>
+    <span>1 / 2</span>
+  </div>
+</div>
+
+<div class="page">
+  <div class="head">
+    <h1>単発でご依頼いただけるメニュー</h1>
+    <span class="brand">AI顧問室</span>
+  </div>
+  <p class="lead">顧問契約を結ばなくても、研修・導入支援だけを単発でご依頼いただけます。まずは単発から試して、手応えを見てから顧問契約に進むお客様も想定しています（金額はすべて税別）。</p>
+
+  <h2 class="sect">AI研修（従業員数別）</h2>
+  <table class="menu-table">
+    <thead>
+      <tr><th style="text-align:left;">メニュー</th><th>対象規模</th><th>価格（税別）</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>ライト研修</td><td>〜10名</td><td>50万円</td></tr>
+      <tr><td>スタンダード研修</td><td>〜25名</td><td>100万円</td></tr>
+      <tr><td>全社研修</td><td>〜50名</td><td>180万円</td></tr>
+    </tbody>
+  </table>
+  <p class="notes">※ 1人あたりの単価は規模が大きいほど割安です（ライト研修 約5万円／人 → 全社研修 約3.6万円／人）。従業員50名を超える場合は個別にお見積りします。</p>
+
+  <h2 class="sect" style="margin-top:26px;">導入支援</h2>
+  <table class="menu-table">
+    <thead>
+      <tr><th style="text-align:left;">メニュー</th><th>内容</th><th>価格（税別）</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>業務ツール導入・自動化</td><td>業務ツールの導入・自動化ワークフロー構築</td><td>80万円〜</td></tr>
+      <tr><td>業務システム開発</td><td>要件定義〜運用引き渡しまでの本格開発</td><td>300万円〜</td></tr>
+      <tr><td>基幹連携・大規模開発</td><td>既存基幹システムとの連携等、大規模案件</td><td>個別見積（目安800万円〜）</td></tr>
+    </tbody>
+  </table>
+  <p class="notes">
+    ※ 内容・規模により金額は変動します。詳細は無料相談（60分）にてお見積りします。<br>
+    ※ AI研修には人材開発支援助成金、導入支援にはデジタル化・AI導入補助金（旧IT導入補助金）・省力化投資補助金など、御社で使える制度のご提案もあわせて行います。
+  </p>
+
+  <div class="cmp" style="margin-top:24px;">
+    <b>顧問プランとの違い：</b>単発メニューは「この1件だけ頼みたい」場合の入口です。継続的な相談・伴走まで含めて任せたい場合は、月額のライト／スタンダード／プレミアムプランをご検討ください（1ページ目参照）。
+  </div>
+
+  <div class="foot">
+    <span>AI顧問室｜中小企業のためのAI顧問サービス</span>
+    <span>https://ai-komon.bivrost.co.jp/</span>
+    <span>2 / 2</span>
   </div>
 </div>
 </body>

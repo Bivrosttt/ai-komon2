@@ -88,6 +88,27 @@
   .urlbox { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; padding: 18px 22px; margin-top: 8px; }
   .urlbox .u-label { font-size: 11px; color: var(--gold); font-weight: 700; }
   .urlbox .u-url { font-size: 15px; color: #fff; margin-bottom: 10px; }
+
+  /* one-time menu */
+  .menu-cat { font-size: 13px; color: var(--navy); margin-bottom: 10px; }
+  .mplan { border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; text-align: left; }
+  .mplan .mname { font-family: 'Noto Serif JP', serif; font-size: 13.5px; color: var(--navy); margin-bottom: 2px; }
+  .mplan .mpos { font-size: 10px; color: var(--blue); font-weight: 700; margin-bottom: 8px; }
+  .mplan .mprice { font-family: 'Noto Serif JP', serif; font-size: 21px; font-weight: 700; color: var(--navy); }
+  .mplan .mprice small { font-size: 10px; color: var(--gray); font-weight: 400; }
+
+  /* founder profile */
+  .profile-wrap { display: flex; gap: 32px; margin-top: 14px; }
+  .profile-card { flex: 0 0 210px; }
+  .profile-card .p-name { font-family: 'Noto Serif JP', serif; font-size: 23px; color: #fff; margin-bottom: 4px; }
+  .profile-card .p-role { font-size: 10.5px; color: var(--gold); font-weight: 700; margin-bottom: 18px; line-height: 1.6; }
+  .profile-card .p-meta { font-size: 10.5px; color: #C7D3E4; line-height: 2; }
+  .milestones { flex: 1; display: flex; flex-direction: column; gap: 9px; }
+  .milestone { display: flex; gap: 12px; align-items: flex-start; border-left: 2px solid var(--gold); padding: 1px 0 1px 14px; }
+  .milestone .m-age { font-family: 'Noto Serif JP', serif; font-size: 11px; color: var(--gold); font-weight: 700; min-width: 44px; flex-shrink: 0; }
+  .milestone .m-txt { font-size: 10.8px; color: #DCE6F5; line-height: 1.7; }
+  .profile-quote { margin-top: 16px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; padding: 14px 20px; font-size: 12px; color: #fff; line-height: 1.8; }
+  .profile-quote b { color: var(--gold); }
 </style>
 </head>
 <body>
@@ -222,7 +243,7 @@
   <div class="footer-brand" style="color:#9FB0C7;">AI顧問室</div><div class="pagenum" style="color:#9FB0C7;">7</div>
 </div>
 
-<!-- 7. 進め方 -->
+<!-- 8. 進め方 -->
 <div class="slide">
   <span class="label">FLOW</span>
   <h2 class="s-title">ご相談から、最初の90日まで</h2>
@@ -242,7 +263,7 @@
   <div class="footer-brand">AI顧問室</div><div class="pagenum">8</div>
 </div>
 
-<!-- 8. 料金 -->
+<!-- 9. 料金 -->
 <div class="slide">
   <span class="label">PRICING</span>
   <h2 class="s-title">料金プラン</h2>
@@ -287,17 +308,64 @@
   <div class="footer-brand">AI顧問室</div><div class="pagenum">9</div>
 </div>
 
-<!-- 9. 関連サービス -->
+<!-- 10. 単発商品 -->
+<div class="slide">
+  <span class="label">ONE-TIME MENU</span>
+  <h2 class="s-title">単発でもご依頼いただけます</h2>
+  <p class="s-lead">「まずは研修だけ」「この開発だけ」も可能です。顧問契約を結ばず、必要な分だけご依頼いただけます（すべて税別）。</p>
+
+  <h3 class="menu-cat">AI研修（従業員数別）</h3>
+  <div class="grid3" style="margin-bottom:20px;">
+    <div class="mplan"><div class="mname">ライト研修</div><div class="mpos">〜10名</div><div class="mprice">50<small>万円</small></div></div>
+    <div class="mplan"><div class="mname">スタンダード研修</div><div class="mpos">〜25名</div><div class="mprice">100<small>万円</small></div></div>
+    <div class="mplan"><div class="mname">全社研修</div><div class="mpos">〜50名</div><div class="mprice">180<small>万円</small></div></div>
+  </div>
+
+  <h3 class="menu-cat">導入支援</h3>
+  <div class="grid3">
+    <div class="mplan"><div class="mname">業務ツール導入・自動化</div><div class="mpos">ワークフロー構築</div><div class="mprice">80<small>万円〜</small></div></div>
+    <div class="mplan"><div class="mname">業務システム開発</div><div class="mpos">要件定義〜運用引き渡し</div><div class="mprice">300<small>万円〜</small></div></div>
+    <div class="mplan"><div class="mname">基幹連携・大規模開発</div><div class="mpos">プロジェクトごとに個別設計</div><div class="mprice" style="font-size:15px;">個別見積<small>目安800万円〜</small></div></div>
+  </div>
+  <p class="note">※ 1人あたりの研修単価は規模が大きいほど割安です（約5万円→約3.6万円）。50名を超える場合や大規模開発は個別にお見積りします。内容・規模により金額は変動します。</p>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">10</div>
+</div>
+
+<!-- 11. 代表プロフィール -->
+<div class="slide dark">
+  <span class="label">FOUNDER</span>
+  <h2 class="s-title" style="color:#fff;">運営者について</h2>
+  <p class="s-lead" style="color:#C7D3E4;">御社に必要なのは「AIに詳しい人」ではなく、経営の数字を作ってきた人間だと考えています。</p>
+  <div class="profile-wrap">
+    <div class="profile-card">
+      <div class="p-name">佐藤 啓英</div>
+      <div class="p-role">株式会社Bivrost CEO<br>AI顧問室 主宰</div>
+      <div class="p-meta">AI歴：GPT-3のAPI公開時期から約4年<br>現在：日本・タイ・ベトナムで不動産・リゾート・飲食など複数事業を経営</div>
+    </div>
+    <div class="milestones">
+      <div class="milestone"><div class="m-age">19歳</div><div class="m-txt">起業し、1年で年商1億円を達成</div></div>
+      <div class="milestone"><div class="m-age">20歳</div><div class="m-txt">背負った借金2,000万円を、1年で完済</div></div>
+      <div class="milestone"><div class="m-age">22歳</div><div class="m-txt">2社目を創業。3年で年商30億円・正社員130名の企業へ拡大</div></div>
+      <div class="milestone"><div class="m-age">26歳</div><div class="m-txt">その会社を失い、海外へ拠点を移す</div></div>
+      <div class="milestone"><div class="m-age">現在</div><div class="m-txt">日本・タイ・ベトナムで複数事業を経営。日本のAI事業は数名のチームで年商数億円規模を運営</div></div>
+      <div class="milestone"><div class="m-age">実績</div><div class="m-txt">コンサルタントとして、年商5億円規模まで育った会社を複数支援</div></div>
+    </div>
+  </div>
+  <div class="profile-quote"><b>「御社に必要なのは、AIに詳しい人ではなく、経営の数字を作ってきた人間です。」</b></div>
+  <div class="footer-brand" style="color:#9FB0C7;">AI顧問室</div><div class="pagenum" style="color:#9FB0C7;">11</div>
+</div>
+
+<!-- 12. 関連サービス -->
 <div class="slide">
   <span class="label">MORE</span>
   <h2 class="s-title">あわせて使えるサービス</h2>
   <p class="s-lead">「まず小さく試したい」方向けの入口もご用意しています。</p>
   <div class="grid2">
     <div class="card" style="border-top-color: var(--gold);">
-      <div class="who">1分でできます</div>
-      <h3>AI活用レベル診断（無料）</h3>
-      <p>5つの質問に答えるだけで、御社の現在地（Lv.0〜5）と次にやるべきことが分かります。無料相談の前にどうぞ。</p>
-      <p style="margin-top:10px; font-weight:700; color:var(--navy); font-size:11.5px;">https://ai-komon.bivrost.co.jp/diagnosis.html</p>
+      <div class="who">まずは相談から</div>
+      <h3>無料相談（60分）</h3>
+      <p>課題とAI活用の可能性をヒアリングし、御社の現在地と次にやるべきことをその場で整理します。売り込みは一切しません。</p>
+      <p style="margin-top:10px; font-weight:700; color:var(--navy); font-size:11.5px;">https://ai-komon.bivrost.co.jp/</p>
     </div>
     <div class="card" style="border-top-color: var(--gold);">
       <div class="who">月給3万円から</div>
@@ -306,10 +374,10 @@
       <p style="margin-top:10px; font-weight:700; color:var(--navy); font-size:11.5px;">https://ai-komon.bivrost.co.jp/ai-shain.html</p>
     </div>
   </div>
-  <div class="footer-brand">AI顧問室</div><div class="pagenum">10</div>
+  <div class="footer-brand">AI顧問室</div><div class="pagenum">12</div>
 </div>
 
-<!-- 10. CTA -->
+<!-- 13. CTA -->
 <div class="slide dark cover">
   <span class="label">CONTACT</span>
   <h2 style="font-size:34px; margin-bottom:14px;">まずは60分、話してみませんか。</h2>
