@@ -380,6 +380,9 @@
     .prod-grid { grid-template-columns: 1fr; }
   }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
 </head>
 <body>
 
@@ -943,6 +946,7 @@
     fd.append("entry.1104944249", form.size.value || "");
     fd.append("entry.254574837", "AI顧問室" + (from ? "/" + from : ""));
     function done() {
+      try { if (typeof gtag === "function") gtag("event", "generate_lead", { method: "contact_form", lead_from: from || "direct" }); } catch (e) {}
       form.closest(".contact-card").innerHTML =
         '<div style="text-align:center; padding:26px 8px;">' +
         '<p style="font-family:\'Noto Serif JP\',serif; font-size:20px; font-weight:700; color:var(--navy); margin-bottom:12px;">お申し込みありがとうございました。</p>' +
@@ -950,6 +954,16 @@
     }
     fetch(FORM_URL, { method: "POST", mode: "no-cors", body: fd }).then(done).catch(done);
   });
+
+  // TimeRex予約クリックの計測
+  var trLinks = document.querySelectorAll('a[href*="timerex.net"]');
+  for (var ti = 0; ti < trLinks.length; ti++) {
+    trLinks[ti].addEventListener("click", function () {
+      var f = "";
+      try { f = sessionStorage.getItem("ak_from") || ""; } catch (e) {}
+      try { if (typeof gtag === "function") gtag("event", "timerex_click", { lead_from: f || "direct" }); } catch (e) {}
+    });
+  }
 })();
 </script>
 
