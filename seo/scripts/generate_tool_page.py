@@ -142,7 +142,7 @@ def main() -> int:
     html_page = f'''<!doctype html>
 <html lang="ja">
 <head>
-  <script>(function(){{var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){{location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}}}})();</script>
+  <script>(function(){{var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){{location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\\/ai-komon2/,'')+location.search+location.hash);}}}})();</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{esc(title)} | AI顧問室</title>
