@@ -871,5 +871,30 @@
 })();
 </script>
 
+<!-- ログインゲート（SaaS体験演出） -->
+<div id="loginGate" style="position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; padding:24px; background:linear-gradient(135deg,#071A35 0%,#0B2447 55%,#19376D 100%); transition:opacity .45s ease;">
+  <div style="background:#fff; border-radius:10px; padding:44px 40px 36px; max-width:400px; width:100%; box-shadow:0 24px 64px rgba(0,0,0,.35); text-align:center;">
+    <div style="font-family:'Noto Serif JP',serif; font-size:24px; font-weight:700; color:#0B2447;">店舗経営OS</div>
+    <div style="font-size:11.5px; color:#5B6B7F; letter-spacing:.12em; margin:4px 0 28px;">powered by AI顧問室</div>
+    <label style="display:block; text-align:left; font-size:12px; color:#5B6B7F; margin-bottom:6px;">メールアドレス</label>
+    <input type="text" value="demo@komugido.example.jp" readonly style="width:100%; box-sizing:border-box; border:1.5px solid #DDE4EC; border-radius:5px; padding:11px 14px; font-size:14px; color:#1A2433; background:#F4F7FA; margin-bottom:16px; font-family:inherit;">
+    <label style="display:block; text-align:left; font-size:12px; color:#5B6B7F; margin-bottom:6px;">パスワード</label>
+    <input type="password" value="demodemo" readonly style="width:100%; box-sizing:border-box; border:1.5px solid #DDE4EC; border-radius:5px; padding:11px 14px; font-size:14px; background:#F4F7FA; margin-bottom:24px; font-family:inherit;">
+    <button id="loginGateBtn" style="width:100%; background:#C9A227; color:#071A35; border:none; border-radius:5px; padding:14px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Noto Sans JP',sans-serif;">デモアカウントでログイン →</button>
+    <div style="font-size:11.5px; color:#8A97A8; margin-top:16px; line-height:1.7;">体験用のデモ画面に入ります。登録は不要です。<br>実際は御社専用のアカウントを発行します。</div>
+  </div>
+</div>
+<script>
+(function () {
+  var gate = document.getElementById("loginGate");
+  document.body.style.overflow = "hidden";
+  document.getElementById("loginGateBtn").addEventListener("click", function () {
+    gate.style.opacity = "0";
+    document.body.style.overflow = "";
+    setTimeout(function () { gate.style.display = "none"; }, 460);
+  });
+})();
+</script>
+
 </body>
 </html>
