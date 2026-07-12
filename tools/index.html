@@ -68,20 +68,18 @@
     .filter { border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; background: transparent; color: var(--muted); font-size: .78rem; cursor: pointer; }
     .filter:hover, .filter[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
     .result-count { margin: 0; color: var(--muted); font-size: .78rem; }
-    .listing { display: grid; gap: 10px; padding: 28px 0 84px; }
+    .listing { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; padding: 28px 0 84px; }
     .listing > li { list-style: none; }
-    .tool-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 28px; padding: 24px 26px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); text-decoration: none; transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+    .listing > li.featured-item { grid-column: 1 / -1; }
+    .tool-card { position: relative; display: block; min-height: 200px; padding: 27px 28px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); text-decoration: none; transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }
     .tool-card:hover { border-color: var(--accent); box-shadow: 0 10px 24px rgb(24 42 73 / 8%); }
-    .tool-card.featured { background: var(--surface-soft); border-color: #b9cce2; }
-    .card-main { display: flex; align-items: baseline; gap: 32px; min-width: 0; }
-    .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .tool-card.featured { grid-column: 1 / -1; min-height: 210px; background: var(--surface-soft); border-color: #b9cce2; }
+    .card-main { min-width: 0; }
     .category { color: var(--accent); font-size: .69rem; font-weight: 800; letter-spacing: .12em; }
     .card-arrow { color: var(--accent); font-size: 1.15rem; }
-    .tool-card h2, .tool-card h3 { min-width: 0; margin-bottom: 0; font-family: "Noto Serif JP", serif; font-size: clamp(1.45rem, 2.5vw, 2.1rem); line-height: 1.35; letter-spacing: -.045em; color: #0b2447; }
+    .tool-card h2, .tool-card h3 { max-width: 760px; min-width: 0; margin-bottom: 0; font-family: "Noto Serif JP", serif; font-size: clamp(1.5rem, 2.7vw, 2.2rem); line-height: 1.35; letter-spacing: -.045em; color: #0b2447; }
     .tool-card.featured h2 { font-size: clamp(1.65rem, 3vw, 2.45rem); }
-    .tool-meta { display: flex; align-items: center; gap: 20px; color: var(--muted); font-size: .78rem; white-space: nowrap; }
-    .tool-meta span:first-child { color: var(--accent); font-weight: 800; }
-    .tool-meta .card-arrow { font-size: 1.4rem; }
+    .card-arrow { position: absolute; top: 25px; right: 27px; color: var(--accent); font-size: 1.4rem; line-height: 1; }
     .empty { grid-column: 1 / -1; padding: 36px 20px; border: 1px dashed var(--line); border-radius: var(--radius); color: var(--muted); text-align: center; }
     .content-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); gap: 15px; padding: 28px 0 82px; border-top: 1px solid var(--line); }
     .content-row h2 { margin-bottom: 10px; font-size: clamp(1.8rem, 3.6vw, 2.65rem); line-height: 1.18; letter-spacing: -.06em; }
@@ -104,11 +102,13 @@
       .nav { gap: 12px; }
       .nav a:not(.nav-cta) { display: none; }
       .content-row { grid-template-columns: 1fr; }
-      .tool-card { display: block; }
+      .listing { grid-template-columns: 1fr; }
+      .listing > li.featured-item { grid-column: auto; }
       .card-main { display: block; }
       .category { display: block; margin-bottom: 9px; }
       .tool-card h2, .tool-card h3, .tool-card.featured h2 { font-size: clamp(1.35rem, 5.8vw, 1.85rem); }
-      .tool-meta { justify-content: space-between; margin-top: 18px; }
+      .tool-card { min-height: 190px; }
+      .tool-card.featured { min-height: 200px; }
       .content-row { gap: 26px; }
     }
     @media (max-width: 520px) {
@@ -177,22 +177,22 @@
 
         <h2 id="tools-title" class="visually-hidden">無料ツール一覧</h2>
         <ul class="listing" id="tool-list">
-          <li>
+          <li class="featured-item">
             <a class="tool-card featured" data-category="meeting" data-search="会議 議事録 ToDo テンプレート 決定事項" href="./gijiroku-template/">
               <div class="card-main"><span class="category">MEETING</span><h2>議事録テンプレート・ToDo整理</h2></div>
-              <div class="tool-meta"><span>使ってみる ↗</span><span>登録不要</span></div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
             </a>
           </li>
           <li>
             <a class="tool-card" data-category="governance" data-search="AI 導入 リスク 社内ルール 情報管理" href="./ai-risk-check/">
               <div class="card-main"><span class="category">AI GOVERNANCE</span><h3>AI導入リスク・社内ルール診断</h3></div>
-              <div class="tool-meta"><span>使ってみる ↗</span><span>登録不要</span></div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
             </a>
           </li>
           <li>
             <a class="tool-card" data-category="sales" data-search="営業 見積もり 工数 ROI 人件費 シミュレーター" href="./sales-estimate-roi/">
               <div class="card-main"><span class="category">SALES ROI</span><h3>営業・見積もり工数シミュレーター</h3></div>
-              <div class="tool-meta"><span>使ってみる ↗</span><span>登録不要</span></div>
+              <span class="card-arrow" aria-hidden="true">↗</span>
             </a>
           </li>
           <li class="empty" id="empty-state" hidden>条件に一致するツールがありません。別のキーワードで検索してください。</li>
