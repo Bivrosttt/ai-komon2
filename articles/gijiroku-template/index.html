@@ -33,18 +33,19 @@
   </script>
   <style>
     :root { --ink:#18222d; --muted:#667482; --line:#dfe6ed; --brand:#1769aa; --navy:#0b2447; --gold:#b88a2a; --soft:#f4f7fa; }
-    * { box-sizing:border-box; } body { margin:0; color:var(--ink); background:#fff; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif; line-height:1.9; }
-    main { width:min(980px,calc(100% - 32px)); margin:auto; } a { color:var(--brand); } .breadcrumb { padding-top:24px; color:var(--muted); font-size:.88rem; } .breadcrumb a { color:inherit; }
+    * { box-sizing:border-box; } html { overflow-x:hidden; } body { margin:0; color:var(--ink); background:#fff; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif; line-height:1.9; overflow-wrap:anywhere; }
+    main { width:min(980px,calc(100% - 32px)); margin:auto; } a { color:var(--brand); } .breadcrumb { display:flex; flex-wrap:wrap; gap:.15rem .35rem; padding-top:24px; color:var(--muted); font-size:.88rem; } .breadcrumb a { color:inherit; }
     article { padding-bottom:64px; } .eyebrow { margin:54px 0 10px; color:var(--gold); font-weight:800; letter-spacing:.08em; font-size:.85rem; } h1 { max-width:820px; margin:0; font-size:clamp(2rem,5vw,4rem); line-height:1.2; letter-spacing:-.04em; } .dek { max-width:760px; color:var(--muted); font-size:1.15rem; margin:18px 0 28px; } .meta { color:var(--muted); font-size:.85rem; }
-    .hero { width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:22px; margin:34px 0 12px; } figure { margin:34px 0; } figcaption { color:var(--muted); font-size:.84rem; text-align:center; }
+    .hero { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:22px; margin:34px 0 12px; } figure { margin:34px 0; } figure img { display:block; width:100%; height:auto; border-radius:18px; } figcaption { color:var(--muted); font-size:.84rem; text-align:center; }
     .answer { margin:34px 0; padding:24px; border-left:5px solid var(--gold); background:var(--soft); border-radius:0 16px 16px 0; } .answer strong { color:var(--navy); }
     .toc { margin:34px 0; padding:22px 26px; border:1px solid var(--line); border-radius:16px; background:#fff; } .toc strong { display:block; margin-bottom:8px; } .toc ol { margin:0; padding-left:22px; }
     h2 { margin:58px 0 14px; padding-top:10px; font-size:1.75rem; line-height:1.35; } h3 { margin:34px 0 8px; font-size:1.2rem; } p { margin:14px 0; } ul,ol { padding-left:1.5em; } li { margin:7px 0; }
     .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:24px 0; } .step { border:1px solid var(--line); border-radius:16px; padding:18px; background:#fff; } .step b { display:block; color:var(--gold); font-size:1.25rem; } .step h3 { margin:4px 0; }
-    table { width:100%; border-collapse:collapse; margin:22px 0; font-size:.95rem; } th,td { border:1px solid var(--line); padding:12px; text-align:left; vertical-align:top; } th { background:var(--soft); }
-    .tool-cta { margin:42px 0; padding:26px; color:#fff; background:var(--navy); border-radius:20px; } .tool-cta h2 { margin-top:0; } .tool-cta p { color:#d9e5f0; } .button { display:inline-block; padding:12px 20px; border-radius:999px; background:#fff; color:var(--navy); text-decoration:none; font-weight:800; }
+    .table-scroll { width:100%; overflow-x:auto; margin:22px 0; -webkit-overflow-scrolling:touch; } table { width:100%; min-width:650px; border-collapse:collapse; margin:0; font-size:.95rem; } th,td { border:1px solid var(--line); padding:12px; text-align:left; vertical-align:top; } th { background:var(--soft); }
+    .tool-cta { margin:42px 0; padding:26px; color:#fff; background:var(--navy); border-radius:20px; } .tool-cta h2 { margin-top:0; } .tool-cta p { color:#d9e5f0; } .button { display:inline-block; max-width:100%; padding:12px 20px; border-radius:999px; background:#fff; color:var(--navy); text-decoration:none; font-weight:800; text-align:center; }
     details { border-bottom:1px solid var(--line); padding:14px 0; } summary { cursor:pointer; font-weight:800; } .related { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:20px; } .related a { border:1px solid var(--line); border-radius:14px; padding:16px; text-decoration:none; } .related strong,.related span { display:block; } .related span { color:var(--muted); font-size:.88rem; margin-top:4px; }
-    footer { padding:24px 0 48px; border-top:1px solid var(--line); color:var(--muted); font-size:.88rem; } @media (max-width:720px) { .steps,.related { grid-template-columns:1fr; } h1 { font-size:2.25rem; } .hero { border-radius:14px; } table { font-size:.86rem; } th,td { padding:9px; } }
+    footer { padding:24px 0 48px; border-top:1px solid var(--line); color:var(--muted); font-size:.88rem; } @media (max-width:720px) { main { width:min(980px,calc(100% - 24px)); } .breadcrumb { padding-top:16px; } .eyebrow { margin-top:38px; } .steps,.related { grid-template-columns:1fr; } h1 { font-size:clamp(1.95rem,9vw,2.25rem); } .dek { font-size:1rem; line-height:1.8; } .hero { border-radius:14px; margin-top:26px; } figure { margin:26px 0; } figure img { border-radius:14px; } .answer,.toc,.tool-cta { padding:18px; } h2 { margin-top:46px; font-size:1.5rem; } table { font-size:.86rem; } th,td { padding:9px; } }
+    @media (max-width:420px) { .meta { line-height:1.7; } .answer { border-left-width:4px; } .tool-cta .button { display:block; width:100%; } }
   </style>
 </head>
 <body>
@@ -79,7 +80,7 @@
     <p>「確認する」「検討する」だけでは、誰の仕事か分かりません。<strong>担当者｜やること｜期限</strong>の形にすると、そのままタスク管理へ移せます。</p>
 
     <h2 id="template">そのまま使える議事録の項目</h2>
-    <table><thead><tr><th>項目</th><th>書く内容</th><th>記入例</th></tr></thead><tbody><tr><th>会議名</th><td>会議の目的が分かる名前</td><td>営業定例会</td></tr><tr><th>日時・参加者</th><td>開催日、参加者、欠席者</td><td>2026/7/12、田中・佐藤</td></tr><tr><th>議題</th><td>話し合うテーマ</td><td>次月の新規提案について</td></tr><tr><th>決定事項</th><td>合意した内容</td><td>新しい提案書を7月から使う</td></tr><tr><th>保留・確認事項</th><td>追加確認が必要な内容</td><td>価格表の最新版を確認</td></tr><tr><th>ToDo</th><td>担当者・作業・期限</td><td>田中｜提案書作成｜7/18</td></tr></tbody></table>
+    <div class="table-scroll" role="region" aria-label="議事録項目の記入例" tabindex="0"><table><thead><tr><th>項目</th><th>書く内容</th><th>記入例</th></tr></thead><tbody><tr><th>会議名</th><td>会議の目的が分かる名前</td><td>営業定例会</td></tr><tr><th>日時・参加者</th><td>開催日、参加者、欠席者</td><td>2026/7/12、田中・佐藤</td></tr><tr><th>議題</th><td>話し合うテーマ</td><td>次月の新規提案について</td></tr><tr><th>決定事項</th><td>合意した内容</td><td>新しい提案書を7月から使う</td></tr><tr><th>保留・確認事項</th><td>追加確認が必要な内容</td><td>価格表の最新版を確認</td></tr><tr><th>ToDo</th><td>担当者・作業・期限</td><td>田中｜提案書作成｜7/18</td></tr></tbody></table></div>
 
     <div class="tool-cta"><h2>入力するだけで議事録を作る</h2><p>会議名、決定事項、保留事項、ToDoを入力すると、すぐ使えるMarkdown議事録に整形できます。入力内容はブラウザ内で処理します。</p><a class="button" href="/tools/gijiroku-template/">議事録テンプレートを使う</a></div>
 
