@@ -68,20 +68,20 @@
     .filter { border: 1px solid var(--line); border-radius: 999px; padding: 8px 13px; background: transparent; color: var(--muted); font-size: .78rem; cursor: pointer; }
     .filter:hover, .filter[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
     .result-count { margin: 0; color: var(--muted); font-size: .78rem; }
-    .listing { display: grid; grid-template-columns: minmax(0, 1.17fr) minmax(280px, .83fr); gap: 15px; padding: 28px 0 84px; }
-    .tool-card { display: flex; min-height: 220px; flex-direction: column; justify-content: space-between; gap: 28px; padding: 25px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); text-decoration: none; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
-    .tool-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 15px 30px rgb(24 42 73 / 9%); }
-    .tool-card.featured { min-height: 380px; background: var(--surface-soft); }
-    .tool-side { display: grid; gap: 15px; }
-    .tool-side .tool-card { min-height: 182px; }
+    .listing { display: grid; gap: 10px; padding: 28px 0 84px; }
+    .listing > li { list-style: none; }
+    .tool-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 28px; padding: 24px 26px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); text-decoration: none; transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+    .tool-card:hover { border-color: var(--accent); box-shadow: 0 10px 24px rgb(24 42 73 / 8%); }
+    .tool-card.featured { background: var(--surface-soft); border-color: #b9cce2; }
+    .card-main { display: flex; align-items: baseline; gap: 32px; min-width: 0; }
     .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
     .category { color: var(--accent); font-size: .69rem; font-weight: 800; letter-spacing: .12em; }
     .card-arrow { color: var(--accent); font-size: 1.15rem; }
-    .tool-card h2, .tool-card h3 { max-width: 540px; margin-bottom: 0; font-family: "Noto Serif JP", serif; font-size: clamp(1.7rem, 3vw, 2.55rem); line-height: 1.42; letter-spacing: -.045em; color: #0b2447; }
-    .tool-side h3 { font-size: clamp(1.45rem, 2.5vw, 1.95rem); }
-    .card-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 12px; color: var(--accent); font-size: .76rem; font-weight: 800; }
-    .card-foot span:first-child { min-width: 0; overflow-wrap: anywhere; }
-    .card-foot span:last-child { color: var(--muted); font-weight: 500; }
+    .tool-card h2, .tool-card h3 { min-width: 0; margin-bottom: 0; font-family: "Noto Serif JP", serif; font-size: clamp(1.45rem, 2.5vw, 2.1rem); line-height: 1.35; letter-spacing: -.045em; color: #0b2447; }
+    .tool-card.featured h2 { font-size: clamp(1.65rem, 3vw, 2.45rem); }
+    .tool-meta { display: flex; align-items: center; gap: 20px; color: var(--muted); font-size: .78rem; white-space: nowrap; }
+    .tool-meta span:first-child { color: var(--accent); font-weight: 800; }
+    .tool-meta .card-arrow { font-size: 1.4rem; }
     .empty { grid-column: 1 / -1; padding: 36px 20px; border: 1px dashed var(--line); border-radius: var(--radius); color: var(--muted); text-align: center; }
     .content-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); gap: 15px; padding: 28px 0 82px; border-top: 1px solid var(--line); }
     .content-row h2 { margin-bottom: 10px; font-size: clamp(1.8rem, 3.6vw, 2.65rem); line-height: 1.18; letter-spacing: -.06em; }
@@ -103,8 +103,12 @@
       .shell { width: min(var(--max), calc(100% - 32px)); }
       .nav { gap: 12px; }
       .nav a:not(.nav-cta) { display: none; }
-      .listing, .content-row { grid-template-columns: 1fr; }
-      .tool-card.featured { min-height: 350px; }
+      .content-row { grid-template-columns: 1fr; }
+      .tool-card { display: block; }
+      .card-main { display: block; }
+      .category { display: block; margin-bottom: 9px; }
+      .tool-card h2, .tool-card h3, .tool-card.featured h2 { font-size: clamp(1.35rem, 5.8vw, 1.85rem); }
+      .tool-meta { justify-content: space-between; margin-top: 18px; }
       .content-row { gap: 26px; }
     }
     @media (max-width: 520px) {
@@ -115,7 +119,7 @@
       .search input { width: 100%; flex-basis: calc(100% - 95px); }
       .search button { flex-basis: 85px; }
       .toolbar { align-items: flex-start; flex-direction: column; }
-      .tool-card, .tool-card.featured { min-height: 250px; padding: 21px; }
+      .tool-card, .tool-card.featured { padding: 20px; }
       .cta { align-items: flex-start; flex-direction: column; padding-bottom: 58px; }
       .site-footer { align-items: flex-start; flex-direction: column; }
     }
@@ -172,32 +176,27 @@
         </div>
 
         <h2 id="tools-title" class="visually-hidden">無料ツール一覧</h2>
-        <div class="listing" id="tool-list">
-          <a class="tool-card featured" data-category="meeting" data-search="会議 議事録 ToDo テンプレート 決定事項" href="./gijiroku-template/">
-            <div>
-              <div class="card-head"><span class="category">MEETING</span><span class="card-arrow" aria-hidden="true">↗</span></div>
-              <h2>議事録テンプレート・ToDo整理</h2>
-            </div>
-            <div class="card-foot"><span>使ってみる ↗</span><span>登録不要</span></div>
-          </a>
-          <div class="tool-side">
+        <ul class="listing" id="tool-list">
+          <li>
+            <a class="tool-card featured" data-category="meeting" data-search="会議 議事録 ToDo テンプレート 決定事項" href="./gijiroku-template/">
+              <div class="card-main"><span class="category">MEETING</span><h2>議事録テンプレート・ToDo整理</h2></div>
+              <div class="tool-meta"><span>使ってみる ↗</span><span>登録不要</span></div>
+            </a>
+          </li>
+          <li>
             <a class="tool-card" data-category="governance" data-search="AI 導入 リスク 社内ルール 情報管理" href="./ai-risk-check/">
-              <div>
-                <div class="card-head"><span class="category">AI GOVERNANCE</span><span class="card-arrow" aria-hidden="true">↗</span></div>
-                <h3>AI導入リスク・社内ルール診断</h3>
-              </div>
-              <div class="card-foot"><span>使ってみる ↗</span><span>登録不要</span></div>
+              <div class="card-main"><span class="category">AI GOVERNANCE</span><h3>AI導入リスク・社内ルール診断</h3></div>
+              <div class="tool-meta"><span>使ってみる ↗</span><span>登録不要</span></div>
             </a>
+          </li>
+          <li>
             <a class="tool-card" data-category="sales" data-search="営業 見積もり 工数 ROI 人件費 シミュレーター" href="./sales-estimate-roi/">
-              <div>
-                <div class="card-head"><span class="category">SALES ROI</span><span class="card-arrow" aria-hidden="true">↗</span></div>
-                <h3>営業・見積もり工数シミュレーター</h3>
-              </div>
-              <div class="card-foot"><span>使ってみる ↗</span><span>登録不要</span></div>
+              <div class="card-main"><span class="category">SALES ROI</span><h3>営業・見積もり工数シミュレーター</h3></div>
+              <div class="tool-meta"><span>使ってみる ↗</span><span>登録不要</span></div>
             </a>
-          </div>
-          <p class="empty" id="empty-state" hidden>条件に一致するツールがありません。別のキーワードで検索してください。</p>
-        </div>
+          </li>
+          <li class="empty" id="empty-state" hidden>条件に一致するツールがありません。別のキーワードで検索してください。</li>
+        </ul>
       </section>
 
       <section class="content-row" id="reading" aria-labelledby="reading-title">
@@ -229,7 +228,6 @@
     const count = document.querySelector('#result-count');
     const empty = document.querySelector('#empty-state');
     const form = document.querySelector('#tool-search');
-    const side = document.querySelector('.tool-side');
 
     function updateTools() {
       const active = document.querySelector('[data-filter][aria-pressed="true"]')?.dataset.filter || 'all';
@@ -242,7 +240,6 @@
         card.hidden = !show;
         if (show) visible += 1;
       });
-      side.hidden = !cards.some((card) => !card.hidden && card.closest('.tool-side'));
       count.textContent = `${visible}個のツール`;
       empty.hidden = visible !== 0;
     }
