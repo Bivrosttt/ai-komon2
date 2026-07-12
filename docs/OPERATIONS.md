@@ -68,3 +68,11 @@ curl -s -o /dev/null -w "%{http_code}" https://ai-komon.bivrost.co.jp/
 - 画像生成・TTS: Gemini API（キーは別リポジトリ mangaagent4 の .env）
 - 動画生成: Veo 3.1（同キー。写真+セリフ→リップシンク動画）
 - 詳細な手順は開発マシンの `.claude/skills/` 配下（ai-media-gen / dreamina-video / hf-movie / gsplat-demo / lp-build / site-release 等）
+
+## 【引き継ぎ・進行中】HTTPS証明書（2026-07-12記載）
+
+`https://ai-komon.bivrost.co.jp` の証明書がLet's Encrypt発行待ち（最終確認時 state=authorization_created、httpは開通済み）。
+
+- 確認: `gh api repos/Bivrosttt/ai-komon2/pages --jq '.https_certificate'` と `curl -sI https://ai-komon.bivrost.co.jp/`
+- **httpsが200になったら**: `gh api -X PUT repos/Bivrosttt/ai-komon2/pages -F https_enforced=true` を実行して完了（この節は消してよい）
+- 何時間も進まない場合: GitHub UIのSettings→PagesでCustom domainを一度Remove→数分後に再設定して**静置**（高頻度の付け外しは発行がリセットされ逆効果）
