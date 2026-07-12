@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>運用ダッシュボード｜AI顧問室</title>
+<style>
+  :root { --navy:#0B2447; --gold:#C9A227; --blue:#2D6CB5; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg:#F4F7FA; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Hiragino Sans','Noto Sans JP',sans-serif; background:var(--bg); color:var(--ink); line-height:1.8; font-size:14px; }
+  .container { max-width:1100px; margin:0 auto; padding:32px 24px 80px; }
+  header.top { background:var(--navy); color:#fff; padding:20px 0; }
+  header.top .container { padding:20px 24px; display:flex; justify-content:space-between; align-items:center; }
+  header.top h1 { font-size:20px; }
+  header.top .sub { font-size:12px; color:#C7D3E4; }
+  h2 { font-size:17px; color:var(--navy); margin:36px 0 14px; border-left:4px solid var(--gold); padding-left:10px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:8px; padding:20px 24px; margin-bottom:16px; overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th, td { border-bottom:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:middle; }
+  th { background:var(--bg); color:var(--navy); font-size:12px; white-space:nowrap; }
+  a { color:var(--blue); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .quick { display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
+  .quick a { background:#fff; border:1px solid var(--line); border-radius:6px; padding:8px 14px; font-size:13px; font-weight:600; }
+  .note { font-size:12px; color:var(--gray); margin-top:6px; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="container">
+    <h1>運用ダッシュボード</h1>
+    <span class="sub">AI顧問室｜最終生成: {{DATE}}｜再生成: <code>python3 docs/build-dashboard.py</code></span>
+  </div>
+</header>
+<div class="container">
+
+  <h2>クイックリンク</h2>
+  <div class="quick">
+    <a href="https://ai-komon.bivrost.co.jp/" target="_blank">本番サイト</a>
+    <a href="https://ai-komon.bivrost.co.jp/works.html" target="_blank">作品ショーケース</a>
+    <a href="https://ai-komon.bivrost.co.jp/data.html" target="_blank">データ&amp;ROI</a>
+    <a href="https://github.com/Bivrosttt/ai-komon2" target="_blank">SSOTリポジトリ（Bivrosttt）</a>
+    <a href="https://github.com/rakansens/ai-komon2" target="_blank">配信ミラー（rakansens）</a>
+    <a href="https://timerex.net/s/koki.otsuka_bfac/4b686119" target="_blank">TimeRex（無料相談予約）</a>
+    <a href="https://docs.google.com/forms/d/1Mv6KtbhLZKXFyGdka5k-WcOoHl_d5BsvkDTCNeQLlSQ/edit" target="_blank">Gフォーム管理（要ログイン）</a>
+  </div>
+  <p class="note">運用手順の詳細は <a href="https://github.com/Bivrosttt/ai-komon2/blob/main/docs/OPERATIONS.md" target="_blank">docs/OPERATIONS.md</a> を参照。</p>
+
+  <h2>ABテストLP（{{LP_COUNT}}本・全てnoindex・?from=ファイル名で計測）</h2>
+  <div class="card"><table>
+    <tr><th>ファイル</th><th>タイトル</th><th>訴求軸</th></tr>
+    {{LP_ROWS}}
+  </table></div>
+
+  <h2>作品ショーケース（{{WORKS_COUNT}}ページ）</h2>
+  <div class="card"><table>
+    <tr><th>ファイル</th><th>タイトル</th><th>備考</th></tr>
+    {{WORKS_ROWS}}
+  </table></div>
+
+  <h2>体験デモ（{{DEMO_COUNT}}本）</h2>
+  <div class="card"><table>
+    <tr><th>ファイル</th><th>タイトル</th><th>備考</th></tr>
+    {{DEMO_ROWS}}
+  </table></div>
+
+  <h2>コアページ</h2>
+  <div class="card"><table>
+    <tr><th>ファイル</th><th>タイトル</th><th>備考</th></tr>
+    {{CORE_ROWS}}
+  </table></div>
+
+  <h2>営業資料PDF（materials/build.sh で再生成）</h2>
+  <div class="card"><table>
+    <tr><th>ファイル</th><th>サイズ</th></tr>
+    {{PDF_ROWS}}
+  </table></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>運用ダッシュボード｜AI顧問室</title>
+<style>
+  :root { --navy:#0B2447; --gold:#C9A227; --blue:#2D6CB5; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg:#F4F7FA; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Hiragino Sans','Noto Sans JP',sans-serif; background:var(--bg); color:var(--ink); line-height:1.8; font-size:14px; }
+  .container { max-width:1100px; margin:0 auto; padding:32px 24px 80px; }
+  header.top { background:var(--navy); color:#fff; padding:20px 0; }
+  header.top .container { padding:20px 24px; display:flex; justify-content:space-between; align-items:center; }
+  header.top h1 { font-size:20px; }
+  header.top .sub { font-size:12px; color:#C7D3E4; }
+  h2 { font-size:17px; color:var(--navy); margin:36px 0 14px; border-left:4px solid var(--gold); padding-left:10px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:8px; padding:20px 24px; margin-bottom:16px; overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th, td { border-bottom:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:middle; }
+  th { background:var(--bg); color:var(--navy); font-size:12px; white-space:nowrap; }
+  a { color:var(--blue); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .quick { display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
+  .quick a { background:#fff; border:1px solid var(--line); border-radius:6px; padding:8px 14px; font-size:13px; font-weight:600; }
+  .note { font-size:12px; color:var(--gray); margin-top:6px; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="container">
+    <h1>運用ダッシュボード</h1>
+    <span class="sub">AI顧問室｜最終生成: 2026-07-12｜再生成: <code>python3 docs/build-dashboard.py</code></span>
+  </div>
+</header>
+<div class="container">
+
+  <h2>クイックリンク</h2>
+  <div class="quick">
+    <a href="https://ai-komon.bivrost.co.jp/" target="_blank">本番サイト</a>
+    <a href="https://ai-komon.bivrost.co.jp/works.html" target="_blank">作品ショーケース</a>
+    <a href="https://ai-komon.bivrost.co.jp/data.html" target="_blank">データ&amp;ROI</a>
+    <a href="https://github.com/Bivrosttt/ai-komon2" target="_blank">SSOTリポジトリ（Bivrosttt）</a>
+    <a href="https://github.com/rakansens/ai-komon2" target="_blank">配信ミラー（rakansens）</a>
+    <a href="https://timerex.net/s/koki.otsuka_bfac/4b686119" target="_blank">TimeRex（無料相談予約）</a>
+    <a href="https://docs.google.com/forms/d/1Mv6KtbhLZKXFyGdka5k-WcOoHl_d5BsvkDTCNeQLlSQ/edit" target="_blank">Gフォーム管理（要ログイン）</a>
+  </div>
+  <p class="note">運用手順の詳細は <a href="https://github.com/Bivrosttt/ai-komon2/blob/main/docs/OPERATIONS.md" target="_blank">docs/OPERATIONS.md</a> を参照。</p>
+
+  <h2>ABテストLP（24本・全てnoindex・?from=ファイル名で計測）</h2>
+  <div class="card"><table>
+    <tr><th>ファイル</th><th>タイトル</th><th>訴求軸</th></tr>
+    <tr><td><a href="https://ai-komon.bivrost.co.jp/lp-anti.html" target="_blank">lp-anti.html</a></td><td>AIコンサルは、たぶん要りません。</td><td>アンチコンサル</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-boss.html" target="_blank">lp-boss.html</a></td><td>社長、AIの判断まで、ひとりで抱えていませんか。</td><td>経営者目線</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-chatgpt.html" target="_blank">lp-chatgpt.html</a></td><td>ChatGPT、もう使ってます。——それ、Lv.1です</td><td>ChatGPT止まり</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-cost.html" target="_blank">lp-cost.html</a></td><td>AI人材を1人雇う前に、電卓を叩いてください。</td><td>コスト訴求</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-demo-first.html" target="_blank">lp-demo-first.html</a></td><td>説明はあとです。まず、これを見てください。</td><td>デモ先出し</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-fear.html" target="_blank">lp-fear.html</a></td><td>様子見の1年で、差は開いた。</td><td>危機感</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-fudosan.html" target="_blank">lp-fudosan.html</a></td><td>不動産会社向けAI顧問｜反響対応・追客をAIで自動化 - AI顧問室</td><td>不動産向け</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-genba.html" target="_blank">lp-genba.html</a></td><td>社員さんは、もう限界かもしれない。</td><td>現場（建設）</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-hikaku.html" target="_blank">lp-hikaku.html</a></td><td>AIを進める方法は、4つあります。正直に比べました。</td><td>比較</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-hitode.html" target="_blank">lp-hitode.html</a></td><td>その求人、出す前に。</td><td>人手不足</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-hojokin.html" target="_blank">lp-hojokin.html</a></td><td>AI導入・研修に使える公的制度とは</td><td>補助金</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-jiso.html" target="_blank">lp-jiso.html</a></td><td>卒業してもらうための、AI顧問です。｜自走支援型AI顧問サービス - AI顧問室</td><td>自走・内製化</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-kantan.html" target="_blank">lp-kantan.html</a></td><td>パソコンが苦手でも、大丈夫です。</td><td>かんたん</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-level.html" target="_blank">lp-level.html</a></td><td>御社のAI活用、今レベルいくつ？｜1分レベル診断</td><td>レベル診断軸</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-lv2.html" target="_blank">lp-lv2.html</a></td><td>社員はもうAIを使っている。なのに数字が変わらない会社へ</td><td>レベル2向け</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-lv3.html" target="_blank">lp-lv3.html</a></td><td>専用AIを、もう眠らせない｜Lv.3企業向けAI顧問室【自動化】</td><td>レベル3向け</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-lv4.html" target="_blank">lp-lv4.html</a></td><td>自動化の先へ。AIエージェント経営という選択</td><td>レベル4向け</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-question.html" target="_blank">lp-question.html</a></td><td>もし明日、AIに詳しい役員が入社したら？</td><td>問いかけ</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-risk.html" target="_blank">lp-risk.html</a></td><td>AI導入で失敗する会社には、共通点があります。</td><td>リスク回避</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-roi.html" target="_blank">lp-roi.html</a></td><td>顧問料15万円は、月何時間の削減で元が取れるか。</td><td>ROI試算</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-simple.html" target="_blank">lp-simple.html</a></td><td>AIのこと、ぜんぶ任せられる相手。</td><td>シンプル</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-speed.html" target="_blank">lp-speed.html</a></td><td>AI人材の採用、平均6ヶ月。AI顧問、契約したその月。</td><td>スピード</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-story.html" target="_blank">lp-story.html</a></td><td>ある製造業の、90日間の記録。</td><td>ストーリー</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/lp-time.html" target="_blank">lp-time.html</a></td><td>その見積書に2時間。その議事録に半日。</td><td>時間創出</td></tr>
+  </table></div>
+
+  <h2>作品ショーケース（15ページ）</h2>
+  <div class="card"><table>
+    <tr><th>ファイル</th><th>タイトル</th><th>備考</th></tr>
+    <tr><td><a href="https://ai-komon.bivrost.co.jp/creative-flyer.html" target="_blank">creative-flyer.html</a></td><td>A4チラシサンプル「小麦と栗」秋の新作ダニッシュ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/floorplan-walkthrough.html" target="_blank">floorplan-walkthrough.html</a></td><td>3Dウォークスルー内見</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/service-movie.html" target="_blank">service-movie.html</a></td><td>AI顧問室 ブランドムービー（42秒・音声つき）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works-3d.html" target="_blank">works-3d.html</a></td><td>間取り図→実寸3D内見モデル（制作サンプル）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works-creative.html" target="_blank">works-creative.html</a></td><td>ブランドクリエイティブ一式（ロゴ・バナー・チラシ・SNS）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works-edit.html" target="_blank">works-edit.html</a></td><td>動画編集Before/After（字幕・ナレーション・テロップ）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works-kitchen.html" target="_blank">works-kitchen.html</a></td><td>キッチンカラーシミュレーター（写真で選べる打合せデモ）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works-motion.html" target="_blank">works-motion.html</a></td><td>モーション動画サンプル</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works-paint.html" target="_blank">works-paint.html</a></td><td>外壁カラーシミュレーター（塗装会社向け営業デモ）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works-presenter.html" target="_blank">works-presenter.html</a></td><td>AIプレゼンター（出演者ゼロの案内動画）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works-slides.html" target="_blank">works-slides.html</a></td><td>動くプレゼン（クリック進行型スライドショー）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works-splat.html" target="_blank">works-splat.html</a></td><td>実写3D都市ウォークスルー（3D Gaussian Splatting）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works-system.html" target="_blank">works-system.html</a></td><td>業務システム構築デモ（案件・顧客・請求管理）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works-video.html" target="_blank">works-video.html</a></td><td>AI生成動画サンプル（住宅プロモーション）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works.html" target="_blank">works.html</a></td><td>作品ショーケース｜AIで、ここまで作れる。</td><td></td></tr>
+  </table></div>
+
+  <h2>体験デモ（17本）</h2>
+  <div class="card"><table>
+    <tr><th>ファイル</th><th>タイトル</th><th>備考</th></tr>
+    <tr><td><a href="https://ai-komon.bivrost.co.jp/demo-agent-research.html" target="_blank">demo-agent-research.html</a></td><td>競合調査エージェント 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-ai-team.html" target="_blank">demo-ai-team.html</a></td><td>AI社員チームの協働 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-exec-report.html" target="_blank">demo-exec-report.html</a></td><td>週次経営レポートAI 自動作成 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-inquiry.html" target="_blank">demo-inquiry.html</a></td><td>問い合わせ返信AI 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-keiyaku.html" target="_blank">demo-keiyaku.html</a></td><td>契約書・書類の要点抽出AI 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-line-booking.html" target="_blank">demo-line-booking.html</a></td><td>LINE予約受付 全自動フロー 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-madori.html" target="_blank">demo-madori.html</a></td><td>間取り図→3D化AI 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-minutes.html" target="_blank">demo-minutes.html</a></td><td>議事録AI 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-photo-report.html" target="_blank">demo-photo-report.html</a></td><td>現場写真→報告書AI 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-qa-bot.html" target="_blank">demo-qa-bot.html</a></td><td>社内ナレッジQ&amp;AボットAI 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-quote.html" target="_blank">demo-quote.html</a></td><td>見積書AI 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-recruit.html" target="_blank">demo-recruit.html</a></td><td>求人票AI 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-report.html" target="_blank">demo-report.html</a></td><td>日報 自動集計ダッシュボード 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-sns-auto.html" target="_blank">demo-sns-auto.html</a></td><td>SNS自動投稿の1週間 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-sns.html" target="_blank">demo-sns.html</a></td><td>SNS投稿量産AI 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-staging.html" target="_blank">demo-staging.html</a></td><td>バーチャルステージングAI 体験デモ</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/demo-voice.html" target="_blank">demo-voice.html</a></td><td>AI電話受付 体験デモ</td><td></td></tr>
+  </table></div>
+
+  <h2>コアページ</h2>
+  <div class="card"><table>
+    <tr><th>ファイル</th><th>タイトル</th><th>備考</th></tr>
+    <tr><td><a href="https://ai-komon.bivrost.co.jp/bivrost.html" target="_blank">bivrost.html</a></td><td>株式会社Bivrost｜テクノロジーと現場のあいだに、橋を架ける。</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/data.html" target="_blank">data.html</a></td><td>数字で見る、中小企業とAI</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/diagnosis.html" target="_blank">diagnosis.html</a></td><td>AI活用レベル診断（1分）</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/index.html" target="_blank">index.html</a></td><td>AI顧問室｜中小企業のためのAI顧問サービス</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/privacy.html" target="_blank">privacy.html</a></td><td>プライバシーポリシー</td><td></td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/tokushoho.html" target="_blank">tokushoho.html</a></td><td>特定商取引法に基づく表記</td><td></td></tr>
+  </table></div>
+
+  <h2>営業資料PDF（materials/build.sh で再生成）</h2>
+  <div class="card"><table>
+    <tr><th>ファイル</th><th>サイズ</th></tr>
+    <tr><td><a href="https://ai-komon.bivrost.co.jp/materials/assessment-template.pdf" target="_blank">assessment-template.pdf</a></td><td>0.7MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/materials/contract-draft.pdf" target="_blank">contract-draft.pdf</a></td><td>2.0MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/materials/guide-50-ideas.pdf" target="_blank">guide-50-ideas.pdf</a></td><td>2.7MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/materials/guide-7-failures.pdf" target="_blank">guide-7-failures.pdf</a></td><td>2.8MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/materials/guide-hojokin.pdf" target="_blank">guide-hojokin.pdf</a></td><td>2.7MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/materials/hearing-sheet.pdf" target="_blank">hearing-sheet.pdf</a></td><td>0.7MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/materials/kickoff-template.pdf" target="_blank">kickoff-template.pdf</a></td><td>1.1MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/materials/pitch-deck.pdf" target="_blank">pitch-deck.pdf</a></td><td>3.7MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/materials/pre-meeting.pdf" target="_blank">pre-meeting.pdf</a></td><td>0.7MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/materials/pricing.pdf" target="_blank">pricing.pdf</a></td><td>1.2MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works/bakery-flyer.pdf" target="_blank">bakery-flyer.pdf</a></td><td>2.1MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works/company-brochure.pdf" target="_blank">company-brochure.pdf</a></td><td>4.5MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works/proposal-deck.pdf" target="_blank">proposal-deck.pdf</a></td><td>3.9MB</td></tr>
+<tr><td><a href="https://ai-komon.bivrost.co.jp/works/user-manual.pdf" target="_blank">user-manual.pdf</a></td><td>2.4MB</td></tr>
+  </table></div>
+
+</div>
+</body>
+</html>
