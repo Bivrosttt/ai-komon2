@@ -1,0 +1,21 @@
+{
+  "slug": "ai-roi-calculator",
+  "title": "AI導入効果シミュレーター",
+  "description": "作業時間と人件費を入力して、AI導入で削減できる月間コストの目安を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "hours", "label": "毎月削減できそうな時間", "default": 20, "step": 1},
+    {"id": "hourlyRate", "label": "1時間あたりの人件費", "default": 3000, "step": 100}
+  ],
+  "result": {"label": "月間削減額の目安", "unit": "円", "formula": "hours * hourlyRate"},
+  "explanations": [
+    "議事録、報告書、問い合わせ対応など、AIで短縮できる作業時間を入力して導入効果の目安を確認できます。",
+    "実際の効果は業務量、確認工数、導入費用、利用定着率によって変わるため、社内の実績と合わせて判断してください。"
+  ],
+  "related_tools": [
+    {"label": "AI導入診断", "url": "/diagnosis.html", "description": "自社に合う導入テーマを整理します。"},
+    {"label": "AI顧問室の活用事例", "url": "/demos.html", "description": "業務別の導入イメージを確認します。"}
+  ],
+  "cta": {"label": "AI導入の相談をする", "url": "/diagnosis.html"}
+}

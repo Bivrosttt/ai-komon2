@@ -1,4 +1,8 @@
 .DS_Store
+seo/data/runs/
+seo/data/gsc/latest.csv
+__pycache__/
+*.py[cod]
 research/
 .playwright-mcp/
 .claude/
