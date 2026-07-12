@@ -1,0 +1,20 @@
+{
+  "keyword": "残業代 計算",
+  "slug": "overtime-pay-calculator",
+  "title": "残業代計算機",
+  "description": "基準時給・残業時間・割増率から、残業代の目安を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "baseHourly", "label": "基準時給（円）", "default": 1500, "step": 50},
+    {"id": "overtimeHours", "label": "残業時間（時間）", "default": 10, "step": 0.5},
+    {"id": "premiumRate", "label": "割増率（%）", "default": 25, "step": 1}
+  ],
+  "result": {"label": "残業代の目安", "unit": "円", "formula": "baseHourly * overtimeHours * (1 + premiumRate / 100)"},
+  "explanations": ["基準時給と残業時間、割増率から残業部分の金額を確認します。", "深夜・休日・月60時間超などの割増や就業規則、法令上の扱いは別途確認してください。"],
+  "related_tools": [
+    {"label": "1時間の人件費計算機", "url": "/tools/hourly-cost-calculator/", "description": "雇用コストを含めた1時間あたりの費用を確認します。"},
+    {"label": "月額支払計算機", "url": "/tools/monthly-payment-calculator/", "description": "まとまった費用を月額に分けて確認します。"}
+  ],
+  "cta": {"label": "労務業務を相談する", "url": "/diagnosis.html"}
+}

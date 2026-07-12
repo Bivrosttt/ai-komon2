@@ -1,0 +1,22 @@
+{
+  "keyword": "予算実績差異 計算",
+  "slug": "budget-variance-calculator",
+  "title": "予算実績差異計算機",
+  "description": "予定金額と実績金額から、差額と予算に対する増減率を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "plannedCost", "label": "予算・予定金額（円）", "default": 1000000, "step": 10000},
+    {"id": "actualCost", "label": "実績金額（円）", "default": 920000, "step": 10000}
+  ],
+  "results": [
+    {"id": "variance-amount", "label": "差額（実績−予算）", "unit": "円", "formula": "actualCost - plannedCost"},
+    {"id": "variance-rate", "label": "予算比", "unit": "%", "formula": "actualCost / plannedCost * 100"}
+  ],
+  "explanations": ["予算と実績の差額、予算に対する実績の割合をすぐに確認できます。", "プラスが良いか悪いかは費用・売上など項目によって異なるため、項目名と単位を併記して使ってください。"],
+  "related_tools": [
+    {"label": "見積利益率計算機", "url": "/tools/quote-margin-calculator/", "description": "見積金額と原価から利益率を確認します。"},
+    {"label": "業務効率化効果計算機", "url": "/tools/productivity-savings-calculator/", "description": "効率化による削減額を試算します。"}
+  ],
+  "cta": {"label": "予算管理を相談する", "url": "/diagnosis.html"}
+}

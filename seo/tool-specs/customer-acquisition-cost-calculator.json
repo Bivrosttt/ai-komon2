@@ -1,0 +1,19 @@
+{
+  "keyword": "顧客獲得単価 計算",
+  "slug": "customer-acquisition-cost-calculator",
+  "title": "顧客獲得単価計算機",
+  "description": "広告費や営業費と新規顧客数から、1顧客あたりの獲得単価を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "acquisitionCost", "label": "獲得に使った費用（円）", "default": 300000, "step": 10000},
+    {"id": "newCustomers", "label": "新規顧客数（人）", "default": 20, "step": 1}
+  ],
+  "result": {"label": "顧客獲得単価", "unit": "円／人", "formula": "acquisitionCost / newCustomers"},
+  "explanations": ["一定期間の獲得費用を新規顧客数で割り、1顧客あたりの獲得単価を確認します。", "広告費だけでなく、営業人件費や制作費を含めるかを決めてから施策間で比較してください。"],
+  "related_tools": [
+    {"label": "営業成約率計算機", "url": "/tools/sales-conversion-calculator/", "description": "商談から受注に進む割合を確認します。"},
+    {"label": "粗利率計算機", "url": "/tools/gross-margin-calculator/", "description": "売上に対して残る粗利の割合を確認します。"}
+  ],
+  "cta": {"label": "集客の採算を相談する", "url": "/diagnosis.html"}
+}

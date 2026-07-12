@@ -1,0 +1,20 @@
+{
+  "keyword": "ランウェイ 計算",
+  "slug": "cash-runway-calculator",
+  "title": "資金繰りランウェイ計算機",
+  "description": "手元資金・月間売上・月間支出から、現在のペースで何か月持つかを試算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "cashBalance", "label": "手元資金（円）", "default": 5000000, "step": 100000},
+    {"id": "monthlyRevenue", "label": "月間売上（円）", "default": 1000000, "step": 10000},
+    {"id": "monthlyExpense", "label": "月間支出（円）", "default": 1500000, "step": 10000}
+  ],
+  "result": {"label": "資金が持つ期間", "unit": "か月", "formula": "cashBalance / (monthlyExpense - monthlyRevenue)"},
+  "explanations": ["月間支出から月間売上を引いた毎月の資金流出で、手元資金が持つ期間を試算します。", "借入、税金、設備投資、季節変動は含まない簡易計算です。資金繰り表と合わせて判断してください。"],
+  "related_tools": [
+    {"label": "損益分岐点計算機", "url": "/tools/break-even-calculator/", "description": "利益がゼロになる販売数量を確認します。"},
+    {"label": "月額支払計算機", "url": "/tools/monthly-payment-calculator/", "description": "初期費用を月々の支出に分けて確認します。"}
+  ],
+  "cta": {"label": "事業の資金計画を相談する", "url": "/diagnosis.html"}
+}
