@@ -136,88 +136,109 @@
     font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy); margin-bottom: 32px;
   }
 
-  .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 8px; }
-  .case-card {
+  /* Result area / mail client shell */
+  .demo-result { margin-top: 8px; scroll-margin-top: 84px; }
+
+  .mailclient {
+    display: grid;
+    grid-template-columns: 250px 1fr 280px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
     background: var(--white);
-    border: 1.5px solid var(--line);
-    border-top: 4px solid var(--navy);
-    border-radius: 6px;
-    padding: 26px 24px;
-    text-align: left;
-    cursor: pointer;
-    transition: border-color .15s, box-shadow .15s, transform .15s;
-    display: flex; flex-direction: column; gap: 10px;
+    box-shadow: 0 10px 30px rgba(11,36,71,0.08);
+    min-height: 520px;
   }
-  .case-card:hover { border-color: var(--navy); box-shadow: 0 8px 24px rgba(11,36,71,0.10); transform: translateY(-2px); }
-  .case-card.selected { border-color: var(--gold); border-top-color: var(--gold); box-shadow: 0 8px 24px rgba(201,162,39,0.18); }
-  .case-tag { font-size: 12px; color: var(--blue); font-weight: 700; letter-spacing: 0.04em; }
-  .case-card h3 { font-size: 17px; color: var(--navy); }
-  .case-card .snippet {
-    font-size: 12.5px; color: var(--gray); background: var(--bg-soft); border-radius: 4px;
-    padding: 10px 12px; line-height: 1.7; max-height: 4.6em; overflow: hidden; position: relative;
-  }
-  .case-card .pick { font-size: 13px; font-weight: 700; color: var(--navy); margin-top: 4px; }
-  .case-card .pick::after { content: "→"; margin-left: 4px; }
 
-  /* Result area */
-  .demo-result { margin-top: 48px; display: none; scroll-margin-top: 84px; }
-  .demo-result.active { display: block; animation: fadein .3s ease; }
+  /* Inbox list (left) */
+  .mc-inbox { border-right: 1px solid var(--line); background: var(--bg-soft); display: flex; flex-direction: column; }
+  .mc-inbox-head {
+    padding: 16px 18px; font-size: 12.5px; font-weight: 700; color: var(--navy);
+    border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between;
+    letter-spacing: 0.04em; background: var(--white);
+  }
+  .mc-count { background: var(--gold); color: var(--navy-deep); font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 999px; }
+  .mc-inbox-list { overflow-y: auto; }
+  .mc-row {
+    display: block; width: 100%; text-align: left; padding: 13px 18px 13px 22px;
+    border: none; border-bottom: 1px solid var(--line); background: transparent; cursor: pointer;
+    font-family: inherit; position: relative;
+  }
+  .mc-row:hover { background: rgba(11,36,71,0.05); }
+  .mc-row.unread::before {
+    content: ""; position: absolute; left: 8px; top: 19px; width: 6px; height: 6px; border-radius: 50%; background: var(--blue);
+  }
+  .mc-row .r-top { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 3px; }
+  .mc-row .r-from { font-size: 12.5px; color: var(--ink); }
+  .mc-row.unread .r-from, .mc-row.unread .r-subject { font-weight: 700; color: var(--navy); }
+  .mc-row .r-time { font-size: 10.5px; color: var(--gray); white-space: nowrap; flex-shrink: 0; }
+  .mc-row .r-subject { font-size: 12.5px; color: var(--ink); margin-bottom: 2px; }
+  .mc-row .r-preview { font-size: 11px; color: var(--gray); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .mc-row.selected { background: var(--white); box-shadow: inset 3px 0 0 var(--gold); }
+  .mc-row.selected::before { display: none; }
+
+  /* Mobile tab strip (replaces the inbox list on small screens) */
+  .mc-mobile-tabs { display: none; gap: 8px; padding: 12px 14px; overflow-x: auto; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .mc-tab {
+    flex-shrink: 0; font-size: 12px; font-weight: 700; color: var(--navy); background: var(--white);
+    border: 1.5px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; font-family: inherit;
+    white-space: nowrap;
+  }
+  .mc-tab.unread::after { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); margin-left: 6px; vertical-align: middle; }
+  .mc-tab.selected { border-color: var(--gold); background: var(--navy); color: var(--white); }
+  .mc-tab.selected.unread::after { display: none; }
+
+  /* Reading pane (center) */
+  .mc-reading { display: flex; flex-direction: column; min-width: 0; }
+  .mc-empty { flex: 1; display: flex; align-items: center; justify-content: center; color: var(--gray); font-size: 14px; padding: 40px; text-align: center; }
+  .mc-view { display: none; flex-direction: column; flex: 1; min-width: 0; }
+  .mc-view.active { display: flex; animation: fadein .3s ease; }
   @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-  .original-msg {
-    background: var(--bg-soft); border: 1px solid var(--line); border-radius: 6px;
-    padding: 20px 24px; margin-bottom: 24px;
+  .mc-view-head { padding: 24px 28px 18px; border-bottom: 1px solid var(--line); }
+  .mc-subject { font-size: 19px; color: var(--navy); margin-bottom: 16px; }
+  .mc-sender-chip { display: flex; align-items: center; gap: 12px; }
+  .mc-avatar {
+    width: 38px; height: 38px; border-radius: 50%; background: var(--navy); color: var(--white);
+    display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700;
+    flex-shrink: 0; font-family: 'Noto Serif JP', serif;
   }
-  .original-msg .lbl { font-size: 12px; font-weight: 700; color: var(--gray); letter-spacing: 0.05em; margin-bottom: 8px; }
-  .original-msg .meta { font-size: 13px; color: var(--navy); font-weight: 700; margin-bottom: 2px; }
-  .original-msg .meta small { font-weight: 400; color: var(--gray); margin-left: 6px; }
-  .original-msg .subject { font-size: 14px; color: var(--ink); font-weight: 700; margin: 8px 0 10px; }
-  .original-msg .body { font-size: 13.5px; color: var(--gray); white-space: pre-wrap; line-height: 1.85; }
+  .mc-sender-name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+  .mc-sender-addr { font-size: 11.5px; color: var(--gray); }
+  .mc-time { margin-left: auto; font-size: 12px; color: var(--gray); white-space: nowrap; }
+  .mc-to-line { font-size: 11.5px; color: var(--gray); margin-top: 10px; }
+  .mc-body { padding: 22px 28px; font-size: 14px; color: var(--ink); white-space: pre-wrap; line-height: 1.9; border-bottom: 1px solid var(--line); }
 
-  .result-grid { display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: start; }
-
-  /* Loading */
+  /* Draft reply (thread style, below the received mail) */
+  .mc-draft-wrap { padding: 22px 28px 28px; }
+  .mc-draft-label { font-size: 12px; font-weight: 700; color: var(--gray); letter-spacing: 0.04em; margin-bottom: 10px; }
   .loading-box {
-    border: 1px dashed var(--line); border-radius: 6px; padding: 48px 24px;
-    text-align: center; color: var(--gray); font-size: 15px; background: var(--white);
+    border: 1px dashed var(--line); border-radius: 6px; padding: 44px 24px;
+    text-align: center; color: var(--gray); font-size: 14.5px; background: var(--bg-soft);
   }
   .dots { display: inline-flex; gap: 6px; margin-left: 8px; vertical-align: middle; }
-  .dots span {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
-    animation: bounce 1.1s infinite ease-in-out;
-  }
+  .dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); animation: bounce 1.1s infinite ease-in-out; }
   .dots span:nth-child(2) { animation-delay: .15s; }
   .dots span:nth-child(3) { animation-delay: .3s; }
   @keyframes bounce { 0%, 80%, 100% { opacity: .25; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1.1); } }
 
-  /* Mail window */
-  .mail-window {
-    border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--white);
-    box-shadow: 0 10px 30px rgba(11,36,71,0.08); display: none;
+  .mc-draft { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--bg-soft); display: none; }
+  .mc-draft.active { display: block; animation: fadein .3s ease; }
+  .mc-draft-head { display: flex; align-items: center; gap: 10px; padding: 13px 20px; border-bottom: 1px solid var(--line); background: var(--white); flex-wrap: wrap; }
+  .mc-draft-badge { font-size: 11.5px; font-weight: 700; color: var(--navy-deep); background: var(--gold); padding: 3px 11px; border-radius: 999px; letter-spacing: 0.03em; }
+  .mc-draft-to { font-size: 12px; color: var(--gray); margin-left: auto; }
+  .mc-draft-body {
+    padding: 20px; background: var(--white); font-size: 14px; color: var(--ink);
+    white-space: pre-wrap; line-height: 1.9; min-height: 200px; cursor: pointer;
   }
-  .mail-window.active { display: block; }
-  .mail-titlebar {
-    background: var(--navy); color: var(--white); padding: 12px 20px;
-    display: flex; align-items: center; gap: 10px; font-size: 13px;
-  }
-  .mail-titlebar .dot3 { display: flex; gap: 5px; }
-  .mail-titlebar .dot3 span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); }
-  .mail-titlebar .label { margin-left: auto; color: #C7D3E4; letter-spacing: 0.05em; }
-  .mail-head { padding: 20px 24px 16px; border-bottom: 1px solid var(--line); }
-  .mail-head .subject { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
-  .mail-head .row { font-size: 13px; color: var(--gray); margin-bottom: 3px; }
-  .mail-head .row b { color: var(--ink); font-weight: 700; margin-right: 6px; }
-  .mail-body {
-    padding: 24px; font-size: 14.5px; color: var(--ink); white-space: pre-wrap; line-height: 1.9;
-    min-height: 220px; cursor: pointer;
-  }
-  .mail-body .cursor { display: inline-block; width: 2px; height: 1em; background: var(--navy); vertical-align: text-bottom; animation: blink 0.9s step-end infinite; margin-left: 1px; }
+  .mc-draft-body .cursor { display: inline-block; width: 2px; height: 1em; background: var(--navy); vertical-align: text-bottom; animation: blink 0.9s step-end infinite; margin-left: 1px; }
   @keyframes blink { 50% { opacity: 0; } }
-  .mail-skip-hint { font-size: 11.5px; color: var(--gray); text-align: right; padding: 0 24px 16px; }
+  .mc-skip-hint { font-size: 11px; color: var(--gray); text-align: right; padding: 8px 20px 0; background: var(--white); }
+  .mc-draft-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; background: var(--white); border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .mc-draft-note { font-size: 11.5px; color: var(--gray); }
 
-  /* Info panel */
+  /* Info panel (right column) */
   .info-panel {
-    border: 1px solid var(--line); border-radius: 8px; background: var(--bg-soft);
+    border-left: 1px solid var(--line); background: var(--bg-soft);
     padding: 24px; opacity: 0; transform: translateY(8px); transition: opacity .4s ease, transform .4s ease;
   }
   .info-panel.show { opacity: 1; transform: translateY(0); }
@@ -239,8 +260,20 @@
   .reselect-row button { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; background: none; border: none; font-family: inherit; padding: 12px 16px; }
   .reselect-row button:hover { color: var(--navy); }
 
+  /* Toast (dummy send confirmation) */
+  .mc-toast {
+    position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%) translateY(20px);
+    background: var(--navy-deep); color: var(--white); font-size: 13.5px; padding: 14px 24px;
+    border-radius: 8px; box-shadow: 0 12px 30px rgba(0,0,0,0.25); z-index: 999; opacity: 0;
+    transition: opacity .25s ease, transform .25s ease; pointer-events: none; max-width: 90vw; text-align: center;
+  }
+  .mc-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
   @media (max-width: 900px) {
-    .result-grid { grid-template-columns: 1fr; }
+    .mailclient { grid-template-columns: 1fr; min-height: 0; }
+    .mc-inbox { display: none; }
+    .mc-mobile-tabs { display: flex; }
+    .info-panel { border-left: none; border-top: 1px solid var(--line); }
   }
 
   /* How it works */
@@ -314,56 +347,59 @@
   <div class="container">
     <span class="section-label">TRY IT</span>
     <div class="demo-step-label">STEP 1</div>
-    <h2 class="demo-question">届いた問い合わせを選んでください</h2>
-
-    <div class="case-grid" id="caseGrid">
-      <button type="button" class="case-card" data-case="quote">
-        <span class="case-tag">CASE 01｜見積依頼</span>
-        <h3>建材の見積依頼メール</h3>
-        <span class="snippet">田中建設株式会社 ご担当者様より。ガルバリウム鋼板 約200㎡分、8月20日までの納期希望で見積り依頼が届いています…</span>
-        <span class="pick">この問い合わせを選ぶ</span>
-      </button>
-      <button type="button" class="case-card" data-case="property">
-        <span class="case-tag">CASE 02｜不動産反響</span>
-        <h3>物件への内見申し込み</h3>
-        <span class="snippet">不動産ポータル経由。「グリーンヒルズ見本 302号室」に内見希望。週末希望、ペット可否について質問があります…</span>
-        <span class="pick">この問い合わせを選ぶ</span>
-      </button>
-      <button type="button" class="case-card" data-case="delay">
-        <span class="case-tag">CASE 03｜納期遅延クレーム</span>
-        <h3>納期遅延への苦情メール</h3>
-        <span class="snippet">注文番号SB-12345。当初予定日を過ぎても商品が届かず、問い合わせへの返信もないとお怒り気味のご連絡です…</span>
-        <span class="pick">この問い合わせを選ぶ</span>
-      </button>
-    </div>
+    <h2 class="demo-question">受信トレイからメールを選んでください</h2>
 
     <div class="demo-result" id="demoResult">
-      <div class="demo-step-label" style="margin-top:48px;">STEP 2</div>
-      <h2 class="demo-question" id="resultTitle" style="font-size:20px;">AIが作成した返信案</h2>
+      <div class="mailclient" id="mailClient">
+        <div class="mc-inbox">
+          <div class="mc-inbox-head">受信トレイ<span class="mc-count" id="mcCount">3</span></div>
+          <div class="mc-inbox-list" id="mcInboxList"></div>
+        </div>
 
-      <div class="original-msg" id="originalMsg"></div>
+        <div class="mc-mobile-tabs" id="mcMobileTabs"></div>
 
-      <div id="loadingBox" class="loading-box">
-        AIが返信案を作成しています<span class="dots"><span></span><span></span><span></span></span>
-      </div>
+        <div class="mc-reading">
+          <div class="mc-empty" id="mcEmpty">左の受信トレイからメールを選ぶと、内容とAIの返信下書きが表示されます</div>
 
-      <div class="result-grid" id="resultGrid" style="display:none;">
-        <div>
-          <div class="mail-window" id="mailWindow">
-            <div class="mail-titlebar">
-              <span class="dot3"><span></span><span></span><span></span></span>
-              <span>返信メール（下書き）</span>
-              <span class="label">AI作成</span>
+          <div class="mc-view" id="mcView">
+            <div class="mc-view-head">
+              <h3 class="mc-subject" id="mcSubject"></h3>
+              <div class="mc-sender-chip">
+                <span class="mc-avatar" id="mcAvatar"></span>
+                <div>
+                  <div class="mc-sender-name" id="mcSenderName"></div>
+                  <div class="mc-sender-addr" id="mcSenderAddr"></div>
+                </div>
+                <span class="mc-time" id="mcTime"></span>
+              </div>
+              <div class="mc-to-line" id="mcToLine"></div>
             </div>
-            <div class="mail-head">
-              <div class="subject" id="replySubject"></div>
-              <div class="row"><b>From</b><span id="replyFrom"></span></div>
-              <div class="row"><b>To</b><span id="replyTo"></span></div>
+            <div class="mc-body" id="mcBody"></div>
+
+            <div class="mc-draft-wrap">
+              <div class="demo-step-label" style="margin-bottom:10px;">STEP 2</div>
+              <div class="mc-draft-label">AIが作成した返信案</div>
+
+              <div id="loadingBox" class="loading-box">
+                AIが返信案を作成しています<span class="dots"><span></span><span></span><span></span></span>
+              </div>
+
+              <div class="mc-draft" id="mcDraft">
+                <div class="mc-draft-head">
+                  <span class="mc-draft-badge">下書き（AI作成）</span>
+                  <span class="mc-draft-to" id="mcDraftTo"></span>
+                </div>
+                <div class="mc-draft-body" id="mailBody" title="クリックで全文表示"></div>
+                <div class="mc-skip-hint">クリックで全文をすぐ表示</div>
+                <div class="mc-draft-actions">
+                  <span class="mc-draft-note">内容を確認・編集してから送信してください</span>
+                  <button type="button" class="btn btn-navy" id="sendDraftBtn" style="padding:10px 24px; font-size:13.5px;">編集して送信</button>
+                </div>
+              </div>
             </div>
-            <div class="mail-body" id="mailBody" title="クリックで全文表示"></div>
-            <div class="mail-skip-hint">クリックで全文をすぐ表示</div>
           </div>
         </div>
+
         <div class="info-panel" id="infoPanel">
           <h4>AIが読み取った情報</h4>
           <div class="info-row"><div class="k">顧客名</div><div class="v" id="infoName"></div></div>
@@ -374,7 +410,7 @@
       </div>
 
       <div class="reselect-row">
-        <button type="button" id="reselectLink">別の問い合わせを選び直す</button>
+        <button type="button" id="reselectLink">受信トレイの一覧に戻る</button>
       </div>
     </div>
   </div>
@@ -424,11 +460,18 @@
   </div>
 </footer>
 
+<div class="mc-toast" id="mcToast"></div>
+
 <script>
 (function () {
+  var ORDER = ["quote", "property", "delay"];
+
   var CASES = {
     quote: {
       tagLabel: "CASE 01｜見積依頼",
+      shortLabel: "見積依頼",
+      timeLabel: "今日 9:41",
+      preview: "ガルバリウム鋼板 約200㎡分、8月20日までの納期希望で見積りをご相談したいとのことです…",
       from: "田中建設株式会社　田中太郎",
       fromEmail: "t-tanaka@sample-kensetsu.example.jp",
       to: "サンプル建材株式会社 ご担当者様",
@@ -468,6 +511,9 @@
     },
     property: {
       tagLabel: "CASE 02｜不動産反響",
+      shortLabel: "内見申込",
+      timeLabel: "今日 11:08",
+      preview: "「グリーンヒルズ見本302号室」に内見希望。週末希望、ペット飼育可否についてご質問です…",
       from: "佐藤様（見本不動産ポータル経由）",
       fromEmail: "portal-inquiry@sample-portal.example.jp",
       to: "見本不動産 御中",
@@ -511,6 +557,9 @@
     },
     delay: {
       tagLabel: "CASE 03｜納期遅延クレーム",
+      shortLabel: "納期クレーム",
+      timeLabel: "今日 7:52",
+      preview: "注文番号SB-12345、当初予定日を過ぎても届かず、至急状況を確認したいとのご連絡です…",
       from: "お客様（注文番号 SB-12345）",
       fromEmail: "customer-12345@example.jp",
       to: "サンプル建材株式会社 ご担当者様",
@@ -544,37 +593,79 @@
     }
   };
 
-  var caseGrid = document.getElementById("caseGrid");
-  var demoResult = document.getElementById("demoResult");
-  var originalMsg = document.getElementById("originalMsg");
+  var mailClient = document.getElementById("mailClient");
+  var mcInboxList = document.getElementById("mcInboxList");
+  var mcMobileTabs = document.getElementById("mcMobileTabs");
+  var mcEmpty = document.getElementById("mcEmpty");
+  var mcView = document.getElementById("mcView");
+  var mcSubject = document.getElementById("mcSubject");
+  var mcAvatar = document.getElementById("mcAvatar");
+  var mcSenderName = document.getElementById("mcSenderName");
+  var mcSenderAddr = document.getElementById("mcSenderAddr");
+  var mcTime = document.getElementById("mcTime");
+  var mcToLine = document.getElementById("mcToLine");
+  var mcBody = document.getElementById("mcBody");
   var loadingBox = document.getElementById("loadingBox");
-  var resultGrid = document.getElementById("resultGrid");
-  var mailWindow = document.getElementById("mailWindow");
+  var mcDraft = document.getElementById("mcDraft");
+  var mcDraftTo = document.getElementById("mcDraftTo");
   var mailBody = document.getElementById("mailBody");
-  var replySubject = document.getElementById("replySubject");
-  var replyFrom = document.getElementById("replyFrom");
-  var replyTo = document.getElementById("replyTo");
+  var sendDraftBtn = document.getElementById("sendDraftBtn");
   var infoPanel = document.getElementById("infoPanel");
   var infoName = document.getElementById("infoName");
   var infoTopic = document.getElementById("infoTopic");
   var infoTemp = document.getElementById("infoTemp");
   var infoAction = document.getElementById("infoAction");
   var reselectLink = document.getElementById("reselectLink");
+  var mcToast = document.getElementById("mcToast");
 
   var typeTimer = null;
   var typing = false;
+  var currentCase = null;
+  var readState = {};
+  var toastTimer = null;
 
   function escapeHtml(str) {
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
-  function renderOriginal(c) {
-    originalMsg.innerHTML =
-      '<div class="lbl">届いた問い合わせ</div>' +
-      '<div class="meta">' + escapeHtml(c.from) + '<small>&lt;' + escapeHtml(c.fromEmail) + '&gt;</small></div>' +
-      '<div class="meta" style="font-weight:400;color:var(--gray);">To: ' + escapeHtml(c.to) + '</div>' +
-      '<div class="subject">件名：' + escapeHtml(c.subject) + '</div>' +
-      '<div class="body">' + escapeHtml(c.body) + '</div>';
+  function buildInbox() {
+    var html = "";
+    for (var i = 0; i < ORDER.length; i++) {
+      var key = ORDER[i];
+      var c = CASES[key];
+      html +=
+        '<button type="button" class="mc-row unread" data-case="' + key + '">' +
+          '<div class="r-top"><span class="r-from">' + escapeHtml(c.from) + '</span><span class="r-time">' + escapeHtml(c.timeLabel) + '</span></div>' +
+          '<div class="r-subject">' + escapeHtml(c.subject) + '</div>' +
+          '<div class="r-preview">' + escapeHtml(c.preview) + '</div>' +
+        '</button>';
+    }
+    mcInboxList.innerHTML = html;
+  }
+
+  function buildTabs() {
+    var html = "";
+    for (var i = 0; i < ORDER.length; i++) {
+      var key = ORDER[i];
+      var c = CASES[key];
+      html += '<button type="button" class="mc-tab unread" data-case="' + key + '">' + escapeHtml(c.shortLabel) + '</button>';
+    }
+    mcMobileTabs.innerHTML = html;
+  }
+
+  function refreshListStates() {
+    var rows = mcInboxList.querySelectorAll(".mc-row");
+    for (var i = 0; i < rows.length; i++) {
+      var key = rows[i].getAttribute("data-case");
+      rows[i].classList.toggle("selected", key === currentCase);
+      rows[i].classList.toggle("unread", !readState[key]);
+    }
+    var tabs = mcMobileTabs.querySelectorAll(".mc-tab");
+    for (var j = 0; j < tabs.length; j++) {
+      var tkey = tabs[j].getAttribute("data-case");
+      tabs[j].classList.toggle("selected", tkey === currentCase);
+      tabs[j].classList.toggle("unread", !readState[tkey]);
+    }
   }
 
   function startTyping(text) {
@@ -605,7 +696,7 @@
 
   mailBody.addEventListener("click", function () {
     if (typing) {
-      var c = CASES[demoResult.getAttribute("data-current")];
+      var c = CASES[currentCase];
       if (c) finishTyping(c.replyBody);
     }
   });
@@ -621,56 +712,81 @@
     setTimeout(function () { infoPanel.classList.add("show"); }, 50);
   }
 
-  function selectCase(key) {
+  function openCase(key) {
     var c = CASES[key];
     if (!c) return;
 
-    // reset visual selection
-    var cards = caseGrid.querySelectorAll(".case-card");
-    for (var i = 0; i < cards.length; i++) {
-      cards[i].classList.toggle("selected", cards[i].getAttribute("data-case") === key);
-    }
-
     if (typing) { typing = false; if (typeTimer) clearTimeout(typeTimer); }
 
-    demoResult.setAttribute("data-current", key);
-    demoResult.classList.add("active");
-    renderOriginal(c);
+    currentCase = key;
+    readState[key] = true;
+    refreshListStates();
 
-    resultGrid.style.display = "none";
-    mailWindow.classList.remove("active");
+    mcEmpty.style.display = "none";
+    mcView.classList.add("active");
+
+    mcSubject.textContent = c.subject;
+    mcAvatar.textContent = c.from.charAt(0);
+    mcSenderName.textContent = c.from;
+    mcSenderAddr.textContent = c.fromEmail;
+    mcTime.textContent = c.timeLabel;
+    mcToLine.textContent = "To: " + c.to;
+    mcBody.textContent = c.body;
+
+    mcDraftTo.textContent = "宛先: " + c.replyTo;
+
+    mcDraft.classList.remove("active");
     infoPanel.classList.remove("show");
     loadingBox.style.display = "block";
 
     setTimeout(function () {
       loadingBox.style.display = "none";
-      resultGrid.style.display = "grid";
-      mailWindow.classList.add("active");
-
-      replySubject.textContent = c.replySubject;
-      replyFrom.textContent = c.replyFrom;
-      replyTo.textContent = c.replyTo;
+      mcDraft.classList.add("active");
 
       startTyping(c.replyBody);
       showInfoPanel(c);
-
-      demoResult.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 1500);
   }
 
-  caseGrid.addEventListener("click", function (e) {
-    var card = e.target.closest(".case-card");
-    if (!card) return;
-    selectCase(card.getAttribute("data-case"));
+  function closeReading() {
+    if (typing) { typing = false; if (typeTimer) clearTimeout(typeTimer); }
+    currentCase = null;
+    mcView.classList.remove("active");
+    mcDraft.classList.remove("active");
+    infoPanel.classList.remove("show");
+    mcEmpty.style.display = "flex";
+    refreshListStates();
+    mailClient.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function showToast(msg) {
+    mcToast.textContent = msg;
+    mcToast.classList.add("show");
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { mcToast.classList.remove("show"); }, 3200);
+  }
+
+  mcInboxList.addEventListener("click", function (e) {
+    var row = e.target.closest(".mc-row");
+    if (!row) return;
+    openCase(row.getAttribute("data-case"));
   });
 
-  reselectLink.addEventListener("click", function () {
-    if (typing) { typing = false; if (typeTimer) clearTimeout(typeTimer); }
-    demoResult.classList.remove("active");
-    var cards = caseGrid.querySelectorAll(".case-card");
-    for (var i = 0; i < cards.length; i++) cards[i].classList.remove("selected");
-    caseGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+  mcMobileTabs.addEventListener("click", function (e) {
+    var tab = e.target.closest(".mc-tab");
+    if (!tab) return;
+    openCase(tab.getAttribute("data-case"));
   });
+
+  reselectLink.addEventListener("click", closeReading);
+
+  sendDraftBtn.addEventListener("click", function () {
+    showToast("デモのため送信できません。実運用では担当者が確認して送信します。");
+  });
+
+  buildInbox();
+  buildTabs();
+  refreshListStates();
 })();
 </script>
 
