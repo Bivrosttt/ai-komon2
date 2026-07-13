@@ -402,6 +402,8 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
 </head>
 <body>
 
@@ -1034,6 +1036,7 @@
     fd.append("entry.254574837", "AI顧問室" + (from ? "/" + from : ""));
     function done() {
       try { if (typeof gtag === "function") gtag("event", "generate_lead", { method: "contact_form", lead_from: from || "direct" }); } catch (e) {}
+      if (window.aiKomonTrack) window.aiKomonTrack("Lead", { method: "contact_form", lead_from: from || "direct" });
       form.closest(".contact-card").innerHTML =
         '<div style="text-align:center; padding:26px 8px;">' +
         '<p style="font-family:\'Noto Serif JP\',serif; font-size:20px; font-weight:700; color:var(--navy); margin-bottom:12px;">お申し込みありがとうございました。</p>' +

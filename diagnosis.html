@@ -81,6 +81,8 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
 </head>
 <body>
 
@@ -196,6 +198,7 @@
 (function () {
   var answers = {};
   var total = 5;
+  var diagnosisStarted = false;
   var judge = document.getElementById('judge');
   var remain = document.getElementById('remain');
 
@@ -219,8 +222,12 @@
 
   document.querySelectorAll('.q-block').forEach(function (block) {
     var q = block.getAttribute('data-q');
-    block.querySelectorAll('.opt').forEach(function (btn) {
+      block.querySelectorAll('.opt').forEach(function (btn) {
       btn.addEventListener('click', function () {
+        if (!diagnosisStarted) {
+          diagnosisStarted = true;
+          if (window.aiKomonTrackCustom) window.aiKomonTrackCustom('DiagnosisStart', { page: 'diagnosis.html' });
+        }
         block.querySelectorAll('.opt').forEach(function (b) { b.classList.remove('on'); });
         btn.classList.add('on');
         answers[q] = parseInt(btn.getAttribute('data-pt'), 10);
@@ -245,6 +252,8 @@
     else if (score <= 10) lv = 3;
     else if (score <= 13) lv = 4;
     else lv = 5;
+
+    if (window.aiKomonTrackCustom) window.aiKomonTrackCustom('DiagnosisComplete', { level: lv, score: score });
 
     var data = LEVELS[lv];
     document.getElementById('r-lv').textContent = 'Lv.' + lv;
