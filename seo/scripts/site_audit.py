@@ -60,6 +60,14 @@ def audit_file(path: Path, root: Path) -> dict:
     if not og_description:
         issues.append("missing_og_description")
 
+    # SEO articles require at least one real, crawlable image. CSS-only hero
+    # visuals are not sufficient for the article production rule.
+    if str(path.relative_to(root)).startswith("articles/"):
+        if not re.search(r"<img\b[^>]+src=", source, re.I):
+            issues.append("article_missing_diagram")
+        if re.search(r"<img\b", source, re.I) and not re.search(r"<figcaption\b", source, re.I):
+            issues.append("article_missing_figcaption")
+
     broken_links: list[str] = []
     for match in re.finditer(r"href\s*=\s*[\"']([^\"']+)", source, re.I):
         href = match.group(1).split("#", 1)[0]

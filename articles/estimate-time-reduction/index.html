@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>見積書作成の時間を減らす方法｜工数を測ってから自動化する | AI顧問室</title>
+  <meta name="description" content="見積書作成の時間を減らす方法を、案件受付・条件確認・転記・承認・送付に分けて解説。確認工数と例外案件を含めて自動化の効果を測る方法を紹介します。">
+  <link rel="canonical" href="https://ai-komon.bivrost.co.jp/articles/estimate-time-reduction/"><meta property="og:type" content="article"><meta property="og:site_name" content="AI顧問室"><meta property="og:title" content="見積書作成の時間を減らす方法｜工数を測ってから自動化する | AI顧問室"><meta property="og:description" content="見積書作成の工数を分解し、転記・確認・送付のどこを改善するか解説します。"><meta property="og:url" content="https://ai-komon.bivrost.co.jp/articles/estimate-time-reduction/"><meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png"><meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"見積書作成の時間を減らす方法｜工数を測ってから自動化する","description":"見積書作成の工数を分解し、転記・確認・送付のどこを改善するか解説します。","image":"https://ai-komon.bivrost.co.jp/assets/ogp.png","datePublished":"2026-07-12","dateModified":"2026-07-12","author":{"@type":"Organization","name":"AI顧問室"},"publisher":{"@type":"Organization","name":"AI顧問室"},"mainEntityOfPage":"https://ai-komon.bivrost.co.jp/articles/estimate-time-reduction/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"見積書作成の時間を減らすには何から始めますか？","acceptedAnswer":{"@type":"Answer","text":"案件受付から送付までの時間を分解し、転記・計算・確認・差し戻しのどこに時間がかかるか測ります。最初は商品や単価が決まる定型案件から試します。"}},{"@type":"Question","name":"見積書をAIに作らせても大丈夫ですか？","acceptedAnswer":{"@type":"Answer","text":"AIは下書きや条件整理に使い、金額、税、納期、契約条件は人が確認します。承認者が明確でない状態での自動送付は避けます。"}}]}</script>
+  <link rel="stylesheet" href="../../assets/articles/article.css?v=20260713-responsive"></head>
+<body><main><nav class="breadcrumb" aria-label="パンくず"><a href="/">AI顧問室</a> / <a href="/articles/sales-efficiency/">営業効率化</a> / 見積書作成の時間</nav><article>
+  <p class="eyebrow">SALES / ESTIMATE WORKFLOW</p><h1>見積書作成の時間を減らす方法｜工数を測ってから自動化する</h1><p class="dek">見積書作成の時間は、入力だけでなく、条件確認や承認、差し戻しに隠れています。まず工程を分け、例外案件を含めた現状を測ってから改善します。</p><p class="meta">公開日: 2026年7月12日　|　AI顧問室 編集部</p>
+  <div class="hero-visual"><span class="hero-kicker">AI KOMONSHITSU / ESTIMATE FLOW</span><span class="hero-title">速く作る前に、どこで止まっているかを知る。</span><div class="hero-badges"><span>受付</span><span>転記</span><span>確認</span><span>送付</span></div></div>
+  <div class="answer"><strong>先に結論：</strong>見積書作成の時間を減らすには、受付・条件確認・商品選択・転記・承認・送付を分解し、転記と確認の重複から減らします。AIは下書きと条件整理に使い、金額や契約条件の最終承認は人が持ちます。</div>
+  <figure><img src="../../assets/articles/diagrams/estimate-time-reduction-diagram.png" alt="見積作成の時間を受付、転記、確認、送付の工程に分けて短縮する図解" width="1672" height="941" loading="lazy"><figcaption>見積作成は、転記と確認の重複を見つけ、送付前の承認を残して短くする。</figcaption></figure>
+  <div class="toc"><strong>この記事の目次</strong><ol><li><a href="#breakdown">見積作成の工程を分解する</a></li><li><a href="#standard">定型案件から標準化する</a></li><li><a href="#automation">自動化する範囲を決める</a></li><li><a href="#measure">工数と品質を測る</a></li></ol></div>
+  <h2 id="breakdown">見積書作成の時間を工程ごとに分解する</h2><p>「見積作成に1時間かかる」という記録だけでは、改善箇所が分かりません。案件受付から送付までを分解し、担当者、入力元、確認内容、差し戻しを記録します。複数のシステムへ同じ情報を入力しているなら、最初の候補です。</p><div class="table-scroll"><table><thead><tr><th>工程</th><th>確認すること</th><th>改善の例</th></tr></thead><tbody><tr><th>受付</th><td>依頼内容の不足・重複</td><td>入力フォームや項目表</td></tr><tr><th>条件確認</th><td>数量・納期・値引き条件</td><td>確認リスト</td></tr><tr><th>商品選択</th><td>品番・単価・代替品</td><td>マスタの最新版</td></tr><tr><th>転記・計算</th><td>二重入力・税・合計</td><td>テンプレートや連携</td></tr><tr><th>承認・送付</th><td>承認者・宛先・添付</td><td>人の最終確認</td></tr></tbody></table></div>
+  <h2 id="standard">まず「定型案件」と「例外案件」を分ける</h2><p>すべての案件を同じ自動化に載せると、例外の確認で時間を使います。標準商品、決まった値引き、通常納期の案件を定型として分け、特殊仕様・個別契約・大幅な値引きは例外として人が扱います。</p><div class="steps"><div class="step"><b>01 / STANDARD</b><h3>定型を定義</h3><p>商品・単価・条件が決まる案件を集める。</p></div><div class="step"><b>02 / EXCEPTION</b><h3>例外を隔離</h3><p>特殊条件は自動処理の対象から外す。</p></div><div class="step"><b>03 / REVIEW</b><h3>見直す</h3><p>例外の件数と理由を月次で確認する。</p></div></div>
+  <h2 id="automation">自動化する範囲は「案を作る」までにする</h2><p>AIに任せやすいのは、依頼文から見積項目の候補を抜き出す、過去の書式に合わせて下書きする、抜けている条件を質問する、といった補助です。金額、税、納期、契約条件、宛先は、送付前に人が確認します。</p><p>営業全体のどこから着手するかは<a href="/articles/sales-efficiency/">営業効率化の方法</a>、AIの導入可否を測るなら<a href="/tools/sales-estimate-roi/">営業・見積もり工数シミュレーター</a>を使って整理できます。</p>
+  <h2 id="measure">削減時間だけでなく、差し戻しと誤りを測る</h2><p>改善前後で、1件あたりの作成時間、確認時間、差し戻し回数、送付までの時間を比べます。AIを入れて作成時間が短くなっても、確認で倍の時間がかかるなら改善とは言えません。定型案件と例外案件を分けて測ると、結果を誤解しにくくなります。</p>
+  <h2 id="sample">見積工数を仮説から実測へ変える</h2>
+  <p>たとえば想定例として、月40件の見積を1件45分で作っているなら、月間作業は1,800分です。下書きで10分短くなっても、確認に5分かかるなら、実際の削減は1件5分です。数字は効果を保証するものではなく、自社で測るための計算の型として使います。</p>
+  <div class="table-scroll"><table><thead><tr><th>測定項目</th><th>導入前</th><th>導入後に見ること</th></tr></thead><tbody><tr><th>作成</th><td>受付から下書きまで</td><td>転記・計算の短縮</td></tr><tr><th>確認</th><td>上長・営業の確認時間</td><td>修正箇所と差し戻し</td></tr><tr><th>送付</th><td>承認から送付まで</td><td>宛先・添付の漏れ</td></tr></tbody></table></div>
+  <h2 id="master">自動化の前に見積マスターを整える</h2>
+  <p>商品名、品番、単価、税区分、納期、値引き条件が複数の場所に散らばっていると、AIの下書きも安定しません。最新版の管理者と更新日を決め、例外案件は別の確認ルートへ送ります。</p>
+  <p>見積書は顧客へ届く金額文書です。AIが整えた書式をそのまま送らず、<a href="/demo-quote.html">見積書AIデモ</a>のような下書き用途から始め、承認者と停止条件を固定してから範囲を広げます。</p>
+  <h2 id="approval">承認の流れを短くしすぎない</h2>
+  <p>見積書の効率化で削ってはいけないのは、金額や契約条件を確認する工程です。承認者が見る項目を、商品・数量・単価・税・納期・値引き・宛先へ分け、AIが下書きした箇所と人が判断した箇所を記録します。</p>
+  <div class="steps"><div class="step"><b>01 / INPUT</b><h3>条件を受ける</h3><p>不足している数量や納期を確認する。</p></div><div class="step"><b>02 / DRAFT</b><h3>案を作る</h3><p>転記・計算の下書きを整える。</p></div><div class="step"><b>03 / APPROVE</b><h3>人が承認</h3><p>金額・条件・宛先を確認して送る。</p></div></div>
+  <h2 id="exception">例外案件を改善の材料にする</h2>
+  <p>特殊仕様、個別契約、大幅な値引きが多い場合は、例外を無理に自動化しません。例外の理由と件数を記録し、標準化できる条件が見つかったときだけマスターやテンプレートへ戻します。</p>
+  <p>見積の改善は、作成者の速度だけでなく、営業・上長・経理の間で同じ条件を確認できることが価値です。<a href="/articles/sales-efficiency/">営業効率化の方法</a>と工数シミュレーターを使い、前後の差を記録してください。</p>
+  <div class="sources"><strong>業務改善とAI活用の参考資料</strong><ul><li><a href="https://www.ipa.go.jp/digital/ai/transformation.html" rel="noopener">IPA AIの利活用、AIによるDXの推進</a></li><li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/" rel="noopener">経済産業省 AI事業者ガイドライン検討会</a></li></ul></div>
+  <h2 id="checklist">見積改善を次の案件へ戻す</h2>
+  <p>一度テンプレートを作って終わりにせず、案件後の気づきを次の見積へ反映します。週次で次の項目を確認すると、改善が担当者の経験だけに戻りにくくなります。</p>
+  <ul><li>商品名、数量、単価、納期など必須入力がそろっていたか</li><li>自動計算の結果を誰が確認し、どこで承認したか</li><li>標準案件と例外案件を同じ時間で扱っていないか</li><li>差し戻しや再作成の理由が記録されているか</li><li>作成から承認までの実測時間が前回より変わったか</li></ul>
+  <div class="tool-cta"><h2>見積もり工数を条件別に試算する</h2><p>案件数、担当人数、1件あたりの時間を入れて、現状の月間工数と削減余地を確認できます。悲観・標準・楽観の条件を変えて比べてください。</p><a class="button" href="/tools/sales-estimate-roi/">工数シミュレーターを使う</a></div>
+  <h2>よくある質問</h2><details><summary>Excelの見積テンプレートでも効率化できますか？</summary><p>できます。まず項目、単価、計算式、承認欄を標準化します。テンプレートが複数ある場合は、似た書式を一つに寄せるだけでも転記と確認の負担を減らせます。</p></details><details><summary>見積書を完全自動で送付できますか？</summary><p>技術的に可能な場合でも、最初から完全自動にする必要はありません。金額、条件、宛先を人が確認する承認工程を残し、誤送付が起きない条件を検証します。</p></details>
+  <h2>次に読む・使う</h2><div class="related"><a href="/articles/sales-efficiency/"><strong>営業効率化の方法</strong><span>営業工程の優先順位を決める</span></a><a href="/articles/ai-roi/"><strong>AI導入の費用対効果</strong><span>削減時間を金額へ換算</span></a><a href="/demo-quote.html"><strong>見積書AIデモ</strong><span>整理の流れを確認</span></a></div>
+  </article><footer><a href="/">AI顧問室</a> / <a href="/tools/">無料ツール</a> / <a href="/privacy.html">プライバシーポリシー</a></footer>
+</main></body></html>
