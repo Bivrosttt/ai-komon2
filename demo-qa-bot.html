@@ -135,60 +135,97 @@
     font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy); margin-bottom: 32px;
   }
 
-  /* Chat window */
-  .chat-window {
+  /* Chat app shell (社内チャットツール風) */
+  .chat-app {
+    display: flex; align-items: stretch;
     border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--white);
     box-shadow: 0 10px 30px rgba(11,36,71,0.08);
+    height: 600px;
   }
-  .chat-titlebar {
-    background: var(--navy); color: var(--white); padding: 14px 20px;
-    display: flex; align-items: center; gap: 12px;
+
+  /* Sidebar */
+  .chat-sidebar {
+    width: 208px; flex-shrink: 0; background: var(--navy-deep); color: #C7D3E4;
+    display: flex; flex-direction: column; padding: 18px 0;
   }
-  .chat-avatar {
-    width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--navy-deep);
-    display: flex; align-items: center; justify-content: center; font-weight: 700;
-    font-family: 'Noto Serif JP', serif; font-size: 15px; flex-shrink: 0;
+  .chat-sidebar-header {
+    padding: 0 18px 16px; font-family: 'Noto Serif JP', serif; font-size: 15.5px; font-weight: 700;
+    color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.12); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
   }
-  .chat-titlebar .name { font-size: 14.5px; font-weight: 700; }
-  .chat-titlebar .status { font-size: 11.5px; color: #C7D3E4; display: flex; align-items: center; gap: 5px; }
-  .chat-titlebar .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4CAF6D; display: inline-block; }
+  .chat-sidebar-header .dot { width: 8px; height: 8px; border-radius: 50%; background: #4CAF6D; flex-shrink: 0; }
+  .chat-group-label {
+    padding: 0 18px; font-size: 10.5px; letter-spacing: 0.12em; color: #7C8CA8; font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .channel-list { display: flex; flex-direction: column; gap: 2px; }
+  .channel-item {
+    padding: 9px 18px; font-size: 13.5px; color: #AEBBD1; cursor: default;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    border-left: 3px solid transparent;
+  }
+  .channel-item.active {
+    background: rgba(201,162,39,0.14); color: var(--white); font-weight: 700;
+    border-left-color: var(--gold);
+  }
+  .channel-item .soon {
+    font-size: 9.5px; color: #6B7B98; border: 1px solid #3A4A64; border-radius: 3px; padding: 1px 5px;
+    letter-spacing: 0.03em; flex-shrink: 0;
+  }
+
+  /* Main pane */
+  .chat-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .chat-topbar {
+    background: var(--white); border-bottom: 1px solid var(--line); padding: 14px 22px;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .chat-topbar .channel-name { font-family: 'Noto Serif JP', serif; font-size: 16px; color: var(--navy); font-weight: 700; }
+  .chat-topbar .channel-sep { color: var(--line); }
+  .chat-topbar .channel-desc {
+    font-size: 12.5px; color: var(--gray); display: flex; align-items: center; gap: 6px;
+  }
+  .chat-topbar .channel-desc::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4CAF6D; display: inline-block; }
 
   .chat-messages {
-    padding: 24px; min-height: 280px; max-height: 560px; overflow-y: auto;
-    background: var(--bg-soft); display: flex; flex-direction: column; gap: 16px;
+    padding: 20px 24px; flex: 1; overflow-y: auto;
+    background: var(--white); display: flex; flex-direction: column; gap: 18px;
   }
-  .msg-row { display: flex; gap: 10px; max-width: 84%; animation: fadein .25s ease; }
-  .msg-row.bot { align-self: flex-start; }
-  .msg-row.user { align-self: flex-end; flex-direction: row-reverse; max-width: 78%; }
+  .msg-line { display: flex; gap: 12px; animation: fadein .25s ease; }
   .msg-avatar {
-    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 700;
+    width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700;
   }
   .msg-avatar.bot { background: var(--navy); color: var(--white); }
   .msg-avatar.user { background: var(--line); color: var(--navy); }
-  .msg-bubble {
-    border-radius: 14px; padding: 14px 18px; font-size: 14px; line-height: 1.85;
-  }
-  .msg-row.user .msg-bubble { background: var(--navy); color: var(--white); border-bottom-right-radius: 4px; }
-  .msg-row.bot .msg-bubble { background: var(--white); border: 1px solid var(--line); border-bottom-left-radius: 4px; color: var(--ink); max-width: 480px; }
-  .msg-bubble .conclusion { font-weight: 700; color: var(--navy); margin-bottom: 10px; }
-  .msg-bubble ul { margin: 0 0 10px 18px; }
-  .msg-bubble li { margin-bottom: 6px; font-size: 13.5px; }
-  .msg-bubble .greeting { color: var(--ink); }
+  .msg-body { min-width: 0; flex: 1; }
+  .msg-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 3px; }
+  .msg-name { font-size: 13.5px; font-weight: 700; color: var(--navy); }
+  .msg-name.bot-name { color: var(--navy); }
+  .msg-time { font-size: 11px; color: var(--gray); }
+  .msg-text { font-size: 14px; line-height: 1.85; color: var(--ink); }
+  .msg-text .conclusion { font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .msg-text ul { margin: 0 0 10px 18px; }
+  .msg-text li { margin-bottom: 6px; font-size: 13.5px; }
+  .msg-text .greeting { color: var(--ink); }
 
-  .cite-card {
-    margin-top: 12px; background: var(--bg-soft); border-left: 3px solid var(--gold); border-radius: 4px;
-    padding: 10px 14px; font-size: 12px; color: var(--gray); line-height: 1.7;
+  .cite-quote {
+    margin-top: 12px; background: var(--bg-soft); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0;
+    padding: 10px 14px; max-width: 520px;
   }
-  .cite-card .icon { margin-right: 4px; }
+  .cite-quote .cite-label {
+    font-size: 10.5px; font-weight: 700; color: var(--navy); letter-spacing: 0.06em; margin-bottom: 3px;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .cite-quote .cite-body { font-size: 12px; color: var(--gray); line-height: 1.7; }
 
   .escalate-note {
     margin-top: 12px; background: #FBF1DA; border-left: 3px solid var(--gold); border-radius: 4px;
     padding: 10px 14px; font-size: 12.5px; color: #7A6111; line-height: 1.7; display: flex; gap: 6px; align-items: flex-start;
+    max-width: 520px;
   }
   .escalate-note .icon { flex-shrink: 0; }
 
-  .typing-bubble { display: flex; align-items: center; gap: 6px; padding: 4px 2px; }
+  .typing-bubble { display: flex; align-items: center; gap: 6px; padding: 4px 2px; color: var(--gray); font-size: 13px; }
   .dots { display: inline-flex; gap: 6px; vertical-align: middle; }
   .dots span {
     width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
@@ -265,10 +302,23 @@
     .section-title { font-size: 26px; }
     .demo-hero { padding: 56px 0 44px; }
     .header-right a.textlink { display: none; }
-    .msg-row { max-width: 96%; }
-    .msg-row.user { max-width: 90%; }
-    .msg-row.bot .msg-bubble { max-width: none; }
-    .chat-messages { max-height: 460px; }
+
+    .chat-app { flex-direction: column; height: 560px; }
+    .chat-sidebar {
+      width: auto; flex-direction: row; align-items: center; gap: 8px;
+      padding: 10px 12px; overflow-x: auto; border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+    .chat-sidebar-header { display: none; }
+    .chat-group-label { display: none; }
+    .channel-list { flex-direction: row; gap: 8px; }
+    .channel-item {
+      padding: 7px 14px; border-radius: 999px; border-left: none; white-space: nowrap; flex-shrink: 0;
+      background: rgba(255,255,255,0.06);
+    }
+    .channel-item.active { background: var(--gold); color: var(--navy-deep); }
+    .channel-item .soon { display: none; }
+    .cite-quote, .escalate-note { max-width: none; }
+    .chat-messages { padding: 16px; }
   }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -310,18 +360,31 @@
     <div class="demo-step-label">STEP 1</div>
     <h2 class="demo-question">下のチップから、気になる質問を選んでください</h2>
 
-    <div class="chat-window">
-      <div class="chat-titlebar">
-        <div class="chat-avatar">AI</div>
-        <div>
-          <div class="name">サンプル商事 社内ヘルプAI</div>
-          <div class="status">オンライン</div>
+    <div class="chat-app">
+      <div class="chat-sidebar">
+        <div class="chat-sidebar-header"><span class="dot"></span>サンプル商事</div>
+        <div class="chat-group-label">チャンネル</div>
+        <div class="channel-list">
+          <div class="channel-item active">#総務への質問</div>
+          <div class="channel-item">#経費精算<span class="soon">準備中</span></div>
+          <div class="channel-item">#社内規程<span class="soon">準備中</span></div>
+          <div class="channel-item">#IT・システム<span class="soon">準備中</span></div>
         </div>
       </div>
-      <div class="chat-messages" id="chatMessages">
-        <div class="msg-row bot">
-          <div class="msg-avatar bot">AI</div>
-          <div class="msg-bubble"><span class="greeting">こんにちは。サンプル商事 社内ヘルプAIです。就業規則や各種マニュアルについて、下の質問チップから気になるものを選んでみてください。続けていくつでも質問できます。</span></div>
+      <div class="chat-main">
+        <div class="chat-topbar">
+          <span class="channel-name">#総務への質問</span>
+          <span class="channel-sep">｜</span>
+          <span class="channel-desc">AIアシスタント常駐中</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg-line">
+            <div class="msg-avatar bot">AI</div>
+            <div class="msg-body">
+              <div class="msg-meta"><span class="msg-name bot-name">ナレッジBot</span><span class="msg-time" data-now></span></div>
+              <div class="msg-text"><span class="greeting">こんにちは。就業規則や各種マニュアルについて、下の質問チップから気になるものを選んでみてください。続けていくつでも質問できます。</span></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -451,15 +514,29 @@
     }
   };
 
+  var EMPLOYEE_NAME = "佐々木（営業部）";
+  var EMPLOYEE_INITIAL = "佐";
+
   var chatMessages = document.getElementById("chatMessages");
   var chipRow = document.getElementById("chipRow");
   var resetLink = document.getElementById("resetLink");
-  var initialHTML = chatMessages.innerHTML;
   var busy = false;
 
   function escapeHtml(str) {
     return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
+
+  function nowLabel() {
+    var d = new Date();
+    var hh = String(d.getHours()).padStart(2, "0");
+    var mm = String(d.getMinutes()).padStart(2, "0");
+    return hh + ":" + mm;
+  }
+
+  // 初期メッセージのタイムスタンプを描画してから、リセット用に初期状態を保存する
+  var initialTimeEl = chatMessages.querySelector("[data-now]");
+  if (initialTimeEl) initialTimeEl.textContent = nowLabel();
+  var initialHTML = chatMessages.innerHTML;
 
   function scrollToBottom() {
     chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -467,21 +544,27 @@
 
   function appendUserMessage(text) {
     var row = document.createElement("div");
-    row.className = "msg-row user";
+    row.className = "msg-line";
     row.innerHTML =
-      '<div class="msg-avatar user">自分</div>' +
-      '<div class="msg-bubble">' + escapeHtml(text) + '</div>';
+      '<div class="msg-avatar user">' + EMPLOYEE_INITIAL + '</div>' +
+      '<div class="msg-body">' +
+        '<div class="msg-meta"><span class="msg-name">' + escapeHtml(EMPLOYEE_NAME) + '</span><span class="msg-time">' + nowLabel() + '</span></div>' +
+        '<div class="msg-text">' + escapeHtml(text) + '</div>' +
+      '</div>';
     chatMessages.appendChild(row);
     scrollToBottom();
   }
 
   function appendTyping() {
     var row = document.createElement("div");
-    row.className = "msg-row bot";
+    row.className = "msg-line";
     row.id = "typingRow";
     row.innerHTML =
       '<div class="msg-avatar bot">AI</div>' +
-      '<div class="msg-bubble"><span class="typing-bubble">入力中<span class="dots"><span></span><span></span><span></span></span></span></div>';
+      '<div class="msg-body">' +
+        '<div class="msg-meta"><span class="msg-name bot-name">ナレッジBot</span></div>' +
+        '<div class="msg-text"><span class="typing-bubble">入力中<span class="dots"><span></span><span></span><span></span></span></span></div>' +
+      '</div>';
     chatMessages.appendChild(row);
     scrollToBottom();
     return row;
@@ -499,14 +582,17 @@
     }
 
     var row = document.createElement("div");
-    row.className = "msg-row bot";
+    row.className = "msg-line";
     row.innerHTML =
       '<div class="msg-avatar bot">AI</div>' +
-      '<div class="msg-bubble">' +
-        '<div class="conclusion">' + escapeHtml(q.conclusion) + '</div>' +
-        '<ul>' + bulletsHtml + '</ul>' +
-        '<div class="cite-card"><span class="icon">📄</span>出典: ' + escapeHtml(q.citation) + '</div>' +
-        escalateHtml +
+      '<div class="msg-body">' +
+        '<div class="msg-meta"><span class="msg-name bot-name">ナレッジBot</span><span class="msg-time">' + nowLabel() + '</span></div>' +
+        '<div class="msg-text">' +
+          '<div class="conclusion">' + escapeHtml(q.conclusion) + '</div>' +
+          '<ul>' + bulletsHtml + '</ul>' +
+          '<div class="cite-quote"><div class="cite-label">📄 出典</div><div class="cite-body">' + escapeHtml(q.citation) + '</div></div>' +
+          escalateHtml +
+        '</div>' +
       '</div>';
     chatMessages.appendChild(row);
     scrollToBottom();
@@ -549,6 +635,8 @@
   resetLink.addEventListener("click", function () {
     busy = false;
     chatMessages.innerHTML = initialHTML;
+    var timeEl = chatMessages.querySelector(".msg-time");
+    if (timeEl) timeEl.textContent = nowLabel();
     chipRow.querySelectorAll(".chip.answered").forEach(function (chip) {
       chip.classList.remove("answered");
       var check = chip.querySelector(".check");
