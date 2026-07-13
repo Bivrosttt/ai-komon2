@@ -882,17 +882,19 @@
   function onDragEnd() { dragging = false; }
 
   // Pointer Events (covers mouse + touch on modern browsers)
-  handleHit.addEventListener("pointerdown", onDragStart);
+  // ※リスナーは親のcompareHandleに付ける（見た目のつまみ.btn-dragが兄弟要素として
+  //   最前面にありイベントを受けるため、handleHitだけではつまみを掴めない）
+  compareHandle.addEventListener("pointerdown", onDragStart);
   document.addEventListener("pointermove", onDragMove);
   document.addEventListener("pointerup", onDragEnd);
   document.addEventListener("pointercancel", onDragEnd);
 
   // Mouse/touch fallbacks for broader compatibility
-  handleHit.addEventListener("mousedown", onDragStart);
+  compareHandle.addEventListener("mousedown", onDragStart);
   document.addEventListener("mousemove", onDragMove);
   document.addEventListener("mouseup", onDragEnd);
 
-  handleHit.addEventListener("touchstart", onDragStart, { passive: false });
+  compareHandle.addEventListener("touchstart", onDragStart, { passive: false });
   document.addEventListener("touchmove", onDragMove, { passive: false });
   document.addEventListener("touchend", onDragEnd);
   document.addEventListener("touchcancel", onDragEnd);
