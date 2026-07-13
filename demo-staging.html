@@ -209,6 +209,18 @@
   .label-before { left: 14px; }
   .label-after { right: 14px; }
 
+  .compare-slider.animating .compare-before { transition: clip-path .45s ease; }
+  .compare-slider.animating .compare-handle { transition: left .45s ease; }
+
+  .compare-hint { text-align: center; font-size: 12.5px; color: var(--gray); letter-spacing: 0.02em; }
+  .toggle-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .toggle-btn {
+    font-size: 13px; font-weight: 700; padding: 8px 20px; border-radius: 999px; white-space: nowrap;
+    border: 1.5px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer;
+    font-family: inherit; transition: background .15s, color .15s, border-color .15s;
+  }
+  .toggle-btn.active { border-color: var(--navy); background: var(--navy); color: var(--white); }
+
   .gen-note {
     display: flex; gap: 10px; align-items: flex-start;
     font-size: 13px; color: var(--gray); background: var(--bg-soft);
@@ -356,6 +368,11 @@
             <div class="handle-knob"><span>◀</span><span>▶</span></div>
           </div>
         </div>
+        <div class="compare-hint">⇔ ドラッグで比較（タップでも切り替えできます）</div>
+        <div class="toggle-row" id="toggleRow">
+          <button type="button" class="toggle-btn" id="btnShowBefore">空室</button>
+          <button type="button" class="toggle-btn" id="btnShowAfter">家具あり</button>
+        </div>
         <div class="gen-note">
           <span class="mark">ℹ</span>
           <span><strong>このページの画像は、左の空室写真をAIに渡して生成しました。</strong>部屋の形はそのままに、家具だけを追加しています。所要 数分。</span>
@@ -495,6 +512,8 @@
   var imgBefore = document.getElementById("imgBefore");
   var imgAfter = document.getElementById("imgAfter");
   var roomTabs = document.getElementById("roomTabs");
+  var btnShowBefore = document.getElementById("btnShowBefore");
+  var btnShowAfter = document.getElementById("btnShowAfter");
 
   var pos = 50;
   var dragging = false;
@@ -506,6 +525,18 @@
     slider.setAttribute("aria-valuenow", Math.round(pos));
   }
 
+  // ワンタップトグル用：アニメーションさせつつ位置を移動
+  function animateTo(pct) {
+    slider.classList.add("animating");
+    updateSlider(pct);
+    setTimeout(function () { slider.classList.remove("animating"); }, 500);
+  }
+
+  function clearToggleActive() {
+    btnShowBefore.classList.remove("active");
+    btnShowAfter.classList.remove("active");
+  }
+
   function setPosFromClientX(clientX) {
     var rect = slider.getBoundingClientRect();
     var x = clientX - rect.left;
@@ -513,8 +544,13 @@
     updateSlider(pct);
   }
 
+  // ※リスナーはスライダー全体（当たり判定を兼ねる親要素）に付ける。
+  //   ハンドルの見た目（.compare-handle）はpointer-events:noneのため、
+  //   最前面の兄弟要素がイベントを横取りする心配はない。
   slider.addEventListener("pointerdown", function (e) {
     dragging = true;
+    slider.classList.remove("animating");
+    clearToggleActive();
     try { slider.setPointerCapture(e.pointerId); } catch (err) {}
     setPosFromClientX(e.clientX);
   });
@@ -527,8 +563,19 @@
   slider.addEventListener("lostpointercapture", function () { dragging = false; });
 
   slider.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowLeft") { updateSlider(pos - 5); e.preventDefault(); }
-    if (e.key === "ArrowRight") { updateSlider(pos + 5); e.preventDefault(); }
+    if (e.key === "ArrowLeft") { clearToggleActive(); updateSlider(pos - 5); e.preventDefault(); }
+    if (e.key === "ArrowRight") { clearToggleActive(); updateSlider(pos + 5); e.preventDefault(); }
+  });
+
+  btnShowBefore.addEventListener("click", function () {
+    animateTo(100);
+    btnShowBefore.classList.add("active");
+    btnShowAfter.classList.remove("active");
+  });
+  btnShowAfter.addEventListener("click", function () {
+    animateTo(0);
+    btnShowAfter.classList.add("active");
+    btnShowBefore.classList.remove("active");
   });
 
   roomTabs.addEventListener("click", function (e) {
@@ -547,6 +594,7 @@
     imgAfter.src = room.after;
     imgBefore.alt = room.beforeAlt;
     imgAfter.alt = room.afterAlt;
+    clearToggleActive();
     updateSlider(50);
   });
 
