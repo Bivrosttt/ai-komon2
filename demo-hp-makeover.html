@@ -16,7 +16,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=Oswald:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #0B2447;
@@ -241,11 +241,14 @@
 
   .frame-actions { margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
   .compare-hint { text-align: center; font-size: 12.5px; color: var(--gray); margin-top: 14px; letter-spacing: 0.02em; }
-  .toggle-row { display: flex; gap: 10px; justify-content: center; margin-top: 16px; }
+  .toggle-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 16px; }
   .toggle-btn {
-    font-size: 13px; font-weight: 700; padding: 8px 20px; border-radius: 999px;
+    font-size: 13px; font-weight: 700; padding: 8px 20px; border-radius: 999px; white-space: nowrap;
     border: 1.5px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer;
     font-family: inherit;
+  }
+  @media (max-width: 480px) {
+    .toggle-btn { font-size: 12px; padding: 8px 16px; }
   }
   .toggle-btn.active { border-color: var(--navy); background: var(--navy); color: var(--white); }
 
@@ -308,64 +311,136 @@
 
   @media (max-width: 680px) { .old-page { width: 620px; } }
 
-  /* ===== After site (new) shared styles ===== */
+  /* ===== After site (rebuilt, per-industry) shared styles ===== */
   .after-wrap { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; background: var(--a-bg); }
   .after-site { --a-bg: #fff; --a-primary: #123; --a-primary-deep: #0b1a2c; --a-accent: #c96; --a-ink: #1b2735; }
-  .after-hero { background: linear-gradient(135deg, var(--a-primary-deep), var(--a-primary)); color: #fff; padding: 40px 28px 32px; }
-  .after-eyebrow { display: block; font-size: 11px; letter-spacing: 0.18em; color: rgba(255,255,255,0.75); font-weight: 700; margin-bottom: 12px; }
-  .after-hero h2 { font-family: 'Noto Serif JP', serif; font-size: 22px; margin-bottom: 12px; line-height: 1.55; }
-  .after-hero p { font-size: 13px; color: rgba(255,255,255,0.85); max-width: 440px; margin-bottom: 20px; line-height: 1.85; }
-  .after-cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
-  .after-btn {
-    display: inline-block; background: var(--a-accent); color: #fff; font-size: 12.5px; font-weight: 700;
-    padding: 10px 18px; border-radius: 4px;
-  }
-  .after-btn.ghost { background: transparent; border: 1.4px solid rgba(255,255,255,0.6); color: #fff; }
-  .after-btn.small { padding: 9px 18px; font-size: 12px; white-space: nowrap; }
-  .after-section { padding: 22px 28px; }
-  .after-photo-box {
-    height: 116px; border-radius: 8px; border: 1.5px dashed var(--a-primary);
-    background: linear-gradient(135deg, rgba(0,0,0,0.04), rgba(0,0,0,0.01));
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-    color: var(--a-primary); font-size: 12px; text-align: center;
-  }
-  .after-photo-box .ic { font-size: 22px; }
-  .after-photo-box .cap { font-size: 10px; color: var(--a-ink); opacity: 0.65; padding: 0 16px; }
-  .after-strengths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
-  .after-strength-card {
-    background: #fff; border: 1px solid rgba(0,0,0,0.07); border-top: 3px solid var(--a-accent);
-    border-radius: 6px; padding: 14px;
-  }
-  .after-strength-card .num { font-family: 'Noto Serif JP', serif; color: var(--a-accent); font-weight: 700; font-size: 16px; }
-  .after-strength-card h3 { font-size: 12.5px; color: var(--a-primary-deep); margin: 4px 0 6px; }
-  .after-strength-card p { font-size: 10.8px; color: #555; line-height: 1.65; }
-  .after-info {
-    background: var(--a-bg); border-top: 1px solid rgba(0,0,0,0.06); padding: 18px 28px;
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .after-info-row { display: flex; gap: 10px; font-size: 12px; }
-  .after-info-row .k { font-weight: 700; color: var(--a-primary-deep); min-width: 64px; flex-shrink: 0; }
-  .after-info-row .v { color: #444; }
-  .after-contact-strip {
-    background: var(--a-primary-deep); color: #fff; padding: 18px 28px;
-    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-  }
-  .after-contact-strip span:first-child { font-size: 13px; font-weight: 700; }
 
-  .after-site.theme-factory { --a-primary: #123d63; --a-primary-deep: #0b2440; --a-accent: #d97a34; --a-bg: #f5f7fa; --a-ink: #1b2735; }
-  .after-site.theme-build { --a-primary: #33513e; --a-primary-deep: #1f3229; --a-accent: #b98a4f; --a-bg: #f7f4ee; --a-ink: #25301f; }
-  .after-site.theme-diner { --a-primary: #c0432a; --a-primary-deep: #8a2f1c; --a-accent: #e2a33b; --a-bg: #fff6ea; --a-ink: #3a2418; }
+  .after-site.theme-factory { --a-primary: #123d63; --a-primary-deep: #0a1c30; --a-accent: #d97a34; --a-bg: #f5f7fa; --a-ink: #1b2735; }
+  .after-site.theme-build   { --a-primary: #33513e; --a-primary-deep: #1f3229; --a-accent: #b98a4f; --a-bg: #f7f4ee; --a-ink: #25301f; }
+  .after-site.theme-diner   { --a-primary: #c0432a; --a-primary-deep: #7c2c1a; --a-accent: #e2a33b; --a-bg: #fff6ea; --a-ink: #3a2418; }
 
-  @media (max-width: 680px) {
-    .after-strengths { grid-template-columns: 1fr; }
-    .after-hero { padding: 30px 20px 26px; }
-    .after-section { padding: 18px 20px; }
-    .after-info { padding: 16px 20px; }
-    .after-contact-strip { padding: 16px 20px; }
-  }
   @media (max-width: 480px) {
     .btn { white-space: normal; max-width: 100%; box-sizing: border-box; text-align: center; padding-left: 20px; padding-right: 20px; }
   }
+
+  /* ===== v2: full-chrome per-industry rebuilt site (header/hero/sections/footer) ===== */
+  .v2-wrap { font-size: 13px; color: var(--a-ink); }
+
+  .v2-header { position: sticky; top: 0; z-index: 3; background: rgba(255,255,255,0.97); border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .v2-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 20px; }
+  .v2-logo { display: flex; align-items: baseline; gap: 6px; flex-shrink: 0; min-width: 0; }
+  .v2-logo strong { font-size: 13.5px; color: var(--a-primary-deep); letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .v2-logo span { font-size: 8px; color: var(--a-ink); opacity: 0.5; letter-spacing: 0.06em; white-space: nowrap; }
+  .v2-nav { display: flex; gap: 14px; flex-wrap: wrap; }
+  .v2-nav a { font-size: 10.5px; font-weight: 700; color: var(--a-ink); opacity: 0.78; white-space: nowrap; transition: opacity .15s, color .15s; }
+  .v2-nav a:hover { color: var(--a-accent); opacity: 1; }
+  .v2-header-cta { font-size: 10px; font-weight: 700; padding: 7px 14px; border-radius: 4px; background: var(--a-accent); color: #fff; white-space: nowrap; flex-shrink: 0; transition: opacity .15s; }
+  .v2-header-cta:hover { opacity: 0.85; }
+
+  .v2-hero { position: relative; min-height: 260px; background-size: cover; background-position: center; display: flex; align-items: flex-end; color: #fff; }
+  .v2-hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.76) 100%); }
+  .v2-hero-inner { position: relative; z-index: 1; padding: 30px 24px 28px; width: 100%; }
+  .v2-eyebrow { display: block; font-size: 10.5px; letter-spacing: 0.2em; color: rgba(255,255,255,0.82); font-weight: 700; margin-bottom: 12px; }
+  .v2-h1 { font-family: 'Noto Serif JP', serif; font-size: 24px; line-height: 1.45; margin-bottom: 12px; color: #fff; font-weight: 700; }
+  .v2-sub { font-size: 12px; line-height: 1.85; color: rgba(255,255,255,0.92); max-width: 420px; margin-bottom: 18px; }
+  .v2-cta-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .v2-btn { display: inline-block; padding: 10px 18px; border-radius: 4px; font-size: 11.5px; font-weight: 700; transition: opacity .15s, transform .1s; }
+  .v2-btn:hover { opacity: 0.85; }
+  .v2-btn:active { transform: scale(0.98); }
+  .v2-btn.small { padding: 8px 16px; font-size: 11px; white-space: nowrap; }
+  .v2-btn-primary { background: var(--a-accent); color: #fff; }
+  .v2-btn-ghost { background: transparent; border: 1.3px solid rgba(255,255,255,0.65); color: #fff; }
+
+  .v2-label { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; color: var(--a-accent); margin-bottom: 12px; }
+  .v2-section { padding: 30px 24px; background: var(--a-bg); }
+
+  /* stats row (factory) */
+  .v2-stats-row { display: flex; background: var(--a-primary-deep); }
+  .v2-stat { flex: 1; text-align: center; padding: 20px 6px; border-right: 1px solid rgba(255,255,255,0.12); color: #fff; }
+  .v2-stat:last-child { border-right: none; }
+  .v2-stat b { display: block; font-family: 'Noto Serif JP', serif; font-size: 21px; color: var(--a-accent); }
+  .v2-stat b small { font-size: 11px; color: #fff; margin-left: 2px; font-family: 'Noto Sans JP', sans-serif; }
+  .v2-stat span { display: block; font-size: 9.5px; color: rgba(255,255,255,0.75); margin-top: 5px; }
+
+  /* split photo + text (factory processes / diner interior) */
+  .v2-split { display: flex; background: var(--a-bg); }
+  .v2-split-photo { width: 42%; min-height: 190px; background-size: cover; background-position: center; flex-shrink: 0; }
+  .v2-split-text { flex: 1; padding: 26px 24px; min-width: 0; }
+  .v2-check-list { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
+  .v2-check-list li { font-size: 11.5px; padding-left: 18px; position: relative; color: var(--a-ink); }
+  .v2-check-list li::before { content: "✓"; position: absolute; left: 0; color: var(--a-accent); font-weight: 700; }
+  .v2-note { font-size: 11px; color: var(--a-ink); opacity: 0.75; line-height: 1.75; }
+
+  /* case grid (build) */
+  .v2-case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 10px; }
+  .v2-case-card { border-radius: 6px; overflow: hidden; background: #fff; border: 1px solid rgba(0,0,0,0.08); transition: box-shadow .15s, transform .15s; }
+  .v2-case-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.12); transform: translateY(-2px); }
+  .v2-case-photo { height: 100px; background-size: cover; background-position: center; }
+  .v2-case-cap { font-size: 10.5px; padding: 9px 10px; color: var(--a-ink); }
+  .v2-case-cap span { display: block; font-size: 9.5px; color: var(--a-accent); font-weight: 700; margin-top: 2px; }
+  .v2-photo-disclaimer { font-size: 9.5px; color: var(--a-ink); opacity: 0.55; margin-top: 8px; }
+
+  /* flow steps (build) */
+  .v2-flow-section { border-top: 1px solid rgba(0,0,0,0.06); }
+  .v2-flow-row { display: flex; gap: 12px; }
+  .v2-flow-step { flex: 1; background: #fff; border-radius: 6px; border-top: 3px solid var(--a-accent); padding: 16px 14px; transition: box-shadow .15s; }
+  .v2-flow-step:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+  .v2-flow-step b { font-family: 'Noto Serif JP', serif; color: var(--a-accent); font-size: 16px; }
+  .v2-flow-step h3 { font-size: 12.5px; color: var(--a-primary-deep); margin: 5px 0 5px; }
+  .v2-flow-step p { font-size: 10.5px; color: var(--a-ink); line-height: 1.65; opacity: 0.85; }
+
+  /* menu band (diner) */
+  .v2-menu-band { display: flex; background: var(--a-bg); border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .v2-menu-photo { width: 38%; min-height: 170px; background-size: cover; background-position: center; flex-shrink: 0; }
+  .v2-menu-text { flex: 1; padding: 24px 22px; min-width: 0; }
+  .v2-menu-name { font-size: 16px; color: var(--a-primary-deep); margin-bottom: 8px; font-weight: 700; }
+  .v2-menu-name b { color: var(--a-accent); margin-left: 8px; }
+  .v2-menu-text > p { font-size: 11px; color: var(--a-ink); line-height: 1.75; margin-bottom: 12px; }
+  .v2-menu-sub { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .v2-menu-sub li { font-size: 11px; color: var(--a-ink); }
+  .v2-menu-sub li b { color: var(--a-accent); }
+
+  .v2-info-strip { background: var(--a-bg); border-top: 1px solid rgba(0,0,0,0.06); padding: 20px 24px; display: flex; flex-direction: column; gap: 7px; }
+  .v2-info-row { display: flex; gap: 10px; font-size: 11.5px; }
+  .v2-info-row .k { font-weight: 700; color: var(--a-primary-deep); min-width: 60px; flex-shrink: 0; }
+  .v2-info-row .v { color: var(--a-ink); opacity: 0.85; }
+
+  .v2-contact-strip { background: var(--a-primary-deep); color: #fff; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .v2-contact-strip span:first-child { font-size: 12.5px; font-weight: 700; }
+
+  /* Footer (address / tel / copyright, all fictional) */
+  .v2-footer { background: var(--a-primary-deep); color: rgba(255,255,255,0.72); padding: 26px 24px 22px; text-align: center; }
+  .v2-footer-logo { font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: 0.02em; }
+  .v2-footer-info { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; font-size: 10.5px; margin-bottom: 12px; }
+  .v2-footer-copy { font-size: 9px; opacity: 0.6; letter-spacing: 0.03em; }
+
+  /* per-industry typography mood: factory=solid, build=serif, diner=rounded warm */
+  .v2-factory .v2-h1, .v2-factory .v2-logo strong { font-family: 'Oswald', 'Noto Sans JP', sans-serif; text-transform: uppercase; letter-spacing: 0.02em; }
+  .v2-diner .v2-h1, .v2-diner .v2-logo strong, .v2-diner .v2-menu-name { font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif; }
+  .v2-build .v2-h1, .v2-build .v2-logo strong { font-family: 'Noto Serif JP', serif; }
+
+  @media (max-width: 680px) {
+    .v2-nav { display: none; }
+    .v2-split, .v2-menu-band { flex-direction: column; }
+    .v2-split-photo, .v2-menu-photo { width: 100%; height: 140px; min-height: 0; }
+    .v2-flow-row { flex-direction: column; }
+    .v2-hero { min-height: 220px; }
+    .v2-hero-inner { padding: 22px 18px 22px; }
+    .v2-h1 { font-size: 19px; }
+    .v2-section, .v2-info-strip, .v2-contact-strip, .v2-footer { padding-left: 18px; padding-right: 18px; }
+  }
+
+  /* Fullscreen preview modal (real-size after-site) */
+  .fullscreen-modal { position: fixed; inset: 0; z-index: 1000; background: #fff; display: none; flex-direction: column; }
+  .fullscreen-modal.active { display: flex; }
+  .fullscreen-modal-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; background: #111621; color: #fff; flex-shrink: 0; }
+  .fullscreen-modal-label { font-size: 13px; font-weight: 700; letter-spacing: 0.02em; }
+  .fullscreen-modal-close {
+    background: transparent; border: 1.5px solid rgba(255,255,255,0.5); color: #fff; width: 34px; height: 34px;
+    border-radius: 50%; font-size: 16px; line-height: 1; cursor: pointer; flex-shrink: 0; transition: background .15s;
+  }
+  .fullscreen-modal-close:hover { background: rgba(255,255,255,0.18); }
+  .fullscreen-modal-body { flex: 1; position: relative; overflow: hidden; }
 
   /* AI points panel */
   .ai-points {
@@ -444,7 +519,7 @@
   <div class="container">
     <div class="note-box">
       <span class="mark">※</span>
-      <span><strong>このページは架空企業のサンプルによる体験デモです。</strong>表示される「古いホームページ」「作り直し後のサイト」は、あるあるを再現した演出用サンプルです。実際の制作では御社の写真・原稿・実績をお預かりし、内容をご確認いただきながら仕上げていきます。</span>
+      <span><strong>このページは架空企業のサンプルによる体験デモです。</strong>表示される「古いホームページ」「作り直し後のサイト」は、あるあるを再現した演出用サンプルです。実際の制作では御社の写真・原稿・実績をお預かりし、内容をご確認いただきながら仕上げていきます。なお、本デモの写真はAI生成のイメージです。</span>
     </div>
   </div>
 </div>
@@ -514,6 +589,7 @@
       <div class="toggle-row compare-hidden" id="toggleRow">
         <button type="button" class="toggle-btn" id="btnShowBefore">ビフォー</button>
         <button type="button" class="toggle-btn" id="btnShowAfter">アフター</button>
+        <button type="button" class="toggle-btn" id="btnFullscreen">⤢ アフターを全画面で見る</button>
       </div>
 
       <div class="ai-points" id="aiPoints">
@@ -558,6 +634,14 @@
   </div>
 </footer>
 
+<div class="fullscreen-modal" id="fullscreenModal">
+  <div class="fullscreen-modal-bar">
+    <span class="fullscreen-modal-label" id="fsModalLabel"></span>
+    <button type="button" class="fullscreen-modal-close" id="fsModalClose" aria-label="閉じる">✕</button>
+  </div>
+  <div class="fullscreen-modal-body" id="fsModalBody"></div>
+</div>
+
 <script>
 (function () {
 
@@ -598,31 +682,164 @@
     );
   }
 
-  function afterSite(theme, a) {
+  // 三好精密工業：ダーク×スチールの工業系。ヒーロー写真＋数字帯＋加工リスト
+  // 全業種共通：ロゴ＋ナビ4〜5個＋CTAのヘッダー（実サイトの体裁）
+  function v2Header(name, a) {
     return (
-      '<div class="after-site theme-' + theme + '">' +
-        '<div class="after-wrap">' +
-          '<div class="after-hero">' +
-            '<span class="after-eyebrow">' + a.eyebrow + '</span>' +
-            '<h2>' + a.headline + '</h2>' +
-            '<p>' + a.sub + '</p>' +
-            '<div class="after-cta-row"><span class="after-btn">' + a.cta1 + '</span><span class="after-btn ghost">' + a.cta2 + '</span></div>' +
-          '</div>' +
-          '<div class="after-section">' +
-            '<div class="after-photo-box"><span class="ic">📷</span><span>' + a.photoNote + '</span><span class="cap">※実制作では御社で撮影した写真を使用します</span></div>' +
-            '<div class="after-strengths">' + a.strengths.map(function (s, i) {
-              return '<div class="after-strength-card"><div class="num">0' + (i + 1) + '</div><h3>' + s.t + '</h3><p>' + s.d + '</p></div>';
-            }).join('') + '</div>' +
-          '</div>' +
-          '<div class="after-info">' +
-            '<div class="after-info-row"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
-            '<div class="after-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
-            '<div class="after-info-row"><span class="k">電話</span><span class="v">' + a.tel + '（架空の番号です）</span></div>' +
-          '</div>' +
-          '<div class="after-contact-strip"><span>' + a.contactHeadline + '</span><span class="after-btn small">' + a.contactCta + '</span></div>' +
-        '</div>' +
-      '</div>'
+      '<header class="v2-header"><div class="v2-header-inner">' +
+        '<div class="v2-logo"><strong>' + name + '</strong><span>' + a.eyebrow + '</span></div>' +
+        '<nav class="v2-nav">' + a.nav.map(function (n) { return '<a href="#">' + n + '</a>'; }).join('') + '</nav>' +
+        '<span class="v2-header-cta">' + a.headerCta + '</span>' +
+      '</div></header>'
     );
+  }
+
+  // 全業種共通：住所・電話・©表記のフッター（すべて架空）
+  function v2Footer(name, a) {
+    return (
+      '<footer class="v2-footer">' +
+        '<div class="v2-footer-logo">' + name + '</div>' +
+        '<div class="v2-footer-info"><span>' + a.address + '</span><span>TEL ' + a.tel + '</span></div>' +
+        '<div class="v2-footer-copy">© 2026 ' + name + ' All Rights Reserved.</div>' +
+      '</footer>'
+    );
+  }
+
+  // 三好精密工業：ダーク×スチールの工業系。ヒーロー写真＋数字帯＋加工リスト
+  function afterSiteFactory(theme, a, name) {
+    return (
+      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="v2-wrap v2-factory">' +
+        v2Header(name, a) +
+        '<div class="v2-hero" style="background-image:url(\'assets/makeover/factory-hero.jpg\')">' +
+          '<div class="v2-hero-overlay"></div>' +
+          '<div class="v2-hero-inner">' +
+            '<span class="v2-eyebrow">' + a.eyebrow + '</span>' +
+            '<h2 class="v2-h1">' + a.headline + '</h2>' +
+            '<p class="v2-sub">' + a.sub + '</p>' +
+            '<div class="v2-cta-row"><span class="v2-btn v2-btn-primary">' + a.cta1 + '</span><span class="v2-btn v2-btn-ghost">' + a.cta2 + '</span></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="v2-stats-row">' + a.stats.map(function (s) {
+          return '<div class="v2-stat"><b>' + s.n + (s.u ? '<small>' + s.u + '</small>' : '') + '</b><span>' + s.d + '</span></div>';
+        }).join('') + '</div>' +
+        '<div class="v2-split">' +
+          '<div class="v2-split-photo" style="background-image:url(\'assets/makeover/factory-parts.jpg\')"></div>' +
+          '<div class="v2-split-text">' +
+            '<span class="v2-label">対応加工</span>' +
+            '<ul class="v2-check-list">' + a.processList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+            '<p class="v2-note">' + a.processNote + '</p>' +
+          '</div>' +
+        '</div>' +
+        '<div class="v2-info-strip">' +
+          '<div class="v2-info-row"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
+          '<div class="v2-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
+          '<div class="v2-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
+        '</div>' +
+        '<div class="v2-contact-strip"><span>' + a.contactHeadline + '</span><span class="v2-btn v2-btn-primary small">' + a.contactCta + '</span></div>' +
+        v2Footer(name, a) +
+      '</div></div></div>'
+    );
+  }
+
+  // まるいち建設：施工事例グリッドと3ステップが主役の温かい系
+  function afterSiteBuild(theme, a, name) {
+    return (
+      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="v2-wrap v2-build">' +
+        v2Header(name, a) +
+        '<div class="v2-hero" style="background-image:url(\'assets/makeover/exterior-hero.jpg\')">' +
+          '<div class="v2-hero-overlay"></div>' +
+          '<div class="v2-hero-inner">' +
+            '<span class="v2-eyebrow">' + a.eyebrow + '</span>' +
+            '<h2 class="v2-h1">' + a.headline + '</h2>' +
+            '<p class="v2-sub">' + a.sub + '</p>' +
+            '<div class="v2-cta-row"><span class="v2-btn v2-btn-primary">' + a.cta1 + '</span><span class="v2-btn v2-btn-ghost">' + a.cta2 + '</span></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="v2-section">' +
+          '<span class="v2-label">施工事例</span>' +
+          '<div class="v2-case-grid">' + a.cases.map(function (c) {
+            return '<div class="v2-case-card"><div class="v2-case-photo" style="background-image:url(\'' + c.img + '\')"></div><p class="v2-case-cap">' + c.cap + '<span>' + c.sub + '</span></p></div>';
+          }).join('') + '</div>' +
+          '<p class="v2-photo-disclaimer">※施工事例の写真・お客様名はイメージです。実制作では御社の実績写真に差し替えます</p>' +
+        '</div>' +
+        '<div class="v2-section v2-flow-section">' +
+          '<span class="v2-label">施工の流れ</span>' +
+          '<div class="v2-flow-row">' + a.flow.map(function (f, i) {
+            return '<div class="v2-flow-step"><b>0' + (i + 1) + '</b><h3>' + f.t + '</h3><p>' + f.d + '</p></div>';
+          }).join('') + '</div>' +
+        '</div>' +
+        '<div class="v2-info-strip">' +
+          '<div class="v2-info-row"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
+          '<div class="v2-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
+          '<div class="v2-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
+        '</div>' +
+        '<div class="v2-contact-strip"><span>' + a.contactHeadline + '</span><span class="v2-btn v2-btn-primary small">' + a.contactCta + '</span></div>' +
+        v2Footer(name, a) +
+      '</div></div></div>'
+    );
+  }
+
+  // 食堂やまびこ：飯テロ全振りの暖色系。名物メニュー帯＋店内紹介
+  function afterSiteDiner(theme, a, name) {
+    return (
+      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="v2-wrap v2-diner">' +
+        v2Header(name, a) +
+        '<div class="v2-hero" style="background-image:url(\'assets/makeover/shokudo-hero.jpg\')">' +
+          '<div class="v2-hero-overlay"></div>' +
+          '<div class="v2-hero-inner">' +
+            '<span class="v2-eyebrow">' + a.eyebrow + '</span>' +
+            '<h2 class="v2-h1">' + a.headline + '</h2>' +
+            '<p class="v2-sub">' + a.sub + '</p>' +
+            '<div class="v2-cta-row"><span class="v2-btn v2-btn-primary">' + a.cta1 + '</span><span class="v2-btn v2-btn-ghost">' + a.cta2 + '</span></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="v2-menu-band">' +
+          '<div class="v2-menu-photo" style="background-image:url(\'assets/makeover/shokudo-croquette.jpg\')"></div>' +
+          '<div class="v2-menu-text">' +
+            '<span class="v2-label">名物メニュー</span>' +
+            '<h3 class="v2-menu-name">' + a.menuName + '<b>' + a.menuPrice + '</b></h3>' +
+            '<p>' + a.menuDesc + '</p>' +
+            '<ul class="v2-menu-sub">' + a.menuSub.map(function (m) { return '<li>' + m.t + '　<b>' + m.p + '</b></li>'; }).join('') + '</ul>' +
+          '</div>' +
+        '</div>' +
+        '<div class="v2-split">' +
+          '<div class="v2-split-photo" style="background-image:url(\'assets/makeover/shokudo-interior.jpg\')"></div>' +
+          '<div class="v2-split-text">' +
+            '<span class="v2-label">店内のご紹介</span>' +
+            '<p style="margin-bottom:10px;">' + a.interiorDesc + '</p>' +
+            '<ul class="v2-check-list">' + a.interiorList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+          '</div>' +
+        '</div>' +
+        '<div class="v2-info-strip">' +
+          '<div class="v2-info-row"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
+          '<div class="v2-info-row"><span class="k">定休日</span><span class="v">' + a.closedDay + '</span></div>' +
+          '<div class="v2-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
+          '<div class="v2-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
+        '</div>' +
+        '<div class="v2-contact-strip"><span>' + a.contactHeadline + '</span><span class="v2-btn v2-btn-primary small">' + a.contactCta + '</span></div>' +
+        v2Footer(name, a) +
+      '</div></div></div>'
+    );
+  }
+
+  var AFTER_RENDERERS = { factory: afterSiteFactory, build: afterSiteBuild, diner: afterSiteDiner };
+  function renderAfter(theme, a, name) {
+    var fn = AFTER_RENDERERS[theme] || afterSiteFactory;
+    return fn(theme, a, name);
+  }
+
+  // 変換開始時にプリロードして、スライダー切替時のチラつきを防ぐ
+  var CASE_IMAGES = {
+    factory: ["assets/makeover/factory-hero.jpg", "assets/makeover/factory-parts.jpg"],
+    build: ["assets/makeover/exterior-hero.jpg", "assets/makeover/exterior-deck.jpg", "assets/makeover/exterior-fence.jpg"],
+    diner: ["assets/makeover/shokudo-hero.jpg", "assets/makeover/shokudo-croquette.jpg", "assets/makeover/shokudo-interior.jpg"]
+  };
+  function preloadAfterImages(key) {
+    var list = CASE_IMAGES[key] || [];
+    for (var i = 0; i < list.length; i++) {
+      var img = new Image();
+      img.src = list[i];
+    }
   }
 
   var CASES = {
@@ -648,25 +865,28 @@
       },
       after: {
         eyebrow: "SEIMITSU KAKOU",
-        headline: "大手も頼る、45年の精度。",
+        headline: "大手も頼る、<br>45年の精度。",
         sub: "創業45年、精密切削加工のプロフェッショナル。試作1個から量産まで、確かな加工技術でお応えします。",
         cta1: "お見積り・お問い合わせ", cta2: "会社案内を見る",
-        photoNote: "工場・加工風景の写真",
-        strengths: [
-          { t: "精度へのこだわり", d: "±0.01mmレベルの精密加工に対応。試作から量産まで一貫対応します。" },
-          { t: "短納期対応", d: "小ロット・急ぎのご相談も柔軟に対応。専任担当がスピーディーに折り返します。" },
-          { t: "幅広い素材対応", d: "アルミ・ステンレス・真鍮・樹脂まで、素材に応じた最適な加工をご提案します。" }
+        nav: ["会社案内", "事業内容", "設備紹介", "採用情報", "お問い合わせ"],
+        headerCta: "お問い合わせ",
+        stats: [
+          { n: "45", u: "年", d: "創業からの実績" },
+          { n: "1,200", u: "件", d: "年間加工実績（想定例）" },
+          { n: "最短翌日", u: "", d: "お見積り回答" }
         ],
+        processList: ["旋盤加工（〜Φ300mm）", "フライス加工（複雑形状・小ロット対応）", "放電加工（硬質材・精密形状）"],
+        processNote: "アルミ・ステンレス・真鍮・樹脂まで、素材に応じた最適な加工をご提案します。",
         hours: "平日 8:30〜17:30（土日休）",
         address: "〇〇県〇〇市（架空の所在地です）",
-        tel: "000-0000-0000",
+        tel: "03-0000-0000（架空の番号です）",
         contactHeadline: "図面があれば、まずはお見積りだけでも",
         contactCta: "お問い合わせする"
       },
       aiPoints: [
-        "既存サイトの「創業〇年」「対応加工」「対応素材」などの情報を抽出し、伝わる順番に再構成",
+        "既存サイトの「創業〇年」「対応加工」「対応素材」などの情報を抽出し、実績を数字で見せる帯として再構成",
         "強みの言語化：「創業45年」→「大手も頼る、45年の精度」",
-        "スマートフォンでも見やすい・押しやすいレイアウトに刷新",
+        "現場写真をヒーロー画像に、加工リストを部品写真の横に配置してダーク×スチールの工業系デザインに刷新",
         "問い合わせボタンを常に見える位置に設置し、電話・フォームどちらからも連絡しやすく",
         "営業時間・所在地・対応可能な加工内容を整理し、探しやすく整理"
       ]
@@ -692,26 +912,31 @@
         date: "2007/04/10"
       },
       after: {
-        eyebrow: "LOCAL BUILDER",
-        headline: "地域と歩む、32年の安心施工。",
-        sub: "新築からリフォーム、外壁塗装まで。地域のお客様の暮らしに寄り添う家づくりを行っています。",
-        cta1: "無料相談を申し込む", cta2: "施工実績を見る",
-        photoNote: "施工事例の写真",
-        strengths: [
-          { t: "地域密着32年", d: "地元だからこそ分かる土地の特性・気候にあわせた家づくりをご提案します。" },
-          { t: "新築からリフォームまで", d: "水回り改修や外壁塗装など、小さな工事もまるごとご相談いただけます。" },
-          { t: "見える化した見積り", d: "工事内容・費用の内訳をわかりやすく提示。追加費用のご説明も丁寧に行います。" }
+        eyebrow: "LOCAL EXTERIOR BUILDER",
+        headline: "夕方、家に帰るのが<br>楽しみになる外構を。",
+        sub: "新築の外構からリフォームまで。地域のお客様の暮らしに寄り添う、あたたかい外構づくりを行っています。",
+        cta1: "無料見積りを申し込む", cta2: "施工実績を見る",
+        nav: ["会社概要", "施工実績", "リフォームのご案内", "お客様の声", "お問い合わせ"],
+        headerCta: "無料見積り",
+        cases: [
+          { img: "assets/makeover/exterior-deck.jpg", cap: "〇〇市 T様邸", sub: "ウッドデッキ増設" },
+          { img: "assets/makeover/exterior-fence.jpg", cap: "△△町 S様邸", sub: "目隠しフェンス・アプローチ" }
+        ],
+        flow: [
+          { t: "現地調査", d: "敷地の状況やご要望を丁寧にヒアリングします。" },
+          { t: "プラン提案", d: "ご予算に応じたプランとお見積りをご提示します。" },
+          { t: "施工", d: "着工から完成まで、進捗をご報告しながら進めます。" }
         ],
         hours: "8:00〜18:00（日祝休）",
         address: "〇〇県〇〇市（架空の所在地です）",
-        tel: "000-0000-0000",
-        contactHeadline: "まずは無料相談から",
-        contactCta: "相談を申し込む"
+        tel: "03-0000-0000（架空の番号です）",
+        contactHeadline: "まずは無料見積りから",
+        contactCta: "見積りを申し込む"
       },
       aiPoints: [
         "既存サイトの「施工実績」「対応エリア」「対応工事内容」を抽出して再構成",
-        "強みの言語化：「創業32年」→「地域と歩む、32年の安心施工」",
-        "施工事例をビジュアル重視の見せ方に変更（写真は実制作で御社の実績写真に差し替え）",
+        "強みの言語化：「創業32年」→「夕方、家に帰るのが楽しみになる外構を。」",
+        "施工事例を写真付きグリッドで見せ、「現地調査→プラン提案→施工」の流れも新設（写真は実制作で御社の実績写真に差し替え）",
         "FAXのみだった問い合わせ導線に、スマホからのフォーム・電話をあわせて整備",
         "対応エリア・工事内容を整理し、悩みに合わせて探しやすく整理"
       ]
@@ -737,26 +962,32 @@
       },
       after: {
         eyebrow: "SHOKUDO YAMABIKO",
-        headline: "地元で愛され続けて、40年の味。",
-        sub: "ボリュームたっぷりの日替わり定食が自慢の、地元の大衆食堂です。",
+        headline: "今日も、湯気の向こうで<br>お待ちしています。",
+        sub: "ボリュームたっぷりの日替わり定食が自慢。地元で40年愛される、大衆食堂です。",
         cta1: "本日のメニューを見る", cta2: "アクセスを見る",
-        photoNote: "料理・店内の写真",
-        strengths: [
-          { t: "毎日変わる日替わり定食", d: "旬の食材を使った定食を、毎日ボリュームたっぷりでご用意しています。" },
-          { t: "地元で40年の安心感", d: "常連さんも初めてのお客様も。あたたかい雰囲気でお迎えします。" },
-          { t: "宴会・貸切のご相談も", d: "少人数の宴会から貸切まで、お気軽にご相談いただけます。" }
+        nav: ["お品書き", "こだわり", "店内のご紹介", "アクセス", "お問い合わせ"],
+        headerCta: "メニューを見る",
+        menuName: "名物コロッケ定食",
+        menuPrice: "780円",
+        menuDesc: "手作りコロッケに、副菜・ごはん・味噌汁がついたボリューム満点の一品です。",
+        menuSub: [
+          { t: "日替わり定食", p: "750円〜" },
+          { t: "からあげ定食", p: "800円" }
         ],
-        hours: "11:00〜14:00 / 17:00〜21:00（水曜休）",
+        interiorDesc: "カウンター8席・座敷ありのあたたかい雰囲気。おひとりさまから小さなお子様連れまで、気軽にお越しいただけます。",
+        interiorList: ["カウンター8席", "座敷あり（4名〜）", "お子様連れ歓迎"],
+        hours: "11:00〜14:00 / 17:00〜21:00",
+        closedDay: "水曜日",
         address: "〇〇県〇〇市（架空の所在地です）",
-        tel: "000-0000-0000",
+        tel: "03-0000-0000（架空の番号です）",
         contactHeadline: "今日のメニューが気になったら",
         contactCta: "お問い合わせする"
       },
       aiPoints: [
         "既存サイトの「メニュー」「営業時間」「宴会対応」などの情報を抽出して再構成",
-        "強みの言語化：「地元で40年」→「地元で愛され続けて、40年の味」",
-        "メニューを写真付きカードでわかりやすく（写真はプレースホルダー、実制作では店舗の写真を使用）",
-        "スマホからすぐ営業時間・地図を確認できるように整理",
+        "強みの言語化：「地元で40年」→「今日も、湯気の向こうでお待ちしています。」",
+        "名物メニューを写真・価格付きで前面に押し出し、食欲をそそる飯テロ全振りのデザインに刷新",
+        "スマホからすぐ営業時間・定休日・地図を確認できるように整理",
         "問い合わせ・宴会相談の導線を新設"
       ]
     }
@@ -782,6 +1013,11 @@
   var aiPointsList = document.getElementById("aiPointsList");
   var reselectLink = document.getElementById("reselectLink");
   var resultTitle = document.getElementById("resultTitle");
+  var btnFullscreen = document.getElementById("btnFullscreen");
+  var fullscreenModal = document.getElementById("fullscreenModal");
+  var fsModalBody = document.getElementById("fsModalBody");
+  var fsModalLabel = document.getElementById("fsModalLabel");
+  var fsModalClose = document.getElementById("fsModalClose");
 
   var currentKey = null;
   var mode = "idle"; // idle | preview | loading | compare
@@ -816,7 +1052,7 @@
 
     c.old.name = c.name;
     layerBefore.innerHTML = oldSite(c.theme, c.old);
-    layerAfter.innerHTML = afterSite(c.theme, c.after);
+    layerAfter.innerHTML = renderAfter(c.theme, c.after, c.name);
 
     aiPointsList.innerHTML = c.aiPoints.map(function (t) { return "<li>" + t + "</li>"; }).join("");
 
@@ -838,6 +1074,7 @@
   function startRebuild() {
     if (mode !== "preview" || !currentKey) return;
     mode = "loading";
+    preloadAfterImages(currentKey);
     rebuildActions.style.display = "none";
     stageLoading.classList.add("active");
 
@@ -927,6 +1164,29 @@
     var cards = caseGrid.querySelectorAll(".case-card");
     for (var i = 0; i < cards.length; i++) cards[i].classList.remove("selected");
     caseGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  // 「アフターを全画面で見る」：実寸大のモーダルで本物感を体感させる
+  function openFullscreen() {
+    if (mode !== "compare" || !currentKey) return;
+    var c = CASES[currentKey];
+    fsModalLabel.textContent = c.name + "（作り直し後・全画面プレビュー）";
+    fsModalBody.innerHTML = renderAfter(c.theme, c.after, c.name);
+    fullscreenModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+  function closeFullscreen() {
+    fullscreenModal.classList.remove("active");
+    document.body.style.overflow = "";
+    fsModalBody.innerHTML = "";
+  }
+  btnFullscreen.addEventListener("click", openFullscreen);
+  fsModalClose.addEventListener("click", closeFullscreen);
+  fullscreenModal.addEventListener("click", function (e) {
+    if (e.target === fullscreenModal) closeFullscreen();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && fullscreenModal.classList.contains("active")) closeFullscreen();
   });
 })();
 </script>
