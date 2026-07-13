@@ -69,10 +69,12 @@ curl -s -o /dev/null -w "%{http_code}" https://ai-komon.bivrost.co.jp/
 - 動画生成: Veo 3.1（同キー。写真+セリフ→リップシンク動画）
 - 詳細な手順は開発マシンの `.claude/skills/` 配下（ai-media-gen / dreamina-video / hf-movie / gsplat-demo / lp-build / site-release 等）
 
-## 【引き継ぎ・進行中】HTTPS証明書（2026-07-12記載）
+## 【引き継ぎ・進行中】HTTPS証明書（2026-07-14 08:05更新）
 
 `https://ai-komon.bivrost.co.jp` の証明書がLet's Encrypt発行待ち（最終確認時 state=authorization_created、httpは開通済み）。
 
 - 確認: `gh api repos/Bivrosttt/ai-komon2/pages --jq '.https_certificate'` と `curl -sI https://ai-komon.bivrost.co.jp/`
 - **httpsが200になったら**: `gh api -X PUT repos/Bivrosttt/ai-komon2/pages -F https_enforced=true` を実行して完了（この節は消してよい）
-- 何時間も進まない場合: GitHub UIのSettings→PagesでCustom domainを一度Remove→数分後に再設定して**静置**（高頻度の付け外しは発行がリセットされ逆効果）
+- 2026-07-14 07:54 JSTにGitHub Pages APIでCustom domainを一度だけRemove→再設定し、証明書発行処理を再始動済み。08:04まで10分間監視したが状態は変化なし
+- DNS診断は正常: 権威DNS・1.1.1.1・8.8.8.8の全てでCNAME→`bivrosttt.github.io`、GitHub Pages healthも`dns_resolves=true` / `is_valid=true` / `is_https_eligible=true` / `caa_error=null`
+- **再度Removeしないこと**。最低1時間は静置し、それでも進まない場合はGitHub Supportへ `Bivrosttt/ai-komon2`、対象ドメイン、上記診断結果、`authorization_created`で停滞している旨を添えて問い合わせる
