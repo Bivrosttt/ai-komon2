@@ -1,0 +1,109 @@
+{
+  "campaign": "AI顧問室 Meta広告 Reaction First 10 v2",
+  "format": "1:1 Meta static ad",
+  "price_in_creative": false,
+  "generation_policy": {
+    "keep": [2, 6, 7, 9],
+    "revise": [1, 3, 4, 8],
+    "candidate": [5, 10],
+    "shared_constraints": [
+      "価格・月額・採用費用は画面に表示しない",
+      "AIに関することが一目で分かる視覚要素を必ず入れる",
+      "短い日本語コピーのみを使い、長文を詰め込まない",
+      "偽の統計、偽レビュー、他社ロゴ、効果保証、透かしを入れない",
+      "生成画像は方向性確認用で、入稿前に決定レイアウトで再組版する"
+    ]
+  },
+  "prompts": [
+    {
+      "no": 1,
+      "status": "revise",
+      "filename": "01-lv1-notification-v2.png",
+      "based_on": "01-lv1-notification.png",
+      "destination": "diagnosis.html",
+      "why": "元の通知画面の停止力を残し、背後のAIチャット画面とChatGPT表記でAI広告だと即認識できるようにする。",
+      "prompt": "Use case: photorealistic-natural. Asset type: 1:1 Meta広告クリエイティブ. Preserve the strong close-up smartphone notification composition and realistic executive desk atmosphere of the existing Lv.1 notification concept, but make the AI context instantly unmistakable. A smartphone is held in the foreground with a large diagnostic card showing exact text: 「御社のAI活用レベル」 「Lv.1」 「それ、低いのではなく入口です」 「1分でレベル診断する」. In the blurred but recognizable background, show a laptop with a generic AI chat interface and a visible text label 「ChatGPT」 next to a larger label 「AI活用」; do not use any official logo. Add a small exact brand label 「AI顧問室｜広告」. Square 1:1, high-contrast red diagnostic alert, dark office, realistic screen reflections, immediate thumb-stop impact. No price, no statistics, no other brand logo, no watermark. Avoid making the AI context too subtle, generic smartphone photography, unreadable text, fake system warning, and long copy."
+    },
+    {
+      "no": 2,
+      "status": "keep",
+      "filename": "02-ai-test-answer-sheet.png",
+      "based_on": "02-ai-test-answer-sheet.png",
+      "destination": "diagnosis.html",
+      "why": "AI活用テスト、個人利用、仕組み化なしが一目で伝わるため採用。",
+      "prompt": "Use case: photorealistic-natural. Asset type: 1:1 Meta広告クリエイティブ. Keep the existing AI活用テスト answer-sheet concept: a realistic Japanese company AI skills test on a messy executive desk, red pen marks, exact labels 「AI活用テスト」 「個人利用のみ」 「仕組み化なし」 「社員が使わない」, a black strip 「御社の現在地は？」, CTA 「1分でレベル診断する」, and small mark 「AI顧問室｜広告」. Preserve the strong paper texture and red-pen interruption. No price, no fake score, no other logos, no watermark."
+    },
+    {
+      "no": 3,
+      "status": "revise",
+      "filename": "03-ai-passport-v2.png",
+      "based_on": "03-ai-passport.png",
+      "destination": "diagnosis.html",
+      "why": "パスポートの異物感は残し、ChatGPT利用から会社のAI活用へ進む文脈を視覚化する。",
+      "prompt": "Use case: photorealistic-natural. Asset type: 1:1 Meta広告クリエイティブ. Preserve the striking physical AI passport photographed on an executive desk, but make the subject unmistakably about business AI adoption. The open passport must show exact text 「AI活用パスポート」 and 「ChatGPTを使っている会社の次の一歩」. The route must visibly run from 「ChatGPT個人利用」 to 「社内のAI活用」 to 「会社の仕組み化」, with the current stamp on 「Lv.1」. Add a small open laptop beside the passport showing a generic AI chat window with the visible label 「AI活用」, no official logo. Exact CTA: 「現在地を1分で確認」. Add 「AI顧問室｜広告」. Square 1:1, navy passport, red stamp, yellow accent, realistic embossed paper, dramatic side light. No price, no government seal, no fake official document, no other brand logo, no watermark. Avoid a generic travel passport that could be mistaken for a non-AI service, tiny unreadable text, and futuristic holograms."
+    },
+    {
+      "no": 4,
+      "status": "revise",
+      "filename": "04-ceo-self-check-v2.png",
+      "based_on": "04-ceo-self-check.png",
+      "destination": "diagnosis.html",
+      "why": "社長のセルフチェック構図を残し、AI活用セルフチェックとChatGPTの手掛かりを一目で出す。",
+      "prompt": "Use case: photorealistic-natural. Asset type: 1:1 Meta広告クリエイティブ. Preserve the candid Japanese executive self-check scene and clipboard composition. The clipboard must have a large exact title 「AI活用セルフチェック」 and four visible rows: 「ChatGPT検索」 「文章作成」 「議事録」 「社内運用」. Only the first two have check marks; 「議事録」 and 「社内運用」 are empty and highlighted yellow. The executive looks concerned while holding the sheet. Exact headline: 「御社はどこまで？」. Exact CTA: 「1分でAIレベル診断」. Add a small 「AI顧問室｜広告」 mark. In the office background, show a laptop with a generic AI chat window and a readable 「AI」 label. Square 1:1, documentary realism, high contrast white clipboard, dark office, strong human reaction. No price, no fake scores, no other logo, no watermark. Avoid a generic business checklist that does not clearly relate to AI, smiling stock photography, and crowded copy."
+    },
+    {
+      "no": 5,
+      "status": "candidate",
+      "filename": "05-ai-implementation-accident-ai-copy.png",
+      "based_on": "05-ai-implementation-accident.png",
+      "destination": "diagnosis.html",
+      "why": "AI導入済みなのに使われないという異常が、画面全体で伝わるため採用。",
+      "prompt": "Use case: photorealistic-natural. Asset type: 1:1 Meta広告クリエイティブ. Keep the existing forensic AI implementation accident scene: neglected AI guide, unused AI workspace, evidence tags 「AI導入済み」 「誰も使わない」 「更新されない」 「個人だけのプロンプト」, large headline 「AIを導入したのに、使われない。」, CTA 「まず現状を診断する」, and mark 「AI顧問室｜広告」. Preserve the strong documentary evidence-table mood and add only the AI wording at the beginning of the large headline. No price, no statistics, no real software logos, no fake news branding, no watermark."
+    },
+    {
+      "no": 6,
+      "status": "keep",
+      "filename": "06-chat-frozen.png",
+      "based_on": "06-chat-frozen.png",
+      "destination": "index.html?from=lp-chatgpt#contact",
+      "why": "AIをどう使うかという会話の停止が、AI導入の失敗として一瞬で理解できるため採用。",
+      "prompt": "Use case: photorealistic-natural. Asset type: 1:1 Meta広告クリエイティブ. Keep the existing generic internal company chat on a laptop with no recognizable platform branding. Exact messages 「AIをどう使う？」 「結局、何に使うんですか？」 「返信がありません」, headline 「導入したのに、会話が始まらない。」, CTA 「AI活用を相談する」, and mark 「AI顧問室｜広告」. Preserve the moody office, screen glow, and frozen conversation. No price, no fake testimonials, no real app logos, no watermark."
+    },
+    {
+      "no": 7,
+      "status": "keep",
+      "filename": "07-ai-tool-graveyard.png",
+      "based_on": "07-ai-tool-graveyard.png",
+      "destination": "index.html#contact",
+      "why": "増やしたAIツールが使われないという視覚的な異常が強く、AIテーマも明確なため採用。",
+      "prompt": "Use case: photorealistic-natural. Asset type: 1:1 Meta広告クリエイティブ. Keep the existing surreal but realistic AI tool graveyard: generic unlabeled AI app icons, abandoned prompt cards, dusty laptop, exact copy 「新しいAIを探す前に。」 「増やすより、使い切る。」, CTA 「業務から相談する」, and mark 「AI顧問室｜広告」. Preserve the museum-like spotlight and yellow unused warning tag. No prices, no named software logos, no fabricated results, no watermark."
+    },
+    {
+      "no": 8,
+      "status": "revise",
+      "filename": "08-work-mountain-ai-copy.png",
+      "based_on": "08-work-mountain.png",
+      "destination": "diagnosis.html",
+      "why": "未処理業務の山に、AIを使っているのに変わらないという矛盾とAI画面を追加する。",
+      "prompt": "Use case: photorealistic-natural. Asset type: 1:1 Meta広告クリエイティブ. Preserve the dramatic mountain of unfinished office work around a laptop and the original composition. The large exact headline is 「AIを使っているのに、仕事が変わらない？」; add only 「AIを」 at the beginning of the existing headline. Keep the laptop, paper stacks, sticky notes 「未読メール」 「会議メモ未整理」 「見積書未完成」 「返信案未送信」, card 「AI導入済み」, CTA 「業務の詰まりを診断する」, and 「AI顧問室｜広告」 mark. Square 1:1, dramatic desk lamp, realistic paper textures, high thumb-stop impact. No price, no fake numbers, no real software logos, no watermark. Avoid changing the composition or introducing unrelated copy."
+    },
+    {
+      "no": 9,
+      "status": "keep",
+      "filename": "09-empty-ai-seat-v2.png",
+      "based_on": "09-empty-ai-seat.png",
+      "destination": "index.html#contact",
+      "why": "空席の異常は残し、AI担当者の席だと明示しつつ、AI活用の相談へつなげる。",
+      "prompt": "Use case: photorealistic-natural. Asset type: 1:1 Meta広告クリエイティブ. Preserve the cinematic empty interview chair under a hard spotlight, but make the AI context unmistakable. The chair sign must read 「AI担当」 and a laptop on the empty seat must show a generic AI chat interface with a large visible label 「AI活用」. On the wall, exact memo 「AIを使う会社にする前に、業務を整理する。」. Large exact headline: 「AI担当者の席が、空いています。」. Exact CTA: 「AI活用の相談をする」. Add a small 「AI顧問室｜広告」 mark. Square 1:1, stark negative space, realistic interview room, uncomfortable silence, strong contrast, immediately legible as an AI staffing and adoption problem. No price, no salary figures, no fake job posting, no other logos, no watermark. Avoid a cheerful recruitment ad, generic empty chair without AI context, and excessive explanatory copy."
+    },
+    {
+      "no": 10,
+      "status": "candidate",
+      "filename": "10-unsent-message-ai-concerns.png",
+      "based_on": "10-unsent-message.png",
+      "destination": "lp-boss.html",
+      "why": "社長の孤独とAI相談ニーズが、スマホ画面だけで直感的に伝わるため採用。",
+      "prompt": "Use case: photorealistic-natural. Asset type: 1:1 Meta広告クリエイティブ. Keep the existing close-up smartphone draft message concept. The phone must show exact text 「AIのこと、誰に相談したらいい？」 with an empty recipient field. The large supporting copy must be arranged as three lines: 「AIの悩み」 above 「社長、ひとりで」 and 「抱えないでください。」, with the first line slightly smaller but in the same white Japanese serif style. Exact CTA 「無料相談を予約する（60分）」 and small mark 「AI顧問室｜広告」. Preserve the authentic hand-held phone photo, warm desk lamp, quiet office at night, and emotionally direct composition. No price, no fake testimonial, no other brand, no watermark."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "review-renderer-materialized",
+  "action": "write_moodboard_widget_payload",
+  "label": "Materialized Creative Production image review",
+  "createdAt": "2026-07-13T09:47:54.610300Z",
+  "timestamp": "2026-07-13T09:47:54.610300Z",
+  "title": "Creative Production Review",
+  "summary": "Review, select, and hand off generated Creative Production images.",
+  "itemCount": 5,
+  "runDirectory": "/Users/koki/Desktop/ai-komon2/outputs/meta-ads-json-first-1x1",
+  "streamPath": "/Users/koki/Desktop/ai-komon2/outputs/meta-ads-json-first-1x1/data/stream.json",
+  "runStatePath": "/Users/koki/Desktop/ai-komon2/outputs/meta-ads-json-first-1x1/run-state.json",
+  "latestActionPath": "/Users/koki/Desktop/ai-komon2/outputs/meta-ads-json-first-1x1/latest-action.json"
+}

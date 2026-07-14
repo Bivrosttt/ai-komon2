@@ -1,0 +1,52 @@
+{
+  "campaign": "AI顧問室 Meta広告 追加5案",
+  "format": "1:1 Meta static ad",
+  "price_in_creative": false,
+  "variants": [
+    {
+      "no": 1,
+      "filename": "01-ai-stop-board.png",
+      "composition": "警告ボード・証拠写真",
+      "headline": "AI活用、導入で終わっていませんか？",
+      "supporting_labels": ["AI導入済み", "現場未定着", "社長判断待ち", "STOP"],
+      "cta": "AI活用の現在地を診断する",
+      "prompt": "Create a high-impact physical emergency command board on a dark office wall, photographed straight-on like a real documentary ad. Exact large headline: 「AI活用、導入で終わっていませんか？」. Visible short labels: 「AI導入済み」 「現場未定着」 「社長判断待ち」 and red stamp 「STOP」. CTA: 「AI活用の現在地を診断する」. Small mark: 「AI顧問室｜広告」. Strong red, black, white, and blue palette. No price, fake statistics, testimonials, other logos, or watermark."
+    },
+    {
+      "no": 2,
+      "filename": "02-ai-before-after-split.png",
+      "composition": "左右分割Before / After",
+      "headline": "AIを入れただけでは、仕事は変わらない。",
+      "supporting_labels": ["AI導入前", "AI導入後", "導入と定着は別の話"],
+      "cta": "業務の現在地を診断する",
+      "prompt": "Create a bold vertical split-screen showing the same Japanese office desk before and after AI adoption. Left label 「AI導入前」 with paper clutter; right label 「AI導入後」 with a generic AI workspace open but work still stuck. Center exact headline: 「AIを入れただけでは、仕事は変わらない。」. Add 「導入と定着は別の話」. CTA: 「業務の現在地を診断する」. Small mark: 「AI顧問室｜広告」. Photorealistic office textures, strong contrast. No price, fake numbers, real software logos, or watermark."
+    },
+    {
+      "no": 3,
+      "filename": "03-ai-clinic.png",
+      "composition": "AI診察室・診断メタファー",
+      "headline": "そのAI活用、診察が必要です。",
+      "supporting_labels": ["AIの悩み相談室", "AI活用カルテ", "導入", "利用", "定着", "要相談"],
+      "cta": "1分で状態を確認する",
+      "prompt": "Create a cinematic AI consultation clinic room with an empty examination chair, wall sign 「AIの悩み相談室」, and clipboard titled 「AI活用カルテ」. Large exact headline: 「そのAI活用、診察が必要です。」. Clipboard fields: 「導入」 「利用」 「定着」 with 「要相談」 highlighted. CTA: 「1分で状態を確認する」. Small mark: 「AI顧問室｜広告」. Dark charcoal, white paper, amber warning accent. No price, health claims, fake metrics, other logos, or watermark."
+    },
+    {
+      "no": 4,
+      "filename": "04-ai-meeting-stalled.png",
+      "composition": "会議室・停止した進行",
+      "headline": "AIの話は進む。業務は進まない。",
+      "supporting_labels": ["AI活用会議", "導入", "研修", "運用", "停止"],
+      "cta": "業務から相談する",
+      "prompt": "Create a realistic Japanese boardroom viewed from the back, with a presentation screen reading 「AI活用会議」 and agenda rows 「導入」 「研修」 「運用」 beside a pause symbol and stopped clock. Executives sit silently. Large exact headline: 「AIの話は進む。業務は進まない。」. CTA: 「業務から相談する」. Small mark: 「AI顧問室｜広告」. Cinematic office lighting and documentary tension. No price, fake statistics, real software logos, or watermark."
+    },
+    {
+      "no": 5,
+      "filename": "05-ai-emergency-memo.png",
+      "composition": "緊急メモ・クローズアップ",
+      "headline": "AIの悩みを、社長の頭の中だけに置かない。",
+      "supporting_labels": ["AI活用 緊急メモ", "誰も使わない", "相談相手がいない", "社長が抱えている"],
+      "cta": "AI活用を相談する",
+      "prompt": "Create a close-up handheld photo of a Japanese business owner's desk with a red memo over an unopened laptop. Memo title: 「AI活用 緊急メモ」. Three short lines: 「誰も使わない」 「相談相手がいない」 「社長が抱えている」. Large exact headline: 「AIの悩みを、社長の頭の中だけに置かない。」. CTA: 「AI活用を相談する」. Small mark: 「AI顧問室｜広告」. Warm desk lamp and urgent red accent. No price, fake numbers, testimonials, other logos, or watermark."
+    }
+  ]
+}

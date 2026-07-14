@@ -1,0 +1,70 @@
+{
+  "campaign": "AI顧問室 Meta広告 1:1 design exploration",
+  "aspect_ratio": "1:1",
+  "language": "ja-JP",
+  "brand": "AI顧問室",
+  "global_constraints": [
+    "高級ホテルや高級コンサル風にしない",
+    "中小企業の経営者が自分ごと化できる",
+    "文字は日本語で正確に、読みやすく大きく配置",
+    "余計なロゴ・価格・実績・口コミ・人物名・数字を追加しない",
+    "Meta広告のフィードで一瞬で内容が伝わる"
+  ],
+  "prompts": [
+    {
+      "id": "01-level-diagnosis",
+      "lp": "lp-level.html",
+      "design_direction": "白ベースの実用的な診断ツール広告。黄色のアクセント、チェックリストとレベルメーター、情報設計重視。",
+      "copy": {
+        "headline": "あなたの会社のAI活用レベル、1分で診断",
+        "subcopy": "何から始めるべきかが見えてくる",
+        "cta": "無料診断はこちら"
+      },
+      "prompt": "Use case: ads-marketing. Asset type: 1:1 Meta feed ad creative. Create a bright, practical Japanese business ad for AI顧問室, an AI advisory service for small and medium-sized companies. Visual direction: white background, cobalt blue text, warm yellow accent, a clean checklist card and a simple 1-to-5 AI maturity meter, approachable information-design style, not luxury, not premium hotel, not dark navy. Composition: large headline in the upper half, diagnostic meter and checklist illustration in the lower right, clear CTA button at the bottom. Text verbatim and only these Japanese phrases: 「あなたの会社のAI活用レベル、1分で診断」 「何から始めるべきかが見えてくる」 「無料診断はこちら」. Use highly legible Japanese typography, strong contrast, generous margins, no extra text, no invented statistics, no watermark."
+    },
+    {
+      "id": "02-chatgpt-level1",
+      "lp": "lp-chatgpt.html",
+      "design_direction": "黄色と黒のダイレクトレスポンス型。大きな問いかけ、チャット吹き出し、スクロール停止重視。",
+      "copy": {
+        "headline": "ChatGPTを触っただけで、止まっていませんか？",
+        "subcopy": "自社で使えるAI活用へ",
+        "cta": "AI活用を相談する"
+      },
+      "prompt": "Use case: ads-marketing. Asset type: 1:1 Meta feed ad creative. Create a bold direct-response Japanese ad for AI顧問室, an AI advisory service for small and medium-sized companies. Visual direction: vivid warm yellow background, black and deep charcoal typography, white chat bubbles, energetic editorial poster, high scroll-stop impact, friendly but serious, no luxury styling. Composition: oversized question headline on the left and center, a simple stack of chat bubbles and a small upward arrow on the right, CTA strip at the bottom. Text verbatim and only these Japanese phrases: 「ChatGPTを触っただけで、止まっていませんか？」 「自社で使えるAI活用へ」 「AI活用を相談する」. Japanese text must be crisp and readable, no extra words, no fake app interface, no logos other than the text AI顧問室, no watermark."
+    },
+    {
+      "id": "03-cost-comparison",
+      "lp": "lp-cost.html",
+      "design_direction": "インフォグラフィック型の比較広告。白地に青と黄色、人物写真ではなく図形とコスト比較の視覚化。",
+      "copy": {
+        "headline": "AI人材採用の約1/4のコスト",
+        "subcopy": "AI顧問室なら、月15万円〜",
+        "cta": "料金プランを見る"
+      },
+      "prompt": "Use case: ads-marketing. Asset type: 1:1 Meta feed ad creative. Create a clean infographic-style Japanese ad for AI顧問室, an AI advisory service for small and medium-sized companies. Visual direction: white background, royal blue and yellow accent colors, simple bar comparison graphic and calculator-like visual, practical and transparent, not luxury, not financial trading, not a fake screenshot. Composition: very large headline in the top half, clear simplified comparison bars in the lower half, CTA button at the bottom. Text verbatim and only these Japanese phrases: 「AI人材採用の約1/4のコスト」 「AI顧問室なら、月15万円〜」 「料金プランを見る」. Keep the claims exactly as written, use crisp Japanese typography, no additional numbers, no currency claims beyond the supplied copy, no watermark."
+    },
+    {
+      "id": "04-executive-advisor",
+      "lp": "lp-boss.html",
+      "design_direction": "温かいドキュメンタリー写真風。小さな会社のデスクで考える経営者、余白のある自然な構図。",
+      "copy": {
+        "headline": "社長の「これ、AIでどうする？」に答える",
+        "subcopy": "相談相手がいない経営者へ",
+        "cta": "無料相談を予約する"
+      },
+      "prompt": "Use case: ads-marketing. Asset type: 1:1 Meta feed ad creative. Create a warm, believable Japanese Meta ad for AI顧問室, an AI advisory service for owners of small and medium-sized companies. Visual direction: candid documentary-style photograph of a Japanese business owner in their 40s or 50s at a modest office desk, thinking while looking at a laptop and handwritten notes, natural daylight, relatable small-business atmosphere, warm cream and light blue color grade, no luxury office, no suit-and-tie corporate stock-photo pose. Add a clean text panel with high contrast. Text verbatim and only these Japanese phrases: 「社長の『これ、AIでどうする？』に答える」 「相談相手がいない経営者へ」 「無料相談を予約する」. Keep the person realistic and approachable, no visible private data on the laptop, no extra text, no watermark."
+    },
+    {
+      "id": "05-friendly-general",
+      "lp": "lp-simple.html",
+      "design_direction": "親しみやすいフラットイラスト。地域の中小企業、付箋、会話の吹き出し、ITが苦手でも入りやすい空気感。",
+      "copy": {
+        "headline": "AIのこと、誰に相談していますか？",
+        "subcopy": "中小企業のためのAI顧問",
+        "cta": "まずは無料で相談する"
+      },
+      "prompt": "Use case: ads-marketing. Asset type: 1:1 Meta feed ad creative. Create a friendly flat-illustration Japanese ad for AI顧問室, an AI advisory service for small and medium-sized companies. Visual direction: approachable editorial illustration, a local business owner and a helpful advisor around a desk with sticky notes, simple speech bubbles and a small lightbulb, soft coral, mint, cream and dark blue palette, modern but warm, easy for non-technical owners to understand, not luxury, not futuristic neon. Composition: large headline at the top, illustration in the center, rounded CTA button at the bottom. Text verbatim and only these Japanese phrases: 「AIのこと、誰に相談していますか？」 「中小企業のためのAI顧問」 「まずは無料で相談する」. Use accurate, crisp Japanese lettering, no extra text, no fake testimonials, no invented proof, no watermark."
+    }
+  ]
+}

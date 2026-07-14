@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "title": "Creative Production Review",
+    "summary": "Review, select, and hand off generated Creative Production images.",
+    "source": "review_renderer",
+    "itemCount": 6
+  },
+  "items": [
+    {
+      "id": "white-editorial",
+      "title": "White Editorial / \u5b9f\u52d9\u7cfb",
+      "caption": "",
+      "tone": "",
+      "prompt": "",
+      "imageUrl": "/generated/mcp-thumbs/white-editorial.jpg",
+      "previewImageUrl": "/generated/mcp-thumbs/white-editorial.jpg",
+      "sourceImageUrl": "/generated/white-editorial.png"
+    },
+    {
+      "id": "yellow-black-direct",
+      "title": "Yellow Black / \u76f4\u7403\u30ec\u30b9\u30dd\u30f3\u30b9",
+      "caption": "",
+      "tone": "",
+      "prompt": "",
+      "imageUrl": "/generated/mcp-thumbs/yellow-black-direct.jpg",
+      "previewImageUrl": "/generated/mcp-thumbs/yellow-black-direct.jpg",
+      "sourceImageUrl": "/generated/yellow-black-direct.png"
+    },
+    {
+      "id": "warm-human",
+      "title": "Warm Human / \u4eba\u9593\u5473",
+      "caption": "",
+      "tone": "",
+      "prompt": "",
+      "imageUrl": "/generated/mcp-thumbs/warm-human.jpg",
+      "previewImageUrl": "/generated/mcp-thumbs/warm-human.jpg",
+      "sourceImageUrl": "/generated/warm-human.png"
+    },
+    {
+      "id": "blue-mint-tech",
+      "title": "Blue Mint Tech / \u660e\u308b\u3044\u30c6\u30c3\u30af",
+      "caption": "",
+      "tone": "",
+      "prompt": "",
+      "imageUrl": "/generated/mcp-thumbs/blue-mint-tech.jpg",
+      "previewImageUrl": "/generated/mcp-thumbs/blue-mint-tech.jpg",
+      "sourceImageUrl": "/generated/blue-mint-tech.png"
+    },
+    {
+      "id": "paper-collage",
+      "title": "Paper Collage / \u7de8\u96c6\u30fb\u7d19",
+      "caption": "",
+      "tone": "",
+      "prompt": "",
+      "imageUrl": "/generated/mcp-thumbs/paper-collage.jpg",
+      "previewImageUrl": "/generated/mcp-thumbs/paper-collage.jpg",
+      "sourceImageUrl": "/generated/paper-collage.png"
+    },
+    {
+      "id": "friendly-illustration",
+      "title": "Friendly Illustration / \u3084\u3055\u3057\u3044\u56f3\u89e3",
+      "caption": "",
+      "tone": "",
+      "prompt": "",
+      "imageUrl": "/generated/mcp-thumbs/friendly-illustration.jpg",
+      "previewImageUrl": "/generated/mcp-thumbs/friendly-illustration.jpg",
+      "sourceImageUrl": "/generated/friendly-illustration.png"
+    }
+  ]
+}

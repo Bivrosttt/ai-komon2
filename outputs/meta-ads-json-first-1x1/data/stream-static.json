@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "Creative Production Review",
+    "summary": "Review, select, and hand off generated Creative Production images.",
+    "source": "review_renderer",
+    "itemCount": 5
+  },
+  "items": [
+    {
+      "id": "01-level-diagnosis",
+      "title": "Level Diagnosis / \u8a3a\u65ad\u578b",
+      "caption": "",
+      "tone": "",
+      "prompt": "",
+      "imageUrl": "generated/mcp-thumbs/01-level-diagnosis.jpg",
+      "previewImageUrl": "generated/mcp-thumbs/01-level-diagnosis.jpg",
+      "sourceImageUrl": "generated/01-level-diagnosis.png"
+    },
+    {
+      "id": "02-chatgpt-level1",
+      "title": "ChatGPT Level 1 / \u76f4\u7403\u30ec\u30b9\u30dd\u30f3\u30b9",
+      "caption": "",
+      "tone": "",
+      "prompt": "",
+      "imageUrl": "generated/mcp-thumbs/02-chatgpt-level1.jpg",
+      "previewImageUrl": "generated/mcp-thumbs/02-chatgpt-level1.jpg",
+      "sourceImageUrl": "generated/02-chatgpt-level1.png"
+    },
+    {
+      "id": "03-cost-comparison",
+      "title": "Cost Comparison / \u6bd4\u8f03\u56f3\u89e3",
+      "caption": "",
+      "tone": "",
+      "prompt": "",
+      "imageUrl": "generated/mcp-thumbs/03-cost-comparison.jpg",
+      "previewImageUrl": "generated/mcp-thumbs/03-cost-comparison.jpg",
+      "sourceImageUrl": "generated/03-cost-comparison.png"
+    },
+    {
+      "id": "04-executive-advisor",
+      "title": "Executive Advisor / \u7d4c\u55b6\u8005\u5171\u611f",
+      "caption": "",
+      "tone": "",
+      "prompt": "",
+      "imageUrl": "generated/mcp-thumbs/04-executive-advisor.jpg",
+      "previewImageUrl": "generated/mcp-thumbs/04-executive-advisor.jpg",
+      "sourceImageUrl": "generated/04-executive-advisor.png"
+    },
+    {
+      "id": "05-friendly-general",
+      "title": "Friendly General / \u89aa\u3057\u307f\u30a4\u30e9\u30b9\u30c8",
+      "caption": "",
+      "tone": "",
+      "prompt": "",
+      "imageUrl": "generated/mcp-thumbs/05-friendly-general.jpg",
+      "previewImageUrl": "generated/mcp-thumbs/05-friendly-general.jpg",
+      "sourceImageUrl": "generated/05-friendly-general.png"
+    }
+  ]
+}

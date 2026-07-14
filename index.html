@@ -382,6 +382,8 @@
 </style>
 <script src="analytics-config.js"></script>
 <script src="analytics.js"></script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
 </head>
 <body>
 
@@ -944,6 +946,9 @@
     fd.append("entry.1104944249", form.size.value || "");
     fd.append("entry.254574837", "AI顧問室" + (from ? "/" + from : ""));
     function done() {
+      if (window.aiKomonTrack) {
+        window.aiKomonTrack("Lead", { method: "contact_form", lead_from: from || "direct" });
+      }
       form.closest(".contact-card").innerHTML =
         '<div style="text-align:center; padding:26px 8px;">' +
         '<p style="font-family:\'Noto Serif JP\',serif; font-size:20px; font-weight:700; color:var(--navy); margin-bottom:12px;">お申し込みありがとうございました。</p>' +
