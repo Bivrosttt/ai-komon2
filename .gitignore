@@ -3,6 +3,10 @@ seo/data/runs/
 seo/data/gsc/latest.csv
 __pycache__/
 *.py[cod]
+assets/meta-ads-creatives/current/*.zip
+assets/meta-ads-creatives/current/meta-test-batch-*/
+outputs/imagegen/ai-komon-meta-ads-*/
+outputs/meta-ads-*/
 research/
 .playwright-mcp/
 .claude/

@@ -1,9 +1,0 @@
-{
-  "title": "AI顧問室 Meta広告 JSON-first 1:1 creative set",
-  "subject": "AI顧問室",
-  "channel": "Meta Ads",
-  "format": "1:1",
-  "copyRule": "JSONに固定したコピーを画像生成プロンプトへそのまま渡す",
-  "explorationRule": "LPごとの訴求とデザイン言語を変えて比較する",
-  "avoid": ["高級ホテルや高級コンサル風", "余計な実績・口コミ・数字", "小さく読めない補助文字", "透かし", "偽のUI画面"]
-}

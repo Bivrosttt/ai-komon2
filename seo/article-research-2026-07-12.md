@@ -1,7 +1,7 @@
 # AI顧問室 SEO記事リサーチ記録
 
-調査日: 2026-07-12  
-取得方法: `python3 seo/scripts/run_daily.py --root .`  
+調査日: 2026-07-12
+取得方法: `python3 seo/scripts/run_daily.py --root .`
 観測: Google / Bing / YouTube サジェスト 158件、Search Console CSVは未配置
 
 ## 追加する10本

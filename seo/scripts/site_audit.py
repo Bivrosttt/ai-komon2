@@ -71,11 +71,15 @@ def audit_file(path: Path, root: Path) -> dict:
     broken_links: list[str] = []
     for match in re.finditer(r"href\s*=\s*[\"']([^\"']+)", source, re.I):
         href = match.group(1).split("#", 1)[0]
-        if not href or href.startswith(("http://", "https://", "mailto:", "tel:", "javascript:", "data:")):
+        if not href or href.startswith(("//", "mailto:", "tel:", "javascript:", "data:")):
             continue
         parsed = urlparse(href)
+        if parsed.scheme or parsed.netloc:
+            continue
         candidate = (root / parsed.path.lstrip("/")) if parsed.path.startswith("/") else (path.parent / parsed.path)
-        if parsed.path and candidate.suffix in {".html", ".css", ".js", ".pdf"} and not candidate.exists():
+        if parsed.path and (parsed.path.endswith("/") or not candidate.suffix):
+            candidate = candidate / "index.html"
+        if parsed.path and not candidate.exists():
             broken_links.append(href)
     return {"path": str(path.relative_to(root)), "title": title, "description": description, "canonical": canonical, "h1": h1s, "issues": issues, "broken_local_links": sorted(set(broken_links))}
 
