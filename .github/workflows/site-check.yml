@@ -1,0 +1,79 @@
+name: Site checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  static-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check changed-file whitespace
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git diff --check "${{ github.event.pull_request.base.sha }}"...HEAD
+          else
+            git diff --check HEAD^ HEAD
+          fi
+
+      - name: Compile SEO scripts
+        run: python3 -m py_compile seo/scripts/*.py
+
+      - name: Audit pages and internal links
+        run: |
+          python3 seo/scripts/site_audit.py \
+            --root . \
+            --json-out /tmp/site-audit.json \
+            --md-out /tmp/site-audit.md
+          python3 - <<'PY'
+          import json
+          import sys
+
+          report = json.load(open('/tmp/site-audit.json', encoding='utf-8'))
+          broken = [
+              (page['path'], href)
+              for page in report['pages']
+              for href in page['broken_local_links']
+          ]
+          if broken:
+              for path, href in broken:
+                  print(f'{path}: broken local link: {href}')
+              sys.exit(1)
+          print(f"Checked {report['page_count']} HTML pages; no broken local links")
+          PY
+
+      - name: Validate sitemap XML
+        run: |
+          python3 - <<'PY'
+          import sys
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          from urllib.parse import urlparse
+
+          root = ET.parse('sitemap.xml').getroot()
+          namespace = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          missing = []
+          for node in root.findall('sm:url/sm:loc', namespace):
+              url_path = urlparse(node.text or '').path
+              local = Path(url_path.lstrip('/'))
+              if not url_path or url_path == '/':
+                  local = Path('index.html')
+              elif url_path.endswith('/'):
+                  local = local / 'index.html'
+              if not local.exists():
+                  missing.append((node.text, str(local)))
+          if missing:
+              for url, local in missing:
+                  print(f'{url}: missing sitemap target: {local}')
+              sys.exit(1)
+          print('sitemap.xml is valid and every target exists')
+          PY

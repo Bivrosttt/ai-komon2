@@ -313,27 +313,22 @@
 
   /* Pricing */
   .pricing { background: var(--bg-soft); }
-  .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; align-items: stretch; }
-  .plan {
+  .price-summary {
+    display: grid; grid-template-columns: .88fr 1.12fr; max-width: 920px; margin: 0 auto;
     background: var(--white); border: 1px solid var(--line); border-radius: 8px;
-    padding: 40px 32px; display: flex; flex-direction: column; position: relative;
+    overflow: hidden; box-shadow: 0 16px 40px rgba(11,36,71,.08);
   }
-  .plan.featured { border: 2px solid var(--navy); }
-  .plan-badge {
-    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-    background: var(--gold); color: var(--navy-deep); font-size: 12px; font-weight: 700;
-    padding: 4px 18px; border-radius: 999px; white-space: nowrap;
-  }
-  .plan .name { font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--navy); }
-  .plan .position { font-size: 12px; color: var(--blue); font-weight: 700; margin-bottom: 20px; }
-  .plan .amount { font-family: 'Noto Serif JP', serif; font-size: 40px; font-weight: 700; color: var(--navy); line-height: 1.2; }
-  .plan .amount small { font-size: 14px; font-weight: 400; color: var(--gray); }
-  .plan ul { list-style: none; margin: 24px 0 32px; flex: 1; }
-  .plan li { font-size: 14px; padding: 10px 0 10px 26px; position: relative; border-bottom: 1px solid var(--bg-soft); color: var(--ink); }
-  .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
-  .plan li.na { color: #B9C3CF; }
-  .plan li.na::before { content: "—"; color: #B9C3CF; }
-  .plan .btn { text-align: center; }
+  .price-primary { background: var(--navy); color: var(--white); padding: 42px 38px; }
+  .price-primary .label { color: #B9C8DA; font-size: 12px; font-weight: 700; letter-spacing: .08em; }
+  .price-primary .amount { font-family: 'Noto Serif JP', serif; font-size: 52px; font-weight: 700; line-height: 1.2; margin: 12px 0; }
+  .price-primary .amount small { font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 400; }
+  .price-primary .term { color: #B9C8DA; font-size: 12px; }
+  .price-detail { padding: 38px; }
+  .price-detail h3 { color: var(--navy); font-size: 19px; margin-bottom: 14px; }
+  .price-detail ul { list-style: none; margin-bottom: 24px; }
+  .price-detail li { position: relative; padding: 8px 0 8px 25px; color: var(--gray); font-size: 14px; border-bottom: 1px solid var(--bg-soft); }
+  .price-detail li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .price-detail .btn { width: 100%; text-align: center; }
   .price-note { text-align: center; font-size: 13px; color: var(--gray); margin-top: 32px; }
 
   /* Flow */
@@ -397,6 +392,8 @@
     .avatar { max-width: 200px; }
     .s-grid { grid-template-columns: 1fr; }
     .prod-grid { grid-template-columns: 1fr; }
+    .price-summary { grid-template-columns: 1fr; }
+    .price-primary, .price-detail { padding: 32px 24px; }
   }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -416,12 +413,12 @@
         <li><a href="#service">サービス内容</a></li>
         <li><a href="demos.html">構築デモ</a></li>
         <li><a href="#reasons">選ばれる理由</a></li>
-        <li><a href="#pricing">料金プラン</a></li>
-        <li><a href="#profile">顧問紹介</a></li>
+        <li><a href="#pricing">料金の目安</a></li>
+        <li><a href="#profile">支援体制</a></li>
         <li><a href="#faq">よくある質問</a></li>
       </ul>
     </nav>
-    <a href="#contact" class="btn btn-gold header-cta">無料相談を予約</a>
+    <a href="#contact" class="btn btn-gold header-cta">無料AI活用診断を予約</a>
   </div>
 </header>
 
@@ -431,10 +428,10 @@
     <h1>AI人材を雇う前に、<br><em>「AI顧問」</em>という選択。</h1>
     <p class="sub">「ChatGPTを触ってみた。でも、会社は何も変わっていない」——そこから先を、経営歴15年×AI歴4年の顧問が伴走します。相談から実装、社内定着まで。</p>
     <div class="hero-ctas">
-      <a href="#contact" class="btn btn-gold">無料相談を予約する（30分）</a>
-      <a href="#pricing" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">料金プランを見る</a>
+      <a href="#contact" class="btn btn-gold">無料AI活用診断を予約する（30分）</a>
+      <a href="#pricing" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">料金の目安を見る</a>
     </div>
-    <p class="hero-note">※ 無料相談だけでも「自社で何から始めるべきか」が明確になります。売り込みは一切しません。</p>
+    <p class="hero-note">※ 診断だけでも「自社で何から始めるべきか」が明確になります。無理な勧誘はありません。診断後の判断は自由です。</p>
     <div class="hero-stats">
       <div><span class="stat-num">15年</span><span class="stat-label">経営者としての実務経験</span></div>
       <div><span class="stat-num">4年</span><span class="stat-label">AI活用・研究の専門歴</span></div>
@@ -533,7 +530,7 @@
     <p class="levels-close">大事なのは、レベルを飛ばさないこと。<strong>Lv.1の会社にいきなり自動化を売りつける業者</strong>がうまくいかないのは、社内がついてこないからです。AI顧問室は御社の現在地を診断し、<strong>1段ずつ、確実に</strong>登る道筋を設計します。そして最終ゴールは、顧問がいなくても御社だけで登り続けられる<strong>「自走」</strong>です。</p>
     <div class="mid-cta">
       <p>御社はいま、どのレベルでしたか？</p>
-      <a href="#contact" class="btn btn-navy">無料相談で現在地を確かめる →</a>
+      <a href="#contact" class="btn btn-navy">無料診断で現在地を確かめる →</a>
     </div>
   </div>
 </section>
@@ -751,56 +748,25 @@
 <section class="pricing" id="pricing">
   <div class="container">
     <span class="section-label">PRICING</span>
-    <h2 class="section-title">料金プラン</h2>
-    <p class="section-lead">関与の深さで選べる3つのプラン。まずは無料相談で、御社に最適なプランをご提案します。</p>
-    <div class="price-grid">
-      <div class="plan">
-        <div class="name">ライト</div>
-        <div class="position">AI経営の相談役</div>
-        <div class="amount">15<small>万円/月（税別）</small></div>
-        <ul>
-          <li>チャット相談（平日随時）</li>
-          <li>定例ミーティング 月1回60分</li>
-          <li>対応はオンライン完結</li>
-          <li>AIツール選定・活用アドバイス</li>
-          <li class="na">AI導入ロードマップ策定</li>
-          <li class="na">業務自動化の実装代行</li>
-          <li class="na">社員向けAI研修</li>
-        </ul>
-        <a href="#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+    <h2 class="section-title">料金の目安</h2>
+    <p class="section-lead">最初から複雑なプランを選ぶ必要はありません。まずAI活用診断で必要な支援を整理し、範囲に合った内容をご提案します。</p>
+    <div class="price-summary">
+      <div class="price-primary">
+        <span class="label">AI顧問契約</span>
+        <div class="amount">15<small>万円〜／月</small></div>
+        <p class="term">税別・最低契約期間3ヶ月</p>
       </div>
-      <div class="plan featured">
-        <div class="plan-badge">おすすめ</div>
-        <div class="name">スタンダード</div>
-        <div class="position">AI導入の伴走者</div>
-        <div class="amount">25<small>万円/月（税別）</small></div>
+      <div class="price-detail">
+        <h3>必要な支援だけを、診断後に個別設計</h3>
         <ul>
-          <li>チャット相談（平日随時）</li>
-          <li>定例ミーティング 月2回</li>
-          <li>訪問対応 月1回まで可</li>
-          <li>AIツール選定・活用アドバイス</li>
-          <li>AI導入ロードマップ策定・伴走</li>
-          <li>小規模な自動化の実装 月1件</li>
-          <li>社員向けAI研修 四半期1回</li>
+          <li>経営・現場からのチャット相談</li>
+          <li>定例ミーティングとAI導入の優先順位整理</li>
+          <li>必要に応じて自動化実装・社員研修まで対応</li>
         </ul>
-        <a href="#contact" class="btn btn-navy">無料相談で詳しく聞く</a>
-      </div>
-      <div class="plan">
-        <div class="name">プレミアム</div>
-        <div class="position">社外AI役員</div>
-        <div class="amount">50<small>万円/月（税別）</small></div>
-        <ul>
-          <li>チャット相談（優先対応）</li>
-          <li>定例ミーティング 月2回（経営会議同席可）</li>
-          <li>訪問対応（回数制限なし）</li>
-          <li>AI経営戦略の立案・推進</li>
-          <li>業務自動化の実装 月3件目安</li>
-          <li>社員向けAI研修 毎月・対面開催可</li>
-        </ul>
-        <a href="#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
+        <a href="lp-ai-diagnosis.html#diagnosis" class="btn btn-navy">1分診断で必要な支援を整理する →</a>
       </div>
     </div>
-    <p class="price-note">最低契約期間は3ヶ月。プランは途中変更できます。実装内容が大きい場合は個別にお見積りします。<br>デジタル化・AI導入補助金（旧IT導入補助金）・人材開発支援助成金など、活用できる補助金・助成金のご提案も行っています。</p>
+    <p class="price-note">訪問回数・実装・研修など、支援範囲によって費用が変わります。具体的な内容と金額は診断後にご提示します。<br>デジタル化・AI導入補助金（旧IT導入補助金）・人材開発支援助成金など、活用できる補助金・助成金のご提案も行っています。</p>
     <p style="text-align:center; margin-top:22px;"><a href="data.html" class="btn btn-navy">顧問料の元が取れるか、御社の数字でシミュレーション →</a></p>
   </div>
 </section>
@@ -812,7 +778,7 @@
     <div class="flow-grid">
       <div class="f-step">
         <div class="no">1</div>
-        <h3>無料相談（30分）</h3>
+        <h3>無料AI活用診断（30分）</h3>
         <p>現状の課題とAI活用の可能性をヒアリング。この時点で持ち帰れる気づきをお渡しします。</p>
       </div>
       <div class="f-step">
@@ -903,23 +869,23 @@
         <a href="implementation.html" class="btn btn-outline">導入支援の詳細を見る →</a>
       </div>
     </div>
-    <p class="prod-foot-note">※価格はすべて税別表記です。内容により変動します。無料相談で概算をご提示します。</p>
+    <p class="prod-foot-note">※価格はすべて税別表記です。内容により変動します。無料のAI活用診断で概算をご提示します。</p>
   </div>
 </section>
 
 <section class="profile" id="profile">
   <div class="container">
-    <span class="section-label">PROFILE</span>
-    <h2 class="section-title">顧問紹介</h2>
+    <span class="section-label">SUPPORT STRUCTURE</span>
+    <h2 class="section-title">相談・支援体制</h2>
     <div class="profile-box">
-      <img class="avatar" src="assets/representative.jpg" alt="株式会社Bivrost CEO 佐藤啓英">
+      <img class="avatar" src="assets/representative.jpg" alt="AI顧問室の相談責任者">
       <div>
-        <h3>佐藤 啓英</h3>
-        <div class="role">株式会社Bivrost CEO／AI顧問室 主宰</div>
+        <h3>AI顧問室 相談責任者</h3>
+        <div class="role">株式会社Bivrost／AI導入支援</div>
         <p style="font-family:'Noto Serif JP',serif; font-weight:700; color:var(--navy);">「数字を作る側」を、ずっとやってきました。</p>
-        <p>19歳で起業し、1年で年商1億円。20歳で背負った借金2,000万円は、1年で返しました。22歳で立ち上げた2社目は、3年で年商30億円・正社員130名まで拡大。そして26歳で、その会社を手放すことになりました。伸ばす痛みも、返す重さも、畳む苦しさも——経営の数字は、自分の身体で知っています。</p>
-        <p>起業から15年。現在は株式会社BivrostのCEOとして日本・タイ・ベトナムで複数の事業を経営し、日本のAI事業は<strong>数名のチームで年商数億円規模</strong>——「人を増やさずに、AIで数字を上げる」を、いまも自分の会社で毎日実践しています。</p>
-        <p>そしてもう一つ。私は「自分で作れる」経営者です。システム開発をゼロから学び、画面のデザインからデータの仕組みまで一人で組み上げ、これまでに作ったシステムは<strong>50を超えます</strong>。世界最大級の新製品発表サイト「Product Hunt」では、自社開発のAIツールが<strong>その日の世界1位</strong>に選ばれました。</p>
+        <p>担当責任者は19歳で起業し、1年で年商1億円を達成。20歳で背負った借金2,000万円を1年で返済し、22歳で立ち上げた2社目を3年で年商30億円・正社員130名まで拡大しました。事業を伸ばす難しさも、立て直す重さも、経営の現場で経験しています。</p>
+        <p>起業から15年。現在は日本・タイ・ベトナムで複数の事業を経営し、日本のAI事業は<strong>数名のチームで年商数億円規模</strong>——「人を増やさずに、AIで数字を上げる」を自社で実践しています。</p>
+        <p>さらに、システム開発をゼロから学び、画面設計からデータの仕組みまで自ら構築。これまでに開発したシステムは<strong>50を超えます</strong>。世界最大級の新製品発表サイト「Product Hunt」では、自社開発のAIツールが<strong>その日の世界1位</strong>に選ばれました。</p>
         <p>御社に必要なのは「AIに詳しいだけの人」ではなく、<strong>経営とAIの両方を、自分の手でやってきた人間</strong>だと考えています。</p>
         <div class="tags">
           <span class="tag">19歳で起業</span>
@@ -944,7 +910,7 @@
     </details>
     <details>
       <summary>どの業種でも対応できますか？</summary>
-      <p>はい。AI活用の要点は業種よりも「業務の構造」にあります。製造、建設、卸売、サービス業、士業など、幅広く対応可能です。無料相談の際に御社の業務での活用イメージを具体的にお話しします。</p>
+      <p>はい。AI活用の要点は業種よりも「業務の構造」にあります。製造、建設、卸売、サービス業、士業など、幅広く対応可能です。無料のAI活用診断で、御社の業務に合った活用イメージを具体的にお話しします。</p>
     </details>
     <details>
       <summary>成果が出るまでどのくらいかかりますか？</summary>
@@ -956,7 +922,7 @@
     </details>
     <details>
       <summary>顧問契約の前に、単発で相談だけすることはできますか？</summary>
-      <p>初回の無料相談（30分）をご利用ください。その場で御社のAI活用の方向性を整理してお渡しします。無理な勧誘は一切いたしません。</p>
+      <p>初回の無料AI活用診断（30分）をご利用ください。その場で御社のAI活用の方向性を整理してお渡しします。無理な勧誘はありません。診断後の判断は自由です。</p>
     </details>
     <details>
       <summary>補助金や助成金は使えますか？</summary>
@@ -964,15 +930,15 @@
     </details>
     <details>
       <summary>研修だけ、ツール導入だけを頼むこともできますか？</summary>
-      <p>可能です。まず研修や小さな自動化から始めて、手応えを見てから顧問契約に進むお客様も想定しています。無料相談の際にご希望をお聞かせください。</p>
+      <p>可能です。まず研修や小さな自動化から始めて、手応えを見てから顧問契約に進むお客様も想定しています。無料のAI活用診断でご希望をお聞かせください。</p>
     </details>
   </div>
 </section>
 
 <section class="cta" id="contact">
   <div class="container">
-    <h2>まずは30分、話してみませんか。</h2>
-    <p>無料相談だけでも「自社が何から始めるべきか」が明確になります。ご希望の方には<strong style="color:var(--gold);">AI活用診断書（A4）</strong>を差し上げます。<br>オンライン対応・全国どこからでも。売り込みはいたしません。</p>
+    <h2>まずは30分、御社の「最初の一手」を決めませんか。</h2>
+    <p>無料のAI活用診断だけでも「自社が何から始めるべきか」が明確になります。ご希望の方には<strong style="color:var(--gold);">AI活用診断書（A4）</strong>を差し上げます。<br>オンライン対応・全国どこからでも。無理な勧誘はありません。診断後の判断は自由です。</p>
 
     <div class="contact-card">
       <a class="btn btn-gold contact-timerex" href="https://timerex.net/s/koki.otsuka_bfac/4b686119" target="_blank" rel="noopener">📅 ① 空いている日時をいますぐ選ぶ（10秒で確定）</a>
@@ -1068,7 +1034,7 @@
 </footer>
 
 <div class="mobile-cta" id="mobile-cta">
-  <a href="#contact" class="mc-consult">無料相談を予約する</a>
+  <a href="#contact" class="mc-consult">無料AI活用診断を予約する</a>
 </div>
 
 <script>

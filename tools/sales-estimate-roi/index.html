@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>営業・見積もり工数シミュレーター | AI顧問室</title>
+  <meta name="description" content="見積件数・作成時間・人件費・削減率を入力して、営業業務の削減時間と費用対効果を試算します。">
+  <link rel="canonical" href="https://ai-komon.bivrost.co.jp/tools/sales-estimate-roi/">
+  <meta property="og:title" content="営業・見積もり工数シミュレーター | AI顧問室">
+  <meta property="og:description" content="見積件数・作成時間・人件費・削減率を入力して、営業業務の削減時間と費用対効果を試算します。">
+  <meta property="og:site_name" content="AI顧問室">
+  <meta property="og:url" content="https://ai-komon.bivrost.co.jp/tools/sales-estimate-roi/">
+  <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <script src="../../analytics-config.js"></script>
+  <script src="../../analytics.js"></script>
+  <style>
+    :root { color-scheme: light; --ink:#15243a; --muted:#68778a; --line:#d9e1ea; --brand:#1769aa; --soft:#f5f8fb; }
+    * { box-sizing:border-box; } body { margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif; color:var(--ink); line-height:1.7; background:#fff; }
+    a { color:inherit; } a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible { outline:2px solid var(--brand); outline-offset:3px; }
+    .site-header { border-bottom:1px solid var(--line); } .site-header-inner { display:flex; align-items:center; justify-content:space-between; min-height:62px; } .site-header a { text-decoration:none; } .wordmark { font-family:Georgia,"Noto Serif JP",serif; font-size:1rem; font-weight:700; } .back-link { color:var(--muted); font-size:.78rem; }
+    main { width:min(960px,calc(100% - 32px)); margin:auto; } header { padding:52px 0 26px; } .eyebrow { margin:0 0 12px; color:var(--brand); font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; } h1 { max-width:760px; margin:0 0 8px; font-size:clamp(2rem,5vw,3.5rem); line-height:1.18; letter-spacing:-.05em; } h2 { margin:38px 0 10px; font-size:1.35rem; letter-spacing:-.03em; } .lead { max-width:720px; margin:0; color:var(--muted); font-size:1rem; } .tool-section { border-top:1px solid var(--line); padding-top:22px; }
+    .tool-card { padding:22px; border:1px solid var(--line); border-radius:8px; background:var(--soft); } .field { display:grid; gap:5px; margin:12px 0; font-weight:700; font-size:.9rem; } input,textarea { width:100%; border:1px solid #b8c7d5; border-radius:5px; padding:10px; background:#fff; font:inherit; } button,.cta { display:inline-block; border:0; border-radius:5px; padding:9px 15px; background:var(--brand); color:#fff; font:inherit; font-size:.85rem; font-weight:700; cursor:pointer; text-decoration:none; } .button-secondary { background:#fff; color:var(--brand); border:1px solid var(--brand); } output { display:block; margin-top:14px; font-size:1.1rem; font-weight:800; } .counter-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:14px; } .counter-grid output { margin:0; padding:10px; border:1px solid var(--line); border-radius:5px; background:#fff; font-size:.95rem; } .two-col { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; } .tool-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; } .result-pre { white-space:pre-wrap; overflow:auto; background:#fff; border:1px solid var(--line); border-radius:5px; padding:14px; min-height:120px; } fieldset { border:0; border-top:1px solid var(--line); margin:16px 0; padding:14px 0 0; } legend { font-weight:800; padding:0 6px 0 0; } .check-item { display:flex; gap:9px; align-items:flex-start; padding:8px 0; font-weight:500; font-size:.9rem; } .check-item input { width:auto; margin-top:6px; } .score-card { margin-top:16px; padding:15px; border-top:1px solid var(--line); background:#fff; } .score-number { display:block; font-size:1.8rem; font-weight:800; color:var(--brand); } .score-card li { margin:5px 0; } .muted { color:var(--muted); } .related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0 22px; border-top:1px solid var(--line); } .related { display:grid; gap:2px; padding:13px 0; border-bottom:1px solid var(--line); color:inherit; text-decoration:none; } .related:hover { color:var(--brand); } .related span { color:var(--muted); font-size:.85rem; } details { border-bottom:1px solid var(--line); padding:12px 0; } summary { cursor:pointer; font-weight:700; font-size:.9rem; } .cta-wrap { margin:38px 0; padding-top:20px; border-top:1px solid var(--line); } .cta-wrap h2 { margin-top:0; } .cta-wrap p { color:var(--muted); } footer { margin-top:48px; padding:18px 0 36px; color:var(--muted); border-top:1px solid var(--line); font-size:.82rem; } @media (max-width:680px) { main { width:calc(100% - 24px); } .site-header-inner { min-height:56px; } header { padding:38px 0 20px; } h1 { font-size:clamp(2rem,10vw,2.8rem); } h2 { margin-top:30px; } .two-col,.counter-grid { grid-template-columns:1fr; } .tool-card { padding:16px; } .tool-actions { flex-direction:column; align-items:stretch; } button,.cta { width:100%; text-align:center; } }
+  </style>
+  <style>
+    .insight-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:18px; }
+    .chart-card { padding:15px; border:1px solid var(--line); border-radius:7px; background:#fff; }
+    .chart-card h3 { margin:0 0 4px; font-size:.95rem; }
+    .chart-caption { margin:0 0 14px; color:var(--muted); font-size:.78rem; }
+    .bar-row { display:grid; grid-template-columns:54px minmax(0,1fr) auto; gap:8px; align-items:center; margin:10px 0; font-size:.78rem; }
+    .bar-track { height:16px; overflow:hidden; border-radius:999px; background:#e8eef4; }
+    .bar-fill { display:block; width:0; height:100%; min-width:2px; border-radius:999px; background:var(--brand); transition:width .25s ease; }
+    .bar-fill.after { background:#72a8d2; }
+    .bar-value { min-width:78px; text-align:right; font-variant-numeric:tabular-nums; }
+    .chart-insight { margin:14px 0 0; padding:10px 12px; border-left:3px solid var(--brand); background:var(--soft); color:var(--ink); font-size:.84rem; }
+    @media (max-width:680px) { .insight-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="site-header"><div class="site-header-inner"><a class="wordmark" href="/">AI顧問室</a><a class="back-link" href="/tools/">無料ツール一覧へ</a></div></div>
+  <header><p class="eyebrow">AI KOMON / FREE TOOL</p><h1>営業・見積もり工数シミュレーター</h1><p class="lead">見積件数・作成時間・人件費・削減率を入力して、営業業務の削減時間と費用対効果を試算します。</p></header>
+  <section class="tool-section" aria-labelledby="tool-heading"><h2 id="tool-heading">使う</h2><div class="tool-card"><form id="tool-form"><div class="two-col"><label class="field"><span>月間の見積件数</span><input id="monthlyQuotes" name="monthlyQuotes" type="number" inputmode="decimal" step="1" value="20"></label><label class="field"><span>1件の作成時間（分）</span><input id="minutesPerQuote" name="minutesPerQuote" type="number" inputmode="decimal" step="5" value="120"></label><label class="field"><span>1件あたり修正回数</span><input id="revisionsPerQuote" name="revisionsPerQuote" type="number" inputmode="decimal" step="1" value="1"></label><label class="field"><span>1回の修正時間（分）</span><input id="revisionMinutes" name="revisionMinutes" type="number" inputmode="decimal" step="5" value="15"></label><label class="field"><span>営業担当の時間単価（円）</span><input id="hourlyRate" name="hourlyRate" type="number" inputmode="decimal" step="100" value="3500"></label><label class="field"><span>AI導入後の削減率（%）</span><input id="reductionRate" name="reductionRate" type="number" inputmode="decimal" step="5" value="50"></label><label class="field"><span>導入費用の想定（円）</span><input id="setupCost" name="setupCost" type="number" inputmode="decimal" step="10000" value="300000"></label></div><button type="submit">計算する</button></form><div id="calc-results" class="insight-grid" aria-label="シミュレーション結果のグラフ"><div class="chart-card"><h3>月間工数の変化</h3><p class="chart-caption">削減率を反映した場合の比較</p><div class="bar-row"><span>現在</span><span class="bar-track"><span id="chart-hours-current" class="bar-fill"></span></span><output id="chart-hours-current-value" class="bar-value">0時間</output></div><div class="bar-row"><span>導入後</span><span class="bar-track"><span id="chart-hours-after" class="bar-fill after"></span></span><output id="chart-hours-after-value" class="bar-value">0時間</output></div></div><div class="chart-card"><h3>月間人件費の変化</h3><p class="chart-caption">見積作成・修正にかかる費用の比較</p><div class="bar-row"><span>現在</span><span class="bar-track"><span id="chart-cost-current" class="bar-fill"></span></span><output id="chart-cost-current-value" class="bar-value">0円</output></div><div class="bar-row"><span>導入後</span><span class="bar-track"><span id="chart-cost-after" class="bar-fill after"></span></span><output id="chart-cost-after-value" class="bar-value">0円</output></div></div><div class="chart-card"><h3>月間削減額</h3><p class="chart-caption">現在の月間人件費を100%とした削減額</p><div class="bar-row"><span>削減額</span><span class="bar-track"><span id="chart-monthly-savings" class="bar-fill after"></span></span><output id="chart-monthly-savings-value" class="bar-value">0円</output></div></div><div class="chart-card"><h3>年間削減額</h3><p class="chart-caption">現在の年間人件費を100%とした削減額</p><div class="bar-row"><span>年間</span><span class="bar-track"><span id="chart-annual-savings" class="bar-fill after"></span></span><output id="chart-annual-savings-value" class="bar-value">0円</output></div></div><div class="chart-card"><h3>導入費用の回収期間</h3><p class="chart-caption">12か月を100%とした目安</p><div class="bar-row"><span>回収</span><span class="bar-track"><span id="chart-payback" class="bar-fill"></span></span><output id="chart-payback-value" class="bar-value">—</output></div></div></div></div></section>
+  <section aria-labelledby="about-heading"><h2 id="about-heading">このツールについて</h2><p>営業担当が見積書を作成・修正する時間を入力すると、AIやワークフロー改善で削減できる工数と人件費の目安を計算できます。</p><p class="muted">この結果は入力値に基づく試算です。実際の削減率、確認工数、導入費用、売上への影響は業務内容によって変わるため、導入前後の実測値で更新してください。</p></section>
+  <section aria-labelledby="faq-heading"><h2 id="faq-heading">注意点とFAQ</h2><details><summary>売上や受注率も計算できますか？</summary><p>現在は見積作成にかかる工数と人件費の試算に絞っています。受注率や粗利は別途、実績データを使って確認してください。</p></details><details><summary>削減率は何％にすればよいですか？</summary><p>最初は20〜50％など複数のケースで試算し、導入後の実測値で更新するのがおすすめです。</p></details><details><summary>入力内容は保存されますか？</summary><p>いいえ。入力値はブラウザ内で計算し、サーバーへ送信しません。</p></details></section>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">関連する無料ツール</h2><div class="related-grid"><a class="related" href="/demo-quote.html"><strong>見積書AI 体験デモ</strong><span>営業メモから見積書を整える体験デモです。</span></a><a class="related" href="/data.html"><strong>AI導入効果のデータ</strong><span>AI導入と業務削減に関するデータを確認します。</span></a><a class="related" href="/tools/ai-risk-check/"><strong>AI導入リスク診断</strong><span>導入前に社内ルールと運用体制を確認します。</span></a></div></section>
+  <section class="cta-wrap"><h2>業務に合わせて整える</h2><p>入力内容はブラウザ内で処理します。個別の業務設計や導入相談はこちら。</p><a class="cta" href="/demo-quote.html">営業業務のAI導入を相談する</a></section>
+  <footer><a href="/">AI顧問室</a> / <a href="/privacy.html">プライバシーポリシー</a></footer>
+</main>
+<script>
+const runtime = {"type": "calculator", "results": [{"id": "monthly-hours", "label": "現在の月間工数", "unit": "時間", "formula": "monthlyQuotes * minutesPerQuote / 60 + monthlyQuotes * revisionsPerQuote * revisionMinutes / 60"}, {"id": "monthly-cost", "label": "現在の月間人件費", "unit": "円", "formula": "monthlyQuotes * minutesPerQuote * hourlyRate / 60 + monthlyQuotes * revisionsPerQuote * revisionMinutes * hourlyRate / 60"}, {"id": "monthly-savings", "label": "削減できる月間コストの目安", "unit": "円", "formula": "(monthlyQuotes * minutesPerQuote * hourlyRate / 60 + monthlyQuotes * revisionsPerQuote * revisionMinutes * hourlyRate / 60) * reductionRate / 100"}, {"id": "annual-savings", "label": "削減できる年間コストの目安", "unit": "円", "formula": "((monthlyQuotes * minutesPerQuote * hourlyRate / 60 + monthlyQuotes * revisionsPerQuote * revisionMinutes * hourlyRate / 60) * reductionRate / 100) * 12"}, {"id": "break-even", "label": "導入費用の回収目安", "unit": "か月", "formula": "setupCost / ((monthlyQuotes * minutesPerQuote * hourlyRate / 60 + monthlyQuotes * revisionsPerQuote * revisionMinutes * hourlyRate / 60) * reductionRate / 100)"}]};
+
+const form = document.getElementById('tool-form');
+const calculate = () => { try { const values = Object.fromEntries(["monthlyQuotes", "minutesPerQuote", "revisionsPerQuote", "revisionMinutes", "hourlyRate", "reductionRate", "setupCost"].map(id => [id, Number(document.getElementById(id).value) || 0]));
+const { monthlyQuotes, minutesPerQuote, revisionsPerQuote, revisionMinutes, hourlyRate, reductionRate, setupCost } = values;
+const fmt = new Intl.NumberFormat('ja-JP');
+const resultValue0 = monthlyQuotes * minutesPerQuote / 60 + monthlyQuotes * revisionsPerQuote * revisionMinutes / 60;
+const resultValue1 = resultValue0 * hourlyRate;
+const resultValue2 = resultValue1 * reductionRate / 100;
+const resultValue3 = resultValue2 * 12;
+const resultValue4 = resultValue2 > 0 ? setupCost / resultValue2 : NaN;
+const afterHours = resultValue0 * Math.max(0, 1 - reductionRate / 100);
+const afterCost = resultValue1 * Math.max(0, 1 - reductionRate / 100);
+const setBar = (barId, valueId, amount, max, unit) => { const bar = document.getElementById(barId); bar.style.width = max > 0 ? Math.max(amount > 0 ? 3 : 0, amount / max * 100) + '%' : '0%'; document.getElementById(valueId).textContent = fmt.format(amount) + unit; };
+setBar('chart-hours-current', 'chart-hours-current-value', resultValue0, resultValue0, '時間'); setBar('chart-hours-after', 'chart-hours-after-value', afterHours, resultValue0, '時間');
+setBar('chart-cost-current', 'chart-cost-current-value', resultValue1, resultValue1, '円'); setBar('chart-cost-after', 'chart-cost-after-value', afterCost, resultValue1, '円');
+setBar('chart-monthly-savings', 'chart-monthly-savings-value', resultValue2, resultValue1, '円');
+setBar('chart-annual-savings', 'chart-annual-savings-value', resultValue3, resultValue1 * 12, '円');
+const paybackBar = document.getElementById('chart-payback'); const paybackRatio = Number.isFinite(resultValue4) ? Math.min(resultValue4 / 12, 1) : 0; paybackBar.style.width = Math.max(paybackRatio > 0 ? 3 : 0, paybackRatio * 100) + '%'; document.getElementById('chart-payback-value').textContent = Number.isFinite(resultValue4) ? fmt.format(resultValue4) + 'か月' : '入力値を確認';
+} catch (error) { const target = document.getElementById('tool-result') || document.getElementById('risk-result') || document.getElementById('mt-output'); if (target) target.textContent = '入力値を確認してください'; } };
+if (form) form.addEventListener('submit', event => { event.preventDefault(); calculate(); });
+if (form) calculate();
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "keyword": "月額 支払い 計算",
+  "slug": "monthly-payment-calculator",
+  "title": "月額支払計算機",
+  "description": "総額・初回支払額・支払回数から、毎月の支払額を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "totalCost", "label": "総額（円）", "default": 600000, "step": 10000},
+    {"id": "initialPayment", "label": "初回支払額（円）", "default": 100000, "step": 10000},
+    {"id": "months", "label": "支払回数（か月）", "default": 12, "step": 1}
+  ],
+  "result": {"label": "毎月の支払額", "unit": "円", "formula": "(totalCost - initialPayment) / months"},
+  "explanations": ["初回支払を除いた残額を支払回数で割って、月ごとの予算を確認します。", "金利・手数料・税がある契約は、この単純計算と実際の請求額が異なります。"],
+  "related_tools": [
+    {"label": "AI導入回収期間シミュレーター", "url": "/tools/ai-payback-calculator/", "description": "導入費用を何か月で回収できるか試算します。"},
+    {"label": "割引計算機", "url": "/tools/discount-calculator/", "description": "値引き後の金額を確認します。"}
+  ],
+  "cta": {"label": "導入費用の設計を相談する", "url": "/diagnosis.html"}
+}

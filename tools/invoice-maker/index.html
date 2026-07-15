@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/, '')+location.search+location.hash);}}());</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>請求書かんたん作成｜PDFダウンロード | AI顧問室</title>
+  <meta name="description" content="宛先・明細・税率を入力して、請求書をブラウザ上で作成。ファイル名を指定してPDFでダウンロードできます。">
+  <link rel="canonical" href="https://ai-komon.bivrost.co.jp/tools/invoice-maker/">
+  <meta property="og:title" content="請求書かんたん作成｜PDFダウンロード | AI顧問室">
+  <meta property="og:description" content="請求書を入力フォームから作成し、ファイル名を指定してPDFで保存できます。">
+  <meta property="og:site_name" content="AI顧問室">
+  <meta property="og:url" content="https://ai-komon.bivrost.co.jp/tools/invoice-maker/">
+  <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"請求書かんたん作成","applicationCategory":"BusinessApplication","operatingSystem":"Any","url":"https://ai-komon.bivrost.co.jp/tools/invoice-maker/","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"}}
+  </script>
+  <script src="../../analytics-config.js"></script>
+  <script src="../../analytics.js"></script>
+  <link rel="stylesheet" href="../../assets/tools/document-generator.css?v=3">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <script src="../../assets/tools/document-generator.js?v=3" defer></script>
+</head>
+<body>
+  <div data-document-tool="invoice">
+    <div class="site-header"><div class="site-header-inner"><a class="wordmark" href="/">AI顧問室</a><a class="back-link" href="/tools/">無料ツール一覧へ</a></div></div>
+    <main>
+      <header class="page-head"><p class="eyebrow">AI KOMON / FREE TOOL</p><h1>請求書かんたん作成</h1><p class="lead">宛先と明細を入力するだけ。最後にファイル名を決めて、請求書をPDFで保存できます。</p></header>
+      <section class="builder" aria-label="請求書作成フォームとプレビュー">
+        <div class="panel">
+          <h2>請求書の情報</h2>
+          <form id="tool-form">
+            <div class="two-col">
+              <label class="field"><span>発行者名</span><input id="issuerName" type="text" placeholder="株式会社AI顧問室" autocomplete="organization"></label>
+              <label class="field"><span>宛先名</span><input id="recipientName" type="text" placeholder="株式会社〇〇 御中" autocomplete="organization"></label>
+              <label class="field"><span>発行者住所</span><input id="issuerAddress" type="text" placeholder="東京都〇〇区…" autocomplete="street-address"></label>
+              <label class="field"><span>発行者連絡先</span><input id="issuerContact" type="text" placeholder="担当：〇〇 / 03-0000-0000"></label>
+              <label class="field"><span>発行日</span><input id="issueDate" type="date"></label>
+              <label class="field"><span>支払期限</span><input id="dueDate" type="date"></label>
+              <label class="field"><span>請求書番号</span><input id="documentNumber" type="text" placeholder="INV-202607-001"></label>
+              <label class="field"><span>税率</span><select id="taxRate"><option value="10">10%</option><option value="8">8%</option><option value="0">非課税・対象外</option></select></label>
+            </div>
+            <label class="field"><span>件名</span><input id="subject" type="text" placeholder="業務改善支援費用"></label>
+            <fieldset>
+              <legend>明細</legend>
+              <div id="line-items" class="line-items">
+                <div class="line-row">
+                  <label class="field"><span>品目</span><input class="line-description" type="text" placeholder="例：業務改善支援" aria-label="品目"></label>
+                  <label class="field"><span>数量</span><input class="line-quantity" type="number" min="0" step="1" value="1" aria-label="数量"></label>
+                  <label class="field"><span>単価（円）</span><input class="line-price" type="number" min="0" step="100" value="0" aria-label="単価（円）"></label>
+                  <button type="button" class="button-quiet remove-line" aria-label="この明細を削除">削除</button>
+                </div>
+              </div>
+              <button type="button" class="button-secondary" id="add-line">＋ 明細を追加</button>
+            </fieldset>
+            <label class="field"><span>備考・振込先</span><textarea id="notes" placeholder="振込手数料はご負担ください。&#10;振込先：〇〇銀行 〇〇支店 普通 0000000"></textarea></label>
+            <label class="field"><span>PDFファイル名（拡張子なし）</span><input id="filename" type="text" inputmode="text"><small>使用できない記号は自動で置き換えます。</small></label>
+            <div class="form-actions"><button type="button" class="button-secondary" id="download-pdf">PDFとして保存</button><button type="button" class="button-secondary" id="print-document">印刷画面を開く</button></div>
+            <p id="pdf-status" class="status" role="status" aria-live="polite"></p>
+            <p class="privacy-note">入力内容はこのブラウザ内で処理します。サーバーへ送信・保存しません。</p>
+          </form>
+        </div>
+        <div class="preview-wrap"><div class="preview-toolbar"><h2>プレビュー</h2><span>A4縦 / PDF保存用</span></div>
+          <article id="document-preview" class="document-preview" aria-label="請求書プレビュー">
+            <div class="doc-top"><div><h2 id="preview-title" class="doc-title">請求書</h2><p id="preview-number" class="doc-number"></p></div><dl class="doc-meta"><div><dt>発行日</dt><dd id="preview-date">—</dd></div><div><dt id="preview-secondary-label">支払期限</dt><dd id="preview-secondary">—</dd></div></dl></div>
+            <div class="doc-parties"><div><h3>請求先</h3><p id="preview-recipient">（宛先名）</p></div><div><h3>発行者</h3><p id="preview-issuer">（発行者情報）</p></div></div>
+            <p id="preview-subject" class="doc-subject"></p>
+            <table class="doc-table"><thead><tr><th>品目</th><th class="number">数量</th><th class="number">単価</th><th class="number">金額</th></tr></thead><tbody id="preview-items"></tbody></table>
+            <dl class="doc-totals"><div><dt>小計</dt><dd id="preview-subtotal">0 円</dd></div><div><dt>消費税</dt><dd id="preview-tax">0 円（10%）</dd></div><div class="grand"><dt>合計</dt><dd id="preview-total">0 円</dd></div></dl>
+            <p id="preview-notes" class="doc-notes">備考：</p>
+          </article>
+        </div>
+      </section>
+      <section class="explain"><h2>このツールでできること</h2><p>請求先、発行者、日付、明細、税率を入力すると、印刷しやすいA4形式の請求書に整えます。PDFファイル名も保存前に指定できます。</p><p class="muted">このページは請求書のレイアウト作成を補助するものです。登録番号、インボイス制度の記載事項、社内の経理ルールなどは発行前に確認してください。</p></section>
+      <section class="explain"><h2>使い方</h2><ol><li>請求先と発行者情報を入力します。</li><li>明細を追加し、数量と単価を入力します。</li><li>PDFファイル名を確認して「PDFをダウンロード」を押します。</li></ol></section>
+      <section class="explain"><h2>注意点とFAQ</h2><details><summary>入力内容は保存されますか？</summary><p>保存されません。入力値はブラウザ内でプレビューとPDF作成に使うだけです。</p></details><details><summary>スマートフォンでも使えますか？</summary><p>使えます。入力フォームは画面幅に合わせて並び替わります。PDFの見た目はA4縦です。</p></details><details><summary>PDFはどう保存しますか？</summary><p>「PDFとして保存」を押すと、指定したファイル名でPDFをダウンロードします。ブラウザが自動ダウンロードを許可しない場合は、印刷画面からPDF保存に切り替わります。</p></details></section>
+      <section class="explain"><h2>関連する無料ツール</h2><div class="related-grid"><a class="related" href="/tools/sales-estimate-roi/"><strong>営業・見積もり工数シミュレーター</strong><span>見積作成の工数と改善効果を試算します。</span></a><a class="related" href="/tools/gijiroku-template/"><strong>議事録テンプレート・ToDo整理</strong><span>打ち合わせ後の決定事項と担当を整理します。</span></a></div></section>
+      <section class="cta-wrap"><h2>帳票を自社の業務に合わせる</h2><p>項目、承認、保存先、既存システムとの連携まで含めた業務設計を相談できます。</p><a class="cta" href="/diagnosis.html">AI活用を相談する</a></section>
+      <footer><a href="/">AI顧問室</a> / <a href="/tools/">無料ツール一覧</a> / <a href="/privacy.html">プライバシーポリシー</a></footer>
+    </main>
+  </div>
+</body>
+</html>

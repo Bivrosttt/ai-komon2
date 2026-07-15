@@ -1,0 +1,24 @@
+{
+  "status": "ready-for-review",
+  "keyword": "議事録 テンプレート",
+  "slug": "gijiroku-template",
+  "title": "議事録テンプレート・ToDo整理ツール",
+  "description": "会議名・決定事項・担当者・期限を入力して、すぐ使える議事録をMarkdownで作成できる無料ツールです。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "minutes-template",
+  "explanations": [
+    "会議のあとに残したい情報を入力するだけで、議題・決定事項・保留事項・ToDoが整理された議事録を作れます。社内会議、顧客との打合せ、プロジェクト定例会に使えます。",
+    "ファイルのアップロードや外部送信は行わず、入力内容はこのブラウザ内でMarkdownに整形します。作成後は社内の保管ルールに合わせて保存してください。"
+  ],
+  "faq": [
+    {"q": "WordやExcelのファイルを直接作れますか？", "a": "現在はMarkdownとして保存できます。WordやGoogleドキュメントに貼り付けて整形できます。"},
+    {"q": "録音データから自動で議事録を作れますか？", "a": "このツールは入力フォーム型のテンプレートです。録音からの自動整理は既存の議事録AI体験デモをご覧ください。"},
+    {"q": "入力内容はサーバーに送信されますか？", "a": "いいえ。入力内容はブラウザ内でMarkdownに整形し、サーバーへ送信しません。"}
+  ],
+  "related_tools": [
+    {"label": "AI導入リスク診断", "url": "/tools/ai-risk-check/", "description": "AIを業務に組み込む前の確認項目を整理します。"},
+    {"label": "議事録AI 体験デモ", "url": "/demo-minutes.html", "description": "文字起こしから決定事項やToDoを整理するデモです。"},
+    {"label": "営業・見積もり工数シミュレーター", "url": "/tools/sales-estimate-roi/", "description": "見積作成にかかる時間と削減効果を試算します。"}
+  ],
+  "cta": {"label": "議事録AIの体験デモを見る", "url": "/demo-minutes.html"}
+}

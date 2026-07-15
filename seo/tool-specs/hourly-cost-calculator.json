@@ -1,0 +1,28 @@
+{
+  "status": "ready-for-review",
+  "keyword": "人件費 時給 計算",
+  "slug": "hourly-cost-calculator",
+  "title": "1時間の人件費計算機",
+  "description": "年収・年間稼働時間・年間の諸経費から、業務改善で使える1時間あたりのコストを計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "annualSalary", "label": "年間給与（円）", "default": 5000000, "step": 100000},
+    {"id": "annualHours", "label": "年間稼働時間（時間）", "default": 1800, "step": 10},
+    {"id": "annualOverhead", "label": "年間の諸経費（円）", "default": 1000000, "step": 100000}
+  ],
+  "result": {"label": "1時間あたりの人件費", "unit": "円", "formula": "(annualSalary + annualOverhead) / annualHours"},
+  "explanations": [
+    "給与だけでなく、会社が負担する諸経費も含めて、業務の1時間を比較するための基準を作ります。",
+    "会計上の原価計算とは目的が異なります。意思決定用の概算として使い、必要なら自社の管理会計ルールに合わせてください。"
+  ],
+  "faq": [
+    {"q": "年間稼働時間はどう決めますか？", "a": "所定労働時間から休暇や研修などを引いた、実際に業務へ使える時間を入力してください。"},
+    {"q": "給与だけで計算してもよいですか？", "a": "比較だけなら給与だけでも構いませんが、判断用には諸経費を含めると実態に近づきます。"}
+  ],
+  "related_tools": [
+    {"label": "会議コスト計算機", "url": "/tools/meeting-cost-calculator/", "description": "会議に使っている時間を月間コストに変換します。"},
+    {"label": "AI導入回収期間シミュレーター", "url": "/tools/ai-payback-calculator/", "description": "改善にかける費用の回収期間を試算します。"}
+  ],
+  "cta": {"label": "業務コストの見直しを相談する", "url": "/diagnosis.html"}
+}

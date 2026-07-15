@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方 | AI顧問室</title>
+  <meta name="description" content="生成AIの社内利用ルールを、入力してよい情報・要確認の情報・入力禁止の情報に分けて整理。社員が迷わず使える最低限の項目と展開方法を解説します。">
+  <link rel="canonical" href="https://ai-komon.bivrost.co.jp/articles/generative-ai-internal-rules/"><meta property="og:type" content="article"><meta property="og:site_name" content="AI顧問室"><meta property="og:title" content="生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方 | AI顧問室"><meta property="og:description" content="生成AIを社内で使うときの情報分類、確認者、禁止事項を整理します。"><meta property="og:url" content="https://ai-komon.bivrost.co.jp/articles/generative-ai-internal-rules/"><meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png"><meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方","description":"生成AIを社内で使うときの情報分類、確認者、禁止事項を整理します。","image":"https://ai-komon.bivrost.co.jp/assets/ogp.png","datePublished":"2026-07-12","dateModified":"2026-07-12","author":{"@type":"Organization","name":"AI顧問室"},"publisher":{"@type":"Organization","name":"AI顧問室"},"mainEntityOfPage":"https://ai-komon.bivrost.co.jp/articles/generative-ai-internal-rules/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"生成AIの社内ルールに最低限必要な項目は？","acceptedAnswer":{"@type":"Answer","text":"利用目的、入力禁止情報、出力の確認者、公開前の承認、アカウント管理、事故時の連絡先を決めます。長い規程より、現場が判断できる分類表が先です。"}},{"@type":"Question","name":"ChatGPTの社内利用ルールはどこまで細かく決めるべきですか？","acceptedAnswer":{"@type":"Answer","text":"全てのプロンプトを規制するのではなく、情報の種類と業務の影響度で決めます。禁止・要確認・利用可の境界と、迷ったときの相談先を明示します。"}}]}</script>
+  <link rel="stylesheet" href="../../assets/articles/article.css?v=20260713-responsive"></head>
+<body><main><nav class="breadcrumb" aria-label="パンくず"><a href="/">AI顧問室</a> / <a href="/articles/ai-introduction-risk/">AI導入のリスク</a> / 生成AIの社内利用ルール</nav><article>
+  <p class="eyebrow">GENERATIVE AI / INTERNAL POLICY</p><h1>生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方</h1><p class="dek">社内ルールは「AIを使ってよいか」だけでは足りません。現場が止まらないように、入力情報と出力の扱いを、短い分類表と確認フローに落とし込みます。</p><p class="meta">公開日: 2026年7月12日　|　AI顧問室 編集部</p>
+  <div class="hero-visual"><span class="hero-kicker">AI KOMONSHITSU / INTERNAL RULES</span><span class="hero-title">禁止だけでは、現場は動かない。迷わない境界をつくる。</span><div class="hero-badges"><span>利用可</span><span>要確認</span><span>入力禁止</span></div></div>
+  <div class="answer"><strong>先に結論：</strong>生成AIの社内利用ルールは、情報を「入力してよい」「要確認」「入力禁止」の3色に分け、出力の確認者と事故時の相談先をセットで決めます。サービス名より、情報分類と業務ごとの確認手順を先に作るのが実務的です。</div>
+  <figure><img src="../../assets/articles/diagrams/generative-ai-internal-rules-diagram.png" alt="生成AIへの入力情報を利用可、要確認、入力禁止の3経路へ分け、人が承認する図解" width="1672" height="941" loading="lazy"><figcaption>社内ルールは、情報を3分類し、迷ったときに人へ戻す流れを作る。</figcaption></figure>
+  <div class="toc"><strong>この記事の目次</strong><ol><li><a href="#minimum">最低限決める6項目</a></li><li><a href="#classification">入力情報を3分類する</a></li><li><a href="#rollout">社員へ展開する方法</a></li><li><a href="#review">定期的に見直す</a></li></ol></div>
+  <h2 id="minimum">生成AIの社内ルールに最低限必要な6項目</h2><p>ルール作りで最初から分厚い規程を作ると、社員に読まれず、現場の判断が属人化します。まずは次の6項目をA4一枚にまとめ、業務ごとの補足は後から追加します。</p><ol><li><strong>目的：</strong>文章作成、要約、検索、分析など、使ってよい用途。</li><li><strong>入力情報：</strong>個人情報、顧客情報、秘密情報の分類。</li><li><strong>出力確認：</strong>誤り・引用・数字・権利関係の確認者。</li><li><strong>公開前承認：</strong>顧客や社外へ出す前の承認フロー。</li><li><strong>アカウント：</strong>会社管理のアカウント、権限、退職時の停止。</li><li><strong>事故対応：</strong>誤送信や漏えいが疑われる場合の連絡先。</li></ol>
+  <h2 id="classification">入力情報は「利用可・要確認・禁止」の3分類にする</h2><p>「機密情報を入力しない」という書き方だけでは、社員が判断できません。自社の情報を具体例に分け、迷ったときに相談できる場所を明記します。個人情報の扱いは、サービスの利用条件や自社のプライバシー方針と照合してください。</p><div class="table-scroll"><table><thead><tr><th>分類</th><th>例</th><th>運用</th></tr></thead><tbody><tr><th>利用可</th><td>公開済み商品情報、一般的な文章の下書き</td><td>出力を確認して利用</td></tr><tr><th>要確認</th><td>社内資料、顧客名を伏せた案件情報、未公開企画</td><td>承認者とサービス条件を確認</td></tr><tr><th>入力禁止</th><td>個人情報、認証情報、契約前の秘密情報</td><td>AIサービスへ入力しない</td></tr></tbody></table></div><p>この分類は固定ではありません。<a href="/articles/ai-introduction-risk/">AI導入のリスク</a>で整理した入力・権限・契約の論点と合わせ、業務ごとに更新します。</p>
+  <h2 id="rollout">社員への展開は「禁止事項」より使い方の例を先に出す</h2><p>ルールを公開するときは、禁止事項だけを並べないことが重要です。良い例、悪い例、迷ったときの相談先を1セットで示します。たとえば「公開済み商品情報からメール案を作る」「顧客名を伏せても案件の組み合わせで特定できる場合は要確認」といった具体例です。</p><div class="steps"><div class="step"><b>01 / 共有</b><h3>1枚の分類表</h3><p>社内チャットやポータルでいつでも見られる状態にする。</p></div><div class="step"><b>02 / 練習</b><h3>安全な例で試す</h3><p>公開情報を使い、確認・修正まで体験する。</p></div><div class="step"><b>03 / 記録</b><h3>迷いを集める</h3><p>質問をFAQに追加し、ルールを育てる。</p></div></div>
+  <h2 id="review">ルールは一度作って終わりにしない</h2><p>生成AIのサービス条件、社内の業務、扱うデータは変わります。最低でも、サービス追加時・重大な事故時・四半期ごとのいずれかで見直します。利用ログや相談内容を確認し、禁止を増やすだけでなく、利用可能な範囲を明確にすることが大切です。</p><div class="note"><strong>実務メモ：</strong>最終判断者が不明なルールは、現場では使われません。「迷ったら誰に相談するか」「社外へ出す前に誰が確認するか」まで書いて完成です。</div>
+  <h2 id="workflow">ルール文を実際の業務フローに置く</h2>
+  <p>「機密情報を入力しない」という一文だけでは、現場の判断は止まります。求人票、営業報告、議事録、問い合わせ返信など、よく使う業務ごとに、入力してよい情報、匿名化する情報、最終確認者を例示してください。</p>
+  <div class="table-scroll"><table><thead><tr><th>場面</th><th>入力前の判断</th><th>出力後の確認</th></tr></thead><tbody><tr><th>求人票</th><td>公開済みの募集条件だけ使う</td><td>事実・表現・条件を採用担当が確認</td></tr><tr><th>営業提案</th><td>顧客名や未公開価格を伏せる</td><td>金額・納期・宛先を営業責任者が確認</td></tr><tr><th>議事録</th><td>会議の機密度を確認する</td><td>決定事項・担当・期限を参加者が確認</td></tr></tbody></table></div>
+  <h2 id="revision">ルールの改訂を運用に組み込む</h2>
+  <p>生成AIのサービス条件や社内業務は変わるため、作成日だけでなく、次の見直し日と管理者を決めます。新しいサービスを追加したとき、誤送信が起きたとき、現場から同じ質問が続いたときは、分類表とFAQを更新するタイミングです。</p>
+  <p>厳しい禁止事項を増やすだけでは、社員が個人アカウントへ逃げる可能性があります。安全に使える例を増やし、迷ったときに相談しても責められない報告経路を用意することが、ルールを守られる状態へ近づけます。</p>
+  <h2 id="one-page">A4一枚の社内ルールに入れる内容</h2>
+  <p>社員が毎日読むのは、長い規程より、迷ったときに判断できる短い表です。利用目的、入力分類、出力確認、公開前承認、アカウント管理、事故時の連絡先を一枚に置き、詳しい規程や契約条件はリンクで分けます。</p>
+  <ol><li>使ってよい業務と使ってはいけない業務</li><li>利用可・要確認・入力禁止の具体例</li><li>社外へ出す前の確認者</li><li>サービス追加・退職時の権限管理</li><li>誤入力や誤送信を報告する窓口</li></ol>
+  <h2 id="training">ルールを研修で終わらせず、質問から更新する</h2>
+  <p>社員研修では、公開情報だけを使って安全な例を試し、出力を修正してから共有する流れを体験させます。研修後に集まった「この情報は要確認か」「この回答を顧客へ送れるか」という質問を、分類表とFAQへ追加します。</p>
+  <p>ルールの目的は利用を止めることではなく、安心して使える範囲を明確にすることです。守られないルールを増やすより、現場が判断できる例を増やします。</p>
+  <h2 id="owner">ルールの管理者と相談先を決める</h2>
+  <p>社内ルールは、作成者が異動したあとも更新される必要があります。情報管理の管理者、業務ごとの確認者、契約や個人情報を相談する担当者を分け、ページの冒頭に連絡先を置きます。</p>
+  <ul><li>ルールの最終承認者</li><li>サービス追加を確認する担当者</li><li>社外送信の承認者</li><li>誤入力・誤送信の報告先</li><li>次回の見直し日</li></ul>
+  <p>相談先が明記されていれば、社員は判断を抱え込まずに済みます。質問が増えた箇所は、禁止を増やす前に、具体例と安全な使い方を追加する材料にします。</p>
+<div class="tool-cta service-cta"><h2>AI導入の相談はサービスから</h2><p>AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。</p><a class="button" href="../../#service">AI顧問室のサービスを見る</a></div>
+  <div class="sources"><strong>参考にした一次情報</strong><ul><li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/" rel="noopener">経済産業省 AI事業者ガイドライン検討会</a>（2026-07-12確認）</li><li><a href="https://www.ipa.go.jp/jinzai/ics/core_human_resource/final_project/2024/generative-ai-guideline.html" rel="noopener">IPA テキスト生成AIの導入・運用ガイドライン</a>（2026-07-12確認）</li><li><a href="https://www.ppc.go.jp/news/careful_information/230602_AI_utilize_alert/" rel="noopener">個人情報保護委員会 生成AIサービスの利用に関する注意喚起</a>（2026-07-12確認）</li></ul></div>
+  <h2>よくある質問</h2><details><summary>社員が個人アカウントでAIを使っている場合は？</summary><p>一律に責めるより、会社管理のアカウント、入力禁止情報、相談先を用意します。すでに入力した情報がある場合は、サービス条件を確認し、情報管理担当へ報告できる流れを作ります。</p></details><details><summary>ルールに違反した場合の罰則も必要ですか？</summary><p>罰則だけを先に決めると、事故が隠れることがあります。まず報告・停止・確認の手順を整え、故意や重大な違反の扱いは既存の情報管理規程と整合させます。</p></details>
+  <h2>次に読む・使う</h2><div class="related"><a href="/articles/ai-introduction-risk/"><strong>AI導入のリスク</strong><span>5層で導入前の論点を確認</span></a><a href="/articles/ai-introduction-roadmap/"><strong>AI導入の進め方</strong><span>小さく試してから広げる</span></a><a href="/privacy.html"><strong>プライバシーポリシー</strong><span>サイトの情報の扱いを確認</span></a></div>
+  </article><footer><a href="/">AI顧問室</a> / <a href="/tools/">無料ツール</a> / <a href="/privacy.html">プライバシーポリシー</a></footer>
+</main></body></html>

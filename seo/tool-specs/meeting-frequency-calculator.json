@@ -1,0 +1,20 @@
+{
+  "keyword": "会議 時間 計算",
+  "slug": "meeting-frequency-calculator",
+  "title": "会議時間計算機",
+  "description": "週あたりの会議回数・1回の時間・対象週数から、合計会議時間を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "weeklyMeetings", "label": "週あたりの会議回数", "default": 5, "step": 1},
+    {"id": "minutesPerMeeting", "label": "1回の会議時間（分）", "default": 60, "step": 5},
+    {"id": "weeks", "label": "対象週数", "default": 4, "step": 1}
+  ],
+  "result": {"label": "合計会議時間", "unit": "時間", "formula": "weeklyMeetings * minutesPerMeeting / 60 * weeks"},
+  "explanations": ["会議の回数と時間を期間単位にそろえて、会議だけに使っている時間を確認します。", "参加人数を含むコストを見たい場合は、会議コスト計算機を使ってください。"],
+  "related_tools": [
+    {"label": "会議コスト計算機", "url": "/tools/meeting-cost-calculator/", "description": "参加者の人件費を含めて会議コストを試算します。"},
+    {"label": "議事録テンプレート", "url": "/tools/gijiroku-template/", "description": "会議後の決定事項とToDoを整理します。"}
+  ],
+  "cta": {"label": "会議の見直しを相談する", "url": "/diagnosis.html"}
+}

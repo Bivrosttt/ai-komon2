@@ -1,0 +1,32 @@
+{
+  "status": "ready-for-review",
+  "keyword": "会議 コスト 計算",
+  "slug": "meeting-cost-calculator",
+  "title": "会議コスト計算機",
+  "description": "参加人数・会議時間・月間回数・人件費から、会議にかかる月間工数とコストを計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "participants", "label": "参加人数", "default": 5, "step": 1},
+    {"id": "minutes", "label": "1回の会議時間（分）", "default": 60, "step": 5},
+    {"id": "meetingsPerMonth", "label": "月間の開催回数", "default": 4, "step": 1},
+    {"id": "hourlyRate", "label": "1人あたりの時間単価（円）", "default": 3000, "step": 100}
+  ],
+  "results": [
+    {"id": "monthly-hours", "label": "月間の会議工数", "unit": "時間", "formula": "participants * minutes / 60 * meetingsPerMonth"},
+    {"id": "monthly-cost", "label": "月間の会議コスト", "unit": "円", "formula": "participants * minutes / 60 * meetingsPerMonth * hourlyRate"}
+  ],
+  "explanations": [
+    "会議の回数ではなく、参加者の時間を合計して、見えにくい会議コストを把握します。",
+    "削減だけを目的にせず、意思決定に必要な会議と共有のための会議を分けて見直してください。"
+  ],
+  "faq": [
+    {"q": "会議室代や移動時間も入れられますか？", "a": "現在は参加者の時間コストに絞っています。会議室代や移動時間は別途加算してください。"},
+    {"q": "計算結果は保存されますか？", "a": "いいえ。入力値はブラウザ内で計算し、サーバーへ送信しません。"}
+  ],
+  "related_tools": [
+    {"label": "議事録テンプレート", "url": "/tools/gijiroku-template/", "description": "会議後の決定事項とToDoを整理します。"},
+    {"label": "チーム稼働キャパシティ計算", "url": "/tools/project-capacity-planner/", "description": "会議を含むチームの稼働余力を確認します。"}
+  ],
+  "cta": {"label": "会議業務の改善を相談する", "url": "/diagnosis.html"}
+}

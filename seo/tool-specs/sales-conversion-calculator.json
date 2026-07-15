@@ -1,0 +1,22 @@
+{
+  "keyword": "成約率 計算",
+  "slug": "sales-conversion-calculator",
+  "title": "営業成約率計算機",
+  "description": "商談数と受注数から、営業の成約率と未受注数を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "opportunities", "label": "商談数（件）", "default": 50, "step": 1},
+    {"id": "wins", "label": "受注数（件）", "default": 10, "step": 1}
+  ],
+  "results": [
+    {"id": "conversion-rate", "label": "成約率", "unit": "%", "formula": "wins / opportunities * 100"},
+    {"id": "lost-count", "label": "未受注数", "unit": "件", "formula": "opportunities - wins"}
+  ],
+  "explanations": ["商談から受注に進んだ割合と、まだ受注に至っていない件数を同時に確認します。", "期間や商談ステージの定義を揃えないと比較できないため、営業プロセスの区切りを決めて使ってください。"],
+  "related_tools": [
+    {"label": "営業歩合計算機", "url": "/tools/commission-calculator/", "description": "受注金額から営業歩合の目安を計算します。"},
+    {"label": "見積利益率計算機", "url": "/tools/quote-margin-calculator/", "description": "受注後に残る利益率を確認します。"}
+  ],
+  "cta": {"label": "営業プロセスを相談する", "url": "/diagnosis.html"}
+}

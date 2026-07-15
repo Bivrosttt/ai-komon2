@@ -1,0 +1,28 @@
+{
+  "keyword": "残業代 計算",
+  "slug": "overtime-pay-calculator",
+  "title": "残業代計算機",
+  "description": "基準時給と通常残業・深夜・休日・月60時間超の時間から、残業代の内訳を試算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "baseHourly", "label": "基準時給（円）", "default": 1500, "step": 50},
+    {"id": "regularOvertimeHours", "label": "通常残業時間（時間）", "default": 10, "step": 0.5},
+    {"id": "nightOvertimeHours", "label": "深夜残業時間（時間）", "default": 0, "step": 0.5},
+    {"id": "holidayHours", "label": "法定休日労働時間（時間）", "default": 0, "step": 0.5},
+    {"id": "over60Hours", "label": "月60時間超の残業時間（時間）", "default": 0, "step": 0.5}
+  ],
+  "results": [
+    {"id": "regular-pay", "label": "通常残業代の目安", "unit": "円", "formula": "baseHourly * regularOvertimeHours * 1.25"},
+    {"id": "night-pay", "label": "深夜残業代の目安", "unit": "円", "formula": "baseHourly * nightOvertimeHours * 1.5"},
+    {"id": "holiday-pay", "label": "休日労働代の目安", "unit": "円", "formula": "baseHourly * holidayHours * 1.35"},
+    {"id": "over60-premium", "label": "60時間超の追加割増目安", "unit": "円", "formula": "baseHourly * over60Hours * 0.25"},
+    {"id": "total-pay", "label": "残業代合計の目安", "unit": "円", "formula": "baseHourly * (regularOvertimeHours * 1.25 + nightOvertimeHours * 1.5 + holidayHours * 1.35 + over60Hours * 0.25)"}
+  ],
+  "explanations": ["通常残業・深夜・法定休日・月60時間超を分けて入力し、残業代の内訳を確認します。", "時間の重複や法定内残業、固定残業代、手当の扱いは勤務先の規程や専門家への確認が必要です。"],
+  "related_tools": [
+    {"label": "1時間の人件費計算機", "url": "/tools/hourly-cost-calculator/", "description": "雇用コストを含めた1時間あたりの費用を確認します。"},
+    {"label": "月額支払計算機", "url": "/tools/monthly-payment-calculator/", "description": "まとまった費用を月額に分けて確認します。"}
+  ],
+  "cta": {"label": "労務業務を相談する", "url": "/diagnosis.html"}
+}

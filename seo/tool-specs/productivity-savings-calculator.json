@@ -1,0 +1,23 @@
+{
+  "keyword": "業務効率化 効果 計算",
+  "slug": "productivity-savings-calculator",
+  "title": "業務効率化効果計算機",
+  "description": "月間作業時間・削減率・時間単価から、効率化による月間と年間の削減額を試算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "monthlyHours", "label": "月間作業時間（時間）", "default": 80, "step": 1},
+    {"id": "reductionRate", "label": "削減率（%）", "default": 20, "step": 1},
+    {"id": "hourlyCost", "label": "1時間あたりのコスト（円）", "default": 3000, "step": 100}
+  ],
+  "results": [
+    {"id": "monthly-savings", "label": "月間削減額", "unit": "円", "formula": "monthlyHours * reductionRate / 100 * hourlyCost"},
+    {"id": "annual-savings", "label": "年間削減額", "unit": "円", "formula": "monthlyHours * reductionRate / 100 * hourlyCost * 12"}
+  ],
+  "explanations": ["作業時間のうち削減できる割合を時間単価に換算し、月間・年間の効果を比較します。", "導入費用、確認作業、品質維持のための時間も含めて、実測値で効果を更新してください。"],
+  "related_tools": [
+    {"label": "AI導入回収期間シミュレーター", "url": "/tools/ai-payback-calculator/", "description": "初期費用を何か月で回収できるかを確認します。"},
+    {"label": "1時間の人件費計算機", "url": "/tools/hourly-cost-calculator/", "description": "削減時間に掛ける時間単価を整理します。"}
+  ],
+  "cta": {"label": "効率化の効果測定を相談する", "url": "/diagnosis.html"}
+}

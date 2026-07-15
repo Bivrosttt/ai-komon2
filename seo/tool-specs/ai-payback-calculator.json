@@ -1,0 +1,32 @@
+{
+  "status": "ready-for-review",
+  "keyword": "AI導入 回収期間 計算",
+  "slug": "ai-payback-calculator",
+  "title": "AI導入回収期間シミュレーター",
+  "description": "削減できる作業時間・人件費・削減率・導入費用から、AI導入費用の回収期間を試算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "manualHours", "label": "毎月の対象作業時間（時間）", "default": 40, "step": 1},
+    {"id": "hourlyRate", "label": "1時間あたりの人件費（円）", "default": 3000, "step": 100},
+    {"id": "reductionRate", "label": "削減できそうな割合（%）", "default": 30, "step": 5},
+    {"id": "setupCost", "label": "導入費用の想定（円）", "default": 300000, "step": 10000}
+  ],
+  "results": [
+    {"id": "monthly-savings", "label": "月間削減額の目安", "unit": "円", "formula": "manualHours * hourlyRate * reductionRate / 100"},
+    {"id": "payback-months", "label": "回収期間の目安", "unit": "か月", "formula": "setupCost / (manualHours * hourlyRate * reductionRate / 100)"}
+  ],
+  "explanations": [
+    "AI導入の議論を機能の多さではなく、削減できる作業時間と導入費用の関係から始めます。",
+    "試算値は仮説です。導入後は実際の作業時間、確認工数、利用定着率を記録して更新してください。"
+  ],
+  "faq": [
+    {"q": "削減率は何％で入力すればよいですか？", "a": "20％、30％、50％など複数のケースを試し、導入後の実測値で更新してください。"},
+    {"q": "回収期間が短ければ導入すべきですか？", "a": "回収期間だけで決めず、品質、リスク、現場の確認負担も合わせて判断してください。"}
+  ],
+  "related_tools": [
+    {"label": "AI導入リスク・社内ルール診断", "url": "/tools/ai-risk-check/", "description": "導入前に情報管理と運用体制を確認します。"},
+    {"label": "営業・見積もり工数シミュレーター", "url": "/tools/sales-estimate-roi/", "description": "見積業務に絞って工数と費用を試算します。"}
+  ],
+  "cta": {"label": "AI導入テーマを相談する", "url": "/diagnosis.html"}
+}

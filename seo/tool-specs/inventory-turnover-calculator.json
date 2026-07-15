@@ -1,0 +1,19 @@
+{
+  "keyword": "在庫回転率 計算",
+  "slug": "inventory-turnover-calculator",
+  "title": "在庫回転率計算機",
+  "description": "売上原価と平均在庫金額から、在庫が何回転しているかを計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "costOfGoodsSold", "label": "売上原価（円）", "default": 12000000, "step": 100000},
+    {"id": "averageInventory", "label": "平均在庫金額（円）", "default": 3000000, "step": 100000}
+  ],
+  "result": {"label": "在庫回転率", "unit": "回", "formula": "costOfGoodsSold / averageInventory"},
+  "explanations": ["一定期間の売上原価を平均在庫金額で割り、在庫が期間内に何回入れ替わったかを確認します。", "月次・年次など対象期間を揃え、欠品や滞留在庫の金額も合わせて管理してください。"],
+  "related_tools": [
+    {"label": "単価計算機", "url": "/tools/unit-price-calculator/", "description": "合計金額と数量から単価を確認します。"},
+    {"label": "粗利率計算機", "url": "/tools/gross-margin-calculator/", "description": "売上と原価から粗利率を確認します。"}
+  ],
+  "cta": {"label": "在庫業務を相談する", "url": "/diagnosis.html"}
+}
