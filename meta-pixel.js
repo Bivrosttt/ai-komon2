@@ -35,9 +35,7 @@
       if (value) {
         try { sessionStorage.setItem('ak_' + key, value); } catch (e) {}
       }
-      try {
-        value = value || sessionStorage.getItem('ak_' + key);
-      } catch (e) {}
+      try { value = value || sessionStorage.getItem('ak_' + key); } catch (e) {}
       if (value) result[key] = value;
     });
     return result;
@@ -50,15 +48,11 @@
   }
 
   window.aiKomonTrack = function (eventName, params) {
-    if (typeof window.fbq === 'function') {
-      window.fbq('track', eventName, eventParams(params));
-    }
+    if (typeof window.fbq === 'function') window.fbq('track', eventName, eventParams(params));
   };
 
   window.aiKomonTrackCustom = function (eventName, params) {
-    if (typeof window.fbq === 'function') {
-      window.fbq('trackCustom', eventName, eventParams(params));
-    }
+    if (typeof window.fbq === 'function') window.fbq('trackCustom', eventName, eventParams(params));
   };
 
   window.fbq('track', 'ViewContent', eventParams({
@@ -69,15 +63,12 @@
   document.addEventListener('click', function (event) {
     var target = event.target.closest ? event.target.closest('a,button') : null;
     if (!target) return;
-
     var href = target.getAttribute('href') || '';
     var text = (target.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100);
-
     if (href.indexOf('timerex.net') !== -1) {
       window.aiKomonTrack('Schedule', { content_name: window.location.pathname });
       return;
     }
-
     if (href.indexOf('#contact') !== -1 || href.indexOf('index.html') !== -1 ||
         /無料相談|相談する|予約する|申し込む|診断/.test(text)) {
       window.aiKomonTrackCustom('CTA_Click', {

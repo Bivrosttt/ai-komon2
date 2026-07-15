@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メニュー表AI 体験デモ｜AI顧問室</title>
+<meta name="description" content="手書きのメニューを選ぶと、AIが写真つき4ヶ国語メニューに変換する様子を体験できるデモです。インバウンド客への対応に悩む飲食店向け。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="メニュー表AI 体験デモ｜AI顧問室">
+<meta property="og:description" content="手書きのメニューを選ぶと、AIが写真つき4ヶ国語メニューに変換する様子を体験できるデモです。インバウンド客への対応に悩む飲食店向け。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/demo-menu.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    --red: #B0432F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; gap: 16px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; white-space: nowrap; }
+  .header-right a.textlink:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s, transform .1s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+  .header-cta { padding: 10px 24px; font-size: 14px; white-space: nowrap; }
+
+  /* Title / hero */
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 80px 0 64px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    color: #DCE6F5;
+  }
+  .demo-hero h1 { font-size: 38px; margin-bottom: 20px; }
+  .demo-hero h1 em { font-style: normal; color: var(--gold); }
+  .demo-hero p.sub { font-size: 16px; color: #C7D3E4; max-width: 660px; }
+
+  /* Note banner */
+  .note-banner { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding-top: 18px; padding-bottom: 18px; }
+  .note-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--white);
+    border-radius: 4px; padding: 14px 20px; font-size: 13.5px; color: var(--gray);
+    max-width: 900px;
+  }
+  .note-box .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .note-box strong { color: var(--ink); }
+
+  /* Demo section */
+  .demo-section { background: var(--white); }
+  #demo { scroll-margin-top: 84px; }
+  .demo-step-label {
+    font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 10px;
+  }
+  .demo-question {
+    font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy); margin-bottom: 32px;
+  }
+
+  /* Handwritten menu mock */
+  .menu-mock-wrap { display: flex; justify-content: center; margin: 8px 0 30px; }
+  .menu-mock {
+    position: relative;
+    width: 100%; max-width: 420px;
+    background: #FBF4DE;
+    background-image: radial-gradient(rgba(20,20,10,0.035) 1px, transparent 1px);
+    background-size: 7px 7px;
+    padding: 46px 30px 34px;
+    transform: rotate(-1.4deg);
+    box-shadow: 0 22px 46px rgba(11,36,71,0.20), 0 3px 10px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  .menu-mock::before, .menu-mock::after {
+    content: ""; position: absolute; top: -13px; width: 64px; height: 24px;
+    background: rgba(201,162,39,0.4); border: 1px solid rgba(201,162,39,0.55);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+  }
+  .menu-mock::before { left: 24px; transform: rotate(-9deg); }
+  .menu-mock::after { right: 24px; transform: rotate(8deg); }
+  .menu-mock-shopname {
+    text-align: center; font-family: 'Noto Serif JP', serif; font-size: 25px;
+    color: #242F42; letter-spacing: 0.14em; margin-bottom: 3px; transform: rotate(-0.8deg);
+  }
+  .menu-mock-sub {
+    text-align: center; font-size: 11px; color: #6B7789; letter-spacing: 0.28em;
+    margin-bottom: 26px; transform: rotate(0.4deg);
+  }
+  .menu-mock-list { display: flex; flex-direction: column; gap: 15px; }
+  .menu-mock-item {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px dashed rgba(36,47,66,0.3); padding-bottom: 8px;
+    font-family: 'Noto Serif JP', serif; font-size: 16.5px; color: #242F42;
+  }
+  .menu-mock-item .name { padding-right: 10px; }
+  .menu-mock-item .price { font-weight: 700; white-space: nowrap; position: relative; }
+  .menu-mock-item .price.circled { padding: 2px 8px; }
+  .menu-mock-item .price.circled::before {
+    content: ""; position: absolute; inset: -5px -6px; border: 2px solid var(--red);
+    border-radius: 50%; transform: rotate(-5deg);
+  }
+  .menu-mock-foot { text-align: center; font-size: 10.5px; color: #8b95a3; margin-top: 22px; letter-spacing: 0.1em; transform: rotate(-0.5deg); }
+  .convert-btn-row { text-align: center; margin-bottom: 8px; }
+  #convertBtn { font-size: 16px; padding: 16px 36px; }
+  #convertBtn:disabled { opacity: 0.5; cursor: default; }
+
+  /* Loading */
+  .loading-box {
+    border: 1px dashed var(--line); border-radius: 6px; padding: 48px 24px;
+    text-align: center; color: var(--gray); font-size: 15px; background: var(--white);
+    display: none; margin-top: 36px;
+  }
+  .loading-box.show { display: block; }
+  .dots { display: inline-flex; gap: 6px; margin-left: 8px; vertical-align: middle; }
+  .dots span {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+    animation: bounce 1.1s infinite ease-in-out;
+  }
+  .dots span:nth-child(2) { animation-delay: .15s; }
+  .dots span:nth-child(3) { animation-delay: .3s; }
+  @keyframes bounce { 0%, 80%, 100% { opacity: .25; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1.1); } }
+
+  /* Output */
+  .demo-output { display: none; margin-top: 40px; scroll-margin-top: 84px; }
+  .demo-output.active { display: block; animation: fadein .3s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .lang-tabs { display: flex; gap: 8px; margin-bottom: 26px; flex-wrap: wrap; }
+  .lang-tab {
+    padding: 9px 22px; border-radius: 999px; border: 1.5px solid var(--line);
+    background: var(--white); font-size: 13.5px; font-weight: 700; color: var(--gray);
+    cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: all .15s;
+  }
+  .lang-tab.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+  .lang-tab:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
+
+  .output-grid { display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start; }
+  .dish-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
+
+  .dish-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+    box-shadow: 0 6px 18px rgba(11,36,71,0.06);
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .4s ease, transform .4s ease, box-shadow .15s, transform .15s;
+  }
+  .dish-card.show { opacity: 1; transform: translateY(0); }
+  .dish-card:hover { box-shadow: 0 14px 30px rgba(11,36,71,0.12); }
+  .dish-photo { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--bg-soft); }
+  .dish-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .dish-badge {
+    position: absolute; top: 10px; left: 10px; background: var(--gold); color: var(--navy-deep);
+    font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 999px; letter-spacing: 0.02em;
+  }
+  .dish-body { padding: 16px 18px 18px; }
+  .dish-top-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+  .dish-name { font-family: 'Noto Serif JP', serif; font-size: 16px; color: var(--navy); line-height: 1.4; }
+  .dish-price { font-size: 15px; font-weight: 700; color: var(--navy); white-space: nowrap; }
+  .dish-desc { font-size: 13px; color: var(--gray); line-height: 1.75; margin-bottom: 12px; min-height: 2.6em; }
+  .dish-allergens { display: flex; gap: 6px; flex-wrap: wrap; }
+  .allergen-chip {
+    font-size: 11px; color: #96790F; background: #FBF1DA; border: 1px solid rgba(201,162,39,0.4);
+    padding: 2px 9px; border-radius: 999px; font-weight: 500;
+  }
+  .badge-caption { font-size: 12px; color: var(--gray); margin-top: 18px; }
+
+  /* Info / AI panel */
+  .info-panel {
+    border: 1px solid var(--line); border-radius: 8px; background: var(--bg-soft);
+    padding: 24px; opacity: 0; transform: translateY(8px); transition: opacity .4s ease, transform .4s ease;
+  }
+  .info-panel.show { opacity: 1; transform: translateY(0); }
+  .info-panel h4 {
+    font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy);
+    letter-spacing: 0.05em; margin-bottom: 18px; display: flex; align-items: center; gap: 6px;
+  }
+  .info-panel h4::before { content: "◆"; color: var(--gold); font-size: 11px; }
+  .ai-did-list { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-direction: column; gap: 11px; }
+  .ai-did-list li { font-size: 13px; color: var(--ink); line-height: 1.65; padding-left: 20px; position: relative; }
+  .ai-did-list li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .ai-note-gold {
+    display: flex; gap: 8px; border-left: 3px solid var(--gold); background: #FBF1DA;
+    border-radius: 4px; padding: 13px 14px; font-size: 12.5px; color: #6B5A12; line-height: 1.65;
+  }
+  .ai-note-gold .mark { color: var(--gold); font-weight: 700; flex-shrink: 0; }
+  .ai-note-gold strong { color: #4A3D0C; }
+
+  .supplement-note {
+    margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line);
+    text-align: center; font-size: 13.5px; color: var(--gray);
+  }
+  .supplement-note strong { color: var(--navy); }
+
+  .reselect-row { text-align: center; margin-top: 32px; }
+  .reselect-row button { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; background: none; border: none; font-family: inherit; padding: 12px 16px; }
+  .reselect-row button:hover { color: var(--navy); }
+
+  @media (max-width: 900px) {
+    .output-grid { grid-template-columns: 1fr; }
+  }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .demo-hero h1 { font-size: 26px; }
+    .section-title { font-size: 26px; }
+    .demo-hero { padding: 56px 0 44px; }
+    .header-right a.textlink { display: none; }
+    .menu-mock-shopname { font-size: 21px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-right">
+      <a href="demos.html" class="textlink">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談を予約</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">体験デモ｜メニュー表AI</span>
+    <h1>手書きのメニューが、<br><em>写真つき4ヶ国語メニュー</em>に変わる。</h1>
+    <p class="sub">インバウンド客が増えているのに「英語メニューがない」「写真がなくて外国人のお客様が注文できない」——。そんな飲食店のお悩みを、AIが手書きの品書きを読み取り、写真つきの多言語メニューに変換することで解決します。実際の画面イメージをこのまま体験できます。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container">
+    <div class="note-box">
+      <span class="mark">※</span>
+      <span><strong>このページはサンプルデータによる体験デモです。</strong>実際は御社のメニューを読み取り、写真は実際の料理を撮影したものを使用します（本デモの写真はAI生成のイメージです）。</span>
+    </div>
+  </div>
+</div>
+
+<section class="demo-section" id="demo">
+  <div class="container">
+    <span class="section-label">TRY IT</span>
+    <div class="demo-step-label">STEP 1</div>
+    <h2 class="demo-question">こちらの手書きメニューをAIで変換してみましょう</h2>
+
+    <div class="menu-mock-wrap">
+      <div class="menu-mock">
+        <div class="menu-mock-shopname">炭火居酒屋 灯り</div>
+        <div class="menu-mock-sub">H O N J I T S U　N O　O S U S U M E</div>
+        <div class="menu-mock-list">
+          <div class="menu-mock-item" style="transform:rotate(-0.6deg)">
+            <span class="name">若鶏の唐揚げ</span>
+            <span class="price circled">580円</span>
+          </div>
+          <div class="menu-mock-item" style="transform:rotate(0.5deg)">
+            <span class="name">お刺身盛り合わせ</span>
+            <span class="price">1,280円</span>
+          </div>
+          <div class="menu-mock-item" style="transform:rotate(-0.3deg)">
+            <span class="name">焼き鳥（タレ）3本</span>
+            <span class="price">450円</span>
+          </div>
+          <div class="menu-mock-item" style="transform:rotate(0.6deg)">
+            <span class="name">ポテトサラダ</span>
+            <span class="price">380円</span>
+          </div>
+          <div class="menu-mock-item" style="transform:rotate(-0.5deg)">
+            <span class="name">生ビール（中）</span>
+            <span class="price">490円</span>
+          </div>
+          <div class="menu-mock-item" style="transform:rotate(0.4deg)">
+            <span class="name">焼きおにぎり</span>
+            <span class="price">300円</span>
+          </div>
+        </div>
+        <div class="menu-mock-foot">※お品書きはサンプルです</div>
+      </div>
+    </div>
+
+    <div class="convert-btn-row">
+      <button type="button" id="convertBtn" class="btn btn-gold">このメニューをAIで変換する →</button>
+    </div>
+
+    <div class="loading-box" id="loadingBox">
+      AIがメニューを読み取っています<span class="dots"><span></span><span></span><span></span></span>
+    </div>
+
+    <div class="demo-output" id="demoOutput">
+      <div class="demo-step-label" style="margin-top:8px;">STEP 2</div>
+      <h2 class="demo-question" id="resultTitle" style="font-size:20px;">写真つき4ヶ国語メニューが完成しました</h2>
+
+      <div class="lang-tabs" id="langTabs">
+        <button type="button" class="lang-tab active" data-lang="ja">日本語</button>
+        <button type="button" class="lang-tab" data-lang="en">English</button>
+        <button type="button" class="lang-tab" data-lang="zh">中文(简体)</button>
+        <button type="button" class="lang-tab" data-lang="ko">한국어</button>
+      </div>
+
+      <div class="output-grid" id="outputArea">
+        <div>
+          <div class="dish-grid" id="dishGrid"></div>
+          <p class="badge-caption">※「人気No.1」などのバッジは店舗様の設定に応じて表示できる一例です。実際の集計データではありません。</p>
+        </div>
+        <div class="info-panel" id="aiPanel">
+          <h4>AIがやったこと</h4>
+          <ul class="ai-did-list">
+            <li>手書き文字の読み取り（OCR）</li>
+            <li>品目・価格の構造化（6品目を自動抽出）</li>
+            <li>日本語・英語・中国語（簡体）・韓国語への翻訳</li>
+            <li>原材料からのアレルゲン推定</li>
+            <li>料理写真の自動マッチング</li>
+          </ul>
+          <div class="ai-note-gold">
+            <span class="mark">※</span>
+            <span><strong>アレルゲン表示は原材料からのAI推定です。</strong>店舗が必ず内容を確認・修正したうえで掲載します。</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="supplement-note">
+        このメニューは<strong>印刷用のA4組版</strong>や、<strong>QRコードで読み取るスマホ用メニュー</strong>にも展開できます。
+      </div>
+
+      <div class="reselect-row">
+        <button type="button" id="resetLink">はじめからやり直す</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社のメニューで試したい方へ</h2>
+    <p>「うちの店でもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、御社のメニューや外国人のお客様対応の現状をお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">1分でレベル診断を受ける</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var DISHES = [
+    {
+      key: "karaage", img: "assets/menu-dishes/karaage.jpg", price: 580,
+      allergens: ["wheat"], badge: true,
+      name: { ja: "若鶏の唐揚げ", en: 'Japanese Fried Chicken "Karaage"', zh: "日式炸鸡（唐扬）", ko: "가라아게 (일본식 닭튀김)" },
+      desc: {
+        ja: "国産若鶏を特製だれに漬け込み、外はカリッと中はジューシーに揚げました。",
+        en: "Bite-sized chicken marinated in a house blend of soy, ginger and garlic, fried until crisp outside and juicy inside.",
+        zh: "选用国产嫩鸡腌制入味后油炸，外酥里嫩，是居酒屋里的经典下酒菜。",
+        ko: "국내산 영계를 특제 양념에 재운 뒤 튀겨낸 요리로, 겉은 바삭하고 속은 촉촉합니다."
+      }
+    },
+    {
+      key: "sashimi", img: "assets/menu-dishes/sashimi.jpg", price: 1280,
+      allergens: ["shrimp"], badge: false,
+      name: { ja: "お刺身盛り合わせ", en: "Assorted Fresh Sashimi", zh: "什锦生鱼片拼盘", ko: "모둠 사시미" },
+      desc: {
+        ja: "その日仕入れた旬の魚を、職人が丁寧に切り分けた盛り合わせです。",
+        en: "A chef's selection of the day's freshest seasonal fish, carefully sliced and beautifully arranged.",
+        zh: "精选当日进货的时令鲜鱼，由师傅细心切配而成的拼盘。",
+        ko: "그날 들여온 제철 생선을 셰프가 정성껏 손질해 담아낸 모둠회입니다."
+      }
+    },
+    {
+      key: "yakitori", img: "assets/menu-dishes/yakitori.jpg", price: 450,
+      allergens: ["wheat"], badge: false,
+      name: { ja: "焼き鳥（タレ）3本", en: "Grilled Chicken Skewers (Sweet Soy Glaze), 3 pcs", zh: "炭烤鸡肉串（酱汁）3串", ko: "숯불 야키토리 (양념) 3꼬치" },
+      desc: {
+        ja: "炭火でじっくり焼き上げ、甘辛い自家製タレをからめた定番の一品。",
+        en: "Charcoal-grilled chicken skewers brushed with a sweet-savory house sauce — a classic izakaya favorite.",
+        zh: "用炭火慢慢烤制，刷上自制甜咸酱汁的经典烤鸡肉串。",
+        ko: "숯불로 정성껏 구운 뒤 달콤짭짤한 특제 양념을 발라낸 이자카야 인기 메뉴입니다."
+      }
+    },
+    {
+      key: "potatosalad", img: "assets/menu-dishes/potatosalad.jpg", price: 380,
+      allergens: ["egg"], badge: false,
+      name: { ja: "ポテトサラダ", en: "Japanese-style Potato Salad", zh: "日式土豆沙拉", ko: "일본식 감자샐러드" },
+      desc: {
+        ja: "ホクホクのじゃがいもに、きゅうりとハムを合わせたやさしい味わいの一品。",
+        en: "Creamy mashed potatoes mixed with cucumber and ham — a comforting, mildly sweet side dish.",
+        zh: "绵密的土豆泥搭配黄瓜与火腿，口感温和的家常小菜。",
+        ko: "포슬포슬한 감자에 오이와 햄을 더한 부드러운 맛의 곁들임 요리입니다."
+      }
+    },
+    {
+      key: "beer", img: "assets/menu-dishes/beer.jpg", price: 490,
+      allergens: [], badge: false,
+      name: { ja: "生ビール（中）", en: "Draft Beer (Medium)", zh: "生啤酒（中杯）", ko: "생맥주 (미디엄)" },
+      desc: {
+        ja: "キリッと冷えた生ビールを、程よい泡立ちで一杯ずつ丁寧に注ぎます。",
+        en: "A perfectly poured, ice-cold draft beer with a smooth, creamy head — the classic first drink.",
+        zh: "冰凉爽口的生啤酒，每一杯都精心倒出恰到好处的泡沫。",
+        ko: "시원하게 잘 냉각된 생맥주를 적당한 거품과 함께 정성스럽게 따라드립니다."
+      }
+    },
+    {
+      key: "onigiri", img: "assets/menu-dishes/onigiri.jpg", price: 300,
+      allergens: ["wheat"], badge: false,
+      name: { ja: "焼きおにぎり", en: "Grilled Rice Ball (Yaki Onigiri)", zh: "炭烤饭团", ko: "야키오니기리 (구운 주먹밥)" },
+      desc: {
+        ja: "香ばしい醤油を塗って炭火で焼き上げた、〆にもぴったりの一品。",
+        en: "A rice ball brushed with savory soy sauce and grilled over charcoal until fragrant — a perfect way to finish the meal.",
+        zh: "涂上香浓酱油、以炭火烤至焦香的饭团，是收尾的绝佳选择。",
+        ko: "짭짤한 간장을 발라 숯불에 노릇하게 구운 주먹밥으로, 마무리 메뉴로 제격입니다."
+      }
+    }
+  ];
+
+  var BADGE_LABEL = { ja: "人気No.1", en: "Best Seller", zh: "人气No.1", ko: "인기 No.1" };
+  var ALLERGEN_LABEL = {
+    ja: { wheat: "小麦", egg: "卵", milk: "乳", shrimp: "えび" },
+    en: { wheat: "Wheat", egg: "Egg", milk: "Dairy", shrimp: "Shrimp" },
+    zh: { wheat: "小麦", egg: "鸡蛋", milk: "乳制品", shrimp: "虾" },
+    ko: { wheat: "밀", egg: "계란", milk: "우유", shrimp: "새우" }
+  };
+
+  var convertBtn = document.getElementById("convertBtn");
+  var loadingBox = document.getElementById("loadingBox");
+  var demoOutput = document.getElementById("demoOutput");
+  var dishGrid = document.getElementById("dishGrid");
+  var langTabs = document.getElementById("langTabs");
+  var outputArea = document.getElementById("outputArea");
+  var aiPanel = document.getElementById("aiPanel");
+  var resetLink = document.getElementById("resetLink");
+  var demoSection = document.getElementById("demo");
+
+  var currentLang = "ja";
+  var revealTimers = [];
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function renderCards(lang) {
+    dishGrid.innerHTML = DISHES.map(function (d) {
+      var badge = d.badge ? '<span class="dish-badge">' + BADGE_LABEL[lang] + '</span>' : "";
+      var chips = d.allergens.map(function (a) {
+        return '<span class="allergen-chip">' + ALLERGEN_LABEL[lang][a] + '</span>';
+      }).join("");
+      return (
+        '<div class="dish-card">' +
+          '<div class="dish-photo"><img src="' + d.img + '" alt="' + escapeHtml(d.name[lang]) + '" loading="lazy">' + badge + '</div>' +
+          '<div class="dish-body">' +
+            '<div class="dish-top-row"><h3 class="dish-name">' + escapeHtml(d.name[lang]) + '</h3><span class="dish-price">¥' + d.price.toLocaleString() + '</span></div>' +
+            '<p class="dish-desc">' + escapeHtml(d.desc[lang]) + '</p>' +
+            (chips ? '<div class="dish-allergens">' + chips + '</div>' : "") +
+          '</div>' +
+        '</div>'
+      );
+    }).join("");
+  }
+
+  function clearRevealTimers() {
+    revealTimers.forEach(function (t) { clearTimeout(t); });
+    revealTimers = [];
+  }
+
+  function revealAllNow() {
+    clearRevealTimers();
+    var cards = dishGrid.querySelectorAll(".dish-card");
+    for (var i = 0; i < cards.length; i++) cards[i].classList.add("show");
+  }
+
+  function revealStaggered() {
+    clearRevealTimers();
+    var cards = dishGrid.querySelectorAll(".dish-card");
+    cards.forEach(function (card, i) {
+      var t = setTimeout(function () {
+        card.classList.add("show");
+      }, i * 130);
+      revealTimers.push(t);
+    });
+  }
+
+  function setActiveTab(lang) {
+    var tabs = langTabs.querySelectorAll(".lang-tab");
+    for (var i = 0; i < tabs.length; i++) {
+      tabs[i].classList.toggle("active", tabs[i].getAttribute("data-lang") === lang);
+    }
+  }
+
+  function switchLang(lang) {
+    currentLang = lang;
+    setActiveTab(lang);
+    renderCards(lang);
+    // 既に表示済みの状態なので、タブ切り替え時はストップモーションなしで即フェード
+    requestAnimationFrame(function () {
+      requestAnimationFrame(revealAllNow);
+    });
+  }
+
+  function startConversion() {
+    convertBtn.disabled = true;
+    loadingBox.classList.add("show");
+    demoOutput.classList.remove("active");
+    aiPanel.classList.remove("show");
+
+    setTimeout(function () {
+      loadingBox.classList.remove("show");
+      currentLang = "ja";
+      setActiveTab("ja");
+      renderCards("ja");
+      demoOutput.classList.add("active");
+      revealStaggered();
+      setTimeout(function () { aiPanel.classList.add("show"); }, 200);
+      demoOutput.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 1500);
+  }
+
+  convertBtn.addEventListener("click", startConversion);
+
+  outputArea.addEventListener("click", function () {
+    // 出力フェードインの演出中にクリックしたら即時にすべて表示する
+    revealAllNow();
+  });
+
+  langTabs.addEventListener("click", function (e) {
+    var tab = e.target.closest(".lang-tab");
+    if (!tab) return;
+    switchLang(tab.getAttribute("data-lang"));
+  });
+
+  resetLink.addEventListener("click", function () {
+    clearRevealTimers();
+    demoOutput.classList.remove("active");
+    aiPanel.classList.remove("show");
+    convertBtn.disabled = false;
+    demoSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+})();
+</script>
+
+</body>
+</html>

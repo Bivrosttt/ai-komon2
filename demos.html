@@ -71,6 +71,33 @@
   .demo-card.soon { opacity: .65; }
   .demo-card.soon .m-badge { background: #8A97A8; }
 
+  /* まず、この3本 */
+  .featured { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); border-radius: 10px; padding: 36px 34px 26px; margin-bottom: 44px; color: #fff; }
+  .featured .f-label { font-size: 12px; letter-spacing: .18em; color: var(--gold); font-weight: 700; }
+  .featured h2 { font-family: 'Noto Serif JP', serif; font-size: 24px; margin: 8px 0 6px; }
+  .featured .f-lead { font-size: 13.5px; color: #C7D3E4; margin-bottom: 22px; }
+  .f-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-bottom: 20px; }
+  .f-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.18); border-radius: 8px; padding: 20px 20px 16px; transition: border-color .2s, background .2s; display: block; }
+  .f-card:hover { border-color: var(--gold); background: rgba(255,255,255,.11); }
+  .f-step { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: .08em; }
+  .f-card h3 { font-family: 'Noto Serif JP', serif; font-size: 18px; margin: 6px 0 8px; color: #fff; }
+  .f-card p { font-size: 12.5px; color: #C7D3E4; line-height: 1.8; }
+  .f-card .f-go { display: inline-block; margin-top: 12px; font-size: 12.5px; font-weight: 700; color: var(--gold); }
+  .f-cta { font-size: 13.5px; color: #C7D3E4; border-top: 1px solid rgba(255,255,255,.15); padding-top: 16px; }
+  .f-cta a { color: var(--gold); font-weight: 700; border-bottom: 1px solid var(--gold); padding-bottom: 1px; }
+  @media (max-width: 640px) { .featured { padding: 28px 22px 22px; } }
+
+  /* 業種フィルタ */
+  .filter-wrap { margin-bottom: 34px; }
+  .filter-label { font-size: 12px; font-weight: 700; color: var(--gray); letter-spacing: .08em; margin-bottom: 10px; }
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; }
+  .f-chip { border: 1.5px solid var(--line); background: #fff; color: var(--ink); border-radius: 999px; padding: 7px 16px; font-size: 12.5px; font-weight: 700; cursor: pointer; font-family: inherit; transition: border-color .15s, background .15s, color .15s; }
+  .f-chip:hover { border-color: var(--navy); }
+  .f-chip.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .f-chip .cnt { font-weight: 400; opacity: .7; font-size: 11px; margin-left: 3px; }
+  .demo-card.f-hidden { display: none; }
+  .shelf-hidden { display: none !important; }
+
   .howto { background: var(--bg-soft); }
   .howto-inner { max-width: 720px; }
   .howto h2 { font-size: 24px; color: var(--navy); margin-bottom: 14px; }
@@ -89,6 +116,9 @@
     .hero h1 { font-size: 27px; }
   }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
 </head>
 <body>
 
@@ -120,6 +150,47 @@
 <section>
   <div class="container">
 
+    <div class="featured">
+      <span class="f-label">FIRST 3</span>
+      <h2>初めての方は、まずこの3本</h2>
+      <p class="f-lead">「道具として使う」から「部門ごと任せる」まで——AI活用の伸びしろが、この並びで3分でわかります。</p>
+      <div class="f-grid">
+        <a class="f-card" href="demo-receipt.html">
+          <span class="f-step">STEP 1｜まず道具</span>
+          <h3>レシート仕訳AI</h3>
+          <p>レシート3枚が、その場で仕訳帳とCSVに。「紙が数字になる」を最初に体感してください。</p>
+          <span class="f-go">▶ 体験する</span>
+        </a>
+        <a class="f-card" href="demo-keiri.html">
+          <span class="f-step">STEP 2｜部門ごと任せる</span>
+          <h3>AI経理部</h3>
+          <p>その仕訳が、支払カレンダー・資金繰り予測まで自動でつながる「最終形」のリプレイ。</p>
+          <span class="f-go">▶ リプレイを再生</span>
+        </a>
+        <a class="f-card" href="demo-cockpit.html">
+          <span class="f-step">STEP 3｜経営に効かせる</span>
+          <h3>AI経営コックピット</h3>
+          <p>整った数字を毎朝1分で。「先月の粗利は？」と聞けば、根拠つきで答えが返ります。</p>
+          <span class="f-go">▶ 体験する</span>
+        </a>
+      </div>
+      <div class="f-cta">31本のどれが御社に効くか迷ったら——<a href="index.html#contact">無料相談で「御社に効く3本」をお選びします →</a></div>
+    </div>
+
+    <div class="filter-wrap">
+      <div class="filter-label">業種・関心で絞り込む</div>
+      <div class="filter-bar" id="filterBar">
+        <button class="f-chip active" data-f="all">すべて</button>
+        <button class="f-chip" data-f="store">店舗・飲食・サービス</button>
+        <button class="f-chip" data-f="kensetsu">建設・不動産</button>
+        <button class="f-chip" data-f="sales">営業・顧客対応</button>
+        <button class="f-chip" data-f="jimu">経理・バックオフィス</button>
+        <button class="f-chip" data-f="saiyo">採用・人事</button>
+        <button class="f-chip" data-f="shukyaku">集客・広報</button>
+        <button class="f-chip" data-f="keiei">経営者向け</button>
+      </div>
+    </div>
+
     <div class="shelf-head first">
       <span class="lvbox">Lv.2</span>
       <h2>まず、AIを道具として使う</h2>
@@ -127,7 +198,7 @@
     </div>
     <div class="demo-grid">
 
-      <a class="demo-card" href="demo-recruit.html">
+      <a class="demo-card" data-ind="saiyo" href="demo-recruit.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
           <img src="assets/thumbs/demo-recruit.jpg" alt="" loading="lazy">
@@ -140,7 +211,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-sns.html">
+      <a class="demo-card" data-ind="shukyaku" href="demo-sns.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
           <img src="assets/thumbs/demo-sns.jpg" alt="" loading="lazy">
@@ -153,7 +224,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-keiyaku.html">
+      <a class="demo-card" data-ind="keiei jimu" href="demo-keiyaku.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
           <img src="assets/thumbs/demo-keiyaku.jpg" alt="" loading="lazy">
@@ -162,6 +233,58 @@
           <div class="cat">経営・契約</div>
           <h3>契約書の要点抽出AI</h3>
           <p>長い契約書が、要点3行+注意箇所のハイライトに。「読まずにハンコ」のリスクを減らす下読みツール。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="store" href="demo-menu.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <img src="assets/thumbs/demo-menu.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">インバウンド・店舗</div>
+          <h3>メニュー表AI</h3>
+          <p>手書きのメニューが、料理写真つきの4ヶ国語メニューに変身。外国人客の「注文できない」を解消する体験。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="store shukyaku" href="demo-kuchikomi.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <img src="assets/thumbs/demo-kuchikomi.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">集客・店舗運営</div>
+          <h3>口コミ分析AI</h3>
+          <p>星の理由をAIが分解し、優先改善TOP3と返信文案まで。低評価の口コミを経営の打ち手に変える体験。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="shukyaku" href="demo-hp-makeover.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <img src="assets/thumbs/demo-hp-makeover.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">Web・集客</div>
+          <h3>ホームページ再生AI</h3>
+          <p>20年前の「あるある」なサイトが、モダンなページに変身。ビフォーアフターをスライダーで見比べられます。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="keiei jimu" href="demo-slides.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <img src="assets/thumbs/demo-slides.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">経営・会議資料</div>
+          <h3>資料スライドAI</h3>
+          <p>売上CSVと走り書きメモが、そのまま会議に出せるスライド5枚に。数字はデータと完全一致で組み上がります。</p>
           <span class="try">▶ デモを試す</span>
         </div>
       </a>
@@ -175,7 +298,7 @@
     </div>
     <div class="demo-grid">
 
-      <a class="demo-card" href="demo-inquiry.html">
+      <a class="demo-card" data-ind="sales" href="demo-inquiry.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
           <img src="assets/thumbs/demo-inquiry.jpg" alt="" loading="lazy">
@@ -188,7 +311,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-quote.html">
+      <a class="demo-card" data-ind="sales" href="demo-quote.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
           <img src="assets/thumbs/demo-quote.jpg" alt="" loading="lazy">
@@ -201,7 +324,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-minutes.html">
+      <a class="demo-card" data-ind="jimu" href="demo-minutes.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
           <img src="assets/thumbs/demo-minutes.jpg" alt="" loading="lazy">
@@ -214,7 +337,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-qa-bot.html">
+      <a class="demo-card" data-ind="jimu" href="demo-qa-bot.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
           <img src="assets/thumbs/demo-qa-bot.jpg" alt="" loading="lazy">
@@ -227,7 +350,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-photo-report.html">
+      <a class="demo-card" data-ind="kensetsu" href="demo-photo-report.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
           <img src="assets/thumbs/demo-photo-report.jpg" alt="" loading="lazy">
@@ -240,7 +363,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-staging.html">
+      <a class="demo-card" data-ind="kensetsu" href="demo-staging.html">
         <div class="demo-visual">
           <span class="m-badge">スライダーで比較</span>
           <img src="assets/thumbs/demo-staging.jpg" alt="" loading="lazy">
@@ -253,7 +376,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-madori.html">
+      <a class="demo-card" data-ind="kensetsu" href="demo-madori.html">
         <div class="demo-visual">
           <span class="m-badge">3Dで回せます</span>
           <img src="assets/thumbs/demo-madori.jpg" alt="" loading="lazy">
@@ -262,6 +385,19 @@
           <div class="cat">不動産・顧客説明</div>
           <h3>間取り図→3D化AI</h3>
           <p>2Dの間取り図が、ぐるぐる回せる3D模型に。俯瞰と内見視点で「広さと動線」がお客様に一瞬で伝わる。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="jimu" href="demo-receipt.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <img src="assets/thumbs/demo-receipt.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">経理・バックオフィス</div>
+          <h3>レシート仕訳AI</h3>
+          <p>レシート3枚が、勘定科目・税区分つきの仕訳帳とCSVに。軽減税率の判定根拠まで見せる経理の体験デモ。</p>
           <span class="try">▶ デモを試す</span>
         </div>
       </a>
@@ -275,7 +411,7 @@
     </div>
     <div class="demo-grid">
 
-      <a class="demo-card" href="demo-report.html">
+      <a class="demo-card" data-ind="jimu kensetsu" href="demo-report.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
           <img src="assets/thumbs/demo-report.jpg" alt="" loading="lazy">
@@ -288,7 +424,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-exec-report.html">
+      <a class="demo-card" data-ind="keiei" href="demo-exec-report.html">
         <div class="demo-visual">
           <span class="m-badge">体験できます</span>
           <img src="assets/thumbs/demo-exec-report.jpg" alt="" loading="lazy">
@@ -301,7 +437,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-line-booking.html">
+      <a class="demo-card" data-ind="store" href="demo-line-booking.html">
         <div class="demo-visual">
           <span class="m-badge">リプレイ再生</span>
           <img src="assets/thumbs/demo-line-booking.jpg" alt="" loading="lazy">
@@ -314,7 +450,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-voice.html">
+      <a class="demo-card" data-ind="store kensetsu" href="demo-voice.html">
         <div class="demo-visual">
           <span class="m-badge">音声を聴けます</span>
           <img src="assets/thumbs/demo-voice.jpg" alt="" loading="lazy">
@@ -327,7 +463,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-sns-auto.html">
+      <a class="demo-card" data-ind="shukyaku store" href="demo-sns-auto.html">
         <div class="demo-visual">
           <span class="m-badge">リプレイ再生</span>
           <img src="assets/thumbs/demo-sns-auto.jpg" alt="" loading="lazy">
@@ -336,6 +472,97 @@
           <div class="cat">集客・広報</div>
           <h3>SNS自動投稿の1週間</h3>
           <p>月曜10分の承認だけで、1週間の投稿がカレンダーを埋めて自動で飛んでいく。発信が「回り続ける」リプレイ。</p>
+          <span class="try">▶ リプレイを再生</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="jimu keiei" href="demo-keiri.html">
+        <div class="demo-visual">
+          <span class="m-badge">リプレイ再生</span>
+          <img src="assets/thumbs/demo-keiri.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">経理・バックオフィス</div>
+          <h3>AI経理部</h3>
+          <p>書類が届くたび、仕訳帳・支払カレンダー・資金繰り予測が同時に埋まっていく「経理の1日」を再生。レシート仕訳AIの最終形。</p>
+          <span class="try">▶ リプレイを再生</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="store" href="demo-store-os.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <img src="assets/thumbs/demo-store-os.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">店舗運営</div>
+          <h3>店舗経営OS</h3>
+          <p>予約・売上・口コミ・SNS・シフトが1つの管理画面に。「朝の5分で店の全部がわかる」統合ダッシュボードの体験。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="shukyaku" href="demo-ad-ab.html">
+        <div class="demo-visual">
+          <span class="m-badge">リプレイ再生</span>
+          <img src="assets/thumbs/demo-ad-ab.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">広告・マーケティング</div>
+          <h3>広告ABテスト自動化</h3>
+          <p>LP2案とバナー4本をAIが量産し、負けた広告を止めて勝者に予算を寄せる1週間。人間が作ったバナーは0本。</p>
+          <span class="try">▶ リプレイを再生</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="sales" href="demo-support.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <img src="assets/thumbs/demo-support.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">顧客対応</div>
+          <h3>AIサポートセンター</h3>
+          <p>お客様が触るチャットと、社内の管理画面が2画面で連動。緊急案件だけは人へ即引き継ぎ——の判定まで見せます。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="saiyo" href="demo-saiyo.html">
+        <div class="demo-visual">
+          <span class="m-badge">リプレイ再生</span>
+          <img src="assets/thumbs/demo-saiyo.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">採用・人手不足対策</div>
+          <h3>AI採用室</h3>
+          <p>夜22時の応募にも即返信、要点整理から面接調整、内定通知まで2週間のリプレイ。合否の判断は、すべて人間。</p>
+          <span class="try">▶ リプレイを再生</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="kensetsu" href="demo-genba-dx.html">
+        <div class="demo-visual">
+          <span class="m-badge">リプレイ再生</span>
+          <img src="assets/thumbs/demo-genba-dx.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">建設・現場</div>
+          <h3>現場DXパック</h3>
+          <p>現場監督の1日。写真と音声メモから報告書・見積変更・発注書が生まれ、監督が書いた文字はゼロ——のリプレイ。</p>
+          <span class="try">▶ リプレイを再生</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="store" href="demo-uketsuke.html">
+        <div class="demo-visual">
+          <span class="m-badge">リプレイ再生</span>
+          <img src="assets/thumbs/demo-uketsuke.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">予約・受付</div>
+          <h3>AI受付総合窓口</h3>
+          <p>電話・LINE・フォームがバラバラに届いても、1つの受付台帳に。ダブルブッキングはAIが検知して代替枠を提案。</p>
           <span class="try">▶ リプレイを再生</span>
         </div>
       </a>
@@ -349,7 +576,7 @@
     </div>
     <div class="demo-grid">
 
-      <a class="demo-card" href="demo-agent-research.html">
+      <a class="demo-card" data-ind="keiei" href="demo-agent-research.html">
         <div class="demo-visual">
           <span class="m-badge">リプレイ再生</span>
           <img src="assets/thumbs/demo-agent-research.jpg" alt="" loading="lazy">
@@ -362,7 +589,7 @@
         </div>
       </a>
 
-      <a class="demo-card" href="demo-ai-team.html">
+      <a class="demo-card" data-ind="keiei sales" href="demo-ai-team.html">
         <div class="demo-visual">
           <span class="m-badge">リプレイ再生</span>
           <img src="assets/thumbs/demo-ai-team.jpg" alt="" loading="lazy">
@@ -372,6 +599,32 @@
           <h3>AI社員チームの協働</h3>
           <p>1件の問い合わせを4人のAI社員がリレー処理。人間の仕事は承認2タップだけ——という未来のリプレイ。</p>
           <span class="try">▶ リプレイを再生</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="sales" href="demo-sales-flow.html">
+        <div class="demo-visual">
+          <span class="m-badge">リプレイ再生</span>
+          <img src="assets/thumbs/demo-sales-flow.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">営業・受発注</div>
+          <h3>AI営業事務部門</h3>
+          <p>1通の問い合わせが、見積→追客→受注→請求書へ。かんばんを自動で流れる3日間、人の作業は承認2クリック。</p>
+          <span class="try">▶ リプレイを再生</span>
+        </div>
+      </a>
+
+      <a class="demo-card" data-ind="keiei" href="demo-cockpit.html">
+        <div class="demo-visual">
+          <span class="m-badge">体験できます</span>
+          <img src="assets/thumbs/demo-cockpit.jpg" alt="" loading="lazy">
+        </div>
+        <div class="demo-body">
+          <div class="cat">経営・戦略</div>
+          <h3>AI経営コックピット</h3>
+          <p>計器盤で会社を毎朝1分。「先月の粗利は？なぜ下がった？」と聞けば、根拠の数字つきで即答するAIチャット。</p>
+          <span class="try">▶ デモを試す</span>
         </div>
       </a>
 
@@ -391,7 +644,7 @@
 <section class="cta" id="contact">
   <div class="container">
     <h2>「うちの業務なら、どうなる？」を聞いてください。</h2>
-    <p>無料相談（60分）で、御社の業務に当てはめた構築イメージをその場でお見せします。</p>
+    <p>無料相談（30分）で、御社の業務に当てはめた構築イメージをその場でお見せします。</p>
     <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 44px;">無料相談を予約する</a>
   </div>
 </section>
@@ -401,6 +654,51 @@
     <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
   </div>
 </footer>
+
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".f-chip"));
+  var cards = Array.prototype.slice.call(document.querySelectorAll("a.demo-card"));
+  var shelves = Array.prototype.slice.call(document.querySelectorAll(".shelf-head"));
+
+  // 件数をチップに表示
+  chips.forEach(function (chip) {
+    var f = chip.getAttribute("data-f");
+    var n = f === "all" ? cards.length : cards.filter(function (c) {
+      return (c.getAttribute("data-ind") || "").split(" ").indexOf(f) !== -1;
+    }).length;
+    var cnt = document.createElement("span");
+    cnt.className = "cnt";
+    cnt.textContent = "(" + n + ")";
+    chip.appendChild(cnt);
+  });
+
+  function apply(f) {
+    cards.forEach(function (c) {
+      var tags = (c.getAttribute("data-ind") || "").split(" ");
+      var show = f === "all" || tags.indexOf(f) !== -1;
+      c.classList.toggle("f-hidden", !show);
+    });
+    // 空になった棚（見出し+グリッド）を隠す
+    shelves.forEach(function (head) {
+      var grid = head.nextElementSibling;
+      while (grid && !grid.classList.contains("demo-grid")) grid = grid.nextElementSibling;
+      if (!grid) return;
+      var visible = grid.querySelectorAll("a.demo-card:not(.f-hidden)").length;
+      head.classList.toggle("shelf-hidden", visible === 0);
+      grid.classList.toggle("shelf-hidden", visible === 0);
+    });
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      chips.forEach(function (c) { c.classList.remove("active"); });
+      chip.classList.add("active");
+      apply(chip.getAttribute("data-f"));
+    });
+  });
+})();
+</script>
 
 </body>
 </html>

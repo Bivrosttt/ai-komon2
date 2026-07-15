@@ -205,33 +205,91 @@
   .dots span:nth-child(3) { animation-delay: .3s; }
   @keyframes bounce { 0%, 80%, 100% { opacity: .25; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1.1); } }
 
-  /* Job listing window */
+  /* Job listing window (fake job-board "シゴトサガス" mockup) */
   .job-window {
+    position: relative;
     border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--white);
     box-shadow: 0 10px 30px rgba(11,36,71,0.08); display: none;
   }
   .job-window.active { display: block; }
-  .job-titlebar {
-    background: var(--navy); color: var(--white); padding: 12px 20px;
-    display: flex; align-items: center; gap: 10px; font-size: 13px;
+
+  .mockup-badge {
+    position: absolute; top: 12px; right: 12px; z-index: 5;
+    background: rgba(7,26,53,0.82); color: #fff; font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.06em; padding: 5px 12px; border-radius: 999px; pointer-events: none;
+    backdrop-filter: blur(2px);
   }
-  .job-titlebar .dot3 { display: flex; gap: 5px; }
-  .job-titlebar .dot3 span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); }
-  .job-titlebar .label { margin-left: auto; color: #C7D3E4; letter-spacing: 0.05em; }
-  .job-head { padding: 24px 24px 20px; border-bottom: 1px solid var(--line); background: linear-gradient(135deg, #FBF6E8, #FFFFFF); }
+
+  /* fake site chrome */
+  .site-chrome { background: var(--navy-deep); padding: 12px 20px; }
+  .site-topbar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .site-logo {
+    font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 16px; color: #fff;
+    display: flex; align-items: baseline; gap: 6px; white-space: nowrap; letter-spacing: 0.02em;
+  }
+  .site-logo i { font-style: normal; font-size: 9px; color: #90A4C4; letter-spacing: 0.1em; font-family: 'Noto Sans JP', sans-serif; }
+  .site-search {
+    flex: 1 1 160px; min-width: 0; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 999px; padding: 7px 14px; display: flex; align-items: center; gap: 8px;
+    color: #C7D3E4; font-size: 12px; overflow: hidden;
+  }
+  .site-search span.txt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .site-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .site-tab {
+    font-size: 11.5px; font-weight: 500; padding: 6px 13px; border-radius: 999px;
+    color: #C7D3E4; white-space: nowrap;
+  }
+  .site-tab.active { background: var(--gold); color: var(--navy-deep); font-weight: 700; }
+
+  .job-head { padding: 22px 24px 20px; border-bottom: 1px solid var(--line); background: linear-gradient(135deg, #FBF6E8, #FFFFFF); }
+  .job-role { font-size: 12.5px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 8px; }
   .job-catch {
     font-family: 'Noto Serif JP', serif; font-size: 19px; color: var(--navy); font-weight: 700;
     line-height: 1.6; min-height: 3.2em;
   }
   .job-catch .cursor { display: inline-block; width: 2px; height: 1em; background: var(--navy); vertical-align: text-bottom; animation: blink 0.9s step-end infinite; margin-left: 1px; }
   @keyframes blink { 50% { opacity: 0; } }
+
+  .job-companyline {
+    margin-top: 12px; font-size: 13.5px; color: var(--gray);
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  }
+  .job-companyline .company { font-weight: 700; color: var(--navy); }
+  .job-companyline .sep { color: var(--line); }
+
+  .salary-band {
+    margin-top: 14px; display: inline-block; background: var(--navy); color: var(--white);
+    font-weight: 700; font-size: 15px; padding: 8px 18px; border-radius: 4px; letter-spacing: 0.02em;
+  }
+
   .job-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
   .job-chip {
     font-size: 12px; font-weight: 700; color: var(--navy); background: var(--white);
     border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px;
   }
+  .autotag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .autotag {
+    font-size: 11.5px; font-weight: 700; color: var(--navy-deep); background: #FBF0D2;
+    border: 1px solid #EAD9A0; border-radius: 999px; padding: 4px 13px 4px 10px;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .autotag::before { content: "✓"; color: var(--gold); font-weight: 700; }
+  .autotag-note { font-size: 10.5px; color: var(--gray); margin-top: 6px; }
+
   .job-body { padding: 24px; opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease; }
   .job-body.show { opacity: 1; transform: translateY(0); }
+
+  .apply-row { margin-top: 30px; padding-top: 24px; border-top: 1px dashed var(--line); text-align: center; }
+  .apply-btn { width: 100%; max-width: 340px; font-size: 15.5px; padding: 17px 20px; }
+  .apply-note { font-size: 11.5px; color: var(--gray); margin-top: 10px; }
+
+  .demo-toast {
+    position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(16px);
+    background: var(--navy-deep); color: #fff; padding: 14px 22px; border-radius: 6px;
+    font-size: 13.5px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); opacity: 0; pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease; z-index: 300; max-width: 90vw; text-align: center;
+  }
+  .demo-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   .job-block { margin-bottom: 26px; }
   .job-block:last-child { margin-bottom: 0; }
   .job-block h4 {
@@ -286,6 +344,14 @@
     .result-grid { grid-template-columns: 1fr; }
   }
 
+  @media (max-width: 480px) {
+    .site-search .txt { display: none; }
+    .job-head { padding: 18px 16px 16px; }
+    .job-body { padding: 18px 16px; }
+    .salary-band { font-size: 13.5px; padding: 7px 14px; }
+    .job-catch { font-size: 17px; }
+  }
+
   /* How it works */
   .how { background: var(--bg-soft); }
   .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
@@ -320,6 +386,9 @@
     .header-right a.textlink { display: none; }
   }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
 </head>
 <body>
 
@@ -397,14 +466,29 @@
       <div class="result-grid" id="resultGrid" style="display:none;">
         <div>
           <div class="job-window" id="jobWindow">
-            <div class="job-titlebar">
-              <span class="dot3"><span></span><span></span><span></span></span>
-              <span>求人票（下書き）</span>
-              <span class="label">AI作成</span>
+            <span class="mockup-badge">掲載イメージ</span>
+            <div class="site-chrome">
+              <div class="site-topbar">
+                <span class="site-logo">シゴトサガス<i>SHIGOTO SAGASU</i></span>
+                <span class="site-search"><span>🔍</span><span class="txt">エリア・職種・キーワードで検索</span></span>
+                <span class="site-tabs">
+                  <span class="site-tab active">求人を探す</span>
+                  <span class="site-tab">会社から探す</span>
+                </span>
+              </div>
             </div>
             <div class="job-head">
+              <div class="job-role" id="jobRole"></div>
               <div class="job-catch" id="jobCatch"></div>
+              <div class="job-companyline">
+                <span class="company" id="jobCompany"></span>
+                <span class="sep">｜</span>
+                <span id="jobLocation"></span>
+              </div>
+              <div class="salary-band" id="salaryBand"></div>
               <div class="job-meta" id="jobMeta"></div>
+              <div class="autotag-row" id="autotagRow"></div>
+              <div class="autotag-note">✓のタグは求人内容からAIが自動生成</div>
             </div>
             <div class="job-body" id="jobBody">
               <div class="job-block">
@@ -423,6 +507,10 @@
                 <h4>会社からのメッセージ</h4>
                 <p class="job-message" id="jobMessage"></p>
               </div>
+              <div class="apply-row">
+                <button type="button" class="btn btn-gold apply-btn" id="applyBtn">この求人に応募する</button>
+                <p class="apply-note">※ デモのため実際の応募はできません</p>
+              </div>
             </div>
           </div>
         </div>
@@ -438,6 +526,8 @@
     </div>
   </div>
 </section>
+
+<div class="demo-toast" id="demoToast">デモのため応募はできません</div>
 
 <section class="how" id="how">
   <div class="container">
@@ -488,12 +578,15 @@
   var CASES = {
     plumbing: {
       tagLabel: "CASE 01｜配管工事 施工管理",
+      role: "施工管理",
       company: "サンプル設備工業",
       industry: "配管工事業",
       employees: "18名",
+      location: "東京都大田区（現場は都内近郊が中心）",
       strength: "大手の下請けではなく元請け中心の受注／資格取得支援制度あり",
       weakness: "知名度がなく、社名を知っている人はほとんどいない",
       employment: "正社員",
+      tags: ["未経験歓迎（業種未経験可）", "資格支援あり", "直行直帰OK"],
       catch: "「下請けだから」で終わらせない。元請け中心だから、あなたの仕事がお客様に直接届く。",
       flow: [
         { t: "8:30", d: "出社・朝礼。当日の現場スケジュールを確認" },
@@ -524,12 +617,15 @@
     },
     food: {
       tagLabel: "CASE 02｜食品卸 営業事務",
+      role: "営業事務",
       company: "見本フーズ",
       industry: "食品卸売業",
       employees: "35名",
+      location: "埼玉県川口市（本社オフィス勤務）",
       strength: "残業月10時間以下／駅から徒歩5分",
       weakness: "給与は業界の平均的な水準",
       employment: "正社員",
+      tags: ["未経験歓迎", "残業月10h以下", "駅徒歩5分"],
       catch: "駅から歩いてすぐ、残業はほとんどなし。無理なく長く続けられる営業事務の仕事。",
       flow: [
         { t: "9:00", d: "出社・メールチェック、当日の受発注確認" },
@@ -561,12 +657,15 @@
     },
     care: {
       tagLabel: "CASE 03｜介護施設 介護職",
+      role: "介護職",
       company: "サンプルケア",
       industry: "介護施設",
       employees: "45名",
+      location: "神奈川県横浜市（施設内勤務）",
       strength: "夜勤なしシフト可／チーム制",
       weakness: "「介護はきつい・大変」という業界イメージ",
       employment: "正社員",
+      tags: ["未経験歓迎", "夜勤なし相談可", "有給取得推奨"],
       catch: "「介護はきつい」を、うちで一度確かめてみませんか。夜勤なし・チーム制で、無理なく続けられる介護の仕事。",
       flow: [
         { t: "7:30", d: "出勤・申し送り。前日の様子をチーム全体で共有" },
@@ -603,8 +702,13 @@
   var loadingBox = document.getElementById("loadingBox");
   var resultGrid = document.getElementById("resultGrid");
   var jobWindow = document.getElementById("jobWindow");
+  var jobRole = document.getElementById("jobRole");
   var jobCatch = document.getElementById("jobCatch");
+  var jobCompany = document.getElementById("jobCompany");
+  var jobLocation = document.getElementById("jobLocation");
+  var salaryBand = document.getElementById("salaryBand");
   var jobMeta = document.getElementById("jobMeta");
+  var autotagRow = document.getElementById("autotagRow");
   var jobBody = document.getElementById("jobBody");
   var jobFlow = document.getElementById("jobFlow");
   var jobPersona = document.getElementById("jobPersona");
@@ -613,6 +717,9 @@
   var infoPanel = document.getElementById("infoPanel");
   var transformList = document.getElementById("transformList");
   var reselectLink = document.getElementById("reselectLink");
+  var applyBtn = document.getElementById("applyBtn");
+  var demoToast = document.getElementById("demoToast");
+  var toastTimer = null;
 
   var typeTimer = null;
   var typing = false;
@@ -678,11 +785,31 @@
 
   function renderMeta(c) {
     jobMeta.innerHTML =
-      '<span class="job-chip">' + escapeHtml(c.company) + '</span>' +
       '<span class="job-chip">' + escapeHtml(c.industry) + '</span>' +
       '<span class="job-chip">従業員 ' + escapeHtml(c.employees) + '</span>' +
       '<span class="job-chip">' + escapeHtml(c.employment) + '</span>';
   }
+
+  function renderHead(c) {
+    jobRole.textContent = c.role + "の求人";
+    jobCompany.textContent = c.company;
+    jobLocation.textContent = c.location;
+    salaryBand.textContent = (c.treatment && c.treatment[0]) ? c.treatment[0] : "";
+    autotagRow.innerHTML = c.tags.map(function (t) {
+      return '<span class="autotag">' + escapeHtml(t) + '</span>';
+    }).join("");
+  }
+
+  function showToast(text) {
+    demoToast.textContent = text;
+    demoToast.classList.add("show");
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { demoToast.classList.remove("show"); }, 2600);
+  }
+
+  applyBtn.addEventListener("click", function () {
+    showToast("デモのため応募はできません");
+  });
 
   function renderTransforms(c) {
     transformList.innerHTML = c.transforms.map(function (t) {
@@ -722,6 +849,7 @@
       resultGrid.style.display = "grid";
       jobWindow.classList.add("active");
 
+      renderHead(c);
       renderMeta(c);
       renderFlow(c.flow);
       renderPlain(jobPersona, c.persona);

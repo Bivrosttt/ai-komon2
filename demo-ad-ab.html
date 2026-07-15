@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>広告LP・バナー自動ABテスト 体験デモ｜AI顧問室</title>
+<meta name="description" content="架空のリフォーム会社の集客キャンペーン1週間を再生。LP2案・バナー4本をAIが量産し、配信後は成績データをもとに停止・予算再配分・新チャレンジャー投入まで自動で回る様子を体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="広告LP・バナー自動ABテスト 体験デモ｜AI顧問室">
+<meta property="og:description" content="架空のリフォーム会社の集客キャンペーン1週間を再生。LP2案・バナー4本をAIが量産し、配信後は成績データをもとに停止・予算再配分・新チャレンジャー投入まで自動で回る様子を体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/demo-ad-ab.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447;
+    --navy-deep: #071A35;
+    --navy-light: #19376D;
+    --blue: #2D6CB5;
+    --gold: #C9A227;
+    --ink: #1A2433;
+    --gray: #5B6B7F;
+    --line: #DDE4EC;
+    --bg-soft: #F4F7FA;
+    --white: #FFFFFF;
+    --red: #B0432F;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--ink);
+    line-height: 1.9;
+    background: var(--white);
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  img { max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; }
+
+  .section-label {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px; gap: 16px;
+  }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
+  }
+  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+  .header-right { display: flex; align-items: center; gap: 20px; }
+  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; white-space: nowrap; }
+  .header-right a.textlink:hover { color: var(--blue); }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: opacity .2s, transform .1s;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn:active { transform: scale(0.98); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+  .header-cta { padding: 10px 24px; font-size: 14px; white-space: nowrap; }
+
+  /* Hero */
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 80px 0 64px;
+  }
+  .hero-label {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 999px;
+    font-size: 13px;
+    padding: 6px 18px;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+    color: #DCE6F5;
+  }
+  .demo-hero h1 { font-size: 38px; margin-bottom: 20px; }
+  .demo-hero h1 em { font-style: normal; color: var(--gold); }
+  .demo-hero p.sub { font-size: 16px; color: #C7D3E4; max-width: 700px; }
+
+  /* Note banners */
+  .note-banner { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding-top: 18px; padding-bottom: 18px; display: flex; flex-direction: column; gap: 12px; }
+  .note-box {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-left: 4px solid var(--gold); background: var(--white);
+    border-radius: 4px; padding: 14px 20px; font-size: 13.5px; color: var(--gray);
+  }
+  .note-box .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .note-box strong { color: var(--ink); }
+  .note-box.gold-emph { border-left-color: var(--navy); background: #FBF6E8; border: 1px solid #E4C877; border-left-width: 4px; }
+  .note-box.gold-emph .mark { color: #8A6C10; }
+  .note-box.gold-emph strong { color: #6B5209; }
+
+  /* Demo section */
+  .demo-section { background: var(--white); }
+  .demo-step-label {
+    font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 10px;
+  }
+  .demo-question {
+    font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy); margin-bottom: 16px;
+  }
+  .demo-question-sub { font-size: 14px; color: var(--gray); margin-bottom: 32px; max-width: 680px; }
+
+  /* Replay controls */
+  .replay-controls {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .replay-play { font-size: 16px; padding: 15px 36px; }
+  .replay-skip, .replay-again { padding: 12px 24px; font-size: 14px; }
+  .progress-track {
+    flex: 1 1 200px; min-width: 160px; height: 8px; border-radius: 999px;
+    background: var(--bg-soft); border: 1px solid var(--line); overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), #E0BF56);
+    border-radius: 999px; transition: width .35s ease;
+  }
+  .progress-count { font-size: 12.5px; color: var(--gray); white-space: nowrap; min-width: 56px; text-align: right; }
+
+  /* Dashboard */
+  .dash-wrap { margin-bottom: 48px; }
+  .dash-legend { display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: 12px; color: var(--gray); margin-bottom: 18px; }
+  .dash-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dash-legend i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .dash-legend i.c-draft { background: #B7C2CF; }
+  .dash-legend i.c-active { background: var(--blue); }
+  .dash-legend i.c-stopped { background: var(--red); }
+  .dash-legend i.c-winner { background: var(--gold); }
+  .dash-legend i.c-new { background: #2E7D32; }
+
+  .dash-group-title { font-size: 13px; font-weight: 700; color: var(--navy); letter-spacing: 0.04em; margin: 22px 0 12px; }
+  .dash-group-title:first-child { margin-top: 0; }
+
+  .dash-grid-lp, .dash-grid-banner {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  .dash-placeholder {
+    text-align: center; color: var(--gray); font-size: 13.5px; padding: 40px 24px;
+    border: 1px dashed var(--line); border-radius: 8px; background: var(--bg-soft); line-height: 1.8;
+  }
+
+  .dash-card {
+    border: 1px solid var(--line); border-radius: 8px; padding: 16px 16px 14px; background: var(--white);
+    box-shadow: 0 4px 14px rgba(11,36,71,0.05); transition: opacity .3s ease;
+  }
+  .dash-card.is-stopped { opacity: 0.62; }
+  .dash-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+  .dash-card-head h4 { font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy); line-height: 1.5; }
+
+  .badge-pill { flex-shrink: 0; display: inline-block; font-size: 10.5px; font-weight: 700; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.03em; white-space: nowrap; }
+  .badge-draft { background: #EDF1F5; color: var(--gray); }
+  .badge-queued { background: #E4EEFB; color: var(--blue); border: 1px solid var(--blue); }
+  .badge-active { background: #DCE6F5; color: var(--navy); }
+  .badge-stopped { background: #F3E3DE; color: var(--red); }
+  .badge-winner { background: var(--gold); color: var(--navy-deep); }
+  .badge-new { background: #DCEEDC; color: #2E7D32; }
+
+  /* LP mini preview */
+  .lp-mini { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--bg-soft); margin-bottom: 12px; }
+  .lp-mini .mini-head { height: 12px; background: var(--navy); }
+  .lp-mini .mini-hero {
+    height: 58px; margin: 10px 10px 8px; border-radius: 4px;
+    background: repeating-linear-gradient(135deg, #DCE6F5, #DCE6F5 6px, #EDF1F5 6px, #EDF1F5 12px);
+    display: flex; align-items: center; justify-content: center; font-size: 10.5px; color: var(--gray); text-align: center; padding: 4px;
+  }
+  .lp-mini .mini-row { display: flex; gap: 6px; margin: 0 10px 8px; }
+  .lp-mini .mini-thumb { flex: 1; height: 22px; border-radius: 3px; background: #DCE6F5; }
+  .lp-mini .mini-badge {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--navy-deep);
+    display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
+    margin: 10px auto 8px;
+  }
+  .lp-mini .mini-lines { margin: 0 14px 10px; display: flex; flex-direction: column; gap: 5px; }
+  .lp-mini .mini-line { height: 6px; border-radius: 3px; background: #DCE6F5; }
+  .lp-mini .mini-line.w70 { width: 70%; }
+  .lp-mini .mini-line.w55 { width: 55%; }
+  .lp-mini .mini-cta { margin: 0 10px 10px; height: 18px; border-radius: 3px; background: var(--gold); }
+  .lp-mini .mini-cap { font-size: 10px; color: var(--gray); text-align: center; padding-bottom: 8px; }
+
+  /* Banner ad mini preview */
+  .ad-mini {
+    border-radius: 6px; padding: 13px 14px 12px; color: var(--white); position: relative; overflow: hidden;
+    min-height: 88px; display: flex; flex-direction: column; justify-content: center; margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy-light));
+  }
+  .ad-mini.is-muted { filter: grayscale(0.7); opacity: 0.7; }
+  .ad-mini .ad-catch { font-family: 'Noto Serif JP', serif; font-size: 13px; line-height: 1.55; margin-bottom: 6px; }
+  .ad-mini .ad-sub { font-size: 10px; opacity: 0.82; margin-bottom: 9px; }
+  .ad-mini .ad-cta {
+    display: inline-block; align-self: flex-start; font-size: 10px; background: var(--gold); color: var(--navy-deep);
+    padding: 4px 11px; border-radius: 999px; font-weight: 700;
+  }
+
+  .dash-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+  .dash-stat { text-align: center; }
+  .dash-stat .k { font-size: 10px; color: var(--gray); margin-bottom: 2px; }
+  .dash-stat .v { font-size: 13.5px; font-weight: 700; color: var(--navy); font-family: 'Noto Serif JP', serif; }
+
+  .dash-budget { margin-top: 10px; display: flex; align-items: center; gap: 8px; font-size: 10.5px; color: var(--gray); }
+  .dash-budget .lbl { flex-shrink: 0; }
+  .dash-budget .bar { flex: 1; height: 5px; background: var(--bg-soft); border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
+  .dash-budget .bar-fill { height: 100%; background: var(--gold); border-radius: 999px; }
+  .dash-budget .val { flex-shrink: 0; font-weight: 700; color: var(--navy); }
+
+  /* Replay window (event log) */
+  .replay-window {
+    border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--white);
+    box-shadow: 0 10px 30px rgba(11,36,71,0.08);
+  }
+  .replay-titlebar {
+    background: var(--navy); color: var(--white); padding: 12px 20px;
+    display: flex; align-items: center; gap: 10px; font-size: 13px;
+  }
+  .replay-titlebar .dot3 { display: flex; gap: 5px; }
+  .replay-titlebar .dot3 span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); }
+  .replay-titlebar .label { margin-left: auto; color: #C7D3E4; letter-spacing: 0.05em; font-size: 12px; }
+
+  .replay-body {
+    background: #EDF1F5;
+    padding: 24px 20px;
+    min-height: 260px;
+    max-height: 520px;
+    overflow-y: auto;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .replay-placeholder {
+    margin: auto; text-align: center; color: var(--gray); font-size: 14px; max-width: 340px; line-height: 1.8;
+  }
+
+  .chat-row { display: flex; align-items: flex-end; gap: 8px; max-width: 82%; animation: popin .3s ease; }
+  .chat-row.ai { align-self: flex-end; flex-direction: row-reverse; }
+  @keyframes popin { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  .avatar {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 15px;
+  }
+  .chat-row.ai .avatar { background: var(--gold); }
+
+  .chat-stack { display: flex; flex-direction: column; gap: 4px; }
+  .chat-row.ai .chat-stack { align-items: flex-end; }
+  .chat-meta { font-size: 11px; color: var(--gray); padding: 0 4px; }
+  .chat-row.ai .chat-meta { text-align: right; }
+
+  .bubble {
+    padding: 12px 16px; font-size: 14px; line-height: 1.8; white-space: pre-wrap;
+    box-shadow: 0 1px 2px rgba(11,36,71,0.06);
+  }
+  .chat-row.ai .bubble {
+    background: var(--navy); color: var(--white);
+    border-radius: 14px 14px 4px 14px;
+  }
+
+  .sys-row { align-self: center; max-width: 94%; animation: popin .3s ease; }
+  .sys-event {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--white); border: 1px solid var(--line); border-radius: 999px;
+    padding: 8px 18px; font-size: 12.5px; color: var(--gray);
+  }
+  .sys-event .sys-icon { color: var(--blue); flex-shrink: 0; }
+  .sys-event .sys-time { color: var(--navy); font-weight: 700; flex-shrink: 0; }
+
+  .log-human-row { align-self: center; width: 100%; max-width: 640px; animation: popin .3s ease; }
+  .log-human { border: 1px solid #E4C877; border-left: 4px solid var(--gold); background: #FBF6E8; border-radius: 8px; padding: 14px 18px; }
+  .log-human .lh-meta { font-size: 11px; color: #8A6C10; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 6px; display: flex; gap: 8px; align-items: center; }
+  .log-human .lh-text { font-size: 13.5px; color: #4A3A0A; line-height: 1.8; }
+
+  .bridge-row { align-self: center; width: 100%; animation: popin .4s ease; padding: 6px 0; }
+  .bridge-text {
+    text-align: center; font-size: 13px; color: var(--gray); letter-spacing: 0.03em;
+    font-style: italic;
+  }
+
+  .closing-row { align-self: center; width: 100%; animation: popin .4s ease; padding-top: 4px; }
+  .closing-banner {
+    text-align: center; background: linear-gradient(135deg, #FBF1DA, #F4E2AE);
+    border: 1px solid #E4C877; border-radius: 8px; padding: 22px 24px;
+  }
+  .closing-banner .cb-label { font-size: 12px; color: #8A6C10; letter-spacing: 0.08em; font-weight: 700; margin-bottom: 10px; }
+  .closing-banner .cb-value { font-family: 'Noto Serif JP', serif; font-size: 18px; color: var(--navy-deep); }
+  .closing-banner .cb-value strong { color: var(--gold); font-size: 22px; }
+  .closing-banner .cb-note { font-size: 12px; color: #8A6C10; margin-top: 12px; line-height: 1.7; }
+
+  .replay-skip-hint { font-size: 12px; color: var(--gray); margin-top: 12px; text-align: right; }
+
+  /* Timeline summary */
+  .timeline-wrap { margin-top: 64px; }
+  .timeline-flow {
+    display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; justify-content: center;
+  }
+  .tl-step {
+    flex: 1 1 160px; max-width: 200px; background: var(--white); border: 1px solid var(--line);
+    border-top: 3px solid var(--navy); border-radius: 6px; padding: 20px 16px; text-align: center;
+  }
+  .tl-step .tl-no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .tl-step h4 { font-size: 15px; color: var(--navy); margin-bottom: 6px; }
+  .tl-step p { font-size: 12px; color: var(--gray); line-height: 1.7; }
+  .tl-arrow {
+    display: flex; align-items: center; justify-content: center; flex: 0 0 32px;
+    color: var(--gold); font-size: 20px; font-weight: 700;
+  }
+  @media (max-width: 820px) {
+    .tl-arrow { flex: 0 0 100%; transform: rotate(90deg); padding: 2px 0; }
+    .tl-step { flex: 1 1 100%; max-width: none; }
+  }
+
+  /* AI did panel */
+  .did-wrap { margin-top: 64px; }
+  .did-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .did-card {
+    border: 1px solid var(--line); border-radius: 6px; padding: 22px 22px; background: var(--bg-soft);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .did-check {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--navy); color: var(--white);
+    display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700;
+  }
+  .did-card h4 { font-size: 14.5px; color: var(--navy); margin-bottom: 6px; }
+  .did-card p { font-size: 12.5px; color: var(--gray); line-height: 1.7; }
+
+  /* Honesty corner */
+  .honesty-wrap { margin-top: 64px; }
+  .honesty-box {
+    border: 1px solid var(--line); border-left: 4px solid var(--navy); background: var(--white);
+    border-radius: 6px; padding: 28px 30px; max-width: 780px;
+  }
+  .honesty-box h3 { font-size: 18px; color: var(--navy); margin-bottom: 10px; }
+  .honesty-box p { font-size: 14px; color: var(--gray); }
+  .honesty-box p strong { color: var(--ink); }
+
+  /* True-story band */
+  .truestory { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); padding: 48px 0; }
+  .truestory .container { display: flex; gap: 18px; align-items: flex-start; max-width: 860px; }
+  .truestory .ts-mark { font-family: 'Noto Serif JP', serif; font-size: 26px; color: var(--gold); flex-shrink: 0; line-height: 1; }
+  .truestory p { font-size: 15px; color: #DCE6F5; line-height: 1.9; }
+  .truestory p strong { color: var(--white); }
+
+  /* How it works */
+  .how { background: var(--bg-soft); }
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); }
+  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); }
+  .how-note { text-align: center; margin-top: 40px; font-size: 14px; color: var(--gray); }
+  .how-note strong { color: var(--navy); }
+
+  /* Related */
+  .related { background: var(--white); }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .related-card {
+    display: block; border: 1px solid var(--line); border-radius: 8px; padding: 24px; background: var(--bg-soft);
+    transition: box-shadow .2s, transform .2s, border-color .2s;
+  }
+  .related-card:hover { border-color: var(--navy); box-shadow: 0 8px 24px rgba(11,36,71,0.10); transform: translateY(-2px); }
+  .related-card .tag { font-size: 11.5px; font-weight: 700; color: var(--blue); letter-spacing: 0.04em; margin-bottom: 8px; display: inline-block; }
+  .related-card h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .related-card p { font-size: 13px; color: var(--gray); margin-bottom: 12px; }
+  .related-card .go { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .related-card .go::after { content: "→"; margin-left: 4px; }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 32px; margin-bottom: 20px; }
+  .cta p { color: #C7D3E4; margin-bottom: 40px; }
+  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
+    padding: 40px 0; text-align: center;
+  }
+  footer .logo strong { color: var(--white); font-size: 18px; }
+  footer .logo { justify-content: center; margin-bottom: 12px; }
+
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .demo-hero h1 { font-size: 27px; }
+    .section-title { font-size: 26px; }
+    .demo-hero { padding: 56px 0 44px; }
+    .header-right a.textlink { display: none; }
+    .replay-body { max-height: 440px; }
+    .chat-row { max-width: 92%; }
+  }
+  @media (max-width: 560px) {
+    .dash-grid-lp, .dash-grid-banner { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .chat-row, .sys-row, .bridge-row, .closing-row, .log-human-row { animation: none; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-right">
+      <a href="demos.html" class="textlink">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談を予約</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">体験デモ｜広告LP・バナー自動ABテスト</span>
+    <h1>作る、配る、測る、入れ替える。<br><em>広告の1週間が、勝手に回る。</em></h1>
+    <p class="sub">架空のリフォーム会社「ハルタ工務店」の集客キャンペーンを1週間分、再生で追体験できます。月曜朝の承認から始まり、LP・バナーの量産、配信開始、成績データに基づく停止と予算の寄せ替え、勝者の要素を掛け合わせた新チャレンジャーの投入まで——ダッシュボードと時系列ログの両方で確認できます。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container">
+    <div class="note-box">
+      <span class="mark">※</span>
+      <span><strong>このページはサンプルデータによる体験デモです。</strong>数値・成果は架空の想定例で、広告成果を保証するものではありません。登場するのは架空のリフォーム会社・架空のキャンペーンです。実際は御社の商材・訴求ルール・広告アカウントを踏まえてAIを構築します。</span>
+    </div>
+    <div class="note-box gold-emph">
+      <span class="mark">※</span>
+      <span><strong>訴求方針・予算・公序良俗のチェックは人間が行います。</strong>AIは制作と入れ替えの実務を担当します。</span>
+    </div>
+  </div>
+</div>
+
+<section class="demo-section" id="demo">
+  <div class="container">
+    <span class="section-label">TRY IT</span>
+    <div class="demo-step-label">REPLAY</div>
+    <h2 class="demo-question">配信ダッシュボードとログを、1週間分まとめて再生する</h2>
+    <p class="demo-question-sub">舞台はハルタ工務店の集客キャンペーン。月曜の承認から金曜の振り返りまで、ダッシュボードの数値と時系列ログが連動して動きます。</p>
+
+    <div class="replay-controls">
+      <button type="button" id="playBtn" class="btn btn-gold replay-play">▶ 再生する</button>
+      <button type="button" id="skipBtn" class="btn btn-outline replay-skip" style="display:none;">⏩ すべて表示</button>
+      <button type="button" id="againBtn" class="btn btn-outline replay-again" style="display:none;">↺ もう一度再生</button>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-count" id="progressCount">0 / 0</div>
+    </div>
+
+    <div class="dash-wrap">
+      <div class="demo-step-label">DASHBOARD</div>
+      <h2 class="demo-question" style="font-size:20px;">配信ダッシュボード</h2>
+      <div class="dash-legend">
+        <span><i class="c-draft"></i>準備中・停止</span>
+        <span><i class="c-active"></i>配信中</span>
+        <span><i class="c-winner"></i>勝者（予算優先）</span>
+        <span><i class="c-new"></i>新チャレンジャー</span>
+      </div>
+      <div id="dashPlaceholder" class="dash-placeholder">「▶ 再生する」を押すと、LPとバナーがここに現れ、配信実績にあわせて数値が更新されていきます。</div>
+      <div class="dash-group-title" id="dashLpTitle" style="display:none;">LP：2案</div>
+      <div class="dash-grid-lp" id="dashLpGrid"></div>
+      <div class="dash-group-title" id="dashBnTitle" style="display:none;">バナー：配信ローテーション</div>
+      <div class="dash-grid-banner" id="dashBannerGrid"></div>
+    </div>
+
+    <div class="replay-window">
+      <div class="replay-titlebar">
+        <span class="dot3"><span></span><span></span><span></span></span>
+        <span>ハルタ工務店｜広告運用ログ</span>
+        <span class="label">自動処理ログ</span>
+      </div>
+      <div class="replay-body" id="replayBody">
+        <div class="replay-placeholder" id="replayPlaceholder">「▶ 再生する」を押すと、月曜の承認から金曜の振り返りまでが時系列で流れます。</div>
+      </div>
+    </div>
+    <div class="replay-skip-hint">再生中はいつでも「⏩ すべて表示」で先を確認できます</div>
+
+    <div class="timeline-wrap">
+      <div class="demo-step-label">SUMMARY</div>
+      <h2 class="demo-question" style="font-size:20px;">このフローで起きていたこと</h2>
+      <div class="timeline-flow">
+        <div class="tl-step"><div class="tl-no">1</div><h4>承認</h4><p>訴求方針と週予算を人間が承認</p></div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-step"><div class="tl-no">2</div><h4>量産</h4><p>LP2案・バナー4本をAIが生成</p></div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-step"><div class="tl-no">3</div><h4>配信</h4><p>表示回数・クリックが日次で蓄積</p></div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-step"><div class="tl-no">4</div><h4>判定</h4><p>下位バナーを自動停止し予算を寄せる</p></div>
+        <div class="tl-arrow">→</div>
+        <div class="tl-step"><div class="tl-no">5</div><h4>進化</h4><p>勝者の要素を掛け合わせた新案を投入</p></div>
+      </div>
+    </div>
+
+    <div class="did-wrap">
+      <div class="demo-step-label">WHAT AI DID</div>
+      <h2 class="demo-question" style="font-size:20px;">AIがやったこと</h2>
+      <div class="did-grid">
+        <div class="did-card"><div class="did-check">✓</div><div><h4>LP・バナーの量産</h4><p>訴求の異なるLP2案・バナー4本を、承認された方針に沿って短時間で作成。</p></div></div>
+        <div class="did-card"><div class="did-check">✓</div><div><h4>配信データの自動集計</h4><p>表示回数・クリック・CTR・CVを日次で自動集計し、ダッシュボードに反映。</p></div></div>
+        <div class="did-card"><div class="did-check">✓</div><div><h4>成績下位の自動停止</h4><p>実データに基づき、平均を大きく下回るバナーを判断し停止。</p></div></div>
+        <div class="did-card"><div class="did-check">✓</div><div><h4>予算再配分と新チャレンジャー投入</h4><p>勝者への予算寄せと、勝者の要素を掛け合わせた改良版バナーの自動投入。</p></div></div>
+      </div>
+    </div>
+
+    <div class="honesty-wrap">
+      <div class="demo-step-label">HONESTLY</div>
+      <h2 class="demo-question" style="font-size:20px;">誠実にお伝えします</h2>
+      <div class="honesty-box">
+        <h3>すべてをAIに任せきりにはしません</h3>
+        <p>停止や予算の寄せ替えといった実務はAIが担当しますが、<strong>その訴求が景品表示法などの規制に触れないか、事実と異なる誇大表現になっていないか</strong>といった最終チェックは人が行う設計を前提にしています。今回の「安さ訴求はNG、品質と保証を前面に」という方針も、月曜に人が示した指示です。停止の閾値や自動化の範囲は、御社の広告運用ルールに合わせて一緒に設計します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="truestory">
+  <div class="container">
+    <span class="ts-mark">"</span>
+    <p>実はこのサイト自身も、AIで24本のランディングページを制作し、流入元別に計測しています。この仕組みは、私たち自身が毎日使っているものです。</p>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <span class="section-label">HOW TO CUSTOMIZE</span>
+    <h2 class="section-title">これを御社仕様にするには</h2>
+    <p class="section-lead">今ご覧いただいたのはサンプルですが、実際の導入では御社の商材・訴求ルール・広告アカウントをもとに、御社専用のAIを段階的に育てていきます。</p>
+    <div class="flow-grid">
+      <div class="f-step">
+        <div class="no">1</div>
+        <h3>商材・訴求ルール・NGワードを学習</h3>
+        <p>御社の商品やサービス、狙いたい客層、言ってはいけない訴求（誇大表現や法規制ワードなど）をAIに学習させます。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">2</div>
+        <h3>広告アカウント・LP公開環境に接続</h3>
+        <p>普段お使いの広告アカウントとLP公開環境にAIを接続し、量産・配信・差し替えができる状態にします。</p>
+      </div>
+      <div class="f-step">
+        <div class="no">3</div>
+        <h3>まずは人の確認付き→慣れたら全自動へ</h3>
+        <p>最初は停止や予算変更もすべて担当者が確認してから実行する運用でスタート。慣れてきたら、確認なしで完結する範囲を少しずつ広げていきます。</p>
+      </div>
+    </div>
+    <p class="how-note">いきなり全自動化はしません。<strong>「人の確認」を挟みながら、御社が安心できるペースで自動化の範囲を広げる</strong>のがAI顧問室のやり方です。</p>
+  </div>
+</section>
+
+<section class="related">
+  <div class="container">
+    <span class="section-label">RELATED DEMO</span>
+    <h2 class="section-title">関連する単機能デモ</h2>
+    <div class="related-grid">
+      <a href="demo-sns-auto.html" class="related-card">
+        <span class="tag">SNS自動投稿の1週間</span>
+        <h3>SNS自動投稿 全自動フロー 体験デモ</h3>
+        <p>月曜朝にAIが1週間分の投稿計画を作り、店主は承認だけ。あとは自動で投稿されていく様子を再生できます。</p>
+        <span class="go">デモを見る</span>
+      </a>
+      <a href="demo-sns.html" class="related-card">
+        <span class="tag">SNS投稿量産AI</span>
+        <h3>SNS投稿量産AI 体験デモ</h3>
+        <p>商品・お知らせの情報を選ぶと、AIがInstagram・X・ブログ向けの投稿案をまとめて作成する体験デモです。</p>
+        <span class="go">デモを見る</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の広告運用で試したい方へ</h2>
+    <p>「うちの広告でもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、御社の広告運用の現状をお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">1分でレベル診断を受ける</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+
+  /* ---------- Ground-truth daily data (single source, no hardcoded % anywhere) ---------- */
+  var DAILY = {
+    lpA: { tue:{impr:900,clicks:63,cv:5}, wed:{impr:950,clicks:66,cv:5}, thu:{impr:1080,clicks:79,cv:6}, fri:{impr:1120,clicks:83,cv:7} },
+    lpB: { tue:{impr:950,clicks:76,cv:7}, wed:{impr:990,clicks:80,cv:8}, thu:{impr:1150,clicks:98,cv:10}, fri:{impr:1200,clicks:103,cv:11} },
+    bnA: { tue:{impr:8200,clicks:152,cv:9}, wed:{impr:8600,clicks:158,cv:10}, thu:{impr:10400,clicks:205,cv:14}, fri:{impr:10800,clicks:214,cv:15} },
+    bnB: { tue:{impr:8000,clicks:128,cv:7}, wed:{impr:8300,clicks:132,cv:8}, thu:{impr:9800,clicks:168,cv:11}, fri:{impr:10200,clicks:176,cv:12} },
+    bnC: { tue:{impr:7600,clicks:34,cv:1}, wed:{impr:7800,clicks:33,cv:1} },
+    bnD: { tue:{impr:7400,clicks:30,cv:1}, wed:{impr:7500,clicks:29,cv:1} },
+    bnE: { fri:{impr:3100,clicks:61,cv:3} },
+    bnF: { fri:{impr:2900,clicks:50,cv:2} }
+  };
+
+  var CREATIVE_META = {
+    lpA: { kind:'lp', name:'LP-A｜施工事例前面', previewType:'a' },
+    lpB: { kind:'lp', name:'LP-B｜保証前面', previewType:'b' },
+    bnA: { kind:'banner', name:'バナーA｜保証訴求', catch:'施工後10年保証だから、任せられる。', sub:'ハルタ工務店｜まずは無料点検から', cta:'無料点検を予約する' },
+    bnB: { kind:'banner', name:'バナーB｜施工事例訴求', catch:'その直し方、選べます。施工実績1,200件。', sub:'ハルタ工務店｜あなたの家に合う提案を', cta:'施工事例を見る' },
+    bnC: { kind:'banner', name:'バナーC｜会社紹介', catch:'創業32年、地域に根ざした工務店です。', sub:'ハルタ工務店', cta:'会社情報を見る' },
+    bnD: { kind:'banner', name:'バナーD｜無料相談', catch:'リフォームのお悩み、まずは無料相談で。', sub:'ハルタ工務店', cta:'無料相談を申し込む' },
+    bnE: { kind:'banner', name:'新チャレンジャーE｜保証×施工写真', catch:'工事の様子は写真で報告。10年保証つきリフォーム。', sub:'ハルタ工務店｜見える安心、続く保証', cta:'施工の様子を見る' },
+    bnF: { kind:'banner', name:'新チャレンジャーF｜施工事例×地域', catch:'地域の実例1,200件。あなたの街の工務店が直します。', sub:'ハルタ工務店｜地元密着のリフォーム', cta:'近くの施工事例を見る' }
+  };
+
+  var CREATIVE_IDS = ['lpA','lpB','bnA','bnB','bnC','bnD','bnE','bnF'];
+
+  var STATE = {};
+
+  function resetState() {
+    CREATIVE_IDS.forEach(function (id) {
+      STATE[id] = { impr: 0, clicks: 0, cv: 0, visible: false, badge: 'draft', budgetShare: null };
+    });
+  }
+  resetState();
+
+  function addDay(id, day) {
+    var d = DAILY[id] && DAILY[id][day];
+    if (!d) return;
+    STATE[id].impr += d.impr;
+    STATE[id].clicks += d.clicks;
+    STATE[id].cv += d.cv;
+  }
+
+  function metrics(id) {
+    var c = STATE[id];
+    return { ctr: c.impr > 0 ? (c.clicks / c.impr * 100) : null };
+  }
+
+  function fmtPct(v) {
+    return (v === null || v === undefined || !isFinite(v)) ? '--' : v.toFixed(2) + '%';
+  }
+  function fmtNum(v) {
+    return Math.round(v).toLocaleString('ja-JP');
+  }
+  function escapeHtml(str) {
+    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  /* ---------- Events (13〜16 items, evidence-based text via functions) ---------- */
+  var EVENTS = [
+    {
+      actor: 'human', time: '月 9:00',
+      text: '週の訴求方針と予算を承認します。安さ訴求はNGです。品質と保証を前面に出してください。バナー・LP全体の週予算は30万円で進めてください。'
+    },
+    {
+      actor: 'ai', time: '月 9:20',
+      text: '承知しました。LPを2案、量産します（A：施工事例前面／B：保証前面）。',
+      apply: function (s) { s.lpA.visible = true; s.lpB.visible = true; }
+    },
+    {
+      actor: 'ai', time: '月 10:40',
+      text: 'バナーも4本、量産しました。訴求の切り口を変えて用意しています。',
+      apply: function (s) { ['bnA', 'bnB', 'bnC', 'bnD'].forEach(function (id) { s[id].visible = true; }); }
+    },
+    {
+      actor: 'system', time: '月 17:30',
+      text: '配信審査が完了しました。火曜0:00からの配信を予約しました。',
+      apply: function (s) { ['lpA', 'lpB', 'bnA', 'bnB', 'bnC', 'bnD'].forEach(function (id) { s[id].badge = 'queued'; }); }
+    },
+    { actor: 'bridge', text: '—— この間、社長は現場に出ています ——' },
+    {
+      actor: 'system', time: '火 0:00',
+      text: '配信を開始しました（LP2案・バナー4本）。バナーの予算配分はまず均等（各25%）です。',
+      apply: function (s) {
+        ['lpA', 'lpB', 'bnA', 'bnB', 'bnC', 'bnD'].forEach(function (id) { s[id].badge = 'active'; addDay(id, 'tue'); });
+        ['bnA', 'bnB', 'bnC', 'bnD'].forEach(function (id) { s[id].budgetShare = 25; });
+      }
+    },
+    {
+      actor: 'system', time: '水 9:00',
+      text: '火・水の実績を集計しました。',
+      apply: function (s) { ['lpA', 'lpB', 'bnA', 'bnB', 'bnC', 'bnD'].forEach(function (id) { addDay(id, 'wed'); }); }
+    },
+    {
+      actor: 'ai', time: '水 9:05',
+      text: function (s) {
+        var ctrA = metrics('bnA').ctr, ctrB = metrics('bnB').ctr;
+        var ctrC = metrics('bnC').ctr, ctrD = metrics('bnD').ctr;
+        var avg = (ctrA + ctrB) / 2;
+        var ratioC = Math.max(1, Math.round(avg / ctrC));
+        var ratioD = Math.max(1, Math.round(avg / ctrD));
+        return 'バナーC「会社紹介」のCTRは' + fmtPct(ctrC) + '、バナーD「無料相談」のCTRは' + fmtPct(ctrD) +
+          '。好調な2本（A・B）の平均CTR' + fmtPct(avg) + 'と比べて、それぞれ約' + ratioC + '分の1・約' + ratioD +
+          '分の1にとどまっているため、この2本を自動停止します。';
+      },
+      apply: function (s) { s.bnC.badge = 'stopped'; s.bnD.badge = 'stopped'; s.bnC.budgetShare = 0; s.bnD.budgetShare = 0; }
+    },
+    {
+      actor: 'ai', time: '木 9:00',
+      text: function (s) {
+        return '火〜木の成績をもとに、好調な2本へ予算を自動で寄せました（バナーA・保証訴求 ' + s.bnA.budgetShare +
+          '%／バナーB・施工事例訴求 ' + s.bnB.budgetShare + '%、残りは来週のテスト枠として保持）。';
+      },
+      apply: function (s) {
+        addDay('bnA', 'thu'); addDay('bnB', 'thu'); addDay('lpA', 'thu'); addDay('lpB', 'thu');
+        var ctrA = metrics('bnA').ctr, ctrB = metrics('bnB').ctr;
+        var pool = 85;
+        var shareA = Math.round(pool * ctrA / (ctrA + ctrB));
+        var shareB = pool - shareA;
+        s.bnA.budgetShare = shareA; s.bnB.budgetShare = shareB;
+        s.bnA.badge = 'winner'; s.bnB.badge = 'winner';
+      }
+    },
+    { actor: 'bridge', text: '—— この間、経理担当は月次の請求処理をしています ——' },
+    {
+      actor: 'ai', time: '金 9:00',
+      text: '勝者バナーの要素を掛け合わせた新チャレンジャーを2本、自動生成して投入しました。E：保証訴求×施工写真の「見える化」。F：施工事例訴求×地域密着。',
+      apply: function (s) {
+        s.bnE.visible = true; s.bnF.visible = true; s.bnE.badge = 'new'; s.bnF.badge = 'new';
+        s.bnA.budgetShare = 40; s.bnB.budgetShare = 35; s.bnE.budgetShare = 15; s.bnF.budgetShare = 10;
+      }
+    },
+    {
+      actor: 'system', time: '金 15:00',
+      text: function (s) {
+        var a = fmtPct(metrics('bnA').ctr), b = fmtPct(metrics('bnB').ctr);
+        var e = fmtPct(metrics('bnE').ctr), f = fmtPct(metrics('bnF').ctr);
+        return '金曜午後までの実績です。バナーA ' + a + '／バナーB ' + b + '、新チャレンジャーもE ' + e + '・F ' + f + 'と良好な滑り出しです。';
+      },
+      apply: function (s) {
+        addDay('bnA', 'fri'); addDay('bnB', 'fri'); addDay('bnE', 'fri'); addDay('bnF', 'fri');
+        addDay('lpA', 'fri'); addDay('lpB', 'fri');
+      }
+    },
+    {
+      actor: 'human', time: '金 18:00',
+      text: '今週の実績を確認しました。来週も保証訴求・施工事例訴求の2案を軸に継続してください。新チャレンジャーの本格投入は月曜の数値を見てから判断します。'
+    },
+    { actor: 'closing' }
+  ];
+
+  var total = EVENTS.length;
+  var idx = 0;
+  var timer = null;
+  var running = false;
+
+  var playBtn = document.getElementById("playBtn");
+  var skipBtn = document.getElementById("skipBtn");
+  var againBtn = document.getElementById("againBtn");
+  var progressFill = document.getElementById("progressFill");
+  var progressCount = document.getElementById("progressCount");
+  var replayBody = document.getElementById("replayBody");
+  var replayPlaceholder = document.getElementById("replayPlaceholder");
+  var dashPlaceholder = document.getElementById("dashPlaceholder");
+  var dashLpGrid = document.getElementById("dashLpGrid");
+  var dashBannerGrid = document.getElementById("dashBannerGrid");
+  var dashLpTitle = document.getElementById("dashLpTitle");
+  var dashBnTitle = document.getElementById("dashBnTitle");
+
+  progressCount.textContent = "0 / " + total;
+
+  function badgeLabel(b) {
+    switch (b) {
+      case 'draft': return '準備中';
+      case 'queued': return '配信予約済み';
+      case 'active': return '配信中';
+      case 'stopped': return '停止';
+      case 'winner': return '勝者';
+      case 'new': return '新規';
+      default: return '';
+    }
+  }
+
+  function lpPreviewHtml(previewType) {
+    if (previewType === 'a') {
+      return '<div class="lp-mini">' +
+        '<div class="mini-head"></div>' +
+        '<div class="mini-hero">施工前後の写真ギャラリー</div>' +
+        '<div class="mini-row"><div class="mini-thumb"></div><div class="mini-thumb"></div><div class="mini-thumb"></div></div>' +
+        '<div class="mini-cta"></div>' +
+        '<div class="mini-cap">施工事例1,200件超から検索できるLP</div>' +
+        '</div>';
+    }
+    return '<div class="lp-mini">' +
+      '<div class="mini-head"></div>' +
+      '<div class="mini-badge">10年<br>保証</div>' +
+      '<div class="mini-lines"><div class="mini-line w70"></div><div class="mini-line w55"></div><div class="mini-line w70"></div></div>' +
+      '<div class="mini-cta"></div>' +
+      '<div class="mini-cap">保証内容・対応範囲を明記したLP</div>' +
+      '</div>';
+  }
+
+  function adPreviewHtml(meta, muted) {
+    return '<div class="ad-mini' + (muted ? ' is-muted' : '') + '">' +
+      '<div class="ad-catch">' + escapeHtml(meta.catch) + '</div>' +
+      '<div class="ad-sub">' + escapeHtml(meta.sub) + '</div>' +
+      '<span class="ad-cta">' + escapeHtml(meta.cta) + '</span>' +
+      '</div>';
+  }
+
+  function cardHtml(id) {
+    var c = STATE[id];
+    if (!c.visible) return '';
+    var meta = CREATIVE_META[id];
+    var m = metrics(id);
+    var preview = meta.kind === 'lp' ? lpPreviewHtml(meta.previewType) : adPreviewHtml(meta, c.badge === 'stopped');
+    var budgetHtml = '';
+    if (meta.kind === 'banner' && c.budgetShare !== null) {
+      budgetHtml = '<div class="dash-budget"><span class="lbl">予算配分</span>' +
+        '<div class="bar"><div class="bar-fill" style="width:' + Math.min(100, c.budgetShare / 50 * 100) + '%"></div></div>' +
+        '<span class="val">' + c.budgetShare + '%</span></div>';
+    }
+    return '<div class="dash-card kind-' + meta.kind + (c.badge === 'stopped' ? ' is-stopped' : '') + '">' +
+      '<div class="dash-card-head"><h4>' + escapeHtml(meta.name) + '</h4>' +
+      '<span class="badge-pill badge-' + c.badge + '">' + badgeLabel(c.badge) + '</span></div>' +
+      preview +
+      '<div class="dash-stats">' +
+      '<div class="dash-stat"><div class="k">表示回数</div><div class="v">' + fmtNum(c.impr) + '</div></div>' +
+      '<div class="dash-stat"><div class="k">クリック</div><div class="v">' + fmtNum(c.clicks) + '</div></div>' +
+      '<div class="dash-stat"><div class="k">CTR</div><div class="v">' + fmtPct(m.ctr) + '</div></div>' +
+      '<div class="dash-stat"><div class="k">CV</div><div class="v">' + fmtNum(c.cv) + '</div></div>' +
+      '</div>' +
+      budgetHtml +
+      '</div>';
+  }
+
+  function renderDashboard() {
+    var lpHtml = ['lpA', 'lpB'].map(cardHtml).join('');
+    var bnHtml = ['bnA', 'bnB', 'bnC', 'bnD', 'bnE', 'bnF'].map(cardHtml).join('');
+    dashLpGrid.innerHTML = lpHtml;
+    dashBannerGrid.innerHTML = bnHtml;
+    var anyVisible = CREATIVE_IDS.some(function (id) { return STATE[id].visible; });
+    dashPlaceholder.style.display = anyVisible ? 'none' : 'block';
+    dashLpTitle.style.display = lpHtml ? 'block' : 'none';
+    dashBnTitle.style.display = bnHtml ? 'block' : 'none';
+  }
+
+  function scrollToBottom() {
+    replayBody.scrollTop = replayBody.scrollHeight;
+  }
+
+  function buildLogNode(ev, text) {
+    if (ev.actor === 'human') {
+      var rowH = document.createElement("div");
+      rowH.className = "log-human-row";
+      rowH.innerHTML = '<div class="log-human">' +
+        '<div class="lh-meta"><span>👤</span><span>' + ev.time + '　人間の承認</span></div>' +
+        '<div class="lh-text">' + escapeHtml(text) + '</div></div>';
+      return rowH;
+    }
+    if (ev.actor === "ai") {
+      var row2 = document.createElement("div");
+      row2.className = "chat-row ai";
+      row2.innerHTML =
+        '<div class="avatar">🤖</div>' +
+        '<div class="chat-stack">' +
+        '<div class="chat-meta">AI　' + ev.time + '</div>' +
+        '<div class="bubble">' + escapeHtml(text) + '</div>' +
+        '</div>';
+      return row2;
+    }
+    if (ev.actor === "system") {
+      var row3 = document.createElement("div");
+      row3.className = "sys-row";
+      row3.innerHTML =
+        '<div class="sys-event">' +
+        '<span class="sys-icon">⚙️</span>' +
+        '<span class="sys-time">' + ev.time + '</span>' +
+        '<span>' + escapeHtml(text) + '</span>' +
+        '</div>';
+      return row3;
+    }
+    if (ev.actor === "bridge") {
+      var row4 = document.createElement("div");
+      row4.className = "bridge-row";
+      row4.innerHTML = '<div class="bridge-text">' + escapeHtml(text) + '</div>';
+      return row4;
+    }
+    // closing
+    var humanCount = EVENTS.filter(function (e) { return e.actor === 'human'; }).length;
+    var row5 = document.createElement("div");
+    row5.className = "closing-row";
+    row5.innerHTML =
+      '<div class="closing-banner">' +
+      '<div class="cb-label">RESULT</div>' +
+      '<div class="cb-value">人間が作ったバナー：<strong>0本</strong></div>' +
+      '<div class="cb-value" style="margin-top:8px;">人間の判断：<strong>承認' + humanCount + '回</strong></div>' +
+      '<div class="cb-value" style="margin-top:8px;">改善サイクル：<strong>1週間で2周</strong>（想定例）</div>' +
+      '<div class="cb-note">※このデモのシナリオ上の演出です。実際は例外対応や最終チェックに人が関わる設計にできます。</div>' +
+      '</div>';
+    return row5;
+  }
+
+  function appendEvent(i) {
+    if (replayPlaceholder) { replayPlaceholder.remove(); replayPlaceholder = null; }
+    var ev = EVENTS[i];
+    if (ev.apply) ev.apply(STATE);
+    var text = typeof ev.text === "function" ? ev.text(STATE) : ev.text;
+    var node = buildLogNode(ev, text);
+    replayBody.appendChild(node);
+    renderDashboard();
+    scrollToBottom();
+    idx = i + 1;
+    var shown = idx > total ? total : idx;
+    progressFill.style.width = (shown / total * 100) + "%";
+    progressCount.textContent = shown + " / " + total;
+  }
+
+  function randDelay(ev, nextEv) {
+    if (nextEv && nextEv.actor === "bridge") return 1800 + Math.random() * 300;
+    if (ev && ev.actor === "bridge") return 2200 + Math.random() * 400;
+    return 1300 + Math.random() * 500;
+  }
+
+  function scheduleNext() {
+    if (!running) return;
+    if (idx >= total) {
+      finishPlaying();
+      return;
+    }
+    var delay = randDelay(idx > 0 ? EVENTS[idx - 1] : null, EVENTS[idx]);
+    timer = setTimeout(function () {
+      if (!running || idx >= total) return;
+      appendEvent(idx);
+      scheduleNext();
+    }, delay);
+  }
+
+  function startPlaying() {
+    running = true;
+    playBtn.style.display = "none";
+    againBtn.style.display = "none";
+    skipBtn.style.display = "inline-block";
+    scheduleNext();
+  }
+
+  function finishPlaying() {
+    running = false;
+    if (timer) { clearTimeout(timer); timer = null; }
+    skipBtn.style.display = "none";
+    againBtn.style.display = "inline-block";
+  }
+
+  function skipAll() {
+    running = false;
+    if (timer) { clearTimeout(timer); timer = null; }
+    while (idx < total) {
+      appendEvent(idx);
+    }
+    skipBtn.style.display = "none";
+    againBtn.style.display = "inline-block";
+  }
+
+  function resetAndPlay() {
+    if (timer) { clearTimeout(timer); timer = null; }
+    running = false;
+    idx = 0;
+    resetState();
+    replayBody.innerHTML = "";
+    var ph = document.createElement("div");
+    ph.className = "replay-placeholder";
+    ph.id = "replayPlaceholder";
+    ph.textContent = "「▶ 再生する」を押すと、月曜の承認から金曜の振り返りまでが時系列で流れます。";
+    replayBody.appendChild(ph);
+    replayPlaceholder = ph;
+    renderDashboard();
+    progressFill.style.width = "0%";
+    progressCount.textContent = "0 / " + total;
+    startPlaying();
+  }
+
+  playBtn.addEventListener("click", startPlaying);
+  skipBtn.addEventListener("click", skipAll);
+  againBtn.addEventListener("click", resetAndPlay);
+
+  renderDashboard();
+})();
+</script>
+
+</body>
+</html>

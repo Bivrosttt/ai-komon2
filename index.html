@@ -244,8 +244,27 @@
 
   /* Demo teaser */
   .demo-teaser { background: var(--bg-soft); }
-  .dt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
-  .dt-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; }
+  .dt-scroller { position: relative; }
+  .dt-grid {
+    display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 4px 2px 18px; -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+  }
+  .dt-grid::-webkit-scrollbar { height: 6px; }
+  .dt-grid::-webkit-scrollbar-thumb { background: var(--line); border-radius: 999px; }
+  .dt-card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .2s, transform .2s; flex: 0 0 290px; scroll-snap-align: start; }
+  .dt-nav {
+    position: absolute; top: 42%; transform: translateY(-50%); z-index: 5;
+    width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line);
+    background: rgba(255,255,255,.95); color: var(--navy); font-size: 18px; font-weight: 700;
+    cursor: pointer; box-shadow: 0 4px 14px rgba(11,36,71,.14); display: flex; align-items: center; justify-content: center;
+  }
+  .dt-nav:hover { background: var(--navy); color: #fff; }
+  .dt-nav.prev { left: -14px; }
+  .dt-nav.next { right: -14px; }
+  @media (max-width: 820px) { .dt-nav { display: none; } }
+  .dt-hint { text-align: center; font-size: 12px; color: var(--gray); margin: 2px 0 14px; display: none; }
+  @media (max-width: 820px) { .dt-hint { display: block; } }
   .dt-card:hover { border-color: var(--navy); transform: translateY(-2px); }
   .dt-visual { height: 110px; background: linear-gradient(135deg, #EDF3FA, var(--bg-soft)); display: flex; align-items: center; justify-content: center; position: relative; }
   .dt-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
@@ -380,8 +399,9 @@
     .prod-grid { grid-template-columns: 1fr; }
   }
 </style>
-<script src="analytics-config.js"></script>
-<script src="analytics.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
 <script src="meta-pixel-config.js"></script>
 <script src="meta-pixel.js"></script>
 </head>
@@ -411,7 +431,7 @@
     <h1>AI人材を雇う前に、<br><em>「AI顧問」</em>という選択。</h1>
     <p class="sub">「ChatGPTを触ってみた。でも、会社は何も変わっていない」——そこから先を、経営歴15年×AI歴4年の顧問が伴走します。相談から実装、社内定着まで。</p>
     <div class="hero-ctas">
-      <a href="#contact" class="btn btn-gold">無料相談を予約する（60分）</a>
+      <a href="#contact" class="btn btn-gold">無料相談を予約する（30分）</a>
       <a href="#pricing" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">料金プランを見る</a>
     </div>
     <p class="hero-note">※ 無料相談だけでも「自社で何から始めるべきか」が明確になります。売り込みは一切しません。</p>
@@ -563,7 +583,10 @@
     <span class="section-label">DEMO</span>
     <h2 class="section-title">言葉より、実物を。</h2>
     <p class="section-lead">私たちが御社向けに構築するAIツールを、サンプルデータの体験デモでお見せします。すべて無料・登録不要。まずは1つ、触ってみてください。</p>
-    <div class="dt-grid">
+    <div class="dt-scroller">
+      <button class="dt-nav prev" id="dtPrev" aria-label="前のデモへ">‹</button>
+      <button class="dt-nav next" id="dtNext" aria-label="次のデモへ">›</button>
+      <div class="dt-grid" id="dtGrid">
       <a class="dt-card" href="demo-inquiry.html">
         <div class="dt-visual">
           <span class="dt-badge">体験できます</span>
@@ -586,6 +609,61 @@
           <span class="try">▶ デモを試す</span>
         </div>
       </a>
+      <a class="dt-card" href="demo-receipt.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <img src="assets/thumbs/demo-receipt.jpg" alt="" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <h3>レシート仕訳AI</h3>
+          <p>レシート3枚が、勘定科目つきの仕訳帳とCSVに。「紙が数字になる」を体感してください。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+      <a class="dt-card" href="demo-menu.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <img src="assets/thumbs/demo-menu.jpg" alt="" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <h3>メニュー表AI</h3>
+          <p>手書きメニューが、料理写真つきの4ヶ国語メニューに変身。外国人客の「注文できない」を解消。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+      <a class="dt-card" href="demo-keiri.html">
+        <div class="dt-visual">
+          <span class="dt-badge">リプレイ再生</span>
+          <img src="assets/thumbs/demo-keiri.jpg" alt="" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <h3>AI経理部</h3>
+          <p>書類が届くたび、仕訳帳・支払カレンダー・資金繰り予測が同時に埋まる「経理の1日」。</p>
+          <span class="try">▶ リプレイを再生</span>
+        </div>
+      </a>
+      <a class="dt-card" href="demo-cockpit.html">
+        <div class="dt-visual">
+          <span class="dt-badge">体験できます</span>
+          <img src="assets/thumbs/demo-cockpit.jpg" alt="" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <h3>AI経営コックピット</h3>
+          <p>会社の計器盤を毎朝1分。「先月の粗利は？」と聞けば、根拠つきで答えます。</p>
+          <span class="try">▶ デモを試す</span>
+        </div>
+      </a>
+      <a class="dt-card" href="demo-voice.html">
+        <div class="dt-visual">
+          <span class="dt-badge">音声を聴けます</span>
+          <img src="assets/thumbs/demo-voice.jpg" alt="" loading="lazy">
+        </div>
+        <div class="dt-body">
+          <h3>AI電話受付（実音声）</h3>
+          <p>予約の電話をAIが最初から最後まで応対。実際に生成した66秒の通話音声を聴けます。</p>
+          <span class="try">▶ 通話を聴く</span>
+        </div>
+      </a>
       <a class="dt-card" href="demo-minutes.html">
         <div class="dt-visual">
           <span class="dt-badge">体験できます</span>
@@ -597,9 +675,19 @@
           <span class="try">▶ デモを試す</span>
         </div>
       </a>
+      </div>
     </div>
+    <p class="dt-hint">← 横にスワイプすると、他のデモも見られます →</p>
+    <script>
+    (function () {
+      var grid = document.getElementById("dtGrid");
+      var step = 310;
+      document.getElementById("dtPrev").addEventListener("click", function () { grid.scrollBy({ left: -step * 2, behavior: "smooth" }); });
+      document.getElementById("dtNext").addEventListener("click", function () { grid.scrollBy({ left: step * 2, behavior: "smooth" }); });
+    })();
+    </script>
     <div class="dt-more" style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-      <a href="demos.html" class="btn btn-navy">17の構築デモをすべて見る →</a>
+      <a href="demos.html" class="btn btn-navy">31の構築デモをすべて見る →</a>
       <a href="works.html" class="btn btn-outline">作品ショーケースを見る →</a>
     </div>
     <p style="text-align:center; margin-top:14px; font-size:12.5px; color:var(--gray);">ショーケースには、パンフ・実AI動画・3D内見モデル・パースなど「成果物の品質サンプル」を掲載しています。</p>
@@ -724,7 +812,7 @@
     <div class="flow-grid">
       <div class="f-step">
         <div class="no">1</div>
-        <h3>無料相談（60分）</h3>
+        <h3>無料相談（30分）</h3>
         <p>現状の課題とAI活用の可能性をヒアリング。この時点で持ち帰れる気づきをお渡しします。</p>
       </div>
       <div class="f-step">
@@ -829,16 +917,17 @@
         <h3>佐藤 啓英</h3>
         <div class="role">株式会社Bivrost CEO／AI顧問室 主宰</div>
         <p style="font-family:'Noto Serif JP',serif; font-weight:700; color:var(--navy);">「数字を作る側」を、ずっとやってきました。</p>
-        <p>19歳で起業し、1年で年商1億円。20歳で背負った借金2,000万円は、1年で返しました。22歳で立ち上げた2社目は、3年で年商30億円・正社員130名まで拡大。そして26歳で、その会社を失いました。伸ばす痛みも、返す重さも、畳む苦しさも——経営の数字は、自分の身体で知っています。</p>
-        <p>その後、海外に拠点を移し、現在は株式会社BivrostのCEOとして、タイでの不動産建築・売買、リゾート運営、ベトナムでの飲食店経営を含む複数の事業を展開。日本のAI事業は、<strong>数名のチームで年商数億円規模</strong>を回しています。「人を増やさずに、AIで数字を上げる」を、自社で毎日実践している立場です。</p>
-        <p>AIは、OpenAIがAPIを公開した最初期（GPT-3時代）から約4年、最前線で使い続けています。専門領域はシステム開発・ゲーム開発・デジタルマーケティング・経営コンサルティング。コンサルタントとしては、年商5億円規模まで育った会社を複数支援してきました。</p>
-        <p>御社に必要なのは「AIに詳しい人」ではなく、<strong>経営の数字を作ってきた人間</strong>だと考えています。</p>
+        <p>19歳で起業し、1年で年商1億円。20歳で背負った借金2,000万円は、1年で返しました。22歳で立ち上げた2社目は、3年で年商30億円・正社員130名まで拡大。そして26歳で、その会社を手放すことになりました。伸ばす痛みも、返す重さも、畳む苦しさも——経営の数字は、自分の身体で知っています。</p>
+        <p>起業から15年。現在は株式会社BivrostのCEOとして日本・タイ・ベトナムで複数の事業を経営し、日本のAI事業は<strong>数名のチームで年商数億円規模</strong>——「人を増やさずに、AIで数字を上げる」を、いまも自分の会社で毎日実践しています。</p>
+        <p>そしてもう一つ。私は「自分で作れる」経営者です。システム開発をゼロから学び、画面のデザインからデータの仕組みまで一人で組み上げ、これまでに作ったシステムは<strong>50を超えます</strong>。世界最大級の新製品発表サイト「Product Hunt」では、自社開発のAIツールが<strong>その日の世界1位</strong>に選ばれました。</p>
+        <p>御社に必要なのは「AIに詳しいだけの人」ではなく、<strong>経営とAIの両方を、自分の手でやってきた人間</strong>だと考えています。</p>
         <div class="tags">
           <span class="tag">19歳で起業</span>
           <span class="tag">年商30億円・130名まで拡大</span>
           <span class="tag">日本・タイ・ベトナムで事業経営</span>
-          <span class="tag">AI実務歴4年（GPT-3時代から）</span>
-          <span class="tag">少人数×AI経営の実践者</span>
+          <span class="tag">経営歴15年×AI歴4年</span>
+          <span class="tag">Product Hunt 日間1位</span>
+          <span class="tag">開発したシステム50超</span>
         </div>
       </div>
     </div>
@@ -867,7 +956,7 @@
     </details>
     <details>
       <summary>顧問契約の前に、単発で相談だけすることはできますか？</summary>
-      <p>初回の無料相談（60分）をご利用ください。その場で御社のAI活用の方向性を整理してお渡しします。無理な勧誘は一切いたしません。</p>
+      <p>初回の無料相談（30分）をご利用ください。その場で御社のAI活用の方向性を整理してお渡しします。無理な勧誘は一切いたしません。</p>
     </details>
     <details>
       <summary>補助金や助成金は使えますか？</summary>
@@ -882,7 +971,7 @@
 
 <section class="cta" id="contact">
   <div class="container">
-    <h2>まずは60分、話してみませんか。</h2>
+    <h2>まずは30分、話してみませんか。</h2>
     <p>無料相談だけでも「自社が何から始めるべきか」が明確になります。ご希望の方には<strong style="color:var(--gold);">AI活用診断書（A4）</strong>を差し上げます。<br>オンライン対応・全国どこからでも。売り込みはいたしません。</p>
 
     <div class="contact-card">
@@ -946,9 +1035,8 @@
     fd.append("entry.1104944249", form.size.value || "");
     fd.append("entry.254574837", "AI顧問室" + (from ? "/" + from : ""));
     function done() {
-      if (window.aiKomonTrack) {
-        window.aiKomonTrack("Lead", { method: "contact_form", lead_from: from || "direct" });
-      }
+      try { if (typeof gtag === "function") gtag("event", "generate_lead", { method: "contact_form", lead_from: from || "direct" }); } catch (e) {}
+      if (window.aiKomonTrack) window.aiKomonTrack("Lead", { method: "contact_form", lead_from: from || "direct" });
       form.closest(".contact-card").innerHTML =
         '<div style="text-align:center; padding:26px 8px;">' +
         '<p style="font-family:\'Noto Serif JP\',serif; font-size:20px; font-weight:700; color:var(--navy); margin-bottom:12px;">お申し込みありがとうございました。</p>' +
@@ -956,6 +1044,16 @@
     }
     fetch(FORM_URL, { method: "POST", mode: "no-cors", body: fd }).then(done).catch(done);
   });
+
+  // TimeRex予約クリックの計測
+  var trLinks = document.querySelectorAll('a[href*="timerex.net"]');
+  for (var ti = 0; ti < trLinks.length; ti++) {
+    trLinks[ti].addEventListener("click", function () {
+      var f = "";
+      try { f = sessionStorage.getItem("ak_from") || ""; } catch (e) {}
+      try { if (typeof gtag === "function") gtag("event", "timerex_click", { lead_from: f || "direct" }); } catch (e) {}
+    });
+  }
 })();
 </script>
 
