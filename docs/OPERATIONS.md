@@ -36,9 +36,9 @@ curl -s -o /dev/null -w "%{http_code}" https://ai-komon.bivrost.co.jp/
 - **?from=計測**: LPのCTAは `?from={lp名}` 付き。index側JSがsessionStorageに保持し、経由欄に「AI顧問室/{from}」で送信
 - **テスト時の注意**: 本物のフォームに送信しない。`window.fetch` をスタブして検証する
 
-## 価格（2026-07-12改定）
+## 価格（2026-07-17改定）
 
-- 顧問プラン（月額・税別・最低3ヶ月）: ライト15万 / スタンダード25万 / プレミアム50万
+- 顧問プラン（月額・税別・最低3ヶ月）: 月50万円〜。相談・実装・研修・定着の支援範囲は診断結果に応じて個別設計
 - AI研修（単発・税別）: ライト〜10名 50万 / スタンダード〜25名 100万 / 全社〜50名 180万（50名超は個別）
 - 導入支援: ツール導入・自動化 80万〜 / **システム開発 300万〜** / 基幹連携 個別見積（目安800万〜）
 - 価格変更時の反映先: index.html（#pricing・#products）/ training.html / implementation.html / materials/src/pricing.html / materials/src/pitch-deck.html → PDF再生成

@@ -367,19 +367,15 @@
 
         <div class="roi-compare-track">
           <div class="roi-compare-fill" id="r-fill" style="width:24.74%"></div>
-          <div class="roi-marker" style="left:21.43%"><span class="roi-marker-label">ライト<br>15万円</span></div>
-          <div class="roi-marker" style="left:35.71%"><span class="roi-marker-label">スタンダード<br>25万円</span></div>
-          <div class="roi-marker" style="left:71.43%"><span class="roi-marker-label">プレミアム<br>50万円</span></div>
+          <div class="roi-marker" style="left:71.43%"><span class="roi-marker-label">顧問プラン<br>50万円〜</span></div>
         </div>
 
         <div class="roi-legend">
-          <div class="roi-legend-item hit" id="lg-light"><span class="dot"></span>ライト（15万円）<span class="chk yes" id="chk-light">◎ 上回る</span></div>
-          <div class="roi-legend-item" id="lg-std"><span class="dot"></span>スタンダード（25万円）<span class="chk no" id="chk-std">— 届かない</span></div>
-          <div class="roi-legend-item" id="lg-prm"><span class="dot"></span>プレミアム（50万円）<span class="chk no" id="chk-prm">— 届かない</span></div>
+          <div class="roi-legend-item" id="lg-plan"><span class="dot"></span>顧問プラン（50万円）<span class="chk no" id="chk-plan">— 届かない</span></div>
         </div>
 
         <div class="roi-diff deficit" id="r-diff">
-          スタンダード（25万円）との差引：<strong id="r-diff-num">▲76,800円（赤字）</strong>
+          顧問プラン（50万円）との差引：<strong id="r-diff-num">▲326,800円（赤字）</strong>
         </div>
       </div>
     </div>
@@ -404,14 +400,9 @@
           <span class="bar-name">AI人材を採用<br>（年600万円〜＋採用コスト100万円超）</span>
         </div>
         <div class="bar-col">
-          <span class="bar-val">180万円</span>
-          <div class="bar gold" style="height:41px"></div>
-          <span class="bar-name">AI顧問室<br>ライト（月15万円）</span>
-        </div>
-        <div class="bar-col">
-          <span class="bar-val">300万円</span>
-          <div class="bar gold" style="height:68px"></div>
-          <span class="bar-name">AI顧問室<br>スタンダード（月25万円）</span>
+          <span class="bar-val">600万円〜</span>
+          <div class="bar gold" style="height:136px"></div>
+          <span class="bar-name">AI顧問室<br>顧問プラン（月50万円〜）</span>
         </div>
       </div>
     </div>
@@ -506,15 +497,11 @@
   var rDiff = document.getElementById('r-diff');
   var rDiffNum = document.getElementById('r-diff-num');
 
-  var lgLight = document.getElementById('lg-light');
-  var lgStd = document.getElementById('lg-std');
-  var lgPrm = document.getElementById('lg-prm');
-  var chkLight = document.getElementById('chk-light');
-  var chkStd = document.getElementById('chk-std');
-  var chkPrm = document.getElementById('chk-prm');
+  var lgPlan = document.getElementById('lg-plan');
+  var chkPlan = document.getElementById('chk-plan');
 
   var SCALE_MAX = 700000;
-  var PLANS = { light: 150000, std: 250000, premium: 500000 };
+  var PLAN_FEE = 500000;
 
   function setLegend(item, chk, pass) {
     item.className = 'roi-legend-item' + (pass ? ' hit' : '');
@@ -541,11 +528,9 @@
     var fillPct = Math.min(100, (monthly / SCALE_MAX) * 100);
     rFill.style.width = fillPct + '%';
 
-    setLegend(lgLight, chkLight, monthly >= PLANS.light);
-    setLegend(lgStd, chkStd, monthly >= PLANS.std);
-    setLegend(lgPrm, chkPrm, monthly >= PLANS.premium);
+    setLegend(lgPlan, chkPlan, monthly >= PLAN_FEE);
 
-    var diff = monthly - PLANS.std;
+    var diff = monthly - PLAN_FEE;
     if (diff >= 0) {
       rDiff.className = 'roi-diff surplus';
       rDiffNum.textContent = '+' + diff.toLocaleString('ja-JP') + '円（黒字）';
