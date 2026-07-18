@@ -58,6 +58,22 @@
   .work-meta span { font-size: 11px; background: var(--bg-soft); color: var(--navy); border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px; }
   .work-body .try { margin-top: 12px; font-size: 13.5px; font-weight: 700; color: var(--gold); }
 
+  .feature-band { background: var(--bg-soft); padding: 60px 0 56px; border-bottom: 1px solid var(--line); }
+  .feature-band .fb-label { font-size: 12px; letter-spacing: .2em; color: var(--gold); font-weight: 700; }
+  .feature-band h2 { color: var(--navy); font-size: 26px; margin: 8px 0 10px; }
+  .feature-band .fb-lead { font-size: 14px; color: var(--gray); max-width: 780px; line-height: 1.9; margin-bottom: 28px; }
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+  .feature-card { background: var(--white); border: 1px solid var(--line); border-top: 3px solid var(--fc); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, border-color .2s; }
+  a.feature-card:hover { transform: translateY(-3px); border-color: var(--fc); }
+  .feature-card img { width: 100%; aspect-ratio: 8/5; object-fit: cover; object-position: top; display: block; }
+  .fc-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .fc-no { font-size: 11px; font-weight: 700; color: var(--gray); letter-spacing: .12em; }
+  .fc-logo { font-weight: 800; font-size: 18px; color: var(--fc); letter-spacing: .04em; }
+  .fc-logo small { color: var(--gray); font-weight: 600; font-size: 12px; margin-left: 8px; letter-spacing: 0; }
+  .fc-desc { font-size: 12.8px; color: var(--ink); line-height: 1.8; flex: 1; }
+  .fc-try { color: var(--navy); font-weight: 700; font-size: 13px; }
+  .fb-note { margin-top: 18px; font-size: 11.5px; color: var(--gray); }
+
   .img-gallery { background: var(--bg-soft); }
   .ig-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
   .ig-item { border-radius: 8px; overflow: hidden; background: var(--white); border: 1px solid var(--line); }
@@ -112,6 +128,44 @@
     <span class="label">WORKS</span>
     <h1>AIで、ここまで作れる。</h1>
     <p>ここにある作品は、すべてAIとオープンソースの道具だけで制作したサンプルです。外注していたパンフレットも、諦めていた動画も、専門会社に頼んでいたパースも——正しい道具と使い方を知れば、この品質が社内で作れるようになります。各作品に、使った道具と制作時間の目安を添えました。</p>
+  </div>
+</div>
+
+<div class="feature-band">
+  <div class="container">
+    <span class="fb-label">特集｜SAAS-CLASS SHOWCASE</span>
+    <h2>業務SaaSを、まるごと3本作りました。</h2>
+    <p class="fb-lead">電子契約・請求書経理・カスタマーサポート。市販のクラウドサービス級の業務システムを、デモとして丸ごと制作しました。3本ともログインして全画面を操作できます。AIが契約書をレビューし、請求書を読み取り、返信を下書きする様子を、そのまま体験してください。</p>
+    <div class="feature-grid">
+      <a class="feature-card" href="works-contract.html" style="--fc:#2563EB;">
+        <img src="assets/thumbs/works-contract.jpg" alt="AI契約管理クラウド「カワス」の画面" loading="lazy">
+        <div class="fc-body">
+          <span class="fc-no">第1弾｜電子契約・契約管理</span>
+          <span class="fc-logo">KAWASU<small>カワス</small></span>
+          <p class="fc-desc">AIが契約書全10条をスキャンし、リスクのある条項を指摘して修正文案まで提示。承認フローから電子締結スタンプまで一気通貫で動きます。</p>
+          <span class="fc-try">▶ ログインして触る</span>
+        </div>
+      </a>
+      <a class="feature-card" href="works-invoice.html" style="--fc:#059669;">
+        <img src="assets/thumbs/works-invoice.jpg" alt="AI請求書経理クラウド「ソロバン」の画面" loading="lazy">
+        <div class="fc-body">
+          <span class="fc-no">第2弾｜請求書・経理</span>
+          <span class="fc-logo">SOROBAN<small>ソロバン</small></span>
+          <p class="fc-desc">紙の請求書をAIがスキャンし、読取箇所が光りながら項目が埋まっていく。検算・インボイスチェック・仕訳提案から支払管理まで。</p>
+          <span class="fc-try">▶ ログインして触る</span>
+        </div>
+      </a>
+      <a class="feature-card" href="works-support.html" style="--fc:#EA580C;">
+        <img src="assets/thumbs/works-support.jpg" alt="AIサポートデスク「ミミヨリ」の画面" loading="lazy">
+        <div class="fc-body">
+          <span class="fc-no">第3弾｜カスタマーサポート</span>
+          <span class="fc-logo">MIMIYORI<small>ミミヨリ</small></span>
+          <p class="fc-desc">問い合わせをAIが分析し、社内ナレッジを参照して返信を下書き。人が確認して送信すると、対応がナレッジとして蓄積されていきます。</p>
+          <span class="fc-try">▶ ログインして触る</span>
+        </div>
+      </a>
+    </div>
+    <p class="fb-note">※3本とも本デモのために制作した架空のプロダクトです。データはすべてサンプル。実際は御社の業務フローに合わせて専用に構築します。</p>
   </div>
 </div>
 
@@ -298,48 +352,6 @@
           <p>写真も声も、口を動かして話す動画も、すべてAI生成の案内スタッフ。「顔を出せる社員がいない」会社でも、案内・採用・研修動画を出演者ゼロで作れます。</p>
           <div class="work-meta"><span>AI画像×AI音声×AI動画</span><span>収録・撮影なし</span></div>
           <span class="try">▶ 話す様子を見る</span>
-        </div>
-      </a>
-
-      <a class="work-card" href="works-contract.html">
-        <div class="work-visual">
-          <span class="work-badge">実際に操作できます</span>
-          <img src="assets/thumbs/works-contract.jpg" alt="AI契約管理クラウド「カワス」の契約詳細画面。AIが契約書の条項をレビューし指摘を表示している" loading="lazy">
-        </div>
-        <div class="work-body">
-          <div class="cat">SaaS級システム構築</div>
-          <h3>AI契約管理クラウド「カワス」（架空プロダクト）</h3>
-          <p>ログイン・ダッシュボード・契約一覧・AI条項レビュー・承認フロー・締結・台帳まで、電子契約SaaSまるごとのデモ。AIが契約書の穴を指摘し、修正文案まで提示します。</p>
-          <div class="work-meta"><span>7画面フルSPA</span><span>AI条項レビュー演出</span></div>
-          <span class="try">▶ ログインして触る</span>
-        </div>
-      </a>
-
-      <a class="work-card" href="works-invoice.html">
-        <div class="work-visual">
-          <span class="work-badge">実際に操作できます</span>
-          <img src="assets/thumbs/works-invoice.jpg" alt="AI請求書経理クラウド「ソロバン」の請求書詳細画面。紙の請求書からAIが項目を読み取っている" loading="lazy">
-        </div>
-        <div class="work-body">
-          <div class="cat">SaaS級システム構築</div>
-          <h3>AI請求書経理クラウド「ソロバン」（架空プロダクト）</h3>
-          <p>受領した請求書をAIがスキャンして読取り、検算・インボイスチェック・仕訳提案まで。承認フローを通って支払予定に登録されるまでの経理SaaSまるごとデモです。</p>
-          <div class="work-meta"><span>AI読取シンクロ演出</span><span>自動仕訳・支払管理</span></div>
-          <span class="try">▶ ログインして触る</span>
-        </div>
-      </a>
-
-      <a class="work-card" href="works-support.html">
-        <div class="work-visual">
-          <span class="work-badge">実際に操作できます</span>
-          <img src="assets/thumbs/works-support.jpg" alt="AIサポートデスククラウド「ミミヨリ」のチケット詳細画面。AIが問い合わせを分析し返信下書きを作成している" loading="lazy">
-        </div>
-        <div class="work-body">
-          <div class="cat">SaaS級システム構築</div>
-          <h3>AIサポートデスク「ミミヨリ」（架空プロダクト）</h3>
-          <p>問い合わせをAIが分析し、社内ナレッジを参照して返信下書きを作成。人が確認して送信すると、対応がナレッジに蓄積されて次の回答が賢くなる。サポートSaaSまるごとデモです。</p>
-          <div class="work-meta"><span>AI返信下書き生成</span><span>ナレッジ自動蓄積</span></div>
-          <span class="try">▶ ログインして触る</span>
         </div>
       </a>
 
