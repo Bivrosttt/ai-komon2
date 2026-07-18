@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>請求書経理クラウド構築デモ（AI読取・自動仕訳）｜AI顧問室</title>
+<meta name="description" content="架空の請求書経理クラウド「ソロバン」のフル機能デモです。AIが請求書を読み取り自動仕訳を提案、経理確認・役員承認・支払管理までを一気通貫で体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="請求書経理クラウド構築デモ（AI読取・自動仕訳）｜AI顧問室">
+<meta property="og:description" content="架空の請求書経理クラウド「ソロバン」のフル機能デモです。AIが請求書を読み取り自動仕訳を提案、経理確認・役員承認・支払管理までを一気通貫で体験できます。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-invoice.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-invoice.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D;
+    --gold: #C9A227; --gold-deep: #A9821A;
+
+    --pri: #059669; --pri-deep: #047857; --pri-bg: #E3F6EC;
+    --ink: #0F172A; --gray: #5B6472; --gray-soft: #94A0AF;
+    --line: #E2E8F0; --bg-soft: #F5F7FA; --white: #FFFFFF;
+    --teal: #0E7A5F; --teal-bg: #E1F5EE;
+    --amber: #92720A; --amber-bg: #FCF3D9;
+    --red: #B0432F; --red-bg: #FBE4E1;
+    --slate-bg: #EEF2F7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--bg-soft);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { line-height: 1.4; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea { font-family: inherit; }
+  img, svg { max-width: 100%; }
+  ::selection { background: var(--gold); color: var(--navy-deep); }
+  .serif { font-family: 'Noto Serif JP', serif; }
+
+  /* ============ 1. デモフレーム帯 ============ */
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: var(--navy-deep); color: #DCE6F5; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+  .demo-frame-bar b { color: var(--gold); font-weight: 700; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 999px; white-space: nowrap; transition: background .15s;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.12); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
+
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; gap: 8px; height: 52px; }
+    .demo-frame-bar .frame-text { line-height: 1.5; }
+    .demo-frame-bar .frame-link { padding: 4px 9px; font-size: 10.5px; }
+    body { padding-top: 52px; }
+  }
+
+  /* ============ 2. ログイン画面 ============ */
+  #view-login {
+    min-height: calc(100vh - 44px); display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at 20% 15%, #1E3A6E 0%, #0B2447 46%, #071A35 100%);
+    padding: 40px 20px;
+  }
+  #view-login.hide { display: none; }
+  .login-card {
+    width: 100%; max-width: 400px; background: #fff; border-radius: 14px; padding: 40px 36px 30px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  }
+  .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .login-logo .k { font-size: 26px; font-weight: 900; color: var(--pri); letter-spacing: -0.02em; }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .11em; }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .login-field { margin-bottom: 14px; }
+  .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
+  .login-field input {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px;
+    color: var(--gray-soft); background: #F8FAFC; cursor: not-allowed;
+  }
+  .login-btn {
+    width: 100%; padding: 13px; border: none; border-radius: 8px; background: var(--pri); color: #fff;
+    font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-btn:hover { filter: brightness(1.08); }
+  .login-btn:active { transform: scale(.99); }
+  .login-btn:disabled { opacity: .75; cursor: wait; }
+  .login-spin {
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.4);
+    border-top-color: #fff; animation: spin .7s linear infinite; display: none;
+  }
+  .login-btn.loading .login-spin { display: inline-block; }
+  .login-btn.loading .login-btn-label { opacity: .85; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .login-note {
+    font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center;
+    border-top: 1px solid var(--line); padding-top: 14px;
+  }
+
+  /* ============ 3. アプリシェル ============ */
+  #view-app { display: none; }
+  #view-app.show { display: block; }
+  .app-frame { display: flex; align-items: flex-start; min-height: calc(100vh - 44px); }
+
+  .sidebar {
+    width: 232px; flex: 0 0 auto; background: var(--navy-deep); color: #DCE4F0;
+    display: flex; flex-direction: column; position: sticky; top: 44px; height: calc(100vh - 44px);
+    padding: 20px 0; z-index: 50;
+  }
+  .sidebar-brand { padding: 0 20px 18px; border-bottom: 1px solid rgba(255,255,255,.1); margin-bottom: 12px; display: flex; align-items: baseline; gap: 6px; }
+  .sidebar-brand .k { font-size: 19px; font-weight: 900; color: #fff; letter-spacing: -0.02em; }
+  .sidebar-brand .tag-en { font-size: 9px; color: #7488A8; letter-spacing: .09em; }
+  .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 12px; overflow-y: auto; }
+  .nav-btn {
+    display: flex; align-items: center; gap: 11px; padding: 11px 12px; border-radius: 8px; border: none; background: none;
+    color: #B9C6DB; font-size: 13.5px; font-weight: 500; text-align: left; width: 100%; transition: background .15s, color .15s;
+  }
+  .nav-btn svg { flex: 0 0 auto; opacity: .85; }
+  .nav-btn:hover { background: rgba(255,255,255,.07); color: #fff; }
+  .nav-btn.active { background: var(--pri); color: #fff; font-weight: 700; }
+  .nav-btn.active svg { opacity: 1; }
+  .sidebar-foot { padding: 14px 20px 0; border-top: 1px solid rgba(255,255,255,.1); margin-top: 14px; }
+  .sidebar-user { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+  .sidebar-user .avatar {
+    width: 30px; height: 30px; border-radius: 50%; background: var(--pri); color: #fff; display: grid; place-items: center;
+    font-size: 12px; font-weight: 700; flex: 0 0 auto;
+  }
+  .sidebar-user .u-name { font-size: 12.5px; font-weight: 700; color: #fff; }
+  .sidebar-user .u-role { font-size: 10.5px; color: #7488A8; }
+  .logout-link { display: block; font-size: 11.5px; color: #8FA2C0; padding: 6px 2px; }
+  .logout-link:hover { color: #fff; }
+
+  .hamburger-btn {
+    display: none; width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--line); background: #fff;
+    align-items: center; justify-content: center; flex: 0 0 auto;
+  }
+
+  .main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .app-header {
+    position: sticky; top: 44px; z-index: 40; height: 60px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.97);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: center; gap: 14px; padding: 0 24px;
+  }
+  .app-header h1.view-name { font-size: 15.5px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .header-search { flex: 1; min-width: 0; display: flex; justify-content: center; }
+  .header-search-inner { position: relative; width: 100%; max-width: 380px; }
+  .header-search-inner input {
+    width: 100%; padding: 9px 14px 9px 36px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; background: var(--bg-soft);
+  }
+  .header-search-inner input:focus { outline: 2px solid var(--pri); background: #fff; }
+  .header-search-inner svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); pointer-events: none; opacity: .5; }
+  .header-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; }
+  .icon-btn {
+    position: relative; width: 38px; height: 38px; border-radius: 8px; border: 1px solid transparent; background: none;
+    display: grid; place-items: center; color: var(--ink); transition: background .15s;
+  }
+  .icon-btn:hover { background: var(--bg-soft); }
+  .notif-badge {
+    position: absolute; top: 3px; right: 3px; min-width: 15px; height: 15px; border-radius: 999px; background: var(--red);
+    color: #fff; font-size: 9.5px; font-weight: 700; display: grid; place-items: center; padding: 0 3px; border: 2px solid #fff;
+  }
+  .dropdown-wrap { position: relative; }
+  .dropdown-panel {
+    position: absolute; top: calc(100% + 8px); right: 0; width: 320px; background: #fff; border: 1px solid var(--line);
+    border-radius: 12px; box-shadow: 0 18px 44px rgba(15,23,42,.16); z-index: 80; display: none; overflow: hidden;
+  }
+  .dropdown-panel.open { display: block; animation: dropIn .16s ease; }
+  @keyframes dropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .dropdown-head { padding: 12px 16px; font-size: 12.5px; font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+  .notif-item { display: flex; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 12.5px; transition: background .15s; }
+  .notif-item:last-child { border-bottom: none; }
+  .notif-item:hover { background: var(--bg-soft); }
+  .notif-item .dot { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
+  .notif-item .txt { color: var(--ink); line-height: 1.6; }
+  .notif-item .time { color: var(--gray-soft); font-size: 10.5px; margin-top: 3px; }
+
+  .main-scroll { padding: 26px 30px 60px; }
+  .view { display: none; }
+  .view.active { display: block; }
+  .view-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .view-head h2 { font-size: 20px; color: var(--ink); }
+  .view-head .lead { font-size: 12.5px; color: var(--gray); margin-top: 4px; }
+
+  /* KPI */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 22px; }
+  .kpi-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; transition: box-shadow .15s; }
+  .kpi-card:hover { box-shadow: 0 8px 24px rgba(15,23,42,.06); }
+  .kpi-card .kpi-label { font-size: 12px; color: var(--gray); font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .kpi-card .kpi-value { font-size: 27px; color: var(--ink); margin: 9px 0 4px; font-weight: 700; }
+  .kpi-card .kpi-value span { font-size: 13px; color: var(--gray-soft); font-weight: 500; margin-left: 2px; }
+  .kpi-card .kpi-sub { font-size: 11px; color: var(--gray-soft); }
+  .kpi-swatch { width: 8px; height: 8px; border-radius: 2px; flex: 0 0 auto; }
+
+  .grid-2col { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; align-items: start; margin-bottom: 18px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; }
+  .panel h3 { font-size: 14.5px; color: var(--ink); margin-bottom: 4px; font-weight: 700; }
+  .panel .panel-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; }
+
+  .task-list { display: flex; flex-direction: column; gap: 8px; }
+  .task-row {
+    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
+    transition: background .15s, border-color .15s; background: #fff;
+  }
+  .task-row:hover { background: var(--bg-soft); border-color: #CBD5E1; }
+  .task-row .t-badges { flex: 0 0 auto; display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+  .task-row .t-main { flex: 1; min-width: 0; }
+  .task-row .t-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .task-row .t-sub { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
+  .task-row .t-arrow { flex: 0 0 auto; color: var(--gray-soft); }
+
+  /* 横棒グラフ（費目別支出） */
+  .hbar-list { display: flex; flex-direction: column; gap: 12px; }
+  .hbar-row { display: flex; align-items: center; gap: 12px; }
+  .hbar-label { width: 92px; flex: 0 0 auto; font-size: 12px; color: var(--gray); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hbar-track { flex: 1; min-width: 0; height: 15px; background: var(--slate-bg); border-radius: 999px; overflow: hidden; }
+  .hbar-fill { height: 100%; background: linear-gradient(90deg, #6EE7B7, var(--pri)); border-radius: 999px; transition: width .7s cubic-bezier(.2,.8,.2,1); width: 0; }
+  .hbar-value { width: 104px; flex: 0 0 auto; text-align: right; font-size: 12px; font-weight: 700; color: var(--ink); }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; margin-top: 5px; }
+  .timeline-text { font-size: 12.5px; color: var(--ink); line-height: 1.6; }
+  .timeline-text b { font-weight: 700; }
+  .timeline-date { font-size: 10.5px; color: var(--gray-soft); margin-top: 2px; }
+
+  /* Badges */
+  .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .badge-received { background: var(--slate-bg); color: #4A5568; }
+  .badge-extracted { background: var(--pri-bg); color: var(--pri-deep); }
+  .badge-approved { background: var(--amber-bg); color: var(--amber); }
+  .badge-paid { background: var(--teal-bg); color: var(--teal); }
+  .badge-human { background: var(--gold); color: var(--navy-deep); }
+  .badge-soon { background: var(--gold); color: var(--navy-deep); }
+  .badge-outline { background: #fff; border: 1px solid var(--line); color: var(--gray); }
+
+  /* Inbox */
+  .inbox-band {
+    background: var(--pri-bg); border: 1px solid #BEEBD6; border-radius: 10px; padding: 13px 16px; font-size: 12.5px;
+    color: var(--pri-deep); margin-bottom: 18px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tab-chip {
+    padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-size: 12.5px;
+    color: var(--gray); font-weight: 500; transition: all .15s; white-space: nowrap; display: flex; align-items: center; gap: 6px;
+  }
+  .tab-chip:hover { border-color: var(--pri); }
+  .tab-chip.active { background: var(--navy); color: #fff; border-color: var(--navy); font-weight: 700; }
+  .tab-chip .cnt { font-size: 10.5px; background: rgba(0,0,0,.08); padding: 1px 6px; border-radius: 999px; }
+  .tab-chip.active .cnt { background: rgba(255,255,255,.2); }
+  .search-box { position: relative; margin-left: auto; }
+  .search-box input {
+    padding: 9px 14px 9px 34px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; width: 260px; background: #fff;
+  }
+  .search-box input:focus { outline: 2px solid var(--pri); }
+  .search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: .5; }
+
+  .table-wrap { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.data-table th {
+    text-align: left; padding: 12px 16px; background: var(--bg-soft); color: var(--gray); font-weight: 700; font-size: 11.5px;
+    border-bottom: 1px solid var(--line); white-space: nowrap;
+  }
+  table.data-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
+  table.data-table tbody tr { cursor: pointer; transition: background .12s; }
+  table.data-table tbody tr:hover { background: var(--bg-soft); }
+  table.data-table tbody tr:last-child td { border-bottom: none; }
+  table.data-table td.name-cell { font-weight: 700; }
+  table.data-table td.num-cell { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .row-soon { background: #FBF6E4; }
+  .row-soon:hover { background: #F7EFD3 !important; }
+  .empty-row td { text-align: center; color: var(--gray-soft); padding: 40px 16px; }
+
+  /* Invoice detail */
+  .detail-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--gray); margin-bottom: 14px; }
+  .detail-back:hover { color: var(--pri); }
+  .detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+  .detail-head h2 { font-size: 19px; }
+  .detail-head .sub { font-size: 12px; color: var(--gray); margin-top: 5px; }
+  .invoice-detail-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: start; }
+
+  .paper-wrap { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .paper-toolbar { padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--bg-soft); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .paper-toolbar .pt-label { font-size: 11.5px; color: var(--gray); font-weight: 700; }
+  .paper-scan-host { position: relative; overflow: hidden; }
+  .paper { position: relative; padding: 34px 34px 46px; background: #FEFEFC; }
+
+  .scan-line {
+    position: absolute; left: 0; right: 0; height: 90px; top: -90px; z-index: 5; pointer-events: none;
+    background: linear-gradient(180deg, rgba(5,150,105,0) 0%, rgba(16,185,129,.34) 45%, rgba(5,150,105,0) 100%);
+    border-top: 1px solid rgba(16,185,129,.55); border-bottom: 1px solid rgba(16,185,129,.55);
+  }
+  .scan-line.active { animation: scanSweep 1s linear 2; }
+  @keyframes scanSweep {
+    0% { top: -90px; }
+    100% { top: calc(100% - 0px); }
+  }
+
+  .inv-paper-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding-bottom: 18px; border-bottom: 2px solid var(--ink); margin-bottom: 20px; }
+  .inv-issuer-block { border-radius: 6px; transition: background-color .5s ease; padding: 3px 6px; margin: -3px -6px; }
+  .inv-issuer-name { font-size: 19px; font-weight: 900; color: var(--ink); letter-spacing: .01em; }
+  .inv-issuer-sub { font-size: 10.5px; color: var(--gray-soft); margin-top: 3px; }
+  .inv-doc-title { font-size: 22px; font-weight: 700; letter-spacing: .18em; color: var(--ink); }
+
+  .inv-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin-bottom: 20px; }
+  .im-row { display: flex; justify-content: space-between; gap: 10px; font-size: 12.5px; border-radius: 6px; padding: 3px 6px; margin: -3px -6px; transition: background-color .5s ease; }
+  .im-label { color: var(--gray-soft); flex: 0 0 auto; }
+  .im-value { color: var(--ink); font-weight: 700; text-align: right; }
+
+  .inv-items-wrap { border-radius: 8px; margin-bottom: 18px; transition: background-color .5s ease; padding: 2px; }
+  table.inv-items-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.inv-items-table th { text-align: left; padding: 8px 6px; border-bottom: 1.5px solid var(--ink); font-size: 11px; color: var(--gray); font-weight: 700; }
+  table.inv-items-table td { padding: 9px 6px; border-bottom: 1px solid var(--line); color: var(--ink); }
+  table.inv-items-table td.num-cell, table.inv-items-table th.num-cell { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .inv-total-block { margin-left: auto; width: 100%; max-width: 280px; margin-bottom: 22px; }
+  .it-row { display: flex; justify-content: space-between; font-size: 12.5px; padding: 6px 6px; border-radius: 6px; margin: 0 -6px; transition: background-color .5s ease; }
+  .it-row.total { font-size: 15px; font-weight: 700; border-top: 2px solid var(--ink); margin-top: 4px; padding-top: 10px; }
+
+  .inv-bank-block { font-size: 12px; color: var(--ink); background: var(--bg-soft); border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; transition: background-color .5s ease; }
+  .inv-bank-block .ib-label { font-size: 10.5px; color: var(--gray-soft); font-weight: 700; margin-bottom: 4px; }
+  .inv-regno-block { font-size: 11.5px; color: var(--gray); border-radius: 6px; padding: 4px 6px; margin: 0 -6px 6px; transition: background-color .5s ease; }
+  .inv-fake-note { font-size: 10.5px; color: var(--gray-soft); }
+
+  .field-flash { animation: fieldFlash 1.1s ease; }
+  @keyframes fieldFlash {
+    0% { background-color: #A7F3D0; }
+    55% { background-color: #A7F3D0; }
+    100% { background-color: transparent; }
+  }
+
+  .inv-stamp {
+    position: absolute; top: 30px; right: 26px; width: 96px; height: 96px; border: 3px solid var(--pri-deep); border-radius: 8px;
+    color: var(--pri-deep); display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 700;
+    font-size: 14px; line-height: 1.3; transform: rotate(-8deg) scale(0); opacity: 0; background: rgba(255,255,255,.55);
+    letter-spacing: .06em; z-index: 6;
+  }
+  .inv-stamp.stamped { animation: stampIn .5s cubic-bezier(.34,1.56,.64,1) forwards; }
+  @keyframes stampIn {
+    0% { transform: rotate(-8deg) scale(2.4); opacity: 0; }
+    60% { transform: rotate(-8deg) scale(.9); opacity: 1; }
+    100% { transform: rotate(-8deg) scale(1); opacity: 1; }
+  }
+
+  /* Tabs panel right */
+  .side-panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .side-tabs { display: flex; border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+  .side-tab-btn {
+    flex: 1; padding: 13px 6px; font-size: 12.3px; font-weight: 700; color: var(--gray); background: none; border: none;
+    border-bottom: 2px solid transparent; transition: color .15s;
+  }
+  .side-tab-btn.active { color: var(--pri); border-bottom-color: var(--pri); background: #fff; }
+  .side-tab-body { padding: 20px; min-height: 460px; }
+  .side-tab-pane { display: none; }
+  .side-tab-pane.active { display: block; }
+
+  /* AI 読取・仕訳 */
+  .ai-start-box { text-align: center; padding: 34px 8px 18px; }
+  .ai-start-box .ai-icon { margin-bottom: 14px; }
+  .ai-start-box p { font-size: 12.5px; color: var(--gray); margin-bottom: 20px; line-height: 1.9; }
+  .btn-ai-run {
+    background: var(--pri); color: #fff; border: none; padding: 12px 26px; border-radius: 8px; font-weight: 700; font-size: 13.5px;
+    display: inline-flex; align-items: center; gap: 8px; transition: filter .2s;
+  }
+  .btn-ai-run:hover { filter: brightness(1.08); }
+
+  .scan-box { text-align: center; padding: 30px 10px; }
+  .scan-box .scan-spinner {
+    width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--pri-bg); border-top-color: var(--pri); margin: 0 auto 16px;
+    animation: spin .8s linear infinite;
+  }
+  .scan-box .scan-text { font-size: 13px; color: var(--ink); font-weight: 700; margin-bottom: 6px; }
+  .scan-box .scan-sub { font-size: 11.5px; color: var(--gray-soft); }
+
+  .ai-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; gap: 8px; }
+  .ai-toolbar .ai-count { font-size: 12px; color: var(--gray); }
+  .btn-skip { font-size: 11.5px; color: var(--pri); background: none; border: 1px solid var(--pri); padding: 5px 12px; border-radius: 999px; font-weight: 700; }
+  .btn-skip:hover { background: var(--pri-bg); }
+
+  .extract-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 6px; }
+  .extract-row {
+    display: flex; justify-content: space-between; gap: 10px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px;
+    font-size: 12.5px; opacity: 0; transform: translateY(6px); background: #fff;
+  }
+  .extract-row.in { animation: extractIn .4s ease forwards; }
+  @keyframes extractIn { to { opacity: 1; transform: none; } }
+  .extract-row .ex-label { color: var(--gray-soft); font-weight: 700; flex: 0 0 auto; }
+  .extract-row .ex-value { color: var(--ink); font-weight: 700; text-align: right; }
+
+  .check-list { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 8px; font-size: 12.3px; color: var(--pri-deep); background: var(--pri-bg);
+    border-radius: 8px; padding: 9px 12px; opacity: 0; transform: translateY(6px); line-height: 1.6;
+  }
+  .check-item.in { animation: extractIn .4s ease forwards; }
+  .check-item svg { flex: 0 0 auto; margin-top: 1px; }
+
+  .journal-card {
+    border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin-top: 6px; opacity: 0; transform: translateY(8px);
+    background: #fff;
+  }
+  .journal-card.in { animation: extractIn .45s ease forwards; }
+  .journal-card h4 { font-size: 12.5px; color: var(--ink); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .journal-card .jc-tag { font-size: 10px; background: var(--slate-bg); color: var(--gray); padding: 2px 8px; border-radius: 999px; font-weight: 700; }
+  .journal-row { display: flex; justify-content: space-between; font-size: 12.8px; padding: 7px 0; border-bottom: 1px dashed var(--line); }
+  .journal-row:last-of-type { border-bottom: none; }
+  .journal-row .jr-side { font-size: 10.5px; color: var(--gray-soft); font-weight: 700; margin-right: 6px; }
+  .journal-tax-line { font-size: 11.5px; color: var(--gray); margin-top: 10px; }
+  .journal-note { font-size: 11px; color: var(--gray-soft); margin-top: 12px; background: var(--bg-soft); border-radius: 8px; padding: 9px 11px; line-height: 1.8; }
+
+  .approve-cta { margin-top: 16px; text-align: center; }
+  .btn-approve-send {
+    background: var(--navy); color: #fff; border: none; padding: 12px 22px; border-radius: 8px; font-weight: 700; font-size: 13px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-approve-send:hover { filter: brightness(1.15); }
+
+  /* Approval flow */
+  .flow-timeline { position: relative; padding-left: 30px; }
+  .flow-step { position: relative; padding-bottom: 30px; }
+  .flow-step:last-child { padding-bottom: 4px; }
+  .flow-step::before {
+    content: ''; position: absolute; left: -24px; top: 24px; bottom: -6px; width: 2px; background: var(--line);
+  }
+  .flow-step:last-child::before { display: none; }
+  .flow-dot {
+    position: absolute; left: -32px; top: 0; width: 18px; height: 18px; border-radius: 50%; background: #fff;
+    border: 2.5px solid var(--line); display: grid; place-items: center; z-index: 2;
+  }
+  .flow-step.done .flow-dot { border-color: var(--pri); background: var(--pri); }
+  .flow-step.current .flow-dot { border-color: var(--navy); background: var(--navy); box-shadow: 0 0 0 4px var(--slate-bg); }
+  .flow-step.pending .flow-dot { border-color: var(--line); background: #fff; }
+  .flow-step .fs-title { font-size: 13.5px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .flow-step .fs-sub { font-size: 11.5px; color: var(--gray-soft); margin-top: 4px; }
+  .flow-step .fs-body { margin-top: 10px; }
+  .flow-step.pending .fs-title, .flow-step.pending .fs-sub { color: var(--gray-soft); }
+
+  .btn-flow-next {
+    background: var(--navy); color: #fff; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 12.8px;
+    margin-top: 4px;
+  }
+  .btn-flow-next:hover { filter: brightness(1.15); }
+  .btn-flow-next:disabled { opacity: .55; cursor: wait; }
+  .waiting-box {
+    display: flex; align-items: center; gap: 9px; font-size: 12px; color: var(--gray); margin-top: 8px;
+    background: var(--bg-soft); padding: 9px 12px; border-radius: 8px;
+  }
+  .waiting-box .dotting::after { content: ''; animation: dotting 1.2s steps(4,end) infinite; }
+  @keyframes dotting { 0%{content:''} 25%{content:'.'} 50%{content:'..'} 75%{content:'...'} 100%{content:''} }
+  .signed-banner {
+    margin-top: 14px; background: var(--pri-bg); color: var(--pri-deep); border-radius: 9px; padding: 12px 14px; font-size: 12.5px;
+    font-weight: 700; display: flex; align-items: center; gap: 8px; opacity: 0;
+  }
+  .signed-banner.in { animation: extractIn .5s ease forwards; }
+  .flow-reset { margin-top: 18px; text-align: right; }
+  .flow-reset button { font-size: 11.5px; color: var(--gray); background: none; border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; }
+  .flow-reset button:hover { border-color: var(--pri); color: var(--pri); }
+
+  /* Basic info tab */
+  .meta-table { width: 100%; border-collapse: collapse; font-size: 12.8px; }
+  .meta-table th { text-align: left; width: 40%; color: var(--gray); font-weight: 700; padding: 10px 0; vertical-align: top; }
+  .meta-table td { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .meta-table tr:last-child td, .meta-table tr:last-child th { border-bottom: none; }
+  .tag-chip { display: inline-block; background: var(--slate-bg); color: #4A5568; font-size: 11px; padding: 3px 9px; border-radius: 999px; margin: 2px 4px 2px 0; }
+
+  /* Payments / report */
+  .lead-band {
+    background: var(--pri-bg); border: 1px solid #BEEBD6; border-radius: 10px; padding: 13px 16px; font-size: 12.5px;
+    color: var(--pri-deep); margin-bottom: 18px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .lead-band.muted { background: var(--slate-bg); border-color: var(--line); color: var(--gray); }
+  .summary-strip { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+  .summary-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; flex: 1; min-width: 200px; }
+  .summary-card .sc-label { font-size: 11.5px; color: var(--gray); font-weight: 700; margin-bottom: 6px; }
+  .summary-card .sc-value { font-size: 22px; font-weight: 700; color: var(--ink); }
+  .summary-card .sc-sub { font-size: 11px; color: var(--gray-soft); margin-top: 4px; }
+
+  .tax-table { width: 100%; border-collapse: collapse; font-size: 12.8px; margin-top: 8px; }
+  .tax-table th { text-align: right; padding: 9px 10px; background: var(--bg-soft); color: var(--gray); font-weight: 700; font-size: 11px; border-bottom: 1px solid var(--line); }
+  .tax-table th:first-child, .tax-table td:first-child { text-align: left; }
+  .tax-table td { text-align: right; padding: 10px 10px; border-bottom: 1px solid var(--line); }
+
+  /* Settings */
+  .settings-section { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; margin-bottom: 18px; }
+  .settings-section h3 { font-size: 14.5px; margin-bottom: 4px; }
+  .settings-section .sec-note { font-size: 11.5px; color: var(--gray-soft); margin-bottom: 16px; }
+  .account-row, .toggle-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
+  }
+  .account-row:last-child, .toggle-row:last-child { border-bottom: none; }
+  .account-row .a-name { font-size: 13px; font-weight: 700; }
+  .account-row .a-desc { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
+  .account-type-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--slate-bg); color: #4A5568; }
+  .toggle-row .tg-label { font-size: 13px; color: var(--ink); }
+  .toggle-row .tg-desc { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
+  .switch { position: relative; width: 42px; height: 24px; flex: 0 0 auto; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch .track {
+    position: absolute; inset: 0; background: #CBD5E1; border-radius: 999px; cursor: pointer; transition: background .2s;
+  }
+  .switch .track::before {
+    content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%;
+    transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  }
+  .switch input:checked + .track { background: var(--pri); }
+  .switch input:checked + .track::before { transform: translateX(18px); }
+
+  /* Toast */
+  #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
+  .toast {
+    background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 8px; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
+  }
+  @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+
+  /* ============ 4. AI顧問室 CTAセクション ============ */
+  .komon-cta {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: #fff; padding: 76px 24px 40px; text-align: center;
+  }
+  .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
+  .komon-cta .cta-label {
+    display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: var(--gold); font-weight: 700; margin-bottom: 16px;
+  }
+  .komon-cta h2 { font-family: 'Noto Serif JP', serif; font-size: 30px; margin-bottom: 16px; line-height: 1.5; }
+  .komon-cta h2 em { font-style: normal; color: var(--gold); }
+  .komon-cta p.lead { font-size: 14.5px; color: #C7D3E4; margin-bottom: 32px; line-height: 1.9; }
+  .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn { display: inline-block; padding: 15px 34px; border-radius: 6px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s, transform .1s; font-family: 'Noto Sans JP', sans-serif; }
+  .btn:hover { opacity: .87; }
+  .btn:active { transform: scale(.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #7C8CA8; }
+  .komon-cta .cta-foot a { color: #A9BBD6; }
+  .komon-cta .cta-foot a:hover { color: #fff; }
+
+  /* Mobile nav drawer */
+  .mobile-nav-overlay { display: none; }
+  @media (max-width: 900px) {
+    .grid-2col { grid-template-columns: 1fr; }
+    .invoice-detail-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .summary-strip { flex-direction: column; }
+  }
+  @media (max-width: 780px) {
+    .hamburger-btn { display: flex; }
+    .sidebar {
+      position: fixed; top: 44px; left: 0; bottom: 0; height: auto; z-index: 300; transform: translateX(-100%);
+      transition: transform .25s ease; box-shadow: 20px 0 60px rgba(0,0,0,.3); width: 240px;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .mobile-nav-overlay.open {
+      display: block; position: fixed; inset: 44px 0 0 0; background: rgba(0,0,0,.4); z-index: 290;
+    }
+    .app-header { padding: 0 14px; gap: 8px; }
+    .header-search { display: none; }
+    .main-scroll { padding: 18px 14px 40px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .kpi-card { padding: 13px 14px; }
+    .kpi-card .kpi-value { font-size: 21px; }
+    table.data-table { font-size: 12px; }
+    table.data-table th, table.data-table td { padding: 10px 10px; }
+    .search-box { width: 100%; margin-left: 0; }
+    .search-box input { width: 100%; }
+    .toolbar { flex-direction: column; align-items: stretch; }
+    .paper { padding: 22px 16px 34px; }
+    .komon-cta h2 { font-size: 23px; }
+    .komon-cta { padding: 56px 18px 32px; }
+    .inv-stamp { width: 74px; height: 74px; font-size: 11px; right: 14px; top: 20px; }
+    .inv-meta-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+    table.data-table thead { display: none; }
+    table.data-table, table.data-table tbody, table.data-table tr, table.data-table td { display: block; width: 100%; }
+    table.data-table tbody tr { border-bottom: 1px solid var(--line); padding: 12px 14px; }
+    table.data-table td { border-bottom: none; padding: 3px 0; }
+    table.data-table td.num-cell { text-align: left; }
+    table.data-table td::before { content: attr(data-label); display: inline-block; min-width: 76px; font-size: 10.5px; color: var(--gray-soft); font-weight: 700; }
+    .hbar-label { width: 70px; }
+    .hbar-value { width: 84px; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> が制作した架空プロダクトのデモです。データはすべてサンプルで、実際のサービスではありません。</span>
+  <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+</div>
+
+<!-- ============ ログイン画面 ============ -->
+<div id="view-login">
+  <div class="login-card">
+    <div class="login-logo"><span class="k">SOROBAN</span><span class="tag-en">AI INVOICE CLOUD</span></div>
+    <p class="login-sub">経理を、確認するだけに。</p>
+    <div class="login-field">
+      <label for="loginMail">メールアドレス</label>
+      <input id="loginMail" type="text" value="demo@soroban.example" readonly>
+    </div>
+    <div class="login-field">
+      <label for="loginPass">パスワード</label>
+      <input id="loginPass" type="password" value="dummydummy" readonly>
+    </div>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">
+      <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
+    </button>
+    <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
+  </div>
+</div>
+
+<!-- ============ アプリ本体 ============ -->
+<div id="view-app">
+  <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleSidebar(false)"></div>
+  <div class="app-frame">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand"><span class="k">SOROBAN</span><span class="tag-en">AI INVOICE CLOUD</span></div>
+      <nav class="sidebar-nav" id="sidebarNav">
+        <button class="nav-btn" data-nav="dashboard" onclick="go('dashboard')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.4"/><rect x="14" y="3" width="7" height="5" rx="1.4"/><rect x="14" y="12" width="7" height="9" rx="1.4"/><rect x="3" y="16" width="7" height="5" rx="1.4"/></svg>
+          ダッシュボード
+        </button>
+        <button class="nav-btn" data-nav="inbox" onclick="go('inbox')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/><path d="m3 8 8.3 5.2a2.9 2.9 0 0 0 3.4 0L23 8"/><path d="M3 8l2-4h14l2 4"/></svg>
+          受領箱
+        </button>
+        <button class="nav-btn" data-nav="payments" onclick="go('payments')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
+          支払管理
+        </button>
+        <button class="nav-btn" data-nav="report" onclick="go('report')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M11 20V4M18 20v-7"/></svg>
+          月次レポート
+        </button>
+        <button class="nav-btn" data-nav="settings" onclick="go('settings')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l1.9-1.5-2-3.4-2.3.7a7.6 7.6 0 0 0-2.6-1.5L14 2h-4l-.4 2.8a7.6 7.6 0 0 0-2.6 1.5l-2.3-.7-2 3.4L4.6 10.5a7.6 7.6 0 0 0 0 3L2.7 15l2 3.4 2.3-.7c.77.66 1.65 1.17 2.6 1.5L10 22h4l.4-2.8c.95-.33 1.83-.84 2.6-1.5l2.3.7 2-3.4Z"/></svg>
+          設定
+        </button>
+      </nav>
+      <div class="sidebar-foot">
+        <div class="sidebar-user">
+          <div class="avatar">花</div>
+          <div><div class="u-name">デモ 花子</div><div class="u-role">経理部</div></div>
+        </div>
+        <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+      </div>
+    </aside>
+
+    <div class="main-col">
+      <header class="app-header">
+        <button class="hamburger-btn" onclick="toggleSidebar()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <h1 class="view-name" id="viewNameLabel">ダッシュボード</h1>
+        <div class="header-search">
+          <div class="header-search-inner">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+            <input type="text" placeholder="発行元・請求番号を検索（見た目のみ）" disabled>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="dropdown-wrap">
+            <button class="icon-btn" onclick="toggleDropdown('notifPanel')">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+              <span class="notif-badge" id="notifBadgeCount">3</span>
+            </button>
+            <div class="dropdown-panel" id="notifPanel">
+              <div class="dropdown-head">通知</div>
+              <div id="notifList"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-scroll">
+
+        <!-- ===== ダッシュボード ===== -->
+        <section class="view" id="view-dashboard">
+          <div class="view-head">
+            <div><h2>ダッシュボード</h2><p class="lead">2026年7月18日時点のサマリーです（サンプルデータ）</p></div>
+          </div>
+
+          <div class="kpi-grid" id="kpiGrid"></div>
+
+          <div class="grid-2col">
+            <div class="panel">
+              <h3>対応が必要な請求書</h3>
+              <p class="panel-note">読取待ち・承認待ち・支払期限が近い請求書を抽出しています</p>
+              <div class="task-list" id="taskList"></div>
+            </div>
+            <div class="panel">
+              <h3>最近のアクティビティ</h3>
+              <p class="panel-note">直近の操作履歴（サンプル）</p>
+              <div class="timeline" id="activityTimeline"></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>費目別支出（2026年7月・税抜金額）</h3>
+            <p class="panel-note">受領した請求書の品目からAIが自動で勘定科目を集計しています</p>
+            <div class="hbar-list" id="costBreakdownChart"></div>
+          </div>
+        </section>
+
+        <!-- ===== 受領箱 ===== -->
+        <section class="view" id="view-inbox">
+          <div class="view-head">
+            <div><h2>受領箱</h2><p class="lead">全<span id="inboxTotalCount">0</span>件の請求書</p></div>
+          </div>
+          <div class="inbox-band">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:0 0 auto;margin-top:2px;"><path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/><path d="m3 8 8.3 5.2a2.9 2.9 0 0 0 3.4 0L23 8"/><path d="M3 8l2-4h14l2 4"/></svg>
+            <span>メール添付・郵送スキャン・アップロードで受領した請求書が自動でここに集まります（デモではサンプル12件）。</span>
+          </div>
+          <div class="toolbar">
+            <div class="tab-row" id="statusTabRow"></div>
+            <div class="search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+              <input type="text" id="invoiceSearchInput" placeholder="発行元・品目で検索" oninput="renderInboxTable()">
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>発行元</th><th>請求番号</th><th>品目概要</th><th>金額</th><th>支払期限</th><th>ステータス</th></tr>
+              </thead>
+              <tbody id="inboxTbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===== 請求書詳細 ===== -->
+        <section class="view" id="view-invoice-detail">
+          <a href="#inbox" class="detail-back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>
+            受領箱へ戻る
+          </a>
+          <div class="detail-head">
+            <div>
+              <h2 id="detailTitle">請求書</h2>
+              <p class="sub" id="detailSub">請求番号 / 発行元</p>
+            </div>
+            <span class="badge" id="detailStatusBadge"></span>
+          </div>
+
+          <div class="invoice-detail-grid">
+            <div class="paper-wrap">
+              <div class="paper-toolbar">
+                <span class="pt-label">請求書プレビュー</span>
+                <span class="pt-label" id="paperNote">紙面表示</span>
+              </div>
+              <div class="paper-scan-host">
+                <div class="paper" id="paperBody"></div>
+                <div class="scan-line" id="scanLine"></div>
+              </div>
+            </div>
+
+            <div class="side-panel">
+              <div class="side-tabs" id="sideTabs">
+                <button class="side-tab-btn active" data-tab="review" onclick="switchSideTab('review')">AI読取・仕訳</button>
+                <button class="side-tab-btn" data-tab="flow" onclick="switchSideTab('flow')">承認フロー</button>
+                <button class="side-tab-btn" data-tab="info" onclick="switchSideTab('info')">基本情報</button>
+              </div>
+              <div class="side-tab-body">
+                <div class="side-tab-pane active" id="pane-review"></div>
+                <div class="side-tab-pane" id="pane-flow"></div>
+                <div class="side-tab-pane" id="pane-info"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 支払管理 ===== -->
+        <section class="view" id="view-payments">
+          <div class="view-head">
+            <div><h2>支払管理</h2><p class="lead">支払予定・支払済の請求書を支払期限順に管理します</p></div>
+          </div>
+          <div class="summary-strip">
+            <div class="summary-card">
+              <div class="sc-label">今月の支払予定合計</div>
+              <div class="sc-value" id="paymentsTotalValue">¥0</div>
+              <div class="sc-sub">承認済み・未払いの請求書の合計</div>
+            </div>
+            <div class="summary-card">
+              <div class="sc-label">支払期限接近（7日以内）</div>
+              <div class="sc-value" id="paymentsSoonValue">0件</div>
+              <div class="sc-sub">早めのご確認をおすすめします</div>
+            </div>
+          </div>
+          <div class="lead-band muted">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:0 0 auto;margin-top:2px;"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            <span>※振込の実行は銀行システム側で行います。ソロバンは支払予定の管理までを担います。</span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>発行元</th><th>請求番号</th><th>金額</th><th>支払期限</th><th>ステータス</th><th></th></tr>
+              </thead>
+              <tbody id="paymentsTbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===== 月次レポート ===== -->
+        <section class="view" id="view-report">
+          <div class="view-head">
+            <div><h2>月次レポート</h2><p class="lead">2026年7月の費目別支出（サンプルデータ・すべて自動集計）</p></div>
+          </div>
+
+          <div class="panel" style="margin-bottom:18px;">
+            <h3>費目別支出</h3>
+            <p class="panel-note">税抜金額（小計）の合計です。前月（2026年6月）のデータがある費目は前月比も表示します</p>
+            <div class="hbar-list" id="reportBreakdownChart" style="margin-bottom:14px;"></div>
+            <table class="meta-table" id="reportCompareTable"></table>
+          </div>
+
+          <div class="panel">
+            <h3>税率別内訳</h3>
+            <p class="panel-note">標準税率10%・軽減税率8%の内訳です</p>
+            <table class="tax-table">
+              <thead><tr><th>区分</th><th>小計</th><th>消費税</th><th>合計</th></tr></thead>
+              <tbody id="taxBreakdownTbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===== 設定 ===== -->
+        <section class="view" id="view-settings">
+          <div class="view-head">
+            <div><h2>設定</h2><p class="lead">勘定科目・承認ルート・通知の設定です（見た目のみ動作します）</p></div>
+          </div>
+
+          <div class="settings-section">
+            <h3>勘定科目マスタ</h3>
+            <p class="sec-note">AIが仕訳提案の際に使用する勘定科目です</p>
+            <div id="accountList"></div>
+          </div>
+
+          <div class="settings-section">
+            <h3>承認ルート</h3>
+            <p class="sec-note">請求書は経理確認 → 役員承認の2段階を経て支払予定に登録されます</p>
+            <div class="flow-timeline" id="approvalRouteView" style="padding-left:30px;"></div>
+          </div>
+
+          <div class="settings-section">
+            <h3>通知設定</h3>
+            <p class="sec-note">支払期限が近づいた際の通知タイミングです</p>
+            <div id="notifToggleList"></div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AI顧問室 CTAセクション ============ -->
+<div class="komon-cta">
+  <div class="cta-inner">
+    <span class="cta-label">AI KOMONSHITSU</span>
+    <h2>このようなシステムを、<em>御社専用に。</em></h2>
+    <p class="lead">「ソロバン」は本デモのために作った架空のプロダクトです。AI顧問室では、経理業務に限らず、御社の受発注・請求フローそのものを学習してAI読取・自動仕訳・承認フローを組み込んだ専用システムを構築します。</p>
+    <div class="cta-btn-row">
+      <a href="index.html?from=works-invoice#contact" class="btn btn-gold">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
+    </div>
+    <div class="cta-foot">
+      提供: <a href="index.html">AI顧問室</a>｜© 2026
+    </div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+
+<script>
+/* ============================================================
+   0. 基準日 / ユーティリティ
+============================================================ */
+var TODAY = new Date(2026, 6, 18); // 2026-07-18 固定（デモの基準日）
+
+function daysUntil(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  return Math.round((d - TODAY) / 86400000);
+}
+function fmtDate(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+}
+function fmtYen(n) {
+  n = Math.round(n);
+  if (n === 0) return '—';
+  return '¥' + n.toLocaleString('ja-JP');
+}
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function showToast(msg) {
+  var host = document.getElementById('toastHost');
+  var el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  host.appendChild(el);
+  setTimeout(function () { el.remove(); }, 2700);
+}
+/* 請求書の小計・消費税・合計はここで必ず算出する（ハードコード転記はしない） */
+function calcInvoice(inv) {
+  var subtotal = inv.items.reduce(function (s, it) { return s + it.qty * it.unitPrice; }, 0);
+  var tax = Math.round(subtotal * inv.taxRate);
+  var total = subtotal + tax;
+  return { subtotal: subtotal, tax: tax, total: total };
+}
+function isDateInMonth(dateStr, year, month0) {
+  var d = new Date(dateStr + 'T00:00:00');
+  return d.getFullYear() === year && d.getMonth() === month0;
+}
+function isThisJuly(dateStr) { return isDateInMonth(dateStr, 2026, 6); }
+function isLastJune(dateStr) { return isDateInMonth(dateStr, 2026, 5); }
+
+/* ============================================================
+   1. データ定義
+============================================================ */
+var STATUS_LABEL = {
+  received: '受領・AI読取待ち',
+  extracted: '読取済・承認待ち',
+  approved: '支払予定',
+  paid: '支払済'
+};
+
+/* 自社（買い手）＝ デモ商事株式会社。以下12件は自社が受け取った請求書（発行元＝取引先）。 */
+var INVOICES = [
+  { id: 'i-001', issuer: 'ミドリ建設株式会社', invoiceNo: 'MD-2026-0731',
+    issueDate: '2026-07-01', receivedDate: '2026-07-02', dueDate: '2026-07-31',
+    items: [
+      { name: '事務所改装工事 一式', qty: 1, unitPrice: 1200000 },
+      { name: '産業廃棄物処理費', qty: 1, unitPrice: 80000 }
+    ],
+    taxRate: 0.10, account: '修繕費', status: 'received',
+    registrationNo: 'T0000000000001', paidDate: null },
+
+  { id: 'i-002', issuer: '株式会社アオバ物流', invoiceNo: 'AB-2026-0601',
+    issueDate: '2026-06-01', receivedDate: '2026-06-02', dueDate: '2026-06-30',
+    items: [ { name: '配送業務委託費（6月分）', qty: 1, unitPrice: 350000 } ],
+    taxRate: 0.10, account: '外注費', status: 'paid',
+    registrationNo: 'T0000000000002', paidDate: '2026-06-25' },
+
+  { id: 'i-003', issuer: 'ヤマビコ商事株式会社', invoiceNo: 'YB-2026-0701',
+    issueDate: '2026-07-01', receivedDate: '2026-07-03', dueDate: '2026-07-22',
+    items: [ { name: '事務所家賃（7月分）', qty: 1, unitPrice: 420000 } ],
+    taxRate: 0.10, account: '地代家賃', status: 'approved',
+    registrationNo: 'T0000000000003', paidDate: null },
+
+  { id: 'i-004', issuer: 'ヒナタ製作所', invoiceNo: 'HN-2026-0705',
+    issueDate: '2026-07-05', receivedDate: '2026-07-06', dueDate: '2026-07-20',
+    items: [
+      { name: '事務用品一式（デスク・チェア）', qty: 1, unitPrice: 180000 },
+      { name: 'コピー用紙（A4・500枚束）', qty: 20, unitPrice: 1500 }
+    ],
+    taxRate: 0.10, account: '消耗品費', status: 'approved',
+    registrationNo: 'T0000000000004', paidDate: null },
+
+  { id: 'i-005', issuer: 'ツバサ通信株式会社', invoiceNo: 'TB-2026-0710',
+    issueDate: '2026-07-10', receivedDate: '2026-07-11', dueDate: '2026-08-05',
+    items: [
+      { name: 'インターネット回線利用料（7月分）', qty: 1, unitPrice: 48000 },
+      { name: '固定電話料金（7月分）', qty: 1, unitPrice: 12000 }
+    ],
+    taxRate: 0.10, account: '通信費', status: 'extracted',
+    registrationNo: 'T0000000000005', paidDate: null },
+
+  { id: 'i-006', issuer: 'ソライロ設計株式会社', invoiceNo: 'SR-2026-0701',
+    issueDate: '2026-07-01', receivedDate: '2026-07-02', dueDate: '2026-07-24',
+    items: [ { name: '店舗改装設計費', qty: 1, unitPrice: 650000 } ],
+    taxRate: 0.10, account: '外注費', status: 'extracted',
+    registrationNo: 'T0000000000006', paidDate: null },
+
+  { id: 'i-007', issuer: 'コガネイ商会株式会社', invoiceNo: 'KG-2026-0712',
+    issueDate: '2026-07-12', receivedDate: '2026-07-13', dueDate: '2026-08-10',
+    items: [ { name: '来客用飲料・茶菓子代', qty: 1, unitPrice: 45000 } ],
+    taxRate: 0.08, account: '消耗品費', status: 'received',
+    registrationNo: 'T0000000000007', paidDate: null },
+
+  { id: 'i-008', issuer: 'カラマツ商事株式会社', invoiceNo: 'KR-2026-0601',
+    issueDate: '2026-06-01', receivedDate: '2026-06-03', dueDate: '2026-06-15',
+    items: [ { name: '倉庫保管料（6月分）', qty: 1, unitPrice: 260000 } ],
+    taxRate: 0.10, account: '地代家賃', status: 'paid',
+    registrationNo: 'T0000000000008', paidDate: '2026-06-12' },
+
+  { id: 'i-009', issuer: 'ハヤブサ運輸株式会社', invoiceNo: 'HY-2026-0708',
+    issueDate: '2026-07-08', receivedDate: '2026-07-09', dueDate: '2026-07-21',
+    items: [
+      { name: '配送費・運搬費（6月分）', qty: 1, unitPrice: 95000 },
+      { name: '梱包資材費', qty: 1, unitPrice: 15000 }
+    ],
+    taxRate: 0.10, account: '荷造運賃', status: 'approved',
+    registrationNo: 'T0000000000009', paidDate: null },
+
+  { id: 'i-010', issuer: 'ノゾミ印刷株式会社', invoiceNo: 'NZ-2026-0715',
+    issueDate: '2026-07-15', receivedDate: '2026-07-16', dueDate: '2026-08-15',
+    items: [ { name: '会社案内パンフレット印刷費（500部）', qty: 500, unitPrice: 240 } ],
+    taxRate: 0.10, account: '広告宣伝費', status: 'received',
+    registrationNo: 'T0000000000010', paidDate: null },
+
+  { id: 'i-011', issuer: 'ミドリ建設株式会社', invoiceNo: 'MD-2026-0701B',
+    issueDate: '2026-07-01', receivedDate: '2026-07-02', dueDate: '2026-07-19',
+    items: [ { name: '倉庫外壁修繕工事', qty: 1, unitPrice: 980000 } ],
+    taxRate: 0.10, account: '修繕費', status: 'extracted',
+    registrationNo: 'T0000000000011', paidDate: null },
+
+  { id: 'i-012', issuer: '株式会社アオバ物流', invoiceNo: 'AB-2026-0620',
+    issueDate: '2026-06-20', receivedDate: '2026-06-22', dueDate: '2026-07-05',
+    items: [ { name: '設備保守点検業務委託費（6月分）', qty: 1, unitPrice: 180000 } ],
+    taxRate: 0.10, account: '外注費', status: 'paid',
+    registrationNo: 'T0000000000012', paidDate: '2026-07-02' }
+];
+
+var ACCOUNTS = [
+  { name: '修繕費', desc: '建物・設備の修繕にかかる費用' },
+  { name: '外注費', desc: '業務委託・外部発注にかかる費用' },
+  { name: '地代家賃', desc: '事務所・倉庫の賃料' },
+  { name: '消耗品費', desc: '事務用品・少額備品など' },
+  { name: '通信費', desc: '電話・インターネット回線費用' },
+  { name: '荷造運賃', desc: '配送・梱包にかかる費用' },
+  { name: '広告宣伝費', desc: '広告・販促物の制作費用' },
+  { name: '雑費', desc: 'いずれにも当てはまらない費用' }
+];
+
+var ACTIVITY_LOG = [
+  { text: '<b>デモ花子</b>が『倉庫外壁修繕工事（ミドリ建設株式会社）』の内容を確認しました', time: '2時間前', color: 'var(--pri)' },
+  { text: '<b>佐藤（取締役）</b>が『事務所家賃（ヤマビコ商事株式会社）』を承認し、支払予定に登録しました', time: '4時間前', color: 'var(--amber-deep, var(--amber))' },
+  { text: '<b>システム</b>が『設備保守点検業務委託費（株式会社アオバ物流）』の支払いを完了として記録しました', time: '昨日 16:40', color: 'var(--teal)' },
+  { text: '<b>デモ花子</b>が『インターネット回線利用料（ツバサ通信株式会社）』のAI読取を実行しました', time: '昨日 10:15', color: 'var(--pri)' },
+  { text: '<b>システム</b>がメール添付から新しい請求書を受領箱に自動で取り込みました', time: '2日前', color: 'var(--gray-soft)' }
+];
+
+var NOTIF_TOGGLES = [
+  { label: '支払期限 7日前に通知', desc: '早めの確認・資金準備のために通知します', on: true },
+  { label: '支払期限 3日前に通知', desc: '未対応の請求書をリマインドします', on: true },
+  { label: '支払期限 当日に通知', desc: '最終確認として当日にも通知します', on: false }
+];
+
+/* AI読取フィールドの抽出順（発行元→登録番号→発行日→支払期限→品目→小計→消費税→合計→振込先） */
+var EXTRACT_FIELD_DEFS = [
+  { key: 'issuer', label: '発行元', highlight: 'pv-issuer' },
+  { key: 'regno', label: '登録番号', highlight: 'pv-regno' },
+  { key: 'issuedate', label: '発行日', highlight: 'pv-issuedate' },
+  { key: 'duedate', label: '支払期限', highlight: 'pv-duedate' },
+  { key: 'items', label: '品目', highlight: 'pv-items' },
+  { key: 'subtotal', label: '小計', highlight: 'pv-subtotal' },
+  { key: 'tax', label: '消費税', highlight: 'pv-tax' },
+  { key: 'total', label: '合計', highlight: 'pv-total' },
+  { key: 'bank', label: '振込先', highlight: 'pv-bank' }
+];
+var CHECK_ITEMS = [
+  '登録番号の形式チェック OK（インボイス制度対応）',
+  '金額の検算 OK（小計＋消費税＝合計）',
+  '同一請求番号の二重受領なし'
+];
+
+/* ============================================================
+   2. 集計ヘルパー（KPI・タブ件数・グラフはすべてここから導出）
+============================================================ */
+function findInvoice(id) { return INVOICES.filter(function (i) { return i.id === id; })[0]; }
+function countByStatus(status) { return INVOICES.filter(function (i) { return i.status === status; }).length; }
+function itemsSummaryText(inv) {
+  if (inv.items.length === 1) return inv.items[0].name;
+  return inv.items[0].name + ' ほか' + (inv.items.length - 1) + '件';
+}
+function receivedThisMonthCount() {
+  return INVOICES.filter(function (i) { return isThisJuly(i.receivedDate); }).length;
+}
+function approvedTotal() {
+  return INVOICES.filter(function (i) { return i.status === 'approved'; })
+    .reduce(function (s, i) { return s + calcInvoice(i).total; }, 0);
+}
+function dueSoonList(days) {
+  return INVOICES.filter(function (i) {
+    if (i.status === 'paid') return false;
+    var d = daysUntil(i.dueDate);
+    return d >= 0 && d <= days;
+  }).sort(function (a, b) { return daysUntil(a.dueDate) - daysUntil(b.dueDate); });
+}
+function categorySpend(dateFilterFn) {
+  var map = {};
+  INVOICES.forEach(function (inv) {
+    if (!dateFilterFn(inv.issueDate)) return;
+    var sub = calcInvoice(inv).subtotal;
+    map[inv.account] = (map[inv.account] || 0) + sub;
+  });
+  return map;
+}
+function taxBreakdown(dateFilterFn) {
+  var res = { 10: { subtotal: 0, tax: 0, total: 0 }, 8: { subtotal: 0, tax: 0, total: 0 } };
+  INVOICES.forEach(function (inv) {
+    if (!dateFilterFn(inv.issueDate)) return;
+    var c = calcInvoice(inv);
+    var key = Math.round(inv.taxRate * 100);
+    res[key].subtotal += c.subtotal;
+    res[key].tax += c.tax;
+    res[key].total += c.total;
+  });
+  return res;
+}
+
+/* ============================================================
+   3. ルーティング
+============================================================ */
+var VIEW_NAMES = {
+  dashboard: 'ダッシュボード',
+  inbox: '受領箱',
+  payments: '支払管理',
+  report: '月次レポート',
+  settings: '設定'
+};
+var procState = null;  // i-001用：AI読取・仕訳の進行状態
+var flowState = null;  // i-001用：承認フローの進行状態
+var loggedIn = false;
+var CURRENT_DETAIL_ID = null;
+
+function isLoggedIn() { return loggedIn; }
+
+function handleRoute() {
+  var hash = location.hash.replace('#', '') || 'login';
+
+  if (!isLoggedIn() && hash !== 'login') {
+    location.hash = 'login';
+    return;
+  }
+  if (hash === 'login') {
+    showLoginScreen();
+    return;
+  }
+
+  showAppScreen();
+
+  if (hash.indexOf('invoice/') === 0) {
+    var id = hash.split('/')[1];
+    openInvoiceDetail(id);
+    setActiveNav(null);
+    return;
+  }
+
+  var view = ['dashboard', 'inbox', 'payments', 'report', 'settings'].indexOf(hash) >= 0 ? hash : 'dashboard';
+  showView(view);
+  setActiveNav(view);
+}
+
+function showLoginScreen() {
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+}
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+}
+
+function showView(name) {
+  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
+  var el = document.getElementById('view-' + name);
+  if (el) el.classList.add('active');
+  document.getElementById('viewNameLabel').textContent = VIEW_NAMES[name] || '請求書詳細';
+
+  if (name === 'dashboard') renderDashboard();
+  if (name === 'inbox') renderInboxView();
+  if (name === 'payments') renderPayments();
+  if (name === 'report') renderReport();
+  if (name === 'settings') renderSettings();
+  toggleSidebar(false);
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function setActiveNav(name) {
+  document.querySelectorAll('.nav-btn').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.nav === name);
+  });
+}
+
+function go(name) { location.hash = name; }
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  renderNotifDropdown();
+  // 直リンク（#invoice/i-001 等）で開いた場合は、デモの利便性のためログイン済み扱いにする
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') {
+    loggedIn = true;
+  }
+  handleRoute();
+});
+
+/* ============================================================
+   4. ログイン / ログアウト
+============================================================ */
+function doLogin() {
+  var btn = document.getElementById('loginBtn');
+  if (btn.classList.contains('loading')) return;
+  btn.classList.add('loading');
+  btn.disabled = true;
+  setTimeout(function () {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    loggedIn = true;
+    if (location.hash === '#dashboard') {
+      handleRoute();
+    } else {
+      location.hash = 'dashboard';
+    }
+  }, 800);
+}
+function doLogout() {
+  loggedIn = false;
+  procState = null;
+  flowState = null;
+  showToast('ログアウトしました');
+}
+
+/* ============================================================
+   5. サイドバー（モバイル）
+============================================================ */
+function toggleSidebar(force) {
+  var sb = document.getElementById('sidebar');
+  var ov = document.getElementById('mobileOverlay');
+  var open = typeof force === 'boolean' ? force : !sb.classList.contains('open');
+  sb.classList.toggle('open', open);
+  ov.classList.toggle('open', open);
+}
+
+/* ============================================================
+   6. 通知ドロップダウン
+============================================================ */
+function toggleDropdown(id) {
+  var el = document.getElementById(id);
+  var willOpen = !el.classList.contains('open');
+  document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
+  if (willOpen) el.classList.add('open');
+}
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('.dropdown-wrap')) {
+    document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
+  }
+});
+function renderNotifDropdown() {
+  var soon = dueSoonList(7).slice(0, 2);
+  var soonIds = soon.map(function (i) { return i.id; });
+  var approvalWaiting = INVOICES.filter(function (i) { return i.status === 'extracted' && soonIds.indexOf(i.id) < 0; }).slice(0, 1);
+  var items = [];
+  soon.forEach(function (inv) {
+    items.push({ color: 'var(--gold-deep)', text: '『' + itemsSummaryText(inv) + '（' + inv.issuer + '）』の支払期限が近づいています', time: '支払期限まで残り' + daysUntil(inv.dueDate) + '日' });
+  });
+  approvalWaiting.forEach(function (inv) {
+    items.push({ color: 'var(--pri)', text: '『' + itemsSummaryText(inv) + '（' + inv.issuer + '）』の承認依頼が届いています', time: '読取済・承認待ち' });
+  });
+  document.getElementById('notifList').innerHTML = items.map(function (n) {
+    return '<div class="notif-item"><span class="dot" style="background:' + n.color + '"></span><div class="txt">' + escapeHtml(n.text) + '<div class="time">' + escapeHtml(n.time) + '</div></div></div>';
+  }).join('');
+  document.getElementById('notifBadgeCount').textContent = items.length;
+}
+
+/* ============================================================
+   7. ダッシュボード
+============================================================ */
+function renderDashboard() {
+  var receivedMonth = receivedThisMonthCount();
+  var extractedCount = countByStatus('extracted');
+  var approvedSum = approvedTotal();
+  var soonList = dueSoonList(7);
+
+  document.getElementById('kpiGrid').innerHTML = [
+    kpiCardHtml('今月の受領', receivedMonth, '件', 'var(--pri)', '2026年7月に受領した請求書'),
+    kpiCardHtml('承認待ち', extractedCount, '件', 'var(--pri-deep)', '読取済・経理確認待ち'),
+    kpiCardHtml('今月の支払予定合計', fmtYen(approvedSum), '', 'var(--amber)', '承認済み・未払いの合計'),
+    kpiCardHtml('支払期限接近', soonList.length, '件', 'var(--gold-deep)', '7日以内に支払期限')
+  ].join('');
+
+  var taskIds = {};
+  var tasks = [];
+  function pushTask(inv, labels) {
+    if (taskIds[inv.id]) { taskIds[inv.id].labels = taskIds[inv.id].labels.concat(labels); return; }
+    var t = { inv: inv, labels: labels.slice() };
+    taskIds[inv.id] = t;
+    tasks.push(t);
+  }
+  INVOICES.filter(function (i) { return i.status === 'received'; }).forEach(function (i) { pushTask(i, ['読取待ち']); });
+  INVOICES.filter(function (i) { return i.status === 'extracted'; }).forEach(function (i) { pushTask(i, ['承認待ち']); });
+  soonList.forEach(function (i) { pushTask(i, ['支払期限まで' + daysUntil(i.dueDate) + '日']); });
+  tasks.sort(function (a, b) { return daysUntil(a.inv.dueDate) - daysUntil(b.inv.dueDate); });
+
+  document.getElementById('taskList').innerHTML = tasks.map(function (t) {
+    var badges = t.labels.map(function (l) { return '<span class="badge badge-outline">' + l + '</span>'; }).join('');
+    return '<a class="task-row" href="#invoice/' + t.inv.id + '">' +
+      '<span class="t-badges">' + badges + '</span>' +
+      '<span class="t-main"><div class="t-name">' + escapeHtml(itemsSummaryText(t.inv)) + '</div><div class="t-sub">' + escapeHtml(t.inv.issuer) + ' ・ ' + fmtYen(calcInvoice(t.inv).total) + '</div></span>' +
+      '<span class="t-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></span>' +
+      '</a>';
+  }).join('') || '<p style="font-size:12.5px;color:var(--gray-soft);">現在、対応が必要な請求書はありません。</p>';
+
+  document.getElementById('activityTimeline').innerHTML = ACTIVITY_LOG.map(function (a) {
+    return '<div class="timeline-item"><span class="timeline-dot" style="background:' + a.color + '"></span>' +
+      '<div><div class="timeline-text">' + a.text + '</div><div class="timeline-date">' + a.time + '</div></div></div>';
+  }).join('');
+
+  renderHbarChart('costBreakdownChart', categorySpend(isThisJuly));
+}
+
+function kpiCardHtml(label, value, unit, color, sub) {
+  return '<div class="kpi-card"><div class="kpi-label"><span class="kpi-swatch" style="background:' + color + '"></span>' + label + '</div>' +
+    '<div class="kpi-value">' + value + '<span>' + unit + '</span></div><div class="kpi-sub">' + sub + '</div></div>';
+}
+function renderHbarChart(hostId, map) {
+  var entries = Object.keys(map).map(function (k) { return { label: k, value: map[k] }; });
+  entries.sort(function (a, b) { return b.value - a.value; });
+  var max = entries.length ? Math.max.apply(null, entries.map(function (e) { return e.value; })) : 1;
+  var host = document.getElementById(hostId);
+  if (!host) return;
+  if (!entries.length) { host.innerHTML = '<p style="font-size:12px;color:var(--gray-soft);">対象データがありません。</p>'; return; }
+  host.innerHTML = entries.map(function (e) {
+    var pct = Math.max(4, Math.round((e.value / max) * 100));
+    return '<div class="hbar-row"><span class="hbar-label">' + escapeHtml(e.label) + '</span>' +
+      '<span class="hbar-track"><span class="hbar-fill" style="width:' + pct + '%"></span></span>' +
+      '<span class="hbar-value">' + fmtYen(e.value) + '</span></div>';
+  }).join('');
+  requestAnimationFrame(function () {
+    host.querySelectorAll('.hbar-fill').forEach(function (el) { void el.offsetWidth; });
+  });
+}
+
+/* ============================================================
+   8. 受領箱
+============================================================ */
+var currentInboxFilter = 'all';
+var STATUS_TABS = [
+  { key: 'all', label: 'すべて' },
+  { key: 'received', label: '受領' },
+  { key: 'extracted', label: '読取済' },
+  { key: 'approved', label: '支払予定' },
+  { key: 'paid', label: '支払済' }
+];
+
+function renderInboxView() {
+  document.getElementById('inboxTotalCount').textContent = INVOICES.length;
+  renderStatusTabs();
+  renderInboxTable();
+}
+function renderStatusTabs() {
+  document.getElementById('statusTabRow').innerHTML = STATUS_TABS.map(function (t) {
+    var count = t.key === 'all' ? INVOICES.length : countByStatus(t.key);
+    return '<button class="tab-chip ' + (currentInboxFilter === t.key ? 'active' : '') + '" onclick="setInboxFilter(\'' + t.key + '\')">' +
+      t.label + '<span class="cnt">' + count + '</span></button>';
+  }).join('');
+}
+function setInboxFilter(key) {
+  currentInboxFilter = key;
+  renderStatusTabs();
+  renderInboxTable();
+}
+function renderInboxTable() {
+  var qEl = document.getElementById('invoiceSearchInput');
+  var q = qEl ? (qEl.value || '').trim().toLowerCase() : '';
+  var rows = INVOICES.filter(function (inv) {
+    if (currentInboxFilter !== 'all' && inv.status !== currentInboxFilter) return false;
+    if (!q) return true;
+    var itemsText = inv.items.map(function (it) { return it.name; }).join(' ').toLowerCase();
+    return inv.issuer.toLowerCase().indexOf(q) >= 0 || itemsText.indexOf(q) >= 0;
+  });
+  var tbody = document.getElementById('inboxTbody');
+  if (!rows.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="6">該当する請求書がありません。</td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.map(function (inv) {
+    var calc = calcInvoice(inv);
+    var d = daysUntil(inv.dueDate);
+    var soon = inv.status !== 'paid' && d >= 0 && d <= 7;
+    return '<tr class="' + (soon ? 'row-soon' : '') + '" onclick="location.hash=\'invoice/' + inv.id + '\'">' +
+      '<td class="name-cell" data-label="発行元">' + escapeHtml(inv.issuer) + '</td>' +
+      '<td data-label="請求番号">' + escapeHtml(inv.invoiceNo) + '</td>' +
+      '<td data-label="品目概要">' + escapeHtml(itemsSummaryText(inv)) + '</td>' +
+      '<td class="num-cell" data-label="金額">' + fmtYen(calc.total) + '</td>' +
+      '<td data-label="支払期限">' + fmtDate(inv.dueDate) + (soon ? ' <span class="badge badge-soon">期限接近</span>' : '') + '</td>' +
+      '<td data-label="ステータス"><span class="badge badge-' + inv.status + '">' + STATUS_LABEL[inv.status] + '</span></td>' +
+      '</tr>';
+  }).join('');
+}
+
+/* ============================================================
+   9. 請求書詳細（共通）
+============================================================ */
+function openInvoiceDetail(id) {
+  var inv = findInvoice(id);
+  CURRENT_DETAIL_ID = id;
+  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
+  document.getElementById('view-invoice-detail').classList.add('active');
+  document.getElementById('viewNameLabel').textContent = '請求書詳細';
+
+  if (!inv) {
+    document.getElementById('detailTitle').textContent = '請求書が見つかりません';
+    document.getElementById('detailSub').textContent = '';
+    document.getElementById('detailStatusBadge').textContent = '';
+    document.getElementById('paperBody').innerHTML = '';
+    document.getElementById('pane-review').innerHTML = '';
+    document.getElementById('pane-flow').innerHTML = '';
+    document.getElementById('pane-info').innerHTML = '';
+    return;
+  }
+
+  document.getElementById('detailTitle').textContent = itemsSummaryText(inv);
+  document.getElementById('detailSub').textContent = inv.invoiceNo + ' ／ 発行元: ' + inv.issuer;
+  document.getElementById('detailStatusBadge').className = 'badge badge-' + inv.status;
+  document.getElementById('detailStatusBadge').textContent = STATUS_LABEL[inv.status];
+
+  document.getElementById('paperNote').textContent = '紙面表示';
+  document.getElementById('paperBody').innerHTML = paperHtml(inv);
+  var scanLine = document.getElementById('scanLine');
+  if (scanLine) scanLine.classList.remove('active');
+
+  renderInfoTab(inv);
+
+  if (id === 'i-001') {
+    setupProcPane();
+    setupFlowPane();
+  } else {
+    document.getElementById('pane-review').innerHTML = genericProcHtml(inv);
+    document.getElementById('pane-flow').innerHTML = genericFlowHtml(inv);
+  }
+  switchSideTab('review');
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function paperHtml(inv) {
+  var calc = calcInvoice(inv);
+  var itemsRows = inv.items.map(function (it) {
+    return '<tr><td>' + escapeHtml(it.name) + '</td><td class="num-cell">' + it.qty + '</td><td class="num-cell">' + fmtYen(it.unitPrice) + '</td><td class="num-cell">' + fmtYen(it.qty * it.unitPrice) + '</td></tr>';
+  }).join('');
+  var stampedClass = inv.status === 'approved' || inv.status === 'paid' ? 'stamped' : '';
+  return (
+    '<div class="inv-paper-head">' +
+      '<div class="inv-issuer-block" id="pv-issuer"><div class="inv-issuer-name">' + escapeHtml(inv.issuer) + '</div><div class="inv-issuer-sub">請求書発行元</div></div>' +
+      '<div class="inv-doc-title">請求書</div>' +
+    '</div>' +
+    '<div class="inv-meta-grid">' +
+      '<div class="im-row"><span class="im-label">請求番号</span><span class="im-value">' + escapeHtml(inv.invoiceNo) + '</span></div>' +
+      '<div class="im-row"><span class="im-label">請求先</span><span class="im-value">デモ商事株式会社　御中</span></div>' +
+      '<div class="im-row" id="pv-issuedate"><span class="im-label">発行日</span><span class="im-value">' + fmtDate(inv.issueDate) + '</span></div>' +
+      '<div class="im-row" id="pv-duedate"><span class="im-label">支払期限</span><span class="im-value">' + fmtDate(inv.dueDate) + '</span></div>' +
+    '</div>' +
+    '<div class="inv-items-wrap" id="pv-items"><table class="inv-items-table"><thead><tr><th>品目</th><th class="num-cell">数量</th><th class="num-cell">単価</th><th class="num-cell">金額</th></tr></thead><tbody>' + itemsRows + '</tbody></table></div>' +
+    '<div class="inv-total-block">' +
+      '<div class="it-row" id="pv-subtotal"><span>小計</span><span>' + fmtYen(calc.subtotal) + '</span></div>' +
+      '<div class="it-row" id="pv-tax"><span>消費税（' + Math.round(inv.taxRate * 100) + '%）</span><span>' + fmtYen(calc.tax) + '</span></div>' +
+      '<div class="it-row total" id="pv-total"><span>合計金額</span><span>' + fmtYen(calc.total) + '</span></div>' +
+    '</div>' +
+    '<div class="inv-bank-block" id="pv-bank"><div class="ib-label">お振込先</div><div class="ib-value">サンプル銀行　デモ支店　普通1234567（口座名義は架空です）</div></div>' +
+    '<div class="inv-regno-block" id="pv-regno">適格請求書発行事業者登録番号：' + inv.registrationNo + '</div>' +
+    '<div class="inv-fake-note">※登録番号はすべて架空のサンプルです</div>' +
+    '<div class="inv-stamp ' + stampedClass + '" id="pvStamp">承認済</div>'
+  );
+}
+function flashField(elId) {
+  var el = document.getElementById(elId);
+  if (!el) return;
+  el.classList.remove('field-flash');
+  void el.offsetWidth;
+  el.classList.add('field-flash');
+}
+
+function renderInfoTab(inv) {
+  var calc = calcInvoice(inv);
+  document.getElementById('pane-info').innerHTML =
+    '<table class="meta-table"><tbody>' +
+    '<tr><th>請求番号</th><td>' + escapeHtml(inv.invoiceNo) + '</td></tr>' +
+    '<tr><th>発行元</th><td>' + escapeHtml(inv.issuer) + '</td></tr>' +
+    '<tr><th>発行日</th><td>' + fmtDate(inv.issueDate) + '</td></tr>' +
+    '<tr><th>受領日</th><td>' + fmtDate(inv.receivedDate) + '</td></tr>' +
+    '<tr><th>支払期限</th><td>' + fmtDate(inv.dueDate) + '</td></tr>' +
+    '<tr><th>品目</th><td>' + inv.items.map(function (it) { return '<span class="tag-chip">' + escapeHtml(it.name) + '</span>'; }).join('') + '</td></tr>' +
+    '<tr><th>小計 / 消費税 / 合計</th><td>' + fmtYen(calc.subtotal) + ' ／ ' + fmtYen(calc.tax) + '（' + Math.round(inv.taxRate * 100) + '%）／ ' + fmtYen(calc.total) + '</td></tr>' +
+    '<tr><th>勘定科目（AI提案）</th><td>' + escapeHtml(inv.account) + '</td></tr>' +
+    '<tr><th>登録番号</th><td>' + inv.registrationNo + '<br><span style="font-size:10.5px;color:var(--gray-soft)">※架空のサンプルです</span></td></tr>' +
+    '<tr><th>ステータス</th><td><span class="badge badge-' + inv.status + '">' + STATUS_LABEL[inv.status] + '</span>' + (inv.paidDate ? '（' + fmtDate(inv.paidDate) + ' 支払済）' : '') + '</td></tr>' +
+    '</tbody></table>';
+}
+
+function switchSideTab(tab) {
+  document.querySelectorAll('.side-tab-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.tab === tab); });
+  document.querySelectorAll('.side-tab-pane').forEach(function (p) { p.classList.remove('active'); });
+  document.getElementById('pane-' + tab).classList.add('active');
+}
+
+/* ---- i-001以外の請求書向け：簡易表示 ---- */
+function genericProcHtml(inv) {
+  var calc = calcInvoice(inv);
+  var stageNote = inv.status === 'received' ? 'まだAI読取が実行されていません。'
+    : inv.status === 'extracted' ? 'AI読取は完了し、経理確認待ちです。'
+    : 'AI読取・承認ともに完了しています。';
+  return '<div class="ai-start-box">' +
+    '<p>' + stageNote + 'AI読取〜自動仕訳〜承認フローのフル体験は「倉庫改装工事（ミドリ建設株式会社）」でご覧いただけます。<br>この請求書ではAIが提案する仕訳イメージのみ表示します。</p>' +
+    '<div class="journal-card in" style="text-align:left;">' +
+      '<h4>AI仕訳提案（参考）<span class="jc-tag">課税仕入' + Math.round(inv.taxRate * 100) + '%</span></h4>' +
+      '<div class="journal-row"><span><span class="jr-side">借方</span>' + escapeHtml(inv.account) + '</span><span>' + fmtYen(calc.subtotal) + '</span></div>' +
+      '<div class="journal-row"><span><span class="jr-side">借方</span>仮払消費税等</span><span>' + fmtYen(calc.tax) + '</span></div>' +
+      '<div class="journal-row"><span><span class="jr-side">貸方</span>未払金</span><span>' + fmtYen(calc.total) + '</span></div>' +
+      '<div class="journal-note">※AIの読取・仕訳は参考情報です。最終的な会計処理は税理士等の専門家にご確認ください。</div>' +
+    '</div>' +
+    '<a href="#invoice/i-001" class="btn-ai-run" style="text-decoration:none;margin-top:16px;">i-001のフル体験を見る</a>' +
+    '</div>';
+}
+function genericFlowHtml(inv) {
+  var steps = [
+    { title: '① AI読取', done: inv.status !== 'received', sub: inv.status !== 'received' ? '完了' : '未着手' },
+    { title: '② 経理確認', done: inv.status === 'approved' || inv.status === 'paid', current: inv.status === 'extracted', sub: inv.status === 'extracted' ? 'デモ花子が確認中' : (inv.status === 'received' ? '未着手' : '完了') },
+    { title: '③ 役員承認', done: inv.status === 'approved' || inv.status === 'paid', sub: (inv.status === 'approved' || inv.status === 'paid') ? '完了' : '未着手' },
+    { title: '④ 支払予定に登録', done: inv.status === 'approved' || inv.status === 'paid', sub: inv.status === 'paid' ? '支払済み（' + fmtDate(inv.paidDate) + '）' : (inv.status === 'approved' ? '支払予定として登録済み' : '未着手') }
+  ];
+  return '<div class="flow-timeline">' + steps.map(function (s) {
+    var cls = s.done ? 'done' : (s.current ? 'current' : 'pending');
+    var humanBadge = (s.title.indexOf('経理') >= 0 || s.title.indexOf('役員') >= 0) ? '<span class="badge badge-human">人の確認</span>' : '';
+    return '<div class="flow-step ' + cls + '"><span class="flow-dot"></span>' +
+      '<div class="fs-title">' + s.title + humanBadge + '</div>' +
+      '<div class="fs-sub">' + s.sub + '</div></div>';
+  }).join('') + '</div>';
+}
+
+/* ============================================================
+   10. AI読取・仕訳（i-001専用の目玉演出）
+============================================================ */
+function setupProcPane() {
+  procState = { phase: 'idle', timers: [], runId: null };
+  renderProcIdle();
+}
+function clearProcTimers() {
+  if (!procState) return;
+  procState.timers.forEach(function (t) { clearTimeout(t); });
+  procState.timers = [];
+}
+function renderProcIdle() {
+  var scanLine = document.getElementById('scanLine');
+  if (scanLine) scanLine.classList.remove('active');
+  document.getElementById('pane-review').innerHTML =
+    '<div class="ai-start-box">' +
+    '<div class="ai-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--pri)" stroke-width="1.6"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4.2"/></svg></div>' +
+    '<p>AIが請求書の紙面をスキャンし、内容を読み取って仕訳案を提案します。<br>実行には数秒かかります。</p>' +
+    '<button class="btn-ai-run" onclick="startAiRead()">AI読取を実行</button>' +
+    '</div>';
+}
+
+function startAiRead() {
+  if (!procState || procState.phase !== 'idle') return;
+  var inv = findInvoice('i-001');
+  var myRun = {};
+  procState.runId = myRun;
+  procState.phase = 'scanning';
+
+  var scanLine = document.getElementById('scanLine');
+  if (scanLine) { scanLine.classList.remove('active'); void scanLine.offsetWidth; scanLine.classList.add('active'); }
+
+  document.getElementById('pane-review').innerHTML =
+    '<div class="scan-box"><div class="scan-spinner"></div><div class="scan-text">請求書をスキャン中…</div>' +
+    '<div class="scan-sub">紙面全体を読み取っています</div>' +
+    '<div style="margin-top:18px;"><button class="btn-skip" onclick="skipAiRead()">⏩ すべて表示</button></div></div>';
+
+  var t = setTimeout(function () {
+    if (!procState || procState.runId !== myRun) return;
+    beginExtraction(myRun, inv);
+  }, 2000);
+  procState.timers.push(t);
+}
+
+function beginExtraction(myRun, inv) {
+  if (!procState || procState.runId !== myRun) return;
+  procState.phase = 'extracting';
+  var scanLine = document.getElementById('scanLine');
+  if (scanLine) scanLine.classList.remove('active');
+
+  document.getElementById('pane-review').innerHTML =
+    '<div class="ai-toolbar"><span class="ai-count" id="extractCount">読取 0/' + EXTRACT_FIELD_DEFS.length + '項目</span><button class="btn-skip" onclick="skipAiRead()">⏩ すべて表示</button></div>' +
+    '<div class="extract-list" id="extractListHost"></div>' +
+    '<div id="afterExtractHost"></div>';
+
+  var idx = 0;
+  function step() {
+    if (!procState || procState.runId !== myRun || procState.phase !== 'extracting') return;
+    if (idx >= EXTRACT_FIELD_DEFS.length) return;
+    appendExtractRow(idx, inv);
+    idx++;
+    var cEl = document.getElementById('extractCount');
+    if (cEl) cEl.textContent = '読取 ' + idx + '/' + EXTRACT_FIELD_DEFS.length + '項目';
+    if (idx >= EXTRACT_FIELD_DEFS.length) {
+      var t2 = setTimeout(function () { beginChecks(myRun, inv); }, 500);
+      procState.timers.push(t2);
+      return;
+    }
+    var t = setTimeout(step, 500);
+    procState.timers.push(t);
+  }
+  var t0 = setTimeout(step, 500);
+  procState.timers.push(t0);
+}
+
+function extractFieldValue(key, inv, calc) {
+  if (key === 'issuer') return inv.issuer;
+  if (key === 'regno') return inv.registrationNo;
+  if (key === 'issuedate') return fmtDate(inv.issueDate);
+  if (key === 'duedate') return fmtDate(inv.dueDate);
+  if (key === 'items') return inv.items.map(function (it) { return it.name; }).join('／');
+  if (key === 'subtotal') return fmtYen(calc.subtotal);
+  if (key === 'tax') return fmtYen(calc.tax) + '（' + Math.round(inv.taxRate * 100) + '%）';
+  if (key === 'total') return fmtYen(calc.total);
+  if (key === 'bank') return 'サンプル銀行 デモ支店';
+  return '';
+}
+function appendExtractRow(idx, inv) {
+  var def = EXTRACT_FIELD_DEFS[idx];
+  var calc = calcInvoice(inv);
+  var host = document.getElementById('extractListHost');
+  if (!host) return;
+  var row = document.createElement('div');
+  row.className = 'extract-row';
+  row.innerHTML = '<span class="ex-label">' + def.label + '</span><span class="ex-value">' + escapeHtml(extractFieldValue(def.key, inv, calc)) + '</span>';
+  host.appendChild(row);
+  requestAnimationFrame(function () { row.classList.add('in'); });
+  flashField(def.highlight);
+}
+
+function beginChecks(myRun, inv) {
+  if (!procState || procState.runId !== myRun) return;
+  procState.phase = 'checking';
+  var host = document.getElementById('afterExtractHost');
+  if (!host) return;
+  host.innerHTML = '<div class="check-list" id="checkListHost"></div><div id="journalHost"></div>';
+
+  var idx = 0;
+  function step() {
+    if (!procState || procState.runId !== myRun || procState.phase !== 'checking') return;
+    if (idx >= CHECK_ITEMS.length) return;
+    appendCheckItem(idx);
+    idx++;
+    if (idx >= CHECK_ITEMS.length) {
+      var t2 = setTimeout(function () { showJournalCard(myRun, inv); }, 500);
+      procState.timers.push(t2);
+      return;
+    }
+    var t = setTimeout(step, 450);
+    procState.timers.push(t);
+  }
+  var t0 = setTimeout(step, 450);
+  procState.timers.push(t0);
+}
+function appendCheckItem(idx) {
+  var host = document.getElementById('checkListHost');
+  if (!host) return;
+  var div = document.createElement('div');
+  div.className = 'check-item';
+  div.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="m5 13 4 4L19 7"/></svg><span>' + escapeHtml(CHECK_ITEMS[idx]) + '</span>';
+  host.appendChild(div);
+  requestAnimationFrame(function () { div.classList.add('in'); });
+}
+
+function showJournalCard(myRun, inv) {
+  if (!procState || procState.runId !== myRun) return;
+  procState.phase = 'journal';
+  var calc = calcInvoice(inv);
+  // 品目からAIが仕訳を提案（ハードコードせず items から算出）
+  var debit1Amount = inv.items[0].qty * inv.items[0].unitPrice;
+  var debit2Amount = inv.items[1] ? inv.items[1].qty * inv.items[1].unitPrice : 0;
+  var host = document.getElementById('journalHost');
+  if (!host) return;
+  host.innerHTML =
+    '<div class="journal-card">' +
+      '<h4>AI仕訳提案（参考）<span class="jc-tag">課税仕入' + Math.round(inv.taxRate * 100) + '%</span></h4>' +
+      '<div class="journal-row"><span><span class="jr-side">借方</span>修繕費</span><span>' + fmtYen(debit1Amount) + '</span></div>' +
+      (debit2Amount ? '<div class="journal-row"><span><span class="jr-side">借方</span>雑費</span><span>' + fmtYen(debit2Amount) + '</span></div>' : '') +
+      '<div class="journal-row"><span><span class="jr-side">借方</span>仮払消費税</span><span>' + fmtYen(calc.tax) + '</span></div>' +
+      '<div class="journal-row"><span><span class="jr-side">貸方</span>未払金</span><span>' + fmtYen(calc.total) + '</span></div>' +
+      '<div class="journal-tax-line">税区分：課税仕入（標準税率' + Math.round(inv.taxRate * 100) + '%）</div>' +
+      '<div class="journal-note">※AIの読取・仕訳は参考情報です。最終的な会計処理は税理士等の専門家にご確認ください。</div>' +
+      '<div class="approve-cta"><button class="btn-approve-send" onclick="goToApprovalFlow()">内容を確認して承認へ回す<span class="badge badge-human">人の確認</span></button></div>' +
+    '</div>';
+  requestAnimationFrame(function () { host.querySelector('.journal-card').classList.add('in'); });
+}
+
+function skipAiRead() {
+  if (!procState) return;
+  clearProcTimers();
+  var myRun = {};
+  procState.runId = myRun;
+  procState.phase = 'journal';
+  var scanLine = document.getElementById('scanLine');
+  if (scanLine) scanLine.classList.remove('active');
+
+  var inv = findInvoice('i-001');
+  document.getElementById('pane-review').innerHTML =
+    '<div class="ai-toolbar"><span class="ai-count">読取 ' + EXTRACT_FIELD_DEFS.length + '/' + EXTRACT_FIELD_DEFS.length + '項目</span></div>' +
+    '<div class="extract-list" id="extractListHost"></div>' +
+    '<div class="check-list" id="checkListHost"></div>' +
+    '<div id="journalHost"></div>';
+  EXTRACT_FIELD_DEFS.forEach(function (def, idx) { appendExtractRow(idx, inv); });
+  document.querySelectorAll('.extract-row').forEach(function (el) { el.classList.add('in'); });
+  CHECK_ITEMS.forEach(function (c, idx) { appendCheckItem(idx); });
+  document.querySelectorAll('.check-item').forEach(function (el) { el.classList.add('in'); });
+  showJournalCard(myRun, inv);
+}
+
+function goToApprovalFlow() {
+  switchSideTab('flow');
+}
+
+/* ============================================================
+   11. 承認フロー（i-001専用：経理確認 → 役員承認 → 支払予定登録）
+============================================================ */
+var FLOW_STEP_DEFS = [
+  { key: 1, title: '① AI読取', sub: 'AIが請求書を読み取り、仕訳案を作成しました' },
+  { key: 2, title: '② 経理確認', sub: 'デモ 花子（経理部）が内容を確認します', human: true },
+  { key: 3, title: '③ 役員承認', sub: '佐藤（取締役）の承認が必要です', human: true },
+  { key: 4, title: '④ 支払予定に登録', sub: '承認により支払予定として登録されます' }
+];
+
+function setupFlowPane() {
+  flowState = { step: 2, timers: [], runId: {} };
+  renderFlowPane();
+}
+function renderFlowPane() {
+  var step = flowState.step;
+  var html = '<div class="flow-timeline">';
+  FLOW_STEP_DEFS.forEach(function (s) {
+    var cls = s.key < step ? 'done' : (s.key === step ? 'current' : 'pending');
+    var humanBadge = s.human ? '<span class="badge badge-human">' + (s.key === 2 ? '人の確認' : '人の承認') + '</span>' : '';
+    html += '<div class="flow-step ' + cls + '"><span class="flow-dot"></span>' +
+      '<div class="fs-title">' + s.title + humanBadge + '</div>' +
+      '<div class="fs-sub">' + (s.key <= step ? s.sub : '前のステップの完了待ちです') + '</div>' +
+      '<div class="fs-body" id="flow-body-' + s.key + '"></div></div>';
+  });
+  html += '</div><div class="flow-reset"><button onclick="resetInvoiceFlow()">↺ リセット</button></div>';
+  document.getElementById('pane-flow').innerHTML = html;
+  renderFlowStepBody();
+}
+function renderFlowStepBody() {
+  var step = flowState.step;
+  var el = document.getElementById('flow-body-' + step);
+  if (!el) return;
+  if (step === 2) {
+    el.innerHTML = '<button class="btn-flow-next" id="confirmBtn" onclick="confirmStep2()">確認して次へ進める</button>';
+  } else if (step === 3) {
+    el.innerHTML = '<button class="btn-flow-next" id="approveBtn" onclick="approveStep3()">承認して支払予定に登録する</button>';
+  } else if (step === 4) {
+    el.innerHTML = '<div class="signed-banner in">✓ 支払予定に登録されました。支払期限の7日前に通知します。</div>';
+  }
+}
+function confirmStep2() {
+  if (!flowState || flowState.step !== 2) return;
+  var btn = document.getElementById('confirmBtn');
+  if (btn) { btn.disabled = true; btn.textContent = '送信中…'; }
+  var myRun = flowState.runId;
+  var t = setTimeout(function () {
+    if (!flowState || flowState.runId !== myRun || flowState.step !== 2) return;
+    flowState.step = 3;
+    renderFlowPane();
+  }, 1500);
+  flowState.timers.push(t);
+}
+function approveStep3() {
+  if (!flowState || flowState.step !== 3) return;
+  var btn = document.getElementById('approveBtn');
+  if (btn) { btn.disabled = true; btn.textContent = '送信中…'; }
+  var myRun = flowState.runId;
+  var t = setTimeout(function () {
+    if (!flowState || flowState.runId !== myRun || flowState.step !== 3) return;
+    flowState.step = 4;
+    renderFlowPane();
+    var inv = findInvoice('i-001');
+    inv.status = 'approved';
+    var stamp = document.getElementById('pvStamp');
+    if (stamp) requestAnimationFrame(function () { stamp.classList.add('stamped'); });
+    document.getElementById('detailStatusBadge').className = 'badge badge-' + inv.status;
+    document.getElementById('detailStatusBadge').textContent = STATUS_LABEL[inv.status];
+    renderInfoTab(inv);
+    showToast('請求書が支払予定に登録されました');
+  }, 1500);
+  flowState.timers.push(t);
+}
+function resetInvoiceFlow() {
+  if (flowState) { flowState.timers.forEach(function (t) { clearTimeout(t); }); }
+  if (procState) { clearProcTimers(); }
+  var inv = findInvoice('i-001');
+  inv.status = 'received';
+  document.getElementById('detailStatusBadge').className = 'badge badge-' + inv.status;
+  document.getElementById('detailStatusBadge').textContent = STATUS_LABEL[inv.status];
+  var stamp = document.getElementById('pvStamp');
+  if (stamp) stamp.classList.remove('stamped');
+  renderInfoTab(inv);
+  flowState = { step: 2, timers: [], runId: {} };
+  renderFlowPane();
+  setupProcPane();
+  showToast('請求書の状態を読取前にリセットしました');
+}
+
+/* ============================================================
+   12. 支払管理
+============================================================ */
+function renderPayments() {
+  document.getElementById('paymentsTotalValue').textContent = fmtYen(approvedTotal());
+  document.getElementById('paymentsSoonValue').textContent = dueSoonList(7).length + '件';
+
+  var rows = INVOICES.filter(function (i) { return i.status === 'approved' || i.status === 'paid'; })
+    .sort(function (a, b) { return new Date(a.dueDate) - new Date(b.dueDate); });
+
+  var tbody = document.getElementById('paymentsTbody');
+  if (!rows.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="6">対象の請求書がありません。</td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.map(function (inv) {
+    var calc = calcInvoice(inv);
+    var d = daysUntil(inv.dueDate);
+    var soon = inv.status === 'approved' && d >= 0 && d <= 7;
+    return '<tr class="' + (soon ? 'row-soon' : '') + '" onclick="location.hash=\'invoice/' + inv.id + '\'">' +
+      '<td class="name-cell" data-label="発行元">' + escapeHtml(inv.issuer) + '</td>' +
+      '<td data-label="請求番号">' + escapeHtml(inv.invoiceNo) + '</td>' +
+      '<td class="num-cell" data-label="金額">' + fmtYen(calc.total) + '</td>' +
+      '<td data-label="支払期限">' + fmtDate(inv.dueDate) + '</td>' +
+      '<td data-label="ステータス"><span class="badge badge-' + inv.status + '">' + STATUS_LABEL[inv.status] + '</span></td>' +
+      '<td data-label="">' + (soon ? '<span class="badge badge-soon">期限接近</span>' : '') + '</td>' +
+      '</tr>';
+  }).join('');
+}
+
+/* ============================================================
+   13. 月次レポート
+============================================================ */
+function renderReport() {
+  var julyMap = categorySpend(isThisJuly);
+  var juneMap = categorySpend(isLastJune);
+  renderHbarChart('reportBreakdownChart', julyMap);
+
+  var accounts = Object.keys(julyMap).sort(function (a, b) { return julyMap[b] - julyMap[a]; });
+  var julyTotal = accounts.reduce(function (s, a) { return s + julyMap[a]; }, 0);
+  var juneTotal = Object.keys(juneMap).reduce(function (s, a) { return s + juneMap[a]; }, 0);
+
+  var rowsHtml = accounts.map(function (a) {
+    var julyV = julyMap[a];
+    var juneV = juneMap[a];
+    var compareText;
+    if (juneV) {
+      var pct = Math.round(((julyV - juneV) / juneV) * 1000) / 10;
+      compareText = (pct >= 0 ? '+' : '') + pct + '%（前月 ' + fmtYen(juneV) + '）';
+    } else {
+      compareText = '前月データなし';
+    }
+    return '<tr><th>' + escapeHtml(a) + '</th><td>' + fmtYen(julyV) + '　<span style="color:var(--gray-soft);font-weight:400;">' + compareText + '</span></td></tr>';
+  }).join('');
+  var totalCompare;
+  if (juneTotal) {
+    var totalPct = Math.round(((julyTotal - juneTotal) / juneTotal) * 1000) / 10;
+    totalCompare = (totalPct >= 0 ? '+' : '') + totalPct + '%（前月 ' + fmtYen(juneTotal) + '）';
+  } else {
+    totalCompare = '前月データなし';
+  }
+  rowsHtml += '<tr><th>合計（税抜）</th><td><b>' + fmtYen(julyTotal) + '</b>　<span style="color:var(--gray-soft);font-weight:400;">' + totalCompare + '</span></td></tr>';
+  document.getElementById('reportCompareTable').innerHTML = '<tbody>' + rowsHtml + '</tbody>';
+
+  var tb = taxBreakdown(isThisJuly);
+  document.getElementById('taxBreakdownTbody').innerHTML =
+    '<tr><td>標準税率（10%）</td><td>' + fmtYen(tb[10].subtotal) + '</td><td>' + fmtYen(tb[10].tax) + '</td><td>' + fmtYen(tb[10].total) + '</td></tr>' +
+    '<tr><td>軽減税率（8%）</td><td>' + fmtYen(tb[8].subtotal) + '</td><td>' + fmtYen(tb[8].tax) + '</td><td>' + fmtYen(tb[8].total) + '</td></tr>' +
+    '<tr><th>合計</th><th>' + fmtYen(tb[10].subtotal + tb[8].subtotal) + '</th><th>' + fmtYen(tb[10].tax + tb[8].tax) + '</th><th>' + fmtYen(tb[10].total + tb[8].total) + '</th></tr>';
+}
+
+/* ============================================================
+   14. 設定
+============================================================ */
+function renderSettings() {
+  document.getElementById('accountList').innerHTML = ACCOUNTS.map(function (a) {
+    return '<div class="account-row"><div><div class="a-name">' + escapeHtml(a.name) + '</div><div class="a-desc">' + escapeHtml(a.desc) + '</div></div>' +
+      '<span class="account-type-badge">費用</span></div>';
+  }).join('');
+
+  document.getElementById('approvalRouteView').innerHTML =
+    '<div class="flow-step done"><span class="flow-dot"></span><div class="fs-title">① 経理確認<span class="badge badge-human">人の確認</span></div><div class="fs-sub">デモ 花子（経理部）が内容を確認します</div></div>' +
+    '<div class="flow-step pending"><span class="flow-dot"></span><div class="fs-title">② 役員承認<span class="badge badge-human">人の承認</span></div><div class="fs-sub">承認後、支払予定に自動登録されます</div></div>';
+
+  document.getElementById('notifToggleList').innerHTML = NOTIF_TOGGLES.map(function (t, i) {
+    return toggleRowHtml('nt-' + i, t.label, t.desc, t.on);
+  }).join('');
+}
+function toggleRowHtml(id, label, desc, on) {
+  return '<div class="toggle-row"><div><div class="tg-label">' + escapeHtml(label) + '</div><div class="tg-desc">' + escapeHtml(desc) + '</div></div>' +
+    '<label class="switch"><input type="checkbox" id="' + id + '" ' + (on ? 'checked' : '') + ' onchange="onToggleChange(this)"><span class="track"></span></label></div>';
+}
+function onToggleChange(input) {
+  showToast(input.checked ? '設定をONにしました（デモ）' : '設定をOFFにしました（デモ）');
+}
+</script>
+</body>
+</html>
