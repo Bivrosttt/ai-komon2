@@ -347,6 +347,22 @@
     .demo-hero { padding: 56px 0 44px; }
     .header-right a.textlink { display: none; }
   }
+
+  /* Mobile/tablet header fit (auto-added 2026-07-18) */
+  @media (max-width: 600px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { font-size: 18px; white-space: nowrap; }
+    .logo span { display: none; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  }
+  @media (min-width: 601px) and (max-width: 1080px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { white-space: nowrap; }
+    .logo span { display: none; }
+    header nav ul { gap: 12px; }
+    header nav a { font-size: 12px; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
