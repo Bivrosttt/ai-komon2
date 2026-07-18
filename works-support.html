@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>カスタマーサポートデスク構築デモ（AI返信下書き）｜AI顧問室</title>
+<meta name="description" content="架空のカスタマーサポートSaaS「ミミヨリ」のフル機能デモです。AIが問い合わせを分析し返信下書きを提案、人が確認して送信、対応後は自動でナレッジベースに蓄積されます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="カスタマーサポートデスク構築デモ（AI返信下書き）｜AI顧問室">
+<meta property="og:description" content="架空のカスタマーサポートSaaS「ミミヨリ」のフル機能デモです。AIが問い合わせを分析し返信下書きを提案、人が確認して送信、対応後は自動でナレッジベースに蓄積されます。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-support.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-support.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D;
+    --gold: #C9A227; --gold-deep: #A9821A;
+
+    --pri: #EA580C; --pri-deep: #C2410C; --pri-bg: #FFF1E6;
+    --ink: #0F172A; --gray: #5B6472; --gray-soft: #94A0AF;
+    --line: #E2E8F0; --bg-soft: #FAF7F4; --white: #FFFFFF;
+    --teal: #0E7A5F; --teal-bg: #E1F5EE;
+    --amber: #92720A; --amber-bg: #FCF3D9;
+    --red: #B0432F; --red-bg: #FBE4E1;
+    --blue: #1D4ED8; --blue-bg: #E6EEFC;
+    --slate-bg: #F1EDE8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--bg-soft);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { line-height: 1.4; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea { font-family: inherit; }
+  img, svg { max-width: 100%; }
+  ::selection { background: var(--gold); color: var(--navy-deep); }
+  .serif { font-family: 'Noto Serif JP', serif; }
+
+  /* ============ 1. デモフレーム帯 ============ */
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: var(--navy-deep); color: #DCE6F5; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+  }
+  .demo-frame-bar b { color: var(--gold); font-weight: 700; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 999px; white-space: nowrap; transition: background .15s;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.12); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
+
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; gap: 8px; height: 52px; }
+    .demo-frame-bar .frame-text { line-height: 1.5; }
+    .demo-frame-bar .frame-link { padding: 4px 9px; font-size: 10.5px; }
+    body { padding-top: 52px; }
+  }
+
+  /* ============ 2. ログイン画面 ============ */
+  #view-login {
+    min-height: calc(100vh - 44px); display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at 20% 15%, #1E3A6E 0%, #0B2447 46%, #071A35 100%);
+    padding: 40px 20px;
+  }
+  #view-login.hide { display: none; }
+  .login-card {
+    width: 100%; max-width: 400px; background: #fff; border-radius: 14px; padding: 40px 36px 30px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  }
+  .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .login-logo .k { font-size: 25px; font-weight: 900; color: var(--pri); letter-spacing: -0.02em; }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .1em; }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .login-field { margin-bottom: 14px; }
+  .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
+  .login-field input {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px;
+    color: var(--gray-soft); background: #F8FAFC; cursor: not-allowed;
+  }
+  .login-btn {
+    width: 100%; padding: 13px; border: none; border-radius: 8px; background: var(--pri); color: #fff;
+    font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-btn:hover { filter: brightness(1.08); }
+  .login-btn:active { transform: scale(.99); }
+  .login-btn:disabled { opacity: .75; cursor: wait; }
+  .login-spin {
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.4);
+    border-top-color: #fff; animation: spin .7s linear infinite; display: none;
+  }
+  .login-btn.loading .login-spin { display: inline-block; }
+  .login-btn.loading .login-btn-label { opacity: .85; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .login-note {
+    font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center;
+    border-top: 1px solid var(--line); padding-top: 14px;
+  }
+
+  /* ============ 3. アプリシェル ============ */
+  #view-app { display: none; }
+  #view-app.show { display: block; }
+  .app-frame { display: flex; align-items: flex-start; min-height: calc(100vh - 44px); }
+
+  .sidebar {
+    width: 232px; flex: 0 0 auto; background: var(--navy-deep); color: #DCE4F0;
+    display: flex; flex-direction: column; position: sticky; top: 44px; height: calc(100vh - 44px);
+    padding: 20px 0; z-index: 50;
+  }
+  .sidebar-brand { padding: 0 20px 18px; border-bottom: 1px solid rgba(255,255,255,.1); margin-bottom: 12px; display: flex; align-items: baseline; gap: 6px; }
+  .sidebar-brand .k { font-size: 19px; font-weight: 900; color: #fff; letter-spacing: -0.02em; }
+  .sidebar-brand .tag-en { font-size: 9px; color: #7488A8; letter-spacing: .08em; }
+  .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 12px; overflow-y: auto; }
+  .nav-btn {
+    display: flex; align-items: center; gap: 11px; padding: 11px 12px; border-radius: 8px; border: none; background: none;
+    color: #B9C6DB; font-size: 13.5px; font-weight: 500; text-align: left; width: 100%; transition: background .15s, color .15s;
+  }
+  .nav-btn svg { flex: 0 0 auto; opacity: .85; }
+  .nav-btn:hover { background: rgba(255,255,255,.07); color: #fff; }
+  .nav-btn.active { background: var(--pri); color: #fff; font-weight: 700; }
+  .nav-btn.active svg { opacity: 1; }
+  .sidebar-foot { padding: 14px 20px 0; border-top: 1px solid rgba(255,255,255,.1); margin-top: 14px; }
+  .sidebar-user { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+  .sidebar-user .avatar {
+    width: 30px; height: 30px; border-radius: 50%; background: var(--pri); color: #fff; display: grid; place-items: center;
+    font-size: 12px; font-weight: 700; flex: 0 0 auto;
+  }
+  .sidebar-user .u-name { font-size: 12.5px; font-weight: 700; color: #fff; }
+  .sidebar-user .u-role { font-size: 10.5px; color: #7488A8; }
+  .logout-link { display: block; font-size: 11.5px; color: #8FA2C0; padding: 6px 2px; }
+  .logout-link:hover { color: #fff; }
+
+  .hamburger-btn {
+    display: none; width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--line); background: #fff;
+    align-items: center; justify-content: center; flex: 0 0 auto;
+  }
+
+  .main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .app-header {
+    position: sticky; top: 44px; z-index: 40; height: 60px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.97);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: center; gap: 14px; padding: 0 24px;
+  }
+  .app-header h1.view-name { font-size: 15.5px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .header-search { flex: 1; min-width: 0; display: flex; justify-content: center; }
+  .header-search-inner { position: relative; width: 100%; max-width: 380px; }
+  .header-search-inner input {
+    width: 100%; padding: 9px 14px 9px 36px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; background: var(--bg-soft);
+  }
+  .header-search-inner input:focus { outline: 2px solid var(--pri); background: #fff; }
+  .header-search-inner svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); pointer-events: none; opacity: .5; }
+  .header-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; }
+  .icon-btn {
+    position: relative; width: 38px; height: 38px; border-radius: 8px; border: 1px solid transparent; background: none;
+    display: grid; place-items: center; color: var(--ink); transition: background .15s;
+  }
+  .icon-btn:hover { background: var(--bg-soft); }
+  .notif-badge {
+    position: absolute; top: 3px; right: 3px; min-width: 15px; height: 15px; border-radius: 999px; background: var(--red);
+    color: #fff; font-size: 9.5px; font-weight: 700; display: grid; place-items: center; padding: 0 3px; border: 2px solid #fff;
+  }
+  .dropdown-wrap { position: relative; }
+  .dropdown-panel {
+    position: absolute; top: calc(100% + 8px); right: 0; width: 320px; background: #fff; border: 1px solid var(--line);
+    border-radius: 12px; box-shadow: 0 18px 44px rgba(15,23,42,.16); z-index: 80; display: none; overflow: hidden;
+  }
+  .dropdown-panel.open { display: block; animation: dropIn .16s ease; }
+  @keyframes dropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .dropdown-head { padding: 12px 16px; font-size: 12.5px; font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+  .notif-item { display: flex; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 12.5px; transition: background .15s; }
+  .notif-item:last-child { border-bottom: none; }
+  .notif-item:hover { background: var(--bg-soft); }
+  .notif-item .dot { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
+  .notif-item .txt { color: var(--ink); line-height: 1.6; }
+  .notif-item .time { color: var(--gray-soft); font-size: 10.5px; margin-top: 3px; }
+
+  .main-scroll { padding: 26px 30px 60px; }
+  .view { display: none; }
+  .view.active { display: block; }
+  .view-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .view-head h2 { font-size: 20px; color: var(--ink); }
+  .view-head .lead { font-size: 12.5px; color: var(--gray); margin-top: 4px; }
+
+  /* KPI */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 22px; }
+  .kpi-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; transition: box-shadow .15s; }
+  .kpi-card:hover { box-shadow: 0 8px 24px rgba(15,23,42,.06); }
+  .kpi-card .kpi-label { font-size: 12px; color: var(--gray); font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .kpi-card .kpi-value { font-size: 27px; color: var(--ink); margin: 9px 0 4px; font-weight: 700; }
+  .kpi-card .kpi-value span { font-size: 13px; color: var(--gray-soft); font-weight: 500; margin-left: 2px; }
+  .kpi-card .kpi-sub { font-size: 11px; color: var(--gray-soft); }
+  .kpi-swatch { width: 8px; height: 8px; border-radius: 2px; flex: 0 0 auto; }
+
+  .grid-2col { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; align-items: start; margin-bottom: 18px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; }
+  .panel h3 { font-size: 14.5px; color: var(--ink); margin-bottom: 4px; font-weight: 700; }
+  .panel .panel-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; }
+
+  .task-list { display: flex; flex-direction: column; gap: 8px; }
+  .task-row {
+    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
+    transition: background .15s, border-color .15s; background: #fff;
+  }
+  .task-row:hover { background: var(--bg-soft); border-color: #E4B994; }
+  .task-row .t-badges { flex: 0 0 auto; display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+  .task-row .t-main { flex: 1; min-width: 0; }
+  .task-row .t-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .task-row .t-sub { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
+  .task-row .t-arrow { flex: 0 0 auto; color: var(--gray-soft); }
+
+  /* 横棒グラフ（共通・件数/金額いずれも利用） */
+  .hbar-list { display: flex; flex-direction: column; gap: 12px; }
+  .hbar-row { display: flex; align-items: center; gap: 12px; }
+  .hbar-label { width: 96px; flex: 0 0 auto; font-size: 12px; color: var(--gray); font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hbar-track { flex: 1; min-width: 0; height: 15px; background: var(--slate-bg); border-radius: 999px; overflow: hidden; }
+  .hbar-fill { height: 100%; background: linear-gradient(90deg, #FDBA74, var(--pri)); border-radius: 999px; transition: width .7s cubic-bezier(.2,.8,.2,1); width: 0; }
+  .hbar-value { width: 84px; flex: 0 0 auto; text-align: right; font-size: 12px; font-weight: 700; color: var(--ink); }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; margin-top: 5px; }
+  .timeline-text { font-size: 12.5px; color: var(--ink); line-height: 1.6; }
+  .timeline-text b { font-weight: 700; }
+  .timeline-date { font-size: 10.5px; color: var(--gray-soft); margin-top: 2px; }
+
+  /* Badges */
+  .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .badge-new { background: var(--red-bg); color: var(--red); }
+  .badge-drafted { background: var(--pri-bg); color: var(--pri-deep); }
+  .badge-open { background: var(--amber-bg); color: var(--amber); }
+  .badge-solved { background: var(--teal-bg); color: var(--teal); }
+  .badge-pri-高 { background: var(--red-bg); color: var(--red); }
+  .badge-pri-中 { background: var(--amber-bg); color: var(--amber); }
+  .badge-pri-低 { background: var(--slate-bg); color: var(--gray); }
+  .badge-human { background: var(--gold); color: var(--navy-deep); }
+  .badge-ai { background: var(--blue-bg); color: var(--blue); }
+  .badge-outline { background: #fff; border: 1px solid var(--line); color: var(--gray); }
+
+  /* Inbox */
+  .inbox-band {
+    background: var(--pri-bg); border: 1px solid #F6D2AE; border-radius: 10px; padding: 13px 16px; font-size: 12.5px;
+    color: var(--pri-deep); margin-bottom: 18px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tab-chip {
+    padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-size: 12.5px;
+    color: var(--gray); font-weight: 500; transition: all .15s; white-space: nowrap; display: flex; align-items: center; gap: 6px;
+  }
+  .tab-chip:hover { border-color: var(--pri); }
+  .tab-chip.active { background: var(--navy); color: #fff; border-color: var(--navy); font-weight: 700; }
+  .tab-chip .cnt { font-size: 10.5px; background: rgba(0,0,0,.08); padding: 1px 6px; border-radius: 999px; }
+  .tab-chip.active .cnt { background: rgba(255,255,255,.2); }
+  .search-box { position: relative; margin-left: auto; }
+  .search-box input {
+    padding: 9px 14px 9px 34px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; width: 260px; background: #fff;
+  }
+  .search-box input:focus { outline: 2px solid var(--pri); }
+  .search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: .5; }
+
+  .table-wrap { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.data-table th {
+    text-align: left; padding: 12px 16px; background: var(--bg-soft); color: var(--gray); font-weight: 700; font-size: 11.5px;
+    border-bottom: 1px solid var(--line); white-space: nowrap;
+  }
+  table.data-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
+  table.data-table tbody tr { cursor: pointer; transition: background .12s; }
+  table.data-table tbody tr:hover { background: var(--bg-soft); }
+  table.data-table tbody tr:last-child td { border-bottom: none; }
+  table.data-table td.name-cell { font-weight: 700; }
+  table.data-table td.num-cell { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .row-hot { background: #FDF3E9; }
+  .row-hot:hover { background: #FBEAD6 !important; }
+  .empty-row td { text-align: center; color: var(--gray-soft); padding: 40px 16px; }
+  .ch-cell { display: flex; align-items: center; gap: 7px; color: var(--gray); }
+  .ch-cell svg { flex: 0 0 auto; opacity: .8; }
+
+  /* Ticket detail */
+  .detail-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--gray); margin-bottom: 14px; }
+  .detail-back:hover { color: var(--pri); }
+  .detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+  .detail-head h2 { font-size: 19px; }
+  .detail-head .sub { font-size: 12px; color: var(--gray); margin-top: 6px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .ticket-detail-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: start; }
+
+  /* 会話スレッド */
+  .thread-wrap { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  .thread-toolbar { padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--bg-soft); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .thread-toolbar .tt-label { font-size: 11.5px; color: var(--gray); font-weight: 700; }
+  .thread-body { padding: 22px 20px; display: flex; flex-direction: column; gap: 16px; min-height: 420px; max-height: 620px; overflow-y: auto; }
+  .chat-row { display: flex; flex-direction: column; max-width: 84%; }
+  .chat-row.from-customer { align-items: flex-start; }
+  .chat-row.from-agent { align-items: flex-end; align-self: flex-end; }
+  .chat-name { font-size: 11px; color: var(--gray-soft); font-weight: 700; margin-bottom: 4px; padding: 0 3px; }
+  .chat-bubble { padding: 12px 15px; border-radius: 14px; font-size: 13px; line-height: 1.85; white-space: pre-wrap; }
+  .chat-row.from-customer .chat-bubble { background: var(--slate-bg); color: var(--ink); border-bottom-left-radius: 4px; }
+  .chat-row.from-agent .chat-bubble { background: var(--pri-bg); color: var(--pri-deep); border-bottom-right-radius: 4px; border: 1px solid #F6D2AE; }
+  .chat-time { font-size: 10px; color: var(--gray-soft); margin-top: 4px; padding: 0 3px; }
+  .chat-row.opacityin { animation: chatIn .35s ease forwards; }
+  @keyframes chatIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* Tabs panel right */
+  .side-panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .side-tabs { display: flex; border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+  .side-tab-btn {
+    flex: 1; padding: 13px 6px; font-size: 12.3px; font-weight: 700; color: var(--gray); background: none; border: none;
+    border-bottom: 2px solid transparent; transition: color .15s;
+  }
+  .side-tab-btn.active { color: var(--pri); border-bottom-color: var(--pri); background: #fff; }
+  .side-tab-body { padding: 20px; min-height: 500px; }
+  .side-tab-pane { display: none; }
+  .side-tab-pane.active { display: block; }
+
+  /* AI 下書き演出 */
+  .ai-start-box { text-align: center; padding: 34px 8px 18px; }
+  .ai-start-box .ai-icon { margin-bottom: 14px; }
+  .ai-start-box p { font-size: 12.5px; color: var(--gray); margin-bottom: 20px; line-height: 1.9; }
+  .btn-ai-run {
+    background: var(--pri); color: #fff; border: none; padding: 12px 26px; border-radius: 8px; font-weight: 700; font-size: 13.5px;
+    display: inline-flex; align-items: center; gap: 8px; transition: filter .2s;
+  }
+  .btn-ai-run:hover { filter: brightness(1.08); }
+
+  .analyze-box { text-align: center; padding: 26px 10px 10px; }
+  .analyze-box .an-spinner {
+    width: 32px; height: 32px; border-radius: 50%; border: 3px solid var(--pri-bg); border-top-color: var(--pri); margin: 0 auto 14px;
+    animation: spin .8s linear infinite;
+  }
+  .analyze-box .an-text { font-size: 13px; color: var(--ink); font-weight: 700; margin-bottom: 16px; }
+  .analyze-box.done .an-spinner { display: none; }
+
+  .ai-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; gap: 8px; }
+  .ai-toolbar .ai-count { font-size: 12px; color: var(--gray); }
+  .btn-skip { font-size: 11.5px; color: var(--pri); background: none; border: 1px solid var(--pri); padding: 5px 12px; border-radius: 999px; font-weight: 700; white-space: nowrap; }
+  .btn-skip:hover { background: var(--pri-bg); }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 4px; }
+  .analysis-tag {
+    font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 999px; opacity: 0; transform: translateY(6px);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .analysis-tag.in { animation: extractIn .4s ease forwards; }
+  @keyframes extractIn { to { opacity: 1; transform: none; } }
+  .analysis-tag.tag-intent { background: var(--blue-bg); color: var(--blue); }
+  .analysis-tag.tag-urgency { background: var(--red-bg); color: var(--red); }
+  .analysis-tag.tag-emotion { background: var(--amber-bg); color: var(--amber); }
+
+  .kb-search-box { text-align: center; padding: 24px 10px 6px; }
+  .kb-search-box .an-spinner {
+    width: 32px; height: 32px; border-radius: 50%; border: 3px solid var(--pri-bg); border-top-color: var(--pri); margin: 0 auto 14px;
+    animation: spin .8s linear infinite;
+  }
+  .kb-search-box .an-text { font-size: 13px; color: var(--ink); font-weight: 700; margin-bottom: 4px; }
+  .kb-ref-list { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 6px; }
+  .kb-ref-card {
+    border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; opacity: 0; transform: translateX(14px); background: #fff;
+    text-align: left;
+  }
+  .kb-ref-card.in { animation: kbSlideIn .4s ease forwards; }
+  @keyframes kbSlideIn { to { opacity: 1; transform: none; } }
+  .kb-ref-card .kr-cat { font-size: 10px; color: var(--pri-deep); background: var(--pri-bg); padding: 2px 8px; border-radius: 999px; font-weight: 700; display: inline-block; margin-bottom: 6px; }
+  .kb-ref-card .kr-title { font-size: 12.8px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .kb-ref-card .kr-sum { font-size: 11.5px; color: var(--gray); line-height: 1.7; }
+
+  .draft-context { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; background: #fff; }
+  .draft-context .dc-row { display: flex; align-items: flex-start; gap: 10px; }
+  .draft-context .dc-row + .dc-row { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); }
+  .draft-context .dc-label { font-size: 10.5px; font-weight: 700; color: var(--gray); white-space: nowrap; padding-top: 6px; }
+  .draft-context .tag-list { justify-content: flex-start; margin-bottom: 0; }
+  .draft-context .analysis-tag { font-size: 11px; padding: 5px 10px; }
+  .draft-context .kb-ref-list { flex-direction: row; flex-wrap: wrap; gap: 8px; margin: 0; }
+  .draft-context .kb-ref-card { padding: 7px 10px; display: flex; align-items: center; gap: 8px; }
+  .draft-context .kb-ref-card .kr-cat { margin-bottom: 0; }
+  .draft-context .kb-ref-card .kr-title { margin-bottom: 0; font-size: 12px; }
+
+  .draft-box { margin-top: 4px; }
+  .draft-text-preview {
+    background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; font-size: 12.8px;
+    line-height: 1.9; white-space: pre-wrap; min-height: 220px; color: var(--ink);
+  }
+  .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--pri); vertical-align: text-bottom; animation: blink 1s step-end infinite; margin-left: 1px; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .draft-editor {
+    width: 100%; min-height: 220px; border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; font-size: 12.8px;
+    line-height: 1.9; color: var(--ink); resize: vertical; background: #fff;
+  }
+  .draft-editor:focus { outline: 2px solid var(--pri); }
+  .draft-note { font-size: 11.5px; color: var(--gray-soft); margin: 10px 2px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .draft-cta { margin-top: 16px; text-align: center; }
+  .btn-send-draft {
+    background: var(--navy); color: #fff; border: none; padding: 12px 22px; border-radius: 8px; font-weight: 700; font-size: 13px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-send-draft:hover { filter: brightness(1.15); }
+  .btn-send-draft:disabled { opacity: .55; cursor: wait; }
+
+  .send-spin-box { text-align: center; padding: 30px 10px; }
+  .send-spin-box .an-spinner {
+    width: 32px; height: 32px; border-radius: 50%; border: 3px solid var(--slate-bg); border-top-color: var(--navy); margin: 0 auto 14px;
+    animation: spin .8s linear infinite;
+  }
+  .send-spin-box .an-text { font-size: 13px; color: var(--ink); font-weight: 700; }
+
+  .complete-banner {
+    background: var(--teal-bg); color: var(--teal); border-radius: 10px; padding: 14px 16px; font-size: 12.8px; font-weight: 700;
+    display: flex; align-items: center; gap: 9px; opacity: 0; margin-bottom: 14px;
+  }
+  .complete-banner.in { animation: extractIn .5s ease forwards; }
+  .kb-add-card {
+    border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; opacity: 0; background: #fff; text-align: center;
+  }
+  .kb-add-card.in { animation: extractIn .45s ease forwards; }
+  .kb-add-card p { font-size: 12.5px; color: var(--ink); margin-bottom: 14px; line-height: 1.8; }
+  .kb-add-btnrow { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn-add-kb { background: var(--gold); color: var(--navy-deep); border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 12.8px; }
+  .btn-add-kb:hover { filter: brightness(1.06); }
+  .btn-skip-kb { background: none; border: 1px solid var(--line); color: var(--gray); padding: 10px 18px; border-radius: 8px; font-size: 12.5px; font-weight: 700; }
+  .kb-added-note {
+    background: var(--pri-bg); color: var(--pri-deep); border-radius: 10px; padding: 13px 16px; font-size: 12.5px; font-weight: 700;
+    display: flex; align-items: center; gap: 9px; opacity: 0;
+  }
+  .kb-added-note.in { animation: extractIn .45s ease forwards; }
+
+  .draft-reset { margin-top: 18px; text-align: right; }
+  .draft-reset button { font-size: 11.5px; color: var(--gray); background: none; border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; }
+  .draft-reset button:hover { border-color: var(--pri); color: var(--pri); }
+
+  /* 簡易表示（t-001以外） */
+  .generic-cta-card {
+    border: 1px dashed #E4B994; background: var(--pri-bg); border-radius: 10px; padding: 16px 18px; text-align: center; margin-top: 16px;
+  }
+  .generic-cta-card a.btn-ai-run { text-decoration: none; margin-top: 10px; }
+
+  /* Basic info tab */
+  .meta-table { width: 100%; border-collapse: collapse; font-size: 12.8px; }
+  .meta-table th { text-align: left; width: 42%; color: var(--gray); font-weight: 700; padding: 10px 0; vertical-align: top; }
+  .meta-table td { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .meta-table tr:last-child td, .meta-table tr:last-child th { border-bottom: none; }
+  .tag-chip { display: inline-block; background: var(--slate-bg); color: var(--gray); font-size: 11px; padding: 3px 9px; border-radius: 999px; margin: 2px 4px 2px 0; }
+  .purchase-item { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px dashed var(--line); font-size: 12.3px; }
+  .purchase-item:last-child { border-bottom: none; }
+  .purchase-item .pi-name { color: var(--ink); }
+  .purchase-item .pi-meta { color: var(--gray-soft); font-size: 10.8px; margin-top: 2px; }
+  .purchase-item .pi-price { font-weight: 700; color: var(--ink); white-space: nowrap; text-align: right; }
+
+  /* Knowledge base */
+  .kb-band {
+    background: var(--pri-bg); border: 1px solid #F6D2AE; border-radius: 10px; padding: 13px 16px; font-size: 12.5px;
+    color: var(--pri-deep); margin-bottom: 18px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .kb-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .kb-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; transition: box-shadow .15s, border-color .15s; }
+  .kb-card:hover { box-shadow: 0 8px 24px rgba(15,23,42,.06); border-color: #E4B994; }
+  .kb-card .kb-cat { font-size: 10.5px; color: var(--pri-deep); background: var(--pri-bg); padding: 3px 10px; border-radius: 999px; font-weight: 700; display: inline-block; margin-bottom: 10px; }
+  .kb-card .kb-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .kb-card .kb-sum { font-size: 12.3px; color: var(--gray); line-height: 1.8; }
+  .kb-card.new-in { animation: kbCardIn .5s ease; }
+  @keyframes kbCardIn { from { opacity: 0; transform: translateY(10px); background: #FFF6EC; } to { opacity: 1; transform: none; } }
+
+  /* Report */
+  .lead-band {
+    background: var(--pri-bg); border: 1px solid #F6D2AE; border-radius: 10px; padding: 13px 16px; font-size: 12.5px;
+    color: var(--pri-deep); margin-bottom: 18px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .lead-band.muted { background: var(--slate-bg); border-color: var(--line); color: var(--gray); }
+  .summary-strip { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+  .summary-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; flex: 1; min-width: 200px; }
+  .summary-card .sc-label { font-size: 11.5px; color: var(--gray); font-weight: 700; margin-bottom: 6px; }
+  .summary-card .sc-value { font-size: 22px; font-weight: 700; color: var(--ink); }
+  .summary-card .sc-sub { font-size: 11px; color: var(--gray-soft); margin-top: 4px; }
+
+  /* Settings */
+  .settings-section { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; margin-bottom: 18px; }
+  .settings-section h3 { font-size: 14.5px; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .settings-section .sec-note { font-size: 11.5px; color: var(--gray-soft); margin-bottom: 16px; }
+  .account-row, .toggle-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
+  }
+  .account-row:last-child, .toggle-row:last-child { border-bottom: none; }
+  .account-row .a-name { font-size: 13px; font-weight: 700; }
+  .account-row .a-desc { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
+  .toggle-row .tg-label { font-size: 13px; color: var(--ink); }
+  .toggle-row .tg-desc { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
+  .switch { position: relative; width: 42px; height: 24px; flex: 0 0 auto; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch .track {
+    position: absolute; inset: 0; background: #CBD5E1; border-radius: 999px; cursor: pointer; transition: background .2s;
+  }
+  .switch .track::before {
+    content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%;
+    transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  }
+  .switch input:checked + .track { background: var(--pri); }
+  .switch input:checked + .track::before { transform: translateX(18px); }
+  .autoreply-preview {
+    background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; font-size: 12.5px;
+    color: var(--ink); line-height: 1.85; margin-top: 14px;
+  }
+  .autoreply-preview .ap-label { font-size: 10.5px; color: var(--gray-soft); font-weight: 700; margin-bottom: 6px; }
+  .escalation-table { width: 100%; border-collapse: collapse; font-size: 12.8px; margin-top: 4px; }
+  .escalation-table th { text-align: left; padding: 9px 10px; background: var(--bg-soft); color: var(--gray); font-weight: 700; font-size: 11px; border-bottom: 1px solid var(--line); }
+  .escalation-table td { padding: 11px 10px; border-bottom: 1px solid var(--line); }
+  .escalation-table tr:last-child td { border-bottom: none; }
+
+  /* Toast */
+  #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
+  .toast {
+    background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 8px; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
+  }
+  @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+
+  /* ============ 4. AI顧問室 CTAセクション ============ */
+  .komon-cta {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: #fff; padding: 76px 24px 40px; text-align: center;
+  }
+  .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
+  .komon-cta .cta-label {
+    display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: var(--gold); font-weight: 700; margin-bottom: 16px;
+  }
+  .komon-cta h2 { font-family: 'Noto Serif JP', serif; font-size: 30px; margin-bottom: 16px; line-height: 1.5; }
+  .komon-cta h2 em { font-style: normal; color: var(--gold); }
+  .komon-cta p.lead { font-size: 14.5px; color: #C7D3E4; margin-bottom: 32px; line-height: 1.9; }
+  .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn { display: inline-block; padding: 15px 34px; border-radius: 6px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s, transform .1s; font-family: 'Noto Sans JP', sans-serif; }
+  .btn:hover { opacity: .87; }
+  .btn:active { transform: scale(.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #7C8CA8; }
+  .komon-cta .cta-foot a { color: #A9BBD6; }
+  .komon-cta .cta-foot a:hover { color: #fff; }
+
+  /* Mobile nav drawer */
+  .mobile-nav-overlay { display: none; }
+  @media (max-width: 900px) {
+    .grid-2col { grid-template-columns: 1fr; }
+    .ticket-detail-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .summary-strip { flex-direction: column; }
+    .kb-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 780px) {
+    .hamburger-btn { display: flex; }
+    .sidebar {
+      position: fixed; top: 44px; left: 0; bottom: 0; height: auto; z-index: 300; transform: translateX(-100%);
+      transition: transform .25s ease; box-shadow: 20px 0 60px rgba(0,0,0,.3); width: 240px;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .mobile-nav-overlay.open {
+      display: block; position: fixed; inset: 44px 0 0 0; background: rgba(0,0,0,.4); z-index: 290;
+    }
+    .app-header { padding: 0 14px; gap: 8px; }
+    .header-search { display: none; }
+    .main-scroll { padding: 18px 14px 40px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .kpi-card { padding: 13px 14px; }
+    .kpi-card .kpi-value { font-size: 21px; }
+    table.data-table { font-size: 12px; }
+    table.data-table th, table.data-table td { padding: 10px 10px; }
+    .search-box { width: 100%; margin-left: 0; }
+    .search-box input { width: 100%; }
+    .toolbar { flex-direction: column; align-items: stretch; }
+    .komon-cta h2 { font-size: 23px; }
+    .komon-cta { padding: 56px 18px 32px; }
+    .thread-body { max-height: none; }
+  }
+  @media (max-width: 480px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+    table.data-table thead { display: none; }
+    table.data-table, table.data-table tbody, table.data-table tr, table.data-table td { display: block; width: 100%; }
+    table.data-table tbody tr { border-bottom: 1px solid var(--line); padding: 12px 14px; }
+    table.data-table td { border-bottom: none; padding: 3px 0; }
+    table.data-table td.num-cell { text-align: left; }
+    table.data-table td::before { content: attr(data-label); display: inline-block; min-width: 76px; font-size: 10.5px; color: var(--gray-soft); font-weight: 700; }
+    .hbar-label { width: 74px; }
+    .hbar-value { width: 68px; }
+    .chat-row { max-width: 94%; }
+  }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> が制作した架空プロダクトのデモです。データはすべてサンプルで、実際のサービスではありません。</span>
+  <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+</div>
+
+<!-- ============ ログイン画面 ============ -->
+<div id="view-login">
+  <div class="login-card">
+    <div class="login-logo"><span class="k">MIMIYORI</span><span class="tag-en">AI SUPPORT DESK</span></div>
+    <p class="login-sub">お客様の声を、ぜんぶ資産に。</p>
+    <div class="login-field">
+      <label for="loginMail">メールアドレス</label>
+      <input id="loginMail" type="text" value="demo@mimiyori.example" readonly>
+    </div>
+    <div class="login-field">
+      <label for="loginPass">パスワード</label>
+      <input id="loginPass" type="password" value="dummydummy" readonly>
+    </div>
+    <button class="login-btn" id="loginBtn" onclick="doLogin()">
+      <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
+    </button>
+    <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
+  </div>
+</div>
+
+<!-- ============ アプリ本体 ============ -->
+<div id="view-app">
+  <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleSidebar(false)"></div>
+  <div class="app-frame">
+
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand"><span class="k">MIMIYORI</span><span class="tag-en">AI SUPPORT DESK</span></div>
+      <nav class="sidebar-nav" id="sidebarNav">
+        <button class="nav-btn" data-nav="dashboard" onclick="go('dashboard')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.4"/><rect x="14" y="3" width="7" height="5" rx="1.4"/><rect x="14" y="12" width="7" height="9" rx="1.4"/><rect x="3" y="16" width="7" height="5" rx="1.4"/></svg>
+          ダッシュボード
+        </button>
+        <button class="nav-btn" data-nav="inbox" onclick="go('inbox')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/><path d="m3 8 8.3 5.2a2.9 2.9 0 0 0 3.4 0L23 8"/><path d="M3 8l2-4h14l2 4"/></svg>
+          受信箱
+        </button>
+        <button class="nav-btn" data-nav="knowledge" onclick="go('knowledge')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/><path d="M9 7h7M9 11h5"/></svg>
+          ナレッジベース
+        </button>
+        <button class="nav-btn" data-nav="report" onclick="go('report')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M11 20V4M18 20v-7"/></svg>
+          レポート
+        </button>
+        <button class="nav-btn" data-nav="settings" onclick="go('settings')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l1.9-1.5-2-3.4-2.3.7a7.6 7.6 0 0 0-2.6-1.5L14 2h-4l-.4 2.8a7.6 7.6 0 0 0-2.6 1.5l-2.3-.7-2 3.4L4.6 10.5a7.6 7.6 0 0 0 0 3L2.7 15l2 3.4 2.3-.7c.77.66 1.65 1.17 2.6 1.5L10 22h4l.4-2.8c.95-.33 1.83-.84 2.6-1.5l2.3.7 2-3.4Z"/></svg>
+          設定
+        </button>
+      </nav>
+      <div class="sidebar-foot">
+        <div class="sidebar-user">
+          <div class="avatar">次</div>
+          <div><div class="u-name">デモ 次郎</div><div class="u-role">サポート部</div></div>
+        </div>
+        <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+      </div>
+    </aside>
+
+    <div class="main-col">
+      <header class="app-header">
+        <button class="hamburger-btn" onclick="toggleSidebar()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <h1 class="view-name" id="viewNameLabel">ダッシュボード</h1>
+        <div class="header-search">
+          <div class="header-search-inner">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+            <input type="text" placeholder="顧客名・件名を検索（見た目のみ）" disabled>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="dropdown-wrap">
+            <button class="icon-btn" onclick="toggleDropdown('notifPanel')">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+              <span class="notif-badge" id="notifBadgeCount">3</span>
+            </button>
+            <div class="dropdown-panel" id="notifPanel">
+              <div class="dropdown-head">通知</div>
+              <div id="notifList"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-scroll">
+
+        <!-- ===== ダッシュボード ===== -->
+        <section class="view" id="view-dashboard">
+          <div class="view-head">
+            <div><h2>ダッシュボード</h2><p class="lead">2026年7月18日時点のサマリーです（サンプルデータ）</p></div>
+          </div>
+
+          <div class="kpi-grid" id="kpiGrid"></div>
+
+          <div class="grid-2col">
+            <div class="panel">
+              <h3>対応が必要なチケット</h3>
+              <p class="panel-note">未対応・AI下書きありのチケットを優先度順に表示しています</p>
+              <div class="task-list" id="taskList"></div>
+            </div>
+            <div class="panel">
+              <h3>最近のアクティビティ</h3>
+              <p class="panel-note">直近の操作履歴（サンプル）</p>
+              <div class="timeline" id="activityTimeline"></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>チャネル別の受信内訳（全期間・サンプル12件）</h3>
+            <p class="panel-note">メール・フォーム・チャット・LINEから届いた問い合わせの内訳です</p>
+            <div class="hbar-list" id="channelBreakdownChart"></div>
+          </div>
+        </section>
+
+        <!-- ===== 受信箱 ===== -->
+        <section class="view" id="view-inbox">
+          <div class="view-head">
+            <div><h2>受信箱</h2><p class="lead">全<span id="inboxTotalCount">0</span>件の問い合わせ</p></div>
+          </div>
+          <div class="inbox-band">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:0 0 auto;margin-top:2px;"><path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/><path d="m3 8 8.3 5.2a2.9 2.9 0 0 0 3.4 0L23 8"/><path d="M3 8l2-4h14l2 4"/></svg>
+            <span>メール・フォーム・チャット・LINEで届いた問い合わせが自動でここに集まります（サンプルデータによる体験デモです。実際は御社の問い合わせ窓口を学習して構築します）。</span>
+          </div>
+          <div class="toolbar">
+            <div class="tab-row" id="statusTabRow"></div>
+            <div class="search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+              <input type="text" id="ticketSearchInput" placeholder="顧客名・件名で検索" oninput="renderInboxTable()">
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>顧客名</th><th>件名</th><th>チャネル</th><th>カテゴリ</th><th>優先度</th><th>受信時刻</th><th>ステータス</th></tr>
+              </thead>
+              <tbody id="inboxTbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===== チケット詳細 ===== -->
+        <section class="view" id="view-ticket-detail">
+          <a href="#inbox" class="detail-back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>
+            受信箱へ戻る
+          </a>
+          <div class="detail-head">
+            <div>
+              <h2 id="detailTitle">件名</h2>
+              <p class="sub" id="detailSub"></p>
+            </div>
+            <span class="badge" id="detailStatusBadge"></span>
+          </div>
+
+          <div class="ticket-detail-grid">
+            <div class="thread-wrap">
+              <div class="thread-toolbar">
+                <span class="tt-label">会話スレッド</span>
+                <span class="tt-label" id="threadChannelNote"></span>
+              </div>
+              <div class="thread-body" id="threadBody"></div>
+            </div>
+
+            <div class="side-panel">
+              <div class="side-tabs" id="sideTabs">
+                <button class="side-tab-btn active" data-tab="draft" onclick="switchSideTab('draft')">AI下書き</button>
+                <button class="side-tab-btn" data-tab="customer" onclick="switchSideTab('customer')">顧客情報</button>
+                <button class="side-tab-btn" data-tab="history" onclick="switchSideTab('history')">対応履歴</button>
+              </div>
+              <div class="side-tab-body">
+                <div class="side-tab-pane active" id="pane-draft"></div>
+                <div class="side-tab-pane" id="pane-customer"></div>
+                <div class="side-tab-pane" id="pane-history"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== ナレッジベース ===== -->
+        <section class="view" id="view-knowledge">
+          <div class="view-head">
+            <div><h2>ナレッジベース</h2><p class="lead">全<span id="knowledgeTotalCount">0</span>件の記事（サンプルデータ）</p></div>
+          </div>
+          <div class="kb-band">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:0 0 auto;margin-top:2px;"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="3.5"/></svg>
+            <span>解決した対応はAIが自動で記事化し、次回の下書き品質が上がっていきます。「AI追加」バッジの記事は、実際にチケット対応から自動生成されたものです。</span>
+          </div>
+          <div class="kb-grid" id="knowledgeGrid"></div>
+        </section>
+
+        <!-- ===== レポート ===== -->
+        <section class="view" id="view-report">
+          <div class="view-head">
+            <div><h2>レポート</h2><p class="lead">サンプルデータの集計です（すべて件数ベース・自動集計）</p></div>
+          </div>
+
+          <div class="panel" style="margin-bottom:18px;">
+            <h3>カテゴリ別問い合わせ件数</h3>
+            <p class="panel-note">全12件の問い合わせをカテゴリごとに集計しています</p>
+            <div class="hbar-list" id="reportCategoryChart"></div>
+          </div>
+
+          <div class="panel" style="margin-bottom:18px;">
+            <h3>チャネル別内訳</h3>
+            <p class="panel-note">問い合わせがどのチャネルから届いたかの内訳です</p>
+            <div class="hbar-list" id="reportChannelChart"></div>
+          </div>
+
+          <div class="panel" style="margin-bottom:18px;">
+            <h3>ステータス内訳</h3>
+            <p class="panel-note">未対応・AI下書きあり・対応中・解決済みの件数です</p>
+            <div class="hbar-list" id="reportStatusChart"></div>
+          </div>
+
+          <div class="panel">
+            <h3>AI下書きの活用状況</h3>
+            <p class="panel-note">件数のみの集計です。応答時間の短縮など効果に関する数値は表示していません</p>
+            <div class="summary-strip" style="margin-bottom:0;">
+              <div class="summary-card">
+                <div class="sc-label">AI下書きを活用した対応</div>
+                <div class="sc-value" id="reportAiDraftedValue">0件</div>
+                <div class="sc-sub">全<span id="reportAiDraftedTotal">0</span>件中（送信は必ず人が確認）</div>
+              </div>
+              <div class="summary-card">
+                <div class="sc-label">現在AI下書き確認待ち</div>
+                <div class="sc-value" id="reportDraftedNowValue">0件</div>
+                <div class="sc-sub">担当者の確認・送信を待っています</div>
+              </div>
+              <div class="summary-card">
+                <div class="sc-label">ナレッジベース記事数</div>
+                <div class="sc-value" id="reportKnowledgeValue">0件</div>
+                <div class="sc-sub">うちAI自動追加は<span id="reportKnowledgeAiValue">0</span>件</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== 設定 ===== -->
+        <section class="view" id="view-settings">
+          <div class="view-head">
+            <div><h2>設定</h2><p class="lead">自動応答・エスカレーションルール・通知の設定です（見た目のみ動作します）</p></div>
+          </div>
+
+          <div class="settings-section">
+            <h3>自動応答設定<span class="badge badge-human">送信は必ず人が確認</span></h3>
+            <p class="sec-note">営業時間外に届いた問い合わせへの一次自動応答です。AIによる本回答の下書きとは別に、受付を即時にお知らせするための定型文です</p>
+            <div id="autoReplyToggleHost"></div>
+            <div class="autoreply-preview">
+              <div class="ap-label">文面プレビュー</div>
+              <div id="autoReplyPreviewText">お問い合わせいただきありがとうございます。現在営業時間外のため、翌営業日中に担当者よりご連絡いたします。お急ぎの場合はよくある質問もご確認ください。</div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>エスカレーションルール</h3>
+            <p class="sec-note">優先度に応じて、担当者への通知タイミングを自動で切り替えます</p>
+            <table class="escalation-table" id="escalationTable"></table>
+          </div>
+
+          <div class="settings-section">
+            <h3>通知設定</h3>
+            <p class="sec-note">担当者への通知タイミングです</p>
+            <div id="notifToggleList"></div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============ AI顧問室 CTAセクション ============ -->
+<div class="komon-cta">
+  <div class="cta-inner">
+    <span class="cta-label">AI KOMONSHITSU</span>
+    <h2>このようなシステムを、<em>御社専用に。</em></h2>
+    <p class="lead">「ミミヨリ」は本デモのために作った架空のプロダクトです。AI顧問室では、カスタマーサポートに限らず、御社の問い合わせ対応フローそのものを学習してAI分析・返信下書き・ナレッジ蓄積を組み込んだ専用システムを構築します。</p>
+    <div class="cta-btn-row">
+      <a href="index.html?from=works-support#contact" class="btn btn-gold">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
+    </div>
+    <div class="cta-foot">
+      提供: <a href="index.html">AI顧問室</a>｜© 2026
+    </div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+
+<script>
+/* ============================================================
+   0. 基準日 / ユーティリティ
+============================================================ */
+var TODAY = new Date(2026, 6, 18); // 2026-07-18 固定（デモの基準日）
+var TODAY_STR = '2026-07-18';
+var NOW = new Date(2026, 6, 18, 15, 30, 0); // デモ上の「現在時刻」
+
+function fmtDate(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+}
+function fmtDateShort(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  return (d.getMonth() + 1) + '/' + d.getDate();
+}
+function fmtDateTime(iso) {
+  var d = new Date(iso);
+  return (d.getMonth() + 1) + '/' + d.getDate() + ' ' + pad2(d.getHours()) + ':' + pad2(d.getMinutes());
+}
+function pad2(n) { return (n < 10 ? '0' : '') + n; }
+function fmtRelative(iso) {
+  var d = new Date(iso);
+  var diffMs = NOW - d;
+  var mins = Math.round(diffMs / 60000);
+  if (mins < 1) return 'たった今';
+  if (mins < 60) return mins + '分前';
+  var hours = Math.round(mins / 60);
+  if (hours < 24) return hours + '時間前';
+  var days = Math.round(hours / 24);
+  return days + '日前';
+}
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function showToast(msg) {
+  var host = document.getElementById('toastHost');
+  var el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  host.appendChild(el);
+  setTimeout(function () { el.remove(); }, 2700);
+}
+
+/* ============================================================
+   1. データ定義
+============================================================ */
+var STATUS_LABEL = {
+  new: '未対応',
+  drafted: 'AI下書きあり',
+  open: '対応中',
+  solved: '解決済み'
+};
+var PRIORITY_ORDER = { '高': 3, '中': 2, '低': 1 };
+var CHANNEL_LABELS = ['メール', 'フォーム', 'チャット', 'LINE'];
+var CATEGORY_LABELS = ['配送', '返品・交換', '請求', 'アカウント', '使い方'];
+
+var CHANNEL_ICONS = {
+  'メール': '<path d="M21 8v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/><path d="m3 8 8.3 5.2a2.9 2.9 0 0 0 3.4 0L23 8"/><path d="M3 8l2-4h14l2 4"/>',
+  'フォーム': '<path d="M9 3h6a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h1V4a1 1 0 0 1 1-1Z"/><path d="M9 12h6M9 16h6"/>',
+  'チャット': '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/>',
+  'LINE': '<rect x="6" y="2" width="12" height="20" rx="2.4"/><path d="M9.5 17.5h5"/><circle cx="12" cy="8.2" r="2.2"/>'
+};
+function channelIcon(ch) {
+  return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' + (CHANNEL_ICONS[ch] || '') + '</svg>';
+}
+
+/* 自社（サポート提供側）＝ デモ商事株式会社（デモ商事オンラインストア）。以下12件は自社が受け取った問い合わせ。 */
+var TICKETS = [
+  { id: 't-001', customer: '青井 蒼', email: 'aoi.aoi@example.com', subject: '注文した商品が届きません',
+    channel: 'フォーム', category: '配送', priority: '高', status: 'new', aiDrafted: false,
+    receivedAt: '2026-07-18T09:12:00', solvedDate: null,
+    memberRank: 'シルバー会員', memberSince: '2025-11-02',
+    purchases: [
+      { name: 'アウトドア用ポータブル収納ボックス', date: '2026-07-15', orderNo: 'DM-2026-0715-012', price: 8800 },
+      { name: '速乾タオルセット', date: '2026-03-02', orderNo: 'DM-2026-0302-045', price: 3200 }
+    ],
+    pastInquiry: { date: '2026-02-10', text: 'パスワード再設定についてのお問い合わせ（解決済み）' },
+    thread: [
+      { from: 'customer', time: '2026-07-18T09:12:00', text: '3日前に注文した商品(注文番号 DM-2026-0715-012)がまだ届きません。いつ届くのか教えてください。急ぎで必要なものなので困っています。' }
+    ] },
+
+  { id: 't-002', customer: '緑川 翠', email: 'sui.midorikawa@example.com', subject: '返品をお願いしたいのですが',
+    channel: 'メール', category: '返品・交換', priority: '中', status: 'drafted', aiDrafted: true,
+    receivedAt: '2026-07-17T14:30:00', solvedDate: null,
+    memberRank: 'ゴールド会員', memberSince: '2023-04-11',
+    purchases: [], pastInquiry: null,
+    thread: [
+      { from: 'customer', time: '2026-07-17T14:30:00', text: '先日届いたブランケットのサイズが思っていたより小さかったので、返品をお願いできますでしょうか。未使用のままです。' }
+    ] },
+
+  { id: 't-003', customer: '赤羽 朱美', email: 'akemi.akabane@example.com', subject: '請求書を再発行してほしい',
+    channel: 'フォーム', category: '請求', priority: '中', status: 'new', aiDrafted: false,
+    receivedAt: '2026-07-18T10:05:00', solvedDate: null,
+    memberRank: 'ブロンズ会員', memberSince: '2026-01-20',
+    purchases: [], pastInquiry: null,
+    thread: [
+      { from: 'customer', time: '2026-07-18T10:05:00', text: '経費精算のため、先月分の請求書を再発行していただきたいです。宛名は個人名でお願いします。' }
+    ] },
+
+  { id: 't-004', customer: '白石 雪乃', email: 'yukino.shiraishi@example.com', subject: 'パスワードを再設定できません',
+    channel: 'チャット', category: 'アカウント', priority: '高', status: 'open', aiDrafted: false,
+    receivedAt: '2026-07-18T08:40:00', solvedDate: null,
+    memberRank: 'シルバー会員', memberSince: '2024-09-05',
+    purchases: [], pastInquiry: null,
+    thread: [
+      { from: 'customer', time: '2026-07-18T08:40:00', text: 'パスワード再設定のメールが届きません。登録メールアドレスは変更していないはずなのですが…確認をお願いします。' },
+      { from: 'agent', time: '2026-07-18T09:05:00', text: 'ご連絡ありがとうございます。現在、迷惑メールフォルダのご確認と合わせて送信状況を調査しております。今しばらくお待ちくださいませ。' }
+    ] },
+
+  { id: 't-005', customer: '黒田 玄', email: 'gen.kuroda@example.com', subject: '商品の使い方がわかりません',
+    channel: 'LINE', category: '使い方', priority: '低', status: 'solved', aiDrafted: true,
+    receivedAt: '2026-07-16T11:20:00', solvedDate: '2026-07-16',
+    memberRank: 'ブロンズ会員', memberSince: '2025-06-14',
+    purchases: [], pastInquiry: null,
+    thread: [
+      { from: 'customer', time: '2026-07-16T11:20:00', text: '購入した多機能スチームアイロンの温度設定がよく分かりません。マニュアルを見ても分からず困っています。' },
+      { from: 'agent', time: '2026-07-16T12:05:00', text: '黒田様\n\nお問い合わせいただきありがとうございます。温度設定は本体側面のダイヤルで切り替えられます。ナレッジベースの「スチームアイロンの温度設定ガイド」もあわせてご参照ください。ご不明点があればまたお気軽にご連絡くださいませ。\n\nデモ商事オンラインストア サポート担当' }
+    ] },
+
+  { id: 't-006', customer: '桜庭 花', email: 'hana.sakuraba@example.com', subject: '注文をキャンセルしたいです',
+    channel: 'フォーム', category: '返品・交換', priority: '中', status: 'new', aiDrafted: false,
+    receivedAt: '2026-07-18T11:50:00', solvedDate: null,
+    memberRank: 'シルバー会員', memberSince: '2025-02-18',
+    purchases: [], pastInquiry: null,
+    thread: [
+      { from: 'customer', time: '2026-07-18T11:50:00', text: '注文完了メールを見て気づいたのですが、色を間違えて注文してしまいました。発送前でしたらキャンセルをお願いできますか。' }
+    ] },
+
+  { id: 't-007', customer: '星野 光', email: 'hikaru.hoshino@example.com', subject: '届いた商品が違う色でした',
+    channel: 'メール', category: '返品・交換', priority: '高', status: 'drafted', aiDrafted: true,
+    receivedAt: '2026-07-17T16:15:00', solvedDate: null,
+    memberRank: 'ゴールド会員', memberSince: '2022-12-01',
+    purchases: [], pastInquiry: null,
+    thread: [
+      { from: 'customer', time: '2026-07-17T16:15:00', text: '注文したのはネイビーでしたが、届いたのはブラックでした。交換をお願いできますでしょうか。写真も添付しております。' }
+    ] },
+
+  { id: 't-008', customer: '月島 涼', email: 'ryo.tsukishima@example.com', subject: '会員ランクの特典について教えてください',
+    channel: 'チャット', category: 'アカウント', priority: '低', status: 'solved', aiDrafted: true,
+    receivedAt: '2026-07-16T13:00:00', solvedDate: '2026-07-18',
+    memberRank: 'ゴールド会員', memberSince: '2021-08-09',
+    purchases: [], pastInquiry: null,
+    thread: [
+      { from: 'customer', time: '2026-07-16T13:00:00', text: '会員ランクがゴールドになったのですが、特典の内容を教えてください。' },
+      { from: 'agent', time: '2026-07-18T09:40:00', text: '月島様\n\nお問い合わせありがとうございます。ゴールド会員様には、送料無料および会員限定セールへの優先ご案内の特典がございます。詳細はナレッジベースの「会員ランクと特典について」にまとめておりますので、あわせてご覧ください。\n\nデモ商事オンラインストア サポート担当' }
+    ] },
+
+  { id: 't-009', customer: '紅林 紅', email: 'kurenai.kurebayashi@example.com', subject: '配送状況を確認したい',
+    channel: 'LINE', category: '配送', priority: '中', status: 'open', aiDrafted: false,
+    receivedAt: '2026-07-17T09:30:00', solvedDate: null,
+    memberRank: 'シルバー会員', memberSince: '2024-03-27',
+    purchases: [], pastInquiry: null,
+    thread: [
+      { from: 'customer', time: '2026-07-17T09:30:00', text: '注文した商品がどこまで届いているか確認したいです。マイページでは「発送準備中」のままになっています。' },
+      { from: 'agent', time: '2026-07-17T13:10:00', text: '配送業者への確認を進めております。判明次第あらためてご連絡いたします。' }
+    ] },
+
+  { id: 't-010', customer: '山吹 陽子', email: 'yoko.yamabuki@example.com', subject: 'クーポンが使えません',
+    channel: 'フォーム', category: '請求', priority: '中', status: 'new', aiDrafted: false,
+    receivedAt: '2026-07-18T13:20:00', solvedDate: null,
+    memberRank: 'ブロンズ会員', memberSince: '2026-05-30',
+    purchases: [], pastInquiry: null,
+    thread: [
+      { from: 'customer', time: '2026-07-18T13:20:00', text: '会員登録時にもらったクーポンコードを入力しても「無効なコードです」と表示されてしまいます。確認をお願いします。' }
+    ] },
+
+  { id: 't-011', customer: '雨宮 潤', email: 'jun.amamiya@example.com', subject: '梱包が破損していました',
+    channel: 'メール', category: '返品・交換', priority: '高', status: 'open', aiDrafted: false,
+    receivedAt: '2026-07-17T19:45:00', solvedDate: null,
+    memberRank: 'シルバー会員', memberSince: '2024-11-19',
+    purchases: [], pastInquiry: null,
+    thread: [
+      { from: 'customer', time: '2026-07-17T19:45:00', text: '届いた箱が潰れており、中の商品にも傷がついていました。交換していただくことは可能でしょうか。' },
+      { from: 'agent', time: '2026-07-18T08:15:00', text: 'この度はご不便をおかけし申し訳ございません。お手数ですが破損箇所のお写真を送っていただけますでしょうか。確認でき次第、交換の手配をいたします。' }
+    ] },
+
+  { id: 't-012', customer: '若葉 萌', email: 'moe.wakaba@example.com', subject: 'サイズ交換をお願いしたいです',
+    channel: 'チャット', category: '返品・交換', priority: '低', status: 'solved', aiDrafted: false,
+    receivedAt: '2026-07-16T15:10:00', solvedDate: '2026-07-16',
+    memberRank: 'シルバー会員', memberSince: '2025-07-30',
+    purchases: [], pastInquiry: null,
+    thread: [
+      { from: 'customer', time: '2026-07-16T15:10:00', text: '注文したスニーカーのサイズが大きかったので、ワンサイズ小さいものに交換をお願いしたいです。' },
+      { from: 'agent', time: '2026-07-16T15:40:00', text: '若葉様\n\nかしこまりました。交換用の伝票を発行いたしましたので、お手元の商品をご返送くださいませ。到着後、順次交換品を発送いたします。\n\nデモ商事オンラインストア サポート担当' }
+    ] }
+];
+
+/* ナレッジベース（8件・aiAdded は自動追加バッジ用） */
+var KNOWLEDGE = [
+  { title: '配送状況の確認方法', category: '配送', summary: 'マイページの注文履歴から配送状況を確認する手順と、配送業者の追跡ページの見方をまとめています。', aiAdded: false },
+  { title: '配送遅延時のお詫びと対応ポリシー', category: '配送', summary: '配送遅延が発生した際のお詫び文面の基本方針と、追跡番号のご案内方法をまとめています。', aiAdded: false },
+  { title: '返品・交換の受付条件', category: '返品・交換', summary: '未使用品に限り到着後14日以内であれば返品・交換を受け付ける、という基本ポリシーをまとめています。', aiAdded: false },
+  { title: '請求書の再発行方法', category: '請求', summary: '過去のご注文について請求書を再発行する際の手順と、宛名変更時の注意点をまとめています。', aiAdded: false },
+  { title: 'パスワード再設定の手順', category: 'アカウント', summary: 'パスワード再設定メールが届かない場合のチェックポイントと、再送手順をまとめています。', aiAdded: false },
+  { title: '会員ランクと特典について', category: 'アカウント', summary: 'ブロンズ・シルバー・ゴールドの各会員ランクの条件と特典内容をまとめています。', aiAdded: true },
+  { title: 'スチームアイロンの温度設定ガイド', category: '使い方', summary: '素材別のおすすめ温度設定とダイヤルの操作方法をまとめています。', aiAdded: true },
+  { title: 'クーポン利用時の注意点', category: '請求', summary: 'クーポンコードが無効と表示される主な原因（利用期限・対象商品・重複利用不可）をまとめています。', aiAdded: false }
+];
+
+var ACTIVITY_LOG = [
+  { text: '<b>デモ次郎</b>が『月島 涼さん』への返信を送信し、対応を完了しました', time: '2時間前', color: 'var(--teal)' },
+  { text: '<b>AI</b>が『黒田 玄さん』の問い合わせに対する返信下書きを作成しました', time: '3時間前', color: 'var(--pri)' },
+  { text: '<b>システム</b>がチャットから新しい問い合わせを受信箱に自動で取り込みました', time: '4時間前', color: 'var(--gray-soft)' },
+  { text: '<b>デモ次郎</b>が『雨宮 潤さん』の対応履歴を確認しました', time: '昨日 18:20', color: 'var(--amber)' },
+  { text: '<b>システム</b>が解決済みの対応から『会員ランクと特典について』をナレッジベースに自動追加しました', time: '昨日 14:05', color: 'var(--teal)' }
+];
+
+var ESCALATION_RULES = [
+  { pri: '高', rule: '30分以内に担当者へチャット通知' },
+  { pri: '中', rule: '3時間以内に担当者へ通知' },
+  { pri: '低', rule: '当日中の確認で対応可' }
+];
+
+var AUTO_REPLY_TOGGLES = [
+  { id: 'ar-1', label: '営業時間外の一次自動応答', desc: '営業時間外に届いた問い合わせに定型の受付連絡を自動送信します', on: true }
+];
+
+var NOTIF_TOGGLES = [
+  { label: '優先度「高」の新規問い合わせを即時通知', desc: '緊急度の高い問い合わせをチャットで即時に通知します', on: true },
+  { label: 'AI下書き生成完了を通知', desc: '担当チケットの下書きが生成できたタイミングで通知します', on: true },
+  { label: '解決済みチケットのナレッジ追加を通知', desc: 'ナレッジベースへの自動追加が完了した際に通知します', on: false }
+];
+
+/* AI分析タグ・ナレッジ参照カード（t-001専用の演出データ） */
+var T001_ANALYSIS_TAGS = [
+  { cls: 'tag-intent', label: '意図: 配送状況の確認' },
+  { cls: 'tag-urgency', label: '緊急度: 高' },
+  { cls: 'tag-emotion', label: '感情: 困っている' }
+];
+var T001_KB_REFS = ['配送状況の確認方法', '配送遅延時のお詫びと対応ポリシー'];
+var T001_DRAFT_TEXT = '青井 蒼 様\n\nこの度はデモ商事オンラインストアをご利用いただき、誠にありがとうございます。また、ご注文いただいた商品のお届けにお時間をいただいており、大変ご迷惑をおかけし申し訳ございません。\n\nご注文番号「DM-2026-0715-012」につきまして配送状況を確認いたしましたところ、商品はすでに配送業者へ引き渡しが完了しており、明日中のお届けを予定しております。\n\n追跡番号は「DEMO-0000-4821」でございます。お手数ですが、配送業者の追跡ページにてあわせてご確認いただけますと幸いです。\n\nお急ぎのご事情とのこと、ご不便をおかけしておりますことを重ねてお詫び申し上げます。恐れ入りますが、明日になってもお手元に届かない場合には、本メールへの返信にてお知らせくださいませ。すぐに配送業者へ確認いたします。\n\n何卒よろしくお願いいたします。\n\nデモ商事オンラインストア サポート担当';
+var T001_KB_ADD_TITLE = '配送遅延のお問い合わせ対応';
+var T001_KB_ADD_SUMMARY = '注文番号から配送状況を確認し、追跡番号のご案内とお詫びを添えて返信した対応例です。お急ぎのお客様への配慮の一文を含みます。';
+
+/* ============================================================
+   2. 集計ヘルパー（KPI・タブ件数・グラフはすべてここから導出）
+============================================================ */
+function findTicket(id) { return TICKETS.filter(function (t) { return t.id === id; })[0]; }
+function countByStatus(status) { return TICKETS.filter(function (t) { return t.status === status; }).length; }
+function countSolvedToday() {
+  return TICKETS.filter(function (t) { return t.status === 'solved' && t.solvedDate === TODAY_STR; }).length;
+}
+function countByField(field, value) { return TICKETS.filter(function (t) { return t[field] === value; }).length; }
+function groupCount(field) {
+  var map = {};
+  TICKETS.forEach(function (t) { map[t[field]] = (map[t[field]] || 0) + 1; });
+  return map;
+}
+function aiDraftedCount() { return TICKETS.filter(function (t) { return t.aiDrafted; }).length; }
+
+/* ============================================================
+   3. ルーティング
+============================================================ */
+var VIEW_NAMES = {
+  dashboard: 'ダッシュボード',
+  inbox: '受信箱',
+  knowledge: 'ナレッジベース',
+  report: 'レポート',
+  settings: '設定'
+};
+var draftState = null;   // t-001用：AI下書き演出の進行状態
+var t001Runtime = { addedMessage: null, addedKnowledge: null }; // t-001用：リセット可能な副作用の記録
+var loggedIn = false;
+var CURRENT_DETAIL_ID = null;
+
+function isLoggedIn() { return loggedIn; }
+
+function handleRoute() {
+  var hash = location.hash.replace('#', '') || 'login';
+
+  if (!isLoggedIn() && hash !== 'login') {
+    location.hash = 'login';
+    return;
+  }
+  if (hash === 'login') {
+    showLoginScreen();
+    return;
+  }
+
+  showAppScreen();
+
+  if (hash.indexOf('ticket/') === 0) {
+    var id = hash.split('/')[1];
+    openTicketDetail(id);
+    setActiveNav(null);
+    return;
+  }
+
+  var view = ['dashboard', 'inbox', 'knowledge', 'report', 'settings'].indexOf(hash) >= 0 ? hash : 'dashboard';
+  showView(view);
+  setActiveNav(view);
+}
+
+function showLoginScreen() {
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+}
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+}
+
+function showView(name) {
+  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
+  var el = document.getElementById('view-' + name);
+  if (el) el.classList.add('active');
+  document.getElementById('viewNameLabel').textContent = VIEW_NAMES[name] || 'チケット詳細';
+
+  if (name === 'dashboard') renderDashboard();
+  if (name === 'inbox') renderInboxView();
+  if (name === 'knowledge') renderKnowledgeView();
+  if (name === 'report') renderReport();
+  if (name === 'settings') renderSettings();
+  toggleSidebar(false);
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function setActiveNav(name) {
+  document.querySelectorAll('.nav-btn').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.nav === name);
+  });
+}
+
+function go(name) { location.hash = name; }
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  renderNotifDropdown();
+  // 直リンク（#ticket/t-001 等）で開いた場合は、デモの利便性のためログイン済み扱いにする
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') {
+    loggedIn = true;
+  }
+  handleRoute();
+});
+
+/* ============================================================
+   4. ログイン / ログアウト
+============================================================ */
+function doLogin() {
+  var btn = document.getElementById('loginBtn');
+  if (btn.classList.contains('loading')) return;
+  btn.classList.add('loading');
+  btn.disabled = true;
+  setTimeout(function () {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    loggedIn = true;
+    if (location.hash === '#dashboard') {
+      handleRoute();
+    } else {
+      location.hash = 'dashboard';
+    }
+  }, 800);
+}
+function doLogout() {
+  loggedIn = false;
+  showToast('ログアウトしました');
+}
+
+/* ============================================================
+   5. サイドバー（モバイル）
+============================================================ */
+function toggleSidebar(force) {
+  var sb = document.getElementById('sidebar');
+  var ov = document.getElementById('mobileOverlay');
+  var open = typeof force === 'boolean' ? force : !sb.classList.contains('open');
+  sb.classList.toggle('open', open);
+  ov.classList.toggle('open', open);
+}
+
+/* ============================================================
+   6. 通知ドロップダウン
+============================================================ */
+function toggleDropdown(id) {
+  var el = document.getElementById(id);
+  var willOpen = !el.classList.contains('open');
+  document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
+  if (willOpen) el.classList.add('open');
+}
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('.dropdown-wrap')) {
+    document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
+  }
+});
+function renderNotifDropdown() {
+  var urgent = TICKETS.filter(function (t) { return (t.status === 'new' || t.status === 'drafted'); })
+    .sort(function (a, b) { return PRIORITY_ORDER[b.priority] - PRIORITY_ORDER[a.priority]; })
+    .slice(0, 3);
+  document.getElementById('notifList').innerHTML = urgent.map(function (t) {
+    var color = t.priority === '高' ? 'var(--red)' : (t.priority === '中' ? 'var(--amber)' : 'var(--gray-soft)');
+    var label = t.status === 'drafted' ? 'AI下書き確認待ち' : '未対応';
+    return '<div class="notif-item"><span class="dot" style="background:' + color + '"></span><div class="txt">『' + escapeHtml(t.subject) + '（' + escapeHtml(t.customer) + 'さん）』が' + label + 'です<div class="time">優先度: ' + t.priority + '・' + fmtRelative(t.receivedAt) + '</div></div></div>';
+  }).join('');
+  document.getElementById('notifBadgeCount').textContent = urgent.length;
+}
+
+/* ============================================================
+   7. ダッシュボード
+============================================================ */
+function renderDashboard() {
+  var newCount = countByStatus('new');
+  var draftedCount = countByStatus('drafted');
+  var openCount = countByStatus('open');
+  var solvedTodayCount = countSolvedToday();
+
+  document.getElementById('kpiGrid').innerHTML = [
+    kpiCardHtml('未対応', newCount, '件', 'var(--red)', 'まだ誰も対応していない問い合わせ'),
+    kpiCardHtml('AI下書きあり（確認待ち）', draftedCount, '件', 'var(--pri)', '担当者の確認・送信を待っています'),
+    kpiCardHtml('対応中', openCount, '件', 'var(--amber)', '担当者が対応を進めています'),
+    kpiCardHtml('今日の解決', solvedTodayCount, '件', 'var(--teal)', '本日中に解決済みとなった件数')
+  ].join('');
+
+  var tasks = TICKETS.filter(function (t) { return t.status === 'new' || t.status === 'drafted'; })
+    .sort(function (a, b) {
+      var pd = PRIORITY_ORDER[b.priority] - PRIORITY_ORDER[a.priority];
+      if (pd !== 0) return pd;
+      return new Date(a.receivedAt) - new Date(b.receivedAt);
+    });
+
+  document.getElementById('taskList').innerHTML = tasks.map(function (t) {
+    var statusBadge = '<span class="badge badge-' + t.status + '">' + STATUS_LABEL[t.status] + '</span>';
+    var priBadge = '<span class="badge badge-pri-' + t.priority + '">優先度 ' + t.priority + '</span>';
+    return '<a class="task-row" href="#ticket/' + t.id + '">' +
+      '<span class="t-badges">' + priBadge + statusBadge + '</span>' +
+      '<span class="t-main"><div class="t-name">' + escapeHtml(t.subject) + '</div><div class="t-sub">' + escapeHtml(t.customer) + 'さん ・ ' + channelIcon(t.channel) + ' ' + t.channel + ' ・ ' + fmtRelative(t.receivedAt) + '</div></span>' +
+      '<span class="t-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></span>' +
+      '</a>';
+  }).join('') || '<p style="font-size:12.5px;color:var(--gray-soft);">現在、対応が必要な問い合わせはありません。</p>';
+
+  document.getElementById('activityTimeline').innerHTML = ACTIVITY_LOG.map(function (a) {
+    return '<div class="timeline-item"><span class="timeline-dot" style="background:' + a.color + '"></span>' +
+      '<div><div class="timeline-text">' + a.text + '</div><div class="timeline-date">' + a.time + '</div></div></div>';
+  }).join('');
+
+  var channelMap = groupCount('channel');
+  renderHbarChart('channelBreakdownChart', CHANNEL_LABELS.map(function (c) { return { label: c, value: channelMap[c] || 0 }; }), function (v) { return v + '件'; });
+}
+
+function kpiCardHtml(label, value, unit, color, sub) {
+  return '<div class="kpi-card"><div class="kpi-label"><span class="kpi-swatch" style="background:' + color + '"></span>' + label + '</div>' +
+    '<div class="kpi-value">' + value + '<span>' + unit + '</span></div><div class="kpi-sub">' + sub + '</div></div>';
+}
+function renderHbarChart(hostId, entries, formatFn) {
+  entries = entries.slice().sort(function (a, b) { return b.value - a.value; });
+  var max = entries.length ? Math.max.apply(null, entries.map(function (e) { return e.value; })) : 1;
+  if (max <= 0) max = 1;
+  var host = document.getElementById(hostId);
+  if (!host) return;
+  if (!entries.length) { host.innerHTML = '<p style="font-size:12px;color:var(--gray-soft);">対象データがありません。</p>'; return; }
+  host.innerHTML = entries.map(function (e) {
+    var pct = e.value > 0 ? Math.max(4, Math.round((e.value / max) * 100)) : 0;
+    return '<div class="hbar-row"><span class="hbar-label">' + escapeHtml(e.label) + '</span>' +
+      '<span class="hbar-track"><span class="hbar-fill" style="width:' + pct + '%;' + (e.color ? 'background:' + e.color + ';' : '') + '"></span></span>' +
+      '<span class="hbar-value">' + formatFn(e.value) + '</span></div>';
+  }).join('');
+  requestAnimationFrame(function () {
+    host.querySelectorAll('.hbar-fill').forEach(function (el) { void el.offsetWidth; });
+  });
+}
+
+/* ============================================================
+   8. 受信箱
+============================================================ */
+var currentInboxFilter = 'all';
+var STATUS_TABS = [
+  { key: 'all', label: 'すべて' },
+  { key: 'new', label: '未対応' },
+  { key: 'drafted', label: 'AI下書きあり' },
+  { key: 'open', label: '対応中' },
+  { key: 'solved', label: '解決済み' }
+];
+
+function renderInboxView() {
+  document.getElementById('inboxTotalCount').textContent = TICKETS.length;
+  renderStatusTabs();
+  renderInboxTable();
+}
+function renderStatusTabs() {
+  document.getElementById('statusTabRow').innerHTML = STATUS_TABS.map(function (t) {
+    var count = t.key === 'all' ? TICKETS.length : countByStatus(t.key);
+    return '<button class="tab-chip ' + (currentInboxFilter === t.key ? 'active' : '') + '" onclick="setInboxFilter(\'' + t.key + '\')">' +
+      t.label + '<span class="cnt">' + count + '</span></button>';
+  }).join('');
+}
+function setInboxFilter(key) {
+  currentInboxFilter = key;
+  renderStatusTabs();
+  renderInboxTable();
+}
+function renderInboxTable() {
+  var qEl = document.getElementById('ticketSearchInput');
+  var q = qEl ? (qEl.value || '').trim().toLowerCase() : '';
+  var rows = TICKETS.filter(function (t) {
+    if (currentInboxFilter !== 'all' && t.status !== currentInboxFilter) return false;
+    if (!q) return true;
+    return t.customer.toLowerCase().indexOf(q) >= 0 || t.subject.toLowerCase().indexOf(q) >= 0;
+  }).sort(function (a, b) { return new Date(b.receivedAt) - new Date(a.receivedAt); });
+
+  var tbody = document.getElementById('inboxTbody');
+  if (!rows.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="7">該当する問い合わせがありません。</td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.map(function (t) {
+    var hot = t.priority === '高' && (t.status === 'new' || t.status === 'drafted');
+    return '<tr class="' + (hot ? 'row-hot' : '') + '" onclick="location.hash=\'ticket/' + t.id + '\'">' +
+      '<td class="name-cell" data-label="顧客名">' + escapeHtml(t.customer) + '</td>' +
+      '<td data-label="件名">' + escapeHtml(t.subject) + '</td>' +
+      '<td data-label="チャネル"><span class="ch-cell">' + channelIcon(t.channel) + t.channel + '</span></td>' +
+      '<td data-label="カテゴリ">' + escapeHtml(t.category) + '</td>' +
+      '<td data-label="優先度"><span class="badge badge-pri-' + t.priority + '">' + t.priority + '</span></td>' +
+      '<td data-label="受信時刻">' + fmtDateTime(t.receivedAt) + '</td>' +
+      '<td data-label="ステータス"><span class="badge badge-' + t.status + '">' + STATUS_LABEL[t.status] + '</span></td>' +
+      '</tr>';
+  }).join('');
+}
+
+/* ============================================================
+   9. チケット詳細（共通）
+============================================================ */
+function openTicketDetail(id) {
+  var t = findTicket(id);
+  CURRENT_DETAIL_ID = id;
+  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
+  document.getElementById('view-ticket-detail').classList.add('active');
+  document.getElementById('viewNameLabel').textContent = 'チケット詳細';
+
+  if (!t) {
+    document.getElementById('detailTitle').textContent = 'チケットが見つかりません';
+    document.getElementById('detailSub').textContent = '';
+    document.getElementById('detailStatusBadge').textContent = '';
+    document.getElementById('threadBody').innerHTML = '';
+    document.getElementById('pane-draft').innerHTML = '';
+    document.getElementById('pane-customer').innerHTML = '';
+    document.getElementById('pane-history').innerHTML = '';
+    return;
+  }
+
+  document.getElementById('detailTitle').textContent = t.subject;
+  document.getElementById('detailSub').innerHTML =
+    escapeHtml(t.customer) + 'さん　／　<span class="ch-cell" style="display:inline-flex;">' + channelIcon(t.channel) + t.channel + '</span>　／　' + escapeHtml(t.category) +
+    '　／　<span class="badge badge-pri-' + t.priority + '">優先度 ' + t.priority + '</span>';
+  updateDetailStatusBadge(t);
+
+  document.getElementById('threadChannelNote').textContent = fmtDateTime(t.receivedAt) + ' 受信';
+  renderThread(t);
+  renderCustomerTab(t);
+  renderHistoryTab(t);
+
+  if (id === 't-001') {
+    setupDraftPane(t);
+  } else {
+    document.getElementById('pane-draft').innerHTML = genericDraftHtml(t);
+  }
+  switchSideTab('draft');
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function updateDetailStatusBadge(t) {
+  var el = document.getElementById('detailStatusBadge');
+  el.className = 'badge badge-' + t.status;
+  el.textContent = STATUS_LABEL[t.status];
+}
+
+function renderThread(t) {
+  var host = document.getElementById('threadBody');
+  if (!host) return;
+  host.innerHTML = t.thread.map(function (m) {
+    var name = m.from === 'customer' ? t.customer + 'さん' : 'デモ 次郎（サポート部）';
+    return '<div class="chat-row from-' + m.from + '"><div class="chat-name">' + escapeHtml(name) + '</div>' +
+      '<div class="chat-bubble">' + escapeHtml(m.text) + '</div>' +
+      '<div class="chat-time">' + fmtDateTime(m.time) + '</div></div>';
+  }).join('');
+  host.scrollTop = host.scrollHeight;
+}
+function appendAgentBubble(t, text, timeIso) {
+  t.thread.push({ from: 'agent', time: timeIso, text: text });
+  renderThread(t);
+  return t.thread[t.thread.length - 1];
+}
+
+function renderCustomerTab(t) {
+  var purchasesHtml = t.purchases.length
+    ? t.purchases.map(function (p) {
+        return '<div class="purchase-item"><div><div class="pi-name">' + escapeHtml(p.name) + '</div><div class="pi-meta">' + fmtDate(p.date) + ' ・ ' + escapeHtml(p.orderNo) + '</div></div><div class="pi-price">¥' + p.price.toLocaleString('ja-JP') + '</div></div>';
+      }).join('')
+    : '<p style="font-size:11.5px;color:var(--gray-soft);">購入履歴の詳細表示はこのデモでは省略しています（フル体験は「' + escapeHtml(findTicket('t-001').customer) + 'さん」のチケットでご覧いただけます）。</p>';
+
+  document.getElementById('pane-customer').innerHTML =
+    '<table class="meta-table"><tbody>' +
+    '<tr><th>お客様名</th><td>' + escapeHtml(t.customer) + '　様</td></tr>' +
+    '<tr><th>登録メール</th><td>' + escapeHtml(t.email) + '<br><span style="font-size:10.5px;color:var(--gray-soft)">※架空のサンプルアドレスです</span></td></tr>' +
+    '<tr><th>会員ランク</th><td>' + escapeHtml(t.memberRank) + '（' + fmtDate(t.memberSince) + ' 登録）</td></tr>' +
+    '<tr><th>購入履歴</th><td>' + purchasesHtml + '</td></tr>' +
+    '</tbody></table>';
+}
+function renderHistoryTab(t) {
+  var host = document.getElementById('pane-history');
+  var pieces = [];
+  if (t.pastInquiry) {
+    pieces.push('<div class="timeline-item"><span class="timeline-dot" style="background:var(--gray-soft)"></span><div><div class="timeline-text">' + escapeHtml(t.pastInquiry.text) + '</div><div class="timeline-date">' + fmtDate(t.pastInquiry.date) + '</div></div></div>');
+  }
+  var repliedMsgs = t.thread.filter(function (m) { return m.from === 'agent'; });
+  repliedMsgs.forEach(function (m) {
+    pieces.push('<div class="timeline-item"><span class="timeline-dot" style="background:var(--teal)"></span><div><div class="timeline-text">担当者が返信を送信しました：「' + escapeHtml(m.text.slice(0, 34)) + (m.text.length > 34 ? '…' : '') + '」</div><div class="timeline-date">' + fmtDateTime(m.time) + '</div></div></div>');
+  });
+  host.innerHTML = pieces.length
+    ? '<div class="timeline">' + pieces.join('') + '</div>'
+    : '<p style="font-size:12.5px;color:var(--gray-soft);">この顧客の対応履歴はまだありません。</p>';
+}
+
+function switchSideTab(tab) {
+  document.querySelectorAll('.side-tab-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.tab === tab); });
+  document.querySelectorAll('.side-tab-pane').forEach(function (p) { p.classList.remove('active'); });
+  var el = document.getElementById('pane-' + tab);
+  if (el) el.classList.add('active');
+}
+
+/* ---- t-001以外のチケット向け：AI下書きタブの簡易表示 ---- */
+function genericDraftHtml(t) {
+  var stageNote =
+    t.status === 'new' ? 'まだAI下書きは生成されていません。'
+    : t.status === 'drafted' ? 'AIが返信下書きを生成済みで、担当者の確認待ちです。'
+    : t.status === 'open' ? '担当者が手動でやり取りを進めています。'
+    : '対応は完了しています。';
+  var solvedNote = '';
+  if (t.status === 'solved') {
+    var lastAgentMsg = t.thread.filter(function (m) { return m.from === 'agent'; }).slice(-1)[0];
+    if (lastAgentMsg) {
+      solvedNote = '<div class="draft-text-preview" style="margin-top:14px;text-align:left;">' + escapeHtml(lastAgentMsg.text) + '</div>';
+    }
+  }
+  return '<div class="ai-start-box">' +
+    '<p>' + stageNote + '<br>AI分析〜ナレッジ参照〜返信下書き生成〜送信〜ナレッジ蓄積のフル体験は「' + escapeHtml(findTicket('t-001').customer) + 'さん」のチケットでご覧いただけます。</p>' +
+    solvedNote +
+    '<div class="generic-cta-card">' +
+      '<p style="font-size:12px;color:var(--pri-deep);margin:0;">体験デモは t-001 で</p>' +
+      '<a href="#ticket/t-001" class="btn-ai-run">t-001のフル体験を見る</a>' +
+    '</div>' +
+    '</div>';
+}
+
+/* ============================================================
+   10. AI下書き生成（t-001専用の目玉演出）
+   runId トークン方式でタイマーの誤発火・二重発火を防止する
+============================================================ */
+function setupDraftPane(t) {
+  draftState = { phase: 'idle', timers: [], runId: null, editedText: '' };
+  renderDraftIdle();
+}
+function clearDraftTimers() {
+  if (!draftState) return;
+  draftState.timers.forEach(function (id) { clearTimeout(id); });
+  draftState.timers = [];
+}
+function renderDraftIdle() {
+  document.getElementById('pane-draft').innerHTML =
+    '<div class="ai-start-box">' +
+    '<div class="ai-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--pri)" stroke-width="1.6"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4.2"/></svg></div>' +
+    '<p>AIが問い合わせ内容を分析し、関連ナレッジを参照したうえで返信下書きを作成します。<br>実行には数秒かかります。生成後は内容を編集できます。</p>' +
+    '<button class="btn-ai-run" onclick="startAiDraft()">AI下書きを生成</button>' +
+    '</div>';
+}
+
+function startAiDraft() {
+  if (!draftState || draftState.phase !== 'idle') return;
+  var myRun = {};
+  draftState.runId = myRun;
+  draftState.phase = 'analyzing';
+
+  document.getElementById('pane-draft').innerHTML =
+    '<div class="analyze-box" id="analyzeBox">' +
+      '<div class="an-spinner"></div>' +
+      '<div class="an-text">問い合わせを分析中…</div>' +
+      '<div class="tag-list" id="analysisTagList"></div>' +
+    '</div>' +
+    '<div style="text-align:center;margin-top:6px;"><button class="btn-skip" onclick="skipAiDraft()">⏩ すべて表示</button></div>';
+
+  var idx = 0;
+  function stepTag() {
+    if (!draftState || draftState.runId !== myRun || draftState.phase !== 'analyzing') return;
+    if (idx >= T001_ANALYSIS_TAGS.length) return;
+    appendAnalysisTag(idx);
+    idx++;
+    if (idx >= T001_ANALYSIS_TAGS.length) {
+      var box = document.getElementById('analyzeBox');
+      if (box) box.classList.add('done');
+      var t2 = setTimeout(function () { beginKnowledgeRef(myRun); }, 400);
+      draftState.timers.push(t2);
+      return;
+    }
+    var t = setTimeout(stepTag, 350);
+    draftState.timers.push(t);
+  }
+  var t0 = setTimeout(stepTag, 400);
+  draftState.timers.push(t0);
+}
+function appendAnalysisTag(idx) {
+  var def = T001_ANALYSIS_TAGS[idx];
+  var host = document.getElementById('analysisTagList');
+  if (!host) return;
+  var span = document.createElement('span');
+  span.className = 'analysis-tag ' + def.cls;
+  span.textContent = def.label;
+  host.appendChild(span);
+  requestAnimationFrame(function () { span.classList.add('in'); });
+}
+
+function beginKnowledgeRef(myRun) {
+  if (!draftState || draftState.runId !== myRun) return;
+  draftState.phase = 'knowledge';
+  document.getElementById('pane-draft').innerHTML =
+    '<div class="kb-search-box">' +
+      '<div class="an-spinner"></div>' +
+      '<div class="an-text">関連ナレッジを検索中…</div>' +
+      '<div class="kb-ref-list" id="kbRefList"></div>' +
+    '</div>' +
+    '<div style="text-align:center;margin-top:6px;"><button class="btn-skip" onclick="skipAiDraft()">⏩ すべて表示</button></div>';
+
+  var idx = 0;
+  function stepRef() {
+    if (!draftState || draftState.runId !== myRun || draftState.phase !== 'knowledge') return;
+    if (idx >= T001_KB_REFS.length) return;
+    appendKbRefCard(idx);
+    idx++;
+    if (idx >= T001_KB_REFS.length) {
+      var t2 = setTimeout(function () { beginTypewriter(myRun); }, 700);
+      draftState.timers.push(t2);
+      return;
+    }
+    var t = setTimeout(stepRef, 550);
+    draftState.timers.push(t);
+  }
+  var t0 = setTimeout(stepRef, 600);
+  draftState.timers.push(t0);
+}
+function appendKbRefCard(idx) {
+  var refTitle = T001_KB_REFS[idx];
+  var kb = KNOWLEDGE.filter(function (k) { return k.title === refTitle; })[0];
+  var host = document.getElementById('kbRefList');
+  if (!host) return;
+  var div = document.createElement('div');
+  div.className = 'kb-ref-card';
+  div.innerHTML = '<span class="kr-cat">' + escapeHtml(kb ? kb.category : '') + '</span>' +
+    '<div class="kr-title">' + escapeHtml(refTitle) + '</div>' +
+    '<div class="kr-sum">' + escapeHtml(kb ? kb.summary : '') + '</div>';
+  host.appendChild(div);
+  requestAnimationFrame(function () { div.classList.add('in'); });
+}
+
+// 分析タグ・参照ナレッジは演出後も残す（AIが何を見たかの根拠がこのデモの説得力）
+function draftContextHtml() {
+  var tags = T001_ANALYSIS_TAGS.map(function (d) {
+    return '<span class="analysis-tag ' + d.cls + ' in">' + escapeHtml(d.label) + '</span>';
+  }).join('');
+  var refs = T001_KB_REFS.map(function (rt) {
+    var kb = KNOWLEDGE.filter(function (k) { return k.title === rt; })[0];
+    return '<div class="kb-ref-card in"><span class="kr-cat">' + escapeHtml(kb ? kb.category : '') + '</span><div class="kr-title">' + escapeHtml(rt) + '</div></div>';
+  }).join('');
+  return '<div class="draft-context">' +
+    '<div class="dc-row"><span class="dc-label">AIの分析</span><div class="tag-list">' + tags + '</div></div>' +
+    '<div class="dc-row"><span class="dc-label">参照ナレッジ</span><div class="kb-ref-list">' + refs + '</div></div>' +
+    '</div>';
+}
+
+function beginTypewriter(myRun) {
+  if (!draftState || draftState.runId !== myRun) return;
+  draftState.phase = 'typing';
+  document.getElementById('pane-draft').innerHTML =
+    draftContextHtml() +
+    '<div class="ai-toolbar"><span class="ai-count">返信下書きを作成中…</span><button class="btn-skip" onclick="skipAiDraft()">⏩ すべて表示</button></div>' +
+    '<div class="draft-box"><div class="draft-text-preview" id="draftPreview"><span id="draftPreviewText"></span><span class="draft-cursor" id="draftCursor"></span></div></div>';
+
+  // チャンク方式のタイプライター演出：1文字ずつのsetTimeoutではなく、
+  // 一定間隔で複数文字ずつ表示することでタイマー数を抑えつつ軽く実装する
+  var fullText = T001_DRAFT_TEXT;
+  var totalDuration = 7000; // 約7秒
+  var tickMs = 45;
+  var totalTicks = Math.ceil(totalDuration / tickMs);
+  var charsPerTick = Math.max(1, Math.ceil(fullText.length / totalTicks));
+  var shown = 0;
+  var textEl = document.getElementById('draftPreviewText');
+
+  function tick() {
+    if (!draftState || draftState.runId !== myRun || draftState.phase !== 'typing') return;
+    shown = Math.min(fullText.length, shown + charsPerTick);
+    if (textEl) textEl.textContent = fullText.slice(0, shown);
+    if (shown >= fullText.length) {
+      finishTypewriter(myRun, fullText);
+      return;
+    }
+    var t = setTimeout(tick, tickMs);
+    draftState.timers.push(t);
+  }
+  var t0 = setTimeout(tick, tickMs);
+  draftState.timers.push(t0);
+}
+function finishTypewriter(myRun, fullText) {
+  if (!draftState || draftState.runId !== myRun) return;
+  draftState.phase = 'ready';
+  draftState.editedText = fullText;
+  renderDraftReady(fullText);
+}
+function renderDraftReady(text) {
+  document.getElementById('pane-draft').innerHTML =
+    draftContextHtml() +
+    '<div class="ai-toolbar"><span class="ai-count">下書きが作成できました</span></div>' +
+    '<div class="draft-box"><textarea class="draft-editor" id="draftEditor" oninput="onDraftEdit(this)">' + escapeHtml(text) + '</textarea></div>' +
+    '<div class="draft-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>編集して送信できます。内容は必ず担当者が確認します。</div>' +
+    '<div class="draft-cta"><button class="btn-send-draft" id="sendDraftBtn" onclick="sendDraft()">内容を確認して送信<span class="badge badge-human">人の確認</span></button></div>' +
+    '<div class="draft-reset"><button onclick="resetDraft()">↺ リセット</button></div>';
+}
+function onDraftEdit(el) {
+  if (draftState) draftState.editedText = el.value;
+}
+
+function skipAiDraft() {
+  if (!draftState) return;
+  clearDraftTimers();
+  if (draftState.rafId) cancelAnimationFrame(draftState.rafId);
+  var myRun = {};
+  draftState.runId = myRun;
+  draftState.phase = 'ready';
+  draftState.editedText = T001_DRAFT_TEXT;
+  renderDraftReady(T001_DRAFT_TEXT);
+}
+
+function sendDraft() {
+  if (!draftState || draftState.phase !== 'ready') return;
+  var t = findTicket('t-001');
+  var editor = document.getElementById('draftEditor');
+  var text = editor ? editor.value : draftState.editedText;
+  draftState.editedText = text;
+  draftState.phase = 'sending';
+  var myRun = draftState.runId;
+
+  var btn = document.getElementById('sendDraftBtn');
+  if (btn) btn.disabled = true;
+  document.getElementById('pane-draft').innerHTML =
+    '<div class="send-spin-box"><div class="an-spinner"></div><div class="an-text">送信中…</div></div>';
+
+  var timer = setTimeout(function () {
+    if (!draftState || draftState.runId !== myRun || draftState.phase !== 'sending') return;
+    draftState.phase = 'sent';
+
+    var msg = appendAgentBubble(t, text, NOW.toISOString());
+    t001Runtime.addedMessage = msg;
+    t.status = 'solved';
+    t.solvedDate = TODAY_STR;
+    t.aiDrafted = true;
+    updateDetailStatusBadge(t);
+    renderHistoryTab(t);
+    showToast('返信を送信しました。チケットを解決済みにしました。');
+
+    document.getElementById('pane-draft').innerHTML =
+      '<div class="complete-banner in"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>返信を送信し、チケットを解決済みにしました。</div>' +
+      '<div id="kbPromptHost"></div>' +
+      '<div class="draft-reset"><button onclick="resetDraft()">↺ リセット</button></div>';
+    var host = document.getElementById('kbPromptHost');
+    if (host) {
+      var card = document.createElement('div');
+      card.className = 'kb-add-card';
+      card.innerHTML =
+        '<p>この対応をナレッジベースに追加しますか？<br><span style="color:var(--gray-soft);font-size:11px;">タイトル案：「' + escapeHtml(T001_KB_ADD_TITLE) + '」</span></p>' +
+        '<div class="kb-add-btnrow">' +
+          '<button class="btn-add-kb" onclick="addToKnowledge()">追加する</button>' +
+          '<button class="btn-skip-kb" onclick="skipKnowledgeAdd()">追加しない</button>' +
+        '</div>';
+      host.appendChild(card);
+      requestAnimationFrame(function () { card.classList.add('in'); });
+    }
+  }, 1000);
+  draftState.timers.push(timer);
+}
+
+function skipKnowledgeAdd() {
+  var host = document.getElementById('kbPromptHost');
+  if (host) host.innerHTML = '<p style="font-size:11.5px;color:var(--gray-soft);text-align:center;">今回はナレッジベースへの追加を見送りました。</p>';
+}
+
+function addToKnowledge() {
+  if (t001Runtime.addedKnowledge) return;
+  var entry = { title: T001_KB_ADD_TITLE, category: '配送', summary: T001_KB_ADD_SUMMARY, aiAdded: true };
+  KNOWLEDGE.push(entry);
+  t001Runtime.addedKnowledge = entry;
+  var host = document.getElementById('kbPromptHost');
+  if (host) {
+    host.innerHTML = '<div class="kb-added-note in"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>ナレッジに追加しました（タイトル: ' + escapeHtml(T001_KB_ADD_TITLE) + '）</div>';
+  }
+  showToast('ナレッジベースに追加しました');
+}
+
+function resetDraft() {
+  clearDraftTimers();
+  if (draftState && draftState.rafId) cancelAnimationFrame(draftState.rafId);
+  var t = findTicket('t-001');
+
+  // 追加した返信メッセージを取り消す
+  if (t001Runtime.addedMessage) {
+    var idx = t.thread.indexOf(t001Runtime.addedMessage);
+    if (idx >= 0) t.thread.splice(idx, 1);
+    t001Runtime.addedMessage = null;
+  }
+  // 追加したナレッジ記事を取り消す
+  if (t001Runtime.addedKnowledge) {
+    var kIdx = KNOWLEDGE.indexOf(t001Runtime.addedKnowledge);
+    if (kIdx >= 0) KNOWLEDGE.splice(kIdx, 1);
+    t001Runtime.addedKnowledge = null;
+  }
+
+  t.status = 'new';
+  t.solvedDate = null;
+  t.aiDrafted = false;
+
+  renderThread(t);
+  updateDetailStatusBadge(t);
+  renderHistoryTab(t);
+  setupDraftPane(t);
+  showToast('チケットの状態を生成前にリセットしました');
+}
+
+/* ============================================================
+   11. ナレッジベース
+============================================================ */
+function renderKnowledgeView() {
+  document.getElementById('knowledgeTotalCount').textContent = KNOWLEDGE.length;
+  document.getElementById('knowledgeGrid').innerHTML = KNOWLEDGE.map(function (k, idx) {
+    var isNew = t001Runtime.addedKnowledge && k === t001Runtime.addedKnowledge;
+    var aiBadge = k.aiAdded ? '<span class="badge badge-ai">AI追加</span>' : '';
+    return '<div class="kb-card' + (isNew ? ' new-in' : '') + '">' +
+      '<span class="kb-cat">' + escapeHtml(k.category) + '</span>' +
+      '<div class="kb-title">' + escapeHtml(k.title) + aiBadge + '</div>' +
+      '<div class="kb-sum">' + escapeHtml(k.summary) + '</div>' +
+      '</div>';
+  }).join('');
+}
+
+/* ============================================================
+   12. レポート
+============================================================ */
+function renderReport() {
+  var categoryMap = groupCount('category');
+  renderHbarChart('reportCategoryChart', CATEGORY_LABELS.map(function (c) { return { label: c, value: categoryMap[c] || 0 }; }), function (v) { return v + '件'; });
+
+  var channelMap = groupCount('channel');
+  renderHbarChart('reportChannelChart', CHANNEL_LABELS.map(function (c) { return { label: c, value: channelMap[c] || 0 }; }), function (v) { return v + '件'; });
+
+  var statusEntries = [
+    { label: STATUS_LABEL.new, value: countByStatus('new'), color: 'var(--red)' },
+    { label: STATUS_LABEL.drafted, value: countByStatus('drafted'), color: 'var(--pri)' },
+    { label: STATUS_LABEL.open, value: countByStatus('open'), color: 'var(--amber)' },
+    { label: STATUS_LABEL.solved, value: countByStatus('solved'), color: 'var(--teal)' }
+  ];
+  renderHbarChart('reportStatusChart', statusEntries, function (v) { return v + '件'; });
+
+  document.getElementById('reportAiDraftedValue').textContent = aiDraftedCount() + '件';
+  document.getElementById('reportAiDraftedTotal').textContent = TICKETS.length;
+  document.getElementById('reportDraftedNowValue').textContent = countByStatus('drafted') + '件';
+  document.getElementById('reportKnowledgeValue').textContent = KNOWLEDGE.length + '件';
+  document.getElementById('reportKnowledgeAiValue').textContent = KNOWLEDGE.filter(function (k) { return k.aiAdded; }).length;
+}
+
+/* ============================================================
+   13. 設定
+============================================================ */
+function renderSettings() {
+  document.getElementById('autoReplyToggleHost').innerHTML = AUTO_REPLY_TOGGLES.map(function (a) {
+    return toggleRowHtml(a.id, a.label, a.desc, a.on);
+  }).join('');
+
+  document.getElementById('escalationTable').innerHTML =
+    '<thead><tr><th>優先度</th><th>通知ルール</th></tr></thead><tbody>' +
+    ESCALATION_RULES.map(function (r) {
+      return '<tr><td><span class="badge badge-pri-' + r.pri + '">優先度 ' + r.pri + '</span></td><td>' + escapeHtml(r.rule) + '</td></tr>';
+    }).join('') + '</tbody>';
+
+  document.getElementById('notifToggleList').innerHTML = NOTIF_TOGGLES.map(function (t, i) {
+    return toggleRowHtml('nt-' + i, t.label, t.desc, t.on);
+  }).join('');
+}
+function toggleRowHtml(id, label, desc, on) {
+  return '<div class="toggle-row"><div><div class="tg-label">' + escapeHtml(label) + '</div><div class="tg-desc">' + escapeHtml(desc) + '</div></div>' +
+    '<label class="switch"><input type="checkbox" id="' + id + '" ' + (on ? 'checked' : '') + ' onchange="onToggleChange(this)"><span class="track"></span></label></div>';
+}
+function onToggleChange(input) {
+  showToast(input.checked ? '設定をONにしました（デモ）' : '設定をOFFにしました（デモ）');
+}
+</script>
+</body>
+</html>
