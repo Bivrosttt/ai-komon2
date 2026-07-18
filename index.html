@@ -202,7 +202,7 @@
 
   /* Movie band */
   .movie-band { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 70%); color: #fff; }
-  .movie-band .inner { display: flex; gap: 40px; align-items: center; padding: 56px 0; flex-wrap: wrap; }
+  .movie-band .inner { display: flex; gap: 40px; align-items: center; padding: 56px 24px; flex-wrap: wrap; }
   .mv-player { flex: 0 0 480px; max-width: 100%; border-radius: 10px; overflow: hidden; box-shadow: 0 12px 32px rgba(0,0,0,.35); }
   .mv-copy { flex: 1; min-width: 260px; }
   .mv-copy h2 { font-family: 'Noto Serif JP', serif; font-size: 26px; margin-bottom: 10px; }
@@ -238,8 +238,12 @@
   @media (max-width: 820px) {
     .lv-stairs { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6px; }
     .lv-step { min-width: 108px; }
-    .movie-band .inner { padding: 40px 0; gap: 24px; }
-    .mv-thumb { flex-basis: 100%; }
+    .movie-band .inner { padding: 40px 24px; gap: 24px; }
+  }
+  @media (max-width: 900px) {
+    .movie-band .inner { flex-direction: column; align-items: center; }
+    .mv-player { flex: 0 1 auto; width: 100%; max-width: 640px; }
+    .mv-copy { width: 100%; max-width: 640px; }
   }
 
   /* Demo teaser */
@@ -492,7 +496,7 @@
     </div>
     <div class="mv-copy">
       <span class="section-label">MOVIE</span>
-      <h2><em>42秒</em>でわかる、AI顧問室。<span style="font-size:15px; color:var(--gold); margin-left:10px;">♪ 音声つき</span></h2>
+      <h2><em>42秒</em>でわかる、AI顧問室。<span style="font-size:15px; color:var(--gold); margin-left:10px; white-space:nowrap; display:inline-block;">♪ 音声つき</span></h2>
       <p>課題 → レベルマップ → 3つの流儀 → 料金まで、サービスの全体像をナレーションつきの1本に。その場で再生できます。</p>
     </div>
   </div>
