@@ -1,3 +1,4 @@
+<!-- 2026-07-22: 社内専用LP武器庫。noindex維持・内部バナー追加・お客さん向け入口(for/)への導線を明記 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -5,8 +6,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>LP一覧｜AI顧問室</title>
-<meta name="description" content="AI顧問室で制作したランディングページを、ターゲット・訴求テーマ別に整理した一覧です。">
+<title>【社内専用】LP一覧｜AI顧問室</title>
+<meta name="description" content="社内・広告検証用のLP武器庫。お客さんには for/ 業種入口または個別LP1本のみ共有してください。">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,9 +139,19 @@
     .footer-inner{flex-direction:column}
     footer a{margin:0 14px 0 0}
   }
+  .internal-banner{background:#15171c;color:#fff;font-size:12.5px;padding:10px 0;border-bottom:3px solid var(--lime)}
+  .internal-banner .container{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+  .internal-banner strong{color:var(--lime);letter-spacing:.06em}
+  .internal-banner a{color:#fff;text-decoration:underline;font-weight:700}
 </style>
 </head>
 <body>
+<div class="internal-banner" role="note">
+  <div class="container">
+    <p><strong>社内専用</strong> — 広告ABテスト・提案準備用。お客さんには <a href="for/kensetsu.html">業種入口</a> または LP1本だけ共有。</p>
+    <p><a href="docs/strategy-visual.html">方針マップ</a></p>
+  </div>
+</div>
 <a class="skip" href="#library">LP一覧へ移動</a>
 <header>
   <div class="container header-inner">

@@ -1,0 +1,728 @@
+<!-- 2026-07-22: AI顧問室サイト再設計の方針を、現状→課題→これから作るものを視覚的に説明する内部用ページ -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>サイト方針マップ｜AI顧問室（内部説明用）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #15171c;
+    --navy: #0b2447;
+    --blue: #2855d9;
+    --orange: #ff6b35;
+    --lime: #dfff4f;
+    --paper: #f5f5f0;
+    --white: #fff;
+    --muted: #6a6e78;
+    --line: #d9dbe1;
+    --soft: #eceef5;
+    --ok: #0f7a4f;
+    --warn: #b45309;
+    --bad: #b42318;
+    --sans: 'Noto Sans JP', sans-serif;
+    --latin: 'DM Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.75;
+  }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px 96px; }
+  .hero {
+    background: var(--navy);
+    color: #fff;
+    padding: 56px 0 48px;
+    border-bottom: 4px solid var(--lime);
+  }
+  .hero .wrap { padding-bottom: 0; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    color: var(--lime);
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.35;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    max-width: 720px;
+    color: #c7d3e4;
+    font-size: 15px;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.now { background: #94a3b8; }
+  .dot.bad { background: #f87171; }
+  .dot.plan { background: var(--lime); }
+  .dot.goal { background: #34d399; }
+
+  section { padding-top: 56px; }
+  .sec-head { margin-bottom: 22px; }
+  .sec-no {
+    font-family: var(--latin);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--blue);
+  }
+  .sec-head h2 {
+    font-size: clamp(22px, 3vw, 30px);
+    margin-top: 6px;
+  }
+  .sec-head p {
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 760px;
+    margin-top: 8px;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 860px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+
+  .panel {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .panel-head {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--line);
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .panel-head .badge {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+  .badge.now { background: #e2e8f0; color: #334155; }
+  .badge.bad { background: #fee2e2; color: var(--bad); }
+  .badge.plan { background: #ecfccb; color: #3f6212; }
+  .badge.goal { background: #d1fae5; color: var(--ok); }
+  .panel-body { padding: 18px; }
+
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .node {
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 12px;
+    min-width: 110px;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .node small {
+    display: block;
+    font-weight: 500;
+    color: var(--muted);
+    margin-top: 4px;
+    font-size: 11px;
+  }
+  .node.highlight { border-color: var(--blue); background: #eef3ff; }
+  .node.danger { border-color: #fca5a5; background: #fff5f5; }
+  .node.lime { border-color: #a3e635; background: #f7fee7; }
+  .node.navy { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .node.navy small { color: #c7d3e4; }
+  .arrow {
+    color: var(--muted);
+    font-family: var(--latin);
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .stack { display: grid; gap: 10px; }
+  .row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #fff;
+  }
+  .row .icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-family: var(--latin);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .row .icon.now { background: #e2e8f0; color: #475569; }
+  .row .icon.plan { background: var(--lime); color: var(--navy); }
+  .row .icon.goal { background: #bbf7d0; color: var(--ok); }
+  .row h3 { font-size: 14px; margin-bottom: 2px; }
+  .row p { font-size: 12.5px; color: var(--muted); }
+
+  .wire {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 14px;
+  }
+  @media (max-width: 900px) { .wire { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .wire { grid-template-columns: 1fr; } }
+  .wire-card {
+    border: 2px dashed var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    background: #fafafa;
+    min-height: 180px;
+    position: relative;
+  }
+  .wire-card.plan {
+    border-style: solid;
+    border-color: var(--blue);
+    background: #f8fbff;
+  }
+  .wire-card .w-tag {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+  .wire-card h4 { font-size: 15px; margin-bottom: 8px; }
+  .wire-block {
+    height: 10px;
+    border-radius: 4px;
+    background: #e5e7eb;
+    margin-bottom: 6px;
+  }
+  .wire-block.short { width: 65%; }
+  .wire-block.cta {
+    height: 28px;
+    background: var(--navy);
+    margin-top: 10px;
+  }
+  .wire-card .note {
+    position: absolute;
+    bottom: 10px;
+    left: 14px;
+    right: 14px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .timeline {
+    display: grid;
+    gap: 14px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  @media (max-width: 560px) {
+    .step { grid-template-columns: 1fr; }
+  }
+  .step-no {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 12px;
+    padding: 12px 10px;
+    text-align: center;
+    font-family: var(--latin);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .step-no span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: .12em;
+    color: var(--lime);
+    margin-bottom: 4px;
+  }
+  .step-body {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .step-body h3 { font-size: 16px; margin-bottom: 6px; }
+  .step-body p { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 11px;
+    font-weight: 700;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 10px;
+    background: var(--soft);
+  }
+  .chip.do { background: #ecfccb; border-color: #bef264; }
+  .chip.file { background: #eef3ff; border-color: #bfdbfe; color: #1d4ed8; }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .compare-table th,
+  .compare-table td {
+    border: 1px solid var(--line);
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .compare-table th {
+    background: var(--soft);
+    font-size: 12px;
+    letter-spacing: .06em;
+  }
+  .compare-table td:first-child { font-weight: 700; width: 28%; }
+
+  .cta-band {
+    margin-top: 56px;
+    background: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .cta-band h2 { font-size: 22px; margin-bottom: 8px; }
+  .cta-band p { color: var(--muted); font-size: 14px; max-width: 640px; margin: 0 auto 16px; }
+  .cta-band .big {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--navy);
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="tag">INTERNAL STRATEGY MAP</span>
+    <h1>AI顧問室サイト、<br>これから何をするか</h1>
+    <p>
+      このページは、社内・パートナー向けの説明用です。
+      「今あるもの」「困っていること」「これから作るもの」を、お客さんの動線で整理しました。
+    </p>
+    <div class="legend">
+      <span><i class="dot now"></i> 今ある</span>
+      <span><i class="dot bad"></i> 困りごと</span>
+      <span><i class="dot plan"></i> これから作る</span>
+      <span><i class="dot goal"></i> 理想の状態</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-no">01 / PURPOSE</div>
+      <h2>このサイトは何のため？</h2>
+      <p>従業員10〜50名の中小企業経営者に、「AI人材を雇う前にAI顧問を選ぶ」理由を伝え、無料相談まで連れていく場所です。</p>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="badge goal">理想の流れ</span> お客さんに見せたい道筋</div>
+      <div class="panel-body">
+        <div class="flow">
+          <div class="node navy">広告 / 紹介<small>入口は1本だけ</small></div>
+          <span class="arrow">→</span>
+          <div class="node highlight">業種向けページ<small>「うち向けはここ」</small></div>
+          <span class="arrow">→</span>
+          <div class="node">デモを触る<small>3本まで</small></div>
+          <span class="arrow">→</span>
+          <div class="node">事例を読む<small>似た会社の変化</small></div>
+          <span class="arrow">→</span>
+          <div class="node lime">無料相談<small>30分</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-no">02 / NOW</div>
+      <h2>今、サイトにあるもの</h2>
+      <p>素材はかなり揃っています。問題は「量」ではなく「見せ方」です。</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head"><span class="badge now">社内・社外</span> 今ある資産</div>
+        <div class="panel-body stack">
+          <div class="row">
+            <div class="icon now">LP</div>
+            <div>
+              <h3>LP 31本</h3>
+              <p>業種・心理・比較・診断など、広告テスト用に大量にある。<code>lp-list.html</code> で一覧化。</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="icon now">D</div>
+            <div>
+              <h3>構築デモ 31本</h3>
+              <p><code>demos.html</code>。Lv.2〜5 × 業種フィルタ。触って「作れる」を理解できる。</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="icon now">W</div>
+            <div>
+              <h3>作品ショーケース</h3>
+              <p><code>works.html</code>。動画・PDF・3D・SaaS級3本（KAWASU / SOROBAN / MIMIYORI）。</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="icon now">I</div>
+            <div>
+              <h3>公式トップ</h3>
+              <p><code>index.html</code>。サービス説明・料金・相談予約の本体。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><span class="badge bad">困りごと</span> お客さん視点で起きていること</div>
+        <div class="panel-body stack">
+          <div class="row">
+            <div class="icon bad">!</div>
+            <div>
+              <h3>LP一覧を見せると迷子になる</h3>
+              <p>31本並ぶと「どれが本番？」「結局何の会社？」になる。ABテスト用の武器庫を、そのまま見せている状態。</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="icon bad">!</div>
+            <div>
+              <h3>入口が多すぎる</h3>
+              <p>LP・デモ・works・data・診断… 全部良いけど、初見の社長には選べない。</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="icon bad">!</div>
+            <div>
+              <h3>「うち向け」が見つからない</h3>
+              <p>建設LPはある。建設向けデモもある。でも「建設社長向け1ページ」がない。</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="icon bad">!</div>
+            <div>
+              <h3>変化の証拠が弱い</h3>
+              <p>品質は見せられる。でも「似た会社が90日でこう変わった」がほぼない。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-no">03 / SPLIT</div>
+      <h2>社内用と、お客さん用を分ける</h2>
+      <p>LP一覧は便利。でも見せる相手を間違えると、逆効果になります。</p>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head"><span class="badge now">社内だけ</span> 武器庫ゾーン</div>
+        <div class="panel-body">
+          <div class="flow" style="flex-direction:column; align-items:stretch;">
+            <div class="node danger">lp-list.html<small>LP 31本の一覧・検索</small></div>
+            <div class="node danger">docs/dashboard.html<small>運用インデックス</small></div>
+            <div class="node danger">各ABテストLP<small>広告ごとに1本飛ばす</small></div>
+            <div class="node danger">このページ<small>strategy-visual.html</small></div>
+          </div>
+          <p style="font-size:12.5px; color:var(--muted); margin-top:14px;">
+            ルール: お客さんにURLを渡さない。社内ブックマーク・提案準備・広告検証用。
+          </p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span class="badge goal">お客さん</span> 見せるゾーン</div>
+        <div class="panel-body">
+          <div class="flow" style="flex-direction:column; align-items:stretch;">
+            <div class="node highlight">業種向け入口 1枚<small>これから作る</small></div>
+            <div class="node">公式トップ<small>index.html</small></div>
+            <div class="node">デモ 3本<small>demos.html から厳選</small></div>
+            <div class="node">事例 2〜3本<small>これから作る</small></div>
+            <div class="node lime">無料相談<small>index.html#contact</small></div>
+          </div>
+          <p style="font-size:12.5px; color:var(--muted); margin-top:14px;">
+            ルール: 「全部見て」ではなく「あなた向けはここ」だけ見せる。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-no">04 / BUILD</div>
+      <h2>これから作ろうとしているもの</h2>
+      <p>新しく31本増やすのではなく、「入口」と「証拠」を足して、今ある資産をつなぎます。</p>
+    </div>
+
+    <div class="panel" style="margin-bottom:18px;">
+      <div class="panel-head"><span class="badge plan">新規ページ案</span> 業種・役割向け「入口ページ」4枚</div>
+      <div class="panel-body">
+        <p style="font-size:13px; color:var(--muted); margin-bottom:6px;">
+          1枚の中身: キャッチコピー → おすすめLP1本 → 触るデモ3本 → 成果物2つ → 無料相談
+        </p>
+        <div class="wire">
+          <div class="wire-card plan">
+            <div class="w-tag">NEW / PLAN</div>
+            <h4>for/kensetsu.html</h4>
+            <div class="wire-block"></div>
+            <div class="wire-block short"></div>
+            <div class="wire-block"></div>
+            <div class="wire-block"></div>
+            <div class="wire-block cta"></div>
+            <div class="note">建設・工務店の社長向け</div>
+          </div>
+          <div class="wire-card plan">
+            <div class="w-tag">NEW / PLAN</div>
+            <h4>for/fudosan.html</h4>
+            <div class="wire-block"></div>
+            <div class="wire-block short"></div>
+            <div class="wire-block"></div>
+            <div class="wire-block"></div>
+            <div class="wire-block cta"></div>
+            <div class="note">不動産会社向け</div>
+          </div>
+          <div class="wire-card plan">
+            <div class="w-tag">NEW / PLAN</div>
+            <h4>for/sales.html</h4>
+            <div class="wire-block"></div>
+            <div class="wire-block short"></div>
+            <div class="wire-block"></div>
+            <div class="wire-block"></div>
+            <div class="wire-block cta"></div>
+            <div class="note">営業責任者・BtoB向け</div>
+          </div>
+          <div class="wire-card plan">
+            <div class="w-tag">NEW / PLAN</div>
+            <h4>for/backoffice.html</h4>
+            <div class="wire-block"></div>
+            <div class="wire-block short"></div>
+            <div class="wire-block"></div>
+            <div class="wire-block"></div>
+            <div class="wire-block cta"></div>
+            <div class="note">経理・総務・管理部門向け</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head"><span class="badge plan">新規ページ案</span> cases.html（導入ストーリー）</div>
+        <div class="panel-body">
+          <div class="wire-card plan" style="min-height:220px;">
+            <div class="w-tag">NEW / PLAN</div>
+            <h4>匿名OKの事例 2〜3本</h4>
+            <div class="wire-block"></div>
+            <div class="wire-block short"></div>
+            <div class="wire-block"></div>
+            <p style="font-size:12px; color:var(--muted); margin-top:12px;">
+              例: 「従業員32名・製造業」<br>
+              Before → 90日 → After<br>
+              削減時間 / 導入したデモ名 / 相談導線
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><span class="badge plan">既存資産の整理</span> つなぎ直し</div>
+        <div class="panel-body stack">
+          <div class="row">
+            <div class="icon plan">→</div>
+            <div>
+              <h3>LP一覧を外部共有から外す</h3>
+              <p>noindexは済。リンクも社内だけに。</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="icon plan">→</div>
+            <div>
+              <h3>各入口からデモ3本へ直リンク</h3>
+              <p>demos.html の31本全部ではなく、厳選セット。</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="icon plan">→</div>
+            <div>
+              <h3>公式トップの導線を絞る</h3>
+              <p>「デモ31本」より「あなたの業種はこちら」。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-no">05 / ROADMAP</div>
+      <h2>何からやる？（順番）</h2>
+    </div>
+    <div class="timeline">
+      <div class="step">
+        <div class="step-no"><span>STEP</span>01</div>
+        <div class="step-body">
+          <h3>今日できること</h3>
+          <p>作らなくても、運用だけで改善できます。</p>
+          <div class="chips">
+            <span class="chip do">LP一覧をお客さんに渡さない</span>
+            <span class="chip do">広告はLP1本だけ飛ばす</span>
+            <span class="chip do">見せるのは index / demos / works</span>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-no"><span>STEP</span>02</div>
+        <div class="step-body">
+          <h3>最初に作る1枚</h3>
+          <p>4業種全部より、まず1業種で型を作るのが早いです。</p>
+          <div class="chips">
+            <span class="chip file">for/kensetsu.html</span>
+            <span class="chip">LP: lp-komon-kensetsu.html</span>
+            <span class="chip">デモ: 現場写真→報告書 / 見積書AI / 日報ダッシュボード</span>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-no"><span>STEP</span>03</div>
+        <div class="step-body">
+          <h3>型ができたら横展開</h3>
+          <p>同じテンプレで不動産・営業・管理部門へ。中身のリンクだけ差し替え。</p>
+          <div class="chips">
+            <span class="chip file">for/fudosan.html</span>
+            <span class="chip file">for/sales.html</span>
+            <span class="chip file">for/backoffice.html</span>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-no"><span>STEP</span>04</div>
+        <div class="step-body">
+          <h3>信頼を足す</h3>
+          <p>モニター事例や匿名ストーリーを cases に載せる。量より「似ている感」。</p>
+          <div class="chips">
+            <span class="chip file">cases.html</span>
+            <span class="chip">lp-story.html を種にする</span>
+            <span class="chip">monitor.html の成果を反映</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-no">06 / COMPARE</div>
+      <h2>Before / After 一覧</h2>
+    </div>
+    <div class="panel">
+      <div class="panel-body" style="padding:0;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>今（Before）</th>
+              <th>これから（After）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>お客さんの入口</td>
+              <td>LP31本 / デモ31本 / works … 選べない</td>
+              <td>業種向け1枚 → 必要なものだけ3〜5点</td>
+            </tr>
+            <tr>
+              <td>LP一覧</td>
+              <td>外部にも見せがち</td>
+              <td>社内武器庫（広告・提案用）</td>
+            </tr>
+            <tr>
+              <td>デモ</td>
+              <td>ギャラリー型で自分で探す</td>
+              <td>入口ページから「おすすめ3本」</td>
+            </tr>
+            <tr>
+              <td>信頼</td>
+              <td>品質サンプル中心</td>
+              <td>匿名事例で「変化」を見せる</td>
+            </tr>
+            <tr>
+              <td>社内の使い方</td>
+              <td>資産が多くて管理が大変</td>
+              <td>LP一覧=テスト / 入口=本番導線</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>覚えておくことは1つ</h2>
+    <p>31本のLPと31本のデモは「削除する」のではなく、「お客さんに直接見せない」使い方に切り替える。</p>
+    <p class="big">武器庫は社内。入口は1枚。デモは3本。相談へ。</p>
+    <p style="font-size:12px; color:var(--muted); margin-top:12px;">
+      関連: <a href="../lp-list.html">lp-list.html（社内）</a> ·
+      <a href="../index.html">index.html</a> ·
+      <a href="../demos.html">demos.html</a> ·
+      <a href="../works.html">works.html</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

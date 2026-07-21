@@ -1,3 +1,4 @@
+<!-- 2026-07-22: 公式トップに業種入口セクションを追加（建設向け for/kensetsu.html） -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -136,6 +137,22 @@
   }
   .p-card h3 { font-size: 19px; color: var(--navy); margin-bottom: 14px; }
   .p-card p { font-size: 14px; color: var(--gray); }
+
+  /* Industry hub */
+  .industry { background: var(--bg-soft); }
+  .ind-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .ind-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: 8px;
+    padding: 22px 20px; transition: border-color .2s;
+  }
+  a.ind-card:hover { border-color: var(--navy); }
+  .ind-card.is-live { border-top: 3px solid var(--gold); }
+  .ind-card.is-soon { opacity: .72; }
+  .ind-tag { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin-bottom: 8px; }
+  .ind-card h3 { font-size: 17px; color: var(--navy); margin-bottom: 6px; }
+  .ind-card p { font-size: 13px; color: var(--gray); margin-bottom: 12px; }
+  .ind-go { font-size: 13px; font-weight: 700; color: var(--gold); }
+  .ind-soon { font-size: 12px; font-weight: 700; color: var(--gray); }
   .problems-close {
     text-align: center; margin-top: 56px;
     font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy);
@@ -429,6 +446,7 @@
     <a href="#" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
     <nav>
       <ul>
+        <li><a href="#industry">業種から探す</a></li>
         <li><a href="#levels">レベルマップ</a></li>
         <li><a href="#service">サービス内容</a></li>
         <li><a href="demos.html">構築デモ</a></li>
@@ -590,6 +608,40 @@
           <p>社長だけがAIを使えても会社は変わりません。ChatGPTの安全な使い方から始めて、最終的には社員が自分の業務用AIを「自作」できるレベルまで。ゴールは、御社だけで回り続ける「自走」です。</p>
           <p style="margin-top:10px;"><a href="training.html" style="color:var(--blue); font-weight:700; font-size:13.5px;">▶ AI研修の詳細（カリキュラム・料金）</a></p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="industry" id="industry">
+  <div class="container">
+    <span class="section-label">FOR YOUR INDUSTRY</span>
+    <h2 class="section-title">業種から、見る。</h2>
+    <p class="section-lead">31のLPや31のデモを一度に見せるのではなく、御社に近い入口から始められます。デモ3本・成果物・無料相談まで、1ページにまとめています。</p>
+    <div class="ind-grid">
+      <a class="ind-card is-live" href="for/kensetsu.html">
+        <div class="ind-tag">公開中</div>
+        <h3>建設・工務店</h3>
+        <p>日報・現場写真・見積の下ごしらえ。監督を現場に返す。</p>
+        <span class="ind-go">▶ 建設向けページを見る</span>
+      </a>
+      <div class="ind-card is-soon">
+        <div class="ind-tag">準備中</div>
+        <h3>不動産</h3>
+        <p>反響対応・追客・集客。5分で返す会社の仕組み。</p>
+        <span class="ind-soon">近日公開</span>
+      </div>
+      <div class="ind-card is-soon">
+        <div class="ind-tag">準備中</div>
+        <h3>営業組織（BtoB）</h3>
+        <p>商談準備・提案書・追客の下ごしらえ。</p>
+        <span class="ind-soon">近日公開</span>
+      </div>
+      <div class="ind-card is-soon">
+        <div class="ind-tag">準備中</div>
+        <h3>管理部門</h3>
+        <p>経理・総務・採用前の業務整理。</p>
+        <span class="ind-soon">近日公開</span>
       </div>
     </div>
   </div>
