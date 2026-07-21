@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>図解でわかるAI顧問室｜AIに詳しくなくても、会社は変えられる</title>
+<meta name="description" content="AI顧問室が何をして、会社の仕事がどう変わるのかを、専門用語なしの図解でご説明します。従業員10〜50名の中小企業向け。相談・設計・実装・社内定着まで伴走します。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="図解でわかるAI顧問室｜AIに詳しくなくても、会社は変えられる">
+<meta property="og:description" content="AI顧問室の役割、できること、90日間の進め方、料金まで。非エンジニアの経営者にもわかる言葉と図解でご説明します。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/lp-zukai.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/lp-zukai/og-zukai.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="図解でわかるAI顧問室｜AIに詳しくなくても、会社は変えられる。">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;family=Zen+Maru+Gothic:wght@500;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #17333b;
+    --ink-2: #31535b;
+    --teal: #0e6570;
+    --teal-dark: #094951;
+    --mint: #dff3ef;
+    --mint-2: #eef9f6;
+    --cream: #fffaf0;
+    --paper: #fffef9;
+    --yellow: #ffd65a;
+    --yellow-soft: #fff2b5;
+    --coral: #ef6a55;
+    --coral-soft: #ffebe5;
+    --blue: #4c78d0;
+    --line: #cbdedc;
+    --white: #fff;
+    --shadow: 0 16px 40px rgba(23,51,59,.11);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: -2; pointer-events: none;
+    background-image: radial-gradient(rgba(14,101,112,.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  button, input, select, textarea { font: inherit; }
+  .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+  .narrow { width: min(860px, calc(100% - 40px)); margin: 0 auto; }
+  section { position: relative; padding: 112px 0; }
+  .section-head { max-width: 760px; margin-bottom: 52px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 16px; color: var(--teal); font-size: 13px;
+    font-weight: 900; letter-spacing: .12em;
+  }
+  .eyebrow::before { content: ""; width: 30px; height: 3px; border-radius: 9px; background: var(--yellow); }
+  h1, h2, h3, .round-font { font-family: 'Zen Maru Gothic', sans-serif; }
+  h2 { font-size: clamp(30px, 4vw, 48px); line-height: 1.38; letter-spacing: -.02em; }
+  h3 { line-height: 1.55; }
+  .lead { margin-top: 18px; color: var(--ink-2); font-size: 17px; }
+  .marker { background: linear-gradient(transparent 62%, var(--yellow) 62%); padding: 0 .08em; }
+  .coral { color: var(--coral); }
+  .small-note { font-size: 12px; color: #668087; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    min-height: 56px; padding: 14px 28px; border: 2px solid transparent;
+    border-radius: 999px; font-weight: 900; line-height: 1.35;
+    transition: transform .2s, box-shadow .2s, background .2s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: var(--coral); color: var(--white); box-shadow: 0 10px 0 #b84635; }
+  .btn-primary:hover { box-shadow: 0 7px 0 #b84635; }
+  .btn-secondary { border-color: var(--teal); color: var(--teal); background: var(--white); }
+  .btn-arrow::after { content: "→"; font-size: 20px; }
+
+  /* Header */
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,254,249,.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(14,101,112,.14);
+  }
+  .header-inner { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; color: var(--teal-dark); white-space: nowrap; }
+  .brand-mark {
+    width: 36px; height: 36px; border: 3px solid var(--teal); border-radius: 11px;
+    display: grid; place-items: center; background: var(--yellow); transform: rotate(-3deg);
+  }
+  .brand-mark span { transform: rotate(3deg); font-size: 14px; }
+  .brand small { font-size: 10px; letter-spacing: .08em; color: #6c858a; display: block; line-height: 1; }
+  .site-nav { display: flex; gap: 24px; align-items: center; }
+  .site-nav a { font-size: 13px; font-weight: 700; }
+  .header-cta { min-height: 42px; padding: 9px 20px; font-size: 13px; box-shadow: none; }
+
+  /* Hero */
+  .hero { padding: 74px 0 92px; overflow: hidden; }
+  .hero::after {
+    content: ""; position: absolute; width: 480px; height: 480px; right: -180px; top: -80px;
+    border-radius: 50%; background: var(--mint); z-index: -1;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 58px; align-items: center; }
+  .hero-kicker {
+    display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px;
+    border: 2px solid var(--teal); border-radius: 999px; color: var(--teal);
+    font-size: 13px; font-weight: 900; background: var(--white); transform: rotate(-1deg);
+  }
+  .hero h1 { margin-top: 22px; font-size: clamp(38px, 5.4vw, 67px); line-height: 1.28; letter-spacing: -.04em; }
+  .hero h1 .bubble-word { position: relative; display: inline-block; color: var(--teal); }
+  .hero h1 .bubble-word::after {
+    content: ""; position: absolute; left: -8px; right: -8px; bottom: 3px;
+    height: 18px; background: var(--yellow); border-radius: 50%; z-index: -1; transform: rotate(-2deg);
+  }
+  .hero-lead { margin-top: 24px; font-size: 18px; color: var(--ink-2); max-width: 600px; }
+  .hero-checks { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .hero-checks span { padding: 5px 11px; background: var(--mint-2); border: 1px solid var(--line); border-radius: 999px; font-size: 12px; font-weight: 700; }
+  .hero-actions { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .hero-caption { margin-top: 18px; max-width: 580px; font-size: 12px; color: #698188; }
+  .hero-visual { position: relative; min-height: 520px; display: grid; place-items: center; }
+  .hero-card {
+    position: relative; width: min(100%, 540px); background: var(--white); border: 3px solid var(--ink);
+    border-radius: 28px; box-shadow: 14px 16px 0 var(--yellow); padding: 32px;
+  }
+  .hero-card::before {
+    content: "AIが分からなくても大丈夫"; position: absolute; right: -34px; top: -26px;
+    background: var(--coral); color: var(--white); border: 2px solid var(--ink); border-radius: 999px;
+    padding: 8px 15px; font-size: 12px; font-weight: 900; transform: rotate(4deg);
+  }
+  .visual-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 18px; border-bottom: 2px dashed var(--line); }
+  .visual-title strong { font-size: 20px; }
+  .visual-title span { font-size: 11px; font-weight: 900; color: var(--teal); background: var(--mint); padding: 4px 9px; border-radius: 99px; }
+  .hero-image-frame { position: relative; margin-top: 18px; overflow: hidden; border: 2px solid var(--ink); border-radius: 17px; background: var(--cream); }
+  .hero-image-frame img { width: 100%; aspect-ratio: 15 / 8; object-fit: cover; }
+  .hero-image-frame figcaption { position: absolute; left: 12px; right: 12px; bottom: 12px; padding: 9px 12px; border-radius: 11px; background: rgba(9,73,81,.92); color: var(--white); text-align: center; font-size: 12px; font-weight: 900; backdrop-filter: blur(7px); }
+  .visual-foot { margin-top: 14px; padding: 13px; text-align: center; background: var(--yellow-soft); border-radius: 12px; font-weight: 900; font-size: 14px; }
+  .scribble { position: absolute; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; color: var(--coral); font-size: 13px; }
+  .scribble.s1 { left: -48px; bottom: 50px; transform: rotate(-7deg); }
+
+  /* Plain explanation */
+  .plain { background: var(--mint-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .formula-card { background: var(--white); border: 3px solid var(--ink); border-radius: 26px; padding: 42px; box-shadow: var(--shadow); }
+  .formula { display: grid; grid-template-columns: 1fr 48px 1fr 48px 1fr; align-items: stretch; gap: 14px; }
+  .formula-item { padding: 24px 18px; border-radius: 20px; text-align: center; display: grid; align-content: center; min-height: 170px; }
+  .formula-item:nth-child(1) { background: var(--yellow-soft); }
+  .formula-item:nth-child(3) { background: var(--coral-soft); }
+  .formula-item:nth-child(5) { background: var(--mint); }
+  .formula-item .icon { font-size: 32px; display: block; margin-bottom: 10px; }
+  .formula-item strong { font-family: 'Zen Maru Gothic', sans-serif; display: block; font-size: 19px; }
+  .formula-item small { display: block; margin-top: 6px; color: var(--ink-2); line-height: 1.6; }
+  .formula-sign { display: grid; place-items: center; font-size: 32px; font-weight: 900; color: var(--teal); }
+  .plain-summary { margin-top: 28px; text-align: center; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: 19px; }
+  .term-row { margin-top: 52px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .term-card { background: var(--paper); border: 2px solid var(--line); border-radius: 18px; padding: 24px; }
+  .term-card .term { color: var(--teal); font-size: 13px; font-weight: 900; }
+  .term-card h3 { margin: 5px 0 8px; font-size: 19px; }
+  .term-card p { font-size: 14px; color: var(--ink-2); }
+
+  /* Story */
+  .story-scene { margin-bottom: 34px; overflow: hidden; border: 3px solid var(--ink); border-radius: 26px; background: var(--white); box-shadow: 10px 12px 0 var(--yellow); }
+  .story-scene img { width: 100%; aspect-ratio: 16 / 7.5; object-fit: cover; }
+  .story-scene figcaption { display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; padding: 14px 18px; background: var(--white); text-align: center; }
+  .story-scene figcaption span { padding: 5px 11px; border-radius: 999px; font-size: 11px; font-weight: 900; }
+  .story-scene figcaption span:first-child { background: var(--coral-soft); color: #9d3e30; }
+  .story-scene figcaption span:last-child { background: var(--mint); color: var(--teal-dark); }
+  .story-scene figcaption b { font-family: 'Zen Maru Gothic', sans-serif; font-size: 15px; }
+  .story-grid { display: grid; grid-template-columns: 1fr 72px 1fr; gap: 20px; align-items: stretch; }
+  .story-panel { border: 2px solid var(--ink); border-radius: 24px; padding: 32px; background: var(--white); }
+  .story-panel.before { box-shadow: 8px 8px 0 var(--coral-soft); }
+  .story-panel.after { box-shadow: 8px 8px 0 var(--mint); }
+  .story-label { display: inline-flex; padding: 5px 12px; border-radius: 99px; font-size: 12px; font-weight: 900; }
+  .before .story-label { background: var(--coral-soft); color: #9d3e30; }
+  .after .story-label { background: var(--mint); color: var(--teal-dark); }
+  .story-panel h3 { margin: 16px 0 20px; font-size: 24px; }
+  .task-stack { display: grid; gap: 12px; }
+  .task { display: grid; grid-template-columns: 38px 1fr; gap: 12px; align-items: center; padding: 12px; border-radius: 13px; background: #f7f5ee; }
+  .task .task-icon { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: var(--white); border: 1px solid var(--line); font-size: 17px; }
+  .task b { display: block; font-size: 14px; }
+  .task small { display: block; color: var(--ink-2); line-height: 1.45; }
+  .story-arrow { display: grid; place-items: center; }
+  .story-arrow span { width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; background: var(--yellow); border: 2px solid var(--ink); font-size: 28px; font-weight: 900; }
+  .story-footer { margin-top: 26px; padding: 18px; border-radius: 16px; text-align: center; background: var(--teal); color: var(--white); font-weight: 700; }
+
+  /* Roles */
+  .roles { background: var(--cream); }
+  .roles-map { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; position: relative; }
+  .role-card { background: var(--white); border: 2px solid var(--line); border-radius: 22px; padding: 28px; display: grid; grid-template-columns: 62px 1fr; gap: 18px; align-items: start; }
+  .role-icon { width: 62px; height: 62px; border-radius: 20px; display: grid; place-items: center; font-size: 26px; border: 2px solid var(--ink); transform: rotate(-2deg); }
+  .role-card:nth-child(1) .role-icon { background: var(--yellow-soft); }
+  .role-card:nth-child(2) .role-icon { background: var(--coral-soft); }
+  .role-card:nth-child(3) .role-icon { background: var(--mint); }
+  .role-card:nth-child(4) .role-icon { background: #e8efff; }
+  .role-card h3 { font-size: 20px; margin-bottom: 8px; }
+  .role-card p { color: var(--ink-2); font-size: 14px; }
+  .role-card .example { margin-top: 12px; padding: 9px 12px; border-left: 4px solid var(--yellow); background: #faf8f1; font-size: 12px; font-weight: 700; }
+
+  /* Roadmap */
+  .roadmap-wrap { position: relative; }
+  .roadmap-line { position: absolute; left: 39px; top: 30px; bottom: 30px; width: 4px; background: var(--line); border-radius: 9px; }
+  .roadmap-list { display: grid; gap: 18px; }
+  .road-step { position: relative; display: grid; grid-template-columns: 82px 150px 1fr; gap: 20px; align-items: center; min-height: 104px; }
+  .road-number { width: 80px; height: 80px; border-radius: 50%; display: grid; place-items: center; border: 3px solid var(--ink); background: var(--white); font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; z-index: 1; }
+  .road-step:nth-child(2) .road-number, .road-step:nth-child(3) .road-number { background: var(--yellow-soft); }
+  .road-step:nth-child(4) .road-number, .road-step:nth-child(5) .road-number { background: var(--mint); }
+  .road-step:nth-child(6) .road-number { background: var(--teal); color: var(--white); }
+  .road-name { font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; }
+  .road-name small { display: block; color: var(--ink-2); font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 500; }
+  .road-desc { background: var(--white); border: 2px solid var(--line); border-radius: 16px; padding: 18px 22px; font-size: 14px; }
+  .road-desc b { color: var(--teal); }
+  .road-pin { margin: 30px 0 0 100px; display: inline-flex; align-items: center; gap: 10px; background: var(--coral); color: var(--white); border: 2px solid var(--ink); border-radius: 999px; padding: 9px 16px; font-weight: 900; font-size: 13px; }
+
+  /* Work examples */
+  .examples { background: var(--teal-dark); color: var(--white); }
+  .examples .eyebrow { color: var(--yellow); }
+  .examples .lead { color: #cce0df; }
+  .example-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .example-card { overflow: hidden; border-radius: 20px; background: var(--white); color: var(--ink); border: 2px solid rgba(255,255,255,.2); transition: transform .2s; }
+  .example-card:hover { transform: translateY(-5px); }
+  .example-image { aspect-ratio: 16/10; overflow: hidden; background: var(--mint); position: relative; }
+  .example-image img { width: 100%; height: 100%; object-fit: cover; }
+  .example-badge { position: absolute; left: 12px; top: 12px; background: var(--yellow); color: var(--ink); border-radius: 99px; padding: 4px 9px; font-size: 10px; font-weight: 900; }
+  .example-body { padding: 22px; }
+  .example-body h3 { font-size: 19px; margin-bottom: 8px; }
+  .example-body p { color: var(--ink-2); font-size: 13px; }
+  .example-flow { margin-top: 16px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 11px; font-weight: 900; color: var(--teal); }
+  .example-flow span { background: var(--mint-2); padding: 4px 8px; border-radius: 7px; }
+  .example-flow i { font-style: normal; }
+  .example-link { display: inline-block; margin-top: 14px; color: var(--coral); font-size: 13px; font-weight: 900; }
+  .examples-more { margin-top: 34px; text-align: center; }
+  .examples-more .btn-secondary { border-color: var(--white); color: var(--white); background: transparent; }
+
+  /* 90 days */
+  .days-board { background: var(--white); border: 3px solid var(--ink); border-radius: 28px; padding: 34px; box-shadow: 12px 12px 0 var(--yellow); }
+  .days-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .month { position: relative; padding: 28px; border-right: 2px dashed var(--line); }
+  .month:last-child { border-right: 0; }
+  .month-no { display: inline-flex; align-items: center; gap: 8px; color: var(--coral); font-weight: 900; font-size: 13px; }
+  .month-no::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--coral); }
+  .month h3 { margin: 10px 0; font-size: 21px; }
+  .month p { font-size: 14px; color: var(--ink-2); }
+  .deliverable { margin-top: 18px; padding: 12px; border-radius: 12px; background: var(--mint-2); font-size: 12px; font-weight: 900; color: var(--teal-dark); }
+  .days-goal { margin-top: 30px; display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: center; background: var(--teal); color: var(--white); border-radius: 16px; padding: 18px 22px; }
+  .days-goal .flag { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: var(--yellow); color: var(--ink); font-size: 25px; }
+  .days-goal b { display: block; font-size: 17px; }
+  .days-goal span { color: #d5e8e7; font-size: 13px; }
+
+  /* Comparison */
+  .comparison { background: var(--mint-2); }
+  .compare-table { overflow: hidden; border: 2px solid var(--ink); border-radius: 24px; background: var(--white); box-shadow: var(--shadow); }
+  .compare-row { display: grid; grid-template-columns: 190px repeat(3, 1fr); border-bottom: 1px solid var(--line); }
+  .compare-row:last-child { border-bottom: 0; }
+  .compare-cell { padding: 18px; border-right: 1px solid var(--line); font-size: 13px; text-align: center; display: grid; place-items: center; line-height: 1.55; }
+  .compare-cell:last-child { border-right: 0; }
+  .compare-row.head .compare-cell { font-weight: 900; font-size: 14px; background: #f7f5ee; }
+  .compare-row.head .compare-cell.recommended { background: var(--yellow); }
+  .compare-label { font-weight: 900; background: #f7f5ee; text-align: left; place-items: center start; }
+  .recommended { background: #fffbea; }
+  .mark-good { color: var(--teal); font-weight: 900; }
+  .mark-mid { color: #a56c00; font-weight: 900; }
+  .mark-bad { color: #9c4c3f; }
+
+  /* Price */
+  .price-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: stretch; }
+  .price-main { background: var(--teal); color: var(--white); border: 3px solid var(--ink); border-radius: 26px; padding: 38px; position: relative; overflow: hidden; }
+  .price-main::after { content: ""; position: absolute; width: 180px; height: 180px; right: -65px; top: -70px; border-radius: 50%; background: rgba(255,214,90,.25); }
+  .price-label { display: inline-block; background: var(--yellow); color: var(--ink); border-radius: 99px; padding: 5px 11px; font-size: 12px; font-weight: 900; }
+  .amount { margin-top: 14px; font-family: 'Zen Maru Gothic', sans-serif; font-weight: 700; font-size: clamp(45px, 7vw, 76px); line-height: 1.2; }
+  .amount small { font-size: 20px; }
+  .price-term { color: #d1e8e6; font-size: 13px; }
+  .price-includes { margin-top: 24px; display: grid; gap: 9px; }
+  .price-includes li { list-style: none; font-size: 14px; }
+  .price-includes li::before { content: "✓"; display: inline-grid; place-items: center; width: 21px; height: 21px; border-radius: 50%; margin-right: 9px; background: var(--yellow); color: var(--ink); font-weight: 900; }
+  .price-side { display: grid; gap: 18px; }
+  .price-option { background: var(--white); border: 2px solid var(--line); border-radius: 20px; padding: 25px; }
+  .price-option h3 { font-size: 19px; }
+  .price-option .option-price { color: var(--coral); font-weight: 900; margin: 8px 0; font-size: 17px; }
+  .price-option p { color: var(--ink-2); font-size: 13px; }
+  .price-foot { margin-top: 22px; padding: 18px; border-radius: 14px; background: var(--cream); border: 1px solid #eadfbf; font-size: 13px; }
+
+  /* Fit */
+  .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .fit-card { border: 2px solid var(--ink); border-radius: 22px; padding: 30px; background: var(--white); }
+  .fit-card.yes { box-shadow: 8px 8px 0 var(--mint); }
+  .fit-card.no { box-shadow: 8px 8px 0 var(--coral-soft); }
+  .fit-card h3 { font-size: 22px; margin-bottom: 18px; }
+  .fit-card ul { display: grid; gap: 12px; }
+  .fit-card li { list-style: none; display: grid; grid-template-columns: 26px 1fr; gap: 10px; font-size: 14px; }
+  .fit-card.yes li::before { content: "✓"; color: var(--teal); font-weight: 900; }
+  .fit-card.no li::before { content: "—"; color: var(--coral); font-weight: 900; }
+
+  /* Profile */
+  .profile { background: var(--cream); }
+  .profile-card { display: grid; grid-template-columns: 280px 1fr; gap: 42px; align-items: center; background: var(--white); border: 3px solid var(--ink); border-radius: 28px; padding: 38px; box-shadow: 12px 12px 0 var(--yellow); }
+  .profile-photo { position: relative; }
+  .profile-photo img { aspect-ratio: 1/1; object-fit: cover; border: 3px solid var(--ink); border-radius: 22px; }
+  .profile-photo::after { content: "相談から実装まで直接担当"; position: absolute; left: 50%; bottom: -18px; transform: translateX(-50%) rotate(-2deg); width: max-content; max-width: 90%; background: var(--coral); color: var(--white); border: 2px solid var(--ink); border-radius: 99px; padding: 7px 12px; font-size: 11px; font-weight: 900; }
+  .profile-copy h3 { font-size: 26px; }
+  .profile-role { color: var(--teal); font-weight: 900; font-size: 13px; }
+  .profile-copy p { margin-top: 14px; color: var(--ink-2); font-size: 14px; }
+  .profile-tags { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 9px; }
+  .profile-tags span { background: var(--mint-2); border: 1px solid var(--line); border-radius: 99px; padding: 6px 10px; font-size: 11px; font-weight: 900; }
+
+  /* FAQ */
+  .faq-list { display: grid; gap: 12px; }
+  details { background: var(--white); border: 2px solid var(--line); border-radius: 16px; overflow: hidden; }
+  summary { cursor: pointer; list-style: none; padding: 20px 58px 20px 22px; font-weight: 900; position: relative; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "Q"; color: var(--coral); margin-right: 11px; font-family: 'Zen Maru Gothic', sans-serif; font-size: 20px; }
+  summary::after { content: "+"; position: absolute; right: 22px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--mint); color: var(--teal); font-size: 20px; }
+  details[open] summary::after { content: "−"; }
+  details p { padding: 0 24px 22px 54px; color: var(--ink-2); font-size: 14px; }
+
+  /* CTA + Form */
+  .contact { background: var(--teal-dark); color: var(--white); overflow: hidden; }
+  .contact::before, .contact::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255,214,90,.12); }
+  .contact::before { width: 320px; height: 320px; left: -120px; top: -100px; }
+  .contact::after { width: 420px; height: 420px; right: -180px; bottom: -220px; }
+  .contact .section-head { text-align: center; margin-left: auto; margin-right: auto; }
+  .contact .eyebrow { color: var(--yellow); }
+  .contact .lead { color: #d0e5e3; }
+  .contact-layout { display: grid; grid-template-columns: .82fr 1.18fr; gap: 28px; align-items: start; position: relative; z-index: 1; }
+  .contact-promise { display: grid; gap: 14px; }
+  .promise-item { display: grid; grid-template-columns: 48px 1fr; gap: 14px; align-items: center; padding: 18px; border: 1px solid rgba(255,255,255,.18); border-radius: 16px; background: rgba(255,255,255,.07); }
+  .promise-icon { width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center; background: var(--yellow); color: var(--ink); font-weight: 900; }
+  .promise-item b { display: block; }
+  .promise-item small { color: #c5dedd; }
+  .contact-card { background: var(--white); color: var(--ink); border: 3px solid var(--ink); border-radius: 24px; padding: 28px; box-shadow: 10px 10px 0 var(--yellow); }
+  .timerex { width: 100%; text-align: center; border: 0; }
+  .contact-note { margin-top: 10px; text-align: center; font-size: 11px; color: #6a8287; }
+  .or { display: flex; align-items: center; gap: 12px; margin: 20px 0 10px; color: #789096; font-size: 11px; }
+  .or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .form-title { font-weight: 900; font-size: 14px; }
+  #leadForm label { display: block; margin: 12px 0 5px; font-size: 12px; font-weight: 900; }
+  .req { color: var(--coral); margin-left: 5px; }
+  #leadForm input, #leadForm select, #leadForm textarea { width: 100%; border: 1.5px solid var(--line); border-radius: 10px; padding: 11px 12px; color: var(--ink); background: #fbfdfc; }
+  #leadForm input:focus, #leadForm select:focus, #leadForm textarea:focus { outline: 3px solid rgba(14,101,112,.15); border-color: var(--teal); }
+  #leadForm .submit { width: 100%; border: 0; margin-top: 18px; cursor: pointer; }
+
+  footer { padding: 40px 0 100px; background: #073a40; color: #c4d9d7; font-size: 12px; }
+  .footer-inner { display: flex; justify-content: space-between; gap: 30px; align-items: flex-start; }
+  footer .brand { color: var(--white); }
+  .footer-links { text-align: right; line-height: 2; }
+  .footer-links a { text-decoration: underline; text-underline-offset: 3px; }
+  .mobile-cta { display: none; }
+
+  /* Gentle motion */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-card { animation: float 5s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(.3deg); } 50% { transform: translateY(-8px) rotate(-.3deg); } }
+  }
+
+  @media (max-width: 900px) {
+    .site-nav a:not(.header-cta) { display: none; }
+    .hero-grid, .contact-layout, .price-grid { grid-template-columns: 1fr; }
+    .hero { padding-top: 54px; }
+    .hero-visual { min-height: 480px; }
+    .term-row, .example-grid { grid-template-columns: repeat(2, 1fr); }
+    .roles-map { grid-template-columns: 1fr; }
+    .formula { grid-template-columns: 1fr; }
+    .formula-sign { height: 34px; }
+    .formula-sign.plus::before { content: "+"; }
+    .formula-sign.equal::before { content: "="; }
+    .formula-sign { font-size: 0; }
+    .formula-sign::before { font-size: 28px; }
+    .story-grid { grid-template-columns: 1fr; }
+    .story-arrow span { transform: rotate(90deg); }
+    .days-tabs { grid-template-columns: 1fr; }
+    .month { border-right: 0; border-bottom: 2px dashed var(--line); }
+    .month:last-child { border-bottom: 0; }
+    .compare-table { overflow-x: auto; }
+    .compare-row { min-width: 760px; }
+    .profile-card { grid-template-columns: 220px 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .container, .narrow { width: min(100% - 28px, 1120px); }
+    section { padding: 78px 0; }
+    .header-inner { height: 64px; }
+    .brand { font-size: 14px; }
+    .brand-mark { width: 32px; height: 32px; }
+    .header-cta { padding: 8px 13px; font-size: 11px; min-height: 38px; }
+    .hero h1 { font-size: 39px; }
+    .hero-lead { font-size: 16px; }
+    .hero-actions { display: grid; }
+    .hero-actions .btn { width: 100%; }
+    .hero-visual { min-height: 445px; }
+    .hero-card { padding: 23px 18px; border-radius: 22px; box-shadow: 8px 10px 0 var(--yellow); }
+    .hero-card::before { right: -8px; top: -30px; }
+    .bridge { grid-template-columns: 1fr 50px 1fr; gap: 6px; }
+    .avatar-circle { width: 48px; height: 48px; font-size: 10px; }
+    .mini-note, .result-card { font-size: 10px; padding: 9px 7px; }
+    .scribble { display: none; }
+    .formula-card, .days-board { padding: 22px 17px; border-radius: 22px; }
+    .term-row, .example-grid, .fit-grid { grid-template-columns: 1fr; }
+    .story-panel { padding: 23px 18px; }
+    .role-card { grid-template-columns: 52px 1fr; padding: 22px 18px; }
+    .role-icon { width: 52px; height: 52px; border-radius: 16px; }
+    .road-step { grid-template-columns: 62px 1fr; gap: 12px; }
+    .road-number { width: 60px; height: 60px; font-size: 12px; }
+    .road-name { font-size: 14px; }
+    .road-desc { grid-column: 2; padding: 14px; }
+    .roadmap-line { left: 29px; }
+    .road-pin { margin-left: 72px; }
+    .price-main { padding: 28px 22px; }
+    .amount small { display: block; font-size: 17px; }
+    .profile-card { grid-template-columns: 1fr; padding: 24px 18px; box-shadow: 8px 8px 0 var(--yellow); }
+    .profile-photo { width: min(240px, 90%); margin: 0 auto 10px; }
+    .contact-card { padding: 22px 17px; box-shadow: 7px 7px 0 var(--yellow); }
+    .footer-inner { display: grid; }
+    .footer-links { text-align: left; }
+    footer { padding-bottom: 108px; }
+    .mobile-cta { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 200; padding: 9px 12px calc(9px + env(safe-area-inset-bottom)); background: rgba(255,254,249,.96); border-top: 1px solid var(--line); transform: translateY(120%); transition: transform .25s; }
+    .mobile-cta.show { transform: translateY(0); }
+    .mobile-cta .btn { width: 100%; min-height: 48px; box-shadow: none; font-size: 13px; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="AI顧問室 公式サイトへ">
+      <span class="brand-mark"><span>AI</span></span>
+      <span>AI顧問室<small>図解でわかる案内版</small></span>
+    </a>
+    <nav class="site-nav" aria-label="ページ内ナビゲーション">
+      <a href="#what">AI顧問とは</a>
+      <a href="#examples">できること</a>
+      <a href="#price">料金</a>
+      <a class="btn btn-primary header-cta" href="#contact">無料で相談する</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-kicker">むずかしい話は、しません。</span>
+        <h1>AIに詳しくなくても、<br>会社は<span class="bubble-word">変えられる。</span></h1>
+        <p class="hero-lead">AI顧問室は、「この仕事、もっと楽にならない？」を一緒に見つけて、実際に使える仕組みにし、社員が使いこなせるところまで支える<strong>会社の外のAI推進チーム</strong>です。</p>
+        <div class="hero-checks" aria-label="対象となる会社">
+          <span>✓ 従業員10〜50名</span>
+          <span>✓ 社内にAI担当がいない</span>
+          <span>✓ ChatGPTを会社で活かしたい</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-arrow" href="#contact">30分の無料AI活用診断</a>
+          <a class="btn btn-secondary" href="#what">まず図解で理解する</a>
+        </div>
+        <p class="hero-caption">診断だけでも「自社で最初にやること」がわかります。オンライン対応・無理な勧誘はありません。</p>
+      </div>
+      <div class="hero-visual" aria-label="社長の困りごとをAI顧問が仕事の改善に変える図">
+        <div class="hero-card">
+          <div class="visual-title">
+            <strong class="round-font">AI顧問室を、ひとことで。</strong>
+            <span>外付けチーム</span>
+          </div>
+          <figure class="hero-image-frame">
+            <img src="assets/lp-zukai/hero-collaboration.jpg" width="1200" height="640" alt="中小企業の経営者とAI顧問が、散らかった仕事を整理された仕組みに変えているイメージ" fetchpriority="high">
+            <figcaption>AI顧問 ＝ 会社の外のAI推進チーム</figcaption>
+          </figure>
+          <div class="visual-foot">相談 → 設計 → 実装 → 定着まで、ひとつながり。</div>
+        </div>
+        <span class="scribble s1">技術の話を<br>会社の言葉に翻訳！ ↗</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="plain" id="what">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">まず、ここだけ分かればOK</span>
+        <h2>AI顧問とは、<span class="marker">「相談だけの先生」ではありません。</span></h2>
+        <p class="lead">社長の「何とかしたい」を聞き、仕事の流れを整え、必要な道具を作り、社内に残すところまでが仕事です。</p>
+      </div>
+      <div class="formula-card">
+        <div class="formula" aria-label="AI顧問の3つの役割">
+          <div class="formula-item"><span class="icon">💬</span><strong>経営の相談相手</strong><small>どこから始めると利益に効くか、一緒に決める</small></div>
+          <div class="formula-sign plus">＋</div>
+          <div class="formula-item"><span class="icon">🛠</span><strong>実際に作る人</strong><small>使える道具を選び、足りなければ直接つくる</small></div>
+          <div class="formula-sign plus">＋</div>
+          <div class="formula-item"><span class="icon">🌱</span><strong>社内に根づかせる人</strong><small>社員が使い、最後は自社だけで回せるようにする</small></div>
+        </div>
+        <p class="plain-summary">この3つをバラバラにせず、<span class="marker">同じ責任者が一緒に進めます。</span></p>
+      </div>
+      <div class="term-row">
+        <article class="term-card">
+          <span class="term">よく聞く言葉 01</span>
+          <h3>生成AI</h3>
+          <p>文章・画像・資料などの「たたき台」を、人に代わって数秒でつくる道具です。</p>
+        </article>
+        <article class="term-card">
+          <span class="term">よく聞く言葉 02</span>
+          <h3>自動化</h3>
+          <p>「メールが来たら整理する」など、毎回同じ手順を人が押さなくても動く状態です。</p>
+        </article>
+        <article class="term-card">
+          <span class="term">よく聞く言葉 03</span>
+          <h3>AIエージェント</h3>
+          <p>ひとつの指示から、調査・判断・作業を順番に進める「デジタルの働き手」です。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">ある会社の変化（イメージ）</span>
+        <h2>社長の「忙しい」が、<br><span class="marker">会社の仕組み</span>に変わるまで。</h2>
+        <p class="lead">AIを入れる目的は、流行に乗ることではありません。人にしかできない仕事へ、時間を戻すことです。</p>
+      </div>
+      <figure class="story-scene">
+        <img src="assets/lp-zukai/before-after-workflow.jpg" width="1600" height="748" alt="紙仕事に追われていた担当者が、AIによる下準備を活用し、お客様との対話に集中できるようになる変化" loading="lazy">
+        <figcaption><span>今まで</span><b>AIが下ごしらえをすると、人は判断と接客に戻れる</b><span>導入後</span></figcaption>
+      </figure>
+      <div class="story-grid">
+        <article class="story-panel before">
+          <span class="story-label">BEFORE｜今まで</span>
+          <h3>人が「作る・探す・転記する」に追われる</h3>
+          <div class="task-stack">
+            <div class="task"><span class="task-icon">✎</span><div><b>見積書をゼロから作る</b><small>過去資料を探して、毎回書き直す</small></div></div>
+            <div class="task"><span class="task-icon">↩</span><div><b>問い合わせ返信を考える</b><small>担当者によって品質と速度が違う</small></div></div>
+            <div class="task"><span class="task-icon">▦</span><div><b>数字を表に写す</b><small>転記に時間がかかり、ミスも起きる</small></div></div>
+          </div>
+        </article>
+        <div class="story-arrow" aria-hidden="true"><span>→</span></div>
+        <article class="story-panel after">
+          <span class="story-label">AFTER｜導入後</span>
+          <h3>AIが「下ごしらえ」、人は判断と確認へ</h3>
+          <div class="task-stack">
+            <div class="task"><span class="task-icon">⚡</span><div><b>過去資料から見積案を作成</b><small>人は金額と条件を確認するだけ</small></div></div>
+            <div class="task"><span class="task-icon">◎</span><div><b>返信案をすぐ用意</b><small>会社の言葉づかいに揃えて提案</small></div></div>
+            <div class="task"><span class="task-icon">✓</span><div><b>書類から数字を自動整理</b><small>例外だけを人がチェックする</small></div></div>
+          </div>
+        </article>
+      </div>
+      <p class="story-footer">AIは人を減らすためではなく、<strong>人の時間を「判断・接客・提案」に戻すため</strong>に使います。</p>
+    </div>
+  </section>
+
+  <section class="roles" id="service">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">AI顧問室の4つの仕事</span>
+        <h2>「何を入れるか」より先に、<br><span class="marker">「どこを変えるか」</span>を決めます。</h2>
+        <p class="lead">道具ありきで考えず、経営・現場・費用対効果をひとつの地図にします。</p>
+      </div>
+      <div class="roles-map">
+        <article class="role-card">
+          <div class="role-icon">💬</div>
+          <div><h3>1. 相談する</h3><p>「この仕事はAIで楽になる？」「このサービスは契約すべき？」を、経営者の言葉で整理します。</p><p class="example">たとえば：毎日のチャット相談／経営会議の壁打ち</p></div>
+        </article>
+        <article class="role-card">
+          <div class="role-icon">🗺</div>
+          <div><h3>2. 順番を決める</h3><p>社内の仕事を棚卸しし、売上・コスト・時間への効果が大きい順にロードマップを作ります。</p><p class="example">成果物：優先順位つきAI導入計画</p></div>
+        </article>
+        <article class="role-card">
+          <div class="role-icon">🛠</div>
+          <div><h3>3. 動く形にする</h3><p>既製の道具で足りるなら選定・設定。足りない場合は、御社専用の仕組みを直接つくります。</p><p class="example">たとえば：見積書AI／問い合わせ返信AI／自動集計</p></div>
+        </article>
+        <article class="role-card">
+          <div class="role-icon">🌱</div>
+          <div><h3>4. 社内に残す</h3><p>ルールと研修を整え、社長だけでなく社員も日常的に使える状態へ。最後は自走を目指します。</p><p class="example">成果物：社内ガイドライン／社員研修／運用手順</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">会社のAI活用レベル</span>
+        <h2>いきなり全自動にしない。<br><span class="marker">一段ずつ上がる</span>から、定着します。</h2>
+        <p class="lead">多くの会社は「社長だけがChatGPTを触っている」段階から始まります。そこからで大丈夫です。</p>
+      </div>
+      <div class="roadmap-wrap">
+        <div class="roadmap-line" aria-hidden="true"></div>
+        <div class="roadmap-list">
+          <div class="road-step"><div class="road-number">Lv.0</div><div class="road-name">未導入<small>まだ様子見</small></div><div class="road-desc">ニュースは気になるが、<b>会社では何も使っていない</b>。</div></div>
+          <div class="road-step"><div class="road-number">Lv.1</div><div class="road-name">お試し<small>まず触ってみた</small></div><div class="road-desc">社長や一部の社員が使うが、<b>仕事の手順は変わっていない</b>。</div></div>
+          <div class="road-step"><div class="road-number">Lv.2</div><div class="road-name">日常化<small>みんなが毎日使う</small></div><div class="road-desc">ルールと研修が整い、文章・調査・企画で<b>AIを使うのが普通</b>になる。</div></div>
+          <div class="road-step"><div class="road-number">Lv.3</div><div class="road-name">業務に組み込む<small>御社専用AIがある</small></div><div class="road-desc">見積・議事録・返信など、<b>いつもの書式を覚えたAI</b>が働く。</div></div>
+          <div class="road-step"><div class="road-number">Lv.4</div><div class="road-name">自動化<small>指示しなくても回る</small></div><div class="road-desc">問い合わせや集計が、毎回人が始めなくても<b>自動で流れ始める</b>。</div></div>
+          <div class="road-step"><div class="road-number">Lv.5</div><div class="road-name">AIに任せる<small>デジタルの働き手</small></div><div class="road-desc">「調べてまとめて進めて」の指示で、<b>複数の作業を連続して実行</b>する。</div></div>
+        </div>
+        <div class="road-pin">📍 まずは現在地を診断して、次の1段だけを決めます</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="examples" id="examples">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">言葉より、実物を。</span>
+        <h2>たとえば、こんな仕事が変わります。</h2>
+        <p class="lead">御社の仕事の流れ・書式・ルールに合わせてつくります。サンプルは登録なしで実際に体験できます。</p>
+      </div>
+      <div class="example-grid">
+        <article class="example-card">
+          <a class="example-image" href="demo-quote.html"><span class="example-badge">体験できます</span><img src="assets/thumbs/demo-quote.jpg" alt="見積書AIの画面サンプル" loading="lazy"></a>
+          <div class="example-body"><h3>見積書AI</h3><p>営業メモから、会社の書式に沿った見積案を作成。人は内容と金額を確認します。</p><div class="example-flow"><span>メモ</span><i>→</i><span>AIが下書き</span><i>→</i><span>人が確認</span></div><a class="example-link" href="demo-quote.html">デモを試す →</a></div>
+        </article>
+        <article class="example-card">
+          <a class="example-image" href="demo-inquiry.html"><span class="example-badge">体験できます</span><img src="assets/thumbs/demo-inquiry.jpg" alt="問い合わせ返信AIの画面サンプル" loading="lazy"></a>
+          <div class="example-body"><h3>問い合わせ返信AI</h3><p>届いたメールを読み、会社の言葉づかいで返信案を用意。返信漏れと品質差を減らします。</p><div class="example-flow"><span>受信</span><i>→</i><span>返信案</span><i>→</i><span>送信確認</span></div><a class="example-link" href="demo-inquiry.html">デモを試す →</a></div>
+        </article>
+        <article class="example-card">
+          <a class="example-image" href="demo-receipt.html"><span class="example-badge">体験できます</span><img src="assets/thumbs/demo-receipt.jpg" alt="レシート仕訳AIの画面サンプル" loading="lazy"></a>
+          <div class="example-body"><h3>レシート仕訳AI</h3><p>紙のレシートを読み取り、勘定科目つきの表と会計用データに整理します。</p><div class="example-flow"><span>撮影</span><i>→</i><span>読み取り</span><i>→</i><span>表に整理</span></div><a class="example-link" href="demo-receipt.html">デモを試す →</a></div>
+        </article>
+        <article class="example-card">
+          <a class="example-image" href="demo-minutes.html"><span class="example-badge">体験できます</span><img src="assets/thumbs/demo-minutes.jpg" alt="議事録AIの画面サンプル" loading="lazy"></a>
+          <div class="example-body"><h3>議事録AI</h3><p>会議の内容から、決まったこと・担当者・期限を整理。読み返せる議事録にします。</p><div class="example-flow"><span>会議</span><i>→</i><span>要点整理</span><i>→</i><span>宿題を抽出</span></div><a class="example-link" href="demo-minutes.html">デモを試す →</a></div>
+        </article>
+        <article class="example-card">
+          <a class="example-image" href="demo-cockpit.html"><span class="example-badge">体験できます</span><img src="assets/thumbs/demo-cockpit.jpg" alt="AI経営コックピットの画面サンプル" loading="lazy"></a>
+          <div class="example-body"><h3>AI経営コックピット</h3><p>売上・粗利・入金などをまとめ、「先月の粗利は？」と聞けば根拠つきで答えます。</p><div class="example-flow"><span>数字</span><i>→</i><span>毎朝更新</span><i>→</i><span>質問で確認</span></div><a class="example-link" href="demo-cockpit.html">デモを試す →</a></div>
+        </article>
+        <article class="example-card">
+          <a class="example-image" href="demo-voice.html"><span class="example-badge">音声を聴けます</span><img src="assets/thumbs/demo-voice.jpg" alt="AI電話受付の画面サンプル" loading="lazy"></a>
+          <div class="example-body"><h3>AI電話受付</h3><p>予約や問い合わせの電話を受け、必要事項を確認して担当者へまとめて渡します。</p><div class="example-flow"><span>着信</span><i>→</i><span>自動応対</span><i>→</i><span>内容を共有</span></div><a class="example-link" href="demo-voice.html">実音声を聴く →</a></div>
+        </article>
+      </div>
+      <div class="examples-more"><a class="btn btn-secondary btn-arrow" href="demos.html">31の構築デモをすべて見る</a></div>
+    </div>
+  </section>
+
+  <section id="first90">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">契約後の最初の90日</span>
+        <h2>会議だけで終わらせず、<br>3ヶ月で<span class="marker">最初の成果</span>をひとつ。</h2>
+        <p class="lead">「顧問って、結局何をするの？」をなくすため、最初の3ヶ月の動きを先にお見せします。</p>
+      </div>
+      <div class="days-board">
+        <div class="days-tabs">
+          <article class="month"><span class="month-no">1ヶ月目</span><h3>仕事を見える化</h3><p>主要業務を聞き取り、時間・売上・コストへの影響から、AIを入れる順番を決めます。</p><div class="deliverable">お渡しするもの：優先順位つきロードマップ</div></article>
+          <article class="month"><span class="month-no">2ヶ月目</span><h3>ひとつ、動かす</h3><p>成果が出やすい業務をひとつ選び、実際に使える仕組みをつくって現場で試します。</p><div class="deliverable">見える変化：時間短縮・漏れ削減・速度向上</div></article>
+          <article class="month"><span class="month-no">3ヶ月目</span><h3>使い続ける形へ</h3><p>使い方を直し、ルールと手順を整えます。定着を確認して、次の業務へ進みます。</p><div class="deliverable">社内に残るもの：運用手順・知識・次の計画</div></article>
+        </div>
+        <div class="days-goal"><span class="flag">⚑</span><div><b>目標は「AIを入れた」ではなく「仕事が変わった」</b><span>以降はこのサイクルを繰り返し、会社のAI活用レベルを一段ずつ上げます。</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="comparison" id="compare">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">ほかの選択肢との違い</span>
+        <h2>AI人材の採用でも、<br>システムの丸投げでもない選択。</h2>
+        <p class="lead">相談・実装・教育を分けずに進めるため、判断と実行の間にすき間ができません。</p>
+      </div>
+      <div class="compare-table" role="table" aria-label="AI導入方法の比較">
+        <div class="compare-row head" role="row"><div class="compare-cell"></div><div class="compare-cell">AI人材を採用</div><div class="compare-cell">開発会社へ依頼</div><div class="compare-cell recommended">AI顧問室</div></div>
+        <div class="compare-row" role="row"><div class="compare-cell compare-label">始めるまで</div><div class="compare-cell mark-bad">採用活動から<br>平均6ヶ月以上</div><div class="compare-cell mark-mid">要件が決まってから</div><div class="compare-cell recommended mark-good">契約月から相談開始</div></div>
+        <div class="compare-row" role="row"><div class="compare-cell compare-label">経営の相談</div><div class="compare-cell mark-mid">人材による</div><div class="compare-cell mark-bad">基本は開発の相談</div><div class="compare-cell recommended mark-good">経営目線で一緒に判断</div></div>
+        <div class="compare-row" role="row"><div class="compare-cell compare-label">実際の構築</div><div class="compare-cell mark-mid">技術範囲による</div><div class="compare-cell mark-good">得意</div><div class="compare-cell recommended mark-good">必要なものを直接構築</div></div>
+        <div class="compare-row" role="row"><div class="compare-cell compare-label">社員への定着</div><div class="compare-cell mark-mid">本人の役割次第</div><div class="compare-cell mark-bad">引き渡し後は別対応</div><div class="compare-cell recommended mark-good">研修・ルールまで支援</div></div>
+        <div class="compare-row" role="row"><div class="compare-cell compare-label">費用の目安</div><div class="compare-cell">年600万円〜<br>＋採用費100万円超</div><div class="compare-cell">案件ごとの見積</div><div class="compare-cell recommended"><strong>月50万円〜</strong><br>支援範囲を個別設計</div></div>
+      </div>
+      <p class="small-note" style="margin-top:12px;">※採用費・期間は一般的な比較目安です。役割、採用条件、開発範囲により異なります。</p>
+    </div>
+  </section>
+
+  <section id="price">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">料金の目安</span>
+        <h2>必要な支援だけを、<br><span class="marker">診断後に個別設計</span>します。</h2>
+        <p class="lead">最初から複雑なプランを選ぶ必要はありません。まず現状を整理し、訪問・実装・研修など必要な範囲をご提案します。</p>
+      </div>
+      <div class="price-grid">
+        <div class="price-main">
+          <span class="price-label">継続的に会社を変えたい方向け</span>
+          <div class="amount">50<small>万円〜／月</small></div>
+          <p class="price-term">税別・最低契約期間3ヶ月</p>
+          <ul class="price-includes">
+            <li>経営・現場からのチャット相談</li>
+            <li>定例ミーティングと優先順位整理</li>
+            <li>必要に応じて実装・研修まで対応</li>
+            <li>毎月、支援範囲を見直し可能</li>
+          </ul>
+        </div>
+        <div class="price-side">
+          <article class="price-option"><h3>まず社員全員が使えるように</h3><p class="option-price">AI研修 50万円〜</p><p>半日×2回、実務演習、質問対応を含むライト研修。規模に応じたプランがあります。</p><a class="example-link" href="training.html">研修の詳細 →</a></article>
+          <article class="price-option"><h3>まず一つの仕事を仕組みに</h3><p class="option-price">導入・自動化 80万円〜</p><p>単発の業務ツール導入や自動化ワークフロー構築。大規模開発は個別にお見積りします。</p><a class="example-link" href="implementation.html">導入支援の詳細 →</a></article>
+        </div>
+      </div>
+      <p class="price-foot">価格はすべて税別です。支援内容により変わります。デジタル化・AI導入補助金（旧IT導入補助金）や人材開発支援助成金など、活用可能性のある制度もあわせてご提案します。</p>
+    </div>
+  </section>
+
+  <section id="fit">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">向いている会社・向いていない会社</span>
+        <h2>できることも、<br>できないことも先にお伝えします。</h2>
+      </div>
+      <div class="fit-grid">
+        <article class="fit-card yes"><h3>相性がよい会社</h3><ul><li>従業員10〜50名で、AI担当者がいない</li><li>社長だけでなく、社員にもAIを使ってほしい</li><li>提案書だけでなく、実際に動くものがほしい</li><li>一度きりでなく、会社に知識を残したい</li><li>売上・コスト・時間への効果で優先順位を決めたい</li></ul></article>
+        <article class="fit-card no"><h3>相性がよくない会社</h3><ul><li>今日契約して、明日から全業務を無人化したい</li><li>社員や業務の情報を共有せず、全部丸投げしたい</li><li>安さだけを基準に、ツールを大量導入したい</li><li>相談だけが目的で、実行する予定がまったくない</li><li>成果よりも「最新AIを入れた実績」だけがほしい</li></ul></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="profile" id="profile">
+    <div class="container">
+      <div class="profile-card">
+        <div class="profile-photo"><img src="assets/representative.jpg" alt="AI顧問室の相談責任者" loading="lazy"></div>
+        <div class="profile-copy">
+          <span class="profile-role">AI顧問室 相談責任者｜株式会社Bivrost</span>
+          <h3>経営課題を、現場で動くAI施策に変えます。</h3>
+          <p>相談責任者は経営歴15年。複数事業の立ち上げ・拡大に携わる一方、AIを使った業務改善やシステム開発を自ら実践してきました。</p>
+          <p>流行の道具を紹介するのではなく、売上向上・コスト削減・業務時間の短縮につながるかを基準に、取り組む順番を整理します。初回相談から設計、実装、研修、定着まで同じ責任者が直接対応します。</p>
+          <div class="profile-tags"><span>経営歴15年</span><span>開発したシステム50超</span><span>Product Hunt 日間1位</span><span>AI活用歴4年</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="narrow">
+      <div class="section-head">
+        <span class="eyebrow">よくある質問</span>
+        <h2>「こんなこと聞いていい？」に、<br>先に答えます。</h2>
+      </div>
+      <div class="faq-list">
+        <details><summary>ITに詳しい社員が一人もいません。</summary><p>問題ありません。むしろ、そのような会社のためのサービスです。専門用語を使わずに説明し、設定や構築もこちらで対応します。社員向け研修も行えます。</p></details>
+        <details><summary>どの業種でも相談できますか？</summary><p>はい。AI活用は業種名より「日々の仕事の流れ」を見て考えます。製造、建設、卸売、サービス業、士業など、幅広い業務に対応できます。</p></details>
+        <details><summary>まだ何をしたいか決まっていません。</summary><p>決まっていなくて大丈夫です。無料AI活用診断では、いま困っている仕事や時間がかかる作業を伺い、「最初に検討するならここ」という候補を整理します。</p></details>
+        <details><summary>成果が出るまでどのくらいかかりますか？</summary><p>最初の90日で「目に見える変化」をひとつ作ることを目標にしています。内容によりますが、初月〜2ヶ月目で最初の効率化を体感できるケースを想定しています。</p></details>
+        <details><summary>研修だけ、ツール導入だけでも頼めますか？</summary><p>可能です。毎月の顧問契約がまだ重い場合は、AI研修（50万円〜）や、業務ツール導入・自動化（80万円〜）から始められます。</p></details>
+        <details><summary>無料相談では何が分かりますか？</summary><p>30分で、御社の現在地・AIを使えそうな業務・最初の一手を一緒に整理します。ご希望の方にはAI活用診断書（A4）をお渡しします。無理な勧誘はありません。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">無料AI活用診断</span>
+        <h2>30分で、御社の<br><span class="marker">「最初の一手」</span>を決めませんか。</h2>
+        <p class="lead">「AIのことはよく分からない」のままで大丈夫です。いま困っている仕事を、普段の言葉でお聞かせください。</p>
+      </div>
+      <div class="contact-layout">
+        <div class="contact-promise">
+          <div class="promise-item"><span class="promise-icon">30</span><div><b>30分・オンライン</b><small>全国どこからでも参加できます</small></div></div>
+          <div class="promise-item"><span class="promise-icon">✓</span><div><b>準備する資料はありません</b><small>困っている仕事を聞かせてください</small></div></div>
+          <div class="promise-item"><span class="promise-icon">A4</span><div><b>ご希望の方に診断書</b><small>社内で検討できる形に整理します</small></div></div>
+          <div class="promise-item"><span class="promise-icon">0</span><div><b>無理な勧誘はありません</b><small>診断後の判断は自由です</small></div></div>
+        </div>
+        <div class="contact-card">
+          <a class="btn btn-primary timerex btn-arrow" href="https://timerex.net/s/koki.otsuka_bfac/4b686119" target="_blank" rel="noopener">空いている日時を選ぶ</a>
+          <p class="contact-note">空き枠を選ぶだけで確定。Google Meetの案内が自動で届きます。</p>
+          <div class="or">または</div>
+          <p class="form-title">フォームで申し込む（1営業日以内にご連絡）</p>
+          <form id="leadForm">
+            <label for="company">会社名<span class="req">必須</span></label>
+            <input id="company" type="text" name="company" required autocomplete="organization">
+            <label for="name">お名前<span class="req">必須</span></label>
+            <input id="name" type="text" name="name" required autocomplete="name">
+            <label for="email">メールアドレス<span class="req">必須</span></label>
+            <input id="email" type="email" name="email" required autocomplete="email">
+            <label for="tel">お電話番号（任意）</label>
+            <input id="tel" type="tel" name="tel" autocomplete="tel">
+            <label for="size">従業員数（任意）</label>
+            <select id="size" name="size"><option value="">選択してください</option><option>〜9名</option><option>10〜50名</option><option>51名〜</option></select>
+            <label for="memo">ご相談内容（任意）</label>
+            <textarea id="memo" name="memo" rows="3" placeholder="例：見積書づくりに時間がかかっている"></textarea>
+            <button class="btn btn-primary submit" type="submit">無料診断を申し込む</button>
+          </form>
+          <p class="contact-note">いただいた情報はご連絡以外に使用しません。<a href="privacy.html" style="text-decoration:underline;">プライバシーポリシー</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div><a class="brand" href="index.html"><span class="brand-mark"><span>AI</span></span><span>AI顧問室<small>AI KOMONSHITSU</small></span></a><p style="margin-top:14px;">運営：Bivrost Inc.<br>東京都新宿区新宿5丁目10番10号 海老沢ビル202</p></div>
+    <div class="footer-links"><a href="index.html">公式サイト</a>｜<a href="demos.html">構築デモ</a>｜<a href="training.html">AI研修</a>｜<a href="implementation.html">導入支援</a><br><a href="tokushoho.html">特定商取引法に基づく表記</a>｜<a href="privacy.html">プライバシーポリシー</a>｜<a href="bivrost.html">運営会社</a><br>© 2026 AI顧問室 All Rights Reserved.</div>
+  </div>
+</footer>
+
+<div class="mobile-cta" id="mobileCta"><a class="btn btn-primary" href="#contact">30分の無料AI活用診断</a></div>
+
+<script>
+(function () {
+  var FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe-k2GFlicz-Z9nYoBiwXtbF1QM9l7auA5Ub1aZlBPZY__cSw/formResponse";
+  var form = document.getElementById("leadForm");
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var btn = form.querySelector("button[type=submit]");
+    btn.disabled = true;
+    btn.textContent = "送信中…";
+    var fd = new FormData();
+    fd.append("entry.1831717163", form.company.value);
+    fd.append("entry.1528434750", form.name.value);
+    fd.append("entry.1216521943", form.tel.value || "");
+    fd.append("entry.486964774", form.email.value);
+    fd.append("entry.146547974", form.memo.value || "");
+    fd.append("entry.1104944249", form.size.value || "");
+    fd.append("entry.254574837", "AI顧問室/lp-zukai");
+    function done() {
+      try { if (typeof gtag === "function") gtag("event", "generate_lead", { method: "contact_form", lead_from: "lp-zukai" }); } catch (e) {}
+      if (window.aiKomonTrack) window.aiKomonTrack("Lead", { method: "contact_form", lead_from: "lp-zukai" });
+      form.closest(".contact-card").innerHTML = '<div style="text-align:center;padding:36px 10px;"><p class="round-font" style="font-size:22px;font-weight:700;color:var(--teal);margin-bottom:10px;">お申し込みありがとうございました。</p><p style="color:var(--ink-2);">1営業日以内に、担当よりご連絡いたします。</p></div>';
+    }
+    fetch(FORM_URL, { method: "POST", mode: "no-cors", body: fd }).then(done).catch(done);
+  });
+
+  var trLinks = document.querySelectorAll('a[href*="timerex.net"]');
+  for (var i = 0; i < trLinks.length; i++) {
+    trLinks[i].addEventListener("click", function () {
+      try { if (typeof gtag === "function") gtag("event", "timerex_click", { lead_from: "lp-zukai" }); } catch (e) {}
+    });
+  }
+
+  var mobileCta = document.getElementById("mobileCta");
+  var contact = document.getElementById("contact");
+  function updateCta() {
+    var inContact = contact.getBoundingClientRect().top < window.innerHeight * .75;
+    mobileCta.classList.toggle("show", window.scrollY > 520 && !inContact);
+  }
+  window.addEventListener("scroll", updateCta, { passive: true });
+  updateCta();
+})();
+</script>
+</body>
+</html>
