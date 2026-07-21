@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>LP一覧｜AI顧問室</title>
+<meta name="description" content="AI顧問室で制作したランディングページを、ターゲット・訴求テーマ別に整理した一覧です。">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;600;700&amp;family=Noto+Sans+JP:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15171c;
+    --navy:#102a43;
+    --blue:#2855d9;
+    --orange:#ff6b35;
+    --lime:#dfff4f;
+    --paper:#f5f5f0;
+    --white:#fff;
+    --muted:#6a6e78;
+    --line:#d9dbe1;
+    --soft:#eceef5;
+    --sans:'Noto Sans JP',sans-serif;
+    --latin:'DM Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  button,input{font:inherit}
+  .container{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+  .skip{position:fixed;left:12px;top:-80px;z-index:999;background:var(--ink);color:#fff;padding:9px 15px;border-radius:6px}
+  .skip:focus{top:12px}
+
+  header{position:sticky;top:0;z-index:100;background:rgba(245,245,240,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(13px)}
+  .header-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-mark{width:35px;height:35px;display:grid;place-items:center;background:var(--blue);color:#fff;font:700 12px/1 var(--latin);box-shadow:4px 4px 0 var(--lime)}
+  .brand strong{display:block;font-size:16px;line-height:1.25}
+  .brand small{display:block;color:var(--muted);font:700 9px/1.4 var(--latin);letter-spacing:.13em;text-transform:uppercase}
+  .header-links{display:flex;align-items:center;gap:18px;font-size:12px;font-weight:700}
+  .header-links a:hover{color:var(--blue)}
+  .site-link{background:var(--ink);color:#fff;padding:9px 15px;border-radius:999px}
+  .header-links .site-link:hover{background:var(--blue);color:#fff}
+
+  .hero{padding:82px 0 64px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+  .hero::after{content:"LP";position:absolute;right:-22px;top:-32px;font:700 260px/1 var(--latin);letter-spacing:-.11em;color:rgba(40,85,217,.05)}
+  .hero-grid{display:grid;grid-template-columns:1fr 310px;gap:60px;align-items:end;position:relative;z-index:2}
+  .eyebrow{font:700 11px/1.3 var(--latin);letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+  h1{font-size:clamp(42px,6vw,74px);line-height:1.08;letter-spacing:-.065em}
+  .hero-copy{font-size:15px;color:var(--muted);max-width:630px;margin-top:20px}
+  .hero-count{background:var(--ink);color:#fff;padding:27px;border:1px solid var(--ink);box-shadow:9px 9px 0 var(--lime)}
+  .hero-count strong{display:block;font:700 72px/.9 var(--latin);letter-spacing:-.08em;color:var(--lime)}
+  .hero-count span{display:block;font:700 11px/1.4 var(--latin);letter-spacing:.14em;margin-top:13px;text-transform:uppercase}
+  .hero-count p{font-size:10px;color:#a9abb3;margin-top:8px}
+
+  .toolbar-wrap{position:sticky;top:70px;z-index:90;background:rgba(245,245,240,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(13px)}
+  .toolbar{padding:15px 0;display:flex;gap:12px;align-items:center}
+  .search{position:relative;flex:1;min-width:240px}
+  .search::before{content:"⌕";position:absolute;left:15px;top:50%;transform:translateY(-54%);font:700 22px/1 var(--latin);color:var(--muted)}
+  .search input{width:100%;height:44px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:0 15px 0 43px;color:var(--ink);font-size:13px;outline:none}
+  .search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(40,85,217,.11)}
+  .filters{display:flex;gap:7px;overflow-x:auto;padding:2px;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .filter{height:40px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:0 14px;white-space:nowrap;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:.2s}
+  .filter:hover{border-color:var(--blue);color:var(--blue)}
+  .filter.is-active{background:var(--blue);border-color:var(--blue);color:#fff}
+
+  main{padding:62px 0 100px}
+  .result-row{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:30px}
+  .result-row h2{font-size:22px}
+  .result-count{font:700 12px/1 var(--latin);color:var(--muted)}
+  .featured{display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:12px;margin-bottom:70px}
+  .featured-card{min-height:205px;border:1px solid var(--ink);background:#fff;padding:23px;display:flex;flex-direction:column;position:relative;transition:transform .2s,box-shadow .2s}
+  .featured-card:first-child{background:var(--blue);color:#fff;box-shadow:7px 7px 0 var(--lime)}
+  .featured-card:hover{transform:translateY(-3px);box-shadow:6px 6px 0 var(--ink)}
+  .featured-card:first-child:hover{box-shadow:9px 9px 0 var(--lime)}
+  .new-badge{font:700 9px/1 var(--latin);letter-spacing:.12em;color:var(--orange);text-transform:uppercase}
+  .featured-card:first-child .new-badge{color:var(--lime)}
+  .featured-card h3{font-size:18px;line-height:1.45;margin:19px 0 10px}
+  .featured-card p{font-size:11px;color:var(--muted)}
+  .featured-card:first-child p{color:#ccd4ff}
+  .featured-arrow{margin-top:auto;padding-top:16px;font:700 17px/1 var(--latin);color:var(--blue)}
+  .featured-card:first-child .featured-arrow{color:var(--lime)}
+
+  .group{margin-top:66px;scroll-margin-top:145px}
+  .group[hidden]{display:none}
+  .group-head{display:grid;grid-template-columns:170px 1fr;gap:30px;margin-bottom:25px;padding-bottom:18px;border-bottom:2px solid var(--ink)}
+  .group-number{font:700 12px/1.3 var(--latin);color:var(--blue);letter-spacing:.12em}
+  .group-head h2{font-size:27px;line-height:1.35}
+  .group-head p{font-size:12px;color:var(--muted);margin-top:6px}
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .card{background:#fff;border:1px solid var(--line);min-height:240px;padding:23px;display:flex;flex-direction:column;position:relative;transition:transform .2s,border-color .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:6px 6px 0 var(--soft)}
+  .card[hidden]{display:none}
+  .card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .card-no{font:700 10px/1 var(--latin);color:var(--blue);letter-spacing:.12em}
+  .tag{font-size:9px;font-weight:700;color:var(--muted);background:var(--soft);border-radius:999px;padding:4px 8px}
+  .card h3{font-size:17px;line-height:1.5;margin:21px 0 10px}
+  .card p{font-size:11px;color:var(--muted)}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:20px}
+  .filename{font:600 9px/1 var(--latin);color:#9a9da6}
+  .open{font:700 12px/1 var(--latin);color:var(--blue)}
+  .card:hover .open{color:var(--orange)}
+  .empty{display:none;background:#fff;border:1px dashed var(--line);padding:50px 24px;text-align:center;color:var(--muted)}
+  .empty.is-visible{display:block}
+  .empty strong{display:block;color:var(--ink);font-size:18px;margin-bottom:5px}
+
+  footer{background:var(--ink);color:#8f929b;padding:27px 0 76px;font-size:10px}
+  .footer-inner{display:flex;justify-content:space-between;gap:20px}
+  footer a{text-decoration:underline;margin-left:15px}
+
+  @media(max-width:980px){
+    .featured{grid-template-columns:repeat(2,1fr)}
+    .card-grid{grid-template-columns:repeat(2,1fr)}
+    .toolbar{align-items:stretch;flex-direction:column}
+    .toolbar-wrap{position:relative;top:auto}
+  }
+  @media(max-width:680px){
+    .container{width:calc(100% - 30px)}
+    .header-inner{height:60px}
+    .brand small,.header-links a:not(.site-link){display:none}
+    .site-link{font-size:10px;padding:8px 12px}
+    .hero{padding:60px 0 52px}
+    .hero-grid{grid-template-columns:1fr;gap:31px}
+    .hero-count{width:190px;padding:20px}
+    .hero-count strong{font-size:54px}
+    .toolbar{padding:12px 0}
+    main{padding:44px 0 75px}
+    .featured,.card-grid{grid-template-columns:1fr}
+    .featured-card{min-height:180px}
+    .group{margin-top:52px}
+    .group-head{grid-template-columns:1fr;gap:8px}
+    .card{min-height:210px}
+    .footer-inner{flex-direction:column}
+    footer a{margin:0 14px 0 0}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#library">LP一覧へ移動</a>
+<header>
+  <div class="container header-inner">
+    <a class="brand" href="lp-list.html" aria-label="LP一覧トップ">
+      <span class="brand-mark">AI</span>
+      <span><strong>AI顧問室 LP一覧</strong><small>Landing Page Library</small></span>
+    </a>
+    <nav class="header-links" aria-label="関連ページ">
+      <a href="lp-ai-diagnosis.html">1分診断</a>
+      <a href="index.html">サービス詳細</a>
+      <a class="site-link" href="https://timerex.net/s/koki.otsuka_bfac/4b686119" target="_blank" rel="noopener">無料相談</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">AI KOMON / LP LIBRARY</div>
+      <h1>すべてのLPを、<br>ひとつの場所に。</h1>
+      <p class="hero-copy">AI顧問室で制作したランディングページを、ターゲットと訴求テーマ別に整理しました。広告・提案・改善の目的に合わせて比較できます。</p>
+    </div>
+    <div class="hero-count" aria-label="LP総数31本"><strong>31</strong><span>Landing Pages</span><p>2026年7月19日時点</p></div>
+  </div>
+</section>
+
+<div class="toolbar-wrap">
+  <div class="container toolbar">
+    <label class="search"><span class="skip">LPを検索</span><input id="searchInput" type="search" placeholder="タイトル・ターゲット・訴求で検索" autocomplete="off"></label>
+    <div class="filters" role="group" aria-label="カテゴリで絞り込む">
+      <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">すべて</button>
+      <button class="filter" type="button" data-filter="target" aria-pressed="false">ターゲット特化</button>
+      <button class="filter" type="button" data-filter="diagnosis" aria-pressed="false">診断・レベル</button>
+      <button class="filter" type="button" data-filter="decision" aria-pressed="false">費用・導入判断</button>
+      <button class="filter" type="button" data-filter="pain" aria-pressed="false">経営課題</button>
+      <button class="filter" type="button" data-filter="understanding" aria-pressed="false">サービス理解</button>
+    </div>
+  </div>
+</div>
+
+<main id="library">
+  <div class="container">
+    <div class="result-row"><h2>LPライブラリ</h2><span class="result-count" id="resultCount" aria-live="polite">31 / 31 PAGES</span></div>
+
+    <section class="featured" id="featured" aria-label="新着LP">
+      <a class="featured-card" href="lp-official-v2.html"><span class="new-badge">New / Official V2</span><h3>AIに詳しくなくても、会社は変えられる。</h3><p>人物写真を軸に、相談・実装・社内定着の人間的な伴走を伝える公式LP候補。</p><span class="featured-arrow">OPEN ↗</span></a>
+      <a class="featured-card" href="lp-komon-sales.html"><span class="new-badge">New / Sales</span><h3>営業を増やす前に、営業の仕事を減らす。</h3><p>BtoB営業10〜50名の社長・営業責任者向け。</p><span class="featured-arrow">OPEN ↗</span></a>
+      <a class="featured-card" href="lp-komon-backoffice.html"><span class="new-badge">New / Back office</span><h3>事務員を、もう一人採る前に。</h3><p>従業員30〜100名の経営者・管理部長向け。</p><span class="featured-arrow">OPEN ↗</span></a>
+      <a class="featured-card" href="lp-komon-kensetsu.html"><span class="new-badge">New / Construction</span><h3>監督を、現場に返す。</h3><p>従業員10〜50名の建設会社・工務店向け。</p><span class="featured-arrow">OPEN ↗</span></a>
+    </section>
+
+    <section class="group" data-group="target" id="group-target">
+      <div class="group-head"><span class="group-number">01 / TARGET</span><div><h2>ターゲット・業種特化</h2><p>読み手の役職・部門・業種を明確に絞ったLP</p></div></div>
+      <div class="card-grid">
+        <a class="card" href="lp-official-v2.html" data-category="target" data-search="公式 V2 人物 中小企業 経営者 AI顧問 伴走 実装 定着"><div class="card-top"><span class="card-no">LP NEW</span><span class="tag">公式LP候補</span></div><h3>AIに詳しくなくても、会社は変えられる。</h3><p>自然な人物写真を使い、わかる言葉・共同実装・自走化を温かく伝える公式LP候補。</p><div class="card-foot"><span class="filename">lp-official-v2.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-komon.html" data-category="target" data-search="経営者 社長 外部AI責任者 AI顧問 宿題 実装 定着"><div class="card-top"><span class="card-no">LP 01</span><span class="tag">経営者</span></div><h3>AIを、社長の宿題にしない。</h3><p>AI推進の判断から実装・社内定着まで、外部AI責任者として伴走する価値を訴求。</p><div class="card-foot"><span class="filename">lp-komon.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-komon-sales.html" data-category="target" data-search="営業 BtoB 営業責任者 商談 提案書 追客 CRM"><div class="card-top"><span class="card-no">LP 02</span><span class="tag">営業組織</span></div><h3>営業を増やす前に、営業の仕事を減らす。</h3><p>商談準備・提案書・追客の下ごしらえをAI化し、顧客時間を取り戻す訴求。</p><div class="card-foot"><span class="filename">lp-komon-sales.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-komon-backoffice.html" data-category="target" data-search="バックオフィス 管理部長 経理 総務 人事 採用 事務員"><div class="card-top"><span class="card-no">LP 03</span><span class="tag">管理部門</span></div><h3>事務員を、もう一人採る前に。</h3><p>採用前に定型業務を整理し、AIが下ごしらえ、人が確認する体制を提案。</p><div class="card-foot"><span class="filename">lp-komon-backoffice.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-komon-kensetsu.html" data-category="target" data-search="建設 工務店 現場監督 日報 写真 見積 書類"><div class="card-top"><span class="card-no">LP 04</span><span class="tag">建設業</span></div><h3>監督を、現場に返す。</h3><p>日報・写真整理・見積準備など、監督を現場から離す書類仕事にフォーカス。</p><div class="card-foot"><span class="filename">lp-komon-kensetsu.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-fudosan.html" data-category="target" data-search="不動産 反響対応 追客 ポータル 成約 AI顧問"><div class="card-top"><span class="card-no">LP 05</span><span class="tag">不動産業</span></div><h3>反響から5分で返す会社が、契約を取っていく。</h3><p>反響対応・追客・集客におけるAI活用を、不動産会社向けに具体化。</p><div class="card-foot"><span class="filename">lp-fudosan.html</span><span class="open">OPEN ↗</span></div></a>
+      </div>
+    </section>
+
+    <section class="group" data-group="diagnosis" id="group-diagnosis">
+      <div class="group-head"><span class="group-number">02 / DIAGNOSIS</span><div><h2>診断・AI活用レベル</h2><p>現在地を把握し、次の一手を見つけるLP</p></div></div>
+      <div class="card-grid">
+        <a class="card" href="lp-ai-diagnosis.html" data-category="diagnosis" data-search="経営者 AI活用 1分診断 何から AI化"><div class="card-top"><span class="card-no">LP 06</span><span class="tag">1分診断</span></div><h3>AIを導入したい。でも、何から手をつけるべきか分からない。</h3><p>質問への回答から、最初にAI化しやすい領域を提示する診断型LP。</p><div class="card-foot"><span class="filename">lp-ai-diagnosis.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-level.html" data-category="diagnosis" data-search="AI活用 レベル 診断 現在地 1分"><div class="card-top"><span class="card-no">LP 07</span><span class="tag">レベル診断</span></div><h3>御社のAI活用、今、レベルいくつ？</h3><p>AI活用度を段階で可視化し、現在地への興味から診断へ誘導。</p><div class="card-foot"><span class="filename">lp-level.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-chatgpt.html" data-category="diagnosis" data-search="ChatGPT レベル1 個人利用 会社 数字"><div class="card-top"><span class="card-no">LP 08</span><span class="tag">入門層</span></div><h3>ChatGPT、もう使ってます。——それ、Lv.1です。</h3><p>個人利用と会社の成果の差を示し、次の活用段階を意識させるLP。</p><div class="card-foot"><span class="filename">lp-chatgpt.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-lv2.html" data-category="diagnosis" data-search="Lv2 社員 ChatGPT 数字 組織活用 テンプレート"><div class="card-top"><span class="card-no">LP 09</span><span class="tag">Lv.2企業</span></div><h3>社員はもうAIを使っている。なのに数字が変わらない。</h3><p>社員の個人利用を、会社の標準業務へ変える必要性を訴求。</p><div class="card-foot"><span class="filename">lp-lv2.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-lv3.html" data-category="diagnosis" data-search="Lv3 専用AI 自動化 GPT 眠っている 活用"><div class="card-top"><span class="card-no">LP 10</span><span class="tag">Lv.3企業</span></div><h3>専用AIまで、もう作った。でも動かしているのは、まだ人です。</h3><p>専用AI導入後の自動化・ワークフロー組み込みを提案。</p><div class="card-foot"><span class="filename">lp-lv3.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-lv4.html" data-category="diagnosis" data-search="Lv4 自動化 AIエージェント 経営 働き手"><div class="card-top"><span class="card-no">LP 11</span><span class="tag">Lv.4企業</span></div><h3>自動化の、その先へ。AIを「働き手」にする。</h3><p>自動化済み企業へ、AIエージェントを業務へ配置する次段階を訴求。</p><div class="card-foot"><span class="filename">lp-lv4.html</span><span class="open">OPEN ↗</span></div></a>
+      </div>
+    </section>
+
+    <section class="group" data-group="decision" id="group-decision">
+      <div class="group-head"><span class="group-number">03 / DECISION</span><div><h2>費用・比較・導入判断</h2><p>経営者が投資を判断するための材料を提示するLP</p></div></div>
+      <div class="card-grid">
+        <a class="card" href="lp-cost.html" data-category="decision" data-search="AI人材 採用 費用 コスト 電卓 顧問 比較"><div class="card-top"><span class="card-no">LP 12</span><span class="tag">採用比較</span></div><h3>AI人材を1人雇う前に、電卓を叩いてください。</h3><p>AI人材の採用とAI顧問の費用・立ち上がりを比較するLP。</p><div class="card-foot"><span class="filename">lp-cost.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-hikaku.html" data-category="decision" data-search="比較 自分で学ぶ ツール AI人材 AI顧問 4つ 選択肢"><div class="card-top"><span class="card-no">LP 13</span><span class="tag">4案比較</span></div><h3>AIを進める方法は、4つあります。正直に比べました。</h3><p>自学・ツール・採用・顧問を、費用や立ち上がりで比較。</p><div class="card-foot"><span class="filename">lp-hikaku.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-roi.html" data-category="decision" data-search="ROI 顧問料 50万円 時給 削減時間 電卓 費用対効果"><div class="card-top"><span class="card-no">LP 14</span><span class="tag">ROI試算</span></div><h3>顧問料50万円は、月何時間の削減で元が取れるか。</h3><p>時給と削減時間を動かし、費用対効果の目安を試算できるLP。</p><div class="card-foot"><span class="filename">lp-roi.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-speed.html" data-category="decision" data-search="AI人材 採用 6ヶ月 AI顧問 今月 スピード"><div class="card-top"><span class="card-no">LP 15</span><span class="tag">導入速度</span></div><h3>AI人材の採用、平均6ヶ月。AI顧問、契約したその月。</h3><p>採用待ちと比較し、外部顧問ならすぐ動けるスピードを訴求。</p><div class="card-foot"><span class="filename">lp-speed.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-hojokin.html" data-category="decision" data-search="補助金 助成金 公的制度 AI導入 研修 費用"><div class="card-top"><span class="card-no">LP 16</span><span class="tag">公的制度</span></div><h3>そのAI導入、国の制度が使えるかもしれません。</h3><p>AI導入・研修に利用できる可能性がある公的制度を入口にするLP。</p><div class="card-foot"><span class="filename">lp-hojokin.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-risk.html" data-category="decision" data-search="AI導入 失敗 リスク 使われない 定着 共通点"><div class="card-top"><span class="card-no">LP 17</span><span class="tag">失敗回避</span></div><h3>導入して、使われなくなる。いちばん多い失敗です。</h3><p>AI導入の失敗要因を示し、設計・定着支援の必要性を訴求。</p><div class="card-foot"><span class="filename">lp-risk.html</span><span class="open">OPEN ↗</span></div></a>
+      </div>
+    </section>
+
+    <section class="group" data-group="pain" id="group-pain">
+      <div class="group-head"><span class="group-number">04 / PAIN</span><div><h2>経営者の課題・感情</h2><p>経営者が感じている負担や違和感から入るLP</p></div></div>
+      <div class="card-grid">
+        <a class="card" href="lp-boss.html" data-category="pain" data-search="社長 経営者 判断 一人 孤独 AI 壁打ち"><div class="card-top"><span class="card-no">LP 18</span><span class="tag">社長の孤独</span></div><h3>決めるのは、いつも社長ひとり。AIのことまで。</h3><p>経営判断を一人で抱える社長へ、AIの壁打ち相手を提示。</p><div class="card-foot"><span class="filename">lp-boss.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-fear.html" data-category="pain" data-search="様子見 1年 差 競合 不安 遅れ AI"><div class="card-top"><span class="card-no">LP 19</span><span class="tag">機会損失</span></div><h3>様子見の1年で、差は開いた。</h3><p>AI活用を先送りする機会損失を、数字と時間軸から訴求。</p><div class="card-foot"><span class="filename">lp-fear.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-genba.html" data-category="pain" data-search="社員 限界 現場 業務負担 人手不足 AI"><div class="card-top"><span class="card-no">LP 20</span><span class="tag">現場疲弊</span></div><h3>社員さんは、もう限界かもしれない。</h3><p>現場の業務負担と人手不足を入口に、AIによる業務改善を提案。</p><div class="card-foot"><span class="filename">lp-genba.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-hitode.html" data-category="pain" data-search="求人 採用 人手不足 出す前に 業務改善 AI"><div class="card-top"><span class="card-no">LP 21</span><span class="tag">採用前</span></div><h3>その求人、出す前に。</h3><p>人を採る前に、AIで減らせる仕事がないかを問いかけるLP。</p><div class="card-foot"><span class="filename">lp-hitode.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-time.html" data-category="pain" data-search="時間 見積書 議事録 半日 業務削減 残業"><div class="card-top"><span class="card-no">LP 22</span><span class="tag">時間削減</span></div><h3>その見積書に2時間。その議事録に、気づけば半日。</h3><p>日常の小さな時間損失を積み上げ、AI活用の余地を可視化。</p><div class="card-foot"><span class="filename">lp-time.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-question.html" data-category="pain" data-search="AIに詳しい 役員 入社 何を頼む 経営者 問い"><div class="card-top"><span class="card-no">LP 23</span><span class="tag">問いかけ</span></div><h3>もし明日、AIに詳しい役員が入社したら。</h3><p>経営者への問いから、外部AI責任者の役割を想像させるLP。</p><div class="card-foot"><span class="filename">lp-question.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-simple.html" data-category="pain" data-search="全部 任せる AI 簡単 シンプル 経営者"><div class="card-top"><span class="card-no">LP 24</span><span class="tag">丸ごと相談</span></div><h3>AIのこと、ぜんぶ任せられる相手。</h3><p>複雑な説明を省き、「任せられる相手」という安心感に絞ったLP。</p><div class="card-foot"><span class="filename">lp-simple.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-kantan.html" data-category="pain" data-search="パソコン 苦手 IT 不安 初心者 大丈夫 AI"><div class="card-top"><span class="card-no">LP 25</span><span class="tag">IT初心者</span></div><h3>パソコンが苦手でも、大丈夫です。</h3><p>ITへの苦手意識がある経営者へ、専門知識不要の安心感を訴求。</p><div class="card-foot"><span class="filename">lp-kantan.html</span><span class="open">OPEN ↗</span></div></a>
+      </div>
+    </section>
+
+    <section class="group" data-group="understanding" id="group-understanding">
+      <div class="group-head"><span class="group-number">05 / UNDERSTANDING</span><div><h2>サービス理解・ストーリー</h2><p>AI顧問の考え方・支援内容・進め方を深く伝えるLP</p></div></div>
+      <div class="card-grid">
+        <a class="card" href="lp-anti.html" data-category="understanding" data-search="AIコンサル いらない 手紙 顧問 違い 正直"><div class="card-top"><span class="card-no">LP 26</span><span class="tag">反・コンサル</span></div><h3>AIコンサルは、たぶん要りません。</h3><p>提案で終わるコンサルとの違いを、手紙形式で伝えるLP。</p><div class="card-foot"><span class="filename">lp-anti.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-demo-first.html" data-category="understanding" data-search="デモ 説明 まず 見る 実装 AI 活用例"><div class="card-top"><span class="card-no">LP 27</span><span class="tag">デモ訴求</span></div><h3>説明はあとです。まず、これを見てください。</h3><p>具体的なデモを先に見せ、AIで何ができるかを直感的に伝えるLP。</p><div class="card-foot"><span class="filename">lp-demo-first.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-jiso.html" data-category="understanding" data-search="自走 卒業 内製化 研修 伴走 AI顧問"><div class="card-top"><span class="card-no">LP 28</span><span class="tag">自走支援</span></div><h3>卒業してもらうための、AI顧問です。</h3><p>作って見せる・教える・自社で回す、卒業前提の支援方針を訴求。</p><div class="card-foot"><span class="filename">lp-jiso.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-story.html" data-category="understanding" data-search="製造業 90日 物語 ストーリー 導入 記録"><div class="card-top"><span class="card-no">LP 29</span><span class="tag">90日物語</span></div><h3>ある製造業の、90日間の記録。</h3><p>従業員28名の会社がAI顧問と進む過程を、物語形式で紹介。</p><div class="card-foot"><span class="filename">lp-story.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp-zukai.html" data-category="understanding" data-search="図解 わかる AI顧問室 初心者 会社 変える"><div class="card-top"><span class="card-no">LP 30</span><span class="tag">図解</span></div><h3>AIに詳しくなくても、会社は変えられる。</h3><p>AI顧問室の役割と変化の流れを、図解中心でわかりやすく伝えるLP。</p><div class="card-foot"><span class="filename">lp-zukai.html</span><span class="open">OPEN ↗</span></div></a>
+      </div>
+    </section>
+
+    <div class="empty" id="emptyState"><strong>該当するLPがありません</strong><span>検索語を短くするか、「すべて」に戻してお試しください。</span></div>
+  </div>
+</main>
+
+<footer><div class="container footer-inner"><p>AI顧問室 LP Library｜運営：Bivrost Inc.｜© 2026</p><p><a href="index.html">公式サイト</a><a href="privacy.html">プライバシーポリシー</a><a href="bivrost.html">運営会社</a></p></div></footer>
+
+<script>
+(function () {
+  'use strict';
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.group'));
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.filter'));
+  var search = document.getElementById('searchInput');
+  var count = document.getElementById('resultCount');
+  var empty = document.getElementById('emptyState');
+  var featured = document.getElementById('featured');
+  var activeFilter = 'all';
+
+  function normalize(value) {
+    return (value || '').toLowerCase().replace(/\s+/g, ' ').trim();
+  }
+
+  function applyFilters() {
+    var query = normalize(search.value);
+    var visibleCount = 0;
+
+    cards.forEach(function (card) {
+      var matchesCategory = activeFilter === 'all' || card.dataset.category === activeFilter;
+      var haystack = normalize(card.textContent + ' ' + (card.dataset.search || ''));
+      var matchesQuery = !query || haystack.indexOf(query) !== -1;
+      var visible = matchesCategory && matchesQuery;
+      card.hidden = !visible;
+      if (visible) visibleCount += 1;
+    });
+
+    groups.forEach(function (group) {
+      var groupCards = Array.prototype.slice.call(group.querySelectorAll('.card'));
+      group.hidden = !groupCards.some(function (card) { return !card.hidden; });
+    });
+
+    featured.hidden = activeFilter !== 'all' || !!query;
+    count.textContent = visibleCount + ' / ' + cards.length + ' PAGES';
+    empty.classList.toggle('is-visible', visibleCount === 0);
+  }
+
+  buttons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      activeFilter = button.dataset.filter;
+      buttons.forEach(function (item) {
+        var active = item === button;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      applyFilters();
+    });
+  });
+
+  search.addEventListener('input', applyFilters);
+  applyFilters();
+}());
+</script>
+</body>
+</html>
