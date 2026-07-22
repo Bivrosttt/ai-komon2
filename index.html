@@ -1,4 +1,4 @@
-<!-- 2026-07-22: gpt-image-2 ヒーロー4枚＋サムネ切替／情報量整理版（旧: index-legacy.html） -->
+<!-- 2026-07-22: ヒーロー画像フレーム比率調整（16:10・max-height制御） -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -65,10 +65,10 @@ header{position:fixed;inset:0 0 auto;z-index:200;background:rgba(255,255,255,.94
 .nav-cta{background:var(--gold);color:var(--navy-deep)!important;padding:10px 18px;border-radius:999px;box-shadow:0 6px 16px rgba(201,162,39,.25)}
 .nav-cta:hover{opacity:.9}
 
-.hero{min-height:820px;padding:126px 0 72px;background:linear-gradient(145deg,var(--cream) 0%,var(--paper) 45%,#EEF3FA 100%);position:relative;overflow:hidden}
+.hero{min-height:auto;padding:108px 0 56px;background:linear-gradient(145deg,var(--cream) 0%,var(--paper) 45%,#EEF3FA 100%);position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;background:rgba(11,36,71,.04);right:-180px;top:-80px}
 .hero::after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:rgba(201,162,39,.08);left:-120px;bottom:40px}
-.hero-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center;position:relative;z-index:2}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:44px;align-items:start;position:relative;z-index:2}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(11,36,71,.18);border-radius:999px;padding:7px 15px;font-size:11px;font-weight:700;color:var(--navy);background:rgba(255,255,255,.7);margin-bottom:22px}
 .hero-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(201,162,39,.2)}
 .hero h1{font-size:clamp(42px,5.8vw,68px);letter-spacing:-.04em;color:var(--navy);line-height:1.22}
@@ -78,19 +78,20 @@ header{position:fixed;inset:0 0 auto;z-index:200;background:rgba(255,255,255,.94
 .hero-copy{font-size:14.5px;color:var(--gray);max-width:560px;margin:12px 0 28px}
 .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .hero-micro{font-size:11px;color:#7A8799;margin-top:14px}
-.hero-photo{position:relative}
-.hero-photo img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:160px 22px 22px 22px;box-shadow:0 28px 70px rgba(11,36,71,.18);transition:opacity .35s}
-.hero-photo img.is-fading{opacity:.15}
-.hero-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
-.hero-thumb{position:relative;border:2px solid transparent;border-radius:10px;overflow:hidden;padding:0;background:none;cursor:pointer;aspect-ratio:3/2}
+.hero-photo{position:relative;width:100%;max-width:480px;margin-left:auto}
+.hero-photo-frame{position:relative;border-radius:22px 22px 22px 72px;overflow:hidden;box-shadow:0 22px 56px rgba(11,36,71,.16);aspect-ratio:16/10;max-height:320px;background:var(--navy-deep)}
+.hero-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;transition:opacity .35s}
+.hero-photo-frame img.is-fading{opacity:.15}
+.hero-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.hero-thumb{position:relative;border:2px solid transparent;border-radius:8px;overflow:hidden;padding:0;background:none;cursor:pointer;aspect-ratio:16/10;min-height:0}
 .hero-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.hero-thumb span{position:absolute;inset:auto 0 0;padding:4px 6px;font-size:9px;font-weight:700;color:#fff;background:linear-gradient(0deg,rgba(7,26,53,.88),transparent);text-align:left;line-height:1.3}
+.hero-thumb span{position:absolute;inset:auto 0 0;padding:3px 5px;font-size:8px;font-weight:700;color:#fff;background:linear-gradient(0deg,rgba(7,26,53,.9),transparent);text-align:left;line-height:1.2}
 .hero-thumb.is-active{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,162,39,.25)}
 .hero-thumb:hover{border-color:var(--navy-light)}
-.photo-card{position:absolute;left:-18px;bottom:24px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;width:240px;box-shadow:0 14px 36px rgba(11,36,71,.12)}
+.photo-card{position:absolute;left:14px;bottom:14px;z-index:2;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:min(210px,calc(100% - 28px));box-shadow:0 10px 28px rgba(11,36,71,.14)}
 .photo-card span{font:700 9px/1 var(--latin);letter-spacing:.12em;color:var(--gold)}
-.photo-card strong{display:block;font-size:13px;line-height:1.55;margin-top:6px;color:var(--navy)}
-.hero-stats{grid-column:1/-1;display:grid;grid-template-columns:1.15fr repeat(3,1fr);border-block:1px solid rgba(11,36,71,.15);margin-top:12px}
+.photo-card strong{display:block;font-size:12px;line-height:1.5;margin-top:5px;color:var(--navy)}
+.hero-stats{grid-column:1/-1;display:grid;grid-template-columns:1.15fr repeat(3,1fr);border-block:1px solid rgba(11,36,71,.15);margin-top:36px}
 .hero-stats .stat{padding:18px 20px;border-right:1px solid rgba(11,36,71,.12)}
 .hero-stats .stat:last-child{border-right:0}
 .hero-stats .stat:first-child{display:flex;align-items:center;font-size:12px;font-weight:700;color:var(--navy)}
@@ -299,7 +300,10 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
 
 @media(max-width:900px){
   .nav a:not(.nav-cta){display:none}
-  .hero-grid,.movie-inner,.profile-box{grid-template-columns:1fr}
+  .hero-grid{grid-template-columns:1fr;gap:32px}
+  .hero-photo{max-width:100%;margin-left:0}
+  .hero-photo-frame{max-height:280px;border-radius:18px 18px 18px 56px}
+  .movie-inner,.profile-box{grid-template-columns:1fr}
   .section-head{grid-template-columns:125px 1fr;gap:28px}
   .problem-grid,.value-grid,.service-grid,.reason-grid,.proof-grid,.demo-grid-static{grid-template-columns:1fr}
   .compare-grid{grid-template-columns:1fr}
@@ -312,9 +316,9 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
   .section{padding:76px 0}
   .head{height:60px}
   .brand small{display:none}
-  .hero{padding:100px 0 52px;min-height:auto}
-  .hero-photo img{border-radius:100px 18px 18px 18px}
-  .photo-card{left:8px;bottom:10px;width:210px;padding:13px}
+  .hero{padding:96px 0 44px}
+  .hero-photo-frame{border-radius:16px 16px 16px 48px;max-height:240px}
+  .photo-card{left:10px;bottom:10px;width:min(190px,calc(100% - 20px));padding:10px 12px}
   .hero-stats{grid-template-columns:1fr}
   .hero-stats .stat{border-right:0;border-bottom:1px solid rgba(11,36,71,.12);padding:13px 4px}
   .hero-thumbs{grid-template-columns:repeat(2,1fr)}
@@ -366,10 +370,12 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       <p class="hero-micro">オンライン30分／相談後の契約は不要／無理な営業はありません</p>
     </div>
     <div class="hero-photo reveal">
-      <img id="heroImg" src="assets/hero/hero-consultation.png" width="1536" height="1024" alt="中小企業の経営者とAI顧問が業務について話し合う様子">
-      <div class="photo-card" id="heroCaption">
-        <span>LISTEN FIRST.</span>
-        <strong>ツールの話より先に、御社の仕事を聞く。</strong>
+      <div class="hero-photo-frame">
+        <img id="heroImg" src="assets/hero/hero-consultation.png" width="1536" height="1024" alt="中小企業の経営者とAI顧問が業務について話し合う様子">
+        <div class="photo-card" id="heroCaption">
+          <span>LISTEN FIRST.</span>
+          <strong>ツールの話より先に、御社の仕事を聞く。</strong>
+        </div>
       </div>
       <div class="hero-thumbs" role="tablist" aria-label="ヒーロー画像">
         <button type="button" class="hero-thumb is-active" role="tab" aria-selected="true" data-src="assets/hero/hero-consultation.png" data-alt="経営者とAI顧問が打ち合わせする様子" data-tag="LISTEN FIRST." data-cap="ツールの話より先に、御社の仕事を聞く。">
