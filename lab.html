@@ -1,4 +1,4 @@
-<!-- 2026-07-22: 実物ラボ試作 — works/systems/demos/cases の統合入口 -->
+<!-- 2026-07-22: 実物ラボ — 倉庫セクション削除・カタログ拡張・旧ハブはリダイレクト -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -106,17 +106,6 @@
   .empty-state p { font-size: 14px; color: var(--gray); margin-bottom: 16px; }
   .empty-state button { font-family: inherit; cursor: pointer; }
 
-  .warehouse { background: var(--bg-soft); border-top: 1px solid var(--line); }
-  .warehouse h2 { font-size: 22px; color: var(--navy); margin-bottom: 8px; }
-  .warehouse p { font-size: 14px; color: var(--gray); margin-bottom: 24px; }
-  .wh-links { display: flex; flex-wrap: wrap; gap: 12px; }
-  .wh-links a {
-    font-size: 13px; font-weight: 700; color: var(--navy); background: var(--white);
-    border: 1px solid var(--line); border-radius: 6px; padding: 12px 20px; transition: border-color .2s, transform .2s;
-  }
-  .wh-links a:hover { border-color: var(--gold); transform: translateY(-1px); }
-  .wh-links a span { display: block; font-size: 10px; font-weight: 600; color: var(--gray); margin-top: 2px; }
-
   .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; }
   .cta h2 { font-size: 28px; margin-bottom: 12px; }
   .cta p { color: #C7D3E4; font-size: 14px; margin-bottom: 28px; }
@@ -141,8 +130,8 @@
   <div class="container header-inner">
     <a href="index.html" class="logo">AI顧問室</a>
     <nav class="header-nav" aria-label="ヘッダーナビ">
-      <a href="works.html">作品</a>
-      <a href="systems.html">SaaS</a>
+      <a href="#desks">触る机</a>
+      <a href="#shots">1発体験</a>
       <a href="index.html">公式サイト</a>
       <a href="index.html#contact" class="btn btn-gold" style="padding:9px 20px;font-size:13px;">無料相談</a>
     </nav>
@@ -153,14 +142,14 @@
   <div class="container">
     <span class="label">MATERIAL LAB</span>
     <h1>実物を見る。</h1>
-    <p>触る業務デスク・1発デモ・90日ストーリー・制作物——厳選した実物だけを、業種とモードで切り替えます。全部見せる倉庫（旧入口）も下に残しています。</p>
+    <p>触る業務デスク・1発デモ・90日ストーリー・制作物——厳選した実物だけを、業種とモードで切り替えます。</p>
   </div>
 </div>
 
 <div class="note-banner" role="note">
   <div class="container">
     <strong>試作中</strong>
-    <span>不要なら戻します。旧入口（works / systems / demos / cases）も残しています。</span>
+    <span>入口は実物ラボに一本化。works / demos はここへ誘導。Case Theater は stories から。</span>
   </div>
 </div>
 
@@ -181,19 +170,6 @@
   <div class="container">
     <p class="mode-lead" id="mode-lead"></p>
     <div class="card-grid" id="card-grid" aria-live="polite"></div>
-  </div>
-</section>
-
-<section class="warehouse">
-  <div class="container">
-    <h2>倉庫（旧入口）</h2>
-    <p>一覧の全部・深い階層は、従来ページからそのまま辿れます。</p>
-    <div class="wh-links">
-      <a href="works.html">works.html<span>作品ショーケース</span></a>
-      <a href="demos.html">demos.html<span>構築デモギャラリー</span></a>
-      <a href="cases.html">cases.html<span>Case Theater</span></a>
-      <a href="systems.html">systems.html<span>業務SaaS級システム</span></a>
-    </div>
   </div>
 </section>
 
@@ -229,7 +205,7 @@
 
   var MODES = [
     { id: 'desks', label: 'desks', sub: '触る机', lead: '<b>触る机</b> — ログインして全画面を操作できる業務SaaS級デモ。操作の主語が1つに決まっています。' },
-    { id: 'shots', label: 'shots', sub: '1発体験', lead: '<b>1発体験</b> — 登録不要・ワンショット。上のデスクと同じ主語を、軽く触って確かめられます。' },
+    { id: 'shots', label: 'shots', sub: '1発体験', lead: '<b>1発体験</b> — 業種向けの体験デモをまとめています（厳選。全部ではなく触る価値のあるもの）。登録不要・ワンショット。' },
     { id: 'stories', label: 'stories', sub: '90日の変化', lead: '<b>90日の変化</b> — Case Theater のスクラブで、似た会社がどう変わるかをBefore/Afterで見られます。' },
     { id: 'craft', label: 'craft', sub: '作った物', lead: '<b>作った物</b> — 提案キャンバス・追客壁・動画・3Dなど、成果物サンプルをそのまま触れます。' }
   ];
@@ -247,7 +223,7 @@
     { id:'shain', mode:'desks', industry:['管理'], title:'SHAIN', en:'シャイン', paradigm:'主語：Wiki', desc:'社内Wikiを主語に、新人の質問→出典付き回答→ナレッジ蓄積。Wiki＋Ask。', href:'works-shain.html', thumb:'assets/thumbs/works-shain.jpg', accent:'#059669', cta:'▶ ログインして触る', badge:'ログインして触る' },
     { id:'tateru', mode:'desks', industry:['建設'], title:'TATERU', en:'タテル', paradigm:'主語：週カレンダー', desc:'週カレンダー上の案件カードを主語に、工程チェック→完工→請求ドラフト生成まで連動。', href:'works-system.html', thumb:'assets/thumbs/works-system.jpg', accent:'#0B2447', cta:'▶ ログインして触る', badge:'ログインして触る' },
 
-    /* shots */
+    /* shots — 建設 */
     { id:'shot-keiyaku', mode:'shots', industry:['管理'], title:'契約書要点チェック', en:'KAWASU同型', paradigm:'紙面レビュー', desc:'契約書1枚からリスク条項を抽出。KAWASUと同じ「紙面」主語の軽デモ。', href:'demo-keiyaku.html', thumb:'assets/thumbs/demo-keiyaku.jpg', accent:'#B91C1C', cta:'▶ 1発で試す', badge:'登録不要・1発' },
     { id:'shot-receipt', mode:'shots', industry:['管理'], title:'レシート仕訳AI', en:'SOROBAN同型', paradigm:'帳票グリッド', desc:'レシート撮影→勘定科目つき表に整理。SOROBANと同じ「グリッド」主語。', href:'demo-receipt.html', thumb:'assets/thumbs/demo-receipt.jpg', accent:'#0D9488', cta:'▶ 1発で試す', badge:'登録不要・1発' },
     { id:'shot-inquiry', mode:'shots', industry:['横断'], title:'問い合わせ返信AI', en:'MIMIYORI同型', paradigm:'会話3ペイン', desc:'届いた問い合わせから返信案をすぐ用意。MIMIYORIと同じ「会話」主語。', href:'demo-inquiry.html', thumb:'assets/thumbs/demo-inquiry.jpg', accent:'#EA580C', cta:'▶ 1発で試す', badge:'登録不要・1発' },
@@ -256,6 +232,29 @@
     { id:'shot-policy', mode:'shots', industry:['管理'], title:'規程横断検索', en:'KITEI同型', paradigm:'条文リーダー', desc:'就業規則・社内規程を横断検索し、出典付きで回答。KITEIと同型。', href:'demo-policy-search.html', thumb:'assets/thumbs/works-kitei.jpg', accent:'#2563EB', cta:'▶ 1発で試す', badge:'登録不要・1発' },
     { id:'shot-progress', mode:'shots', industry:['建設'], title:'出来高・請求突合', en:'GENBA同型', paradigm:'マップ＋フィルム', desc:'現場写真と出来高表を突合。GENBAと同じ現場主語の軽デモ。', href:'demo-progress-match.html', thumb:'assets/thumbs/works-genba.jpg', accent:'#EAB308', cta:'▶ 1発で試す', badge:'登録不要・1発' },
     { id:'shot-brief', mode:'shots', industry:['営業'], title:'商談ブリーフ1枚', en:'BRIEF同型', paradigm:'キャンバス', desc:'3カラムキャンバスにAIが商談ブリーフをタイプ生成。BRIEF同型。', href:'demo-brief-box.html', thumb:'assets/thumbs/works-brief.jpg', accent:'#38BDF8', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-photo-report', mode:'shots', industry:['建設'], title:'現場写真→報告書', en:'建設', paradigm:'写真→帳票', desc:'現場写真から日報・報告書の下書きを自動生成。撮影→整理→提出まで一気通貫。', href:'demo-photo-report.html', thumb:'assets/thumbs/demo-photo-report.jpg', accent:'#EAB308', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-safety-patrol', mode:'shots', industry:['建設'], title:'安全パトロール', en:'建設', paradigm:'点検チェック', desc:'現場巡回の指摘事項を写真付きで記録し、是正指示書の下書きまで。', href:'demo-safety-patrol.html', thumb:'assets/thumbs/works-genba.jpg', accent:'#EAB308', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-madori', mode:'shots', industry:['建設','不動産'], title:'間取り図→提案', en:'建設', paradigm:'図面→提案', desc:'間取り図からリフォーム提案・内見イメージのたたき台を生成。', href:'demo-madori.html', thumb:'assets/thumbs/demo-madori.jpg', accent:'#EAB308', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-genba-dx', mode:'shots', industry:['建設'], title:'現場DX', en:'建設', paradigm:'現場オペ', desc:'現場の報告・写真・工程をデジタル化する入口デモ。GENBA導入前の体感。', href:'demo-genba-dx.html', thumb:'assets/thumbs/demo-genba-dx.jpg', accent:'#EAB308', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-staging', mode:'shots', industry:['不動産'], title:'バーチャルステージング', en:'不動産', paradigm:'空室→演出', desc:'空室写真を家具付きイメージに変換。内見前の訴求力を底上げ。', href:'demo-staging.html', thumb:'assets/thumbs/demo-staging.jpg', accent:'#C9A227', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-quote', mode:'shots', industry:['営業'], title:'見積書AI', en:'営業', paradigm:'見積生成', desc:'ヒアリング内容から見積書のたたき台を自動作成。営業の初動を短縮。', href:'demo-quote.html', thumb:'assets/thumbs/demo-quote.jpg', accent:'#38BDF8', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-proposal-gen', mode:'shots', industry:['営業'], title:'提案書生成', en:'営業', paradigm:'テンプレ提案', desc:'御社テンプレに合わせたBtoB提案書のたたき台を、その場で生成。', href:'demo-proposal-gen.html', thumb:'assets/thumbs/works-brief.jpg', accent:'#38BDF8', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-sales-flow', mode:'shots', industry:['営業'], title:'営業フロー支援', en:'営業', paradigm:'商談レーン', desc:'商談の進行ステップと次アクションを整理。追客・提案の抜け漏れを防ぐ。', href:'demo-sales-flow.html', thumb:'assets/thumbs/demo-sales-flow.jpg', accent:'#38BDF8', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-support', mode:'shots', industry:['横断','営業'], title:'サポート返信', en:'横断', paradigm:'問合せ返信', desc:'問い合わせ内容から返信案を即生成。サポート・営業どちらの初動にも。', href:'demo-support.html', thumb:'assets/thumbs/demo-support.jpg', accent:'#EA580C', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-minutes', mode:'shots', industry:['管理'], title:'議事録AI', en:'管理', paradigm:'音声→議事録', desc:'脱線だらけの会議録音から、決定事項・宿題・期日まで整理された議事録を自動作成。', href:'demo-minutes.html', thumb:'assets/thumbs/demo-minutes.jpg', accent:'#2563EB', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-keiri', mode:'shots', industry:['管理'], title:'AI経理部', en:'管理', paradigm:'経理オペ', desc:'請求・入金・仕訳の下ごしらえをAIが支援。経理の定番業務を短縮。', href:'demo-keiri.html', thumb:'assets/thumbs/demo-keiri.jpg', accent:'#0D9488', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-expense', mode:'shots', industry:['管理'], title:'経費精算', en:'管理', paradigm:'領収書→申請', desc:'領収書・交通費から経費申請の下書きまで。管理部門向けの下ごしらえデモ。', href:'demo-expense.html', thumb:'assets/thumbs/works-invoice.jpg', accent:'#0D9488', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-saiyo', mode:'shots', industry:['管理'], title:'採用支援', en:'管理', paradigm:'採用カンバン', desc:'面接メモから評価表・合否メール・求人下書きまで。SAIYO同型の軽デモ。', href:'demo-saiyo.html', thumb:'assets/thumbs/demo-saiyo.jpg', accent:'#7C3AED', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-qa-bot', mode:'shots', industry:['管理'], title:'社内QAボット', en:'管理', paradigm:'FAQ検索', desc:'社内規程・マニュアルを横断検索し、出典付きで即回答。SHAIN導入前の体感。', href:'demo-qa-bot.html', thumb:'assets/thumbs/demo-qa-bot.jpg', accent:'#059669', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-sns', mode:'shots', industry:['横断'], title:'SNS投稿', en:'横断', paradigm:'投稿生成', desc:'商品・イベント情報からSNS投稿文と画像案を生成。集客の初動を短縮。', href:'demo-sns.html', thumb:'assets/thumbs/demo-sns.jpg', accent:'#7C3AED', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-hp-makeover', mode:'shots', industry:['横断'], title:'HP改装', en:'横断', paradigm:'LP改善', desc:'既存サイトを分析し、コピー・構成・ビジュアルの改善案を提示。', href:'demo-hp-makeover.html', thumb:'assets/thumbs/demo-hp-makeover.jpg', accent:'#7C3AED', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-cockpit', mode:'shots', industry:['横断'], title:'経営コックピット', en:'横断', paradigm:'KPI俯瞰', desc:'売上・粗利・案件・人員を1画面で俯瞰。経営判断の入口デモ。', href:'demo-cockpit.html', thumb:'assets/thumbs/demo-cockpit.jpg', accent:'#0B2447', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-exec-report', mode:'shots', industry:['横断'], title:'役員レポート', en:'横断', paradigm:'経営報告', desc:'各部門データから役員向けレポートのたたき台を自動生成。', href:'demo-exec-report.html', thumb:'assets/thumbs/demo-exec-report.jpg', accent:'#0B2447', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-ai-portal', mode:'shots', industry:['横断'], title:'攻めAIポータル', en:'横断', paradigm:'AI診断入口', desc:'既存サービスにAI診断を組み込んだPoC体験。攻めのAI活用の入口デモ。', href:'demo-ai-portal.html', thumb:'assets/thumbs/works-system.jpg', accent:'#C9A227', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-ai-team', mode:'shots', industry:['横断'], title:'AIチーム編成', en:'横断', paradigm:'役割設計', desc:'業務分担に合わせたAIエージェント編成案をその場で設計。', href:'demo-ai-team.html', thumb:'assets/thumbs/demo-ai-team.jpg', accent:'#2D6CB5', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-line-booking', mode:'shots', industry:['横断'], title:'LINE予約', en:'横断', paradigm:'予約導線', desc:'LINEから予約・リマインド・確認まで。店舗・サービス業の集客導線。', href:'demo-line-booking.html', thumb:'assets/thumbs/demo-line-booking.jpg', accent:'#059669', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-menu', mode:'shots', industry:['横断'], title:'メニュー表生成', en:'横断', paradigm:'メニュー制作', desc:'料理写真・価格からメニュー表のたたき台を生成。飲食・小売向け。', href:'demo-menu.html', thumb:'assets/thumbs/demo-menu.jpg', accent:'#EA580C', cta:'▶ 1発で試す', badge:'登録不要・1発' },
+    { id:'shot-kuchikomi', mode:'shots', industry:['横断'], title:'口コミ返信', en:'横断', paradigm:'レビュー対応', desc:'口コミ内容に合わせた返信案を生成。MEO・評判管理の初動支援。', href:'demo-kuchikomi.html', thumb:'assets/thumbs/demo-kuchikomi.jpg', accent:'#EA580C', cta:'▶ 1発で試す', badge:'登録不要・1発' },
 
     /* stories */
     { id:'story-mfg', mode:'stories', industry:['建設'], title:'部品加工メーカー', en:'CASE 01', paradigm:'Case Theater', desc:'Case Theater 90日スクラブ — 日報・報告書が終業後に残る現場の変化。', href:'cases.html#case-manufacturing', thumb:'assets/thumbs/works-genba.jpg', accent:'#EAB308', cta:'▶ 90日をスクラブ', badge:'90日スクラブ', badgeClass:'story' },
@@ -265,9 +264,18 @@
     /* craft */
     { id:'craft-btob', mode:'craft', industry:['営業'], title:'3列提案キャンバス', en:'BtoB営業', paradigm:'提案キャンバス', desc:'課題メモ・論点カード・アウトラインを触って「提案書を生成」。PDFではなく操作する道具。', href:'works-btob-proposal.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#0B2447', cta:'▶ キャンバスを触る', badge:'操作できる', badgeClass:'gold' },
     { id:'craft-mail', mode:'craft', industry:['営業'], title:'Dayレーン追客壁', en:'BtoB営業', paradigm:'追客タイムライン', desc:'商談メモからDay3/7/14追客3通を生成。Before/Afterトグル・編集・送信デモ。', href:'works-sales-mail.html', thumb:'assets/thumbs/works-brief.jpg', accent:'#2D6CB5', cta:'▶ 追客壁を触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-internal-news', mode:'craft', industry:['管理'], title:'社内報', en:'管理部門', paradigm:'社内マガジン', desc:'社内報VOL.1（社長メッセージ・成功事例）とAI利用規程改定の正式文書。ページめくり・条文参照ができる閲覧道具。', href:'works-internal-news.html', thumb:'assets/thumbs/works-presenter.jpg', accent:'#2563EB', cta:'▶ 社内文書を見る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-ai-service', mode:'craft', industry:['横断'], title:'既存サービス+AI', en:'攻めのAI', paradigm:'AI診断ポータル', desc:'問合せフォームを3問AI診断に置き換えたBefore/After。既存サービスにAIを組み込むPoC。', href:'works-ai-service.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#C9A227', cta:'▶ ポータルを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-slides', mode:'craft', industry:['営業'], title:'提案スライド', en:'プレゼン', paradigm:'動くスライド', desc:'タイピング演出・フリップカード・章立て自動生成。PDFではなく触れる提案スライド。', href:'works-slides.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#2D6CB5', cta:'▶ スライドを触る', badge:'操作できる', badgeClass:'gold' },
     { id:'craft-video', mode:'craft', industry:['横断'], title:'住宅プロモーション映像', en:'実写動画', paradigm:'動画生成', desc:'撮影なし・CG会社なし。15秒の実写品質ムービーをブラウザで再生。', href:'works-video.html', thumb:'assets/works/videos/house-promo-poster.jpg', accent:'#C9A227', cta:'▶ 映像を再生', badge:'実AI動画', badgeClass:'gold' },
+    { id:'craft-motion', mode:'craft', industry:['横断'], title:'モーション', en:'モーション', paradigm:'モーショングラフィックス', desc:'テキスト・図形・写真を組み合わせたモーション動画。説明・訴求用の動きのあるビジュアル。', href:'works-motion.html', thumb:'assets/thumbs/works-motion.jpg', accent:'#7C3AED', cta:'▶ モーションを再生', badge:'実AI動画', badgeClass:'gold' },
     { id:'craft-creative', mode:'craft', industry:['横断'], title:'ブランドクリエイティブ一式', en:'ブランド', paradigm:'クリエイティブ', desc:'ロゴ・バナー・チラシ・SNS・30秒動画広告まで。すべてAI＋コードで制作。', href:'works-creative.html', thumb:'assets/thumbs/works-creative.jpg', accent:'#7C3AED', cta:'▶ 一式を見る', badge:'動画広告つき', badgeClass:'gold' },
-    { id:'craft-3d', mode:'craft', industry:['建設'], title:'間取り図→3D内見', en:'3D', paradigm:'実寸3D', desc:'実寸再現3D。俯瞰・一人称ウォークスルー。Blender×model-viewer。', href:'works-3d.html', thumb:'assets/thumbs/works-3d.jpg', accent:'#0B2447', cta:'▶ ビューアを開く', badge:'触って回せます', badgeClass:'gold' }
+    { id:'craft-3d', mode:'craft', industry:['建設'], title:'間取り図→3D内見', en:'3D', paradigm:'実寸3D', desc:'実寸再現3D。俯瞰・一人称ウォークスルー。Blender×model-viewer。', href:'works-3d.html', thumb:'assets/thumbs/works-3d.jpg', accent:'#0B2447', cta:'▶ ビューアを開く', badge:'触って回せます', badgeClass:'gold' },
+    { id:'craft-splat', mode:'craft', industry:['建設'], title:'Gaussian Splat', en:'3D', paradigm:'実写3D', desc:'実写から生成した3D都市空間。Gaussian Splattingで空間をブラウザ上で体験。', href:'works-splat.html', thumb:'assets/thumbs/works-splat.jpg', accent:'#0B2447', cta:'▶ 3D空間を見る', badge:'触って回せます', badgeClass:'gold' },
+    { id:'craft-kitchen', mode:'craft', industry:['建設'], title:'キッチンパース', en:'リフォーム', paradigm:'カラーシミュ', desc:'キッチンの色・素材をリアルタイムで差し替え。リフォーム提案のビジュアル支援。', href:'works-kitchen.html', thumb:'assets/thumbs/works-kitchen.jpg', accent:'#EAB308', cta:'▶ シミュレータを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-paint', mode:'craft', industry:['建設'], title:'外壁塗装パース', en:'リフォーム', paradigm:'カラーシミュ', desc:'外壁の色・質感をリアルタイムで差し替え。塗装提案の完成イメージを即提示。', href:'works-paint.html', thumb:'assets/thumbs/works-paint.jpg', accent:'#EAB308', cta:'▶ シミュレータを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-edit', mode:'craft', industry:['横断'], title:'動画編集', en:'動画', paradigm:'Before/After', desc:'素材のトリミング・テロップ・BGM差し替えのBefore/After。AI動画編集の品質サンプル。', href:'works-edit.html', thumb:'assets/thumbs/works-edit.jpg', accent:'#C9A227', cta:'▶ 編集デモを見る', badge:'実AI動画', badgeClass:'gold' },
+    { id:'craft-presenter', mode:'craft', industry:['横断'], title:'操作マニュアル', en:'マニュアル', paradigm:'AIプレゼンター', desc:'AI生成プレゼンターが操作手順を音声解説。社内研修・ヘルプページ向け。', href:'works-presenter.html', thumb:'assets/thumbs/works-presenter.jpg', accent:'#2563EB', cta:'▶ マニュアルを見る', badge:'操作できる', badgeClass:'gold' }
   ];
 
   var state = { mode: 'desks', ind: 'all' };
