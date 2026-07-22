@@ -1,3 +1,4 @@
+<!-- 2026-07-22: KAWASUをLegal workspace（朱印×象牙紙面×ライトサイドバー）にリデザイン -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -20,16 +21,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D;
+    --navy: #1A1F2E; --navy-deep: #12151F; --navy-light: #2A3144;
     --gold: #C9A227; --gold-deep: #A9821A;
 
-    --pri: #2563EB; --pri-deep: #1D4ED8; --pri-bg: #EFF4FF;
-    --ink: #0F172A; --gray: #5B6472; --gray-soft: #94A0AF;
-    --line: #E2E8F0; --bg-soft: #F5F7FA; --white: #FFFFFF;
+    --pri: #B91C1C; --pri-deep: #991B1B; --pri-bg: #FEF2F2;
+    --ink: #1A1F2E; --gray: #5C6470; --gray-soft: #8B93A0;
+    --line: #E5E0D6; --bg-soft: #F3EFE6; --white: #FFFFFF;
+    --ivory: #F7F3EA; --paper: #FBF8F1;
     --teal: #0E7A5F; --teal-bg: #E1F5EE;
     --amber: #92720A; --amber-bg: #FCF3D9;
-    --red: #B0432F; --red-bg: #FBE4E1;
-    --slate-bg: #EEF2F7;
+    --red: #B91C1C; --red-bg: #FEE2E2;
+    --slate-bg: #EEEAE2;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -37,12 +39,12 @@
     font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--bg-soft);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { line-height: 1.4; }
+  h1, h2, h3 { line-height: 1.4; font-family: 'Noto Serif JP', serif; }
   a { text-decoration: none; color: inherit; }
   button { font-family: inherit; cursor: pointer; }
   input, textarea { font-family: inherit; }
   img, svg { max-width: 100%; }
-  ::selection { background: var(--gold); color: var(--navy-deep); }
+  ::selection { background: #FECACA; color: var(--ink); }
   .serif { font-family: 'Noto Serif JP', serif; }
 
   /* ============ 1. デモフレーム帯 ============ */
@@ -68,29 +70,49 @@
     body { padding-top: 52px; }
   }
 
-  /* ============ 2. ログイン画面 ============ */
+  /* ============ 2. ログイン画面（左右分割・捺印モチーフ） ============ */
   #view-login {
-    min-height: calc(100vh - 44px); display: flex; align-items: center; justify-content: center;
-    background: radial-gradient(circle at 20% 15%, #1E3A6E 0%, #0B2447 46%, #071A35 100%);
-    padding: 40px 20px;
+    min-height: calc(100vh - 44px); display: grid; grid-template-columns: 1.05fr 1fr;
+    background: var(--ivory);
   }
   #view-login.hide { display: none; }
+  .login-hero {
+    position: relative; background: linear-gradient(160deg, #1A1F2E 0%, #2A1A1A 55%, #3B1515 100%);
+    color: #F5EDE6; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center;
+    overflow: hidden;
+  }
+  .login-hero::before {
+    content: ''; position: absolute; width: 220px; height: 220px; border: 3px solid rgba(185,28,28,.45);
+    border-radius: 12px; right: 48px; top: 18%; transform: rotate(-12deg);
+  }
+  .login-hero::after {
+    content: '契'; position: absolute; right: 78px; top: calc(18% + 58px); font-family: 'Noto Serif JP', serif;
+    font-size: 72px; font-weight: 700; color: rgba(185,28,28,.55); transform: rotate(-12deg); letter-spacing: .1em;
+  }
+  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .22em; color: #E8B4B4; font-weight: 700; margin-bottom: 18px; }
+  .login-hero h2 { font-family: 'Noto Serif JP', serif; font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 18em; }
+  .login-hero h2 em { font-style: normal; color: #FCA5A5; }
+  .login-hero p { font-size: 14px; color: #C9B8B0; max-width: 28em; line-height: 1.9; }
+  .login-panel {
+    display: flex; align-items: center; justify-content: center; padding: 40px 28px;
+    background: linear-gradient(180deg, #FBF8F1 0%, #F3EFE6 100%);
+  }
   .login-card {
-    width: 100%; max-width: 400px; background: #fff; border-radius: 14px; padding: 40px 36px 30px;
-    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+    width: 100%; max-width: 400px; background: #fff; border-radius: 4px; padding: 40px 36px 30px;
+    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(26,31,46,.08);
   }
   .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
-  .login-logo .k { font-size: 26px; font-weight: 900; color: var(--pri); letter-spacing: -0.02em; }
+  .login-logo .k { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: var(--pri); letter-spacing: .04em; }
   .login-logo .tag-en { font-size: 10.5px; color: var(--gray-soft); letter-spacing: .12em; }
-  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; font-family: 'Noto Serif JP', serif; }
   .login-field { margin-bottom: 14px; }
   .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
   .login-field input {
-    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px;
-    color: var(--gray-soft); background: #F8FAFC; cursor: not-allowed;
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 4px; font-size: 14px;
+    color: var(--gray-soft); background: var(--ivory); cursor: not-allowed;
   }
   .login-btn {
-    width: 100%; padding: 13px; border: none; border-radius: 8px; background: var(--pri); color: #fff;
+    width: 100%; padding: 13px; border: none; border-radius: 4px; background: var(--pri); color: #fff;
     font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
   }
@@ -108,6 +130,11 @@
     font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center;
     border-top: 1px solid var(--line); padding-top: 14px;
   }
+  @media (max-width: 860px) {
+    #view-login { grid-template-columns: 1fr; }
+    .login-hero { min-height: 220px; padding: 36px 28px; }
+    .login-hero::before, .login-hero::after { display: none; }
+  }
 
   /* ============ 3. アプリシェル ============ */
   #view-app { display: none; }
@@ -115,32 +142,33 @@
   .app-frame { display: flex; align-items: flex-start; min-height: calc(100vh - 44px); }
 
   .sidebar {
-    width: 232px; flex: 0 0 auto; background: var(--navy-deep); color: #DCE4F0;
+    width: 248px; flex: 0 0 auto; background: #FFFCFA; color: var(--ink);
     display: flex; flex-direction: column; position: sticky; top: 44px; height: calc(100vh - 44px);
-    padding: 20px 0; z-index: 50;
+    padding: 20px 0; z-index: 50; border-right: 1px solid var(--line);
+    box-shadow: inset 4px 0 0 var(--pri);
   }
-  .sidebar-brand { padding: 0 20px 18px; border-bottom: 1px solid rgba(255,255,255,.1); margin-bottom: 12px; display: flex; align-items: baseline; gap: 6px; }
-  .sidebar-brand .k { font-size: 19px; font-weight: 900; color: #fff; letter-spacing: -0.02em; }
-  .sidebar-brand .tag-en { font-size: 9.5px; color: #7488A8; letter-spacing: .1em; }
+  .sidebar-brand { padding: 0 20px 18px; border-bottom: 1px solid var(--line); margin-bottom: 12px; display: flex; align-items: baseline; gap: 6px; }
+  .sidebar-brand .k { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--pri); letter-spacing: .04em; }
+  .sidebar-brand .tag-en { font-size: 9.5px; color: var(--gray-soft); letter-spacing: .1em; }
   .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 12px; overflow-y: auto; }
   .nav-btn {
-    display: flex; align-items: center; gap: 11px; padding: 11px 12px; border-radius: 8px; border: none; background: none;
-    color: #B9C6DB; font-size: 13.5px; font-weight: 500; text-align: left; width: 100%; transition: background .15s, color .15s;
+    display: flex; align-items: center; gap: 11px; padding: 11px 12px; border-radius: 4px; border: none; background: none;
+    color: var(--gray); font-size: 13.5px; font-weight: 500; text-align: left; width: 100%; transition: background .15s, color .15s;
   }
   .nav-btn svg { flex: 0 0 auto; opacity: .85; }
-  .nav-btn:hover { background: rgba(255,255,255,.07); color: #fff; }
-  .nav-btn.active { background: var(--pri); color: #fff; font-weight: 700; }
+  .nav-btn:hover { background: var(--bg-soft); color: var(--ink); }
+  .nav-btn.active { background: var(--pri-bg); color: var(--pri-deep); font-weight: 700; }
   .nav-btn.active svg { opacity: 1; }
-  .sidebar-foot { padding: 14px 20px 0; border-top: 1px solid rgba(255,255,255,.1); margin-top: 14px; }
+  .sidebar-foot { padding: 14px 20px 0; border-top: 1px solid var(--line); margin-top: 14px; }
   .sidebar-user { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
   .sidebar-user .avatar {
-    width: 30px; height: 30px; border-radius: 50%; background: var(--pri); color: #fff; display: grid; place-items: center;
+    width: 30px; height: 30px; border-radius: 4px; background: var(--pri); color: #fff; display: grid; place-items: center;
     font-size: 12px; font-weight: 700; flex: 0 0 auto;
   }
-  .sidebar-user .u-name { font-size: 12.5px; font-weight: 700; color: #fff; }
-  .sidebar-user .u-role { font-size: 10.5px; color: #7488A8; }
-  .logout-link { display: block; font-size: 11.5px; color: #8FA2C0; padding: 6px 2px; }
-  .logout-link:hover { color: #fff; }
+  .sidebar-user .u-name { font-size: 12.5px; font-weight: 700; color: var(--ink); }
+  .sidebar-user .u-role { font-size: 10.5px; color: var(--gray-soft); }
+  .logout-link { display: block; font-size: 11.5px; color: var(--gray); padding: 6px 2px; }
+  .logout-link:hover { color: var(--pri); }
 
   .hamburger-btn {
     display: none; width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--line); background: #fff;
@@ -153,7 +181,7 @@
     backdrop-filter: blur(4px);
     display: flex; align-items: center; gap: 14px; padding: 0 24px;
   }
-  .app-header h1.view-name { font-size: 15.5px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .app-header h1.view-name { font-size: 15.5px; font-weight: 700; color: var(--ink); white-space: nowrap; font-family: 'Noto Serif JP', serif; }
   .header-search { flex: 1; min-width: 0; display: flex; justify-content: center; }
   .header-search-inner { position: relative; width: 100%; max-width: 380px; }
   .header-search-inner input {
@@ -195,35 +223,35 @@
 
   /* KPI */
   .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 22px; }
-  .kpi-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; transition: box-shadow .15s; }
-  .kpi-card:hover { box-shadow: 0 8px 24px rgba(15,23,42,.06); }
-  .kpi-card .kpi-label { font-size: 12px; color: var(--gray); font-weight: 700; display: flex; align-items: center; gap: 6px; }
-  .kpi-card .kpi-value { font-size: 27px; color: var(--ink); margin: 9px 0 4px; font-weight: 700; }
-  .kpi-card .kpi-value span { font-size: 13px; color: var(--gray-soft); font-weight: 500; margin-left: 2px; }
+  .kpi-card { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 18px 20px; transition: box-shadow .15s; }
+  .kpi-card:hover { box-shadow: 0 8px 24px rgba(26,31,46,.06); }
+  .kpi-card .kpi-label { font-size: 12px; color: var(--gray); font-weight: 700; display: flex; align-items: center; gap: 6px; font-family: 'Noto Sans JP', sans-serif; }
+  .kpi-card .kpi-value { font-size: 27px; color: var(--ink); margin: 9px 0 4px; font-weight: 700; font-family: 'Noto Serif JP', serif; }
+  .kpi-card .kpi-value span { font-size: 13px; color: var(--gray-soft); font-weight: 500; margin-left: 2px; font-family: 'Noto Sans JP', sans-serif; }
   .kpi-card .kpi-sub { font-size: 11px; color: var(--gray-soft); }
   .kpi-swatch { width: 8px; height: 8px; border-radius: 2px; flex: 0 0 auto; }
 
   .grid-2col { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; align-items: start; margin-bottom: 18px; }
-  .panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 20px 22px; }
   .panel h3 { font-size: 14.5px; color: var(--ink); margin-bottom: 4px; font-weight: 700; }
-  .panel .panel-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; }
+  .panel .panel-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; font-family: 'Noto Sans JP', sans-serif; }
 
   .task-list { display: flex; flex-direction: column; gap: 8px; }
   .task-row {
-    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px;
+    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 4px;
     transition: background .15s, border-color .15s; background: #fff;
   }
-  .task-row:hover { background: var(--bg-soft); border-color: #CBD5E1; }
+  .task-row:hover { background: var(--bg-soft); border-color: #D4CBB8; }
   .task-row .t-badge { flex: 0 0 auto; }
   .task-row .t-main { flex: 1; min-width: 0; }
-  .task-row .t-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .task-row .t-name { font-size: 13px; font-weight: 700; color: var(--ink); font-family: 'Noto Sans JP', sans-serif; }
   .task-row .t-sub { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
   .task-row .t-arrow { flex: 0 0 auto; color: var(--gray-soft); }
 
   .bar-chart { display: flex; align-items: flex-end; gap: 14px; height: 180px; padding-top: 22px; }
   .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
   .bar-value { font-size: 11px; color: var(--ink); font-weight: 700; margin-bottom: 6px; white-space: nowrap; }
-  .bar { width: 100%; max-width: 42px; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, #93B4F5, var(--pri)); transition: height .6s cubic-bezier(.2,.8,.2,1); }
+  .bar { width: 100%; max-width: 42px; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, #FCA5A5, var(--pri)); transition: height .6s cubic-bezier(.2,.8,.2,1); }
   .bar.current { background: linear-gradient(180deg, var(--gold), var(--gold-deep)); }
   .bar-month { font-size: 11px; color: var(--gray); margin-top: 8px; }
 
@@ -256,21 +284,21 @@
     color: var(--gray); font-weight: 500; transition: all .15s; white-space: nowrap; display: flex; align-items: center; gap: 6px;
   }
   .tab-chip:hover { border-color: var(--pri); }
-  .tab-chip.active { background: var(--navy); color: #fff; border-color: var(--navy); font-weight: 700; }
+  .tab-chip.active { background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 700; }
   .tab-chip .cnt { font-size: 10.5px; background: rgba(0,0,0,.08); padding: 1px 6px; border-radius: 999px; }
   .tab-chip.active .cnt { background: rgba(255,255,255,.2); }
   .search-box { position: relative; margin-left: auto; }
   .search-box input {
-    padding: 9px 14px 9px 34px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; width: 240px; background: #fff;
+    padding: 9px 14px 9px 34px; border: 1px solid var(--line); border-radius: 4px; font-size: 13px; width: 240px; background: #fff;
   }
   .search-box input:focus { outline: 2px solid var(--pri); }
   .search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: .5; }
 
-  .table-wrap { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .table-wrap { background: #fff; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
   table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   table.data-table th {
-    text-align: left; padding: 12px 16px; background: var(--bg-soft); color: var(--gray); font-weight: 700; font-size: 11.5px;
-    border-bottom: 1px solid var(--line); white-space: nowrap;
+    text-align: left; padding: 12px 16px; background: var(--ivory); color: var(--gray); font-weight: 700; font-size: 11.5px;
+    border-bottom: 1px solid var(--line); white-space: nowrap; font-family: 'Noto Sans JP', sans-serif;
   }
   table.data-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
   table.data-table tbody tr { cursor: pointer; transition: background .12s; }
@@ -288,34 +316,38 @@
   .detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
   .detail-head h2 { font-size: 19px; }
   .detail-head .sub { font-size: 12px; color: var(--gray); margin-top: 5px; }
-  .detail-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 20px; align-items: start; }
+  .detail-grid { display: grid; grid-template-columns: 1.45fr minmax(300px, 360px); gap: 20px; align-items: start; }
 
-  .paper-wrap { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-  .paper-toolbar { padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--bg-soft); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-  .paper-toolbar .pt-label { font-size: 11.5px; color: var(--gray); font-weight: 700; }
-  .paper { position: relative; padding: 44px 46px 60px; max-height: 760px; overflow-y: auto; background: #FEFEFC; }
-  .paper .doc-title { text-align: center; font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: .04em; }
+  .paper-wrap { background: var(--paper); border: 1px solid var(--line); border-radius: 2px; overflow: hidden; box-shadow: 0 12px 40px rgba(26,31,46,.06); }
+  .paper-toolbar { padding: 12px 20px; border-bottom: 1px solid var(--line); background: #F0EBE0; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .paper-toolbar .pt-label { font-size: 11.5px; color: var(--gray); font-weight: 700; letter-spacing: .06em; font-family: 'Noto Sans JP', sans-serif; }
+  .paper { position: relative; padding: 48px 52px 64px; max-height: 760px; overflow-y: auto; background: var(--paper); }
+  .paper .doc-title { text-align: center; font-size: 20px; font-weight: 700; margin-bottom: 8px; letter-spacing: .12em; font-family: 'Noto Serif JP', serif; }
   .paper .doc-sub { text-align: center; font-size: 11.5px; color: var(--gray-soft); margin-bottom: 30px; }
   .paper .doc-parties { font-size: 13px; color: var(--ink); margin-bottom: 30px; line-height: 2; }
-  .contract-article { margin-bottom: 22px; scroll-margin-top: 20px; border-radius: 6px; transition: background-color .4s ease; padding: 4px 8px; margin-left: -8px; margin-right: -8px; }
-  .contract-article h4 { font-size: 13.5px; font-weight: 700; margin-bottom: 8px; }
+  .contract-article { margin-bottom: 22px; scroll-margin-top: 20px; border-radius: 2px; transition: background-color .4s ease; padding: 6px 10px 6px 14px; margin-left: -8px; margin-right: -8px; border-left: 3px solid transparent; position: relative; }
+  .contract-article h4 { font-size: 13.5px; font-weight: 700; margin-bottom: 8px; font-family: 'Noto Serif JP', serif; letter-spacing: .04em; }
   .contract-article p { font-size: 12.8px; color: #2B2F36; line-height: 2; margin-bottom: 6px; }
   .contract-article ol.paragraphs { padding-left: 1.4em; }
   .contract-article ol.paragraphs li { font-size: 12.8px; color: #2B2F36; line-height: 2; margin-bottom: 6px; }
-  .contract-article.flash { animation: articleFlash 1.8s ease; }
+  .contract-article.flash { animation: articleFlash 1.8s ease; border-left-color: var(--pri); }
+  .contract-article.flash::after {
+    content: 'リスク指摘'; position: absolute; right: 8px; top: 6px; font-size: 10px; font-weight: 700;
+    color: var(--pri); background: var(--pri-bg); padding: 2px 8px; border-radius: 2px; font-family: 'Noto Sans JP', sans-serif;
+  }
   @keyframes articleFlash {
-    0% { background-color: #FFF3B0; }
-    70% { background-color: #FFF3B0; }
+    0% { background-color: #FEE2E2; }
+    70% { background-color: #FEE2E2; }
     100% { background-color: transparent; }
   }
-  .doc-sign-block { margin-top: 40px; padding-top: 26px; border-top: 1px dashed var(--line); font-size: 12.5px; line-height: 2.1; position: relative; }
+  .doc-sign-block { margin-top: 40px; padding-top: 26px; border-top: 1px dashed #C9BEA8; font-size: 12.5px; line-height: 2.1; position: relative; }
   .doc-sign-block .sign-row { display: flex; justify-content: space-between; gap: 30px; margin-top: 14px; }
   .doc-sign-block .sign-col { flex: 1; }
   .stamp-seal {
-    position: absolute; top: 46px; right: 24px; width: 92px; height: 92px; border: 3px solid #B5301F; border-radius: 8px;
-    color: #B5301F; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 700;
-    font-size: 13px; line-height: 1.3; transform: rotate(-8deg) scale(0); opacity: 0; background: rgba(255,255,255,.5);
-    letter-spacing: .05em;
+    position: absolute; top: 46px; right: 24px; width: 96px; height: 96px; border: 3px solid #B91C1C; border-radius: 8px;
+    color: #B91C1C; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 700;
+    font-size: 13px; line-height: 1.3; transform: rotate(-8deg) scale(0); opacity: 0; background: rgba(255,255,255,.55);
+    letter-spacing: .05em; font-family: 'Noto Serif JP', serif;
   }
   .stamp-seal.stamped { animation: stampIn .5s cubic-bezier(.34,1.56,.64,1) forwards; }
   @keyframes stampIn {
@@ -325,11 +357,11 @@
   }
 
   /* Tabs panel right */
-  .side-panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-  .side-tabs { display: flex; border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+  .side-panel { background: #fff; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .side-tabs { display: flex; border-bottom: 1px solid var(--line); background: var(--ivory); }
   .side-tab-btn {
     flex: 1; padding: 13px 8px; font-size: 12.5px; font-weight: 700; color: var(--gray); background: none; border: none;
-    border-bottom: 2px solid transparent; transition: color .15s;
+    border-bottom: 2px solid transparent; transition: color .15s; font-family: 'Noto Sans JP', sans-serif;
   }
   .side-tab-btn.active { color: var(--pri); border-bottom-color: var(--pri); background: #fff; }
   .side-tab-body { padding: 20px; min-height: 460px; }
@@ -360,9 +392,9 @@
   .btn-skip:hover { background: var(--pri-bg); }
 
   .finding-card {
-    border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; margin-bottom: 12px; cursor: pointer;
     transition: box-shadow .15s, border-color .15s; opacity: 0; transform: translateY(10px);
-    background: #fff;
+    background: #fff; border-left: 3px solid var(--pri);
   }
   .finding-card.in { animation: findingIn .5s ease forwards; }
   @keyframes findingIn { to { opacity: 1; transform: none; } }
@@ -374,7 +406,7 @@
   .finding-card .fc-fix b { display: block; font-size: 10.5px; color: var(--teal); margin-bottom: 4px; letter-spacing: .04em; }
 
   .ai-summary-band {
-    margin-top: 6px; background: var(--pri-bg); border: 1px solid #C7DAFB; border-radius: 10px; padding: 14px 16px;
+    margin-top: 6px; background: var(--pri-bg); border: 1px solid #FECACA; border-radius: 4px; padding: 14px 16px;
     font-size: 12.5px; color: var(--pri-deep); font-weight: 700; opacity: 0;
   }
   .ai-summary-band.in { animation: findingIn .5s ease forwards; }
@@ -433,7 +465,7 @@
 
   /* Ledger */
   .lead-band {
-    background: var(--pri-bg); border: 1px solid #C7DAFB; border-radius: 10px; padding: 13px 16px; font-size: 12.5px;
+    background: var(--pri-bg); border: 1px solid #FECACA; border-radius: 4px; padding: 13px 16px; font-size: 12.5px;
     color: var(--pri-deep); margin-bottom: 18px; display: flex; gap: 10px; align-items: flex-start;
   }
 
@@ -552,21 +584,28 @@
 
 <!-- ============ ログイン画面 ============ -->
 <div id="view-login">
-  <div class="login-card">
-    <div class="login-logo"><span class="k">KAWASU</span><span class="tag-en">AI CONTRACT CLOUD</span></div>
-    <p class="login-sub">契約を、交わすだけに。</p>
-    <div class="login-field">
-      <label for="loginMail">メールアドレス</label>
-      <input id="loginMail" type="text" value="demo@kawasu.example" readonly>
+  <div class="login-hero">
+    <div class="hero-kicker">AI CONTRACT CLOUD</div>
+    <h2>契約書を、<em>読んで・直して・捺印</em>するまで。</h2>
+    <p>AIが全条項をスキャンし、リスクを指摘。承認フローから電子締結まで、法務ワークスペースとして一気通貫。</p>
+  </div>
+  <div class="login-panel">
+    <div class="login-card">
+      <div class="login-logo"><span class="k">KAWASU</span><span class="tag-en">AI CONTRACT CLOUD</span></div>
+      <p class="login-sub">契約を、交わすだけに。</p>
+      <div class="login-field">
+        <label for="loginMail">メールアドレス</label>
+        <input id="loginMail" type="text" value="demo@kawasu.example" readonly>
+      </div>
+      <div class="login-field">
+        <label for="loginPass">パスワード</label>
+        <input id="loginPass" type="password" value="dummydummy" readonly>
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">
+        <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
+      </button>
+      <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
     </div>
-    <div class="login-field">
-      <label for="loginPass">パスワード</label>
-      <input id="loginPass" type="password" value="dummydummy" readonly>
-    </div>
-    <button class="login-btn" id="loginBtn" onclick="doLogin()">
-      <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
-    </button>
-    <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
   </div>
 </div>
 
