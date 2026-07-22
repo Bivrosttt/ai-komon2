@@ -1,4 +1,4 @@
-<!-- 更新: アフターHP（v3）をプレミアムUIにリデザイン — ヒーロー・統計帯・カード・CTAを刷新 -->
+<!-- 更新: アフターHP v4 — 本物のコーポレートサイト風UI（通常タイポ・分割ヒーロー・多段フッター・問合せフォーム） -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -17,7 +17,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,700;1,9..40,500&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=Oswald:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=Oswald:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #0B2447;
@@ -187,10 +187,10 @@
   }
 
   .compare-stage {
-    position: relative; width: 100%; height: 620px; overflow: hidden; background: #ddd;
+    position: relative; width: 100%; height: 720px; overflow: hidden; background: #ddd;
     touch-action: pan-y;
   }
-  @media (max-width: 680px) { .compare-stage { height: 480px; } }
+  @media (max-width: 680px) { .compare-stage { height: 520px; } }
 
   .compare-layer { position: absolute; inset: 0; overflow: hidden; }
   .compare-after { z-index: 1; }
@@ -392,355 +392,349 @@
     .btn { white-space: normal; max-width: 100%; box-sizing: border-box; text-align: center; padding-left: 20px; padding-right: 20px; }
   }
 
-  /* ===== v3: premium rebuilt site chrome ===== */
-  .v2-wrap { font-size: 13px; color: var(--a-ink); line-height: 1.75; }
+  /* ===== v4: production-grade rebuilt site (real web scale) ===== */
+  .rw-site {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    color: var(--a-ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .rw-container { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+  .rw-sec { padding: 64px 0; }
+  .rw-sec--white { background: #fff; }
+  .rw-sec--soft { background: var(--a-bg); }
+  .rw-sec--dark { background: var(--a-primary-deep); color: rgba(255,255,255,0.88); }
 
-  .v3-topbar {
-    background: var(--a-primary-deep); color: rgba(255,255,255,0.82);
-    font-size: 9.5px; letter-spacing: 0.06em; padding: 6px 20px;
-    display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
+  .rw-util {
+    background: var(--a-primary-deep); color: rgba(255,255,255,0.78);
+    font-size: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-  .v3-topbar span { display: inline-flex; align-items: center; gap: 5px; }
-  .v3-topbar b { color: var(--a-accent); font-weight: 700; }
+  .rw-util-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .rw-util-left, .rw-util-right { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .rw-util-item { display: inline-flex; align-items: center; gap: 6px; }
+  .rw-util-item strong { color: #fff; font-weight: 700; }
+  .rw-util-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--a-accent); }
 
-  .v2-header, .v3-header {
-    position: sticky; top: 0; z-index: 6;
-    background: rgba(255,255,255,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-    box-shadow: 0 6px 24px rgba(0,0,0,0.04);
+  .rw-header {
+    position: sticky; top: 0; z-index: 8;
+    background: rgba(255,255,255,0.94); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.8), 0 8px 32px rgba(0,0,0,0.04);
   }
-  .v2-header-inner, .v3-header-inner {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 22px;
+  .rw-header-inner {
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px;
+    min-height: 72px;
   }
-  .v3-brand { display: flex; align-items: center; gap: 10px; min-width: 0; flex-shrink: 1; }
-  .v3-logo-mark {
-    width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
-    background: linear-gradient(135deg, var(--a-primary) 0%, var(--a-primary-deep) 100%);
+  .rw-brand { display: flex; align-items: center; gap: 14px; min-width: 0; text-decoration: none; color: inherit; }
+  .rw-mark {
+    width: 44px; height: 44px; border-radius: 11px; flex-shrink: 0;
+    background: linear-gradient(145deg, var(--a-primary) 0%, var(--a-primary-deep) 100%);
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.14);
+    color: #fff; font-weight: 700; font-size: 13px; letter-spacing: 0.04em;
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--a-primary) 35%, transparent);
   }
-  .v3-logo-mark span {
-    width: 14px; height: 14px; border-radius: 3px;
-    border: 2px solid rgba(255,255,255,0.85); transform: rotate(45deg);
+  .rw-brand-text { min-width: 0; }
+  .rw-brand-text strong {
+    display: block; font-size: 17px; color: var(--a-primary-deep); letter-spacing: 0.02em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3;
   }
-  .v2-logo, .v3-logo-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-  .v2-logo strong, .v3-logo-text strong {
-    font-size: 13px; color: var(--a-primary-deep); letter-spacing: 0.03em;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  .rw-brand-text span {
+    display: block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--a-muted); margin-top: 2px;
   }
-  .v2-logo span, .v3-logo-text span {
-    font-size: 8px; color: var(--a-muted); letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap;
+  .rw-nav { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+  .rw-nav a {
+    font-size: 14px; font-weight: 500; color: var(--a-ink); opacity: 0.82;
+    position: relative; padding: 4px 0; transition: color .15s, opacity .15s;
   }
-  .v2-nav, .v3-nav { display: flex; gap: 16px; flex-wrap: wrap; }
-  .v2-nav a, .v3-nav a {
-    font-size: 10px; font-weight: 700; color: var(--a-ink); opacity: 0.72; white-space: nowrap;
-    position: relative; transition: color .15s, opacity .15s;
+  .rw-nav a:hover { color: var(--a-primary); opacity: 1; }
+  .rw-nav a.is-active { color: var(--a-primary); opacity: 1; font-weight: 700; }
+  .rw-nav a.is-active::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px;
+    background: var(--a-accent); border-radius: 2px;
   }
-  .v2-nav a:hover, .v3-nav a:hover { color: var(--a-accent); opacity: 1; }
-  .v2-nav a::after, .v3-nav a::after {
-    content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px;
-    background: var(--a-accent); transform: scaleX(0); transition: transform .18s ease;
+  .rw-header-actions { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+  .rw-header-tel {
+    font-size: 13px; font-weight: 700; color: var(--a-primary-deep); white-space: nowrap;
+    display: flex; flex-direction: column; align-items: flex-end; line-height: 1.35;
   }
-  .v2-nav a:hover::after, .v3-nav a:hover::after { transform: scaleX(1); }
-  .v2-header-cta, .v3-header-cta {
-    font-size: 10px; font-weight: 700; padding: 9px 16px; border-radius: 999px;
-    background: linear-gradient(135deg, var(--a-accent) 0%, color-mix(in srgb, var(--a-accent) 78%, #000) 100%);
-    color: #fff; white-space: nowrap; flex-shrink: 0;
-    box-shadow: 0 8px 20px color-mix(in srgb, var(--a-accent) 35%, transparent);
-    transition: transform .12s, box-shadow .15s;
+  .rw-header-tel small { font-size: 10px; font-weight: 500; color: var(--a-muted); }
+  .rw-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 24px; border-radius: 6px; font-size: 14px; font-weight: 700;
+    border: none; cursor: default; transition: transform .12s, box-shadow .15s, opacity .15s;
+    white-space: nowrap;
   }
-  .v2-header-cta:hover, .v3-header-cta:hover { transform: translateY(-1px); }
+  .rw-btn:hover { transform: translateY(-1px); }
+  .rw-btn--primary {
+    background: var(--a-accent); color: #fff;
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--a-accent) 38%, transparent);
+  }
+  .rw-btn--outline {
+    background: transparent; border: 1.5px solid rgba(255,255,255,0.55); color: #fff;
+  }
+  .rw-btn--dark { background: var(--a-primary-deep); color: #fff; }
+  .rw-btn--ghost {
+    background: #fff; color: var(--a-primary-deep); border: 1.5px solid rgba(0,0,0,0.12);
+  }
+  .rw-btn--sm { padding: 10px 18px; font-size: 13px; }
 
-  .v2-hero, .v3-hero {
-    position: relative; min-height: 300px; background-size: cover; background-position: center;
-    display: flex; align-items: flex-end; color: #fff; overflow: hidden;
+  .rw-hero { padding: 56px 0 48px; background: var(--a-bg); overflow: hidden; position: relative; }
+  .rw-hero::before {
+    content: ""; position: absolute; top: -120px; right: -80px; width: 420px; height: 420px;
+    border-radius: 50%; background: radial-gradient(circle, var(--a-accent-soft) 0%, transparent 68%);
+    pointer-events: none;
   }
-  .v3-hero::before {
-    content: ""; position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 85% 15%, rgba(255,255,255,0.16) 0%, transparent 55%),
-      linear-gradient(115deg, color-mix(in srgb, var(--a-primary-deep) 88%, transparent) 0%, rgba(0,0,0,0.35) 48%, rgba(0,0,0,0.72) 100%);
-    z-index: 0;
+  .rw-hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; position: relative; z-index: 1; }
+  .rw-kicker {
+    display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px;
+    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--a-accent);
   }
-  .v2-hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.78) 100%); z-index: 0; }
-  .v3-hero .v2-hero-overlay { background: none; }
-  .v2-hero-inner, .v3-hero-inner { position: relative; z-index: 1; padding: 34px 26px 30px; width: 100%; }
-  .v3-hero-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-  .v3-badge {
-    display: inline-flex; align-items: center; gap: 5px;
-    font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
-    padding: 5px 11px; border-radius: 999px;
-    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  .rw-kicker::before { content: ""; width: 28px; height: 2px; background: var(--a-accent); border-radius: 2px; }
+  .rw-h1 {
+    font-family: 'Noto Serif JP', serif; font-size: 38px; line-height: 1.28;
+    color: var(--a-primary-deep); margin-bottom: 18px; font-weight: 700;
   }
-  .v3-badge.hot { background: var(--a-accent); border-color: transparent; color: #fff; }
-  .v2-eyebrow, .v3-eyebrow {
-    display: block; font-size: 10px; letter-spacing: 0.24em; color: rgba(255,255,255,0.78);
-    font-weight: 700; margin-bottom: 10px; text-transform: uppercase;
+  .rw-h1 em { font-style: normal; color: var(--a-accent); }
+  .rw-lead { font-size: 15px; line-height: 1.9; color: var(--a-muted); margin-bottom: 28px; max-width: 480px; }
+  .rw-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; }
+  .rw-hero-points { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+  .rw-hero-point {
+    font-size: 13px; font-weight: 500; color: var(--a-ink);
+    display: inline-flex; align-items: center; gap: 8px;
   }
-  .v2-h1, .v3-h1 {
-    font-family: 'Noto Serif JP', serif; font-size: 26px; line-height: 1.38;
-    margin-bottom: 12px; color: #fff; font-weight: 700; max-width: 520px;
-  }
-  .v3-h1 em { font-style: normal; color: var(--a-accent); text-shadow: 0 2px 18px rgba(0,0,0,0.35); }
-  .v2-sub, .v3-sub { font-size: 11.5px; line-height: 1.85; color: rgba(255,255,255,0.9); max-width: 440px; margin-bottom: 18px; }
-  .v2-cta-row, .v3-cta-row { display: flex; gap: 8px; flex-wrap: wrap; }
-  .v2-btn, .v3-btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-    padding: 11px 18px; border-radius: 999px; font-size: 11px; font-weight: 700;
-    transition: transform .12s, box-shadow .15s, opacity .15s; cursor: default;
-  }
-  .v2-btn:hover, .v3-btn:hover { transform: translateY(-1px); }
-  .v2-btn.small, .v3-btn.small { padding: 9px 16px; font-size: 10.5px; }
-  .v2-btn-primary, .v3-btn-primary {
-    background: linear-gradient(135deg, var(--a-accent) 0%, color-mix(in srgb, var(--a-accent) 80%, #000) 100%);
-    color: #fff; box-shadow: 0 10px 24px rgba(0,0,0,0.22);
-  }
-  .v2-btn-ghost, .v3-btn-ghost {
-    background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.55); color: #fff;
-    backdrop-filter: blur(6px);
+  .rw-hero-point::before {
+    content: ""; width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+    background: var(--a-accent-soft); box-shadow: inset 0 0 0 2px var(--a-accent);
   }
 
-  .v3-stats-wrap { position: relative; z-index: 2; margin-top: -28px; padding: 0 18px 6px; }
-  .v2-stats-row, .v3-stats-row {
-    display: flex; background: var(--a-card); border-radius: 14px; overflow: hidden;
-    box-shadow: var(--a-shadow); border: 1px solid rgba(255,255,255,0.8);
+  .rw-hero-visual { position: relative; }
+  .rw-hero-photo {
+    border-radius: 16px; overflow: hidden; aspect-ratio: 4/3;
+    background-size: cover; background-position: center;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.06);
   }
-  .v2-stat, .v3-stat {
-    flex: 1; text-align: center; padding: 18px 8px;
-    border-right: 1px solid rgba(0,0,0,0.06); color: var(--a-ink);
+  .rw-hero-float {
+    position: absolute; left: -24px; bottom: 24px;
+    background: #fff; border-radius: 12px; padding: 16px 18px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.14); border: 1px solid rgba(0,0,0,0.06);
+    min-width: 160px;
   }
-  .v2-stat:last-child, .v3-stat:last-child { border-right: none; }
-  .v2-stat b, .v3-stat b {
-    display: block; font-family: 'Oswald', 'Noto Sans JP', sans-serif;
-    font-size: 24px; color: var(--a-accent); line-height: 1.1; letter-spacing: 0.02em;
+  .rw-hero-float b {
+    display: block; font-family: 'Oswald', sans-serif; font-size: 28px;
+    color: var(--a-accent); line-height: 1.1; margin-bottom: 4px;
   }
-  .v2-stat b small, .v3-stat b small { font-size: 11px; color: var(--a-primary-deep); margin-left: 2px; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
-  .v2-stat span, .v3-stat span { display: block; font-size: 9px; color: var(--a-muted); margin-top: 6px; font-weight: 700; letter-spacing: 0.04em; }
+  .rw-hero-float b small { font-size: 14px; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; color: var(--a-primary-deep); }
+  .rw-hero-float span { font-size: 12px; color: var(--a-muted); font-weight: 500; }
 
-  .v3-trust-row {
-    display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 22px 4px;
-    background: var(--a-bg);
+  .rw-metrics {
+    background: var(--a-primary-deep); padding: 28px 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-  .v3-trust-chip {
-    display: inline-flex; align-items: center; gap: 6px; font-size: 9.5px; font-weight: 700;
-    padding: 7px 12px; border-radius: 999px; background: var(--a-card);
-    border: 1px solid rgba(0,0,0,0.06); color: var(--a-ink); box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  .rw-metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .rw-metric { text-align: center; padding: 8px 12px; border-right: 1px solid rgba(255,255,255,0.1); }
+  .rw-metric:last-child { border-right: none; }
+  .rw-metric b {
+    display: block; font-family: 'Oswald', sans-serif; font-size: 34px;
+    color: var(--a-accent); line-height: 1.05; margin-bottom: 6px;
   }
-  .v3-trust-chip i { font-style: normal; color: var(--a-accent); }
+  .rw-metric b small { font-size: 16px; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; color: #fff; margin-left: 2px; }
+  .rw-metric span { font-size: 13px; color: rgba(255,255,255,0.72); font-weight: 500; }
 
-  .v2-label, .v3-label {
-    display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
-    color: var(--a-accent); margin-bottom: 8px; text-transform: uppercase;
+  .rw-sec-head { margin-bottom: 36px; }
+  .rw-sec-head--center { text-align: center; }
+  .rw-sec-head--center .rw-lead { margin-left: auto; margin-right: auto; }
+  .rw-sec-label {
+    display: block; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--a-accent); margin-bottom: 12px;
   }
-  .v3-section-head { margin-bottom: 16px; }
-  .v3-section-head h3 {
-    font-family: 'Noto Serif JP', serif; font-size: 18px; color: var(--a-primary-deep);
-    line-height: 1.45; margin-bottom: 6px;
+  .rw-h2 {
+    font-family: 'Noto Serif JP', serif; font-size: 28px; line-height: 1.4;
+    color: var(--a-primary-deep); margin-bottom: 12px; font-weight: 700;
   }
-  .v3-section-head p { font-size: 11px; color: var(--a-muted); max-width: 480px; }
+  .rw-sec--dark .rw-h2 { color: #fff; }
+  .rw-sec--dark .rw-lead { color: rgba(255,255,255,0.72); }
 
-  .v2-section, .v3-section { padding: 28px 22px; background: var(--a-bg); }
-
-  .v3-feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 4px; }
-  .v3-feature-card {
-    background: var(--a-card); border-radius: 12px; padding: 16px 14px;
-    border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 8px 22px rgba(0,0,0,0.05);
-    transition: transform .15s, box-shadow .15s;
-  }
-  .v3-feature-card:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,0.10); }
-  .v3-feature-icon {
-    width: 32px; height: 32px; border-radius: 10px; margin-bottom: 10px;
-    background: var(--a-accent-soft); color: var(--a-accent);
-    display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700;
-  }
-  .v3-feature-card h4 { font-size: 11.5px; color: var(--a-primary-deep); margin-bottom: 5px; font-weight: 700; }
-  .v3-feature-card p { font-size: 10px; color: var(--a-muted); line-height: 1.65; }
-
-  .v2-split, .v3-split { display: flex; background: var(--a-bg); align-items: stretch; }
-  .v2-split-photo, .v3-split-photo {
-    width: 44%; min-height: 210px; background-size: cover; background-position: center; flex-shrink: 0;
-    position: relative;
-  }
-  .v3-split-photo::after {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(90deg, transparent 55%, var(--a-bg) 100%);
-  }
-  .v2-split-text, .v3-split-text { flex: 1; padding: 28px 24px; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
-  .v2-check-list, .v3-check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
-  .v2-check-list li, .v3-check-list li {
-    font-size: 11px; padding: 8px 12px 8px 34px; position: relative; color: var(--a-ink);
-    background: var(--a-card); border-radius: 8px; border: 1px solid rgba(0,0,0,0.05);
-  }
-  .v2-check-list li::before, .v3-check-list li::before {
-    content: "✓"; position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
-    width: 18px; height: 18px; border-radius: 50%; background: var(--a-accent-soft);
-    color: var(--a-accent); font-weight: 700; font-size: 10px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .v2-note, .v3-note { font-size: 10.5px; color: var(--a-muted); line-height: 1.75; }
-
-  .v2-case-grid, .v3-case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 10px; }
-  .v2-case-card, .v3-case-card {
-    border-radius: 14px; overflow: hidden; background: var(--a-card);
-    border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+  .rw-cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .rw-card {
+    background: #fff; border-radius: 12px; padding: 28px 24px;
+    border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     transition: transform .18s, box-shadow .18s;
   }
-  .v2-case-card:hover, .v3-case-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(0,0,0,0.14); }
-  .v2-case-photo, .v3-case-photo { height: 118px; background-size: cover; background-position: center; position: relative; }
-  .v3-case-photo::after {
+  .rw-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.10); }
+  .rw-card-icon {
+    width: 48px; height: 48px; border-radius: 12px; margin-bottom: 18px;
+    background: var(--a-accent-soft); display: flex; align-items: center; justify-content: center;
+  }
+  .rw-card-icon svg { width: 22px; height: 22px; stroke: var(--a-accent); fill: none; stroke-width: 2; stroke-linecap: round; }
+  .rw-card h3 { font-size: 17px; font-weight: 700; color: var(--a-primary-deep); margin-bottom: 10px; line-height: 1.45; }
+  .rw-card p { font-size: 14px; color: var(--a-muted); line-height: 1.75; }
+
+  .rw-split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .rw-split-photo {
+    border-radius: 16px; overflow: hidden; aspect-ratio: 4/3;
+    background-size: cover; background-position: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+  }
+  .rw-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .rw-list li {
+    font-size: 15px; padding-left: 28px; position: relative; color: var(--a-ink); line-height: 1.6;
+  }
+  .rw-list li::before {
+    content: ""; position: absolute; left: 0; top: 0.55em; width: 8px; height: 8px;
+    border-radius: 50%; background: var(--a-accent); box-shadow: 0 0 0 4px var(--a-accent-soft);
+  }
+
+  .rw-works { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .rw-work {
+    border-radius: 14px; overflow: hidden; background: #fff;
+    border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+    transition: transform .18s;
+  }
+  .rw-work:hover { transform: translateY(-4px); }
+  .rw-work-photo { height: 200px; background-size: cover; background-position: center; position: relative; }
+  .rw-work-photo::after {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.55) 100%);
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.55) 100%);
   }
-  .v3-case-tag {
-    position: absolute; left: 10px; bottom: 10px; z-index: 1;
-    font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
-    padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.92); color: var(--a-primary-deep);
+  .rw-work-tag {
+    position: absolute; left: 16px; bottom: 16px; z-index: 1;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 6px; background: rgba(255,255,255,0.95); color: var(--a-primary-deep);
   }
-  .v2-case-cap, .v3-case-cap { font-size: 11px; padding: 12px 12px 14px; color: var(--a-ink); font-weight: 700; }
-  .v2-case-cap span, .v3-case-cap span { display: block; font-size: 9.5px; color: var(--a-accent); font-weight: 700; margin-top: 3px; letter-spacing: 0.04em; }
-  .v2-photo-disclaimer, .v3-photo-disclaimer { font-size: 9px; color: var(--a-muted); margin-top: 8px; }
+  .rw-work-body { padding: 18px 20px 22px; }
+  .rw-work-body h3 { font-size: 16px; font-weight: 700; color: var(--a-primary-deep); margin-bottom: 4px; }
+  .rw-work-body p { font-size: 13px; color: var(--a-muted); }
+  .rw-disclaimer { font-size: 12px; color: var(--a-muted); margin-top: 16px; }
 
-  .v2-flow-section, .v3-flow-section { border-top: 1px solid rgba(0,0,0,0.05); background: color-mix(in srgb, var(--a-bg) 70%, #fff); }
-  .v2-flow-row, .v3-flow-row { display: flex; gap: 12px; position: relative; }
-  .v3-flow-row::before {
-    content: ""; position: absolute; top: 28px; left: 12%; right: 12%; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--a-accent-soft), transparent); z-index: 0;
+  .rw-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; }
+  .rw-steps::before {
+    content: ""; position: absolute; top: 28px; left: 16%; right: 16%; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
   }
-  .v2-flow-step, .v3-flow-step {
-    flex: 1; background: var(--a-card); border-radius: 14px; padding: 18px 14px 16px;
-    border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 8px 22px rgba(0,0,0,0.06);
-    position: relative; z-index: 1; transition: transform .15s;
-  }
-  .v2-flow-step:hover, .v3-flow-step:hover { transform: translateY(-2px); }
-  .v3-flow-num {
-    width: 34px; height: 34px; border-radius: 50%; margin-bottom: 10px;
-    background: linear-gradient(135deg, var(--a-accent) 0%, color-mix(in srgb, var(--a-accent) 75%, #000) 100%);
-    color: #fff; font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 700;
+  .rw-step { text-align: center; position: relative; z-index: 1; }
+  .rw-step-num {
+    width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 16px;
+    background: #fff; border: 2px solid var(--a-accent); color: var(--a-accent);
+    font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 700;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 6px 16px color-mix(in srgb, var(--a-accent) 40%, transparent);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   }
-  .v2-flow-step b { display: none; }
-  .v2-flow-step h3, .v3-flow-step h3 { font-size: 12px; color: var(--a-primary-deep); margin: 0 0 6px; font-weight: 700; }
-  .v2-flow-step p, .v3-flow-step p { font-size: 10px; color: var(--a-muted); line-height: 1.65; }
+  .rw-step h3 { font-size: 16px; font-weight: 700; color: var(--a-primary-deep); margin-bottom: 8px; }
+  .rw-step p { font-size: 14px; color: var(--a-muted); line-height: 1.7; }
 
-  .v3-quote {
-    margin-top: 14px; padding: 16px 18px; border-radius: 14px;
-    background: linear-gradient(135deg, var(--a-primary-deep) 0%, color-mix(in srgb, var(--a-primary) 85%, #000) 100%);
-    color: rgba(255,255,255,0.92); position: relative; overflow: hidden;
+  .rw-voice {
+    margin-top: 32px; display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start;
+    padding: 28px; border-radius: 14px; background: var(--a-primary-deep); color: rgba(255,255,255,0.9);
   }
-  .v3-quote::before {
-    content: "\201C"; position: absolute; top: -8px; left: 12px; font-size: 64px; line-height: 1;
-    color: rgba(255,255,255,0.08); font-family: Georgia, serif;
+  .rw-voice-avatar {
+    width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--a-accent) 0%, color-mix(in srgb, var(--a-accent) 70%, #000) 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 700; color: #fff;
   }
-  .v3-quote p { font-size: 11px; line-height: 1.85; position: relative; z-index: 1; font-style: italic; }
-  .v3-quote cite { display: block; margin-top: 10px; font-size: 9.5px; font-style: normal; color: var(--a-accent); font-weight: 700; letter-spacing: 0.06em; }
+  .rw-voice p { font-size: 15px; line-height: 1.85; font-style: italic; margin-bottom: 10px; }
+  .rw-voice cite { font-size: 13px; font-style: normal; color: var(--a-accent); font-weight: 700; }
 
-  .v2-menu-band, .v3-menu-band {
-    display: flex; background: var(--a-bg); border-bottom: 1px solid rgba(0,0,0,0.05);
-    position: relative; overflow: hidden;
+  .rw-menu-feature { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+  .rw-menu-photo-wrap { position: relative; }
+  .rw-menu-photo {
+    border-radius: 18px; overflow: hidden; aspect-ratio: 1/1;
+    background-size: cover; background-position: center;
+    box-shadow: 0 24px 56px rgba(0,0,0,0.16);
   }
-  .v3-menu-band::before {
-    content: ""; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px;
-    border-radius: 50%; background: var(--a-accent-soft); opacity: 0.6;
+  .rw-menu-badge {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--a-accent); color: #fff; font-size: 12px; font-weight: 700;
+    padding: 8px 16px; border-radius: 999px; letter-spacing: 0.06em;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   }
-  .v2-menu-photo, .v3-menu-photo {
-    width: 40%; min-height: 190px; background-size: cover; background-position: center; flex-shrink: 0;
-    border-radius: 0 0 0 0; position: relative;
+  .rw-menu-price {
+    display: inline-block; margin-top: 12px; padding: 10px 20px; border-radius: 8px;
+    background: var(--a-primary-deep); color: #fff; font-size: 22px; font-weight: 700;
   }
-  .v3-menu-ribbon {
-    position: absolute; top: 14px; left: -6px; z-index: 2;
-    background: var(--a-accent); color: #fff; font-size: 9px; font-weight: 700;
-    padding: 5px 14px 5px 12px; letter-spacing: 0.08em;
-    clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 50%, 100% 100%, 0 100%);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-  }
-  .v2-menu-text, .v3-menu-text { flex: 1; padding: 26px 22px; min-width: 0; position: relative; z-index: 1; }
-  .v2-menu-name, .v3-menu-name { font-size: 18px; color: var(--a-primary-deep); margin-bottom: 8px; font-weight: 700; line-height: 1.35; }
-  .v2-menu-name b, .v3-menu-name b {
-    display: inline-block; margin-left: 8px; font-size: 15px; color: #fff;
-    background: var(--a-primary); padding: 3px 12px; border-radius: 999px; vertical-align: middle;
-  }
-  .v2-menu-text > p, .v3-menu-text > p { font-size: 11px; color: var(--a-muted); line-height: 1.75; margin-bottom: 12px; }
-  .v2-menu-sub, .v3-menu-sub { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .v2-menu-sub li, .v3-menu-sub li {
-    font-size: 11px; color: var(--a-ink); padding: 7px 10px; border-radius: 8px;
-    background: var(--a-card); border: 1px dashed rgba(0,0,0,0.08);
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .v2-menu-sub li b, .v3-menu-sub li b { color: var(--a-accent); font-size: 12px; }
+  .rw-menu-price small { font-size: 14px; font-weight: 500; margin-right: 4px; opacity: 0.8; }
+  .rw-menu-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 15px; }
+  .rw-menu-table tr { border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .rw-menu-table td { padding: 14px 0; }
+  .rw-menu-table td:last-child { text-align: right; font-weight: 700; color: var(--a-accent); white-space: nowrap; }
 
-  .v3-hours-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-  .v3-hours-pill {
-    font-size: 10px; font-weight: 700; padding: 8px 12px; border-radius: 10px;
-    background: var(--a-card); border: 1px solid rgba(0,0,0,0.06); color: var(--a-ink);
-  }
-  .v3-hours-pill em { font-style: normal; color: var(--a-accent); margin-right: 4px; }
+  .rw-hours-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 16px; }
+  .rw-hours-table th, .rw-hours-table td { padding: 12px 16px; border: 1px solid rgba(0,0,0,0.08); text-align: left; }
+  .rw-hours-table th { background: var(--a-bg); font-weight: 700; color: var(--a-primary-deep); width: 28%; }
 
-  .v2-info-strip, .v3-info-strip {
-    background: var(--a-card); border-top: 1px solid rgba(0,0,0,0.05);
-    padding: 22px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px;
+  .rw-map {
+    border-radius: 14px; overflow: hidden; aspect-ratio: 16/9; margin-top: 20px;
+    background: linear-gradient(135deg, #e8ecef 0%, #d5dce3 100%);
+    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;
+    border: 1px solid rgba(0,0,0,0.08);
   }
-  .v2-info-row, .v3-info-row {
-    display: flex; gap: 10px; font-size: 10.5px; align-items: flex-start;
-    padding: 10px 12px; border-radius: 10px; background: var(--a-bg);
+  .rw-map-pin {
+    width: 40px; height: 40px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+    background: var(--a-accent); box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   }
-  .v2-info-row .k, .v3-info-row .k { font-weight: 700; color: var(--a-primary-deep); min-width: 52px; flex-shrink: 0; font-size: 9.5px; letter-spacing: 0.06em; }
-  .v2-info-row .v, .v3-info-row .v { color: var(--a-ink); opacity: 0.88; line-height: 1.6; }
+  .rw-map span { font-size: 13px; color: var(--a-muted); font-weight: 500; }
 
-  .v2-contact-strip, .v3-contact-strip {
-    background: linear-gradient(135deg, var(--a-primary-deep) 0%, color-mix(in srgb, var(--a-primary) 70%, #000) 100%);
-    color: #fff; padding: 24px 26px; display: flex; align-items: center; justify-content: space-between;
-    gap: 14px; flex-wrap: wrap; position: relative; overflow: hidden;
+  .rw-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .rw-form { display: flex; flex-direction: column; gap: 16px; }
+  .rw-field label { display: block; font-size: 13px; font-weight: 700; color: var(--a-primary-deep); margin-bottom: 8px; }
+  .rw-input {
+    height: 48px; border-radius: 8px; background: #fff;
+    border: 1px solid rgba(0,0,0,0.12); box-shadow: inset 0 1px 2px rgba(0,0,0,0.04);
   }
-  .v3-contact-strip::before {
-    content: ""; position: absolute; width: 220px; height: 220px; border-radius: 50%;
-    top: -80px; right: -40px; background: rgba(255,255,255,0.06);
-  }
-  .v3-contact-copy { position: relative; z-index: 1; }
-  .v3-contact-copy strong { display: block; font-size: 13px; margin-bottom: 4px; letter-spacing: 0.02em; }
-  .v3-contact-copy span { font-size: 10px; color: rgba(255,255,255,0.72); }
-  .v2-contact-strip span:first-child { font-size: 12.5px; font-weight: 700; }
+  .rw-input--area { height: 96px; }
+  .rw-form .rw-btn { width: 100%; margin-top: 4px; }
 
-  .v2-footer, .v3-footer {
-    background: var(--a-primary-deep); color: rgba(255,255,255,0.72);
-    padding: 28px 24px 22px; text-align: center; position: relative;
+  .rw-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .rw-info-item {
+    padding: 16px 18px; border-radius: 10px; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
   }
-  .v3-footer::before {
-    content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-  }
-  .v2-footer-logo, .v3-footer-logo { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: 0.04em; }
-  .v2-footer-info, .v3-footer-info { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; font-size: 10px; margin-bottom: 12px; }
-  .v2-footer-copy, .v3-footer-copy { font-size: 9px; opacity: 0.55; letter-spacing: 0.04em; }
+  .rw-info-item .k { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--a-accent); margin-bottom: 6px; }
+  .rw-info-item .v { font-size: 14px; line-height: 1.6; }
 
-  .v2-factory .v2-h1, .v2-factory .v3-h1, .v2-factory .v2-logo strong, .v2-factory .v3-logo-text strong {
-    font-family: 'Oswald', 'Noto Sans JP', sans-serif; text-transform: uppercase; letter-spacing: 0.03em;
+  .rw-footer { background: var(--a-primary-deep); color: rgba(255,255,255,0.72); padding: 48px 0 0; }
+  .rw-footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .rw-footer-brand strong { display: block; font-size: 18px; color: #fff; margin-bottom: 12px; }
+  .rw-footer-brand p { font-size: 14px; line-height: 1.8; max-width: 320px; }
+  .rw-footer-col h4 { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.08em; margin-bottom: 16px; text-transform: uppercase; }
+  .rw-footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .rw-footer-links a { font-size: 14px; color: rgba(255,255,255,0.72); transition: color .15s; }
+  .rw-footer-links a:hover { color: var(--a-accent); }
+  .rw-footer-bottom {
+    padding: 20px 0; display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; flex-wrap: wrap; font-size: 12px;
   }
-  .v2-diner .v2-h1, .v2-diner .v3-h1, .v2-diner .v2-logo strong, .v2-diner .v3-logo-text strong, .v2-diner .v2-menu-name, .v2-diner .v3-menu-name {
-    font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
-  }
-  .v2-build .v2-h1, .v2-build .v3-h1, .v2-build .v2-logo strong, .v2-build .v3-logo-text strong, .v3-section-head h3 {
-    font-family: 'Noto Serif JP', serif;
-  }
-  .v2-diner .v3-case-card, .v2-diner .v3-feature-card, .v2-diner .v3-flow-step { border-radius: 18px; }
 
-  @media (max-width: 680px) {
-    .v2-nav, .v3-nav { display: none; }
-    .v2-split, .v3-split, .v2-menu-band, .v3-menu-band { flex-direction: column; }
-    .v2-split-photo, .v3-split-photo, .v2-menu-photo, .v3-menu-photo { width: 100%; height: 150px; min-height: 0; }
-    .v3-split-photo::after { background: linear-gradient(180deg, transparent 40%, var(--a-bg) 100%); }
-    .v2-flow-row, .v3-flow-row { flex-direction: column; }
-    .v3-flow-row::before { display: none; }
-    .v3-feature-grid { grid-template-columns: 1fr; }
-    .v2-info-strip, .v3-info-strip { grid-template-columns: 1fr; }
-    .v2-hero, .v3-hero { min-height: 240px; }
-    .v2-hero-inner, .v3-hero-inner { padding: 24px 18px 22px; }
-    .v2-h1, .v3-h1 { font-size: 20px; }
-    .v2-section, .v3-section, .v2-info-strip, .v3-info-strip, .v2-contact-strip, .v3-contact-strip, .v2-footer, .v3-footer { padding-left: 18px; padding-right: 18px; }
-    .v3-stats-wrap { padding: 0 12px 4px; margin-top: -22px; }
-    .v2-stat b, .v3-stat b { font-size: 20px; }
+  .rw-factory .rw-h1, .rw-factory .rw-h2, .rw-factory .rw-brand-text strong { font-family: 'Oswald', 'Noto Sans JP', sans-serif; letter-spacing: 0.02em; }
+  .rw-factory .rw-h1 { text-transform: uppercase; font-size: 36px; }
+  .rw-build .rw-h1, .rw-build .rw-h2, .rw-build .rw-brand-text strong { font-family: 'Noto Serif JP', serif; }
+  .rw-diner .rw-h1, .rw-diner .rw-h2, .rw-diner .rw-brand-text strong { font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif; }
+  .rw-diner .rw-card, .rw-diner .rw-work, .rw-diner .rw-menu-photo { border-radius: 18px; }
+
+  @media (max-width: 900px) {
+    .rw-container { padding: 0 24px; }
+    .rw-header-inner { grid-template-columns: 1fr auto; gap: 16px; min-height: 64px; }
+    .rw-nav { display: none; }
+    .rw-header-tel { display: none; }
+    .rw-hero-grid, .rw-split, .rw-menu-feature, .rw-contact, .rw-footer-grid { grid-template-columns: 1fr; }
+    .rw-hero-visual { order: -1; }
+    .rw-hero-float { left: 16px; bottom: 16px; }
+    .rw-h1 { font-size: 28px; }
+    .rw-cards-3, .rw-steps, .rw-works { grid-template-columns: 1fr; }
+    .rw-steps::before { display: none; }
+    .rw-metrics-grid { grid-template-columns: 1fr; }
+    .rw-metric { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px; }
+    .rw-metric:last-child { border-bottom: none; }
+    .rw-info-grid { grid-template-columns: 1fr; }
   }
+
+  /* legacy v2/v3 aliases kept minimal for compatibility */
+  .v2-wrap { font-size: 15px; }
 
   /* Fullscreen preview modal (real-size after-site) */
   .fullscreen-modal { position: fixed; inset: 0; z-index: 1000; background: #fff; display: none; flex-direction: column; }
@@ -1102,193 +1096,242 @@
     return fn(theme, o);
   }
 
-  // 全業種共通：ロゴ＋ナビ＋CTAのヘッダー（v3プレミアムUI）
-  function v2Header(name, a) {
+  var ICON_GEAR = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+  var ICON_DOC = '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>';
+  var ICON_CLOCK = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+  var ICON_HOME = '<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>';
+  var ICON_TOOL = '<svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>';
+  var ICON_HEART = '<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+
+  function rwInitials(name) {
+    if (name.indexOf("三好") >= 0) return "三";
+    if (name.indexOf("まる") >= 0) return "丸";
+    if (name.indexOf("やま") >= 0) return "山";
+    return name.charAt(0);
+  }
+
+  function rwUtil(a) {
     return (
-      (a.topbar ? '<div class="v3-topbar">' + a.topbar + '</div>' : '') +
-      '<header class="v2-header v3-header"><div class="v2-header-inner v3-header-inner">' +
-        '<div class="v3-brand">' +
-          '<div class="v3-logo-mark"><span></span></div>' +
-          '<div class="v2-logo v3-logo-text"><strong>' + name + '</strong><span>' + a.eyebrow + '</span></div>' +
+      '<div class="rw-util"><div class="rw-container rw-util-inner">' +
+        '<div class="rw-util-left">' +
+          (a.utilLeft || '').split('|').map(function (t) {
+            return '<span class="rw-util-item"><span class="rw-util-dot"></span>' + t + '</span>';
+          }).join('') +
         '</div>' +
-        '<nav class="v2-nav v3-nav">' + a.nav.map(function (n) { return '<a href="#">' + n + '</a>'; }).join('') + '</nav>' +
-        '<span class="v2-header-cta v3-header-cta">' + a.headerCta + '</span>' +
+        '<div class="rw-util-right"><span class="rw-util-item"><strong>TEL ' + (a.tel || '03-0000-0000').replace('（架空の番号です）', '') + '</strong></span></div>' +
+      '</div></div>'
+    );
+  }
+
+  function rwHeader(name, a) {
+    var navHtml = a.nav.map(function (n, i) {
+      return '<a href="#" class="' + (i === 0 ? 'is-active' : '') + '">' + n + '</a>';
+    }).join('');
+    return (
+      rwUtil(a) +
+      '<header class="rw-header"><div class="rw-container rw-header-inner">' +
+        '<a class="rw-brand" href="#">' +
+          '<div class="rw-mark">' + rwInitials(name) + '</div>' +
+          '<div class="rw-brand-text"><strong>' + name + '</strong><span>' + a.eyebrow + '</span></div>' +
+        '</a>' +
+        '<nav class="rw-nav">' + navHtml + '</nav>' +
+        '<div class="rw-header-actions">' +
+          '<div class="rw-header-tel">' + a.tel.replace('（架空の番号です）', '') + '<small>受付 ' + (a.hoursShort || '平日 8:30-17:30') + '</small></div>' +
+          '<span class="rw-btn rw-btn--primary rw-btn--sm">' + a.headerCta + '</span>' +
+        '</div>' +
       '</div></header>'
     );
   }
 
-  function v3HeroBadges(a) {
-    if (!a.heroBadges || !a.heroBadges.length) return '';
-    return '<div class="v3-hero-badges">' + a.heroBadges.map(function (b, i) {
-      return '<span class="v3-badge' + (i === 0 ? ' hot' : '') + '">' + b + '</span>';
-    }).join('') + '</div>';
-  }
-
-  function v3TrustRow(a) {
-    if (!a.trustChips || !a.trustChips.length) return '';
-    return '<div class="v3-trust-row">' + a.trustChips.map(function (t) {
-      return '<span class="v3-trust-chip"><i>✓</i> ' + t + '</span>';
-    }).join('') + '</div>';
-  }
-
-  function v3FeatureGrid(a) {
-    if (!a.features || !a.features.length) return '';
-    return '<div class="v3-section v2-section">' +
-      '<div class="v3-section-head"><span class="v2-label v3-label">' + (a.featureLabel || '選ばれる理由') + '</span>' +
-      '<h3>' + (a.featureTitle || '') + '</h3></div>' +
-      '<div class="v3-feature-grid">' + a.features.map(function (f) {
-        return '<div class="v3-feature-card"><div class="v3-feature-icon">' + f.icon + '</div><h4>' + f.t + '</h4><p>' + f.d + '</p></div>';
-      }).join('') + '</div></div>';
-  }
-
-  function v3ContactStrip(a) {
+  function rwHero(a, heroImg, floatStat) {
     return (
-      '<div class="v2-contact-strip v3-contact-strip">' +
-        '<div class="v3-contact-copy"><strong>' + a.contactHeadline + '</strong><span>' + (a.contactSub || 'お気軽にご相談ください') + '</span></div>' +
-        '<span class="v2-btn v3-btn v2-btn-primary v3-btn-primary small">' + a.contactCta + '</span>' +
-      '</div>'
+      '<section class="rw-hero"><div class="rw-container rw-hero-grid">' +
+        '<div class="rw-hero-copy">' +
+          '<span class="rw-kicker">' + a.eyebrow + '</span>' +
+          '<h1 class="rw-h1">' + a.headline + '</h1>' +
+          '<p class="rw-lead">' + a.sub + '</p>' +
+          '<div class="rw-hero-actions">' +
+            '<span class="rw-btn rw-btn--primary">' + a.cta1 + '</span>' +
+            '<span class="rw-btn rw-btn--ghost">' + a.cta2 + '</span>' +
+          '</div>' +
+          '<div class="rw-hero-points">' + (a.heroPoints || []).map(function (p) {
+            return '<span class="rw-hero-point">' + p + '</span>';
+          }).join('') + '</div>' +
+        '</div>' +
+        '<div class="rw-hero-visual">' +
+          '<div class="rw-hero-photo" style="background-image:url(\'' + heroImg + '\')"></div>' +
+          (floatStat ? '<div class="rw-hero-float"><b>' + floatStat.n + (floatStat.u ? '<small>' + floatStat.u + '</small>' : '') + '</b><span>' + floatStat.d + '</span></div>' : '') +
+        '</div>' +
+      '</div></section>'
     );
   }
 
-  // 全業種共通：住所・電話・©表記のフッター（すべて架空）
-  function v2Footer(name, a) {
+  function rwMetrics(stats) {
     return (
-      '<footer class="v2-footer v3-footer">' +
-        '<div class="v2-footer-logo v3-footer-logo">' + name + '</div>' +
-        '<div class="v2-footer-info v3-footer-info"><span>' + a.address + '</span><span>TEL ' + a.tel + '</span></div>' +
-        '<div class="v2-footer-copy v3-footer-copy">© 2026 ' + name + ' All Rights Reserved.</div>' +
-      '</footer>'
+      '<section class="rw-metrics"><div class="rw-container rw-metrics-grid">' +
+        stats.map(function (s) {
+          return '<div class="rw-metric"><b>' + s.n + (s.u ? '<small>' + s.u + '</small>' : '') + '</b><span>' + s.d + '</span></div>';
+        }).join('') +
+      '</div></section>'
     );
   }
 
-  // 三好精密工業：ダーク×スチールの工業系プレミアムUI
+  function rwCardsSection(label, title, lead, cards) {
+    return (
+      '<section class="rw-sec rw-sec--white"><div class="rw-container">' +
+        '<div class="rw-sec-head rw-sec-head--center">' +
+          '<span class="rw-sec-label">' + label + '</span>' +
+          '<h2 class="rw-h2">' + title + '</h2>' +
+          (lead ? '<p class="rw-lead">' + lead + '</p>' : '') +
+        '</div>' +
+        '<div class="rw-cards-3">' + cards.map(function (c) {
+          return '<div class="rw-card"><div class="rw-card-icon">' + c.icon + '</div><h3>' + c.t + '</h3><p>' + c.d + '</p></div>';
+        }).join('') + '</div>' +
+      '</div></section>'
+    );
+  }
+
+  function rwContactSection(a) {
+    return (
+      '<section class="rw-sec rw-sec--dark"><div class="rw-container rw-contact">' +
+        '<div>' +
+          '<span class="rw-sec-label">' + (a.contactLabel || 'CONTACT') + '</span>' +
+          '<h2 class="rw-h2">' + a.contactHeadline + '</h2>' +
+          '<p class="rw-lead">' + (a.contactSub || '') + '</p>' +
+          '<div class="rw-info-grid">' +
+            '<div class="rw-info-item"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
+            '<div class="rw-info-item"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
+            '<div class="rw-info-item"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
+            '<div class="rw-info-item"><span class="k">対応</span><span class="v">' + (a.contactNote || 'お気軽にご相談ください') + '</span></div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="rw-form">' +
+          '<div class="rw-field"><label>お名前</label><div class="rw-input"></div></div>' +
+          '<div class="rw-field"><label>メールアドレス</label><div class="rw-input"></div></div>' +
+          '<div class="rw-field"><label>お問い合わせ内容</label><div class="rw-input rw-input--area"></div></div>' +
+          '<span class="rw-btn rw-btn--primary">' + a.contactCta + '</span>' +
+        '</div>' +
+      '</div></section>'
+    );
+  }
+
+  function rwFooter(name, a) {
+    return (
+      '<footer class="rw-footer"><div class="rw-container">' +
+        '<div class="rw-footer-grid">' +
+          '<div class="rw-footer-brand"><strong>' + name + '</strong><p>' + (a.footerLead || a.sub) + '</p></div>' +
+          '<div class="rw-footer-col"><h4>Menu</h4><ul class="rw-footer-links">' +
+            a.nav.map(function (n) { return '<li><a href="#">' + n + '</a></li>'; }).join('') +
+          '</ul></div>' +
+          '<div class="rw-footer-col"><h4>Contact</h4><ul class="rw-footer-links">' +
+            '<li><a href="#">' + a.address + '</a></li>' +
+            '<li><a href="#">' + a.tel + '</a></li>' +
+            '<li><a href="#">' + a.hours + '</a></li>' +
+          '</ul></div>' +
+        '</div>' +
+        '<div class="rw-footer-bottom"><span>© 2026 ' + name + ' All Rights Reserved.</span><span>Privacy Policy</span></div>' +
+      '</div></footer>'
+    );
+  }
+
   function afterSiteFactory(theme, a, name) {
+    var cards = [
+      { icon: ICON_GEAR, t: "精密切削加工", d: "旋盤・フライス・放電加工まで一貫対応。複雑形状・小ロットもご相談ください。" },
+      { icon: ICON_DOC, t: "図面1枚から対応", d: "試作1個から量産まで。素材選定から加工方法まで、最適なプランをご提案します。" },
+      { icon: ICON_CLOCK, t: "スピード見積", d: "お見積りは最短翌日。急ぎの案件にも柔軟に対応いたします。" }
+    ];
     return (
-      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="v2-wrap v2-factory">' +
-        v2Header(name, a) +
-        '<div class="v2-hero v3-hero" style="background-image:url(\'assets/makeover/factory-hero.jpg\')">' +
-          '<div class="v2-hero-overlay"></div>' +
-          '<div class="v2-hero-inner v3-hero-inner">' +
-            v3HeroBadges(a) +
-            '<span class="v2-eyebrow v3-eyebrow">' + a.eyebrow + '</span>' +
-            '<h2 class="v2-h1 v3-h1">' + a.headline + '</h2>' +
-            '<p class="v2-sub v3-sub">' + a.sub + '</p>' +
-            '<div class="v2-cta-row v3-cta-row"><span class="v2-btn v3-btn v2-btn-primary v3-btn-primary">' + a.cta1 + '</span><span class="v2-btn v3-btn v2-btn-ghost v3-btn-ghost">' + a.cta2 + '</span></div>' +
+      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="rw-site rw-factory">' +
+        rwHeader(name, a) +
+        rwHero(a, 'assets/makeover/factory-hero.jpg', a.stats[0]) +
+        rwMetrics(a.stats) +
+        rwCardsSection('SERVICE', a.featureTitle, '創業45年の技術で、ものづくりの現場を支えます。', cards) +
+        '<section class="rw-sec rw-sec--soft"><div class="rw-container rw-split">' +
+          '<div class="rw-split-photo" style="background-image:url(\'assets/makeover/factory-parts.jpg\')"></div>' +
+          '<div>' +
+            '<span class="rw-sec-label">CAPABILITY</span>' +
+            '<h2 class="rw-h2">試作1個から量産まで</h2>' +
+            '<p class="rw-lead">' + a.processNote + '</p>' +
+            '<ul class="rw-list">' + a.processList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
           '</div>' +
-        '</div>' +
-        '<div class="v3-stats-wrap"><div class="v2-stats-row v3-stats-row">' + a.stats.map(function (s) {
-          return '<div class="v2-stat v3-stat"><b>' + s.n + (s.u ? '<small>' + s.u + '</small>' : '') + '</b><span>' + s.d + '</span></div>';
-        }).join('') + '</div></div>' +
-        v3TrustRow(a) +
-        v3FeatureGrid(a) +
-        '<div class="v2-split v3-split">' +
-          '<div class="v2-split-photo v3-split-photo" style="background-image:url(\'assets/makeover/factory-parts.jpg\')"></div>' +
-          '<div class="v2-split-text v3-split-text">' +
-            '<div class="v3-section-head"><span class="v2-label v3-label">対応加工</span><h3>試作1個から量産まで</h3></div>' +
-            '<ul class="v2-check-list v3-check-list">' + a.processList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
-            '<p class="v2-note v3-note">' + a.processNote + '</p>' +
-          '</div>' +
-        '</div>' +
-        '<div class="v2-info-strip v3-info-strip">' +
-          '<div class="v2-info-row v3-info-row"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
-          '<div class="v2-info-row v3-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
-          '<div class="v2-info-row v3-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
-          '<div class="v2-info-row v3-info-row"><span class="k">対応</span><span class="v">図面送付・見積り・試作相談</span></div>' +
-        '</div>' +
-        v3ContactStrip(a) +
-        v2Footer(name, a) +
+        '</div></section>' +
+        rwContactSection(Object.assign({}, a, { contactLabel: 'CONTACT', contactNote: '図面送付・見積り・試作相談' })) +
+        rwFooter(name, a) +
       '</div></div></div>'
     );
   }
 
-  // まるいち建設：施工事例＋3ステップの温かいプレミアムUI
   function afterSiteBuild(theme, a, name) {
     return (
-      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="v2-wrap v2-build">' +
-        v2Header(name, a) +
-        '<div class="v2-hero v3-hero" style="background-image:url(\'assets/makeover/exterior-hero.jpg\')">' +
-          '<div class="v2-hero-overlay"></div>' +
-          '<div class="v2-hero-inner v3-hero-inner">' +
-            v3HeroBadges(a) +
-            '<span class="v2-eyebrow v3-eyebrow">' + a.eyebrow + '</span>' +
-            '<h2 class="v2-h1 v3-h1">' + a.headline + '</h2>' +
-            '<p class="v2-sub v3-sub">' + a.sub + '</p>' +
-            '<div class="v2-cta-row v3-cta-row"><span class="v2-btn v3-btn v2-btn-primary v3-btn-primary">' + a.cta1 + '</span><span class="v2-btn v3-btn v2-btn-ghost v3-btn-ghost">' + a.cta2 + '</span></div>' +
+      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="rw-site rw-build">' +
+        rwHeader(name, a) +
+        rwHero(a, 'assets/makeover/exterior-hero.jpg', { n: '32', u: '年', d: '創業からの実績' }) +
+        '<section class="rw-sec rw-sec--white"><div class="rw-container">' +
+          '<div class="rw-sec-head rw-sec-head--center">' +
+            '<span class="rw-sec-label">WORKS</span>' +
+            '<h2 class="rw-h2">施工事例</h2>' +
+            '<p class="rw-lead">地域のお客様の暮らしに寄り添う、外構づくりの実績をご紹介します。</p>' +
           '</div>' +
-        '</div>' +
-        v3TrustRow(a) +
-        '<div class="v2-section v3-section">' +
-          '<div class="v3-section-head"><span class="v2-label v3-label">施工事例</span><h3>暮らしに寄り添う外構づくり</h3><p>地域のお客様のご要望に合わせた施工実績をご紹介します。</p></div>' +
-          '<div class="v2-case-grid v3-case-grid">' + a.cases.map(function (c) {
-            return '<div class="v2-case-card v3-case-card"><div class="v2-case-photo v3-case-photo" style="background-image:url(\'' + c.img + '\')"><span class="v3-case-tag">' + c.sub + '</span></div><p class="v2-case-cap v3-case-cap">' + c.cap + '<span>完成事例</span></p></div>';
+          '<div class="rw-works">' + a.cases.map(function (c) {
+            return '<article class="rw-work"><div class="rw-work-photo" style="background-image:url(\'' + c.img + '\')"><span class="rw-work-tag">' + c.sub + '</span></div><div class="rw-work-body"><h3>' + c.cap + '</h3><p>地域密着の丁寧な施工で、暮らしの質を高めます。</p></div></article>';
           }).join('') + '</div>' +
-          '<p class="v2-photo-disclaimer v3-photo-disclaimer">※施工事例の写真・お客様名はイメージです。実制作では御社の実績写真に差し替えます</p>' +
-          (a.quote ? '<div class="v3-quote"><p>' + a.quote.text + '</p><cite>— ' + a.quote.cite + '</cite></div>' : '') +
-        '</div>' +
-        '<div class="v2-section v3-section v2-flow-section v3-flow-section">' +
-          '<div class="v3-section-head"><span class="v2-label v3-label">施工の流れ</span><h3>初めての方でも安心の3ステップ</h3></div>' +
-          '<div class="v2-flow-row v3-flow-row">' + a.flow.map(function (f, i) {
-            return '<div class="v2-flow-step v3-flow-step"><div class="v3-flow-num">0' + (i + 1) + '</div><b>0' + (i + 1) + '</b><h3>' + f.t + '</h3><p>' + f.d + '</p></div>';
+          '<p class="rw-disclaimer">※施工事例の写真・お客様名はイメージです。実制作では御社の実績写真に差し替えます</p>' +
+          (a.quote ? '<div class="rw-voice"><div class="rw-voice-avatar">T</div><div><p>' + a.quote.text + '</p><cite>— ' + a.quote.cite + '</cite></div></div>' : '') +
+        '</div></section>' +
+        '<section class="rw-sec rw-sec--soft"><div class="rw-container">' +
+          '<div class="rw-sec-head rw-sec-head--center">' +
+            '<span class="rw-sec-label">FLOW</span>' +
+            '<h2 class="rw-h2">施工の流れ</h2>' +
+            '<p class="rw-lead">初めての方でも安心。ヒアリングから完成まで丁寧に伴走します。</p>' +
+          '</div>' +
+          '<div class="rw-steps">' + a.flow.map(function (f, i) {
+            return '<div class="rw-step"><div class="rw-step-num">0' + (i + 1) + '</div><h3>' + f.t + '</h3><p>' + f.d + '</p></div>';
           }).join('') + '</div>' +
-        '</div>' +
-        '<div class="v2-info-strip v3-info-strip">' +
-          '<div class="v2-info-row v3-info-row"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
-          '<div class="v2-info-row v3-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
-          '<div class="v2-info-row v3-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
-          '<div class="v2-info-row v3-info-row"><span class="k">対応</span><span class="v">新築外構・リフォーム・外壁塗装</span></div>' +
-        '</div>' +
-        v3ContactStrip(a) +
-        v2Footer(name, a) +
+        '</div></section>' +
+        rwContactSection(Object.assign({}, a, { contactLabel: 'ESTIMATE', contactNote: '新築外構・リフォーム・外壁塗装' })) +
+        rwFooter(name, a) +
       '</div></div></div>'
     );
   }
 
-  // 食堂やまびこ：飯テロ全振りの暖色プレミアムUI
   function afterSiteDiner(theme, a, name) {
+    var menuRows = [{ t: a.menuName, p: a.menuPrice }].concat(a.menuSub);
     return (
-      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="v2-wrap v2-diner">' +
-        v2Header(name, a) +
-        '<div class="v2-hero v3-hero" style="background-image:url(\'assets/makeover/shokudo-hero.jpg\')">' +
-          '<div class="v2-hero-overlay"></div>' +
-          '<div class="v2-hero-inner v3-hero-inner">' +
-            v3HeroBadges(a) +
-            '<span class="v2-eyebrow v3-eyebrow">' + a.eyebrow + '</span>' +
-            '<h2 class="v2-h1 v3-h1">' + a.headline + '</h2>' +
-            '<p class="v2-sub v3-sub">' + a.sub + '</p>' +
-            '<div class="v2-cta-row v3-cta-row"><span class="v2-btn v3-btn v2-btn-primary v3-btn-primary">' + a.cta1 + '</span><span class="v2-btn v3-btn v2-btn-ghost v3-btn-ghost">' + a.cta2 + '</span></div>' +
+      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="rw-site rw-diner">' +
+        rwHeader(name, a) +
+        rwHero(a, 'assets/makeover/shokudo-hero.jpg', { n: '40', u: '年', d: '地元で愛される食堂' }) +
+        '<section class="rw-sec rw-sec--white"><div class="rw-container rw-menu-feature">' +
+          '<div class="rw-menu-photo-wrap">' +
+            '<div class="rw-menu-photo" style="background-image:url(\'assets/makeover/shokudo-croquette.jpg\')"></div>' +
+            '<span class="rw-menu-badge">本日のおすすめ</span>' +
           '</div>' +
-        '</div>' +
-        v3TrustRow(a) +
-        '<div class="v2-menu-band v3-menu-band">' +
-          '<div class="v2-menu-photo v3-menu-photo" style="background-image:url(\'assets/makeover/shokudo-croquette.jpg\')"><span class="v3-menu-ribbon">本日のおすすめ</span></div>' +
-          '<div class="v2-menu-text v3-menu-text">' +
-            '<span class="v2-label v3-label">名物メニュー</span>' +
-            '<h3 class="v2-menu-name v3-menu-name">' + a.menuName + '<b>' + a.menuPrice + '</b></h3>' +
-            '<p>' + a.menuDesc + '</p>' +
-            '<ul class="v2-menu-sub v3-menu-sub">' + a.menuSub.map(function (m) { return '<li><span>' + m.t + '</span><b>' + m.p + '</b></li>'; }).join('') + '</ul>' +
+          '<div>' +
+            '<span class="rw-sec-label">MENU</span>' +
+            '<h2 class="rw-h2">名物メニュー</h2>' +
+            '<p class="rw-lead">' + a.menuDesc + '</p>' +
+            '<div class="rw-menu-price"><small>税込</small>' + a.menuPrice + '</div>' +
+            '<table class="rw-menu-table"><tbody>' +
+              menuRows.map(function (m) { return '<tr><td>' + m.t + '</td><td>' + m.p + '</td></tr>'; }).join('') +
+            '</tbody></table>' +
           '</div>' +
-        '</div>' +
-        '<div class="v2-split v3-split">' +
-          '<div class="v2-split-photo v3-split-photo" style="background-image:url(\'assets/makeover/shokudo-interior.jpg\')"></div>' +
-          '<div class="v2-split-text v3-split-text">' +
-            '<div class="v3-section-head"><span class="v2-label v3-label">店内のご紹介</span><h3>湯気と笑い声があふれる空間</h3></div>' +
-            '<p style="margin-bottom:10px;font-size:11px;color:var(--a-muted);">' + a.interiorDesc + '</p>' +
-            '<ul class="v2-check-list v3-check-list">' + a.interiorList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
-            '<div class="v3-hours-grid">' +
-              '<span class="v3-hours-pill"><em>昼</em>' + a.hours.split(' / ')[0] + '</span>' +
-              '<span class="v3-hours-pill"><em>夜</em>' + (a.hours.split(' / ')[1] || '') + '</span>' +
-              '<span class="v3-hours-pill"><em>定休</em>' + a.closedDay + '</span>' +
-            '</div>' +
+        '</div></section>' +
+        '<section class="rw-sec rw-sec--soft"><div class="rw-container rw-split">' +
+          '<div class="rw-split-photo" style="background-image:url(\'assets/makeover/shokudo-interior.jpg\')"></div>' +
+          '<div>' +
+            '<span class="rw-sec-label">ABOUT</span>' +
+            '<h2 class="rw-h2">店内のご紹介</h2>' +
+            '<p class="rw-lead">' + a.interiorDesc + '</p>' +
+            '<ul class="rw-list">' + a.interiorList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+            '<table class="rw-hours-table"><tbody>' +
+              '<tr><th>昼の部</th><td>' + a.hours.split(' / ')[0] + '</td></tr>' +
+              '<tr><th>夜の部</th><td>' + (a.hours.split(' / ')[1] || '') + '</td></tr>' +
+              '<tr><th>定休日</th><td>' + a.closedDay + '</td></tr>' +
+            '</tbody></table>' +
+            '<div class="rw-map"><div class="rw-map-pin"></div><span>◯◯駅徒歩5分 · 青いのぼりが目印</span></div>' +
           '</div>' +
-        '</div>' +
-        '<div class="v2-info-strip v3-info-strip">' +
-          '<div class="v2-info-row v3-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
-          '<div class="v2-info-row v3-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
-          '<div class="v2-info-row v3-info-row"><span class="k">宴会</span><span class="v">ご予算に応じて承ります</span></div>' +
-          '<div class="v2-info-row v3-info-row"><span class="k">アクセス</span><span class="v">◯◯駅徒歩5分・青いのぼりが目印</span></div>' +
-        '</div>' +
-        v3ContactStrip(a) +
-        v2Footer(name, a) +
+        '</div></section>' +
+        rwContactSection(Object.assign({}, a, { contactLabel: 'RESERVE', contactNote: '宴会・貸切のご相談も承ります' })) +
+        rwFooter(name, a) +
       '</div></div></div>'
     );
   }
@@ -1335,11 +1378,12 @@
         date: "2006/11/03"
       },
       after: {
-        topbar: '<span>ISO9001取得 <b>品質管理認証</b></span><span>TEL 03-0000-0000（架空）</span>',
+        utilLeft: "ISO9001取得|試作1個〜対応|最短翌日見積",
+        hoursShort: "平日 8:30-17:30",
         eyebrow: "SEIMITSU KAKOU",
         headline: "大手も頼る、<em>45年の精度。</em>",
         sub: "創業45年、精密切削加工のプロフェッショナル。試作1個から量産まで、確かな加工技術でお応えします。",
-        heroBadges: ["創業45年", "試作1個〜対応", "最短翌日見積"],
+        heroPoints: ["旋盤・フライス・放電加工", "アルミ・SUS・真鍮対応", "図面1枚から見積OK"],
         cta1: "お見積り・お問い合わせ", cta2: "会社案内を見る",
         nav: ["会社案内", "事業内容", "設備紹介", "採用情報", "お問い合わせ"],
         headerCta: "お問い合わせ",
@@ -1348,14 +1392,7 @@
           { n: "1,200", u: "件", d: "年間加工実績（想定例）" },
           { n: "最短翌日", u: "", d: "お見積り回答" }
         ],
-        trustChips: ["図面送付OK", "小ロット対応", "試作から量産まで", "ISO9001（想定）"],
-        featureLabel: "強み",
         featureTitle: "確かな技術で、ものづくりを支える",
-        features: [
-          { icon: "⚙", t: "精密切削加工", d: "旋盤・フライス・放電加工まで一貫対応。複雑形状もご相談ください。" },
-          { icon: "📐", t: "図面1枚から", d: "試作1個から量産まで。素材選定から加工方法までご提案します。" },
-          { icon: "⏱", t: "スピード対応", d: "お見積りは最短翌日。急ぎの案件も柔軟に対応いたします。" }
-        ],
         processList: ["旋盤加工（〜Φ300mm）", "フライス加工（複雑形状・小ロット対応）", "放電加工（硬質材・精密形状）"],
         processNote: "アルミ・ステンレス・真鍮・樹脂まで、素材に応じた最適な加工をご提案します。",
         hours: "平日 8:30〜17:30（土日休）",
@@ -1363,7 +1400,7 @@
         tel: "03-0000-0000（架空の番号です）",
         contactHeadline: "図面があれば、まずはお見積りだけでも",
         contactSub: "試作・量産・素材相談 — お気軽にご連絡ください",
-        contactCta: "お問い合わせする"
+        contactCta: "お問い合わせを送信"
       },
       aiPoints: [
         "既存サイトの「創業〇年」「対応加工」「対応素材」などの情報を抽出し、実績を数字で見せる帯として再構成",
@@ -1394,15 +1431,15 @@
         ]
       },
       after: {
-        topbar: '<span>創業32年 <b>地域密着の工務店</b></span><span>無料見積り受付中</span>',
+        utilLeft: "創業32年|無料見積り|地域密着",
+        hoursShort: "8:00-18:00",
         eyebrow: "LOCAL EXTERIOR BUILDER",
         headline: "夕方、家に帰るのが<em>楽しみになる</em>外構を。",
         sub: "新築の外構からリフォームまで。地域のお客様の暮らしに寄り添う、あたたかい外構づくりを行っています。",
-        heroBadges: ["創業32年", "無料見積り", "地域密着"],
+        heroPoints: ["新築外構・リフォーム", "現地調査無料", "丁寧な進捗報告"],
         cta1: "無料見積りを申し込む", cta2: "施工実績を見る",
         nav: ["会社概要", "施工実績", "リフォームのご案内", "お客様の声", "お問い合わせ"],
         headerCta: "無料見積り",
-        trustChips: ["現地調査無料", "地域密着32年", "新築・リフォーム対応", "丁寧な進捗報告"],
         cases: [
           { img: "assets/makeover/exterior-deck.jpg", cap: "〇〇市 T様邸", sub: "ウッドデッキ増設" },
           { img: "assets/makeover/exterior-fence.jpg", cap: "△△町 S様邸", sub: "目隠しフェンス" }
@@ -1451,15 +1488,15 @@
         footerNote: "このホームページは店主が作りました（2004年）"
       },
       after: {
-        topbar: '<span>地元で40年 <b>日替わり定食が自慢</b></span><span>11:00 OPEN</span>',
+        utilLeft: "地元40年|日替わり定食|コロッケ名物",
+        hoursShort: "11:00 OPEN",
         eyebrow: "SHOKUDO YAMABIKO",
         headline: "今日も、湯気の向こうで<em>お待ちしています。</em>",
         sub: "ボリュームたっぷりの日替わり定食が自慢。地元で40年愛される、大衆食堂です。",
-        heroBadges: ["地元40年", "日替わり定食", "コロッケ名物"],
+        heroPoints: ["日替わり定食750円〜", "手作りコロッケ", "おひとりさま歓迎"],
         cta1: "本日のメニューを見る", cta2: "アクセスを見る",
         nav: ["お品書き", "こだわり", "店内のご紹介", "アクセス", "お問い合わせ"],
         headerCta: "メニューを見る",
-        trustChips: ["日替わり定食750円〜", "手作りコロッケ", "おひとりさま歓迎", "宴会承ります"],
         menuName: "名物コロッケ定食",
         menuPrice: "780円",
         menuDesc: "手作りコロッケに、副菜・ごはん・味噌汁がついたボリューム満点の一品です。",
@@ -1475,7 +1512,7 @@
         tel: "03-0000-0000（架空の番号です）",
         contactHeadline: "今日のメニューが気になったら",
         contactSub: "宴会・貸切のご相談もお気軽に",
-        contactCta: "お問い合わせする"
+        contactCta: "お問い合わせを送信"
       },
       aiPoints: [
         "チラシ風ページに散らばっていた「メニュー」「営業時間」「場所」の情報を抽出して再構成",
