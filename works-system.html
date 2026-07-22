@@ -1,4 +1,4 @@
-<!-- 2026-07-22: TATERUを週カレンダー＋案件カード壁骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 -->
+<!-- 2026-07-22: TATERUを週カレンダー＋案件カード壁骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 ／ 案件サムネ＋シートヘッダー写真 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -203,11 +203,17 @@
   }
 
   .job-card {
-    background: #fff; border-radius: 8px; padding: 10px 10px 9px;
+    background: #fff; border-radius: 8px; padding: 0 0 9px;
     border: 1px solid var(--line); border-left: 4px solid var(--gold);
     box-shadow: 0 2px 10px rgba(11,36,71,.06); cursor: pointer;
     transition: transform .15s, box-shadow .15s, border-color .15s;
+    overflow: hidden;
   }
+  .job-thumb {
+    display: block; width: 100%; height: 72px; object-fit: cover;
+    border-radius: 7px 7px 0 0;
+  }
+  .job-card-inner { padding: 8px 10px 0; }
   .job-card:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(11,36,71,.12); border-color: #B8C5D6; }
   .job-card[data-craft="daiku"] { border-left-color: var(--craft-daiku); }
   .job-card[data-craft="denki"] { border-left-color: var(--craft-denki); }
@@ -242,6 +248,10 @@
   .sheet-head {
     flex: 0 0 auto; padding: 16px 18px; background: var(--navy-deep); color: #F8FAFC;
     border-bottom: 2px solid var(--gold); position: relative;
+  }
+  .sheet-photo {
+    display: block; width: 100%; height: 132px; object-fit: cover;
+    border-radius: 8px; margin-bottom: 12px;
   }
   .sheet-close {
     position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 6px;
@@ -464,6 +474,7 @@
 <aside class="detail-sheet" id="detailSheet" aria-hidden="true">
   <div class="sheet-head">
     <button class="sheet-close" onclick="closeSheet()" aria-label="閉じる">×</button>
+    <img id="sheetPhoto" class="sheet-photo" alt="" hidden>
     <h2 id="sheetTitle">—</h2>
     <p class="sub" id="sheetSub">—</p>
     <div class="sheet-meta" id="sheetMeta"></div>
@@ -495,6 +506,7 @@ var DOW_LABEL = ['月', '火', '水', '木', '金', '土'];
 
 var JOBS = [
   { id: 'j-001', title: 'キッチン全面改修', customer: '佐藤 美咲 様', address: '世田谷区桜丘 2-14-8',
+    photo: 'assets/system/j-001.jpg',
     craft: 'daiku', status: 'kanko', dayOffset: 2, amount: 2480000,
     siteNotes: 'システムキッチン撤去済。配管位置変更あり。次回はカウンター天板取付と給排水接続。養生シート残置、午前中のみ作業可。',
     checklist: ['既設キッチン撤去', '配管・配線更新', '下地調整', '天板取付', '給排水接続', '最終清掃'],
@@ -507,46 +519,55 @@ var JOBS = [
       { item: '仕上げ・清掃・引渡し', qty: '1', unit: '式', price: 420000 }
     ] },
   { id: 'j-002', title: 'ユニットバス交換', customer: '田中 一郎 様', address: '目黒区中目黒 3-2-1',
+    photo: 'assets/system/j-002.jpg',
     craft: 'naiso', status: 'mitsumori', dayOffset: 0, amount: 1850000,
     siteNotes: '現地調査済。1620サイズ→1418へ変更検討。見積提示待ち。',
     checklist: ['現地調査', '見積作成', '発注', '解体', '設置', '防水検査'],
     checklistDone: [0, 1] },
   { id: 'j-003', title: '外壁塗装（3階建）', customer: '鈴木 恵 様', address: '横浜市青葉区あざみ野',
+    photo: 'assets/system/j-003.jpg',
     craft: 'daiku', status: 'sekochu', dayOffset: 1, amount: 980000,
     siteNotes: '足場組立完了。下塗り2日目。天候注意。',
     checklist: ['足場組立', '高圧洗浄', '下塗り', '中塗り', '上塗り', '足場解体'],
     checklistDone: [0, 1, 2] },
   { id: 'j-004', title: '分電盤・配線更新', customer: '高橋 直樹 様', address: '川崎市中原区小杉',
+    photo: 'assets/system/j-004.jpg',
     craft: 'denki', status: 'sekochu', dayOffset: 2, amount: 420000,
     siteNotes: '旧分電盤撤去済。新盤取付予定。停電連絡済み。',
     checklist: ['現地確認', '旧盤撤去', '新分電盤取付', '回路試験', 'ユーザー説明'],
     checklistDone: [0, 1] },
   { id: 'j-005', title: 'リビング壁紙・床CF', customer: '伊藤 さくら 様', address: '杉並区高井戸西',
+    photo: 'assets/system/j-005.jpg',
     craft: 'naiso', status: 'sekochu', dayOffset: 3, amount: 560000,
     siteNotes: 'クロス選定確定。床CFは明日搬入。',
     checklist: ['養生', '壁下地補修', 'クロス施工', '床CF施工', '清掃'],
     checklistDone: [0, 1] },
   { id: 'j-006', title: '玄関ドア・引戸交換', customer: '渡辺 健 様', address: '練馬区石神井公園',
+    photo: 'assets/system/j-006.jpg',
     craft: 'daiku', status: 'mitsumori', dayOffset: 3, amount: 380000,
     siteNotes: '防火ドア指定あり。メーカー見積待ち。',
     checklist: ['採寸', '見積', '発注', '取付', '調整'],
     checklistDone: [0] },
   { id: 'j-007', title: 'LED照明・人感センサ', customer: '中村 真理 様', address: '品川区大崎',
+    photo: 'assets/system/j-007.jpg',
     craft: 'denki', status: 'sekochu', dayOffset: 4, amount: 185000,
     siteNotes: '共用部3箇所完了。残り2箇所は金曜午後。',
     checklist: ['現地配線確認', '器具取付', 'センサ設定', '動作試験'],
     checklistDone: [0, 1] },
   { id: 'j-008', title: 'トイレ全面改修', customer: '小林 拓也 様', address: '板橋区成増',
+    photo: 'assets/system/j-008.jpg',
     craft: 'naiso', status: 'kanko', dayOffset: 4, amount: 720000,
     siteNotes: '内装仕上げ完了。最終確認のみ残。',
     checklist: ['解体', '防水', '内装', '器具設置', '最終確認'],
     checklistDone: [0, 1, 2, 3] },
   { id: 'j-009', title: 'ベランダ防水・タイル', customer: '松本 由美 様', address: '大田区田園調布',
+    photo: 'assets/system/j-009.jpg',
     craft: 'daiku', status: 'sekochu', dayOffset: 5, amount: 640000,
     siteNotes: 'ウレタン防水1回目完了。2回目は土曜。',
     checklist: ['既存撤去', '下地', '防水1回', '防水2回', 'タイル'],
     checklistDone: [0, 1, 2] },
   { id: 'j-010', title: 'エアコン配線・設置', customer: '加藤 亮 様', address: '調布市布田',
+    photo: 'assets/system/j-010.jpg',
     craft: 'denki', status: 'mitsumori', dayOffset: 5, amount: 95000,
     siteNotes: '隠蔽配線可否を現調。見積提示予定。',
     checklist: ['現調', '見積', '配線', '室外機設置', '試運転'],
@@ -646,11 +667,13 @@ function renderBoard() {
       if (job.dayOffset !== d || !jobVisible(job)) continue;
       var st = job.id === 'j-001' && j001Runtime.completed ? 'kanryo' : job.status;
       html += '<div class="job-card' + (st === 'kanryo' ? ' done' : '') + '" data-craft="' + job.craft + '" onclick="openSheet(\'' + job.id + '\')" role="button" tabindex="0">';
+      if (job.photo) html += '<img class="job-thumb" src="' + job.photo + '" alt="" loading="lazy">';
+      html += '<div class="job-card-inner">';
       html += '<div class="job-card-top"><div class="job-card-title">' + escapeHtml(job.title) + '</div>';
       html += '<span class="job-status ' + st + '">' + STATUS_LABEL[st] + '</span></div>';
       html += '<div class="job-card-customer">' + escapeHtml(job.customer) + '</div>';
       html += '<div class="job-card-foot"><span class="job-craft">' + CRAFT_LABEL[job.craft] + '</span><span class="job-amount">' + fmtYen(job.amount) + '</span></div>';
-      html += '</div>';
+      html += '</div></div>';
     }
     html += '</div></div>';
   }
@@ -663,6 +686,15 @@ function openSheet(id) {
   activeJobId = id;
   location.hash = 'job/' + id;
 
+  var sheetPhoto = document.getElementById('sheetPhoto');
+  if (job.photo) {
+    sheetPhoto.src = job.photo;
+    sheetPhoto.alt = job.title;
+    sheetPhoto.hidden = false;
+  } else {
+    sheetPhoto.hidden = true;
+    sheetPhoto.removeAttribute('src');
+  }
   document.getElementById('sheetTitle').textContent = job.title;
   document.getElementById('sheetSub').textContent = job.customer + ' — ' + job.address;
   document.getElementById('sheetMeta').innerHTML =
