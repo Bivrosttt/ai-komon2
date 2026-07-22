@@ -1,16 +1,16 @@
-<!-- 2026-07-22: KAWASUをLegal workspace（朱印×象牙紙面×ライトサイドバー）にリデザイン -->
+<!-- 2026-07-22: KAWASUを契約紙面レビュー＋朱印骨格に作り直し -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>電子契約クラウド構築デモ（AI条項レビュー）｜AI顧問室</title>
-<meta name="description" content="架空の電子契約・契約管理クラウド「カワス」のフル機能デモです。AIが契約書の条項を自動レビューし、承認フロー・電子締結・契約台帳までを一気通貫で体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<title>電子契約クラウド構築デモ（AI条項レビュー・朱印）｜AI顧問室</title>
+<meta name="description" content="架空の電子契約・契約管理クラウド「KAWASU」のフル機能デモです。契約紙面を読みながらAIが条項リスクを赤入れし、修正文案を提案。承認して朱印捺印まで体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
-<meta property="og:title" content="電子契約クラウド構築デモ（AI条項レビュー）｜AI顧問室">
-<meta property="og:description" content="架空の電子契約・契約管理クラウド「カワス」のフル機能デモです。AIが契約書の条項を自動レビューし、承認フロー・電子締結・契約台帳までを一気通貫で体験できます。">
+<meta property="og:title" content="電子契約クラウド構築デモ（AI条項レビュー・朱印）｜AI顧問室">
+<meta property="og:description" content="架空の電子契約・契約管理クラウド「KAWASU」のフル機能デモです。契約紙面を読みながらAIが条項リスクを赤入れし、修正文案を提案。承認して朱印捺印まで体験できます。">
 <meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-contract.html">
 <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -18,20 +18,18 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1A1F2E; --navy-deep: #12151F; --navy-light: #2A3144;
-    --gold: #C9A227; --gold-deep: #A9821A;
-
-    --pri: #B91C1C; --pri-deep: #991B1B; --pri-bg: #FEF2F2;
-    --ink: #1A1F2E; --gray: #5C6470; --gray-soft: #8B93A0;
-    --line: #E5E0D6; --bg-soft: #F3EFE6; --white: #FFFFFF;
-    --ivory: #F7F3EA; --paper: #FBF8F1;
-    --teal: #0E7A5F; --teal-bg: #E1F5EE;
-    --amber: #92720A; --amber-bg: #FCF3D9;
-    --red: #B91C1C; --red-bg: #FEE2E2;
-    --slate-bg: #EEEAE2;
+    --ivory: #F7F1E5; --paper: #FBF8F0; --paper-line: #E8DFCF;
+    --seal: #C23A2B; --seal-soft: rgba(194,58,43,.12); --seal-glow: rgba(194,58,43,.35);
+    --ink: #1C1917; --gray: #57534E; --gray-soft: #78716C;
+    --line: #D6CFC0; --bg-soft: #EDE8DC; --white: #FFFFFF;
+    --high: #B91C1C; --high-bg: #FEE2E2;
+    --med: #C2410C; --med-bg: #FFEDD5;
+    --low: #A16207; --low-bg: #FEF9C3;
+    --green: #15803D; --green-bg: #DCFCE7;
+    --scan: rgba(194,58,43,.14);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -39,30 +37,29 @@
     font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--bg-soft);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { line-height: 1.4; font-family: 'Noto Serif JP', serif; }
+  h1, h2, h3 { line-height: 1.4; font-weight: 700; }
+  .serif { font-family: 'Noto Serif JP', serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
   a { text-decoration: none; color: inherit; }
   button { font-family: inherit; cursor: pointer; }
-  input, textarea { font-family: inherit; }
+  input, select { font-family: inherit; }
   img, svg { max-width: 100%; }
-  ::selection { background: #FECACA; color: var(--ink); }
-  .serif { font-family: 'Noto Serif JP', serif; }
+  ::selection { background: var(--seal-soft); color: var(--ink); }
 
-  /* ============ 1. デモフレーム帯 ============ */
   .demo-frame-bar {
     position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
-    background: var(--navy-deep); color: #DCE6F5; display: flex; align-items: center;
+    background: #0C0A09; color: #D6D3D1; display: flex; align-items: center;
     justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
-    border-bottom: 1px solid rgba(255,255,255,.12);
+    border-bottom: 2px solid var(--seal);
   }
-  .demo-frame-bar b { color: var(--gold); font-weight: 700; }
+  .demo-frame-bar b { color: #FCA5A5; font-weight: 700; }
   .demo-frame-bar .frame-link {
     flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
-    padding: 5px 12px; border-radius: 999px; white-space: nowrap; transition: background .15s;
+    padding: 5px 12px; border-radius: 4px; white-space: nowrap; transition: background .15s;
   }
   .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.12); }
   .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
   body { padding-top: 44px; }
-
   @media (max-width: 640px) {
     .demo-frame-bar { font-size: 10.5px; gap: 8px; height: 52px; }
     .demo-frame-bar .frame-text { line-height: 1.5; }
@@ -70,508 +67,277 @@
     body { padding-top: 52px; }
   }
 
-  /* ============ 2. ログイン画面（左右分割・捺印モチーフ） ============ */
   #view-login {
     min-height: calc(100vh - 44px); display: grid; grid-template-columns: 1.05fr 1fr;
     background: var(--ivory);
   }
   #view-login.hide { display: none; }
   .login-hero {
-    position: relative; background: linear-gradient(160deg, #1A1F2E 0%, #2A1A1A 55%, #3B1515 100%);
-    color: #F5EDE6; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center;
-    overflow: hidden;
+    position: relative; background: linear-gradient(155deg, #0C0A09 0%, #1C1917 42%, #292524 100%);
+    color: #FAFAF9; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
   }
   .login-hero::before {
-    content: ''; position: absolute; width: 220px; height: 220px; border: 3px solid rgba(185,28,28,.45);
-    border-radius: 12px; right: 48px; top: 18%; transform: rotate(-12deg);
+    content: ''; position: absolute; width: 200px; height: 200px; right: 52px; top: 16%;
+    border: 3px solid rgba(194,58,43,.45); border-radius: 8px; transform: rotate(-8deg);
+    box-shadow: inset 0 0 40px rgba(194,58,43,.08);
   }
   .login-hero::after {
-    content: '契'; position: absolute; right: 78px; top: calc(18% + 58px); font-family: 'Noto Serif JP', serif;
-    font-size: 72px; font-weight: 700; color: rgba(185,28,28,.55); transform: rotate(-12deg); letter-spacing: .1em;
+    content: '印'; position: absolute; right: 98px; top: calc(16% + 52px);
+    font-family: 'Noto Serif JP', serif; font-size: 68px; font-weight: 700;
+    color: rgba(194,58,43,.55); transform: rotate(-8deg); letter-spacing: .12em;
   }
-  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .22em; color: #E8B4B4; font-weight: 700; margin-bottom: 18px; }
-  .login-hero h2 { font-family: 'Noto Serif JP', serif; font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 18em; }
+  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .24em; color: #FCA5A5; font-weight: 700; margin-bottom: 18px; position: relative; }
+  .login-hero h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 16em; position: relative; font-family: 'Noto Serif JP', serif; }
   .login-hero h2 em { font-style: normal; color: #FCA5A5; }
-  .login-hero p { font-size: 14px; color: #C9B8B0; max-width: 28em; line-height: 1.9; }
+  .login-hero p { font-size: 14px; color: #A8A29E; max-width: 28em; line-height: 1.9; position: relative; }
+  .seal-strip { display: flex; gap: 0; margin-top: 28px; position: relative; }
+  .seal-strip span { flex: 1; height: 3px; background: var(--seal); opacity: .65; }
+  .seal-strip span:nth-child(even) { background: rgba(255,255,255,.12); opacity: 1; }
   .login-panel {
     display: flex; align-items: center; justify-content: center; padding: 40px 28px;
-    background: linear-gradient(180deg, #FBF8F1 0%, #F3EFE6 100%);
+    background: linear-gradient(180deg, var(--paper) 0%, var(--ivory) 100%);
   }
   .login-card {
-    width: 100%; max-width: 400px; background: #fff; border-radius: 4px; padding: 40px 36px 30px;
-    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(26,31,46,.08);
+    width: 100%; max-width: 400px; background: #fff; border-radius: 8px; padding: 40px 36px 30px;
+    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(28,25,23,.1); border-top: 4px solid var(--seal);
   }
   .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
-  .login-logo .k { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: var(--pri); letter-spacing: .04em; }
-  .login-logo .tag-en { font-size: 10.5px; color: var(--gray-soft); letter-spacing: .12em; }
-  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; font-family: 'Noto Serif JP', serif; }
+  .login-logo .k { font-size: 28px; font-weight: 700; color: var(--ink); letter-spacing: .06em; font-family: 'Noto Serif JP', serif; }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .14em; font-family: 'IBM Plex Mono', monospace; }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
   .login-field { margin-bottom: 14px; }
   .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
   .login-field input {
-    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 4px; font-size: 14px;
-    color: var(--gray-soft); background: var(--ivory); cursor: not-allowed;
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 6px; font-size: 14px;
+    color: var(--gray-soft); background: var(--bg-soft); cursor: not-allowed;
   }
   .login-btn {
-    width: 100%; padding: 13px; border: none; border-radius: 4px; background: var(--pri); color: #fff;
+    width: 100%; padding: 13px; border: none; border-radius: 6px; background: var(--seal); color: #fff;
     font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .login-btn:hover { filter: brightness(1.08); }
+  .login-btn:hover { filter: brightness(1.06); }
   .login-btn:active { transform: scale(.99); }
   .login-btn:disabled { opacity: .75; cursor: wait; }
   .login-spin {
-    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.4);
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.25);
     border-top-color: #fff; animation: spin .7s linear infinite; display: none;
   }
   .login-btn.loading .login-spin { display: inline-block; }
-  .login-btn.loading .login-btn-label { opacity: .85; }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .login-note {
-    font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center;
-    border-top: 1px solid var(--line); padding-top: 14px;
-  }
+  .login-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center; border-top: 1px solid var(--line); padding-top: 14px; }
   @media (max-width: 860px) {
     #view-login { grid-template-columns: 1fr; }
     .login-hero { min-height: 220px; padding: 36px 28px; }
     .login-hero::before, .login-hero::after { display: none; }
   }
 
-  /* ============ 3. アプリシェル ============ */
-  #view-app { display: none; }
-  #view-app.show { display: block; }
-  .app-frame { display: flex; align-items: flex-start; min-height: calc(100vh - 44px); }
+  #view-app { display: none; min-height: calc(100vh - 44px); flex-direction: column; }
+  #view-app.show { display: flex; }
 
-  .sidebar {
-    width: 248px; flex: 0 0 auto; background: #FFFCFA; color: var(--ink);
-    display: flex; flex-direction: column; position: sticky; top: 44px; height: calc(100vh - 44px);
-    padding: 20px 0; z-index: 50; border-right: 1px solid var(--line);
-    box-shadow: inset 4px 0 0 var(--pri);
+  .app-top {
+    height: 48px; flex: 0 0 auto; background: rgba(12,10,9,.97); border-bottom: 1px solid rgba(255,255,255,.08);
+    display: flex; align-items: center; gap: 12px; padding: 0 16px; position: sticky; top: 44px; z-index: 80;
   }
-  .sidebar-brand { padding: 0 20px 18px; border-bottom: 1px solid var(--line); margin-bottom: 12px; display: flex; align-items: baseline; gap: 6px; }
-  .sidebar-brand .k { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--pri); letter-spacing: .04em; }
-  .sidebar-brand .tag-en { font-size: 9.5px; color: var(--gray-soft); letter-spacing: .1em; }
-  .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 12px; overflow-y: auto; }
-  .nav-btn {
-    display: flex; align-items: center; gap: 11px; padding: 11px 12px; border-radius: 4px; border: none; background: none;
-    color: var(--gray); font-size: 13.5px; font-weight: 500; text-align: left; width: 100%; transition: background .15s, color .15s;
+  .top-brand { display: flex; align-items: baseline; gap: 6px; flex: 0 0 auto; }
+  .top-brand .k { font-size: 16px; font-weight: 700; color: #FAFAF9; letter-spacing: .08em; font-family: 'Noto Serif JP', serif; }
+  .top-brand .tag-en { font-size: 9px; color: #78716C; letter-spacing: .12em; font-family: 'IBM Plex Mono', monospace; }
+  .top-center { flex: 1; text-align: center; font-size: 11.5px; color: #A8A29E; font-family: 'IBM Plex Mono', monospace; }
+  .top-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; }
+  .top-user { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #D6D3D1; }
+  .top-user .avatar {
+    width: 28px; height: 28px; border-radius: 6px; background: var(--seal); color: #fff;
+    display: grid; place-items: center; font-size: 11px; font-weight: 700;
   }
-  .nav-btn svg { flex: 0 0 auto; opacity: .85; }
-  .nav-btn:hover { background: var(--bg-soft); color: var(--ink); }
-  .nav-btn.active { background: var(--pri-bg); color: var(--pri-deep); font-weight: 700; }
-  .nav-btn.active svg { opacity: 1; }
-  .sidebar-foot { padding: 14px 20px 0; border-top: 1px solid var(--line); margin-top: 14px; }
-  .sidebar-user { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
-  .sidebar-user .avatar {
-    width: 30px; height: 30px; border-radius: 4px; background: var(--pri); color: #fff; display: grid; place-items: center;
-    font-size: 12px; font-weight: 700; flex: 0 0 auto;
-  }
-  .sidebar-user .u-name { font-size: 12.5px; font-weight: 700; color: var(--ink); }
-  .sidebar-user .u-role { font-size: 10.5px; color: var(--gray-soft); }
-  .logout-link { display: block; font-size: 11.5px; color: var(--gray); padding: 6px 2px; }
-  .logout-link:hover { color: var(--pri); }
+  .logout-link { font-size: 11px; color: #78716C; padding: 4px 8px; border: 1px solid #44403C; border-radius: 4px; }
+  .logout-link:hover { color: #FCA5A5; border-color: var(--seal); }
 
-  .hamburger-btn {
-    display: none; width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--line); background: #fff;
-    align-items: center; justify-content: center; flex: 0 0 auto;
+  .review-bar {
+    flex: 0 0 auto; background: var(--paper); border-bottom: 1px solid var(--line);
+    padding: 12px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    position: sticky; top: 92px; z-index: 70; box-shadow: 0 4px 16px rgba(28,25,23,.05);
   }
+  .review-bar label { font-size: 11px; font-weight: 700; color: var(--gray); letter-spacing: .08em; }
+  .contract-select {
+    flex: 1; min-width: 200px; max-width: 420px; padding: 9px 12px; border: 1px solid var(--line);
+    border-radius: 6px; font-size: 13.5px; background: #fff; color: var(--ink);
+  }
+  .status-strip { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; flex: 1; justify-content: flex-end; }
+  .status-chip {
+    font-size: 11px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line);
+    background: #fff; color: var(--gray); font-weight: 600;
+  }
+  .status-chip.active { border-color: var(--seal); background: var(--seal-soft); color: var(--seal); }
+  .status-chip.done { border-color: var(--green); background: var(--green-bg); color: var(--green); }
+  .risk-summary { font-size: 11px; color: var(--gray-soft); font-family: 'IBM Plex Mono', monospace; }
 
-  .main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-  .app-header {
-    position: sticky; top: 44px; z-index: 40; height: 60px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.97);
-    backdrop-filter: blur(4px);
-    display: flex; align-items: center; gap: 14px; padding: 0 24px;
+  .review-main {
+    flex: 1; display: grid; grid-template-columns: 1fr 360px; gap: 0; min-height: 0; align-items: start;
   }
-  .app-header h1.view-name { font-size: 15.5px; font-weight: 700; color: var(--ink); white-space: nowrap; font-family: 'Noto Serif JP', serif; }
-  .header-search { flex: 1; min-width: 0; display: flex; justify-content: center; }
-  .header-search-inner { position: relative; width: 100%; max-width: 380px; }
-  .header-search-inner input {
-    width: 100%; padding: 9px 14px 9px 36px; border: 1px solid var(--line); border-radius: 8px; font-size: 13px; background: var(--bg-soft);
+  .paper-col { padding: 24px 20px 40px; overflow-y: auto; min-height: calc(100vh - 44px - 48px - 56px); }
+  .contract-paper {
+    max-width: 720px; margin: 0 auto; background: var(--ivory); border: 1px solid var(--paper-line);
+    box-shadow: 0 8px 32px rgba(28,25,23,.08), inset 0 1px 0 rgba(255,255,255,.6);
+    padding: 48px 52px 64px; position: relative; font-size: 15px; line-height: 2;
   }
-  .header-search-inner input:focus { outline: 2px solid var(--pri); background: #fff; }
-  .header-search-inner svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); pointer-events: none; opacity: .5; }
-  .header-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; }
-  .icon-btn {
-    position: relative; width: 38px; height: 38px; border-radius: 8px; border: 1px solid transparent; background: none;
-    display: grid; place-items: center; color: var(--ink); transition: background .15s;
+  .contract-paper.scanning::after {
+    content: ''; position: absolute; left: 0; right: 0; height: 3px; top: 0;
+    background: linear-gradient(90deg, transparent, var(--seal), transparent);
+    animation: scanLine 1.8s ease-in-out infinite; pointer-events: none;
   }
-  .icon-btn:hover { background: var(--bg-soft); }
-  .notif-badge {
-    position: absolute; top: 3px; right: 3px; min-width: 15px; height: 15px; border-radius: 999px; background: var(--red);
-    color: #fff; font-size: 9.5px; font-weight: 700; display: grid; place-items: center; padding: 0 3px; border: 2px solid #fff;
+  @keyframes scanLine {
+    0% { top: 0; opacity: .3; }
+    50% { opacity: 1; }
+    100% { top: calc(100% - 3px); opacity: .3; }
   }
-  .dropdown-wrap { position: relative; }
-  .dropdown-panel {
-    position: absolute; top: calc(100% + 8px); right: 0; width: 320px; background: #fff; border: 1px solid var(--line);
-    border-radius: 12px; box-shadow: 0 18px 44px rgba(15,23,42,.16); z-index: 80; display: none; overflow: hidden;
+  .paper-title { text-align: center; margin-bottom: 8px; font-size: 22px; letter-spacing: .08em; }
+  .paper-meta { text-align: center; font-size: 12px; color: var(--gray-soft); margin-bottom: 36px; padding-bottom: 20px; border-bottom: 1px solid var(--paper-line); }
+  .clause-block {
+    margin-bottom: 28px; padding: 12px 14px; border-radius: 4px; border-left: 3px solid transparent;
+    transition: background .25s, border-color .25s, box-shadow .25s;
   }
-  .dropdown-panel.open { display: block; animation: dropIn .16s ease; }
-  @keyframes dropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-  .dropdown-head { padding: 12px 16px; font-size: 12.5px; font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--line); background: var(--bg-soft); }
-  .notif-item { display: flex; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 12.5px; transition: background .15s; }
-  .notif-item:last-child { border-bottom: none; }
-  .notif-item:hover { background: var(--bg-soft); }
-  .notif-item .dot { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
-  .notif-item .txt { color: var(--ink); line-height: 1.6; }
-  .notif-item .time { color: var(--gray-soft); font-size: 10.5px; margin-top: 3px; }
+  .clause-block.scan-target { background: var(--scan); }
+  .clause-block.has-risk { border-left-color: var(--seal); background: rgba(194,58,43,.04); }
+  .clause-block.risk-active { box-shadow: 0 0 0 2px var(--seal-soft); background: rgba(194,58,43,.07); }
+  .clause-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+  .clause-num { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .risk-badge {
+    flex: 0 0 auto; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+    letter-spacing: .06em; opacity: 0; transform: scale(.9); transition: opacity .3s, transform .3s;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .risk-badge.show { opacity: 1; transform: scale(1); }
+  .risk-badge.high { background: var(--high-bg); color: var(--high); }
+  .risk-badge.med { background: var(--med-bg); color: var(--med); }
+  .risk-badge.low { background: var(--low-bg); color: var(--low); }
+  .clause-text { font-size: 14.5px; color: var(--ink); }
+  .clause-text mark {
+    background: linear-gradient(transparent 60%, rgba(194,58,43,.25) 60%);
+    padding: 0 2px;
+  }
+  .redline-panel {
+    background: #fff; border-left: 1px solid var(--line); min-height: calc(100vh - 44px - 48px - 56px);
+    display: flex; flex-direction: column; position: sticky; top: calc(44px + 48px + 56px);
+    max-height: calc(100vh - 44px - 48px - 56px);
+  }
+  .panel-head {
+    padding: 18px 18px 14px; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, #fff 0%, var(--ivory) 100%);
+  }
+  .panel-head h3 { font-size: 13px; letter-spacing: .12em; color: var(--seal); margin-bottom: 4px; }
+  .panel-head p { font-size: 11.5px; color: var(--gray-soft); }
+  .panel-body { flex: 1; overflow-y: auto; padding: 14px 14px 8px; }
+  .panel-placeholder {
+    text-align: center; padding: 40px 16px; color: var(--gray-soft); font-size: 13px;
+  }
+  .panel-placeholder .scan-icon { font-size: 28px; margin-bottom: 12px; opacity: .5; animation: pulse 1.2s ease infinite; }
+  @keyframes pulse { 0%,100% { opacity: .35; } 50% { opacity: .8; } }
+  .risk-card {
+    border: 1px solid var(--line); border-radius: 8px; padding: 14px; margin-bottom: 10px;
+    background: #fff; cursor: pointer; transition: border-color .15s, box-shadow .15s;
+    opacity: 0; transform: translateY(8px);
+  }
+  .risk-card.show { opacity: 1; transform: none; transition: opacity .35s ease, transform .35s ease, border-color .15s; }
+  .risk-card.active { border-color: var(--seal); box-shadow: 0 4px 16px rgba(194,58,43,.12); }
+  .risk-card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .risk-level {
+    font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: .04em;
+  }
+  .risk-level.high { background: var(--high-bg); color: var(--high); }
+  .risk-level.med { background: var(--med-bg); color: var(--med); }
+  .risk-level.low { background: var(--low-bg); color: var(--low); }
+  .risk-clause-ref { font-size: 11px; color: var(--gray-soft); flex: 1; }
+  .risk-rationale { font-size: 12.5px; color: var(--gray); margin-bottom: 10px; line-height: 1.65; }
+  .rewrite-box {
+    background: var(--ivory); border: 1px dashed var(--line); border-radius: 6px; padding: 10px 12px;
+    font-size: 12px; color: var(--ink); line-height: 1.7; min-height: 48px; font-family: 'Noto Serif JP', serif;
+  }
+  .rewrite-box.typing { border-style: solid; border-color: var(--seal); }
+  .rewrite-label { font-size: 10px; font-weight: 700; color: var(--seal); letter-spacing: .1em; margin-bottom: 6px; }
+  .rewrite-cursor { display: inline-block; width: 2px; height: 1em; background: var(--seal); vertical-align: text-bottom; animation: blink .8s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .panel-foot {
+    padding: 14px 18px 18px; border-top: 1px solid var(--line); background: var(--ivory);
+  }
+  .btn-seal {
+    width: 100%; padding: 14px; border: none; border-radius: 8px; background: var(--seal); color: #fff;
+    font-weight: 700; font-size: 14.5px; transition: filter .15s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-seal:hover:not(:disabled) { filter: brightness(1.06); }
+  .btn-seal:active:not(:disabled) { transform: scale(.99); }
+  .btn-seal:disabled { opacity: .45; cursor: not-allowed; background: var(--gray-soft); }
+  .btn-seal.sealed { background: var(--green); cursor: default; }
+  .panel-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 10px; text-align: center; }
 
-  .main-scroll { padding: 26px 30px 60px; }
-  .view { display: none; }
-  .view.active { display: block; }
-  .view-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-  .view-head h2 { font-size: 20px; color: var(--ink); }
-  .view-head .lead { font-size: 12.5px; color: var(--gray); margin-top: 4px; }
+  .hanko-overlay {
+    position: absolute; right: 48px; bottom: 48px; width: 88px; height: 88px;
+    border: 3px solid var(--seal); border-radius: 6px; display: grid; place-items: center;
+    color: var(--seal); font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700;
+    letter-spacing: .15em; opacity: 0; transform: scale(2.2) rotate(-12deg); pointer-events: none;
+    background: rgba(247,241,229,.85); box-shadow: 0 0 0 4px rgba(194,58,43,.15);
+  }
+  .hanko-overlay.stamp {
+    animation: hankoStamp .55s cubic-bezier(.2,.9,.3,1) forwards;
+  }
+  @keyframes hankoStamp {
+    0% { opacity: 0; transform: scale(2.4) rotate(-18deg); }
+    55% { opacity: 1; transform: scale(.92) rotate(-6deg); }
+    75% { transform: scale(1.04) rotate(-8deg); }
+    100% { opacity: .92; transform: scale(1) rotate(-8deg); }
+  }
+  .sealed-banner {
+    display: none; text-align: center; margin-top: 24px; padding: 12px; background: var(--green-bg);
+    border: 1px solid rgba(21,128,61,.25); border-radius: 6px; font-size: 13px; color: var(--green); font-weight: 700;
+  }
+  .sealed-banner.show { display: block; }
 
-  /* KPI */
-  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 22px; }
-  .kpi-card { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 18px 20px; transition: box-shadow .15s; }
-  .kpi-card:hover { box-shadow: 0 8px 24px rgba(26,31,46,.06); }
-  .kpi-card .kpi-label { font-size: 12px; color: var(--gray); font-weight: 700; display: flex; align-items: center; gap: 6px; font-family: 'Noto Sans JP', sans-serif; }
-  .kpi-card .kpi-value { font-size: 27px; color: var(--ink); margin: 9px 0 4px; font-weight: 700; font-family: 'Noto Serif JP', serif; }
-  .kpi-card .kpi-value span { font-size: 13px; color: var(--gray-soft); font-weight: 500; margin-left: 2px; font-family: 'Noto Sans JP', sans-serif; }
-  .kpi-card .kpi-sub { font-size: 11px; color: var(--gray-soft); }
-  .kpi-swatch { width: 8px; height: 8px; border-radius: 2px; flex: 0 0 auto; }
-
-  .grid-2col { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; align-items: start; margin-bottom: 18px; }
-  .panel { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 20px 22px; }
-  .panel h3 { font-size: 14.5px; color: var(--ink); margin-bottom: 4px; font-weight: 700; }
-  .panel .panel-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; font-family: 'Noto Sans JP', sans-serif; }
-
-  .task-list { display: flex; flex-direction: column; gap: 8px; }
-  .task-row {
-    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 4px;
-    transition: background .15s, border-color .15s; background: #fff;
-  }
-  .task-row:hover { background: var(--bg-soft); border-color: #D4CBB8; }
-  .task-row .t-badge { flex: 0 0 auto; }
-  .task-row .t-main { flex: 1; min-width: 0; }
-  .task-row .t-name { font-size: 13px; font-weight: 700; color: var(--ink); font-family: 'Noto Sans JP', sans-serif; }
-  .task-row .t-sub { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
-  .task-row .t-arrow { flex: 0 0 auto; color: var(--gray-soft); }
-
-  .bar-chart { display: flex; align-items: flex-end; gap: 14px; height: 180px; padding-top: 22px; }
-  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
-  .bar-value { font-size: 11px; color: var(--ink); font-weight: 700; margin-bottom: 6px; white-space: nowrap; }
-  .bar { width: 100%; max-width: 42px; border-radius: 3px 3px 0 0; background: linear-gradient(180deg, #FCA5A5, var(--pri)); transition: height .6s cubic-bezier(.2,.8,.2,1); }
-  .bar.current { background: linear-gradient(180deg, var(--gold), var(--gold-deep)); }
-  .bar-month { font-size: 11px; color: var(--gray); margin-top: 8px; }
-
-  .timeline { display: flex; flex-direction: column; gap: 0; }
-  .timeline-item { display: flex; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); }
-  .timeline-item:last-child { border-bottom: none; }
-  .timeline-dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; margin-top: 5px; }
-  .timeline-text { font-size: 12.5px; color: var(--ink); line-height: 1.6; }
-  .timeline-text b { font-weight: 700; }
-  .timeline-date { font-size: 10.5px; color: var(--gray-soft); margin-top: 2px; }
-
-  /* Badges */
-  .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; white-space: nowrap; }
-  .badge-draft { background: var(--slate-bg); color: #4A5568; }
-  .badge-ai_reviewing { background: var(--pri-bg); color: var(--pri-deep); }
-  .badge-approval_pending { background: var(--amber-bg); color: var(--amber); }
-  .badge-counterparty_review { background: #F1E9FB; color: #6B3FA0; }
-  .badge-signed { background: var(--teal-bg); color: var(--teal); }
-  .badge-high { background: var(--red-bg); color: var(--red); }
-  .badge-mid { background: var(--amber-bg); color: var(--amber); }
-  .badge-low { background: var(--slate-bg); color: #4A5568; }
-  .badge-human { background: var(--gold); color: var(--navy-deep); }
-  .badge-soon { background: var(--gold); color: var(--navy-deep); }
-
-  /* Contracts list */
-  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; }
-  .tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tab-chip {
-    padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-size: 12.5px;
-    color: var(--gray); font-weight: 500; transition: all .15s; white-space: nowrap; display: flex; align-items: center; gap: 6px;
-  }
-  .tab-chip:hover { border-color: var(--pri); }
-  .tab-chip.active { background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 700; }
-  .tab-chip .cnt { font-size: 10.5px; background: rgba(0,0,0,.08); padding: 1px 6px; border-radius: 999px; }
-  .tab-chip.active .cnt { background: rgba(255,255,255,.2); }
-  .search-box { position: relative; margin-left: auto; }
-  .search-box input {
-    padding: 9px 14px 9px 34px; border: 1px solid var(--line); border-radius: 4px; font-size: 13px; width: 240px; background: #fff;
-  }
-  .search-box input:focus { outline: 2px solid var(--pri); }
-  .search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: .5; }
-
-  .table-wrap { background: #fff; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
-  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  table.data-table th {
-    text-align: left; padding: 12px 16px; background: var(--ivory); color: var(--gray); font-weight: 700; font-size: 11.5px;
-    border-bottom: 1px solid var(--line); white-space: nowrap; font-family: 'Noto Sans JP', sans-serif;
-  }
-  table.data-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
-  table.data-table tbody tr { cursor: pointer; transition: background .12s; }
-  table.data-table tbody tr:hover { background: var(--bg-soft); }
-  table.data-table tbody tr:last-child td { border-bottom: none; }
-  table.data-table td.name-cell { font-weight: 700; }
-  table.data-table td.num-cell { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .row-soon { background: #FBF6E4; }
-  .row-soon:hover { background: #F7EFD3 !important; }
-  .empty-row td { text-align: center; color: var(--gray-soft); padding: 40px 16px; }
-
-  /* Contract detail */
-  .detail-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--gray); margin-bottom: 14px; }
-  .detail-back:hover { color: var(--pri); }
-  .detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
-  .detail-head h2 { font-size: 19px; }
-  .detail-head .sub { font-size: 12px; color: var(--gray); margin-top: 5px; }
-  .detail-grid { display: grid; grid-template-columns: 1.45fr minmax(300px, 360px); gap: 20px; align-items: start; }
-
-  .paper-wrap { background: var(--paper); border: 1px solid var(--line); border-radius: 2px; overflow: hidden; box-shadow: 0 12px 40px rgba(26,31,46,.06); }
-  .paper-toolbar { padding: 12px 20px; border-bottom: 1px solid var(--line); background: #F0EBE0; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-  .paper-toolbar .pt-label { font-size: 11.5px; color: var(--gray); font-weight: 700; letter-spacing: .06em; font-family: 'Noto Sans JP', sans-serif; }
-  .paper { position: relative; padding: 48px 52px 64px; max-height: 760px; overflow-y: auto; background: var(--paper); }
-  .paper .doc-title { text-align: center; font-size: 20px; font-weight: 700; margin-bottom: 8px; letter-spacing: .12em; font-family: 'Noto Serif JP', serif; }
-  .paper .doc-sub { text-align: center; font-size: 11.5px; color: var(--gray-soft); margin-bottom: 30px; }
-  .paper .doc-parties { font-size: 13px; color: var(--ink); margin-bottom: 30px; line-height: 2; }
-  .contract-article { margin-bottom: 22px; scroll-margin-top: 20px; border-radius: 2px; transition: background-color .4s ease; padding: 6px 10px 6px 14px; margin-left: -8px; margin-right: -8px; border-left: 3px solid transparent; position: relative; }
-  .contract-article h4 { font-size: 13.5px; font-weight: 700; margin-bottom: 8px; font-family: 'Noto Serif JP', serif; letter-spacing: .04em; }
-  .contract-article p { font-size: 12.8px; color: #2B2F36; line-height: 2; margin-bottom: 6px; }
-  .contract-article ol.paragraphs { padding-left: 1.4em; }
-  .contract-article ol.paragraphs li { font-size: 12.8px; color: #2B2F36; line-height: 2; margin-bottom: 6px; }
-  .contract-article.flash { animation: articleFlash 1.8s ease; border-left-color: var(--pri); }
-  .contract-article.flash::after {
-    content: 'リスク指摘'; position: absolute; right: 8px; top: 6px; font-size: 10px; font-weight: 700;
-    color: var(--pri); background: var(--pri-bg); padding: 2px 8px; border-radius: 2px; font-family: 'Noto Sans JP', sans-serif;
-  }
-  @keyframes articleFlash {
-    0% { background-color: #FEE2E2; }
-    70% { background-color: #FEE2E2; }
-    100% { background-color: transparent; }
-  }
-  .doc-sign-block { margin-top: 40px; padding-top: 26px; border-top: 1px dashed #C9BEA8; font-size: 12.5px; line-height: 2.1; position: relative; }
-  .doc-sign-block .sign-row { display: flex; justify-content: space-between; gap: 30px; margin-top: 14px; }
-  .doc-sign-block .sign-col { flex: 1; }
-  .stamp-seal {
-    position: absolute; top: 46px; right: 24px; width: 96px; height: 96px; border: 3px solid #B91C1C; border-radius: 8px;
-    color: #B91C1C; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: 700;
-    font-size: 13px; line-height: 1.3; transform: rotate(-8deg) scale(0); opacity: 0; background: rgba(255,255,255,.55);
-    letter-spacing: .05em; font-family: 'Noto Serif JP', serif;
-  }
-  .stamp-seal.stamped { animation: stampIn .5s cubic-bezier(.34,1.56,.64,1) forwards; }
-  @keyframes stampIn {
-    0% { transform: rotate(-8deg) scale(2.4); opacity: 0; }
-    60% { transform: rotate(-8deg) scale(.9); opacity: 1; }
-    100% { transform: rotate(-8deg) scale(1); opacity: 1; }
-  }
-
-  /* Tabs panel right */
-  .side-panel { background: #fff; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
-  .side-tabs { display: flex; border-bottom: 1px solid var(--line); background: var(--ivory); }
-  .side-tab-btn {
-    flex: 1; padding: 13px 8px; font-size: 12.5px; font-weight: 700; color: var(--gray); background: none; border: none;
-    border-bottom: 2px solid transparent; transition: color .15s; font-family: 'Noto Sans JP', sans-serif;
-  }
-  .side-tab-btn.active { color: var(--pri); border-bottom-color: var(--pri); background: #fff; }
-  .side-tab-body { padding: 20px; min-height: 460px; }
-  .side-tab-pane { display: none; }
-  .side-tab-pane.active { display: block; }
-
-  /* AI review */
-  .ai-start-box { text-align: center; padding: 40px 10px 20px; }
-  .ai-start-box .ai-icon { margin-bottom: 14px; }
-  .ai-start-box p { font-size: 12.5px; color: var(--gray); margin-bottom: 20px; line-height: 1.9; }
-  .btn-ai-run {
-    background: var(--pri); color: #fff; border: none; padding: 12px 26px; border-radius: 8px; font-weight: 700; font-size: 13.5px;
-    display: inline-flex; align-items: center; gap: 8px; transition: filter .2s;
-  }
-  .btn-ai-run:hover { filter: brightness(1.08); }
-
-  .scan-box { text-align: center; padding: 34px 10px; }
-  .scan-box .scan-spinner {
-    width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--pri-bg); border-top-color: var(--pri); margin: 0 auto 16px;
-    animation: spin .8s linear infinite;
-  }
-  .scan-box .scan-text { font-size: 13px; color: var(--ink); font-weight: 700; margin-bottom: 6px; }
-  .scan-box .scan-article { font-size: 12px; color: var(--pri); font-weight: 700; min-height: 18px; }
-
-  .ai-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; gap: 8px; }
-  .ai-toolbar .ai-count { font-size: 12px; color: var(--gray); }
-  .btn-skip { font-size: 11.5px; color: var(--pri); background: none; border: 1px solid var(--pri); padding: 5px 12px; border-radius: 999px; font-weight: 700; }
-  .btn-skip:hover { background: var(--pri-bg); }
-
-  .finding-card {
-    border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; margin-bottom: 12px; cursor: pointer;
-    transition: box-shadow .15s, border-color .15s; opacity: 0; transform: translateY(10px);
-    background: #fff; border-left: 3px solid var(--pri);
-  }
-  .finding-card.in { animation: findingIn .5s ease forwards; }
-  @keyframes findingIn { to { opacity: 1; transform: none; } }
-  .finding-card:hover { box-shadow: 0 8px 22px rgba(15,23,42,.08); border-color: #CBD5E1; }
-  .finding-card .fc-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
-  .finding-card .fc-article { font-size: 11.5px; color: var(--gray); font-weight: 700; }
-  .finding-card .fc-issue { font-size: 12.8px; color: var(--ink); font-weight: 700; margin-bottom: 8px; line-height: 1.7; }
-  .finding-card .fc-fix { font-size: 12px; color: var(--gray); background: var(--bg-soft); border-radius: 8px; padding: 10px 12px; line-height: 1.8; }
-  .finding-card .fc-fix b { display: block; font-size: 10.5px; color: var(--teal); margin-bottom: 4px; letter-spacing: .04em; }
-
-  .ai-summary-band {
-    margin-top: 6px; background: var(--pri-bg); border: 1px solid #FECACA; border-radius: 4px; padding: 14px 16px;
-    font-size: 12.5px; color: var(--pri-deep); font-weight: 700; opacity: 0;
-  }
-  .ai-summary-band.in { animation: findingIn .5s ease forwards; }
-  .ai-legal-note {
-    margin-top: 12px; font-size: 11px; color: var(--gray-soft); line-height: 1.8; background: var(--bg-soft);
-    border-radius: 8px; padding: 10px 12px;
-  }
-
-  /* Approval flow */
-  .flow-timeline { position: relative; padding-left: 30px; }
-  .flow-step { position: relative; padding-bottom: 30px; }
-  .flow-step:last-child { padding-bottom: 4px; }
-  .flow-step::before {
-    content: ''; position: absolute; left: -24px; top: 24px; bottom: -6px; width: 2px; background: var(--line);
-  }
-  .flow-step:last-child::before { display: none; }
-  .flow-dot {
-    position: absolute; left: -32px; top: 0; width: 18px; height: 18px; border-radius: 50%; background: #fff;
-    border: 2.5px solid var(--line); display: grid; place-items: center; z-index: 2;
-  }
-  .flow-step.done .flow-dot { border-color: var(--teal); background: var(--teal); }
-  .flow-step.current .flow-dot { border-color: var(--pri); background: var(--pri); box-shadow: 0 0 0 4px var(--pri-bg); }
-  .flow-step.pending .flow-dot { border-color: var(--line); background: #fff; }
-  .flow-step .fs-title { font-size: 13.5px; font-weight: 700; color: var(--ink); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .flow-step .fs-sub { font-size: 11.5px; color: var(--gray-soft); margin-top: 4px; }
-  .flow-step .fs-body { margin-top: 10px; }
-  .flow-step.pending .fs-title, .flow-step.pending .fs-sub { color: var(--gray-soft); }
-
-  .btn-flow-next {
-    background: var(--pri); color: #fff; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 12.8px;
-    margin-top: 4px;
-  }
-  .btn-flow-next:hover { filter: brightness(1.08); }
-  .btn-flow-next:disabled { opacity: .55; cursor: wait; }
-  .waiting-box {
-    display: flex; align-items: center; gap: 9px; font-size: 12px; color: var(--gray); margin-top: 8px;
-    background: var(--bg-soft); padding: 9px 12px; border-radius: 8px;
-  }
-  .waiting-box .dotting::after { content: ''; animation: dotting 1.2s steps(4,end) infinite; }
-  @keyframes dotting { 0%{content:''} 25%{content:'.'} 50%{content:'..'} 75%{content:'...'} 100%{content:''} }
-  .signed-banner {
-    margin-top: 14px; background: var(--teal-bg); color: var(--teal); border-radius: 9px; padding: 12px 14px; font-size: 12.5px;
-    font-weight: 700; display: flex; align-items: center; gap: 8px; opacity: 0;
-  }
-  .signed-banner.in { animation: findingIn .5s ease forwards; }
-  .flow-reset { margin-top: 18px; text-align: right; }
-  .flow-reset button { font-size: 11.5px; color: var(--gray); background: none; border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; }
-  .flow-reset button:hover { border-color: var(--pri); color: var(--pri); }
-
-  /* Basic info tab */
-  .meta-table { width: 100%; border-collapse: collapse; font-size: 12.8px; }
-  .meta-table th { text-align: left; width: 38%; color: var(--gray); font-weight: 700; padding: 10px 0; vertical-align: top; }
-  .meta-table td { padding: 10px 0; border-bottom: 1px solid var(--line); }
-  .meta-table tr:last-child td, .meta-table tr:last-child th { border-bottom: none; }
-  .tag-chip { display: inline-block; background: var(--slate-bg); color: #4A5568; font-size: 11px; padding: 3px 9px; border-radius: 999px; margin: 2px 4px 2px 0; }
-
-  /* Ledger */
-  .lead-band {
-    background: var(--pri-bg); border: 1px solid #FECACA; border-radius: 4px; padding: 13px 16px; font-size: 12.5px;
-    color: var(--pri-deep); margin-bottom: 18px; display: flex; gap: 10px; align-items: flex-start;
-  }
-
-  /* Settings */
-  .settings-section { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; margin-bottom: 18px; }
-  .settings-section h3 { font-size: 14.5px; margin-bottom: 4px; }
-  .settings-section .sec-note { font-size: 11.5px; color: var(--gray-soft); margin-bottom: 16px; }
-  .member-row, .toggle-row {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
-  }
-  .member-row:last-child, .toggle-row:last-child { border-bottom: none; }
-  .member-row .m-name { font-size: 13px; font-weight: 700; }
-  .member-row .m-mail { font-size: 11px; color: var(--gray-soft); }
-  .role-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
-  .role-admin { background: #FDE8E4; color: #B0432F; }
-  .role-legal { background: var(--pri-bg); color: var(--pri-deep); }
-  .role-member { background: var(--slate-bg); color: #4A5568; }
-  .toggle-row .tg-label { font-size: 13px; color: var(--ink); }
-  .toggle-row .tg-desc { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
-  .switch { position: relative; width: 42px; height: 24px; flex: 0 0 auto; }
-  .switch input { opacity: 0; width: 0; height: 0; }
-  .switch .track {
-    position: absolute; inset: 0; background: #CBD5E1; border-radius: 999px; cursor: pointer; transition: background .2s;
-  }
-  .switch .track::before {
-    content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%;
-    transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.3);
-  }
-  .switch input:checked + .track { background: var(--pri); }
-  .switch input:checked + .track::before { transform: translateX(18px); }
-
-  /* Toast */
   #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
   .toast {
-    background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 8px; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    background: var(--ink); color: #FAFAF9; padding: 11px 16px; border-radius: 8px; font-size: 13px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.2); border-left: 3px solid var(--seal);
     animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
   }
   @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
   @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
 
-  /* ============ 4. AI顧問室 CTAセクション ============ */
   .komon-cta {
-    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
-    color: #fff; padding: 76px 24px 40px; text-align: center;
+    background: linear-gradient(160deg, #0C0A09 0%, #1C1917 100%); color: #FAFAF9;
+    padding: 72px 24px 48px; border-top: 3px solid var(--seal);
   }
   .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
-  .komon-cta .cta-label {
-    display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: var(--gold); font-weight: 700; margin-bottom: 16px;
-  }
-  .komon-cta h2 { font-family: 'Noto Serif JP', serif; font-size: 30px; margin-bottom: 16px; line-height: 1.5; }
-  .komon-cta h2 em { font-style: normal; color: var(--gold); }
-  .komon-cta p.lead { font-size: 14.5px; color: #C7D3E4; margin-bottom: 32px; line-height: 1.9; }
-  .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
-  .btn { display: inline-block; padding: 15px 34px; border-radius: 6px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s, transform .1s; font-family: 'Noto Sans JP', sans-serif; }
-  .btn:hover { opacity: .87; }
-  .btn:active { transform: scale(.98); }
-  .btn-gold { background: var(--gold); color: var(--navy-deep); }
-  .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
-  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #7C8CA8; }
-  .komon-cta .cta-foot a { color: #A9BBD6; }
+  .komon-cta .cta-label { display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: #FCA5A5; font-weight: 700; margin-bottom: 16px; }
+  .komon-cta h2 { font-size: 30px; margin-bottom: 16px; line-height: 1.5; font-family: 'Noto Serif JP', serif; }
+  .komon-cta h2 em { font-style: normal; color: #FCA5A5; }
+  .komon-cta p.lead { font-size: 14.5px; color: #A8A29E; margin-bottom: 32px; line-height: 1.9; }
+  .cta-btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 24px; border-radius: 6px; font-weight: 700; font-size: 14px; transition: filter .15s; }
+  .btn-gold { background: var(--seal); color: #fff; }
+  .btn-gold:hover { filter: brightness(1.08); }
+  .btn-outline-cta { border: 1px solid rgba(255,255,255,.35); color: #FAFAF9; }
+  .btn-outline-cta:hover { background: rgba(255,255,255,.08); }
+  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #78716C; }
+  .komon-cta .cta-foot a { color: #D6D3D1; }
   .komon-cta .cta-foot a:hover { color: #fff; }
 
-  /* Mobile nav drawer */
-  .mobile-nav-overlay { display: none; }
-  @media (max-width: 900px) {
-    .grid-2col { grid-template-columns: 1fr; }
-    .detail-grid { grid-template-columns: 1fr; }
-    .kpi-grid { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 960px) {
+    .review-main { grid-template-columns: 1fr; }
+    .redline-panel {
+      position: relative; top: 0; max-height: none; min-height: auto;
+      border-left: none; border-top: 1px solid var(--line);
+    }
+    .paper-col { min-height: auto; padding-bottom: 16px; }
+    .contract-paper { padding: 32px 24px 48px; }
+    .hanko-overlay { right: 24px; bottom: 32px; width: 72px; height: 72px; font-size: 18px; }
   }
-  @media (max-width: 780px) {
-    .hamburger-btn { display: flex; }
-    .sidebar {
-      position: fixed; top: 44px; left: 0; bottom: 0; height: auto; z-index: 300; transform: translateX(-100%);
-      transition: transform .25s ease; box-shadow: 20px 0 60px rgba(0,0,0,.3); width: 240px;
-    }
-    .sidebar.open { transform: translateX(0); }
-    .mobile-nav-overlay.open {
-      display: block; position: fixed; inset: 44px 0 0 0; background: rgba(0,0,0,.4); z-index: 290;
-    }
-    .app-header { padding: 0 14px; gap: 8px; }
-    .header-search { display: none; }
-    .main-scroll { padding: 18px 14px 40px; }
-    .kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .kpi-card { padding: 13px 14px; }
-    .kpi-card .kpi-value { font-size: 21px; }
-    table.data-table { font-size: 12px; }
-    table.data-table th, table.data-table td { padding: 10px 10px; }
-    .search-box { width: 100%; margin-left: 0; }
-    .search-box input { width: 100%; }
-    .toolbar { flex-direction: column; align-items: stretch; }
-    .paper { padding: 26px 18px 40px; max-height: 480px; }
+  @media (max-width: 640px) {
+    .review-bar { top: calc(52px + 48px); }
+    .app-top { top: 52px; }
     .komon-cta h2 { font-size: 23px; }
     .komon-cta { padding: 56px 18px 32px; }
-    .stamp-seal { width: 74px; height: 74px; font-size: 11px; right: 14px; }
-  }
-  @media (max-width: 480px) {
-    .kpi-grid { grid-template-columns: 1fr; }
-    table.data-table thead { display: none; }
-    table.data-table, table.data-table tbody, table.data-table tr, table.data-table td { display: block; width: 100%; }
-    table.data-table tbody tr { border-bottom: 1px solid var(--line); padding: 12px 14px; }
-    table.data-table td { border-bottom: none; padding: 3px 0; }
-    table.data-table td.num-cell { text-align: left; }
-    table.data-table td::before { content: attr(data-label); display: inline-block; min-width: 76px; font-size: 10.5px; color: var(--gray-soft); font-weight: 700; }
+    .status-strip { justify-content: flex-start; }
   }
 </style>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
 </head>
@@ -582,20 +348,20 @@
   <a href="index.html" class="frame-link">AI顧問室トップへ</a>
 </div>
 
-<!-- ============ ログイン画面 ============ -->
 <div id="view-login">
   <div class="login-hero">
     <div class="hero-kicker">AI CONTRACT CLOUD</div>
-    <h2>契約書を、<em>読んで・直して・捺印</em>するまで。</h2>
-    <p>AIが全条項をスキャンし、リスクを指摘。承認フローから電子締結まで、法務ワークスペースとして一気通貫。</p>
+    <h2>契約は、<em>紙面で読む。</em>リスクを潰して捺印する。</h2>
+    <p>NDA・業務委託・SaaS利用契約を象牙紙ビューアで読み、AIが条項ごとにリスクを赤入れ。修正文案を提案し、承認して朱印を押せば締結完了。一覧テーブルではなく、契約紙面が主語のレビューデスク。</p>
+    <div class="seal-strip"><span></span><span></span><span></span><span></span><span></span><span></span></div>
   </div>
   <div class="login-panel">
     <div class="login-card">
       <div class="login-logo"><span class="k">KAWASU</span><span class="tag-en">AI CONTRACT CLOUD</span></div>
-      <p class="login-sub">契約を、交わすだけに。</p>
+      <p class="login-sub">条項を読み、リスクを赤入れし、朱印で締結。</p>
       <div class="login-field">
         <label for="loginMail">メールアドレス</label>
-        <input id="loginMail" type="text" value="demo@kawasu.example" readonly>
+        <input id="loginMail" type="text" value="legal@sample-corp.example" readonly>
       </div>
       <div class="login-field">
         <label for="loginPass">パスワード</label>
@@ -609,1081 +375,586 @@
   </div>
 </div>
 
-<!-- ============ アプリ本体 ============ -->
 <div id="view-app">
-  <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleSidebar(false)"></div>
-  <div class="app-frame">
+  <header class="app-top">
+    <div class="top-brand"><span class="k">KAWASU</span><span class="tag-en">AI CONTRACT CLOUD</span></div>
+    <div class="top-center" id="topDate">2026-07-22 JST</div>
+    <div class="top-actions">
+      <div class="top-user">
+        <div class="avatar">法</div>
+        <span>デモ 法務</span>
+      </div>
+      <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+    </div>
+  </header>
 
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand"><span class="k">KAWASU</span><span class="tag-en">AI CONTRACT CLOUD</span></div>
-      <nav class="sidebar-nav" id="sidebarNav">
-        <button class="nav-btn" data-nav="dashboard" onclick="go('dashboard')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.4"/><rect x="14" y="3" width="7" height="5" rx="1.4"/><rect x="14" y="12" width="7" height="9" rx="1.4"/><rect x="3" y="16" width="7" height="5" rx="1.4"/></svg>
-          ダッシュボード
-        </button>
-        <button class="nav-btn" data-nav="contracts" onclick="go('contracts')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h8l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M15 3v5h5"/><path d="M9 13h6M9 17h6M9 9h2"/></svg>
-          契約書一覧
-        </button>
-        <button class="nav-btn" data-nav="ledger" onclick="go('ledger')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="1.6"/><path d="M3 9h18M8 4v16"/></svg>
-          契約台帳
-        </button>
-        <button class="nav-btn" data-nav="settings" onclick="go('settings')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l1.9-1.5-2-3.4-2.3.7a7.6 7.6 0 0 0-2.6-1.5L14 2h-4l-.4 2.8a7.6 7.6 0 0 0-2.6 1.5l-2.3-.7-2 3.4L4.6 10.5a7.6 7.6 0 0 0 0 3L2.7 15l2 3.4 2.3-.7c.77.66 1.65 1.17 2.6 1.5L10 22h4l.4-2.8c.95-.33 1.83-.84 2.6-1.5l2.3.7 2-3.4Z"/></svg>
-          設定
-        </button>
-      </nav>
-      <div class="sidebar-foot">
-        <div class="sidebar-user">
-          <div class="avatar">太</div>
-          <div><div class="u-name">デモ 太郎</div><div class="u-role">法務部</div></div>
+  <div class="review-bar">
+    <label for="contractSelect">契約書</label>
+    <select class="contract-select" id="contractSelect" onchange="switchContract(this.value)"></select>
+    <div class="status-strip">
+      <span class="status-chip" id="chipScan">① 条項スキャン</span>
+      <span class="status-chip" id="chipRedline">② 赤入れ確認</span>
+      <span class="status-chip" id="chipSeal">③ 朱印捺印</span>
+      <span class="risk-summary" id="riskSummary"></span>
+    </div>
+  </div>
+
+  <div class="review-main">
+    <div class="paper-col">
+      <article class="contract-paper serif" id="contractPaper">
+        <div id="paperContent"></div>
+        <div class="hanko-overlay" id="hankoOverlay">承認</div>
+        <div class="sealed-banner" id="sealedBanner">✓ 電子捺印完了 — 契約書は締結済みです</div>
+      </article>
+    </div>
+    <aside class="redline-panel" aria-label="AI赤入れパネル">
+      <div class="panel-head">
+        <h3>AI REDLINE</h3>
+        <p>条項リスクの根拠と修正文案</p>
+      </div>
+      <div class="panel-body" id="panelBody">
+        <div class="panel-placeholder" id="panelPlaceholder">
+          <div class="scan-icon">📄</div>
+          契約書を開くと条項スキャンが始まります…
         </div>
-        <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+      </div>
+      <div class="panel-foot">
+        <button class="btn-seal" id="btnSeal" disabled onclick="performSeal()">承認して捺印</button>
+        <p class="panel-note">すべての修正文案を確認後、捺印できます</p>
       </div>
     </aside>
-
-    <div class="main-col">
-      <header class="app-header">
-        <button class="hamburger-btn" onclick="toggleSidebar()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        </button>
-        <h1 class="view-name" id="viewNameLabel">ダッシュボード</h1>
-        <div class="header-search">
-          <div class="header-search-inner">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-            <input type="text" placeholder="契約書・相手方を検索（見た目のみ）" disabled>
-          </div>
-        </div>
-        <div class="header-actions">
-          <div class="dropdown-wrap">
-            <button class="icon-btn" onclick="toggleDropdown('notifPanel')">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-              <span class="notif-badge" id="notifBadgeCount">3</span>
-            </button>
-            <div class="dropdown-panel" id="notifPanel">
-              <div class="dropdown-head">通知</div>
-              <div id="notifList"></div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main class="main-scroll">
-
-        <!-- ===== ダッシュボード ===== -->
-        <section class="view" id="view-dashboard">
-          <div class="view-head">
-            <div><h2>ダッシュボード</h2><p class="lead">2026年7月18日時点のサマリーです（サンプルデータ）</p></div>
-          </div>
-
-          <div class="kpi-grid" id="kpiGrid"></div>
-
-          <div class="grid-2col">
-            <div class="panel">
-              <h3>対応が必要な契約</h3>
-              <p class="panel-note">承認待ち・更新期限が近い契約を抽出しています</p>
-              <div class="task-list" id="taskList"></div>
-            </div>
-            <div class="panel">
-              <h3>最近のアクティビティ</h3>
-              <p class="panel-note">直近の操作履歴（サンプル）</p>
-              <div class="timeline" id="activityTimeline"></div>
-            </div>
-          </div>
-
-          <div class="panel">
-            <h3>管理契約数の推移</h3>
-            <p class="panel-note">2026年2月〜7月・累計（サンプルデータ）</p>
-            <div class="bar-chart" id="monthlyBarChart"></div>
-          </div>
-        </section>
-
-        <!-- ===== 契約書一覧 ===== -->
-        <section class="view" id="view-contracts">
-          <div class="view-head">
-            <div><h2>契約書一覧</h2><p class="lead">全<span id="contractsTotalCount">0</span>件の契約書</p></div>
-          </div>
-          <div class="toolbar">
-            <div class="tab-row" id="statusTabRow"></div>
-            <div class="search-box">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-              <input type="text" id="contractSearchInput" placeholder="契約名・相手方で検索" oninput="renderContractsTable()">
-            </div>
-          </div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr><th>契約名</th><th>相手方</th><th>種別</th><th>金額</th><th>担当</th><th>更新日</th><th>ステータス</th></tr>
-              </thead>
-              <tbody id="contractsTbody"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- ===== 契約詳細 ===== -->
-        <section class="view" id="view-contract-detail">
-          <a href="#contracts" class="detail-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>
-            契約書一覧へ戻る
-          </a>
-          <div class="detail-head">
-            <div>
-              <h2 id="detailTitle">契約名</h2>
-              <p class="sub" id="detailSub">契約番号 / 相手方</p>
-            </div>
-            <span class="badge" id="detailStatusBadge"></span>
-          </div>
-
-          <div class="detail-grid">
-            <div class="paper-wrap">
-              <div class="paper-toolbar">
-                <span class="pt-label">契約書プレビュー</span>
-                <span class="pt-label" id="paperNote">紙面表示</span>
-              </div>
-              <div class="paper" id="paperBody"></div>
-            </div>
-
-            <div class="side-panel">
-              <div class="side-tabs" id="sideTabs">
-                <button class="side-tab-btn active" data-tab="review" onclick="switchSideTab('review')">AIレビュー</button>
-                <button class="side-tab-btn" data-tab="flow" onclick="switchSideTab('flow')">承認フロー</button>
-                <button class="side-tab-btn" data-tab="info" onclick="switchSideTab('info')">基本情報</button>
-              </div>
-              <div class="side-tab-body">
-                <div class="side-tab-pane active" id="pane-review"></div>
-                <div class="side-tab-pane" id="pane-flow"></div>
-                <div class="side-tab-pane" id="pane-info"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== 契約台帳 ===== -->
-        <section class="view" id="view-ledger">
-          <div class="view-head">
-            <div><h2>契約台帳</h2><p class="lead">締結済み契約を自動で台帳化しています</p></div>
-          </div>
-          <div class="lead-band">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:0 0 auto;margin-top:2px;"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
-            <span>締結済み契約は自動で台帳化され、更新期限の90日前にAIが担当者へ通知します。</span>
-          </div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr><th>契約名</th><th>相手方</th><th>種別</th><th>金額</th><th>締結日</th><th>更新期限</th><th></th></tr>
-              </thead>
-              <tbody id="ledgerTbody"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- ===== 設定 ===== -->
-        <section class="view" id="view-settings">
-          <div class="view-head">
-            <div><h2>設定</h2><p class="lead">メンバー権限・AIレビュー観点・通知の設定です（見た目のみ動作します）</p></div>
-          </div>
-
-          <div class="settings-section">
-            <h3>メンバーと権限</h3>
-            <p class="sec-note">組織内のメンバーとロールを管理します</p>
-            <div id="memberList"></div>
-          </div>
-
-          <div class="settings-section">
-            <h3>AIレビュー設定</h3>
-            <p class="sec-note">AIが契約書レビュー時にチェックする観点です</p>
-            <div id="reviewToggleList"></div>
-          </div>
-
-          <div class="settings-section">
-            <h3>通知設定</h3>
-            <p class="sec-note">契約更新期限の通知タイミングです</p>
-            <div id="notifToggleList"></div>
-          </div>
-        </section>
-
-      </main>
-    </div>
   </div>
 </div>
 
-<!-- ============ AI顧問室 CTAセクション ============ -->
 <div class="komon-cta">
   <div class="cta-inner">
     <span class="cta-label">AI KOMONSHITSU</span>
     <h2>このようなシステムを、<em>御社専用に。</em></h2>
-    <p class="lead">「カワス」は本デモのために作った架空のプロダクトです。AI顧問室では、契約管理に限らず、御社の業務フローそのものを学習してAIレビュー・承認フロー・自動集計を組み込んだ専用システムを構築します。</p>
+    <p class="lead">「KAWASU」は本デモのために作った架空のプロダクトです。AI顧問室では、NDA・業務委託・SaaS契約など御社のひな形を学習し、条項リスクの赤入れ・修正文案提案・電子捺印フローまで組み込んだ専用の契約レビューシステムを構築します。</p>
     <div class="cta-btn-row">
       <a href="index.html?from=works-contract#contact" class="btn btn-gold">無料相談を予約する</a>
       <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
     </div>
-    <div class="cta-foot">
-      提供: <a href="index.html">AI顧問室</a>｜© 2026
-    </div>
+    <div class="cta-foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</div>
   </div>
 </div>
 
 <div id="toastHost"></div>
 
 <script>
-/* ============================================================
-   0. 基準日 / ユーティリティ
-============================================================ */
-var TODAY = new Date(2026, 6, 18); // 2026-07-18 固定（デモの基準日）
+var CONTRACTS = {
+  nda: {
+    id: 'nda',
+    title: '秘密保持契約書（相互）',
+    counterparty: '株式会社テックベンダー',
+    meta: '契約番号：KWS-2026-0142｜起案：法務部｜有効期間：3年',
+    status: 'review',
+    clauses: [
+      { id: 'nda-1', num: '第1条（目的）', text: '本契約は、甲及び乙が相互に開示する技術情報・営業情報その他の秘密情報の取扱いを定めることを目的とする。' },
+      { id: 'nda-2', num: '第2条（秘密情報の定義）', text: '「秘密情報」とは、開示者が書面又は口頭により秘密である旨を明示した情報の一切をいう。口頭開示の場合も、開示後30日以内に書面で特定すれば秘密情報に該当する。' },
+      { id: 'nda-3', num: '第3条（利用目的の制限）', text: '受領者は、秘密情報を本件協議の目的以外に利用してはならない。目的外利用が判明した場合、開示者は直ちに損害賠償を請求できる。' },
+      { id: 'nda-4', num: '第4条（損害賠償）', text: '受領者は、本契約違反により開示者に生じた損害について、<mark>上限なく一切の損害</mark>（間接損害・逸失利益・弁護士費用を含む）を賠償する。' },
+      { id: 'nda-5', num: '第5条（知的財産権）', text: '秘密情報に基づき受領者が作成した成果物・改良・派生物の<mark>知的財産権はすべて開示者に帰属</mark>し、受領者は著作者人格権を行使しない。' },
+      { id: 'nda-6', num: '第6条（契約期間）', text: '本契約の有効期間は締結日から3年間とする。期間満了の<strong>30日前までに書面で解約通知がない限り同一条件で自動更新</strong>され、更新後も同様とする。' },
+      { id: 'nda-7', num: '第7条（返還・削除）', text: '契約終了後、受領者は秘密情報の原本及び複製物を返還又は破棄し、電子データは復元不可能な方法で削除する。' },
+      { id: 'nda-8', num: '第8条（準拠法・管轄）', text: '本契約は日本法に準拠し、東京地方裁判所を第一審の専属的合意管轄裁判所とする。' }
+    ],
+    risks: [
+      {
+        clauseId: 'nda-4', level: 'high',
+        label: '無制限損害賠償',
+        rationale: '「上限なく一切の損害」は逸失利益・弁護士費用まで含むため、NDA違反1件で想定外の巨額請求リスクがあります。相互NDAでは双方に適用される点も要注意。',
+        rewrite: '受領者は、故意又は重過失による本契約違反により開示者に直接生じた通常かつ現実の損害について、年間契約金額又は500万円のいずれか高い方を上限として賠償する。間接損害・逸失利益は除外する。'
+      },
+      {
+        clauseId: 'nda-5', level: 'high',
+        label: 'IP全面帰属',
+        rationale: '秘密情報を「参考にした」だけで成果物のIPが相手方に帰属する条項は、自社開発品との混同リスクが高いです。著作者人格権不行使も創作性のある成果物では問題になり得ます。',
+        rewrite: '秘密情報そのものの権利は開示者に留保する。受領者が独自に開発した成果物の知的財産権は受領者に帰属し、開示者へのライセンスは本件協議の目的に必要な範囲に限定する。'
+      },
+      {
+        clauseId: 'nda-6', level: 'med',
+        label: '自動更新',
+        rationale: '30日前通知がないと自動更新は、担当者交代時の更新漏れ・解約忘れで意図せず長期拘束される典型パターンです。',
+        rewrite: '本契約の有効期間は締結日から1年間とし、期間満了をもって終了する。更新を希望する場合は、満了60日前までに双方が書面で合意する。'
+      },
+      {
+        clauseId: 'nda-2', level: 'low',
+        label: '口頭秘密の範囲',
+        rationale: '口頭開示後30日以内の書面特定は実務上漏れやすく、後から秘密扱いを争われる余地があります。受領側としては書面化義務の明確化が望ましい。',
+        rewrite: '口頭で開示された情報は、開示後10営業日以内に開示者が書面（電子メールを含む）で特定した場合に限り秘密情報とする。'
+      }
+    ]
+  },
+  vendor: {
+    id: 'vendor',
+    title: '業務委託基本契約書',
+    counterparty: '合同会社デジタルワークス',
+    meta: '契約番号：KWS-2026-0089｜起案：調達部｜更新：2026-04-01',
+    status: 'review',
+    clauses: [
+      { id: 'vnd-1', num: '第1条（目的）', text: '甲は乙に対し、別紙作業範囲に定める業務を委託し、乙はこれを受託する。' },
+      { id: 'vnd-2', num: '第2条（委託料）', text: '委託料は月額880,000円（税別）。乙の都合による遅延・未達の場合も甲は全額支払う。' },
+      { id: 'vnd-3', num: '第3条（再委託）', text: '乙は甲の事前承諾なく第三者へ再委託できない。ただし乙の関連会社への再委託は書面承諾を要しない。' },
+      { id: 'vnd-4', num: '第4条（成果物）', text: '本業務により生じた成果物の著作権その他一切の権利は<mark>甲に独占的に帰属</mark>し、乙は著作者人格権を行使しない。' },
+      { id: 'vnd-5', num: '第5条（損害賠償）', text: '乙は本契約違反又は不法行為により甲に生じた損害について、<mark>委託料の10倍を上限</mark>として賠償する。甲の故意・重過失による損害は乙の賠償責任から除外しない。' },
+      { id: 'vnd-6', num: '第6条（契約期間）', text: '本契約は締結日から2年間有効とし、期間満了後は自動的に1年間更新される。' }
+    ],
+    risks: [
+      {
+        clauseId: 'vnd-4', level: 'high',
+        label: '成果物IP独占帰属',
+        rationale: '業務委託で成果物IPがすべて発注者に帰属すると、受託者の汎用ノウハウ・再利用可能モジュールまで渡す解釈になり得ます。',
+        rewrite: '本業務の成果物の著作権は甲に帰属する。ただし乙が本契約以前から保有する汎用技術・ツール及び本件と無関係に開発したモジュールは乙に留保する。'
+      },
+      {
+        clauseId: 'vnd-5', level: 'med',
+        label: '賠償上限10倍',
+        rationale: '委託料10倍上限は一見上限があるが、年間委託料約1,056万円×10＝約1億円規模。甲の重過失除外なしも受託側リスク。',
+        rewrite: '乙の賠償責任は当該月の委託料相当額を上限とする。甲の故意又は重過失により生じた損害については、乙は賠償責任を負わない。'
+      },
+      {
+        clauseId: 'vnd-2', level: 'low',
+        label: '遅延時も全額支払',
+        rationale: '乙都合の未達でも全額支払は発注側に不利。検収・成果物確認との整合も確認が必要。',
+        rewrite: '委託料は月次検収合格後、翌月末日までに支払う。乙の都合による未達期間は日割り減額又は再作業完了まで支払を留保できる。'
+      }
+    ]
+  },
+  saas: {
+    id: 'saas',
+    title: 'SaaS利用契約書',
+    counterparty: 'クラウドサービス株式会社',
+    meta: '契約番号：KWS-2026-0201｜プラン：Business｜50 ID',
+    status: 'review',
+    clauses: [
+      { id: 'saa-1', num: '第1条（サービス内容）', text: '甲は乙に対し、別紙記載のクラウド型業務支援サービスを提供する。' },
+      { id: 'saa-2', num: '第2条（利用料）', text: '月額利用料は1 IDあたり3,800円。最低50 ID契約。料金改定は甲の裁量で30日前通知により可能。' },
+      { id: 'saa-3', num: '第3条（データ取扱い）', text: '乙が入力したデータのバックアップは甲の任意。甲はサービス改善のためデータを<mark>匿名化なく解析</mark>に利用できる。' },
+      { id: 'saa-4', num: '第4条（解約）', text: '乙は30日前通知で解約できる。解約後も残存データの返却義務はなく、甲は90日経過後に削除できる。' }
+    ],
+    risks: [
+      {
+        clauseId: 'saa-3', level: 'high',
+        label: 'データ無匿名解析',
+        rationale: '匿名化なしの解析利用は個人情報・機密情報の二次利用リスク。GDPR/個人情報保護法の観点でも要修正。',
+        rewrite: '甲は乙のデータを、個人を特定できないよう匿名化又は仮名化した上でのみ、サービス品質向上の統計分析に利用できる。'
+      },
+      {
+        clauseId: 'saa-4', level: 'med',
+        label: 'データ返却なし',
+        rationale: '解約後のデータ返却義務がないと、乗り換え時に業務データを回収できません。',
+        rewrite: '解約時、乙の請求により30日以内に標準形式（CSV/JSON）でデータを返却する。返却完了後90日以内に甲は当該データを削除する。'
+      }
+    ]
+  },
+  lease: {
+    id: 'lease',
+    title: 'オフィス賃貸借契約書（概要）',
+    counterparty: 'サンプルビル管理株式会社',
+    meta: '契約番号：KWS-2025-0312｜区画：5F-A｜面積：120㎡',
+    status: 'sealed',
+    clauses: [
+      { id: 'ls-1', num: '第1条（目的物件）', text: '甲は乙に対し、東京都千代田区○○1-2-3 5階A区画を賃貸し、乙はこれを受け入れる。' },
+      { id: 'ls-2', num: '第2条（賃料）', text: '月額賃料1,980,000円（共益費込）。2年ごとにCPI連動で改定可能。' },
+      { id: 'ls-3', num: '第3条（期間）', text: '賃貸借期間は2025年7月1日から2028年6月30日まで。' }
+    ],
+    risks: []
+  },
+  msa: {
+    id: 'msa',
+    title: '取引基本契約書（売買）',
+    counterparty: '株式会社サプライチェーン',
+    meta: '契約番号：KWS-2026-0055｜部門：調達部',
+    status: 'review',
+    clauses: [
+      { id: 'msa-1', num: '第1条（適用）', text: '本契約は甲と乙の間の個別契約に共通して適用される。' },
+      { id: 'msa-2', num: '第2条（支払条件）', text: '乙は甲に対し、検収月締め翌月末払いとする。' },
+      { id: 'msa-3', num: '第3条（反社排除）', text: '双方は反社会的勢力に該当せず、将来にわたっても該当しないことを表明保証する。' }
+    ],
+    risks: [
+      {
+        clauseId: 'msa-2', level: 'low',
+        label: '支払サイト確認',
+        rationale: '翌月末払いは標準的だが、資金繰りポリシー（60日以内）との整合を確認推奨。',
+        rewrite: '支払条件は検収月締め45日以内とし、電子請求書による支払を原則とする。'
+      }
+    ]
+  }
+};
 
-function daysUntil(dateStr) {
-  var d = new Date(dateStr + 'T00:00:00');
-  return Math.round((d - TODAY) / 86400000);
-}
-function fmtDate(dateStr) {
-  var d = new Date(dateStr + 'T00:00:00');
-  return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
-}
-function fmtYen(n) {
-  if (n === 0) return '—';
-  return '¥' + n.toLocaleString('ja-JP');
-}
+var loggedIn = false;
+var activeContractId = 'nda';
+var reviewState = { phase: 'idle', timers: [], runId: null, sealed: false, typingDone: 0 };
+
 function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, function (c) {
-    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-  });
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
 function showToast(msg) {
   var host = document.getElementById('toastHost');
   var el = document.createElement('div');
   el.className = 'toast';
   el.textContent = msg;
   host.appendChild(el);
-  setTimeout(function () { el.remove(); }, 2700);
+  setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 2800);
 }
 
-/* ============================================================
-   1. データ定義
-============================================================ */
-var STATUS_LABEL = {
-  draft: '下書き',
-  ai_reviewing: 'AIレビュー中',
-  approval_pending: '承認待ち',
-  counterparty_review: '相手方確認中',
-  signed: '締結済み'
-};
+function clearReviewTimers() {
+  reviewState.timers.forEach(function (t) { clearTimeout(t); });
+  reviewState.timers = [];
+}
 
-var CONTRACTS = [
-  { id: 'c-001', name: '業務委託基本契約書', counterparty: '株式会社アオバ物流', type: '業務委託基本契約',
-    amount: 3600000, amountNote: '月額', owner: 'デモ太郎', updated: '2026-07-10', status: 'approval_pending',
-    signedDate: null, renewalDate: null, autoRenew: '有（3ヶ月前通知）', aiFindingsOpen: 5,
-    tags: ['重要契約', '役員承認対象'], contractNo: 'KWS-2026-0041',
-    term: '2026年8月1日〜2027年7月31日（1年間）' },
+function renderContractSelect() {
+  var sel = document.getElementById('contractSelect');
+  sel.innerHTML = Object.keys(CONTRACTS).map(function (id) {
+    var c = CONTRACTS[id];
+    var label = c.title + ' — ' + c.counterparty;
+    return '<option value="' + id + '"' + (id === activeContractId ? ' selected' : '') + '>' + escapeHtml(label) + '</option>';
+  }).join('');
+}
 
-  { id: 'c-002', name: '秘密保持契約書（NDA）', counterparty: 'ミドリ建設株式会社', type: '秘密保持契約（NDA）',
-    amount: 0, amountNote: '', owner: '鈴木花子', updated: '2026-06-15', status: 'signed',
-    signedDate: '2026-06-15', renewalDate: '2026-09-15', autoRenew: '有（自動更新）', aiFindingsOpen: 0,
-    tags: ['秘密保持'], contractNo: 'KWS-2026-0028',
-    term: '2026年6月15日〜2026年9月15日' },
-
-  { id: 'c-003', name: '建物賃貸借契約書', counterparty: 'ヤマビコ商事株式会社', type: '建物賃貸借契約',
-    amount: 180000, amountNote: '月額', owner: '高橋一郎', updated: '2025-09-01', status: 'signed',
-    signedDate: '2025-09-01', renewalDate: '2027-03-01', autoRenew: '無（要更新協議）', aiFindingsOpen: 0,
-    tags: ['不動産'], contractNo: 'KWS-2025-0112',
-    term: '2025年9月1日〜2027年3月1日' },
-
-  { id: 'c-004', name: '売買基本契約書', counterparty: 'ヒナタ製作所', type: '売買基本契約',
-    amount: 8200000, amountNote: '年間', owner: '田中次郎', updated: '2026-07-14', status: 'ai_reviewing',
-    signedDate: null, renewalDate: null, autoRenew: '有（1年ごと）', aiFindingsOpen: 2,
-    tags: ['仕入'], contractNo: 'KWS-2026-0052',
-    term: '2026年8月1日〜2027年7月31日（1年間）' },
-
-  { id: 'c-005', name: 'システム保守契約書', counterparty: '株式会社アオバ物流', type: 'システム保守契約',
-    amount: 960000, amountNote: '年額', owner: 'デモ太郎', updated: '2026-07-01', status: 'signed',
-    signedDate: '2026-07-01', renewalDate: '2026-08-20', autoRenew: '有（自動更新）', aiFindingsOpen: 0,
-    tags: ['保守'], contractNo: 'KWS-2025-0097',
-    term: '2025年8月20日〜2026年8月20日' },
-
-  { id: 'c-006', name: '販売代理店契約書', counterparty: 'コガネイ商会株式会社', type: '販売代理店契約',
-    amount: 0, amountNote: '手数料ベース', owner: '鈴木花子', updated: '2026-07-15', status: 'counterparty_review',
-    signedDate: null, renewalDate: null, autoRenew: '有（1年ごと）', aiFindingsOpen: 0,
-    tags: ['販売'], contractNo: 'KWS-2026-0055',
-    term: '2026年9月1日〜2027年8月31日（1年間）' },
-
-  { id: 'c-007', name: '業務委託基本契約書', counterparty: 'ソライロ設計株式会社', type: '業務委託基本契約',
-    amount: 2400000, amountNote: '月額', owner: '高橋一郎', updated: '2026-07-16', status: 'draft',
-    signedDate: null, renewalDate: null, autoRenew: '無', aiFindingsOpen: 1,
-    tags: ['下書き'], contractNo: 'KWS-2026-0058',
-    term: '未定（ドラフト作成中）' },
-
-  { id: 'c-008', name: '秘密保持契約書（NDA）', counterparty: 'ヒナタ製作所', type: '秘密保持契約（NDA）',
-    amount: 0, amountNote: '', owner: '田中次郎', updated: '2026-01-10', status: 'signed',
-    signedDate: '2026-01-10', renewalDate: '2027-01-10', autoRenew: '有（自動更新）', aiFindingsOpen: 0,
-    tags: ['秘密保持'], contractNo: 'KWS-2026-0004',
-    term: '2026年1月10日〜2027年1月10日' },
-
-  { id: 'c-009', name: '建物賃貸借契約書', counterparty: 'ミドリ建設株式会社', type: '建物賃貸借契約',
-    amount: 240000, amountNote: '月額', owner: 'デモ太郎', updated: '2026-07-12', status: 'approval_pending',
-    signedDate: null, renewalDate: null, autoRenew: '有（2年ごと）', aiFindingsOpen: 0,
-    tags: ['不動産'], contractNo: 'KWS-2026-0060',
-    term: '2026年9月1日〜2028年8月31日（2年間）' },
-
-  { id: 'c-010', name: '売買基本契約書', counterparty: 'ヤマビコ商事株式会社', type: '売買基本契約',
-    amount: 5100000, amountNote: '年間', owner: '鈴木花子', updated: '2026-07-17', status: 'approval_pending',
-    signedDate: null, renewalDate: null, autoRenew: '有（1年ごと）', aiFindingsOpen: 0,
-    tags: ['販売'], contractNo: 'KWS-2026-0063',
-    term: '2026年9月1日〜2027年8月31日（1年間）' },
-
-  { id: 'c-011', name: 'システム保守契約書', counterparty: 'ソライロ設計株式会社', type: 'システム保守契約',
-    amount: 720000, amountNote: '年額', owner: '高橋一郎', updated: '2026-07-08', status: 'signed',
-    signedDate: '2026-07-08', renewalDate: '2026-11-01', autoRenew: '有（自動更新）', aiFindingsOpen: 0,
-    tags: ['保守'], contractNo: 'KWS-2025-0080',
-    term: '2025年11月1日〜2026年11月1日' },
-
-  { id: 'c-012', name: '業務委託基本契約書', counterparty: 'コガネイ商会株式会社', type: '業務委託基本契約',
-    amount: 1800000, amountNote: '月額', owner: 'デモ太郎', updated: '2026-07-14', status: 'signed',
-    signedDate: '2026-07-14', renewalDate: '2026-10-01', autoRenew: '有（自動更新）', aiFindingsOpen: 0,
-    tags: ['重要契約'], contractNo: 'KWS-2025-0104',
-    term: '2025年10月1日〜2026年10月1日' }
-];
-
-var MONTHLY_SIGNINGS = [
-  { label: '2月', count: 6 },
-  { label: '3月', count: 7 },
-  { label: '4月', count: 8 },
-  { label: '5月', count: 9 },
-  { label: '6月', count: 10 },
-  { label: '7月', count: CONTRACTS.length, current: true }
-];
-
-var ACTIVITY_LOG = [
-  { text: '<b>佐藤（役員）</b>が『業務委託基本契約書（コガネイ商会株式会社）』を承認しました', time: '2時間前', color: 'var(--teal)' },
-  { text: '<b>デモ太郎</b>が『売買基本契約書（ヒナタ製作所）』のAIレビューを実行しました', time: '4時間前', color: 'var(--pri)' },
-  { text: '<b>ヤマビコ商事株式会社</b>より『建物賃貸借契約書』の確認完了連絡がありました', time: '昨日 16:20', color: 'var(--gold-deep)' },
-  { text: '<b>鈴木花子</b>が『販売代理店契約書（コガネイ商会株式会社）』を相手方へ送付しました', time: '昨日 11:05', color: 'var(--pri)' },
-  { text: '<b>システム</b>が『システム保守契約書（株式会社アオバ物流）』を契約台帳に自動登録しました', time: '2日前', color: 'var(--gray-soft)' }
-];
-
-var MEMBERS = [
-  { name: 'デモ 太郎', mail: 'demo.taro@kawasu.example', role: 'admin' },
-  { name: '鈴木 花子', mail: 'suzuki.hanako@kawasu.example', role: 'legal' },
-  { name: '高橋 一郎', mail: 'takahashi.ichiro@kawasu.example', role: 'member' },
-  { name: '田中 次郎', mail: 'tanaka.jiro@kawasu.example', role: 'member' }
-];
-var ROLE_LABEL = { admin: '管理者', legal: '法務', member: '申請者' };
-
-var REVIEW_TOGGLES = [
-  { label: '損害賠償の上限規定', desc: '賠償額に上限が定められているかをチェック', on: true },
-  { label: '反社会的勢力排除条項', desc: '暴排条項の有無をチェック', on: true },
-  { label: '中途解約時の精算条件', desc: '解約時の報酬精算ルールの有無をチェック', on: true },
-  { label: '裁判管轄の妥当性', desc: '自社に不利な管轄合意になっていないかをチェック', on: true },
-  { label: '契約不適合責任の期間', desc: '責任期間が明確に定められているかをチェック', on: true },
-  { label: '支払条件の明確さ', desc: '支払期日・方法が明記されているかをチェック', on: true }
-];
-var NOTIF_TOGGLES = [
-  { label: '更新期限 90日前に通知', desc: '更新要否の検討期間を確保します', on: true },
-  { label: '更新期限 30日前に通知', desc: '未対応の契約をリマインドします', on: true },
-  { label: '更新期限 7日前に通知', desc: '最終確認として再通知します', on: true }
-];
-
-/* AIレビュー指摘データ（契約 c-001 用） */
-var AI_FINDINGS = [
-  {
-    severity: 'high', article: '第9条（損害賠償等）',
-    anchor: 'art-9',
-    issue: '第9条に損害賠償額の上限規定がありません。想定を超える高額請求リスクがあります。',
-    fix: '乙の甲に対する損害賠償の累計額は、本契約に基づき甲が乙に支払った委託料の総額を上限とする。ただし、乙の故意又は重過失による場合はこの限りでない。'
-  },
-  {
-    severity: 'high', article: '契約書全体（該当条項なし）',
-    anchor: 'art-sign',
-    issue: '反社会的勢力排除条項（暴排条項）が契約書に定められていません。相手方が反社会的勢力であった場合に無催告解除できません。',
-    fix: '第11条（反社会的勢力の排除） 甲及び乙は、自己又は自己の役員が暴力団、暴力団員、暴力団関係企業その他反社会的勢力に該当しないことを表明し、将来にわたっても該当しないことを確約する。相手方が本条に違反した場合、何らの催告を要せず本契約を解除できるものとする。'
-  },
-  {
-    severity: 'mid', article: '第8条（解除）',
-    anchor: 'art-8',
-    issue: '甲の都合による中途解約時に、乙へ支払う報酬の精算方法が定められていません。トラブル時の精算根拠が不明確です。',
-    fix: '乙の責めに帰さない事由により甲が本契約を中途解約する場合、甲は乙に対し、解約日までに乙が提供した業務の出来高に応じた委託料を支払うものとする。'
-  },
-  {
-    severity: 'mid', article: '第10条（協議事項）',
-    anchor: 'art-10',
-    issue: '裁判管轄が相手方（甲）の本店所在地を管轄する裁判所となっています。紛争時に自社（乙）に不利な立地となる可能性があります。',
-    fix: '本契約に関して甲乙間に紛争が生じた場合には、乙の本店所在地を管轄する地方裁判所を第一審の専属的合意管轄裁判所とする。'
-  },
-  {
-    severity: 'low', article: '第9条（損害賠償等）第2項',
-    anchor: 'art-9',
-    issue: '契約不適合責任の期間が定められておらず、無期限に責任を負う可能性があります。',
-    fix: '乙は、成果物の引渡し後1年以内に甲から契約不適合の通知を受けた場合に限り、契約不適合責任を負うものとする。'
+function renderPaper(contract, options) {
+  options = options || {};
+  var html = '<h1 class="paper-title">' + escapeHtml(contract.title) + '</h1>';
+  html += '<div class="paper-meta">' + escapeHtml(contract.meta) + '<br>相手方：' + escapeHtml(contract.counterparty) + '</div>';
+  contract.clauses.forEach(function (cl) {
+    var risk = contract.risks.find(function (r) { return r.clauseId === cl.id; });
+    var badge = risk
+      ? '<span class="risk-badge ' + risk.level + '" id="badge-' + cl.id + '">' + risk.level.toUpperCase() + '</span>'
+      : '';
+    html += '<section class="clause-block" id="clause-' + cl.id + '" data-clause="' + cl.id + '">';
+    html += '<div class="clause-head"><span class="clause-num">' + escapeHtml(cl.num) + '</span>' + badge + '</div>';
+    html += '<div class="clause-text">' + cl.text + '</div></section>';
+  });
+  document.getElementById('paperContent').innerHTML = html;
+  document.getElementById('hankoOverlay').classList.remove('stamp');
+  document.getElementById('sealedBanner').classList.remove('show');
+  if (options.sealed || contract.status === 'sealed') {
+    document.getElementById('hankoOverlay').classList.add('stamp');
+    document.getElementById('sealedBanner').classList.add('show');
   }
-];
-
-/* ============================================================
-   2. 集計ヘルパー（KPI・タブ件数などはすべてここから導出）
-============================================================ */
-function countByStatus(status) {
-  return CONTRACTS.filter(function (c) { return c.status === status; }).length;
 }
-function renewalSoonList() {
-  return CONTRACTS.filter(function (c) {
-    return c.status === 'signed' && c.renewalDate && daysUntil(c.renewalDate) <= 90 && daysUntil(c.renewalDate) >= 0;
+
+function updateStatusChips(phase) {
+  var chips = { scan: document.getElementById('chipScan'), redline: document.getElementById('chipRedline'), seal: document.getElementById('chipSeal') };
+  Object.keys(chips).forEach(function (k) { chips[k].classList.remove('active', 'done'); });
+  if (phase === 'scan') chips.scan.classList.add('active');
+  if (phase === 'redline') { chips.scan.classList.add('done'); chips.redline.classList.add('active'); }
+  if (phase === 'typing' || phase === 'ready') { chips.scan.classList.add('done'); chips.redline.classList.add('done'); }
+  if (phase === 'sealed') { chips.scan.classList.add('done'); chips.redline.classList.add('done'); chips.seal.classList.add('done'); }
+  if (phase === 'ready') chips.seal.classList.add('active');
+}
+
+function updateRiskSummary(contract) {
+  var high = contract.risks.filter(function (r) { return r.level === 'high'; }).length;
+  var med = contract.risks.filter(function (r) { return r.level === 'med'; }).length;
+  var low = contract.risks.filter(function (r) { return r.level === 'low'; }).length;
+  document.getElementById('riskSummary').textContent = contract.risks.length
+    ? 'H:' + high + ' M:' + med + ' L:' + low
+    : 'リスク検出なし';
+}
+
+function resetPanelPlaceholder() {
+  document.getElementById('panelBody').innerHTML =
+    '<div class="panel-placeholder" id="panelPlaceholder"><div class="scan-icon">📄</div>契約書を開くと条項スキャンが始まります…</div>';
+}
+
+function runReviewFlow(contractId, skipAnimation) {
+  clearReviewTimers();
+  reviewState = { phase: 'scan', timers: [], runId: {}, sealed: false, typingDone: 0 };
+  var contract = CONTRACTS[contractId];
+  if (!contract) return;
+  var myRun = reviewState.runId;
+  var paper = document.getElementById('contractPaper');
+  var btnSeal = document.getElementById('btnSeal');
+
+  btnSeal.disabled = true;
+  btnSeal.classList.remove('sealed');
+  btnSeal.textContent = '承認して捺印';
+  updateRiskSummary(contract);
+  updateStatusChips('scan');
+
+  if (contract.status === 'sealed' || (location.hash.indexOf('/sealed') > -1)) {
+    reviewState.sealed = true;
+    reviewState.phase = 'sealed';
+    renderPaper(contract, { sealed: true });
+    renderRiskPanelStatic(contract);
+    btnSeal.disabled = true;
+    btnSeal.classList.add('sealed');
+    btnSeal.textContent = '捺印済み';
+    updateStatusChips('sealed');
+    return;
+  }
+
+  renderPaper(contract);
+  resetPanelPlaceholder();
+  paper.classList.add('scanning');
+
+  if (skipAnimation && contract.risks.length === 0) {
+    paper.classList.remove('scanning');
+    reviewState.phase = 'ready';
+    document.getElementById('panelBody').innerHTML = '<p class="panel-placeholder">AIスキャン完了 — 重大リスクは検出されませんでした。</p>';
+    btnSeal.disabled = false;
+    updateStatusChips('ready');
+    return;
+  }
+
+  if (skipAnimation) {
+    finishScanInstant(contract, myRun);
+    return;
+  }
+
+  var delay = 400;
+  contract.clauses.forEach(function (cl, i) {
+    reviewState.timers.push(setTimeout(function () {
+      if (reviewState.runId !== myRun) return;
+      var el = document.getElementById('clause-' + cl.id);
+      if (el) el.classList.add('scan-target');
+      reviewState.timers.push(setTimeout(function () {
+        if (reviewState.runId !== myRun) return;
+        if (el) el.classList.remove('scan-target');
+      }, 500));
+    }, delay + i * 280));
+  });
+
+  reviewState.timers.push(setTimeout(function () {
+    if (reviewState.runId !== myRun) return;
+    paper.classList.remove('scanning');
+    showRiskAnnotations(contract, myRun);
+  }, delay + contract.clauses.length * 280 + 600));
+}
+
+function showRiskAnnotations(contract, myRun) {
+  reviewState.phase = 'redline';
+  updateStatusChips('redline');
+  showToast('条項スキャン完了 — ' + contract.risks.length + '件のリスクを検出');
+
+  if (!contract.risks.length) {
+    document.getElementById('panelBody').innerHTML = '<p class="panel-placeholder">重大リスクは検出されませんでした。捺印に進めます。</p>';
+    reviewState.phase = 'ready';
+    document.getElementById('btnSeal').disabled = false;
+    updateStatusChips('ready');
+    return;
+  }
+
+  contract.risks.forEach(function (r) {
+    var clEl = document.getElementById('clause-' + r.clauseId);
+    if (clEl) clEl.classList.add('has-risk');
+    var badge = document.getElementById('badge-' + r.clauseId);
+    if (badge) badge.classList.add('show');
+  });
+
+  var panelHtml = '';
+  contract.risks.forEach(function (r, idx) {
+    panelHtml += '<div class="risk-card" id="risk-' + idx + '" data-idx="' + idx + '" onclick="focusRisk(' + idx + ')">';
+    panelHtml += '<div class="risk-card-head"><span class="risk-level ' + r.level + '">' + r.level.toUpperCase() + '</span>';
+    panelHtml += '<span class="risk-clause-ref">' + escapeHtml(r.label) + '</span></div>';
+    panelHtml += '<div class="risk-rationale">' + escapeHtml(r.rationale) + '</div>';
+    panelHtml += '<div class="rewrite-label">修正文案</div>';
+    panelHtml += '<div class="rewrite-box" id="rewrite-' + idx + '"></div></div>';
+  });
+  document.getElementById('panelBody').innerHTML = panelHtml;
+
+  contract.risks.forEach(function (_, idx) {
+    reviewState.timers.push(setTimeout(function () {
+      if (reviewState.runId !== myRun) return;
+      var card = document.getElementById('risk-' + idx);
+      if (card) card.classList.add('show');
+    }, idx * 180));
+  });
+
+  reviewState.timers.push(setTimeout(function () {
+    if (reviewState.runId !== myRun) return;
+    typeRewrites(contract, myRun, 0);
+  }, contract.risks.length * 180 + 400));
+}
+
+function typeRewrites(contract, myRun, idx) {
+  if (reviewState.runId !== myRun) return;
+  if (idx >= contract.risks.length) {
+    reviewState.phase = 'ready';
+    document.getElementById('btnSeal').disabled = false;
+    updateStatusChips('ready');
+    showToast('修正文案の生成が完了しました');
+    return;
+  }
+  reviewState.phase = 'typing';
+  var risk = contract.risks[idx];
+  var box = document.getElementById('rewrite-' + idx);
+  var card = document.getElementById('risk-' + idx);
+  if (card) card.classList.add('active');
+  focusRisk(idx);
+  if (box) box.classList.add('typing');
+  var full = risk.rewrite;
+  var shown = 0;
+  var tickMs = 28;
+  function tick() {
+    if (reviewState.runId !== myRun) return;
+    shown = Math.min(full.length, shown + 2);
+    box.innerHTML = escapeHtml(full.slice(0, shown)) + (shown < full.length ? '<span class="rewrite-cursor"></span>' : '');
+    if (shown >= full.length) {
+      box.classList.remove('typing');
+      box.textContent = full;
+      reviewState.typingDone++;
+      reviewState.timers.push(setTimeout(function () { typeRewrites(contract, myRun, idx + 1); }, 350));
+      return;
+    }
+    reviewState.timers.push(setTimeout(tick, tickMs));
+  }
+  reviewState.timers.push(setTimeout(tick, tickMs));
+}
+
+function finishScanInstant(contract, myRun) {
+  var paper = document.getElementById('contractPaper');
+  paper.classList.remove('scanning');
+  showRiskAnnotations(contract, myRun);
+  contract.risks.forEach(function (r, idx) {
+    var box = document.getElementById('rewrite-' + idx);
+    if (box) box.textContent = r.rewrite;
+    var card = document.getElementById('risk-' + idx);
+    if (card) { card.classList.add('show'); card.classList.add('active'); }
   });
 }
-function signedThisMonthCount() {
-  return CONTRACTS.filter(function (c) {
-    if (!c.signedDate) return false;
-    var d = new Date(c.signedDate + 'T00:00:00');
-    return d.getFullYear() === TODAY.getFullYear() && d.getMonth() === TODAY.getMonth();
-  }).length;
-}
-function totalOpenAiFindings() {
-  return CONTRACTS.reduce(function (sum, c) { return sum + (c.aiFindingsOpen || 0); }, 0);
-}
-function findContract(id) {
-  return CONTRACTS.filter(function (c) { return c.id === id; })[0];
+
+function renderRiskPanelStatic(contract) {
+  if (!contract.risks.length) {
+    document.getElementById('panelBody').innerHTML = '<p class="panel-placeholder">リスク注釈なし（締結済み）</p>';
+    return;
+  }
+  var panelHtml = '';
+  contract.risks.forEach(function (r, idx) {
+    panelHtml += '<div class="risk-card show" id="risk-' + idx + '">';
+    panelHtml += '<div class="risk-card-head"><span class="risk-level ' + r.level + '">' + r.level.toUpperCase() + '</span>';
+    panelHtml += '<span class="risk-clause-ref">' + escapeHtml(r.label) + '</span></div>';
+    panelHtml += '<div class="risk-rationale">' + escapeHtml(r.rationale) + '</div>';
+    panelHtml += '<div class="rewrite-label">修正文案（承認済み）</div>';
+    panelHtml += '<div class="rewrite-box">' + escapeHtml(r.rewrite) + '</div></div>';
+  });
+  document.getElementById('panelBody').innerHTML = panelHtml;
+  contract.risks.forEach(function (r) {
+    var clEl = document.getElementById('clause-' + r.clauseId);
+    if (clEl) clEl.classList.add('has-risk');
+    var badge = document.getElementById('badge-' + r.clauseId);
+    if (badge) badge.classList.add('show');
+  });
 }
 
-/* ============================================================
-   3. ルーティング
-============================================================ */
-var VIEW_NAMES = {
-  dashboard: 'ダッシュボード',
-  contracts: '契約書一覧',
-  ledger: '契約台帳',
-  settings: '設定'
-};
-var aiReviewState = null; // c-001用のAIレビュー実行状態を保持
-var flowState = null;     // c-001用の承認フロー状態を保持
-var loggedIn = false;     // デモ用の簡易ログイン状態
+function focusRisk(idx) {
+  var contract = CONTRACTS[activeContractId];
+  if (!contract || !contract.risks[idx]) return;
+  document.querySelectorAll('.risk-card').forEach(function (c) { c.classList.remove('active'); });
+  document.querySelectorAll('.clause-block').forEach(function (c) { c.classList.remove('risk-active'); });
+  var card = document.getElementById('risk-' + idx);
+  if (card) card.classList.add('active');
+  var clauseId = contract.risks[idx].clauseId;
+  var clEl = document.getElementById('clause-' + clauseId);
+  if (clEl) {
+    clEl.classList.add('risk-active');
+    clEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
 
-function isLoggedIn() {
-  return loggedIn;
+function performSeal() {
+  if (reviewState.sealed || reviewState.phase !== 'ready') return;
+  var btn = document.getElementById('btnSeal');
+  btn.disabled = true;
+  reviewState.phase = 'sealing';
+  showToast('朱印を押しています…');
+  var hanko = document.getElementById('hankoOverlay');
+  reviewState.timers.push(setTimeout(function () {
+    hanko.classList.add('stamp');
+    document.getElementById('sealedBanner').classList.add('show');
+    reviewState.sealed = true;
+    reviewState.phase = 'sealed';
+    btn.classList.add('sealed');
+    btn.textContent = '捺印済み';
+    updateStatusChips('sealed');
+    location.hash = 'review/' + activeContractId + '/sealed';
+    showToast('契約書の電子捺印が完了しました');
+  }, 400));
+}
+
+function switchContract(id) {
+  if (!CONTRACTS[id]) return;
+  activeContractId = id;
+  var sealed = CONTRACTS[id].status === 'sealed';
+  location.hash = sealed ? 'review/' + id + '/sealed' : 'review/' + id;
+}
+
+function isLoggedIn() { return loggedIn; }
+
+function showLoginScreen() {
+  clearReviewTimers();
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+}
+
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+  renderContractSelect();
 }
 
 function handleRoute() {
   var hash = location.hash.replace('#', '') || 'login';
-
-  if (!isLoggedIn() && hash !== 'login') {
-    location.hash = 'login';
-    return;
-  }
-  if (hash === 'login') {
-    showLoginScreen();
-    return;
-  }
-
+  if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
+  if (hash === 'login') { showLoginScreen(); return; }
   showAppScreen();
 
-  if (hash.indexOf('contract/') === 0) {
-    var id = hash.split('/')[1];
-    openContractDetail(id);
-    setActiveNav(null);
+  if (hash.indexOf('review/') === 0) {
+    var parts = hash.split('/');
+    var cid = parts[1];
+    var isSealed = parts[2] === 'sealed';
+    if (CONTRACTS[cid]) {
+      activeContractId = cid;
+      renderContractSelect();
+      document.getElementById('contractSelect').value = cid;
+      runReviewFlow(cid, isSealed);
+    } else {
+      location.hash = 'review/nda';
+    }
     return;
   }
-
-  var view = ['dashboard', 'contracts', 'ledger', 'settings'].indexOf(hash) >= 0 ? hash : 'dashboard';
-  showView(view);
-  setActiveNav(view);
-}
-
-function showLoginScreen() {
-  document.getElementById('view-login').classList.remove('hide');
-  document.getElementById('view-app').classList.remove('show');
-}
-function showAppScreen() {
-  document.getElementById('view-login').classList.add('hide');
-  document.getElementById('view-app').classList.add('show');
-}
-
-function showView(name) {
-  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
-  var el = document.getElementById('view-' + name);
-  if (el) el.classList.add('active');
-  document.getElementById('viewNameLabel').textContent = VIEW_NAMES[name] || '契約詳細';
-
-  if (name === 'dashboard') renderDashboard();
-  if (name === 'contracts') renderContractsView();
-  if (name === 'ledger') renderLedger();
-  if (name === 'settings') renderSettings();
-  toggleSidebar(false);
-  window.scrollTo({ top: 0, behavior: 'auto' });
-}
-
-function setActiveNav(name) {
-  document.querySelectorAll('.nav-btn').forEach(function (b) {
-    b.classList.toggle('active', b.dataset.nav === name);
-  });
-}
-
-function go(name) { location.hash = name; }
-
-window.addEventListener('hashchange', handleRoute);
-window.addEventListener('DOMContentLoaded', function () {
-  renderNotifDropdown();
-  // 直リンク（#contract/c-001 等）で開いた場合は、デモの利便性のためログイン済み扱いにする
-  var initialHash = location.hash.replace('#', '');
-  if (initialHash && initialHash !== 'login') {
-    loggedIn = true;
+  if (hash !== 'review') {
+    location.hash = 'review/nda';
   }
-  handleRoute();
-});
+}
 
-/* ============================================================
-   4. ログイン / ログアウト
-============================================================ */
 function doLogin() {
   var btn = document.getElementById('loginBtn');
-  if (btn.classList.contains('loading')) return;
   btn.classList.add('loading');
   btn.disabled = true;
   setTimeout(function () {
+    loggedIn = true;
     btn.classList.remove('loading');
     btn.disabled = false;
-    loggedIn = true;
-    if (location.hash === '#dashboard') {
-      handleRoute();
-    } else {
-      location.hash = 'dashboard';
-    }
-  }, 800);
+    location.hash = 'review/nda';
+    handleRoute();
+    showToast('KAWASU AI Contract Cloud にログインしました');
+  }, 900);
 }
+
 function doLogout() {
+  clearReviewTimers();
   loggedIn = false;
-  aiReviewState = null;
-  flowState = null;
-  showToast('ログアウトしました');
+  location.hash = 'login';
+  handleRoute();
+  showToast('ログアウトしました（デモ）');
 }
 
-/* ============================================================
-   5. サイドバー（モバイル）
-============================================================ */
-function toggleSidebar(force) {
-  var sb = document.getElementById('sidebar');
-  var ov = document.getElementById('mobileOverlay');
-  var open = typeof force === 'boolean' ? force : !sb.classList.contains('open');
-  sb.classList.toggle('open', open);
-  ov.classList.toggle('open', open);
-}
-
-/* ============================================================
-   6. 通知ドロップダウン
-============================================================ */
-function toggleDropdown(id) {
-  var el = document.getElementById(id);
-  var willOpen = !el.classList.contains('open');
-  document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
-  if (willOpen) el.classList.add('open');
-}
-document.addEventListener('click', function (e) {
-  if (!e.target.closest('.dropdown-wrap')) {
-    document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
-  }
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') loggedIn = true;
+  document.getElementById('topDate').textContent = '2026-07-22 JST';
+  handleRoute();
 });
-function renderNotifDropdown() {
-  var soon = renewalSoonList().slice(0, 2);
-  var approval = CONTRACTS.filter(function (c) { return c.status === 'approval_pending'; }).slice(0, 1);
-  var items = [];
-  soon.forEach(function (c) {
-    items.push({ color: 'var(--gold-deep)', text: '『' + c.name + '（' + c.counterparty + '）』の更新期限が近づいています', time: '更新まで残り' + daysUntil(c.renewalDate) + '日' });
-  });
-  approval.forEach(function (c) {
-    items.push({ color: 'var(--pri)', text: '『' + c.name + '（' + c.counterparty + '）』の承認依頼が届いています', time: c.updated + ' 申請' });
-  });
-  document.getElementById('notifList').innerHTML = items.map(function (n) {
-    return '<div class="notif-item"><span class="dot" style="background:' + n.color + '"></span><div class="txt">' + escapeHtml(n.text) + '<div class="time">' + escapeHtml(n.time) + '</div></div></div>';
-  }).join('');
-  document.getElementById('notifBadgeCount').textContent = items.length;
-}
-
-/* ============================================================
-   7. ダッシュボード
-============================================================ */
-function renderDashboard() {
-  var approvalCount = countByStatus('approval_pending');
-  var signedMonth = signedThisMonthCount();
-  var soonList = renewalSoonList();
-  var findingsOpen = totalOpenAiFindings();
-
-  document.getElementById('kpiGrid').innerHTML = [
-    kpiCardHtml('承認待ち', approvalCount, '件', 'var(--amber)', '役員承認が必要な契約'),
-    kpiCardHtml('今月の締結', signedMonth, '件', 'var(--teal)', '2026年7月に締結'),
-    kpiCardHtml('更新期限接近', soonList.length, '件', 'var(--gold-deep)', '90日以内に更新期限'),
-    kpiCardHtml('AIレビュー指摘（未対応）', findingsOpen, '件', 'var(--pri)', '全契約書の合計')
-  ].join('');
-
-  var tasks = [];
-  CONTRACTS.filter(function (c) { return c.status === 'approval_pending'; }).forEach(function (c) {
-    tasks.push({ c: c, label: '承認待ち', color: 'var(--amber)' });
-  });
-  soonList.forEach(function (c) {
-    tasks.push({ c: c, label: '更新まで' + daysUntil(c.renewalDate) + '日', color: 'var(--gold-deep)' });
-  });
-  document.getElementById('taskList').innerHTML = tasks.map(function (t) {
-    return '<a class="task-row" href="#contract/' + t.c.id + '">' +
-      '<span class="t-badge badge badge-' + t.c.status + '">' + STATUS_LABEL[t.c.status] + '</span>' +
-      '<span class="t-main"><div class="t-name">' + escapeHtml(t.c.name) + '</div><div class="t-sub">' + escapeHtml(t.c.counterparty) + ' ・ ' + t.label + '</div></span>' +
-      '<span class="t-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></span>' +
-      '</a>';
-  }).join('') || '<p style="font-size:12.5px;color:var(--gray-soft);">現在、対応が必要な契約はありません。</p>';
-
-  document.getElementById('activityTimeline').innerHTML = ACTIVITY_LOG.map(function (a) {
-    return '<div class="timeline-item"><span class="timeline-dot" style="background:' + a.color + '"></span>' +
-      '<div><div class="timeline-text">' + a.text + '</div><div class="timeline-date">' + a.time + '</div></div></div>';
-  }).join('');
-
-  var maxCount = Math.max.apply(null, MONTHLY_SIGNINGS.map(function (m) { return m.count; }));
-  document.getElementById('monthlyBarChart').innerHTML = MONTHLY_SIGNINGS.map(function (m) {
-    var h = Math.round((m.count / maxCount) * 150) + 10;
-    return '<div class="bar-col"><div class="bar-value">' + m.count + '件</div><div class="bar ' + (m.current ? 'current' : '') + '" style="height:' + h + 'px"></div><div class="bar-month">' + m.label + '</div></div>';
-  }).join('');
-}
-function kpiCardHtml(label, value, unit, color, sub) {
-  return '<div class="kpi-card"><div class="kpi-label"><span class="kpi-swatch" style="background:' + color + '"></span>' + label + '</div>' +
-    '<div class="kpi-value">' + value + '<span>' + unit + '</span></div><div class="kpi-sub">' + sub + '</div></div>';
-}
-
-/* ============================================================
-   8. 契約書一覧
-============================================================ */
-var currentStatusFilter = 'all';
-var STATUS_TABS = [
-  { key: 'all', label: 'すべて' },
-  { key: 'draft', label: '下書き' },
-  { key: 'ai_reviewing', label: 'AIレビュー中' },
-  { key: 'approval_pending', label: '承認待ち' },
-  { key: 'counterparty_review', label: '相手方確認中' },
-  { key: 'signed', label: '締結済み' }
-];
-
-function renderContractsView() {
-  document.getElementById('contractsTotalCount').textContent = CONTRACTS.length;
-  renderStatusTabs();
-  renderContractsTable();
-}
-function renderStatusTabs() {
-  document.getElementById('statusTabRow').innerHTML = STATUS_TABS.map(function (t) {
-    var count = t.key === 'all' ? CONTRACTS.length : countByStatus(t.key);
-    return '<button class="tab-chip ' + (currentStatusFilter === t.key ? 'active' : '') + '" onclick="setStatusFilter(\'' + t.key + '\')">' +
-      t.label + '<span class="cnt">' + count + '</span></button>';
-  }).join('');
-}
-function setStatusFilter(key) {
-  currentStatusFilter = key;
-  renderStatusTabs();
-  renderContractsTable();
-}
-function renderContractsTable() {
-  var q = (document.getElementById('contractSearchInput').value || '').trim().toLowerCase();
-  var rows = CONTRACTS.filter(function (c) {
-    if (currentStatusFilter !== 'all' && c.status !== currentStatusFilter) return false;
-    if (!q) return true;
-    return c.name.toLowerCase().indexOf(q) >= 0 || c.counterparty.toLowerCase().indexOf(q) >= 0;
-  });
-  var tbody = document.getElementById('contractsTbody');
-  if (!rows.length) {
-    tbody.innerHTML = '<tr class="empty-row"><td colspan="7">該当する契約書がありません。</td></tr>';
-    return;
-  }
-  tbody.innerHTML = rows.map(function (c) {
-    return '<tr onclick="location.hash=\'contract/' + c.id + '\'">' +
-      '<td class="name-cell" data-label="契約名">' + escapeHtml(c.name) + '</td>' +
-      '<td data-label="相手方">' + escapeHtml(c.counterparty) + '</td>' +
-      '<td data-label="種別">' + escapeHtml(c.type) + '</td>' +
-      '<td class="num-cell" data-label="金額">' + fmtYen(c.amount) + (c.amountNote ? '<br><span style="font-size:10.5px;color:var(--gray-soft)">' + c.amountNote + '</span>' : '') + '</td>' +
-      '<td data-label="担当">' + escapeHtml(c.owner) + '</td>' +
-      '<td data-label="更新日">' + fmtDate(c.updated) + '</td>' +
-      '<td data-label="ステータス"><span class="badge badge-' + c.status + '">' + STATUS_LABEL[c.status] + '</span></td>' +
-      '</tr>';
-  }).join('');
-}
-
-/* ============================================================
-   9. 契約詳細
-============================================================ */
-var CURRENT_DETAIL_ID = null;
-
-function openContractDetail(id) {
-  var c = findContract(id);
-  CURRENT_DETAIL_ID = id;
-  if (!c) {
-    document.getElementById('detailTitle').textContent = '契約書が見つかりません';
-    document.getElementById('detailSub').textContent = '';
-    document.getElementById('detailStatusBadge').textContent = '';
-    document.getElementById('paperBody').innerHTML = '';
-    document.getElementById('pane-review').innerHTML = '';
-    document.getElementById('pane-flow').innerHTML = '';
-    document.getElementById('pane-info').innerHTML = '';
-    document.getElementById('view-contract-detail').classList.add('active');
-    document.querySelectorAll('.view').forEach(function (v) { if (v.id !== 'view-contract-detail') v.classList.remove('active'); });
-    return;
-  }
-  document.getElementById('detailTitle').textContent = c.name;
-  document.getElementById('detailSub').textContent = c.contractNo + ' ／ 相手方: ' + c.counterparty;
-  document.getElementById('detailStatusBadge').className = 'badge badge-' + c.status;
-  document.getElementById('detailStatusBadge').textContent = STATUS_LABEL[c.status];
-
-  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
-  document.getElementById('view-contract-detail').classList.add('active');
-  document.getElementById('viewNameLabel').textContent = '契約詳細';
-
-  renderInfoTab(c);
-
-  if (id === 'c-001') {
-    document.getElementById('paperNote').textContent = '業務委託基本契約書（全10条）';
-    document.getElementById('paperBody').innerHTML = CONTRACT_C001_HTML;
-    setupAiReviewPane();
-    setupFlowPane();
-  } else {
-    document.getElementById('paperNote').textContent = '簡易プレビュー';
-    document.getElementById('paperBody').innerHTML = genericPaperHtml(c);
-    document.getElementById('pane-review').innerHTML = genericNoticeHtml();
-    document.getElementById('pane-flow').innerHTML = genericFlowHtml(c);
-  }
-  switchSideTab('review');
-  window.scrollTo({ top: 0, behavior: 'auto' });
-}
-
-function genericPaperHtml(c) {
-  return '<div class="doc-title">' + escapeHtml(c.name) + '</div>' +
-    '<div class="doc-sub">契約番号：' + c.contractNo + '</div>' +
-    '<div class="doc-parties">甲：デモ商事株式会社<br>乙：' + escapeHtml(c.counterparty) + '</div>' +
-    '<div class="contract-article"><h4>本デモについて</h4><p>本サンプルでは、契約書全文とAIレビューの体験は「業務委託基本契約書（株式会社アオバ物流）」（一覧の1件目）でのみご覧いただけます。この契約は「基本情報」「承認フロー」タブのみサンプルデータを表示しています。</p></div>';
-}
-function genericNoticeHtml() {
-  return '<div class="ai-start-box"><p>AIレビューの全体験は「業務委託基本契約書（株式会社アオバ物流）」でご覧いただけます。</p>' +
-    '<a href="#contract/c-001" class="btn-ai-run" style="text-decoration:none;">その契約を見る</a></div>';
-}
-function genericFlowHtml(c) {
-  var steps = [
-    { title: '① 申請', done: true, sub: c.owner + ' が申請' },
-    { title: '② 法務確認', done: c.status !== 'draft', sub: c.status !== 'draft' ? '完了' : '未着手' },
-    { title: '③ 役員承認', done: c.status === 'signed' || c.status === 'counterparty_review', current: c.status === 'approval_pending', sub: c.status === 'approval_pending' ? '人の承認待ち' : (c.status === 'draft' || c.status === 'ai_reviewing' ? '未着手' : '完了') },
-    { title: '④ 相手方確認', done: c.status === 'signed', current: c.status === 'counterparty_review', sub: c.status === 'counterparty_review' ? '相手方が確認中' : (c.status === 'signed' ? '完了' : '未着手') },
-    { title: '⑤ 締結', done: c.status === 'signed', sub: c.status === 'signed' ? '完了・契約台帳に登録済み' : '未着手' }
-  ];
-  return '<div class="flow-timeline">' + steps.map(function (s) {
-    var cls = s.done ? 'done' : (s.current ? 'current' : 'pending');
-    return '<div class="flow-step ' + cls + '"><span class="flow-dot"></span>' +
-      '<div class="fs-title">' + s.title + (s.title.indexOf('役員') >= 0 ? '<span class="badge badge-human">人の承認</span>' : '') + '</div>' +
-      '<div class="fs-sub">' + s.sub + '</div></div>';
-  }).join('') + '</div>';
-}
-
-function renderInfoTab(c) {
-  document.getElementById('pane-info').innerHTML =
-    '<table class="meta-table"><tbody>' +
-    '<tr><th>契約番号</th><td>' + c.contractNo + '</td></tr>' +
-    '<tr><th>種別</th><td>' + escapeHtml(c.type) + '</td></tr>' +
-    '<tr><th>金額</th><td>' + fmtYen(c.amount) + (c.amountNote ? '（' + c.amountNote + '）' : '') + '</td></tr>' +
-    '<tr><th>契約期間</th><td>' + escapeHtml(c.term) + '</td></tr>' +
-    '<tr><th>自動更新</th><td>' + escapeHtml(c.autoRenew) + '</td></tr>' +
-    '<tr><th>タグ</th><td>' + c.tags.map(function (t) { return '<span class="tag-chip">' + escapeHtml(t) + '</span>'; }).join('') + '</td></tr>' +
-    '</tbody></table>';
-}
-
-function switchSideTab(tab) {
-  document.querySelectorAll('.side-tab-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.tab === tab); });
-  document.querySelectorAll('.side-tab-pane').forEach(function (p) { p.classList.remove('active'); });
-  document.getElementById('pane-' + tab).classList.add('active');
-}
-
-/* ---- 契約書本文（c-001） ---- */
-var CONTRACT_C001_HTML =
-  '<div class="doc-title">業務委託基本契約書</div>' +
-  '<div class="doc-sub">契約番号：KWS-2026-0041</div>' +
-  '<div class="doc-parties">株式会社アオバ物流（以下「甲」という。）とデモ商事株式会社（以下「乙」という。）とは、業務委託に関し、次のとおり基本契約（以下「本契約」という。）を締結する。</div>' +
-
-  '<div class="contract-article" id="art-1"><h4>第1条（目的）</h4><p>本契約は、甲が乙に対して物流事務に関する業務（以下「本業務」という。）を継続的に委託するにあたり、甲乙間の基本的事項を定めることを目的とする。</p></div>' +
-
-  '<div class="contract-article" id="art-2"><h4>第2条（業務内容）</h4><p>本業務の具体的な内容、範囲、仕様、納期その他必要な事項は、甲乙協議のうえ、個別契約において別途定めるものとする。個別契約は本契約に基づき締結されるものとし、本契約の定めに反しない範囲で効力を有する。</p></div>' +
-
-  '<div class="contract-article" id="art-3"><h4>第3条（委託料）</h4><p>本業務の委託料は、個別契約において別途定める。委託料には、本業務の遂行に通常必要な諸経費を含むものとする。</p></div>' +
-
-  '<div class="contract-article" id="art-4"><h4>第4条（支払条件）</h4><p>甲は、乙から適法な請求書を受領した月の翌月末日までに、乙が指定する銀行口座へ振込む方法により委託料を支払う。振込手数料は甲の負担とする。</p></div>' +
-
-  '<div class="contract-article" id="art-5"><h4>第5条（秘密保持）</h4><p>甲及び乙は、本契約及び個別契約の履行に関連して知り得た相手方の技術上・営業上その他の秘密情報を、相手方の書面による事前の承諾なく第三者に開示又は漏洩してはならず、本契約の目的以外に使用してはならない。本条の義務は、本契約終了後も3年間存続する。</p></div>' +
-
-  '<div class="contract-article" id="art-6"><h4>第6条（知的財産権）</h4><p>本業務の遂行に伴い新たに生じた発明、考案その他の知的財産権は、その発生の都度、甲に帰属する。ただし、乙が本契約締結以前から保有していた知的財産権は乙に留保されるものとする。</p></div>' +
-
-  '<div class="contract-article" id="art-7"><h4>第7条（契約期間）</h4><p>本契約の有効期間は、2026年8月1日から2027年7月31日までの1年間とする。ただし、期間満了の3ヶ月前までに甲乙いずれからも書面による別段の意思表示がないときは、本契約は同一条件でさらに1年間自動的に更新されるものとし、以後も同様とする。</p></div>' +
-
-  '<div class="contract-article" id="art-8"><h4>第8条（解除）</h4><ol class="paragraphs">' +
-  '<li>甲又は乙は、相手方が本契約若しくは個別契約に違反し、相当の期間を定めて催告したにもかかわらずその期間内に是正されないときは、本契約及び個別契約の全部又は一部を解除することができる。</li>' +
-  '<li>甲又は乙について、破産手続開始、民事再生手続開始その他これらに類する手続の申立てがあったときは、相手方は何らの催告を要せず本契約を解除することができる。</li>' +
-  '</ol></div>' +
-
-  '<div class="contract-article" id="art-9"><h4>第9条（損害賠償等）</h4><ol class="paragraphs">' +
-  '<li>甲又は乙は、本契約若しくは個別契約に関し相手方の責めに帰すべき事由により損害を被ったときは、相手方に対しその損害の賠償を請求することができる。</li>' +
-  '<li>乙は、本業務の成果物に契約不適合があったときは、甲の請求に応じて修補、代替物の引渡し又は損害賠償等の責任を負うものとする。</li>' +
-  '</ol></div>' +
-
-  '<div class="contract-article" id="art-10"><h4>第10条（協議事項）</h4><p>本契約に定めのない事項又は本契約の解釈につき疑義が生じた事項については、甲乙誠意をもって協議のうえこれを解決するものとする。本契約に関して甲乙間に紛争が生じた場合には、甲の本店所在地を管轄する地方裁判所を第一審の専属的合意管轄裁判所とする。</p></div>' +
-
-  '<div class="doc-sign-block" id="art-sign">' +
-  '<p>本契約成立の証として本書2通を作成し、甲乙記名押印のうえ各自1通を保有する。</p>' +
-  '<div class="sign-row">' +
-  '<div class="sign-col">甲：株式会社アオバ物流<br>住所：（架空）東京都港区南青葉3-4-5<br>代表者：代表取締役　青葉　誠</div>' +
-  '<div class="sign-col">乙：デモ商事株式会社<br>住所：（架空）東京都渋谷区西デモ1-2-3<br>代表者：代表取締役　デモ　太郎</div>' +
-  '</div>' +
-  '<div class="stamp-seal" id="stampSeal">電子<br>締結済</div>' +
-  '</div>';
-
-/* ============================================================
-   10. AIレビュー（c-001専用）
-============================================================ */
-var SCAN_ARTICLES = ['第1条', '第2条', '第3条', '第4条', '第5条', '第6条', '第7条', '第8条', '第9条', '第10条'];
-
-function setupAiReviewPane() {
-  aiReviewState = { phase: 'idle', scanTimer: null, cardTimer: null };
-  renderAiIdle();
-}
-function renderAiIdle() {
-  document.getElementById('pane-review').innerHTML =
-    '<div class="ai-start-box">' +
-    '<div class="ai-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--pri)" stroke-width="1.6"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4.2"/></svg></div>' +
-    '<p>AIが全10条をスキャンし、リスクのある条項と修正文案を提示します。<br>実行には数秒かかります。</p>' +
-    '<button class="btn-ai-run" onclick="startAiReview()">AIレビューを実行</button>' +
-    '</div>';
-}
-
-function startAiReview() {
-  if (aiReviewState && aiReviewState.phase !== 'idle') return;
-  aiReviewState.phase = 'scanning';
-  document.getElementById('pane-review').innerHTML =
-    '<div class="scan-box"><div class="scan-spinner"></div><div class="scan-text">条項をスキャン中…</div><div class="scan-article" id="scanArticleLabel">' + SCAN_ARTICLES[0] + '</div>' +
-    '<div style="margin-top:18px;"><button class="btn-skip" onclick="skipAiReview()">⏩ すべて表示</button></div></div>';
-
-  var idx = 0;
-  var runId = {}; // このセッション固有のトークン（リセット/スキップ後の誤発火防止）
-  aiReviewState.runId = runId;
-  function scanStep() {
-    if (!aiReviewState || aiReviewState.runId !== runId || aiReviewState.phase !== 'scanning') return;
-    idx++;
-    if (idx >= SCAN_ARTICLES.length) {
-      beginFindingsReveal(runId);
-      return;
-    }
-    var label = document.getElementById('scanArticleLabel');
-    if (label) label.textContent = SCAN_ARTICLES[idx];
-    aiReviewState.scanTimer = setTimeout(scanStep, 280);
-  }
-  aiReviewState.scanTimer = setTimeout(scanStep, 280);
-}
-
-function beginFindingsReveal(runId) {
-  if (!aiReviewState || aiReviewState.runId !== runId) return;
-  aiReviewState.phase = 'revealing';
-  document.getElementById('pane-review').innerHTML =
-    '<div class="ai-toolbar"><span class="ai-count" id="aiRevealCount">指摘 0/' + AI_FINDINGS.length + '件</span><button class="btn-skip" onclick="skipAiReview()">⏩ すべて表示</button></div>' +
-    '<div id="findingCardsHost"></div>' +
-    '<div id="findingSummaryHost"></div>';
-
-  var idx = 0;
-  var total = AI_FINDINGS.length;
-  function revealStep() {
-    if (!aiReviewState || aiReviewState.runId !== runId || aiReviewState.phase !== 'revealing') return;
-    if (idx >= total) return;
-    appendFindingCard(idx);
-    idx++;
-    updateRevealCount(idx, total);
-    if (idx >= total) {
-      appendSummaryBand();
-      aiReviewState.phase = 'done';
-      return;
-    }
-    aiReviewState.cardTimer = setTimeout(revealStep, 1200);
-  }
-  aiReviewState.cardTimer = setTimeout(revealStep, 1200);
-}
-
-function updateRevealCount(shown, total) {
-  var el = document.getElementById('aiRevealCount');
-  if (el) el.textContent = '指摘 ' + shown + '/' + total + '件';
-}
-function appendFindingCard(idx) {
-  var f = AI_FINDINGS[idx];
-  var host = document.getElementById('findingCardsHost');
-  if (!host) return;
-  var sevLabel = f.severity === 'high' ? '重要度：高' : (f.severity === 'mid' ? '重要度：中' : '重要度：低');
-  var div = document.createElement('div');
-  div.className = 'finding-card';
-  div.setAttribute('onclick', "jumpToArticle('" + f.anchor + "')");
-  div.innerHTML =
-    '<div class="fc-head"><span class="badge badge-' + f.severity + '">' + sevLabel + '</span><span class="fc-article">' + escapeHtml(f.article) + '</span></div>' +
-    '<div class="fc-issue">' + escapeHtml(f.issue) + '</div>' +
-    '<div class="fc-fix"><b>修正文案</b>' + escapeHtml(f.fix) + '</div>';
-  host.appendChild(div);
-  requestAnimationFrame(function () { div.classList.add('in'); });
-}
-function appendSummaryBand() {
-  var high = AI_FINDINGS.filter(function (f) { return f.severity === 'high'; }).length;
-  var mid = AI_FINDINGS.filter(function (f) { return f.severity === 'mid'; }).length;
-  var low = AI_FINDINGS.filter(function (f) { return f.severity === 'low'; }).length;
-  var host = document.getElementById('findingSummaryHost');
-  if (!host) return;
-  host.innerHTML =
-    '<div class="ai-summary-band" id="summaryBand">AIレビュー完了：指摘' + AI_FINDINGS.length + '件（高' + high + '・中' + mid + '・低' + low + '）</div>' +
-    '<div class="ai-legal-note">※AIレビューは参考情報です。重要な契約は弁護士等の専門家の確認を推奨します。</div>' +
-    '<div class="flow-reset" style="margin-top:10px;"><button onclick="setupAiReviewPane()">↺ もう一度実行</button></div>';
-  requestAnimationFrame(function () {
-    var band = document.getElementById('summaryBand');
-    if (band) band.classList.add('in');
-  });
-}
-
-function skipAiReview() {
-  if (!aiReviewState) return;
-  if (aiReviewState.scanTimer) clearTimeout(aiReviewState.scanTimer);
-  if (aiReviewState.cardTimer) clearTimeout(aiReviewState.cardTimer);
-  aiReviewState.phase = 'done';
-  aiReviewState.runId = {}; // 進行中タイマーを無効化
-
-  document.getElementById('pane-review').innerHTML =
-    '<div class="ai-toolbar"><span class="ai-count">指摘 ' + AI_FINDINGS.length + '/' + AI_FINDINGS.length + '件</span></div>' +
-    '<div id="findingCardsHost"></div><div id="findingSummaryHost"></div>';
-  var host = document.getElementById('findingCardsHost');
-  AI_FINDINGS.forEach(function (f, idx) {
-    appendFindingCard(idx);
-    document.querySelectorAll('.finding-card')[idx].classList.add('in');
-  });
-  appendSummaryBand();
-  document.getElementById('summaryBand').classList.add('in');
-}
-
-function jumpToArticle(anchorId) {
-  var el = document.getElementById(anchorId);
-  if (!el) return;
-  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  el.classList.remove('flash');
-  void el.offsetWidth; // reflow でアニメーションを再トリガー
-  el.classList.add('flash');
-}
-
-/* ============================================================
-   11. 承認フロー（c-001専用）
-============================================================ */
-function setupFlowPane() {
-  flowState = { step: 3, timer1: null, timer2: null, runId: {} };
-  renderFlowPane();
-}
-var FLOW_STEP_DEFS = [
-  { key: 1, title: '① 申請', sub: 'デモ太郎（法務部）が申請しました', who: 'デモ太郎', human: false },
-  { key: 2, title: '② 法務確認', sub: '鈴木花子（法務部）が内容を確認しました', who: '鈴木花子', human: false },
-  { key: 3, title: '③ 役員承認', sub: '佐藤（役員）の承認が必要です', who: '佐藤', human: true },
-  { key: 4, title: '④ 相手方確認', sub: '株式会社アオバ物流の確認が必要です', who: '相手方', human: false },
-  { key: 5, title: '⑤ 締結', sub: '双方の合意により契約が締結されます', who: '', human: false }
-];
-
-function renderFlowPane() {
-  var step = flowState.step;
-  var html = '<div class="flow-timeline">';
-  FLOW_STEP_DEFS.forEach(function (s) {
-    var cls = s.key < step ? 'done' : (s.key === step ? 'current' : 'pending');
-    var humanBadge = s.human ? '<span class="badge badge-human">人の承認</span>' : '';
-    html += '<div class="flow-step ' + cls + '"><span class="flow-dot"></span>' +
-      '<div class="fs-title">' + s.title + humanBadge + '</div>' +
-      '<div class="fs-sub">' + (s.key <= step ? s.sub : '前のステップの完了待ちです') + '</div>' +
-      '<div class="fs-body" id="flow-body-' + s.key + '"></div></div>';
-  });
-  html += '</div><div class="flow-reset"><button onclick="resetFlow()">↺ リセット</button></div>';
-  document.getElementById('pane-flow').innerHTML = html;
-  renderFlowStepBody();
-}
-
-function renderFlowStepBody() {
-  var step = flowState.step;
-  var el = document.getElementById('flow-body-' + step);
-  if (!el) return;
-  if (step === 3) {
-    el.innerHTML = '<button class="btn-flow-next" id="approveBtn" onclick="approveStep3()">承認して次へ進める</button>';
-  } else if (step === 4) {
-    el.innerHTML = '<div class="waiting-box"><span class="login-spin" style="border-color:rgba(37,99,235,.25);border-top-color:var(--pri);"></span>相手方が確認中<span class="dotting"></span></div>';
-  } else if (step === 5) {
-    el.innerHTML = '<div class="signed-banner in">✓ 締結が完了しました。契約台帳に自動登録されました。</div>';
-    var stamp = document.getElementById('stampSeal');
-    if (stamp) requestAnimationFrame(function () { stamp.classList.add('stamped'); });
-  }
-}
-
-function approveStep3() {
-  if (!flowState || flowState.step !== 3) return;
-  var btn = document.getElementById('approveBtn');
-  if (btn) { btn.disabled = true; btn.textContent = '送信中…'; }
-  var myRun = flowState.runId;
-  flowState.timer1 = setTimeout(function () {
-    if (!flowState || flowState.runId !== myRun || flowState.step !== 3) return;
-    flowState.step = 4;
-    renderFlowPane();
-    var myRun2 = flowState.runId;
-    flowState.timer2 = setTimeout(function () {
-      if (!flowState || flowState.runId !== myRun2 || flowState.step !== 4) return;
-      flowState.step = 5;
-      renderFlowPane();
-      showToast('契約が締結され、契約台帳に登録されました');
-    }, 2000);
-  }, 1500);
-}
-
-function resetFlow() {
-  if (flowState) {
-    if (flowState.timer1) clearTimeout(flowState.timer1);
-    if (flowState.timer2) clearTimeout(flowState.timer2);
-  }
-  var stamp = document.getElementById('stampSeal');
-  if (stamp) stamp.classList.remove('stamped');
-  flowState = { step: 3, timer1: null, timer2: null, runId: {} };
-  renderFlowPane();
-  // AIレビューも初期状態に戻し、デモを最初から再体験できるようにする
-  if (aiReviewState) {
-    if (aiReviewState.scanTimer) clearTimeout(aiReviewState.scanTimer);
-    if (aiReviewState.cardTimer) clearTimeout(aiReviewState.cardTimer);
-  }
-  setupAiReviewPane();
-}
-
-/* ============================================================
-   12. 契約台帳
-============================================================ */
-function renderLedger() {
-  var rows = CONTRACTS.filter(function (c) { return c.status === 'signed'; });
-  var tbody = document.getElementById('ledgerTbody');
-  tbody.innerHTML = rows.map(function (c) {
-    var d = daysUntil(c.renewalDate);
-    var soon = d <= 90 && d >= 0;
-    return '<tr class="' + (soon ? 'row-soon' : '') + '" onclick="location.hash=\'contract/' + c.id + '\'">' +
-      '<td class="name-cell" data-label="契約名">' + escapeHtml(c.name) + '</td>' +
-      '<td data-label="相手方">' + escapeHtml(c.counterparty) + '</td>' +
-      '<td data-label="種別">' + escapeHtml(c.type) + '</td>' +
-      '<td class="num-cell" data-label="金額">' + fmtYen(c.amount) + '</td>' +
-      '<td data-label="締結日">' + fmtDate(c.signedDate) + '</td>' +
-      '<td data-label="更新期限">' + fmtDate(c.renewalDate) + '</td>' +
-      '<td data-label="">' + (soon ? '<span class="badge badge-soon">期限接近</span>' : '') + '</td>' +
-      '</tr>';
-  }).join('');
-}
-
-/* ============================================================
-   13. 設定
-============================================================ */
-function renderSettings() {
-  document.getElementById('memberList').innerHTML = MEMBERS.map(function (m) {
-    return '<div class="member-row"><div><div class="m-name">' + escapeHtml(m.name) + '</div><div class="m-mail">' + escapeHtml(m.mail) + '</div></div>' +
-      '<span class="role-badge role-' + m.role + '">' + ROLE_LABEL[m.role] + '</span></div>';
-  }).join('');
-
-  document.getElementById('reviewToggleList').innerHTML = REVIEW_TOGGLES.map(function (t, i) {
-    return toggleRowHtml('rt-' + i, t.label, t.desc, t.on);
-  }).join('');
-
-  document.getElementById('notifToggleList').innerHTML = NOTIF_TOGGLES.map(function (t, i) {
-    return toggleRowHtml('nt-' + i, t.label, t.desc, t.on);
-  }).join('');
-}
-function toggleRowHtml(id, label, desc, on) {
-  return '<div class="toggle-row"><div><div class="tg-label">' + escapeHtml(label) + '</div><div class="tg-desc">' + escapeHtml(desc) + '</div></div>' +
-    '<label class="switch"><input type="checkbox" id="' + id + '" ' + (on ? 'checked' : '') + ' onchange="onToggleChange(this)"><span class="track"></span></label></div>';
-}
-function onToggleChange(input) {
-  showToast(input.checked ? '設定をONにしました（デモ）' : '設定をOFFにしました（デモ）');
-}
 </script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
 </body>
 </html>
