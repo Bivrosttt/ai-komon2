@@ -1,3 +1,4 @@
+<!-- 更新: アフターHP（v3）をプレミアムUIにリデザイン — ヒーロー・統計帯・カード・CTAを刷新 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -16,7 +17,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=Oswald:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,700;1,9..40,500&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&family=Oswald:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #0B2447;
@@ -186,10 +187,10 @@
   }
 
   .compare-stage {
-    position: relative; width: 100%; height: 560px; overflow: hidden; background: #ddd;
+    position: relative; width: 100%; height: 620px; overflow: hidden; background: #ddd;
     touch-action: pan-y;
   }
-  @media (max-width: 680px) { .compare-stage { height: 440px; } }
+  @media (max-width: 680px) { .compare-stage { height: 480px; } }
 
   .compare-layer { position: absolute; inset: 0; overflow: hidden; }
   .compare-after { z-index: 1; }
@@ -380,122 +381,365 @@
   .flyer-footer { font-size: 10px; color: #996600; margin-top: 22px; }
 
   /* ===== After site (rebuilt, per-industry) shared styles ===== */
-  .after-wrap { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; background: var(--a-bg); }
-  .after-site { --a-bg: #fff; --a-primary: #123; --a-primary-deep: #0b1a2c; --a-accent: #c96; --a-ink: #1b2735; }
+  .after-wrap { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; background: var(--a-bg); scroll-behavior: smooth; }
+  .after-site { --a-bg: #fff; --a-primary: #123; --a-primary-deep: #0b1a2c; --a-accent: #c96; --a-accent-soft: rgba(201,162,39,0.14); --a-ink: #1b2735; --a-muted: rgba(27,39,53,0.62); --a-card: #fff; --a-shadow: 0 14px 40px rgba(11,28,48,0.10); }
 
-  .after-site.theme-factory { --a-primary: #123d63; --a-primary-deep: #0a1c30; --a-accent: #d97a34; --a-bg: #f5f7fa; --a-ink: #1b2735; }
-  .after-site.theme-build   { --a-primary: #33513e; --a-primary-deep: #1f3229; --a-accent: #b98a4f; --a-bg: #f7f4ee; --a-ink: #25301f; }
-  .after-site.theme-diner   { --a-primary: #c0432a; --a-primary-deep: #7c2c1a; --a-accent: #e2a33b; --a-bg: #fff6ea; --a-ink: #3a2418; }
+  .after-site.theme-factory { --a-primary: #1a4a7a; --a-primary-deep: #071526; --a-accent: #e07a2f; --a-accent-soft: rgba(224,122,47,0.16); --a-bg: #eef2f7; --a-ink: #152232; --a-muted: rgba(21,34,50,0.65); }
+  .after-site.theme-build   { --a-primary: #3d5f48; --a-primary-deep: #1c2e24; --a-accent: #c9a85c; --a-accent-soft: rgba(201,168,92,0.18); --a-bg: #f7f3eb; --a-ink: #243428; --a-muted: rgba(36,52,40,0.65); }
+  .after-site.theme-diner   { --a-primary: #b8392e; --a-primary-deep: #5c1f18; --a-accent: #f0b429; --a-accent-soft: rgba(240,180,41,0.20); --a-bg: #fff8ef; --a-ink: #3a2418; --a-muted: rgba(58,36,24,0.65); }
 
   @media (max-width: 480px) {
     .btn { white-space: normal; max-width: 100%; box-sizing: border-box; text-align: center; padding-left: 20px; padding-right: 20px; }
   }
 
-  /* ===== v2: full-chrome per-industry rebuilt site (header/hero/sections/footer) ===== */
-  .v2-wrap { font-size: 13px; color: var(--a-ink); }
+  /* ===== v3: premium rebuilt site chrome ===== */
+  .v2-wrap { font-size: 13px; color: var(--a-ink); line-height: 1.75; }
 
-  .v2-header { position: sticky; top: 0; z-index: 3; background: rgba(255,255,255,0.97); border-bottom: 1px solid rgba(0,0,0,0.08); }
-  .v2-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 20px; }
-  .v2-logo { display: flex; align-items: baseline; gap: 6px; flex-shrink: 0; min-width: 0; }
-  .v2-logo strong { font-size: 13.5px; color: var(--a-primary-deep); letter-spacing: 0.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .v2-logo span { font-size: 8px; color: var(--a-ink); opacity: 0.5; letter-spacing: 0.06em; white-space: nowrap; }
-  .v2-nav { display: flex; gap: 14px; flex-wrap: wrap; }
-  .v2-nav a { font-size: 10.5px; font-weight: 700; color: var(--a-ink); opacity: 0.78; white-space: nowrap; transition: opacity .15s, color .15s; }
-  .v2-nav a:hover { color: var(--a-accent); opacity: 1; }
-  .v2-header-cta { font-size: 10px; font-weight: 700; padding: 7px 14px; border-radius: 4px; background: var(--a-accent); color: #fff; white-space: nowrap; flex-shrink: 0; transition: opacity .15s; }
-  .v2-header-cta:hover { opacity: 0.85; }
+  .v3-topbar {
+    background: var(--a-primary-deep); color: rgba(255,255,255,0.82);
+    font-size: 9.5px; letter-spacing: 0.06em; padding: 6px 20px;
+    display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .v3-topbar span { display: inline-flex; align-items: center; gap: 5px; }
+  .v3-topbar b { color: var(--a-accent); font-weight: 700; }
 
-  .v2-hero { position: relative; min-height: 260px; background-size: cover; background-position: center; display: flex; align-items: flex-end; color: #fff; }
-  .v2-hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.76) 100%); }
-  .v2-hero-inner { position: relative; z-index: 1; padding: 30px 24px 28px; width: 100%; }
-  .v2-eyebrow { display: block; font-size: 10.5px; letter-spacing: 0.2em; color: rgba(255,255,255,0.82); font-weight: 700; margin-bottom: 12px; }
-  .v2-h1 { font-family: 'Noto Serif JP', serif; font-size: 24px; line-height: 1.45; margin-bottom: 12px; color: #fff; font-weight: 700; }
-  .v2-sub { font-size: 12px; line-height: 1.85; color: rgba(255,255,255,0.92); max-width: 420px; margin-bottom: 18px; }
-  .v2-cta-row { display: flex; gap: 8px; flex-wrap: wrap; }
-  .v2-btn { display: inline-block; padding: 10px 18px; border-radius: 4px; font-size: 11.5px; font-weight: 700; transition: opacity .15s, transform .1s; }
-  .v2-btn:hover { opacity: 0.85; }
-  .v2-btn:active { transform: scale(0.98); }
-  .v2-btn.small { padding: 8px 16px; font-size: 11px; white-space: nowrap; }
-  .v2-btn-primary { background: var(--a-accent); color: #fff; }
-  .v2-btn-ghost { background: transparent; border: 1.3px solid rgba(255,255,255,0.65); color: #fff; }
+  .v2-header, .v3-header {
+    position: sticky; top: 0; z-index: 6;
+    background: rgba(255,255,255,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.04);
+  }
+  .v2-header-inner, .v3-header-inner {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 22px;
+  }
+  .v3-brand { display: flex; align-items: center; gap: 10px; min-width: 0; flex-shrink: 1; }
+  .v3-logo-mark {
+    width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--a-primary) 0%, var(--a-primary-deep) 100%);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.14);
+  }
+  .v3-logo-mark span {
+    width: 14px; height: 14px; border-radius: 3px;
+    border: 2px solid rgba(255,255,255,0.85); transform: rotate(45deg);
+  }
+  .v2-logo, .v3-logo-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+  .v2-logo strong, .v3-logo-text strong {
+    font-size: 13px; color: var(--a-primary-deep); letter-spacing: 0.03em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .v2-logo span, .v3-logo-text span {
+    font-size: 8px; color: var(--a-muted); letter-spacing: 0.14em; text-transform: uppercase; white-space: nowrap;
+  }
+  .v2-nav, .v3-nav { display: flex; gap: 16px; flex-wrap: wrap; }
+  .v2-nav a, .v3-nav a {
+    font-size: 10px; font-weight: 700; color: var(--a-ink); opacity: 0.72; white-space: nowrap;
+    position: relative; transition: color .15s, opacity .15s;
+  }
+  .v2-nav a:hover, .v3-nav a:hover { color: var(--a-accent); opacity: 1; }
+  .v2-nav a::after, .v3-nav a::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 2px;
+    background: var(--a-accent); transform: scaleX(0); transition: transform .18s ease;
+  }
+  .v2-nav a:hover::after, .v3-nav a:hover::after { transform: scaleX(1); }
+  .v2-header-cta, .v3-header-cta {
+    font-size: 10px; font-weight: 700; padding: 9px 16px; border-radius: 999px;
+    background: linear-gradient(135deg, var(--a-accent) 0%, color-mix(in srgb, var(--a-accent) 78%, #000) 100%);
+    color: #fff; white-space: nowrap; flex-shrink: 0;
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--a-accent) 35%, transparent);
+    transition: transform .12s, box-shadow .15s;
+  }
+  .v2-header-cta:hover, .v3-header-cta:hover { transform: translateY(-1px); }
 
-  .v2-label { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; color: var(--a-accent); margin-bottom: 12px; }
-  .v2-section { padding: 30px 24px; background: var(--a-bg); }
+  .v2-hero, .v3-hero {
+    position: relative; min-height: 300px; background-size: cover; background-position: center;
+    display: flex; align-items: flex-end; color: #fff; overflow: hidden;
+  }
+  .v3-hero::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 85% 15%, rgba(255,255,255,0.16) 0%, transparent 55%),
+      linear-gradient(115deg, color-mix(in srgb, var(--a-primary-deep) 88%, transparent) 0%, rgba(0,0,0,0.35) 48%, rgba(0,0,0,0.72) 100%);
+    z-index: 0;
+  }
+  .v2-hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.78) 100%); z-index: 0; }
+  .v3-hero .v2-hero-overlay { background: none; }
+  .v2-hero-inner, .v3-hero-inner { position: relative; z-index: 1; padding: 34px 26px 30px; width: 100%; }
+  .v3-hero-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .v3-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+    padding: 5px 11px; border-radius: 999px;
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  }
+  .v3-badge.hot { background: var(--a-accent); border-color: transparent; color: #fff; }
+  .v2-eyebrow, .v3-eyebrow {
+    display: block; font-size: 10px; letter-spacing: 0.24em; color: rgba(255,255,255,0.78);
+    font-weight: 700; margin-bottom: 10px; text-transform: uppercase;
+  }
+  .v2-h1, .v3-h1 {
+    font-family: 'Noto Serif JP', serif; font-size: 26px; line-height: 1.38;
+    margin-bottom: 12px; color: #fff; font-weight: 700; max-width: 520px;
+  }
+  .v3-h1 em { font-style: normal; color: var(--a-accent); text-shadow: 0 2px 18px rgba(0,0,0,0.35); }
+  .v2-sub, .v3-sub { font-size: 11.5px; line-height: 1.85; color: rgba(255,255,255,0.9); max-width: 440px; margin-bottom: 18px; }
+  .v2-cta-row, .v3-cta-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .v2-btn, .v3-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 11px 18px; border-radius: 999px; font-size: 11px; font-weight: 700;
+    transition: transform .12s, box-shadow .15s, opacity .15s; cursor: default;
+  }
+  .v2-btn:hover, .v3-btn:hover { transform: translateY(-1px); }
+  .v2-btn.small, .v3-btn.small { padding: 9px 16px; font-size: 10.5px; }
+  .v2-btn-primary, .v3-btn-primary {
+    background: linear-gradient(135deg, var(--a-accent) 0%, color-mix(in srgb, var(--a-accent) 80%, #000) 100%);
+    color: #fff; box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+  }
+  .v2-btn-ghost, .v3-btn-ghost {
+    background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.55); color: #fff;
+    backdrop-filter: blur(6px);
+  }
 
-  /* stats row (factory) */
-  .v2-stats-row { display: flex; background: var(--a-primary-deep); }
-  .v2-stat { flex: 1; text-align: center; padding: 20px 6px; border-right: 1px solid rgba(255,255,255,0.12); color: #fff; }
-  .v2-stat:last-child { border-right: none; }
-  .v2-stat b { display: block; font-family: 'Noto Serif JP', serif; font-size: 21px; color: var(--a-accent); }
-  .v2-stat b small { font-size: 11px; color: #fff; margin-left: 2px; font-family: 'Noto Sans JP', sans-serif; }
-  .v2-stat span { display: block; font-size: 9.5px; color: rgba(255,255,255,0.75); margin-top: 5px; }
+  .v3-stats-wrap { position: relative; z-index: 2; margin-top: -28px; padding: 0 18px 6px; }
+  .v2-stats-row, .v3-stats-row {
+    display: flex; background: var(--a-card); border-radius: 14px; overflow: hidden;
+    box-shadow: var(--a-shadow); border: 1px solid rgba(255,255,255,0.8);
+  }
+  .v2-stat, .v3-stat {
+    flex: 1; text-align: center; padding: 18px 8px;
+    border-right: 1px solid rgba(0,0,0,0.06); color: var(--a-ink);
+  }
+  .v2-stat:last-child, .v3-stat:last-child { border-right: none; }
+  .v2-stat b, .v3-stat b {
+    display: block; font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+    font-size: 24px; color: var(--a-accent); line-height: 1.1; letter-spacing: 0.02em;
+  }
+  .v2-stat b small, .v3-stat b small { font-size: 11px; color: var(--a-primary-deep); margin-left: 2px; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
+  .v2-stat span, .v3-stat span { display: block; font-size: 9px; color: var(--a-muted); margin-top: 6px; font-weight: 700; letter-spacing: 0.04em; }
 
-  /* split photo + text (factory processes / diner interior) */
-  .v2-split { display: flex; background: var(--a-bg); }
-  .v2-split-photo { width: 42%; min-height: 190px; background-size: cover; background-position: center; flex-shrink: 0; }
-  .v2-split-text { flex: 1; padding: 26px 24px; min-width: 0; }
-  .v2-check-list { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
-  .v2-check-list li { font-size: 11.5px; padding-left: 18px; position: relative; color: var(--a-ink); }
-  .v2-check-list li::before { content: "✓"; position: absolute; left: 0; color: var(--a-accent); font-weight: 700; }
-  .v2-note { font-size: 11px; color: var(--a-ink); opacity: 0.75; line-height: 1.75; }
+  .v3-trust-row {
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 22px 4px;
+    background: var(--a-bg);
+  }
+  .v3-trust-chip {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 9.5px; font-weight: 700;
+    padding: 7px 12px; border-radius: 999px; background: var(--a-card);
+    border: 1px solid rgba(0,0,0,0.06); color: var(--a-ink); box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  }
+  .v3-trust-chip i { font-style: normal; color: var(--a-accent); }
 
-  /* case grid (build) */
-  .v2-case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 10px; }
-  .v2-case-card { border-radius: 6px; overflow: hidden; background: #fff; border: 1px solid rgba(0,0,0,0.08); transition: box-shadow .15s, transform .15s; }
-  .v2-case-card:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.12); transform: translateY(-2px); }
-  .v2-case-photo { height: 100px; background-size: cover; background-position: center; }
-  .v2-case-cap { font-size: 10.5px; padding: 9px 10px; color: var(--a-ink); }
-  .v2-case-cap span { display: block; font-size: 9.5px; color: var(--a-accent); font-weight: 700; margin-top: 2px; }
-  .v2-photo-disclaimer { font-size: 9.5px; color: var(--a-ink); opacity: 0.55; margin-top: 8px; }
+  .v2-label, .v3-label {
+    display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+    color: var(--a-accent); margin-bottom: 8px; text-transform: uppercase;
+  }
+  .v3-section-head { margin-bottom: 16px; }
+  .v3-section-head h3 {
+    font-family: 'Noto Serif JP', serif; font-size: 18px; color: var(--a-primary-deep);
+    line-height: 1.45; margin-bottom: 6px;
+  }
+  .v3-section-head p { font-size: 11px; color: var(--a-muted); max-width: 480px; }
 
-  /* flow steps (build) */
-  .v2-flow-section { border-top: 1px solid rgba(0,0,0,0.06); }
-  .v2-flow-row { display: flex; gap: 12px; }
-  .v2-flow-step { flex: 1; background: #fff; border-radius: 6px; border-top: 3px solid var(--a-accent); padding: 16px 14px; transition: box-shadow .15s; }
-  .v2-flow-step:hover { box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
-  .v2-flow-step b { font-family: 'Noto Serif JP', serif; color: var(--a-accent); font-size: 16px; }
-  .v2-flow-step h3 { font-size: 12.5px; color: var(--a-primary-deep); margin: 5px 0 5px; }
-  .v2-flow-step p { font-size: 10.5px; color: var(--a-ink); line-height: 1.65; opacity: 0.85; }
+  .v2-section, .v3-section { padding: 28px 22px; background: var(--a-bg); }
 
-  /* menu band (diner) */
-  .v2-menu-band { display: flex; background: var(--a-bg); border-bottom: 1px solid rgba(0,0,0,0.06); }
-  .v2-menu-photo { width: 38%; min-height: 170px; background-size: cover; background-position: center; flex-shrink: 0; }
-  .v2-menu-text { flex: 1; padding: 24px 22px; min-width: 0; }
-  .v2-menu-name { font-size: 16px; color: var(--a-primary-deep); margin-bottom: 8px; font-weight: 700; }
-  .v2-menu-name b { color: var(--a-accent); margin-left: 8px; }
-  .v2-menu-text > p { font-size: 11px; color: var(--a-ink); line-height: 1.75; margin-bottom: 12px; }
-  .v2-menu-sub { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-  .v2-menu-sub li { font-size: 11px; color: var(--a-ink); }
-  .v2-menu-sub li b { color: var(--a-accent); }
+  .v3-feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 4px; }
+  .v3-feature-card {
+    background: var(--a-card); border-radius: 12px; padding: 16px 14px;
+    border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 8px 22px rgba(0,0,0,0.05);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .v3-feature-card:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,0.10); }
+  .v3-feature-icon {
+    width: 32px; height: 32px; border-radius: 10px; margin-bottom: 10px;
+    background: var(--a-accent-soft); color: var(--a-accent);
+    display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700;
+  }
+  .v3-feature-card h4 { font-size: 11.5px; color: var(--a-primary-deep); margin-bottom: 5px; font-weight: 700; }
+  .v3-feature-card p { font-size: 10px; color: var(--a-muted); line-height: 1.65; }
 
-  .v2-info-strip { background: var(--a-bg); border-top: 1px solid rgba(0,0,0,0.06); padding: 20px 24px; display: flex; flex-direction: column; gap: 7px; }
-  .v2-info-row { display: flex; gap: 10px; font-size: 11.5px; }
-  .v2-info-row .k { font-weight: 700; color: var(--a-primary-deep); min-width: 60px; flex-shrink: 0; }
-  .v2-info-row .v { color: var(--a-ink); opacity: 0.85; }
+  .v2-split, .v3-split { display: flex; background: var(--a-bg); align-items: stretch; }
+  .v2-split-photo, .v3-split-photo {
+    width: 44%; min-height: 210px; background-size: cover; background-position: center; flex-shrink: 0;
+    position: relative;
+  }
+  .v3-split-photo::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, transparent 55%, var(--a-bg) 100%);
+  }
+  .v2-split-text, .v3-split-text { flex: 1; padding: 28px 24px; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+  .v2-check-list, .v3-check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .v2-check-list li, .v3-check-list li {
+    font-size: 11px; padding: 8px 12px 8px 34px; position: relative; color: var(--a-ink);
+    background: var(--a-card); border-radius: 8px; border: 1px solid rgba(0,0,0,0.05);
+  }
+  .v2-check-list li::before, .v3-check-list li::before {
+    content: "✓"; position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    width: 18px; height: 18px; border-radius: 50%; background: var(--a-accent-soft);
+    color: var(--a-accent); font-weight: 700; font-size: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .v2-note, .v3-note { font-size: 10.5px; color: var(--a-muted); line-height: 1.75; }
 
-  .v2-contact-strip { background: var(--a-primary-deep); color: #fff; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .v2-case-grid, .v3-case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 10px; }
+  .v2-case-card, .v3-case-card {
+    border-radius: 14px; overflow: hidden; background: var(--a-card);
+    border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+    transition: transform .18s, box-shadow .18s;
+  }
+  .v2-case-card:hover, .v3-case-card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(0,0,0,0.14); }
+  .v2-case-photo, .v3-case-photo { height: 118px; background-size: cover; background-position: center; position: relative; }
+  .v3-case-photo::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.55) 100%);
+  }
+  .v3-case-tag {
+    position: absolute; left: 10px; bottom: 10px; z-index: 1;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.92); color: var(--a-primary-deep);
+  }
+  .v2-case-cap, .v3-case-cap { font-size: 11px; padding: 12px 12px 14px; color: var(--a-ink); font-weight: 700; }
+  .v2-case-cap span, .v3-case-cap span { display: block; font-size: 9.5px; color: var(--a-accent); font-weight: 700; margin-top: 3px; letter-spacing: 0.04em; }
+  .v2-photo-disclaimer, .v3-photo-disclaimer { font-size: 9px; color: var(--a-muted); margin-top: 8px; }
+
+  .v2-flow-section, .v3-flow-section { border-top: 1px solid rgba(0,0,0,0.05); background: color-mix(in srgb, var(--a-bg) 70%, #fff); }
+  .v2-flow-row, .v3-flow-row { display: flex; gap: 12px; position: relative; }
+  .v3-flow-row::before {
+    content: ""; position: absolute; top: 28px; left: 12%; right: 12%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--a-accent-soft), transparent); z-index: 0;
+  }
+  .v2-flow-step, .v3-flow-step {
+    flex: 1; background: var(--a-card); border-radius: 14px; padding: 18px 14px 16px;
+    border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+    position: relative; z-index: 1; transition: transform .15s;
+  }
+  .v2-flow-step:hover, .v3-flow-step:hover { transform: translateY(-2px); }
+  .v3-flow-num {
+    width: 34px; height: 34px; border-radius: 50%; margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--a-accent) 0%, color-mix(in srgb, var(--a-accent) 75%, #000) 100%);
+    color: #fff; font-family: 'Oswald', sans-serif; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 16px color-mix(in srgb, var(--a-accent) 40%, transparent);
+  }
+  .v2-flow-step b { display: none; }
+  .v2-flow-step h3, .v3-flow-step h3 { font-size: 12px; color: var(--a-primary-deep); margin: 0 0 6px; font-weight: 700; }
+  .v2-flow-step p, .v3-flow-step p { font-size: 10px; color: var(--a-muted); line-height: 1.65; }
+
+  .v3-quote {
+    margin-top: 14px; padding: 16px 18px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--a-primary-deep) 0%, color-mix(in srgb, var(--a-primary) 85%, #000) 100%);
+    color: rgba(255,255,255,0.92); position: relative; overflow: hidden;
+  }
+  .v3-quote::before {
+    content: "\201C"; position: absolute; top: -8px; left: 12px; font-size: 64px; line-height: 1;
+    color: rgba(255,255,255,0.08); font-family: Georgia, serif;
+  }
+  .v3-quote p { font-size: 11px; line-height: 1.85; position: relative; z-index: 1; font-style: italic; }
+  .v3-quote cite { display: block; margin-top: 10px; font-size: 9.5px; font-style: normal; color: var(--a-accent); font-weight: 700; letter-spacing: 0.06em; }
+
+  .v2-menu-band, .v3-menu-band {
+    display: flex; background: var(--a-bg); border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: relative; overflow: hidden;
+  }
+  .v3-menu-band::before {
+    content: ""; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px;
+    border-radius: 50%; background: var(--a-accent-soft); opacity: 0.6;
+  }
+  .v2-menu-photo, .v3-menu-photo {
+    width: 40%; min-height: 190px; background-size: cover; background-position: center; flex-shrink: 0;
+    border-radius: 0 0 0 0; position: relative;
+  }
+  .v3-menu-ribbon {
+    position: absolute; top: 14px; left: -6px; z-index: 2;
+    background: var(--a-accent); color: #fff; font-size: 9px; font-weight: 700;
+    padding: 5px 14px 5px 12px; letter-spacing: 0.08em;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 50%, 100% 100%, 0 100%);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+  }
+  .v2-menu-text, .v3-menu-text { flex: 1; padding: 26px 22px; min-width: 0; position: relative; z-index: 1; }
+  .v2-menu-name, .v3-menu-name { font-size: 18px; color: var(--a-primary-deep); margin-bottom: 8px; font-weight: 700; line-height: 1.35; }
+  .v2-menu-name b, .v3-menu-name b {
+    display: inline-block; margin-left: 8px; font-size: 15px; color: #fff;
+    background: var(--a-primary); padding: 3px 12px; border-radius: 999px; vertical-align: middle;
+  }
+  .v2-menu-text > p, .v3-menu-text > p { font-size: 11px; color: var(--a-muted); line-height: 1.75; margin-bottom: 12px; }
+  .v2-menu-sub, .v3-menu-sub { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .v2-menu-sub li, .v3-menu-sub li {
+    font-size: 11px; color: var(--a-ink); padding: 7px 10px; border-radius: 8px;
+    background: var(--a-card); border: 1px dashed rgba(0,0,0,0.08);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .v2-menu-sub li b, .v3-menu-sub li b { color: var(--a-accent); font-size: 12px; }
+
+  .v3-hours-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .v3-hours-pill {
+    font-size: 10px; font-weight: 700; padding: 8px 12px; border-radius: 10px;
+    background: var(--a-card); border: 1px solid rgba(0,0,0,0.06); color: var(--a-ink);
+  }
+  .v3-hours-pill em { font-style: normal; color: var(--a-accent); margin-right: 4px; }
+
+  .v2-info-strip, .v3-info-strip {
+    background: var(--a-card); border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 22px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px;
+  }
+  .v2-info-row, .v3-info-row {
+    display: flex; gap: 10px; font-size: 10.5px; align-items: flex-start;
+    padding: 10px 12px; border-radius: 10px; background: var(--a-bg);
+  }
+  .v2-info-row .k, .v3-info-row .k { font-weight: 700; color: var(--a-primary-deep); min-width: 52px; flex-shrink: 0; font-size: 9.5px; letter-spacing: 0.06em; }
+  .v2-info-row .v, .v3-info-row .v { color: var(--a-ink); opacity: 0.88; line-height: 1.6; }
+
+  .v2-contact-strip, .v3-contact-strip {
+    background: linear-gradient(135deg, var(--a-primary-deep) 0%, color-mix(in srgb, var(--a-primary) 70%, #000) 100%);
+    color: #fff; padding: 24px 26px; display: flex; align-items: center; justify-content: space-between;
+    gap: 14px; flex-wrap: wrap; position: relative; overflow: hidden;
+  }
+  .v3-contact-strip::before {
+    content: ""; position: absolute; width: 220px; height: 220px; border-radius: 50%;
+    top: -80px; right: -40px; background: rgba(255,255,255,0.06);
+  }
+  .v3-contact-copy { position: relative; z-index: 1; }
+  .v3-contact-copy strong { display: block; font-size: 13px; margin-bottom: 4px; letter-spacing: 0.02em; }
+  .v3-contact-copy span { font-size: 10px; color: rgba(255,255,255,0.72); }
   .v2-contact-strip span:first-child { font-size: 12.5px; font-weight: 700; }
 
-  /* Footer (address / tel / copyright, all fictional) */
-  .v2-footer { background: var(--a-primary-deep); color: rgba(255,255,255,0.72); padding: 26px 24px 22px; text-align: center; }
-  .v2-footer-logo { font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: 0.02em; }
-  .v2-footer-info { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; font-size: 10.5px; margin-bottom: 12px; }
-  .v2-footer-copy { font-size: 9px; opacity: 0.6; letter-spacing: 0.03em; }
+  .v2-footer, .v3-footer {
+    background: var(--a-primary-deep); color: rgba(255,255,255,0.72);
+    padding: 28px 24px 22px; text-align: center; position: relative;
+  }
+  .v3-footer::before {
+    content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  }
+  .v2-footer-logo, .v3-footer-logo { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 10px; letter-spacing: 0.04em; }
+  .v2-footer-info, .v3-footer-info { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; font-size: 10px; margin-bottom: 12px; }
+  .v2-footer-copy, .v3-footer-copy { font-size: 9px; opacity: 0.55; letter-spacing: 0.04em; }
 
-  /* per-industry typography mood: factory=solid, build=serif, diner=rounded warm */
-  .v2-factory .v2-h1, .v2-factory .v2-logo strong { font-family: 'Oswald', 'Noto Sans JP', sans-serif; text-transform: uppercase; letter-spacing: 0.02em; }
-  .v2-diner .v2-h1, .v2-diner .v2-logo strong, .v2-diner .v2-menu-name { font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif; }
-  .v2-build .v2-h1, .v2-build .v2-logo strong { font-family: 'Noto Serif JP', serif; }
+  .v2-factory .v2-h1, .v2-factory .v3-h1, .v2-factory .v2-logo strong, .v2-factory .v3-logo-text strong {
+    font-family: 'Oswald', 'Noto Sans JP', sans-serif; text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .v2-diner .v2-h1, .v2-diner .v3-h1, .v2-diner .v2-logo strong, .v2-diner .v3-logo-text strong, .v2-diner .v2-menu-name, .v2-diner .v3-menu-name {
+    font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+  }
+  .v2-build .v2-h1, .v2-build .v3-h1, .v2-build .v2-logo strong, .v2-build .v3-logo-text strong, .v3-section-head h3 {
+    font-family: 'Noto Serif JP', serif;
+  }
+  .v2-diner .v3-case-card, .v2-diner .v3-feature-card, .v2-diner .v3-flow-step { border-radius: 18px; }
 
   @media (max-width: 680px) {
-    .v2-nav { display: none; }
-    .v2-split, .v2-menu-band { flex-direction: column; }
-    .v2-split-photo, .v2-menu-photo { width: 100%; height: 140px; min-height: 0; }
-    .v2-flow-row { flex-direction: column; }
-    .v2-hero { min-height: 220px; }
-    .v2-hero-inner { padding: 22px 18px 22px; }
-    .v2-h1 { font-size: 19px; }
-    .v2-section, .v2-info-strip, .v2-contact-strip, .v2-footer { padding-left: 18px; padding-right: 18px; }
+    .v2-nav, .v3-nav { display: none; }
+    .v2-split, .v3-split, .v2-menu-band, .v3-menu-band { flex-direction: column; }
+    .v2-split-photo, .v3-split-photo, .v2-menu-photo, .v3-menu-photo { width: 100%; height: 150px; min-height: 0; }
+    .v3-split-photo::after { background: linear-gradient(180deg, transparent 40%, var(--a-bg) 100%); }
+    .v2-flow-row, .v3-flow-row { flex-direction: column; }
+    .v3-flow-row::before { display: none; }
+    .v3-feature-grid { grid-template-columns: 1fr; }
+    .v2-info-strip, .v3-info-strip { grid-template-columns: 1fr; }
+    .v2-hero, .v3-hero { min-height: 240px; }
+    .v2-hero-inner, .v3-hero-inner { padding: 24px 18px 22px; }
+    .v2-h1, .v3-h1 { font-size: 20px; }
+    .v2-section, .v3-section, .v2-info-strip, .v3-info-strip, .v2-contact-strip, .v3-contact-strip, .v2-footer, .v3-footer { padding-left: 18px; padding-right: 18px; }
+    .v3-stats-wrap { padding: 0 12px 4px; margin-top: -22px; }
+    .v2-stat b, .v3-stat b { font-size: 20px; }
   }
 
   /* Fullscreen preview modal (real-size after-site) */
@@ -858,140 +1102,192 @@
     return fn(theme, o);
   }
 
-  // 全業種共通：ロゴ＋ナビ4〜5個＋CTAのヘッダー（実サイトの体裁）
+  // 全業種共通：ロゴ＋ナビ＋CTAのヘッダー（v3プレミアムUI）
   function v2Header(name, a) {
     return (
-      '<header class="v2-header"><div class="v2-header-inner">' +
-        '<div class="v2-logo"><strong>' + name + '</strong><span>' + a.eyebrow + '</span></div>' +
-        '<nav class="v2-nav">' + a.nav.map(function (n) { return '<a href="#">' + n + '</a>'; }).join('') + '</nav>' +
-        '<span class="v2-header-cta">' + a.headerCta + '</span>' +
+      (a.topbar ? '<div class="v3-topbar">' + a.topbar + '</div>' : '') +
+      '<header class="v2-header v3-header"><div class="v2-header-inner v3-header-inner">' +
+        '<div class="v3-brand">' +
+          '<div class="v3-logo-mark"><span></span></div>' +
+          '<div class="v2-logo v3-logo-text"><strong>' + name + '</strong><span>' + a.eyebrow + '</span></div>' +
+        '</div>' +
+        '<nav class="v2-nav v3-nav">' + a.nav.map(function (n) { return '<a href="#">' + n + '</a>'; }).join('') + '</nav>' +
+        '<span class="v2-header-cta v3-header-cta">' + a.headerCta + '</span>' +
       '</div></header>'
+    );
+  }
+
+  function v3HeroBadges(a) {
+    if (!a.heroBadges || !a.heroBadges.length) return '';
+    return '<div class="v3-hero-badges">' + a.heroBadges.map(function (b, i) {
+      return '<span class="v3-badge' + (i === 0 ? ' hot' : '') + '">' + b + '</span>';
+    }).join('') + '</div>';
+  }
+
+  function v3TrustRow(a) {
+    if (!a.trustChips || !a.trustChips.length) return '';
+    return '<div class="v3-trust-row">' + a.trustChips.map(function (t) {
+      return '<span class="v3-trust-chip"><i>✓</i> ' + t + '</span>';
+    }).join('') + '</div>';
+  }
+
+  function v3FeatureGrid(a) {
+    if (!a.features || !a.features.length) return '';
+    return '<div class="v3-section v2-section">' +
+      '<div class="v3-section-head"><span class="v2-label v3-label">' + (a.featureLabel || '選ばれる理由') + '</span>' +
+      '<h3>' + (a.featureTitle || '') + '</h3></div>' +
+      '<div class="v3-feature-grid">' + a.features.map(function (f) {
+        return '<div class="v3-feature-card"><div class="v3-feature-icon">' + f.icon + '</div><h4>' + f.t + '</h4><p>' + f.d + '</p></div>';
+      }).join('') + '</div></div>';
+  }
+
+  function v3ContactStrip(a) {
+    return (
+      '<div class="v2-contact-strip v3-contact-strip">' +
+        '<div class="v3-contact-copy"><strong>' + a.contactHeadline + '</strong><span>' + (a.contactSub || 'お気軽にご相談ください') + '</span></div>' +
+        '<span class="v2-btn v3-btn v2-btn-primary v3-btn-primary small">' + a.contactCta + '</span>' +
+      '</div>'
     );
   }
 
   // 全業種共通：住所・電話・©表記のフッター（すべて架空）
   function v2Footer(name, a) {
     return (
-      '<footer class="v2-footer">' +
-        '<div class="v2-footer-logo">' + name + '</div>' +
-        '<div class="v2-footer-info"><span>' + a.address + '</span><span>TEL ' + a.tel + '</span></div>' +
-        '<div class="v2-footer-copy">© 2026 ' + name + ' All Rights Reserved.</div>' +
+      '<footer class="v2-footer v3-footer">' +
+        '<div class="v2-footer-logo v3-footer-logo">' + name + '</div>' +
+        '<div class="v2-footer-info v3-footer-info"><span>' + a.address + '</span><span>TEL ' + a.tel + '</span></div>' +
+        '<div class="v2-footer-copy v3-footer-copy">© 2026 ' + name + ' All Rights Reserved.</div>' +
       '</footer>'
     );
   }
 
-  // 三好精密工業：ダーク×スチールの工業系。ヒーロー写真＋数字帯＋加工リスト
+  // 三好精密工業：ダーク×スチールの工業系プレミアムUI
   function afterSiteFactory(theme, a, name) {
     return (
       '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="v2-wrap v2-factory">' +
         v2Header(name, a) +
-        '<div class="v2-hero" style="background-image:url(\'assets/makeover/factory-hero.jpg\')">' +
+        '<div class="v2-hero v3-hero" style="background-image:url(\'assets/makeover/factory-hero.jpg\')">' +
           '<div class="v2-hero-overlay"></div>' +
-          '<div class="v2-hero-inner">' +
-            '<span class="v2-eyebrow">' + a.eyebrow + '</span>' +
-            '<h2 class="v2-h1">' + a.headline + '</h2>' +
-            '<p class="v2-sub">' + a.sub + '</p>' +
-            '<div class="v2-cta-row"><span class="v2-btn v2-btn-primary">' + a.cta1 + '</span><span class="v2-btn v2-btn-ghost">' + a.cta2 + '</span></div>' +
+          '<div class="v2-hero-inner v3-hero-inner">' +
+            v3HeroBadges(a) +
+            '<span class="v2-eyebrow v3-eyebrow">' + a.eyebrow + '</span>' +
+            '<h2 class="v2-h1 v3-h1">' + a.headline + '</h2>' +
+            '<p class="v2-sub v3-sub">' + a.sub + '</p>' +
+            '<div class="v2-cta-row v3-cta-row"><span class="v2-btn v3-btn v2-btn-primary v3-btn-primary">' + a.cta1 + '</span><span class="v2-btn v3-btn v2-btn-ghost v3-btn-ghost">' + a.cta2 + '</span></div>' +
           '</div>' +
         '</div>' +
-        '<div class="v2-stats-row">' + a.stats.map(function (s) {
-          return '<div class="v2-stat"><b>' + s.n + (s.u ? '<small>' + s.u + '</small>' : '') + '</b><span>' + s.d + '</span></div>';
-        }).join('') + '</div>' +
-        '<div class="v2-split">' +
-          '<div class="v2-split-photo" style="background-image:url(\'assets/makeover/factory-parts.jpg\')"></div>' +
-          '<div class="v2-split-text">' +
-            '<span class="v2-label">対応加工</span>' +
-            '<ul class="v2-check-list">' + a.processList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
-            '<p class="v2-note">' + a.processNote + '</p>' +
+        '<div class="v3-stats-wrap"><div class="v2-stats-row v3-stats-row">' + a.stats.map(function (s) {
+          return '<div class="v2-stat v3-stat"><b>' + s.n + (s.u ? '<small>' + s.u + '</small>' : '') + '</b><span>' + s.d + '</span></div>';
+        }).join('') + '</div></div>' +
+        v3TrustRow(a) +
+        v3FeatureGrid(a) +
+        '<div class="v2-split v3-split">' +
+          '<div class="v2-split-photo v3-split-photo" style="background-image:url(\'assets/makeover/factory-parts.jpg\')"></div>' +
+          '<div class="v2-split-text v3-split-text">' +
+            '<div class="v3-section-head"><span class="v2-label v3-label">対応加工</span><h3>試作1個から量産まで</h3></div>' +
+            '<ul class="v2-check-list v3-check-list">' + a.processList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+            '<p class="v2-note v3-note">' + a.processNote + '</p>' +
           '</div>' +
         '</div>' +
-        '<div class="v2-info-strip">' +
-          '<div class="v2-info-row"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
-          '<div class="v2-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
-          '<div class="v2-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
+        '<div class="v2-info-strip v3-info-strip">' +
+          '<div class="v2-info-row v3-info-row"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
+          '<div class="v2-info-row v3-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
+          '<div class="v2-info-row v3-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
+          '<div class="v2-info-row v3-info-row"><span class="k">対応</span><span class="v">図面送付・見積り・試作相談</span></div>' +
         '</div>' +
-        '<div class="v2-contact-strip"><span>' + a.contactHeadline + '</span><span class="v2-btn v2-btn-primary small">' + a.contactCta + '</span></div>' +
+        v3ContactStrip(a) +
         v2Footer(name, a) +
       '</div></div></div>'
     );
   }
 
-  // まるいち建設：施工事例グリッドと3ステップが主役の温かい系
+  // まるいち建設：施工事例＋3ステップの温かいプレミアムUI
   function afterSiteBuild(theme, a, name) {
     return (
       '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="v2-wrap v2-build">' +
         v2Header(name, a) +
-        '<div class="v2-hero" style="background-image:url(\'assets/makeover/exterior-hero.jpg\')">' +
+        '<div class="v2-hero v3-hero" style="background-image:url(\'assets/makeover/exterior-hero.jpg\')">' +
           '<div class="v2-hero-overlay"></div>' +
-          '<div class="v2-hero-inner">' +
-            '<span class="v2-eyebrow">' + a.eyebrow + '</span>' +
-            '<h2 class="v2-h1">' + a.headline + '</h2>' +
-            '<p class="v2-sub">' + a.sub + '</p>' +
-            '<div class="v2-cta-row"><span class="v2-btn v2-btn-primary">' + a.cta1 + '</span><span class="v2-btn v2-btn-ghost">' + a.cta2 + '</span></div>' +
+          '<div class="v2-hero-inner v3-hero-inner">' +
+            v3HeroBadges(a) +
+            '<span class="v2-eyebrow v3-eyebrow">' + a.eyebrow + '</span>' +
+            '<h2 class="v2-h1 v3-h1">' + a.headline + '</h2>' +
+            '<p class="v2-sub v3-sub">' + a.sub + '</p>' +
+            '<div class="v2-cta-row v3-cta-row"><span class="v2-btn v3-btn v2-btn-primary v3-btn-primary">' + a.cta1 + '</span><span class="v2-btn v3-btn v2-btn-ghost v3-btn-ghost">' + a.cta2 + '</span></div>' +
           '</div>' +
         '</div>' +
-        '<div class="v2-section">' +
-          '<span class="v2-label">施工事例</span>' +
-          '<div class="v2-case-grid">' + a.cases.map(function (c) {
-            return '<div class="v2-case-card"><div class="v2-case-photo" style="background-image:url(\'' + c.img + '\')"></div><p class="v2-case-cap">' + c.cap + '<span>' + c.sub + '</span></p></div>';
+        v3TrustRow(a) +
+        '<div class="v2-section v3-section">' +
+          '<div class="v3-section-head"><span class="v2-label v3-label">施工事例</span><h3>暮らしに寄り添う外構づくり</h3><p>地域のお客様のご要望に合わせた施工実績をご紹介します。</p></div>' +
+          '<div class="v2-case-grid v3-case-grid">' + a.cases.map(function (c) {
+            return '<div class="v2-case-card v3-case-card"><div class="v2-case-photo v3-case-photo" style="background-image:url(\'' + c.img + '\')"><span class="v3-case-tag">' + c.sub + '</span></div><p class="v2-case-cap v3-case-cap">' + c.cap + '<span>完成事例</span></p></div>';
           }).join('') + '</div>' +
-          '<p class="v2-photo-disclaimer">※施工事例の写真・お客様名はイメージです。実制作では御社の実績写真に差し替えます</p>' +
+          '<p class="v2-photo-disclaimer v3-photo-disclaimer">※施工事例の写真・お客様名はイメージです。実制作では御社の実績写真に差し替えます</p>' +
+          (a.quote ? '<div class="v3-quote"><p>' + a.quote.text + '</p><cite>— ' + a.quote.cite + '</cite></div>' : '') +
         '</div>' +
-        '<div class="v2-section v2-flow-section">' +
-          '<span class="v2-label">施工の流れ</span>' +
-          '<div class="v2-flow-row">' + a.flow.map(function (f, i) {
-            return '<div class="v2-flow-step"><b>0' + (i + 1) + '</b><h3>' + f.t + '</h3><p>' + f.d + '</p></div>';
+        '<div class="v2-section v3-section v2-flow-section v3-flow-section">' +
+          '<div class="v3-section-head"><span class="v2-label v3-label">施工の流れ</span><h3>初めての方でも安心の3ステップ</h3></div>' +
+          '<div class="v2-flow-row v3-flow-row">' + a.flow.map(function (f, i) {
+            return '<div class="v2-flow-step v3-flow-step"><div class="v3-flow-num">0' + (i + 1) + '</div><b>0' + (i + 1) + '</b><h3>' + f.t + '</h3><p>' + f.d + '</p></div>';
           }).join('') + '</div>' +
         '</div>' +
-        '<div class="v2-info-strip">' +
-          '<div class="v2-info-row"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
-          '<div class="v2-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
-          '<div class="v2-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
+        '<div class="v2-info-strip v3-info-strip">' +
+          '<div class="v2-info-row v3-info-row"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
+          '<div class="v2-info-row v3-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
+          '<div class="v2-info-row v3-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
+          '<div class="v2-info-row v3-info-row"><span class="k">対応</span><span class="v">新築外構・リフォーム・外壁塗装</span></div>' +
         '</div>' +
-        '<div class="v2-contact-strip"><span>' + a.contactHeadline + '</span><span class="v2-btn v2-btn-primary small">' + a.contactCta + '</span></div>' +
+        v3ContactStrip(a) +
         v2Footer(name, a) +
       '</div></div></div>'
     );
   }
 
-  // 食堂やまびこ：飯テロ全振りの暖色系。名物メニュー帯＋店内紹介
+  // 食堂やまびこ：飯テロ全振りの暖色プレミアムUI
   function afterSiteDiner(theme, a, name) {
     return (
       '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="v2-wrap v2-diner">' +
         v2Header(name, a) +
-        '<div class="v2-hero" style="background-image:url(\'assets/makeover/shokudo-hero.jpg\')">' +
+        '<div class="v2-hero v3-hero" style="background-image:url(\'assets/makeover/shokudo-hero.jpg\')">' +
           '<div class="v2-hero-overlay"></div>' +
-          '<div class="v2-hero-inner">' +
-            '<span class="v2-eyebrow">' + a.eyebrow + '</span>' +
-            '<h2 class="v2-h1">' + a.headline + '</h2>' +
-            '<p class="v2-sub">' + a.sub + '</p>' +
-            '<div class="v2-cta-row"><span class="v2-btn v2-btn-primary">' + a.cta1 + '</span><span class="v2-btn v2-btn-ghost">' + a.cta2 + '</span></div>' +
+          '<div class="v2-hero-inner v3-hero-inner">' +
+            v3HeroBadges(a) +
+            '<span class="v2-eyebrow v3-eyebrow">' + a.eyebrow + '</span>' +
+            '<h2 class="v2-h1 v3-h1">' + a.headline + '</h2>' +
+            '<p class="v2-sub v3-sub">' + a.sub + '</p>' +
+            '<div class="v2-cta-row v3-cta-row"><span class="v2-btn v3-btn v2-btn-primary v3-btn-primary">' + a.cta1 + '</span><span class="v2-btn v3-btn v2-btn-ghost v3-btn-ghost">' + a.cta2 + '</span></div>' +
           '</div>' +
         '</div>' +
-        '<div class="v2-menu-band">' +
-          '<div class="v2-menu-photo" style="background-image:url(\'assets/makeover/shokudo-croquette.jpg\')"></div>' +
-          '<div class="v2-menu-text">' +
-            '<span class="v2-label">名物メニュー</span>' +
-            '<h3 class="v2-menu-name">' + a.menuName + '<b>' + a.menuPrice + '</b></h3>' +
+        v3TrustRow(a) +
+        '<div class="v2-menu-band v3-menu-band">' +
+          '<div class="v2-menu-photo v3-menu-photo" style="background-image:url(\'assets/makeover/shokudo-croquette.jpg\')"><span class="v3-menu-ribbon">本日のおすすめ</span></div>' +
+          '<div class="v2-menu-text v3-menu-text">' +
+            '<span class="v2-label v3-label">名物メニュー</span>' +
+            '<h3 class="v2-menu-name v3-menu-name">' + a.menuName + '<b>' + a.menuPrice + '</b></h3>' +
             '<p>' + a.menuDesc + '</p>' +
-            '<ul class="v2-menu-sub">' + a.menuSub.map(function (m) { return '<li>' + m.t + '　<b>' + m.p + '</b></li>'; }).join('') + '</ul>' +
+            '<ul class="v2-menu-sub v3-menu-sub">' + a.menuSub.map(function (m) { return '<li><span>' + m.t + '</span><b>' + m.p + '</b></li>'; }).join('') + '</ul>' +
           '</div>' +
         '</div>' +
-        '<div class="v2-split">' +
-          '<div class="v2-split-photo" style="background-image:url(\'assets/makeover/shokudo-interior.jpg\')"></div>' +
-          '<div class="v2-split-text">' +
-            '<span class="v2-label">店内のご紹介</span>' +
-            '<p style="margin-bottom:10px;">' + a.interiorDesc + '</p>' +
-            '<ul class="v2-check-list">' + a.interiorList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+        '<div class="v2-split v3-split">' +
+          '<div class="v2-split-photo v3-split-photo" style="background-image:url(\'assets/makeover/shokudo-interior.jpg\')"></div>' +
+          '<div class="v2-split-text v3-split-text">' +
+            '<div class="v3-section-head"><span class="v2-label v3-label">店内のご紹介</span><h3>湯気と笑い声があふれる空間</h3></div>' +
+            '<p style="margin-bottom:10px;font-size:11px;color:var(--a-muted);">' + a.interiorDesc + '</p>' +
+            '<ul class="v2-check-list v3-check-list">' + a.interiorList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+            '<div class="v3-hours-grid">' +
+              '<span class="v3-hours-pill"><em>昼</em>' + a.hours.split(' / ')[0] + '</span>' +
+              '<span class="v3-hours-pill"><em>夜</em>' + (a.hours.split(' / ')[1] || '') + '</span>' +
+              '<span class="v3-hours-pill"><em>定休</em>' + a.closedDay + '</span>' +
+            '</div>' +
           '</div>' +
         '</div>' +
-        '<div class="v2-info-strip">' +
-          '<div class="v2-info-row"><span class="k">営業時間</span><span class="v">' + a.hours + '</span></div>' +
-          '<div class="v2-info-row"><span class="k">定休日</span><span class="v">' + a.closedDay + '</span></div>' +
-          '<div class="v2-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
-          '<div class="v2-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
+        '<div class="v2-info-strip v3-info-strip">' +
+          '<div class="v2-info-row v3-info-row"><span class="k">所在地</span><span class="v">' + a.address + '</span></div>' +
+          '<div class="v2-info-row v3-info-row"><span class="k">電話</span><span class="v">' + a.tel + '</span></div>' +
+          '<div class="v2-info-row v3-info-row"><span class="k">宴会</span><span class="v">ご予算に応じて承ります</span></div>' +
+          '<div class="v2-info-row v3-info-row"><span class="k">アクセス</span><span class="v">◯◯駅徒歩5分・青いのぼりが目印</span></div>' +
         '</div>' +
-        '<div class="v2-contact-strip"><span>' + a.contactHeadline + '</span><span class="v2-btn v2-btn-primary small">' + a.contactCta + '</span></div>' +
+        v3ContactStrip(a) +
         v2Footer(name, a) +
       '</div></div></div>'
     );
@@ -1039,9 +1335,11 @@
         date: "2006/11/03"
       },
       after: {
+        topbar: '<span>ISO9001取得 <b>品質管理認証</b></span><span>TEL 03-0000-0000（架空）</span>',
         eyebrow: "SEIMITSU KAKOU",
-        headline: "大手も頼る、<br>45年の精度。",
+        headline: "大手も頼る、<em>45年の精度。</em>",
         sub: "創業45年、精密切削加工のプロフェッショナル。試作1個から量産まで、確かな加工技術でお応えします。",
+        heroBadges: ["創業45年", "試作1個〜対応", "最短翌日見積"],
         cta1: "お見積り・お問い合わせ", cta2: "会社案内を見る",
         nav: ["会社案内", "事業内容", "設備紹介", "採用情報", "お問い合わせ"],
         headerCta: "お問い合わせ",
@@ -1050,12 +1348,21 @@
           { n: "1,200", u: "件", d: "年間加工実績（想定例）" },
           { n: "最短翌日", u: "", d: "お見積り回答" }
         ],
+        trustChips: ["図面送付OK", "小ロット対応", "試作から量産まで", "ISO9001（想定）"],
+        featureLabel: "強み",
+        featureTitle: "確かな技術で、ものづくりを支える",
+        features: [
+          { icon: "⚙", t: "精密切削加工", d: "旋盤・フライス・放電加工まで一貫対応。複雑形状もご相談ください。" },
+          { icon: "📐", t: "図面1枚から", d: "試作1個から量産まで。素材選定から加工方法までご提案します。" },
+          { icon: "⏱", t: "スピード対応", d: "お見積りは最短翌日。急ぎの案件も柔軟に対応いたします。" }
+        ],
         processList: ["旋盤加工（〜Φ300mm）", "フライス加工（複雑形状・小ロット対応）", "放電加工（硬質材・精密形状）"],
         processNote: "アルミ・ステンレス・真鍮・樹脂まで、素材に応じた最適な加工をご提案します。",
         hours: "平日 8:30〜17:30（土日休）",
         address: "〇〇県〇〇市（架空の所在地です）",
         tel: "03-0000-0000（架空の番号です）",
         contactHeadline: "図面があれば、まずはお見積りだけでも",
+        contactSub: "試作・量産・素材相談 — お気軽にご連絡ください",
         contactCta: "お問い合わせする"
       },
       aiPoints: [
@@ -1087,16 +1394,23 @@
         ]
       },
       after: {
+        topbar: '<span>創業32年 <b>地域密着の工務店</b></span><span>無料見積り受付中</span>',
         eyebrow: "LOCAL EXTERIOR BUILDER",
-        headline: "夕方、家に帰るのが<br>楽しみになる外構を。",
+        headline: "夕方、家に帰るのが<em>楽しみになる</em>外構を。",
         sub: "新築の外構からリフォームまで。地域のお客様の暮らしに寄り添う、あたたかい外構づくりを行っています。",
+        heroBadges: ["創業32年", "無料見積り", "地域密着"],
         cta1: "無料見積りを申し込む", cta2: "施工実績を見る",
         nav: ["会社概要", "施工実績", "リフォームのご案内", "お客様の声", "お問い合わせ"],
         headerCta: "無料見積り",
+        trustChips: ["現地調査無料", "地域密着32年", "新築・リフォーム対応", "丁寧な進捗報告"],
         cases: [
           { img: "assets/makeover/exterior-deck.jpg", cap: "〇〇市 T様邸", sub: "ウッドデッキ増設" },
-          { img: "assets/makeover/exterior-fence.jpg", cap: "△△町 S様邸", sub: "目隠しフェンス・アプローチ" }
+          { img: "assets/makeover/exterior-fence.jpg", cap: "△△町 S様邸", sub: "目隠しフェンス" }
         ],
+        quote: {
+          text: "デッキができてから、毎日夕方に外でコーヒーを飲むのが楽しみになりました。丁寧に説明してくれて安心でした。",
+          cite: "〇〇市 T様（架空のお客様の声）"
+        },
         flow: [
           { t: "現地調査", d: "敷地の状況やご要望を丁寧にヒアリングします。" },
           { t: "プラン提案", d: "ご予算に応じたプランとお見積りをご提示します。" },
@@ -1106,6 +1420,7 @@
         address: "〇〇県〇〇市（架空の所在地です）",
         tel: "03-0000-0000（架空の番号です）",
         contactHeadline: "まずは無料見積りから",
+        contactSub: "外構・リフォームのご相談をお待ちしています",
         contactCta: "見積りを申し込む"
       },
       aiPoints: [
@@ -1136,12 +1451,15 @@
         footerNote: "このホームページは店主が作りました（2004年）"
       },
       after: {
+        topbar: '<span>地元で40年 <b>日替わり定食が自慢</b></span><span>11:00 OPEN</span>',
         eyebrow: "SHOKUDO YAMABIKO",
-        headline: "今日も、湯気の向こうで<br>お待ちしています。",
+        headline: "今日も、湯気の向こうで<em>お待ちしています。</em>",
         sub: "ボリュームたっぷりの日替わり定食が自慢。地元で40年愛される、大衆食堂です。",
+        heroBadges: ["地元40年", "日替わり定食", "コロッケ名物"],
         cta1: "本日のメニューを見る", cta2: "アクセスを見る",
         nav: ["お品書き", "こだわり", "店内のご紹介", "アクセス", "お問い合わせ"],
         headerCta: "メニューを見る",
+        trustChips: ["日替わり定食750円〜", "手作りコロッケ", "おひとりさま歓迎", "宴会承ります"],
         menuName: "名物コロッケ定食",
         menuPrice: "780円",
         menuDesc: "手作りコロッケに、副菜・ごはん・味噌汁がついたボリューム満点の一品です。",
@@ -1156,6 +1474,7 @@
         address: "〇〇県〇〇市（架空の所在地です）",
         tel: "03-0000-0000（架空の番号です）",
         contactHeadline: "今日のメニューが気になったら",
+        contactSub: "宴会・貸切のご相談もお気軽に",
         contactCta: "お問い合わせする"
       },
       aiPoints: [
