@@ -1,0 +1,75 @@
+<!-- 2026-07-22: LP約束1:1デモ（demo-hankyo-sla.html） -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>反響5分SLAタイマー 体験デモ｜AI顧問室</title>
+<meta name="description" content="不動産反響の一次返信を5分以内に。SLAタイマーと返信下書きを体験できるデモ。">
+<meta property="og:title" content="反響5分SLAタイマー 体験デモ｜AI顧問室">
+<meta property="og:description" content="不動産反響の一次返信を5分以内に。SLAタイマーと返信下書きを体験できるデモ。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/demo-hankyo-sla.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0B2447; --navy-deep:#071A35; --blue:#2D6CB5; --gold:#C9A227; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg:#F4F7FA; --white:#FFF; --ok:#2F7A4F; --warn:#B45309; }
+  *{margin:0;padding:0;box-sizing:border-box} body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);line-height:1.85;background:var(--white)}
+  h1,h2{font-family:'Noto Serif JP',serif;line-height:1.45} a{text-decoration:none;color:inherit}
+  .container{max-width:960px;margin:0 auto;padding:0 24px}
+  header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+  .logo{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;color:var(--navy)}
+  .back{font-size:13px;color:var(--blue);font-weight:600}
+  .hero{background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:#fff;padding:72px 0 56px}
+  .tag{display:inline-block;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 14px;font-size:12px;color:#dce6f5;margin-bottom:16px}
+  .hero h1{font-size:clamp(26px,4vw,36px);margin-bottom:12px}.hero h1 em{font-style:normal;color:var(--gold)}
+  .hero p{color:#c7d3e4;max-width:640px;font-size:15px}
+  .note{background:var(--bg);border-bottom:1px solid var(--line);padding:14px 0;font-size:13px;color:var(--gray)}
+  .panel{margin:40px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--white)}
+  .panel-head{background:var(--navy);color:#fff;padding:16px 20px;font-size:14px;font-weight:700}
+  .panel-body{padding:22px 20px}
+  .row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .chip{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;cursor:pointer;background:#fff}
+  .chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .out{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:16px;min-height:120px;font-size:14px;white-space:pre-wrap}
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+  .stat{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:12px;text-align:center}
+  .stat b{display:block;font-family:'Noto Serif JP',serif;font-size:22px;color:var(--navy)}
+  .stat small{font-size:11px;color:var(--gray)}
+  .btn{display:inline-block;padding:12px 26px;border-radius:4px;font-weight:700;font-size:14px;border:none;cursor:pointer;font-family:inherit}
+  .btn-gold{background:var(--gold);color:var(--navy-deep)} .btn-navy{background:var(--navy);color:#fff}
+  .cta{text-align:center;padding:56px 0;background:var(--bg);border-top:1px solid var(--line)}
+  footer{background:var(--navy-deep);color:#9fb0c7;font-size:13px;padding:28px 0;text-align:center}
+  footer a{text-decoration:underline}
+  @media(max-width:720px){.stat-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="index.html" class="logo">AI顧問室</a><div style="display:flex;gap:16px;align-items:center"><a href="demos.html" class="back">← デモ一覧</a><a href="index.html?from=demo-hankyo-sla#contact" class="btn btn-gold" style="padding:9px 20px;font-size:13px">無料相談</a></div></div></header>
+<div class="hero"><div class="container"><span class="tag">EXPERIENCE DEMO</span><h1>反響が来た瞬間、<em>5分以内</em>に一次返信。</h1><p>lp-fudosan.html の「反響5分」と同じ名前のデモ。問い合わせ受信から返信案までの流れを、SLAタイマー付きで体験できます。</p></div></div>
+<div class="note"><div class="container">※サンプルデータの体験デモです。実際は御社の書式・ルールに合わせて構築します。</div></div>
+<main class="container">
+  <div class="panel"><div class="panel-head">反響SLAダッシュボード（サンプル）</div><div class="panel-body">
+    <div class="row" id="chips"><button type="button" class="chip active" data-i="0">内見希望・マンション</button><button type="button" class="chip" data-i="1">賃貸・初期費用</button><button type="button" class="chip" data-i="2">売却査定・戸建</button></div>
+    <div class="out" id="out"></div>
+    <div class="stat-grid"><div class="stat"><b>4:32</b><small>平均一次返信</small></div><div class="stat"><b>92%</b><small>5分以内率</small></div><div class="stat"><b>0件</b><small>返信漏れ</small></div></div>
+  </div></div>
+</main>
+<section class="cta"><div class="container"><h2>御社仕様で構築する</h2><p style="color:var(--gray);margin:10px 0 20px">デモは入口です。本番は御社の業務フローに合わせて設計・定着まで伴走します。</p><a href="index.html?from=demo-hankyo-sla#contact" class="btn btn-navy">無料相談を予約 →</a></div></section>
+<footer><div class="container"><a href="index.html">AI顧問室</a> · <a href="demos.html">デモ一覧</a> · <a href="privacy.html">プライバシー</a></div></footer>
+<script>
+const outputs = [
+    '⏱ SLA: 04:32 残り（目標5分）\n📩 反響: 内見希望（港区・2LDK・予算15万）\n✉ 返信案:\n「お問い合わせありがとうございます。本日17:00 / 明日10:00に内見枠をご用意できます。ご都合をお知らせください。」',
+    '⏱ SLA: 02:18 残り\n📩 反響: 賃貸・初期費用の質問\n✉ 返信案:\n「初期費用の目安は家賃の4〜5ヶ月分です。物件URLをお送りいただければ、内訳表付きでご案内します。」',
+    '⏱ SLA: 03:05 残り\n📩 反響: 売却査定（築18年・戸建）\n✉ 返信案:\n「査定のため、延床面積と築年を確認させてください。オンライン査定と現地査定、どちらをご希望ですか？」'
+];
+const out = document.getElementById('out');
+const chips = document.querySelectorAll('.chip');
+function show(i){ out.textContent = outputs[i]; chips.forEach((c,j)=>c.classList.toggle('active', j===i)); }
+chips.forEach(c=>c.addEventListener('click',()=>show(Number(c.dataset.i))));
+show(0);
+</script>
+</body>
+</html>
