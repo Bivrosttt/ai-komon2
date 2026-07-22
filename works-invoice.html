@@ -1,4 +1,4 @@
-<!-- 2026-07-22: SOROBANを帳票スプレッド骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 -->
+<!-- 2026-07-22: SOROBAN帳票グリッド＋請求書スキャン画像（assets/invoice）をプレビューに接続 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -285,6 +285,14 @@
   }
   .hl.active { background: rgba(15,118,110,.25); outline: 1px solid var(--ledger); }
   .inv-total { text-align: right; font-family: var(--mono); font-weight: 700; font-size: 14px; margin-top: 10px; padding-top: 8px; border-top: 2px solid var(--ink); }
+  .scan-img {
+    display: block; width: 100%; max-width: 100%; border: 1px solid #D1D5DB; border-radius: 2px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.08); margin-bottom: 12px;
+  }
+  .invoice-doc.scan-doc { padding: 14px; }
+  .ocr-readout { border-top: 1px dashed var(--line); padding-top: 10px; }
+  .ocr-readout-label { font-size: 10px; letter-spacing: .12em; color: var(--gray); margin-bottom: 8px; font-weight: 700; }
+  .ocr-lines { margin: 0; font-size: 11px; }
 
   .journal-pane { padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
   .journal-pane h4 { font-size: 11px; letter-spacing: .1em; color: var(--gray); }
@@ -503,7 +511,7 @@
 <script>
 var INVOICES = [
   { id: 'inv-001', vendor: '株式会社オフィスワン', amount: 187000, due: '2026-08-25', invoiceNo: 'OW-2026-0718',
-    account: '消耗品費ほか', tax: '課税10%', confidence: 96, demo: true,
+    scan: 'assets/invoice/inv-001.jpg', account: '消耗品費ほか', tax: '課税10%', confidence: 96, demo: true,
     lines: [
       { desc: 'コピー用紙 A4 5箱', qty: 5, unit: 3200, amount: 16000, debit: '消耗品費', credit: '未払金' },
       { desc: 'トナーカートリッジ（黒×2）', qty: 2, unit: 18500, amount: 37000, debit: '消耗品費', credit: '未払金' },
@@ -511,37 +519,37 @@ var INVOICES = [
       { desc: 'ファイルボックス・事務小物', qty: 1, unit: 50000, amount: 50000, debit: '消耗品費', credit: '未払金' }
     ] },
   { id: 'inv-002', vendor: 'アマゾンジャパン合同会社', amount: 42800, due: '2026-08-10', invoiceNo: 'JP-8849201',
-    account: '通信費', tax: '課税10%', confidence: 94,
+    scan: 'assets/invoice/inv-002.jpg', account: '通信費', tax: '課税10%', confidence: 94,
     lines: [{ desc: 'AWS利用料（7月分）', qty: 1, unit: 42800, amount: 42800, debit: '通信費', credit: '未払金' }] },
   { id: 'inv-003', vendor: '東京電力エナジーパートナー', amount: 89240, due: '2026-08-05', invoiceNo: 'TEPCO-260718',
-    account: '水道光熱費', tax: '課税10%', confidence: 99,
+    scan: 'assets/invoice/inv-003.jpg', account: '水道光熱費', tax: '課税10%', confidence: 99,
     lines: [{ desc: '電気料金（本社7月分）', qty: 1, unit: 89240, amount: 89240, debit: '水道光熱費', credit: '未払金' }] },
   { id: 'inv-004', vendor: '株式会社サイバーエージェント', amount: 330000, due: '2026-08-31', invoiceNo: 'CA-AD-7721',
-    account: '広告宣伝費', tax: '課税10%', confidence: 88,
+    scan: 'assets/invoice/inv-004.jpg', account: '広告宣伝費', tax: '課税10%', confidence: 88,
     lines: [{ desc: 'Web広告配信（7月）', qty: 1, unit: 330000, amount: 330000, debit: '広告宣伝費', credit: '未払金' }] },
   { id: 'inv-005', vendor: '日本マイクロソフト株式会社', amount: 156400, due: '2026-08-15', invoiceNo: 'MS-INV-44821',
-    account: '通信費', tax: '課税10%', confidence: 97,
+    scan: 'assets/invoice/inv-005.jpg', account: '通信費', tax: '課税10%', confidence: 97,
     lines: [{ desc: 'Microsoft 365 Business（50ID）', qty: 1, unit: 156400, amount: 156400, debit: '通信費', credit: '未払金' }] },
   { id: 'inv-006', vendor: '株式会社リクルート', amount: 88000, due: '2026-08-20', invoiceNo: 'RC-20260712',
-    account: '採用教育費', tax: '課税10%', confidence: 91,
+    scan: 'assets/invoice/inv-006.jpg', account: '採用教育費', tax: '課税10%', confidence: 91,
     lines: [{ desc: '求人広告掲載（エンジニア）', qty: 1, unit: 88000, amount: 88000, debit: '採用教育費', credit: '未払金' }] },
   { id: 'inv-007', vendor: '佐川急便株式会社', amount: 24680, due: '2026-08-08', invoiceNo: 'SG-778812',
-    account: '荷造運賃', tax: '課税10%', confidence: 93,
+    scan: 'assets/invoice/inv-007.jpg', account: '荷造運賃', tax: '課税10%', confidence: 93,
     lines: [{ desc: '宅配便・チャーター（7月）', qty: 1, unit: 24680, amount: 24680, debit: '荷造運賃', credit: '未払金' }] },
   { id: 'inv-008', vendor: 'スターバックスコーヒージャパン', amount: 8640, due: '2026-08-12', invoiceNo: 'SB-66021',
-    account: '接待交際費', tax: '課税8%', confidence: 85,
+    scan: 'assets/invoice/inv-008.jpg', account: '接待交際費', tax: '課税8%', confidence: 85,
     lines: [{ desc: '会議用ケータリング', qty: 1, unit: 8640, amount: 8640, debit: '接待交際費', credit: '未払金' }] },
   { id: 'inv-009', vendor: '株式会社ベネッセコーポレーション', amount: 59400, due: '2026-08-28', invoiceNo: 'BN-TR-9021',
-    account: '研修費', tax: '非課税', confidence: 90,
+    scan: 'assets/invoice/inv-009.jpg', account: '研修費', tax: '非課税', confidence: 90,
     lines: [{ desc: 'eラーニング年間ライセンス', qty: 1, unit: 59400, amount: 59400, debit: '研修費', credit: '未払金' }] },
   { id: 'inv-010', vendor: '株式会社KDDI', amount: 198000, due: '2026-08-18', invoiceNo: 'KDDI-260701',
-    account: '通信費', tax: '課税10%', confidence: 98,
+    scan: 'assets/invoice/inv-010.jpg', account: '通信費', tax: '課税10%', confidence: 98,
     lines: [{ desc: '光回線・固定電話（7月）', qty: 1, unit: 198000, amount: 198000, debit: '通信費', credit: '未払金' }] },
   { id: 'inv-011', vendor: '三井不動産リアルティ', amount: 412500, due: '2026-08-01', invoiceNo: 'MF-RENT-0726',
-    account: '地代家賃', tax: '非課税', confidence: 99,
+    scan: 'assets/invoice/inv-011.jpg', account: '地代家賃', tax: '非課税', confidence: 99,
     lines: [{ desc: '本社オフィス賃料（7月）', qty: 1, unit: 412500, amount: 412500, debit: '地代家賃', credit: '未払金' }] },
   { id: 'inv-012', vendor: '株式会社NTTドコモ', amount: 67200, due: '2026-08-22', invoiceNo: 'DOCOMO-77821',
-    account: '通信費', tax: '課税10%', confidence: 96,
+    scan: 'assets/invoice/inv-012.jpg', account: '通信費', tax: '課税10%', confidence: 96,
     lines: [{ desc: '法人モバイル（20回線）', qty: 1, unit: 67200, amount: 67200, debit: '通信費', credit: '未払金' }] }
 ];
 
@@ -672,6 +680,16 @@ function renderPreview(inv) {
       '<td class="r">' + ln.qty + '</td><td class="r mono">' + ln.unit.toLocaleString('ja-JP') + '</td>' +
       '<td class="r mono">' + ln.amount.toLocaleString('ja-JP') + '</td></tr>';
   }).join('');
+  if (inv.scan) {
+    document.getElementById('previewHost').innerHTML =
+      '<div class="invoice-doc scan-doc" id="invoiceDoc"><div class="scan-line"></div>' +
+      '<img class="scan-img" src="' + escapeHtml(inv.scan) + '" alt="' + escapeHtml(inv.vendor) + ' 請求書スキャン">' +
+      '<div class="ocr-readout"><div class="ocr-readout-label">OCR抽出（デモ）</div>' +
+      '<table class="inv-lines ocr-lines"><thead><tr><th>#</th><th>品目</th><th>数量</th><th>単価</th><th>金額</th></tr></thead><tbody>' +
+      linesHtml + '</tbody></table>' +
+      '<div class="inv-total">合計（税込） ' + formatYen(inv.amount) + '</div></div></div>';
+    return;
+  }
   document.getElementById('previewHost').innerHTML =
     '<div class="invoice-doc" id="invoiceDoc"><div class="scan-line"></div>' +
     '<div class="inv-title">請 求 書</div>' +
