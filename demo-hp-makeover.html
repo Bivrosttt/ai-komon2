@@ -1,4 +1,4 @@
-<!-- 更新: アフターHP v4 — 本物のコーポレートサイト風UI（通常タイポ・分割ヒーロー・多段フッター・問合せフォーム） -->
+<!-- 更新: アフターHP v4 + 業種ごと3デザインパターンのランダム生成・再生成ボタン -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -252,6 +252,19 @@
     .toggle-btn { font-size: 12px; padding: 8px 16px; }
   }
   .toggle-btn.active { border-color: var(--navy); background: var(--navy); color: var(--white); }
+  .toggle-btn--regen { border-color: var(--gold); color: var(--navy); background: #fffaf0; }
+  .toggle-btn--regen:hover { background: var(--gold); color: var(--navy-deep); }
+
+  .variant-badge {
+    display: none; margin-top: 10px; font-size: 13px; color: var(--gray);
+  }
+  .variant-badge.show { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .variant-badge b { color: var(--navy); font-weight: 700; }
+  .variant-badge span {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 4px 12px; border-radius: 999px; background: var(--bg-soft); color: var(--blue);
+    border: 1px solid var(--line);
+  }
 
   /* ===== Old site (before) shared styles ===== */
   .old-wrap { position: absolute; inset: 0; overflow: auto; }
@@ -388,6 +401,19 @@
   .after-site.theme-build   { --a-primary: #3d5f48; --a-primary-deep: #1c2e24; --a-accent: #c9a85c; --a-accent-soft: rgba(201,168,92,0.18); --a-bg: #f7f3eb; --a-ink: #243428; --a-muted: rgba(36,52,40,0.65); }
   .after-site.theme-diner   { --a-primary: #b8392e; --a-primary-deep: #5c1f18; --a-accent: #f0b429; --a-accent-soft: rgba(240,180,41,0.20); --a-bg: #fff8ef; --a-ink: #3a2418; --a-muted: rgba(58,36,24,0.65); }
 
+  /* デザインパターン別カラー（業種×3バリエーション） */
+  .after-site.rw-variant--trust.theme-factory { --a-primary: #1a4a7a; --a-primary-deep: #071526; --a-accent: #e07a2f; }
+  .after-site.rw-variant--modern.theme-factory { --a-primary: #1e5a8a; --a-primary-deep: #051a2e; --a-accent: #14b8a6; --a-accent-soft: rgba(20,184,166,0.16); --a-bg: #eef6f8; }
+  .after-site.rw-variant--bold.theme-factory { --a-primary: #111; --a-primary-deep: #000; --a-accent: #ff6b2c; --a-accent-soft: rgba(255,107,44,0.15); --a-bg: #f5f5f5; }
+
+  .after-site.rw-variant--trust.theme-build { --a-primary: #3d5f48; --a-primary-deep: #1c2e24; --a-accent: #c9a85c; }
+  .after-site.rw-variant--modern.theme-build { --a-primary: #4a6741; --a-primary-deep: #243522; --a-accent: #8fbc8f; --a-accent-soft: rgba(143,188,143,0.2); --a-bg: #f4f8f2; }
+  .after-site.rw-variant--bold.theme-build { --a-primary: #2c1810; --a-primary-deep: #1a0f0a; --a-accent: #d4a574; --a-bg: #faf6f1; }
+
+  .after-site.rw-variant--trust.theme-diner { --a-primary: #b8392e; --a-primary-deep: #5c1f18; --a-accent: #f0b429; }
+  .after-site.rw-variant--modern.theme-diner { --a-primary: #8b4513; --a-primary-deep: #4a2509; --a-accent: #e8c547; --a-accent-soft: rgba(232,197,71,0.22); --a-bg: #fffbf0; }
+  .after-site.rw-variant--bold.theme-diner { --a-primary: #c0432a; --a-primary-deep: #3d1810; --a-accent: #ffd166; --a-bg: #fff3e6; }
+
   @media (max-width: 480px) {
     .btn { white-space: normal; max-width: 100%; box-sizing: border-box; text-align: center; padding-left: 20px; padding-right: 20px; }
   }
@@ -482,10 +508,43 @@
   .rw-btn--sm { padding: 10px 18px; font-size: 13px; }
 
   .rw-hero { padding: 56px 0 48px; background: var(--a-bg); overflow: hidden; position: relative; }
-  .rw-hero::before {
+  .rw-hero:not(.rw-hero--immersive):not(.rw-hero--editorial)::before {
     content: ""; position: absolute; top: -120px; right: -80px; width: 420px; height: 420px;
     border-radius: 50%; background: radial-gradient(circle, var(--a-accent-soft) 0%, transparent 68%);
     pointer-events: none;
+  }
+
+  .rw-hero--immersive {
+    padding: 0; min-height: 420px; display: flex; align-items: center;
+    background-size: cover; background-position: center; color: #fff;
+  }
+  .rw-hero--immersive .rw-hero-immersive-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(105deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.25) 100%);
+  }
+  .rw-hero--immersive .rw-hero-immersive-inner {
+    position: relative; z-index: 1; padding: 72px 0; max-width: 560px;
+  }
+  .rw-hero--immersive .rw-kicker { color: var(--a-accent); }
+  .rw-hero--immersive .rw-kicker::before { background: var(--a-accent); }
+  .rw-hero--immersive .rw-h1 { color: #fff; font-size: 42px; max-width: none; }
+  .rw-hero--immersive .rw-lead { color: rgba(255,255,255,0.88); max-width: none; }
+  .rw-hero--immersive .rw-btn--ghost { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  .rw-hero--editorial { padding: 72px 0 64px; background: #fff; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .rw-hero-editorial-grid {
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center;
+  }
+  .rw-hero--editorial .rw-h1 { font-size: 44px; line-height: 1.22; }
+  .rw-hero-editorial-visual { position: relative; }
+  .rw-hero-editorial-photo {
+    border-radius: 20px; aspect-ratio: 5/4; background-size: cover; background-position: center;
+    box-shadow: 0 28px 64px rgba(0,0,0,0.14);
+  }
+  .rw-hero-editorial-tag {
+    position: absolute; top: -12px; right: -12px;
+    background: var(--a-accent); color: #fff; font-size: 12px; font-weight: 700;
+    padding: 10px 16px; border-radius: 999px; box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   }
   .rw-hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; align-items: center; position: relative; z-index: 1; }
   .rw-kicker {
@@ -721,7 +780,10 @@
     .rw-header-inner { grid-template-columns: 1fr auto; gap: 16px; min-height: 64px; }
     .rw-nav { display: none; }
     .rw-header-tel { display: none; }
-    .rw-hero-grid, .rw-split, .rw-menu-feature, .rw-contact, .rw-footer-grid { grid-template-columns: 1fr; }
+    .rw-hero-grid, .rw-hero-editorial-grid, .rw-split, .rw-menu-feature, .rw-contact, .rw-footer-grid { grid-template-columns: 1fr; }
+    .rw-hero--immersive { min-height: 320px; }
+    .rw-hero--immersive .rw-h1 { font-size: 30px; }
+    .rw-hero--editorial .rw-h1 { font-size: 32px; }
     .rw-hero-visual { order: -1; }
     .rw-hero-float { left: 16px; bottom: 16px; }
     .rw-h1 { font-size: 28px; }
@@ -879,6 +941,7 @@
         <h2 class="demo-question" id="resultTitle" style="font-size:20px;margin-bottom:0;">今のホームページを見てみましょう</h2>
         <span class="company-name" id="companyLine"></span>
       </div>
+      <p class="variant-badge" id="variantBadge">AIが選んだデザイン：<b id="variantLabel"></b> <span id="variantStyle"></span></p>
 
       <div class="browser-frame">
         <div class="browser-bar">
@@ -897,8 +960,8 @@
 
           <div class="stage-loading" id="stageLoading">
             <div class="spin"></div>
-            <p>AIがサイトを再構築しています…</p>
-            <small>デザイン・文章・情報の並びを組み立てています</small>
+            <p id="loadingMain">AIがサイトを再構築しています…</p>
+            <small id="loadingSub">デザイン・文章・情報の並びを組み立てています</small>
           </div>
         </div>
       </div>
@@ -911,6 +974,7 @@
       <div class="toggle-row compare-hidden" id="toggleRow">
         <button type="button" class="toggle-btn" id="btnShowBefore">ビフォー</button>
         <button type="button" class="toggle-btn" id="btnShowAfter">アフター</button>
+        <button type="button" class="toggle-btn toggle-btn--regen" id="regenBtn">↻ 別パターンで再生成</button>
         <button type="button" class="toggle-btn" id="btnFullscreen">⤢ アフターを全画面で見る</button>
       </div>
 
@@ -1166,6 +1230,48 @@
     );
   }
 
+  function rwHeroImmersive(a, heroImg, floatStat) {
+    return (
+      '<section class="rw-hero rw-hero--immersive" style="background-image:url(\'' + heroImg + '\')">' +
+        '<div class="rw-hero-immersive-overlay"></div>' +
+        '<div class="rw-container rw-hero-immersive-inner">' +
+          '<span class="rw-kicker">' + a.eyebrow + '</span>' +
+          '<h1 class="rw-h1">' + a.headline + '</h1>' +
+          '<p class="rw-lead">' + a.sub + '</p>' +
+          '<div class="rw-hero-actions">' +
+            '<span class="rw-btn rw-btn--primary">' + a.cta1 + '</span>' +
+            '<span class="rw-btn rw-btn--ghost">' + a.cta2 + '</span>' +
+          '</div>' +
+          (floatStat ? '<div class="rw-hero-float" style="position:relative;left:0;bottom:0;margin-top:24px;display:inline-block;"><b>' + floatStat.n + (floatStat.u ? '<small>' + floatStat.u + '</small>' : '') + '</b><span>' + floatStat.d + '</span></div>' : '') +
+        '</div>' +
+      '</section>'
+    );
+  }
+
+  function rwHeroEditorial(a, heroImg, tagText) {
+    return (
+      '<section class="rw-hero rw-hero--editorial"><div class="rw-container rw-hero-editorial-grid">' +
+        '<div>' +
+          '<span class="rw-kicker">' + a.eyebrow + '</span>' +
+          '<h1 class="rw-h1">' + a.headline + '</h1>' +
+          '<p class="rw-lead">' + a.sub + '</p>' +
+          '<div class="rw-hero-actions">' +
+            '<span class="rw-btn rw-btn--primary">' + a.cta1 + '</span>' +
+            '<span class="rw-btn rw-btn--ghost rw-btn--dark" style="background:transparent;border-color:rgba(0,0,0,0.15);color:var(--a-primary-deep);">' + a.cta2 + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="rw-hero-editorial-visual">' +
+          (tagText ? '<span class="rw-hero-editorial-tag">' + tagText + '</span>' : '') +
+          '<div class="rw-hero-editorial-photo" style="background-image:url(\'' + heroImg + '\')"></div>' +
+        '</div>' +
+      '</div></section>'
+    );
+  }
+
+  function rwSiteShell(theme, variantId, industryClass, body) {
+    return '<div class="after-site theme-' + theme + ' rw-variant--' + variantId + '"><div class="after-wrap"><div class="rw-site ' + industryClass + '">' + body + '</div></div></div>';
+  }
+
   function rwMetrics(stats) {
     return (
       '<section class="rw-metrics"><div class="rw-container rw-metrics-grid">' +
@@ -1234,112 +1340,158 @@
     );
   }
 
-  function afterSiteFactory(theme, a, name) {
+  function afterSiteFactory(theme, a, name, variant) {
     var cards = [
       { icon: ICON_GEAR, t: "精密切削加工", d: "旋盤・フライス・放電加工まで一貫対応。複雑形状・小ロットもご相談ください。" },
       { icon: ICON_DOC, t: "図面1枚から対応", d: "試作1個から量産まで。素材選定から加工方法まで、最適なプランをご提案します。" },
       { icon: ICON_CLOCK, t: "スピード見積", d: "お見積りは最短翌日。急ぎの案件にも柔軟に対応いたします。" }
     ];
-    return (
-      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="rw-site rw-factory">' +
-        rwHeader(name, a) +
-        rwHero(a, 'assets/makeover/factory-hero.jpg', a.stats[0]) +
-        rwMetrics(a.stats) +
-        rwCardsSection('SERVICE', a.featureTitle, '創業45年の技術で、ものづくりの現場を支えます。', cards) +
-        '<section class="rw-sec rw-sec--soft"><div class="rw-container rw-split">' +
-          '<div class="rw-split-photo" style="background-image:url(\'assets/makeover/factory-parts.jpg\')"></div>' +
-          '<div>' +
-            '<span class="rw-sec-label">CAPABILITY</span>' +
-            '<h2 class="rw-h2">試作1個から量産まで</h2>' +
-            '<p class="rw-lead">' + a.processNote + '</p>' +
-            '<ul class="rw-list">' + a.processList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
-          '</div>' +
-        '</div></section>' +
-        rwContactSection(Object.assign({}, a, { contactLabel: 'CONTACT', contactNote: '図面送付・見積り・試作相談' })) +
-        rwFooter(name, a) +
-      '</div></div></div>'
-    );
+    var hero = variant.layout === "immersive"
+      ? rwHeroImmersive(a, "assets/makeover/factory-hero.jpg", a.stats[0])
+      : variant.layout === "editorial"
+        ? rwHeroEditorial(a, "assets/makeover/factory-parts.jpg", "創業45年")
+        : rwHero(a, "assets/makeover/factory-hero.jpg", a.stats[0]);
+    var metrics = rwMetrics(a.stats);
+    var cardsSec = rwCardsSection("SERVICE", a.featureTitle, a.featureLead || "創業45年の技術で、ものづくりの現場を支えます。", cards);
+    var split = '<section class="rw-sec rw-sec--soft"><div class="rw-container rw-split">' +
+      '<div class="rw-split-photo" style="background-image:url(\'assets/makeover/factory-parts.jpg\')"></div>' +
+      '<div><span class="rw-sec-label">CAPABILITY</span><h2 class="rw-h2">' + (a.capabilityTitle || "試作1個から量産まで") + '</h2>' +
+      '<p class="rw-lead">' + a.processNote + '</p>' +
+      '<ul class="rw-list">' + a.processList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul></div></div></section>';
+    var contact = rwContactSection(Object.assign({}, a, { contactLabel: "CONTACT", contactNote: "図面送付・見積り・試作相談" }));
+    var footer = rwFooter(name, a);
+    var body;
+    if (variant.layout === "immersive") body = rwHeader(name, a) + hero + split + metrics + cardsSec + contact + footer;
+    else if (variant.layout === "editorial") body = rwHeader(name, a) + hero + cardsSec + metrics + split + contact + footer;
+    else body = rwHeader(name, a) + hero + metrics + cardsSec + split + contact + footer;
+    return rwSiteShell(theme, variant.id, "rw-factory", body);
   }
 
-  function afterSiteBuild(theme, a, name) {
-    return (
-      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="rw-site rw-build">' +
-        rwHeader(name, a) +
-        rwHero(a, 'assets/makeover/exterior-hero.jpg', { n: '32', u: '年', d: '創業からの実績' }) +
-        '<section class="rw-sec rw-sec--white"><div class="rw-container">' +
-          '<div class="rw-sec-head rw-sec-head--center">' +
-            '<span class="rw-sec-label">WORKS</span>' +
-            '<h2 class="rw-h2">施工事例</h2>' +
-            '<p class="rw-lead">地域のお客様の暮らしに寄り添う、外構づくりの実績をご紹介します。</p>' +
-          '</div>' +
-          '<div class="rw-works">' + a.cases.map(function (c) {
-            return '<article class="rw-work"><div class="rw-work-photo" style="background-image:url(\'' + c.img + '\')"><span class="rw-work-tag">' + c.sub + '</span></div><div class="rw-work-body"><h3>' + c.cap + '</h3><p>地域密着の丁寧な施工で、暮らしの質を高めます。</p></div></article>';
-          }).join('') + '</div>' +
-          '<p class="rw-disclaimer">※施工事例の写真・お客様名はイメージです。実制作では御社の実績写真に差し替えます</p>' +
-          (a.quote ? '<div class="rw-voice"><div class="rw-voice-avatar">T</div><div><p>' + a.quote.text + '</p><cite>— ' + a.quote.cite + '</cite></div></div>' : '') +
-        '</div></section>' +
-        '<section class="rw-sec rw-sec--soft"><div class="rw-container">' +
-          '<div class="rw-sec-head rw-sec-head--center">' +
-            '<span class="rw-sec-label">FLOW</span>' +
-            '<h2 class="rw-h2">施工の流れ</h2>' +
-            '<p class="rw-lead">初めての方でも安心。ヒアリングから完成まで丁寧に伴走します。</p>' +
-          '</div>' +
-          '<div class="rw-steps">' + a.flow.map(function (f, i) {
-            return '<div class="rw-step"><div class="rw-step-num">0' + (i + 1) + '</div><h3>' + f.t + '</h3><p>' + f.d + '</p></div>';
-          }).join('') + '</div>' +
-        '</div></section>' +
-        rwContactSection(Object.assign({}, a, { contactLabel: 'ESTIMATE', contactNote: '新築外構・リフォーム・外壁塗装' })) +
-        rwFooter(name, a) +
-      '</div></div></div>'
-    );
+  function afterSiteBuild(theme, a, name, variant) {
+    var hero = variant.layout === "immersive"
+      ? rwHeroImmersive(a, "assets/makeover/exterior-hero.jpg", { n: "32", u: "年", d: "創業からの実績" })
+      : variant.layout === "editorial"
+        ? rwHeroEditorial(a, "assets/makeover/exterior-deck.jpg", "無料見積り")
+        : rwHero(a, "assets/makeover/exterior-hero.jpg", { n: "32", u: "年", d: "創業からの実績" });
+    var works = '<section class="rw-sec rw-sec--white"><div class="rw-container">' +
+      '<div class="rw-sec-head rw-sec-head--center"><span class="rw-sec-label">WORKS</span><h2 class="rw-h2">' + (a.worksTitle || "施工事例") + '</h2>' +
+      '<p class="rw-lead">' + (a.worksLead || "地域のお客様の暮らしに寄り添う、外構づくりの実績をご紹介します。") + '</p></div>' +
+      '<div class="rw-works">' + a.cases.map(function (c) {
+        return '<article class="rw-work"><div class="rw-work-photo" style="background-image:url(\'' + c.img + '\')"><span class="rw-work-tag">' + c.sub + '</span></div><div class="rw-work-body"><h3>' + c.cap + '</h3><p>地域密着の丁寧な施工で、暮らしの質を高めます。</p></div></article>';
+      }).join('') + '</div>' +
+      '<p class="rw-disclaimer">※施工事例の写真・お客様名はイメージです。実制作では御社の実績写真に差し替えます</p>' +
+      (a.quote ? '<div class="rw-voice"><div class="rw-voice-avatar">T</div><div><p>' + a.quote.text + '</p><cite>— ' + a.quote.cite + '</cite></div></div>' : '') +
+      '</div></section>';
+    var flow = '<section class="rw-sec rw-sec--soft"><div class="rw-container">' +
+      '<div class="rw-sec-head rw-sec-head--center"><span class="rw-sec-label">FLOW</span><h2 class="rw-h2">施工の流れ</h2><p class="rw-lead">初めての方でも安心。ヒアリングから完成まで丁寧に伴走します。</p></div>' +
+      '<div class="rw-steps">' + a.flow.map(function (f, i) {
+        return '<div class="rw-step"><div class="rw-step-num">0' + (i + 1) + '</div><h3>' + f.t + '</h3><p>' + f.d + '</p></div>';
+      }).join('') + '</div></div></section>';
+    var contact = rwContactSection(Object.assign({}, a, { contactLabel: "ESTIMATE", contactNote: "新築外構・リフォーム・外壁塗装" }));
+    var footer = rwFooter(name, a);
+    var body;
+    if (variant.layout === "immersive") body = rwHeader(name, a) + hero + flow + works + contact + footer;
+    else if (variant.layout === "editorial") body = rwHeader(name, a) + hero + works + flow + contact + footer;
+    else body = rwHeader(name, a) + hero + works + flow + contact + footer;
+    return rwSiteShell(theme, variant.id, "rw-build", body);
   }
 
-  function afterSiteDiner(theme, a, name) {
+  function afterSiteDiner(theme, a, name, variant) {
     var menuRows = [{ t: a.menuName, p: a.menuPrice }].concat(a.menuSub);
-    return (
-      '<div class="after-site theme-' + theme + '"><div class="after-wrap"><div class="rw-site rw-diner">' +
-        rwHeader(name, a) +
-        rwHero(a, 'assets/makeover/shokudo-hero.jpg', { n: '40', u: '年', d: '地元で愛される食堂' }) +
-        '<section class="rw-sec rw-sec--white"><div class="rw-container rw-menu-feature">' +
-          '<div class="rw-menu-photo-wrap">' +
-            '<div class="rw-menu-photo" style="background-image:url(\'assets/makeover/shokudo-croquette.jpg\')"></div>' +
-            '<span class="rw-menu-badge">本日のおすすめ</span>' +
-          '</div>' +
-          '<div>' +
-            '<span class="rw-sec-label">MENU</span>' +
-            '<h2 class="rw-h2">名物メニュー</h2>' +
-            '<p class="rw-lead">' + a.menuDesc + '</p>' +
-            '<div class="rw-menu-price"><small>税込</small>' + a.menuPrice + '</div>' +
-            '<table class="rw-menu-table"><tbody>' +
-              menuRows.map(function (m) { return '<tr><td>' + m.t + '</td><td>' + m.p + '</td></tr>'; }).join('') +
-            '</tbody></table>' +
-          '</div>' +
-        '</div></section>' +
-        '<section class="rw-sec rw-sec--soft"><div class="rw-container rw-split">' +
-          '<div class="rw-split-photo" style="background-image:url(\'assets/makeover/shokudo-interior.jpg\')"></div>' +
-          '<div>' +
-            '<span class="rw-sec-label">ABOUT</span>' +
-            '<h2 class="rw-h2">店内のご紹介</h2>' +
-            '<p class="rw-lead">' + a.interiorDesc + '</p>' +
-            '<ul class="rw-list">' + a.interiorList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
-            '<table class="rw-hours-table"><tbody>' +
-              '<tr><th>昼の部</th><td>' + a.hours.split(' / ')[0] + '</td></tr>' +
-              '<tr><th>夜の部</th><td>' + (a.hours.split(' / ')[1] || '') + '</td></tr>' +
-              '<tr><th>定休日</th><td>' + a.closedDay + '</td></tr>' +
-            '</tbody></table>' +
-            '<div class="rw-map"><div class="rw-map-pin"></div><span>◯◯駅徒歩5分 · 青いのぼりが目印</span></div>' +
-          '</div>' +
-        '</div></section>' +
-        rwContactSection(Object.assign({}, a, { contactLabel: 'RESERVE', contactNote: '宴会・貸切のご相談も承ります' })) +
-        rwFooter(name, a) +
-      '</div></div></div>'
-    );
+    var menuSec = '<section class="rw-sec rw-sec--white"><div class="rw-container rw-menu-feature">' +
+      '<div class="rw-menu-photo-wrap"><div class="rw-menu-photo" style="background-image:url(\'assets/makeover/shokudo-croquette.jpg\')"></div><span class="rw-menu-badge">' + (a.menuBadge || "本日のおすすめ") + '</span></div>' +
+      '<div><span class="rw-sec-label">MENU</span><h2 class="rw-h2">' + (a.menuSectionTitle || "名物メニュー") + '</h2><p class="rw-lead">' + a.menuDesc + '</p>' +
+      '<div class="rw-menu-price"><small>税込</small>' + a.menuPrice + '</div>' +
+      '<table class="rw-menu-table"><tbody>' + menuRows.map(function (m) { return '<tr><td>' + m.t + '</td><td>' + m.p + '</td></tr>'; }).join('') + '</tbody></table></div></div></section>';
+    var about = '<section class="rw-sec rw-sec--soft"><div class="rw-container rw-split">' +
+      '<div class="rw-split-photo" style="background-image:url(\'assets/makeover/shokudo-interior.jpg\')"></div>' +
+      '<div><span class="rw-sec-label">ABOUT</span><h2 class="rw-h2">店内のご紹介</h2><p class="rw-lead">' + a.interiorDesc + '</p>' +
+      '<ul class="rw-list">' + a.interiorList.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ul>' +
+      '<table class="rw-hours-table"><tbody>' +
+        '<tr><th>昼の部</th><td>' + a.hours.split(" / ")[0] + '</td></tr>' +
+        '<tr><th>夜の部</th><td>' + (a.hours.split(" / ")[1] || "") + '</td></tr>' +
+        '<tr><th>定休日</th><td>' + a.closedDay + '</td></tr>' +
+      '</tbody></table>' +
+      '<div class="rw-map"><div class="rw-map-pin"></div><span>◯◯駅徒歩5分 · 青いのぼりが目印</span></div></div></div></section>';
+    var hero = variant.layout === "immersive"
+      ? rwHeroImmersive(a, "assets/makeover/shokudo-hero.jpg", { n: "40", u: "年", d: "地元で愛される食堂" })
+      : variant.layout === "editorial"
+        ? rwHeroEditorial(a, "assets/makeover/shokudo-croquette.jpg", a.menuPrice)
+        : rwHero(a, "assets/makeover/shokudo-hero.jpg", { n: "40", u: "年", d: "地元で愛される食堂" });
+    var contact = rwContactSection(Object.assign({}, a, { contactLabel: "RESERVE", contactNote: "宴会・貸切のご相談も承ります" }));
+    var footer = rwFooter(name, a);
+    var body;
+    if (variant.layout === "immersive") body = rwHeader(name, a) + hero + about + menuSec + contact + footer;
+    else if (variant.layout === "editorial") body = rwHeader(name, a) + menuSec + hero + about + contact + footer;
+    else body = rwHeader(name, a) + hero + menuSec + about + contact + footer;
+    return rwSiteShell(theme, variant.id, "rw-diner", body);
   }
 
   var AFTER_RENDERERS = { factory: afterSiteFactory, build: afterSiteBuild, diner: afterSiteDiner };
-  function renderAfter(theme, a, name) {
+
+  var DESIGN_VARIANTS = {
+    factory: [
+      { id: "trust", label: "信頼感スタイル", style: "Corporate · 実績重視", layout: "split",
+        patch: { headline: "大手も頼る、<em>45年の精度。</em>", sub: "創業45年、精密切削加工のプロフェッショナル。試作1個から量産まで、確かな加工技術でお応えします。", featureTitle: "確かな技術で、ものづくりを支える", capabilityTitle: "試作1個から量産まで" },
+        aiNote: "実績数字を前面に出した、BtoB向けの信頼感レイアウトを採用" },
+      { id: "modern", label: "モダン技術系", style: "フルブリード · 先進感", layout: "immersive",
+        patch: { headline: "精度が、<em>ものづくりを加速する。</em>", sub: "最新設備と熟練の技術力で、試作から量産までスピーディに。図面1枚から、最適な加工を提案します。", featureTitle: "技術力で選ばれる理由", featureLead: "スピードと精度を両立する、次世代の町工場サイト構成です。", capabilityTitle: "対応加工一覧" },
+        aiNote: "写真を全面に使った没入型ヒーローで、技術力の先進性を演出" },
+      { id: "bold", label: "インパクト重視", style: "エディトリアル · 大胆", layout: "editorial",
+        patch: { headline: "45年。<em>0.01mm</em>にこだわる。", sub: "小さな町工場だからこそ、一つひとつの部品に全力を注ぐ。図面があれば、まずはお話から。", featureTitle: "こだわりが生む、確かな品質", featureLead: "大きな見出しと余白で、職人気質を伝える構成に再編集。", capabilityTitle: "対応可能な加工" },
+        aiNote: "大見出し＋余白で職人気質を伝える、エディトリアル型に組み替え" }
+    ],
+    build: [
+      { id: "trust", label: "温かみスタイル", style: "事例中心 · 地域密着", layout: "split",
+        patch: { headline: "夕方、家に帰るのが<em>楽しみになる</em>外構を。", sub: "新築の外構からリフォームまで。地域のお客様の暮らしに寄り添う、あたたかい外構づくりを行っています。", worksTitle: "施工事例", worksLead: "地域のお客様の暮らしに寄り添う、外構づくりの実績をご紹介します。" },
+        aiNote: "施工事例を主役にした、地域工務店らしいあたたかい構成" },
+      { id: "modern", label: "ライフスタイル系", style: "没入型 · 暮らし提案", layout: "immersive",
+        patch: { headline: "暮らしを包む、<em>やさしい外構。</em>", sub: "帰宅が楽しみになる空間づくり。新築・リフォーム・外壁塗装まで、地域密着32年の実績でお応えします。", worksTitle: "ライフスタイル施工", worksLead: "暮らし方に合わせた外構プランを、写真付きでわかりやすく整理。" },
+        aiNote: "ライフスタイル訴求の没入型ヒーロー＋施工フロー優先の構成" },
+      { id: "bold", label: "ビフォーアフター訴求", style: "エディトリアル · 感情", layout: "editorial",
+        patch: { headline: "見た瞬間、<em>帰りたくなる</em>家。", sub: "外構は家の顔。デッキ、フェンス、アプローチまで、完成後の「毎日」を想像できるサイトに再構成しました。", worksTitle: "ビフォーアフター事例", worksLead: "完成イメージが伝わるよう、写真とストーリーを前面に配置。" },
+        aiNote: "感情に訴えるコピーと、事例写真を大きく見せるエディトリアル構成" }
+    ],
+    diner: [
+      { id: "trust", label: "定番食堂スタイル", style: "メニュー中心 · 親しみ", layout: "split",
+        patch: { headline: "今日も、湯気の向こうで<em>お待ちしています。</em>", sub: "ボリュームたっぷりの日替わり定食が自慢。地元で40年愛される、大衆食堂です。", menuSectionTitle: "名物メニュー", menuBadge: "本日のおすすめ" },
+        aiNote: "メニューと店内紹介を整理した、定番の食堂サイト構成" },
+      { id: "modern", label: "飯テロ系", style: "没入型 · 食欲", layout: "immersive",
+        patch: { headline: "腹が決まる、<em>昭和の味。</em>", sub: "湯気立つ定食、サクッとコロッケ。地元で40年、毎日変わる日替わりに舌鼓。", menuSectionTitle: "人気メニュー", menuBadge: "名物" },
+        aiNote: "料理写真の没入型ヒーローで、食欲をそそる構成に変更" },
+      { id: "bold", label: "名物推しスタイル", style: "メニュー先行 · 大胆", layout: "editorial",
+        patch: { headline: "コロッケ定食、<em>780円。</em>", sub: "手作りコロッケに副菜・ごはん・味噌汁。ボリューム満点の定番が、やまびこの看板メニューです。", menuSectionTitle: "お品書き", menuBadge: "人気No.1" },
+        aiNote: "名物メニューを最上部に配置し、価格訴求を強めた構成" }
+    ]
+  };
+
+  var LOADING_LINES = [
+    { main: "AIがサイトを再構築しています…", sub: "デザイン・文章・情報の並びを組み立てています" },
+    { main: "3つのデザイン案から最適な1つを選んでいます…", sub: "業種・ターゲット・伝えたい印象を分析中" },
+    { main: "レイアウトと配色を調整しています…", sub: "ヒーロー・実績・問い合わせ導線を再配置中" },
+    { main: "コピーを磨いています…", sub: "キャッチコピーとCTA文言を生成中" }
+  ];
+
+  function pickVariant(key, excludeId) {
+    var list = DESIGN_VARIANTS[key] || DESIGN_VARIANTS.factory;
+    var pool = excludeId ? list.filter(function (v) { return v.id !== excludeId; }) : list.slice();
+    if (!pool.length) pool = list.slice();
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function mergeAfter(base, variant) {
+    var out = {};
+    var k;
+    for (k in base) { if (Object.prototype.hasOwnProperty.call(base, k)) out[k] = base[k]; }
+    if (variant.patch) {
+      for (k in variant.patch) { if (Object.prototype.hasOwnProperty.call(variant.patch, k)) out[k] = variant.patch[k]; }
+    }
+    return out;
+  }
+
+  function renderAfter(theme, a, name, variant) {
     var fn = AFTER_RENDERERS[theme] || afterSiteFactory;
-    return fn(theme, a, name);
+    return fn(theme, a, name, variant);
   }
 
   // 変換開始時にプリロードして、スライダー切替時のチラつきを防ぐ
@@ -1550,7 +1702,16 @@
   var fsModalLabel = document.getElementById("fsModalLabel");
   var fsModalClose = document.getElementById("fsModalClose");
 
+  var regenBtn = document.getElementById("regenBtn");
+  var variantBadge = document.getElementById("variantBadge");
+  var variantLabel = document.getElementById("variantLabel");
+  var variantStyle = document.getElementById("variantStyle");
+  var loadingMain = document.getElementById("loadingMain");
+  var loadingSub = document.getElementById("loadingSub");
+
   var currentKey = null;
+  var currentVariant = null;
+  var currentAfterData = null;
   var mode = "idle"; // idle | preview | loading | compare
   var percent = 100; // % of BEFORE visible from the left
 
@@ -1566,10 +1727,45 @@
     setTimeout(function () { compareHandle.classList.remove("animated"); }, 550);
   }
 
+  function setLoadingMessage(isRegen) {
+    var line = LOADING_LINES[Math.floor(Math.random() * LOADING_LINES.length)];
+    if (isRegen) line = LOADING_LINES[Math.floor(Math.random() * 3) + 1];
+    loadingMain.textContent = line.main;
+    loadingSub.textContent = line.sub;
+  }
+
+  function updateVariantBadge(variant) {
+    if (!variant) {
+      variantBadge.classList.remove("show");
+      return;
+    }
+    variantLabel.textContent = variant.label;
+    variantStyle.textContent = variant.style;
+    variantBadge.classList.add("show");
+  }
+
+  function updateAiPoints(c, variant) {
+    var items = c.aiPoints.slice();
+    if (variant && variant.aiNote) items.unshift(variant.aiNote);
+    aiPointsList.innerHTML = items.map(function (t) { return "<li>" + t + "</li>"; }).join("");
+  }
+
+  function applyAfterVariant(variant) {
+    var c = CASES[currentKey];
+    if (!c || !variant) return;
+    currentVariant = variant;
+    currentAfterData = mergeAfter(c.after, variant);
+    layerAfter.innerHTML = renderAfter(c.theme, currentAfterData, c.name, variant);
+    updateVariantBadge(variant);
+    updateAiPoints(c, variant);
+  }
+
   function selectCase(key) {
     var c = CASES[key];
     if (!c) return;
     currentKey = key;
+    currentVariant = null;
+    currentAfterData = null;
     mode = "preview";
 
     var cards = caseGrid.querySelectorAll(".case-card");
@@ -1583,16 +1779,16 @@
 
     c.old.name = c.name;
     layerBefore.innerHTML = renderBefore(c.theme, c.old);
-    layerAfter.innerHTML = renderAfter(c.theme, c.after, c.name);
+    layerAfter.innerHTML = '<div style="height:100%;background:#eef2f7;"></div>';
 
     aiPointsList.innerHTML = c.aiPoints.map(function (t) { return "<li>" + t + "</li>"; }).join("");
 
-    // preview: fully before, no handle/hint/toggle/points yet
     stageLoading.classList.remove("active");
     setPercent(100);
     compareHandle.classList.add("compare-hidden");
     compareHint.classList.add("compare-hidden");
     toggleRow.classList.add("compare-hidden");
+    variantBadge.classList.remove("show");
     aiPoints.classList.remove("show");
     rebuildActions.style.display = "flex";
     btnShowBefore.classList.remove("active");
@@ -1602,24 +1798,36 @@
     demoResult.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  function startRebuild() {
-    if (mode !== "preview" || !currentKey) return;
+  function runRebuild(isRegen) {
+    if (!currentKey) return;
+    if (!isRegen && mode !== "preview") return;
+    if (isRegen && mode !== "compare") return;
+
     mode = "loading";
     preloadAfterImages(currentKey);
+    setLoadingMessage(isRegen);
     rebuildActions.style.display = "none";
     stageLoading.classList.add("active");
+    aiPoints.classList.remove("show");
+
+    var excludeId = isRegen && currentVariant ? currentVariant.id : null;
+    var variant = pickVariant(currentKey, excludeId);
 
     setTimeout(function () {
+      applyAfterVariant(variant);
       stageLoading.classList.remove("active");
       mode = "compare";
-      resultTitle.textContent = "ビフォー・アフターを比較してみてください";
+      resultTitle.textContent = isRegen ? "別パターンが生成されました。比較してみてください" : "ビフォー・アフターを比較してみてください";
       compareHandle.classList.remove("compare-hidden");
       compareHint.classList.remove("compare-hidden");
       toggleRow.classList.remove("compare-hidden");
-      animateTo(50);
+      animateTo(isRegen ? 0 : 50);
       setTimeout(function () { aiPoints.classList.add("show"); }, 300);
-    }, 1500);
+    }, isRegen ? 1200 : 1500);
   }
+
+  function startRebuild() { runRebuild(false); }
+  function regenRebuild() { runRebuild(true); }
 
   // Drag logic (mouse + touch via Pointer Events)
   var dragging = false;
@@ -1674,6 +1882,7 @@
   });
 
   rebuildBtn.addEventListener("click", startRebuild);
+  regenBtn.addEventListener("click", regenRebuild);
 
   btnShowBefore.addEventListener("click", function () {
     if (mode !== "compare") return;
@@ -1691,7 +1900,10 @@
   reselectLink.addEventListener("click", function () {
     mode = "idle";
     currentKey = null;
+    currentVariant = null;
+    currentAfterData = null;
     demoResult.classList.remove("active");
+    variantBadge.classList.remove("show");
     var cards = caseGrid.querySelectorAll(".case-card");
     for (var i = 0; i < cards.length; i++) cards[i].classList.remove("selected");
     caseGrid.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1699,10 +1911,10 @@
 
   // 「アフターを全画面で見る」：実寸大のモーダルで本物感を体感させる
   function openFullscreen() {
-    if (mode !== "compare" || !currentKey) return;
+    if (mode !== "compare" || !currentKey || !currentVariant) return;
     var c = CASES[currentKey];
-    fsModalLabel.textContent = c.name + "（作り直し後・全画面プレビュー）";
-    fsModalBody.innerHTML = renderAfter(c.theme, c.after, c.name);
+    fsModalLabel.textContent = c.name + "（" + currentVariant.label + " · 全画面プレビュー）";
+    fsModalBody.innerHTML = renderAfter(c.theme, currentAfterData, c.name, currentVariant);
     fullscreenModal.classList.add("active");
     document.body.style.overflow = "hidden";
   }
