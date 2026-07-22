@@ -1,0 +1,337 @@
+<!-- 2026-07-22: 攻めのAI（ai-product）向け業種入口ページ。LP・デモ3本・成果物2つ・導入事例・相談導線 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>攻めのAI・商品開発向け｜AI顧問室</title>
+<meta name="description" content="効率化で終わらせない、攻めのAI活用。AI商品開発・販売支援向けの入口ページ。触れるデモ3本と成果物サンプル、導入事例から、AI顧問の支援内容を確認できます。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="攻めのAI・商品開発向け｜AI顧問室">
+<meta property="og:description" content="AIを御社の商品にする。攻めのAI活用の入口ページ。デモ3本・成果物2つ・無料相談。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/for/product.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D; --blue: #2D6CB5;
+    --gold: #C9A227; --accent: #7C3AED; --ink: #1A2433; --gray: #5B6B7F;
+    --line: #DDE4EC; --bg-soft: #F4F7FA; --white: #FFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.85; background: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.45; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 72px 0; }
+  .section-label {
+    display: block; font-size: 12px; letter-spacing: .18em; color: var(--gold);
+    font-weight: 700; margin-bottom: 10px;
+  }
+  .section-title { font-size: clamp(24px, 3.5vw, 32px); color: var(--navy); margin-bottom: 12px; }
+  .section-lead { color: var(--gray); font-size: 14px; max-width: 680px; margin-bottom: 32px; }
+  .btn {
+    display: inline-block; padding: 14px 28px; border-radius: 4px;
+    font-weight: 700; font-size: 14px; transition: opacity .2s;
+  }
+  .btn:hover { opacity: .88; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); }
+
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px; gap: 16px;
+  }
+  .logo { font-family: 'Noto Serif JP', serif; font-size: 19px; font-weight: 700; color: var(--navy); }
+  .header-nav { display: flex; align-items: center; gap: 18px; font-size: 13px; }
+  .header-nav a { color: var(--blue); font-weight: 600; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy) 55%, #2a2550);
+    color: var(--white); padding: 88px 0 72px; position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(7,26,53,.92) 0%, rgba(7,26,53,.55) 45%, rgba(7,26,53,.25) 100%),
+      url('../assets/thumbs/demo-ai-portal.jpg') center/cover no-repeat;
+    z-index: 0;
+  }
+  .hero .container { position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block; border: 1px solid var(--accent); color: #ddd6fe;
+    font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+  }
+  .hero h1 { font-size: clamp(30px, 5vw, 44px); margin-bottom: 16px; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p { color: #c7d3e4; max-width: 620px; font-size: 15px; margin-bottom: 28px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+  .path {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--white);
+  }
+  .path-step {
+    padding: 18px 16px; border-right: 1px solid var(--line); font-size: 12px;
+  }
+  .path-step:last-child { border-right: 0; }
+  .path-step strong {
+    display: block; font-family: 'Noto Serif JP', serif; font-size: 15px;
+    color: var(--navy); margin: 6px 0 4px;
+  }
+  .path-no { font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--gold); }
+
+  .lp-band { background: var(--bg-soft); border-block: 1px solid var(--line); }
+  .lp-card {
+    display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+    background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 28px 30px;
+  }
+  .lp-card h2 { font-size: 22px; color: var(--navy); margin-bottom: 8px; }
+  .lp-card p { font-size: 14px; color: var(--gray); }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .card {
+    border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+    display: flex; flex-direction: column; transition: border-color .2s;
+  }
+  a.card:hover { border-color: var(--navy); }
+  .card-visual {
+    height: 150px; background: var(--bg-soft); overflow: hidden; position: relative;
+  }
+  .card-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .card-badge {
+    position: absolute; top: 10px; right: 10px; background: var(--navy); color: #fff;
+    font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 999px;
+  }
+  .card-body { padding: 18px 20px 22px; flex: 1; display: flex; flex-direction: column; }
+  .card-cat { font-size: 11px; font-weight: 700; color: var(--blue); margin-bottom: 6px; }
+  .card-body h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .card-body p { font-size: 13px; color: var(--gray); flex: 1; }
+  .card-go { margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--gold); }
+
+  .cases-band {
+    border: 1px solid var(--line); border-radius: 8px; padding: 24px 28px;
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
+    background: var(--white);
+  }
+  .cases-band p { font-size: 14px; color: var(--gray); max-width: 560px; margin: 0; }
+  .cases-band h3 { font-size: 18px; color: var(--navy); margin-bottom: 6px; }
+
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: 28px; margin-bottom: 12px; }
+  .cta p { color: #c7d3e4; font-size: 14px; margin-bottom: 24px; }
+
+  footer {
+    background: var(--navy-deep); color: #9fb0c7; font-size: 13px;
+    padding: 28px 0; text-align: center;
+  }
+  footer a { text-decoration: underline; margin: 0 8px; }
+
+  @media (max-width: 900px) {
+    .path { grid-template-columns: 1fr 1fr; }
+    .path-step:nth-child(2) { border-right: 0; }
+    .path-step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    .lp-card { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .path { grid-template-columns: 1fr; }
+    .path-step { border-right: 0; border-bottom: 1px solid var(--line); }
+    .path-step:last-child { border-bottom: 0; }
+    .header-nav a:not(.btn) { display: none; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">AI顧問室</a>
+    <nav class="header-nav" aria-label="ヘッダーナビ">
+      <a href="../index.html">公式サイト</a>
+      <a href="../index.html?from=for-product#contact" class="btn btn-gold" style="padding:9px 20px;font-size:13px;">無料相談</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="hero-tag">攻めのAI｜ai-product</span>
+    <h1>AIを、<em>御社の商品にする。</em></h1>
+    <p>効率化で終わらせない、攻めのAI活用。既存サービスにAIを組み込み、競合と違う「売り物」に育てるまでを伴走します。まずは攻めのAI向けに厳選したデモ3本から、触って確かめてください。</p>
+    <div class="hero-actions">
+      <a href="#demos" class="btn btn-gold">デモ3本を触る</a>
+      <a href="../index.html?from=for-product#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,.45);color:#fff;">30分無料相談</a>
+    </div>
+  </div>
+</div>
+
+<section style="padding:40px 0;">
+  <div class="container">
+    <div class="path" aria-label="このページの見方">
+      <div class="path-step"><span class="path-no">STEP 01</span><strong>このページ</strong>攻めのAI向けに厳選</div>
+      <div class="path-step"><span class="path-no">STEP 02</span><strong>デモ3本</strong>触って確かめる</div>
+      <div class="path-step"><span class="path-no">STEP 03</span><strong>成果物2つ</strong>品質を見る</div>
+      <div class="path-step"><span class="path-no">STEP 04</span><strong>無料相談</strong>商品化の着手順</div>
+    </div>
+  </div>
+</section>
+
+<section class="lp-band">
+  <div class="container">
+    <span class="section-label">MESSAGE</span>
+    <div class="lp-card">
+      <div>
+        <h2>攻めのAIの詳しい説明はこちら</h2>
+        <p>商品企画からPoC構築、販売支援まで——AI商品開発・販売支援LPで、支援内容・進め方・料金の目安を詳しく説明しています。</p>
+      </div>
+      <a href="../ai-product.html" class="btn btn-navy">ai-product LPを読む →</a>
+    </div>
+  </div>
+</section>
+
+<section id="demos">
+  <div class="container">
+    <span class="section-label">DEMO</span>
+    <h2 class="section-title">攻めのAI・触れるデモ3本</h2>
+    <p class="section-lead">商品化・リサーチ・経営判断に近い3本を選びました。すべて無料・登録不要です。</p>
+    <div class="grid-3">
+      <a class="card" href="../demo-ai-portal.html">
+        <div class="card-visual">
+          <span class="card-badge">体験できます</span>
+          <img src="../assets/thumbs/demo-ai-portal.jpg" alt="AI商品ポータルのデモ" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Lv.4｜商品化</div>
+          <h3>AI商品ポータル</h3>
+          <p>御社のAI機能を顧客向けに見せるポータル。機能説明・デモ・問い合わせ導線まで、商品として売れる形を体験できます。</p>
+          <span class="card-go">▶ デモを試す</span>
+        </div>
+      </a>
+      <a class="card" href="../demo-agent-research.html">
+        <div class="card-visual">
+          <span class="card-badge">体験できます</span>
+          <img src="../assets/thumbs/demo-agent-research.jpg" alt="AIリサーチエージェントのデモ" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Lv.4｜リサーチ</div>
+          <h3>AIリサーチエージェント</h3>
+          <p>市場・競合・顧客ニーズをAIが調査し、レポートにまとめる。商品企画の下調べを短縮するイメージを掴めます。</p>
+          <span class="card-go">▶ デモを試す</span>
+        </div>
+      </a>
+      <a class="card" href="../demo-cockpit.html">
+        <div class="card-visual">
+          <span class="card-badge">体験できます</span>
+          <img src="../assets/thumbs/demo-cockpit.jpg" alt="AI経営コックピットのデモ" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Lv.4｜経営判断</div>
+          <h3>AI経営コックピット</h3>
+          <p>整った数字を毎朝1分で。「先月の粗利は？」と聞けば、根拠つきで答えが返ります。攻めの投資判断の土台になります。</p>
+          <span class="card-go">▶ デモを試す</span>
+        </div>
+      </a>
+    </div>
+    <p style="margin-top:18px;font-size:13px;color:var(--gray);">
+      ほかのデモも見たい方は <a href="../demos.html" style="color:var(--blue);font-weight:700;">構築デモギャラリー</a> へ
+    </p>
+  </div>
+</section>
+
+<section style="background:var(--bg-soft);">
+  <div class="container">
+    <span class="section-label">WORKS</span>
+    <h2 class="section-title">成果物の品質サンプル</h2>
+    <p class="section-lead">AI商品化・BtoB提案のクオリティも、合わせて確認できます。</p>
+    <div class="grid-2">
+      <a class="card" href="../works-ai-service.html">
+        <div class="card-visual">
+          <span class="card-badge">触って回せます</span>
+          <img src="../assets/thumbs/works-ai-service.jpg" alt="AIサービス紹介サイトの成果物" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">商品化</div>
+          <h3>AIサービス紹介サイト</h3>
+          <p>架空のAI SaaSのランディングページ。機能説明・料金表・CTAまで、商品として売れる品質のサンプルです。</p>
+          <span class="card-go">▶ サイトを開く</span>
+        </div>
+      </a>
+      <a class="card" href="../works-btob-proposal.html">
+        <div class="card-visual">
+          <span class="card-badge">クリックで進む</span>
+          <img src="../assets/thumbs/works-btob-proposal.jpg" alt="BtoB提案資料の成果物" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">BtoB提案</div>
+          <h3>BtoB AI提案スライド</h3>
+          <p>企業向けAI導入提案のインタラクティブ資料。課題→解決→ROI→次の一歩まで、商談にそのまま出せる品質です。</p>
+          <span class="card-go">▶ 提案資料を開く</span>
+        </div>
+      </a>
+    </div>
+    <p style="margin-top:18px;font-size:13px;color:var(--gray);">
+      ほかの成果物は <a href="../works.html" style="color:var(--blue);font-weight:700;">作品ショーケース</a> へ
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <span class="section-label">CASES</span>
+    <div class="cases-band">
+      <div>
+        <h3>導入ストーリー・事例集</h3>
+        <p>「どう始めて、何が変わったか」を、業種別の導入ストーリーで読めます。攻めのAIの着想もここから拾えます。</p>
+      </div>
+      <a href="../cases.html" class="btn btn-outline">導入事例を読む →</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <span class="section-label">CONTACT</span>
+    <h2>御社の「売り物」になるAIを、30分で整理します</h2>
+    <p>オンライン無料相談。契約の義務はありません。</p>
+    <a href="../index.html?from=for-product#contact" class="btn btn-gold">攻めのAI・無料相談を予約</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>運営：Bivrost Inc.｜© 2026 AI顧問室</p>
+    <p>
+      <a href="../index.html">公式サイト</a>
+      <a href="../cases.html">導入事例</a>
+      <a href="../privacy.html">プライバシー</a>
+      <a href="../tokushoho.html">特商法</a>
+    </p>
+  </div>
+</footer>
+
+<script src="../analytics-config.js"></script>
+<script src="../analytics.js"></script>
+<script src="../ga4-events.js"></script>
+<script src="../meta-pixel-config.js"></script>
+<script src="../meta-pixel.js"></script>
+</body>
+</html>
