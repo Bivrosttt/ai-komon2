@@ -1,4 +1,4 @@
-<!-- 2026-07-22: SaaS3本リデザインに合わせアクセント色・サムネを更新 -->
+<!-- 2026-07-22: GENBA〜SHAINの候補SaaS6本セクションを追加 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>業務SaaS級システム｜AI顧問室</title>
-<meta name="description" content="電子契約・請求経理・カスタマーサポート。市販クラウド級の業務システム3本（KAWASU / SOROBAN / MIMIYORI）と、関連する軽デモを1ページで体験できます。">
+<meta name="description" content="電子契約・請求経理・カスタマーサポートの本線3本に加え、建設・不動産・営業・規程・採用・社内FAQの候補6本。市販クラウド級の業務システムをデモで体験できます。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
 <meta property="og:title" content="業務SaaS級システム｜AI顧問室">
-<meta property="og:description" content="KAWASU・SOROBAN・MIMIYORIのSaaS級デモと関連軽デモをまとめた公式ハブページ。">
+<meta property="og:description" content="本線3本＋業種フィット候補6本。KAWASU / SOROBAN / MIMIYORI と GENBA〜SHAIN をまとめた公式ハブ。">
 <meta property="og:url" content="https://ai-komon.bivrost.co.jp/systems.html">
 <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -58,16 +58,21 @@
   .section-lead { color: var(--gray); font-size: 14px; max-width: 720px; margin-bottom: 36px; }
 
   .sys-grid { display: grid; gap: 28px; }
+  .sys-grid.candidates { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
   .sys-card {
     display: grid; grid-template-columns: 280px 1fr; gap: 0;
     border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--white);
   }
+  .sys-grid.candidates .sys-card { grid-template-columns: 1fr; }
   .sys-visual { position: relative; min-height: 220px; background: var(--bg-soft); }
+  .sys-grid.candidates .sys-visual { min-height: 160px; }
   .sys-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
   .sys-accent { position: absolute; inset: 0 auto 0 0; width: 5px; }
   .sys-body { padding: 28px 30px 26px; display: flex; flex-direction: column; }
+  .sys-grid.candidates .sys-body { padding: 20px 22px 22px; }
   .sys-no { font-size: 11px; font-weight: 700; color: var(--blue); letter-spacing: .06em; margin-bottom: 6px; }
   .sys-logo { font-family: 'Noto Serif JP', serif; font-size: 28px; color: var(--navy); letter-spacing: .04em; margin-bottom: 4px; }
+  .sys-grid.candidates .sys-logo { font-size: 22px; }
   .sys-logo small { display: block; font-size: 12px; color: var(--gray); font-family: 'Noto Sans JP', sans-serif; font-weight: 500; letter-spacing: .08em; margin-top: 2px; }
   .sys-desc { font-size: 14px; color: var(--gray); margin: 12px 0 20px; flex: 1; }
   .sys-links { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -111,8 +116,8 @@
 <div class="hero">
   <div class="container">
     <span class="label">SAAS-CLASS SYSTEMS</span>
-    <h1>業務SaaS級、3本のシステム。</h1>
-    <p>電子契約・請求経理・カスタマーサポート。市販クラウドサービス級の業務システムを、デモとして丸ごと制作しました。軽い体験デモから、ログインして全画面を触れるSaaS級デモまで、段階的に確かめられます。</p>
+    <h1>本線3本と、候補6本。</h1>
+    <p>電子契約・請求経理・カスタマーサポートの本線に加え、建設・不動産・営業・規程・採用・社内FAQの候補レーン。市販クラウド級の画面をログイン操作で確かめられます。</p>
   </div>
 </div>
 
@@ -127,8 +132,8 @@
 
 <section>
   <div class="container">
-    <span class="section-label">SYSTEMS</span>
-    <h2 class="section-title">3システム × 軽デモ / SaaS級</h2>
+    <span class="section-label">CORE</span>
+    <h2 class="section-title">本線3システム × 軽デモ / SaaS級</h2>
     <p class="section-lead">まずは「触るデモ（軽）」でAIの動きを確認し、本格的な画面操作は「SaaS級（深）」へ。御社の業務フローに合わせた専用構築も可能です。</p>
 
     <div class="sys-grid">
@@ -205,12 +210,76 @@
   </div>
 </section>
 
+<section style="background:var(--bg-soft);padding-top:64px;">
+  <div class="container">
+    <span class="section-label">CANDIDATES</span>
+    <h2 class="section-title">業種フィット候補 6本</h2>
+    <p class="section-lead">本線の穴を埋める候補レーン。触ってから、どれを本線に残すか選ぶ前提です。</p>
+    <div class="sys-grid candidates">
+      <article class="sys-card">
+        <div class="sys-visual"><span class="sys-accent" style="background:#EAB308;"></span><img src="assets/thumbs/works-genba.jpg" alt="GENBA" loading="lazy"></div>
+        <div class="sys-body">
+          <div class="sys-no">建設・現場</div>
+          <h3 class="sys-logo">GENBA<small>ゲンバ</small></h3>
+          <p class="sys-desc">写真AI点検・是正・日報・出来高突合の現場OS。</p>
+          <a href="works-genba.html" class="btn btn-navy">ログイン操作 →</a>
+        </div>
+      </article>
+      <article class="sys-card">
+        <div class="sys-visual"><span class="sys-accent" style="background:#C9A227;"></span><img src="assets/thumbs/works-hankyo.jpg" alt="HANKYO" loading="lazy"></div>
+        <div class="sys-body">
+          <div class="sys-no">不動産・反響</div>
+          <h3 class="sys-logo">HANKYO<small>ハンキョウ</small></h3>
+          <p class="sys-desc">SLAタイマーと追客シーケンスの反響CRM。</p>
+          <a href="works-hankyo.html" class="btn btn-navy">ログイン操作 →</a>
+        </div>
+      </article>
+      <article class="sys-card">
+        <div class="sys-visual"><span class="sys-accent" style="background:#38BDF8;"></span><img src="assets/thumbs/works-brief.jpg" alt="BRIEF" loading="lazy"></div>
+        <div class="sys-body">
+          <div class="sys-no">BtoB営業</div>
+          <h3 class="sys-logo">BRIEF<small>ブリーフ</small></h3>
+          <p class="sys-desc">商談リサーチ・提案章立て・議事録の営業WS。</p>
+          <a href="works-brief.html" class="btn btn-navy">ログイン操作 →</a>
+        </div>
+      </article>
+      <article class="sys-card">
+        <div class="sys-visual"><span class="sys-accent" style="background:#2563EB;"></span><img src="assets/thumbs/works-kitei.jpg" alt="KITEI" loading="lazy"></div>
+        <div class="sys-body">
+          <div class="sys-no">管理部門・規程</div>
+          <h3 class="sys-logo">KITEI<small>キテイ</small></h3>
+          <p class="sys-desc">出典付き規程回答と稟議下書き。</p>
+          <a href="works-kitei.html" class="btn btn-navy">ログイン操作 →</a>
+        </div>
+      </article>
+      <article class="sys-card">
+        <div class="sys-visual"><span class="sys-accent" style="background:#7C3AED;"></span><img src="assets/thumbs/works-saiyo.jpg" alt="SAIYO" loading="lazy"></div>
+        <div class="sys-body">
+          <div class="sys-no">人事・採用</div>
+          <h3 class="sys-logo">SAIYO<small>サイヨウ</small></h3>
+          <p class="sys-desc">面接メモから評価表・合否メール下書き。</p>
+          <a href="works-saiyo.html" class="btn btn-navy">ログイン操作 →</a>
+        </div>
+      </article>
+      <article class="sys-card">
+        <div class="sys-visual"><span class="sys-accent" style="background:#059669;"></span><img src="assets/thumbs/works-shain.jpg" alt="SHAIN" loading="lazy"></div>
+        <div class="sys-body">
+          <div class="sys-no">社内知・オンボ</div>
+          <h3 class="sys-logo">SHAIN<small>シャイン</small></h3>
+          <p class="sys-desc">社内FAQ回答とナレッジ蓄積。</p>
+          <a href="works-shain.html" class="btn btn-navy">ログイン操作 →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section class="howto">
   <div class="container">
     <span class="section-label">HOW TO</span>
     <h2 class="section-title">見方のすすめ</h2>
     <div class="howto-box">
-      <p><strong>触るデモ（軽）</strong>は登録不要・1画面で完結する体験です。AIの動きを3分で確認できます。<strong>SaaS級（深）</strong>はログインして、ダッシュボード・一覧・詳細画面まで操作できる本格デモです。3本とも架空プロダクトのサンプルデータです。実際は御社の業務フローに合わせて専用に構築します。</p>
+      <p><strong>触るデモ（軽）</strong>は登録不要・1画面で完結する体験です。<strong>SaaS級（深）</strong>はログインしてダッシュボード〜詳細まで操作できます。本線3本＋候補6本はすべて架空プロダクトのサンプル。実際は御社の業務フローに合わせて専用に構築します。</p>
     </div>
     <p style="margin-top:20px;font-size:13px;color:var(--gray);">
       ほかの業務デモは <a href="demos.html" style="color:var(--blue);font-weight:700;">構築デモギャラリー</a> へ。動画・PDF・3Dなどの成果物は <a href="works.html" style="color:var(--blue);font-weight:700;">作品ショーケース</a> へ。
