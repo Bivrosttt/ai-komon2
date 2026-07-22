@@ -1,4 +1,4 @@
-<!-- 2026-07-22: GENBAをマップ＋写真フィルム骨格に作り直し -->
+<!-- 2026-07-22: マップピンtransformバグ修正＋現場写真6枚を組み込み -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -201,13 +201,20 @@
   .map-body { flex: 1; position: relative; min-height: 220px; overflow: hidden; }
   .map-svg-wrap { width: 100%; height: 100%; }
   .map-svg-wrap svg { width: 100%; height: 100%; display: block; }
-  .map-pin {
-    cursor: pointer; transition: transform .15s;
+  /* SVGの translate と CSS transform を同居させない（hoverで原点に飛ぶバグ防止） */
+  .map-pin { cursor: pointer; }
+  .map-pin .pin-hit { fill: transparent; }
+  .map-pin .pin-core { transition: transform .15s; transform-box: fill-box; transform-origin: center; }
+  .map-pin:hover .pin-core { transform: scale(1.18); }
+  .map-pin.selected .pin-dot { stroke: #fff; stroke-width: 2.5; }
+  .map-pin.pulse .pin-dot { animation: pinPulse 1.4s ease infinite; }
+  .map-pin .pin-label {
+    fill: #D6D3D1; font-size: 3.6px; font-family: 'IBM Plex Sans JP', sans-serif; opacity: 0;
+    pointer-events: none; transition: opacity .15s;
   }
-  .map-pin:hover { transform: scale(1.12); }
-  .map-pin.selected circle.pin-dot { stroke: #fff; stroke-width: 2.5; }
-  .map-pin.pulse circle.pin-dot { animation: pinPulse 1.4s ease infinite; }
+  .map-pin:hover .pin-label, .map-pin.selected .pin-label { opacity: 1; }
   @keyframes pinPulse { 0%,100% { filter: drop-shadow(0 0 0 rgba(234,179,8,0)); } 50% { filter: drop-shadow(0 0 8px rgba(234,179,8,.8)); } }
+  .map-region-label { fill: #57534E; font-size: 3.2px; font-family: 'IBM Plex Mono', monospace; letter-spacing: .04em; }
   .map-legend {
     position: absolute; left: 10px; bottom: 10px; display: flex; gap: 10px; font-size: 10px; color: #A8A29E;
     background: rgba(20,18,16,.85); padding: 6px 10px; border-radius: 2px; border: 1px solid #44403C;
@@ -287,15 +294,19 @@
   .film-card.flagged { border-color: var(--hazard); }
   @keyframes scanPulse { 50% { box-shadow: 0 0 16px rgba(234,179,8,.35); } }
   .film-thumb {
-    flex: 1; position: relative; background:
-      repeating-linear-gradient(45deg, #333 0, #333 2px, #2a2a2a 2px, #2a2a2a 8px);
-    display: flex; align-items: center; justify-content: center; min-height: 110px;
+    flex: 1; position: relative; background: #1C1917;
+    display: flex; align-items: center; justify-content: center; min-height: 110px; overflow: hidden;
+  }
+  .film-thumb img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
   }
   .film-thumb::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%);
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.6) 100%);
+    pointer-events: none;
   }
-  .film-thumb .ph-icon { font-size: 28px; opacity: .25; }
+  .film-thumb .ph-icon { font-size: 28px; opacity: .25; position: relative; z-index: 0; }
+  .film-thumb .risk-badge, .film-thumb .risk-pin { z-index: 2; }
   .film-foot {
     padding: 8px 10px; background: rgba(20,18,16,.9); border-top: 1px solid #44403C;
   }
@@ -385,11 +396,13 @@
   }
   .photo-modal-body { position: relative; flex: 1; min-height: 280px; background: #292524; }
   .photo-modal-body .modal-img {
-    width: 100%; height: 100%; min-height: 280px;
-    background: repeating-linear-gradient(45deg, #333 0, #333 2px, #2a2a2a 2px, #2a2a2a 10px);
-    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%; min-height: 280px; position: relative;
+    background: #1C1917; display: flex; align-items: center; justify-content: center; overflow: hidden;
   }
-  .photo-modal-body .modal-img span { font-size: 48px; opacity: .2; }
+  .photo-modal-body .modal-img img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .photo-modal-body .modal-img span { font-size: 48px; opacity: .2; position: absolute; }
   .photo-modal-foot { padding: 12px 16px; border-top: 1px solid #44403C; display: flex; gap: 10px; flex-wrap: wrap; }
 
   .ai-drawer {
@@ -692,46 +705,55 @@ var STATUS_LABEL = {
   active: '施工中', inspection: '点検待ち', completed: '完工', delayed: '遅延'
 };
 
+var SITE_PHOTOS = [
+  'assets/genba/site-01.jpg',
+  'assets/genba/site-02.jpg',
+  'assets/genba/site-03.jpg',
+  'assets/genba/site-04.jpg',
+  'assets/genba/site-05.jpg',
+  'assets/genba/site-06.jpg'
+];
+
 var SITES = [
-  { id: 'g-001', name: '港区麻布台改修工事', type: '改修', address: '東京都港区麻布台1-2-3', manager: '佐藤 誠', updated: '2026-07-18', status: 'inspection',
+  { id: 'g-001', name: '港区麻布台改修工事', shortLabel: '麻布台', type: '改修', address: '東京都港区麻布台1-2-3', manager: '佐藤 誠', updated: '2026-07-18', status: 'inspection',
     progress: 62, siteNo: 'GNB-2026-014', client: '麻布台プロパティ株式会社', start: '2026-05-10', end: '2026-10-31',
     workers: 14, safetyOpen: 3, reportPending: true, photos: ['足場区画A', '外壁養生', '資材置場', '共用部', '配管室', '搬入路'],
-    mapX: 68, mapY: 42 },
+    photoSrc: SITE_PHOTOS, mapX: 58, mapY: 36 },
 
-  { id: 'g-002', name: '相模原市新築住宅', type: '新築', address: '神奈川県相模原市中央区3-8-12', manager: '田中 健', updated: '2026-07-17', status: 'active',
+  { id: 'g-002', name: '相模原市新築住宅', shortLabel: '相模原', type: '新築', address: '神奈川県相模原市中央区3-8-12', manager: '田中 健', updated: '2026-07-17', status: 'active',
     progress: 38, siteNo: 'GNB-2026-009', client: '個人（施主）', start: '2026-04-01', end: '2026-12-20',
     workers: 9, safetyOpen: 0, reportPending: false, photos: ['基礎', '型枠', '鉄筋', '外構', '資材', '事務所'],
-    mapX: 28, mapY: 38 },
+    photoSrc: SITE_PHOTOS, mapX: 22, mapY: 48 },
 
-  { id: 'g-003', name: '横浜市南区店舗改修', type: '改修', address: '神奈川県横浜市南区2-14-5', manager: '鈴木 美咲', updated: '2026-07-16', status: 'active',
+  { id: 'g-003', name: '横浜市南区店舗改修', shortLabel: '横浜南', type: '改修', address: '神奈川県横浜市南区2-14-5', manager: '鈴木 美咲', updated: '2026-07-16', status: 'active',
     progress: 71, siteNo: 'GNB-2026-011', client: '南区フード株式会社', start: '2026-06-01', end: '2026-09-15',
     workers: 7, safetyOpen: 1, reportPending: true, photos: ['店舗内装', '天井', '厨房', '外装', '搬入', '養生'],
-    mapX: 52, mapY: 72 },
+    photoSrc: SITE_PHOTOS, mapX: 48, mapY: 72 },
 
-  { id: 'g-004', name: '川崎市マンション大規模修繕', type: '修繕', address: '神奈川県川崎市幸区5-1-8', manager: '高橋 一郎', updated: '2026-07-15', status: 'active',
+  { id: 'g-004', name: '川崎市マンション大規模修繕', shortLabel: '川崎', type: '修繕', address: '神奈川県川崎市幸区5-1-8', manager: '高橋 一郎', updated: '2026-07-15', status: 'active',
     progress: 45, siteNo: 'GNB-2026-007', client: '川崎マンション管理組合', start: '2026-03-20', end: '2027-01-31',
     workers: 22, safetyOpen: 2, reportPending: false, photos: ['足場', '外壁', '共用廊下', '屋上', '資材置場', '搬入'],
-    mapX: 58, mapY: 58 },
+    photoSrc: SITE_PHOTOS, mapX: 50, mapY: 58 },
 
-  { id: 'g-005', name: '世田谷区木造2階建て新築', type: '新築', address: '東京都世田谷区桜丘4-6-2', manager: '伊藤 直樹', updated: '2026-07-14', status: 'active',
+  { id: 'g-005', name: '世田谷区木造2階建て新築', shortLabel: '世田谷', type: '新築', address: '東京都世田谷区桜丘4-6-2', manager: '伊藤 直樹', updated: '2026-07-14', status: 'active',
     progress: 24, siteNo: 'GNB-2026-016', client: '個人（施主）', start: '2026-06-15', end: '2027-02-28',
     workers: 6, safetyOpen: 0, reportPending: true, photos: ['基礎', '地組', '型枠', '外構', '資材', '仮設'],
-    mapX: 62, mapY: 52 },
+    photoSrc: SITE_PHOTOS, mapX: 42, mapY: 42 },
 
-  { id: 'g-006', name: '調布市倉庫増築工事', type: '増築', address: '東京都調布市深大寺2-11-4', manager: '渡辺 亮', updated: '2026-07-12', status: 'delayed',
+  { id: 'g-006', name: '調布市倉庫増築工事', shortLabel: '調布', type: '増築', address: '東京都調布市深大寺2-11-4', manager: '渡辺 亮', updated: '2026-07-12', status: 'delayed',
     progress: 52, siteNo: 'GNB-2026-005', client: '調布ロジスティクス株式会社', start: '2026-02-01', end: '2026-08-31',
     workers: 11, safetyOpen: 1, reportPending: true, photos: ['増築部', '鉄骨', '屋根', '搬入路', '資材', '養生'],
-    mapX: 48, mapY: 48 },
+    photoSrc: SITE_PHOTOS, mapX: 32, mapY: 40 },
 
-  { id: 'g-007', name: '八王子市公共施設改修', type: '改修', address: '東京都八王子市本町1-3-7', manager: '中村 恵', updated: '2026-07-10', status: 'completed',
+  { id: 'g-007', name: '八王子市公共施設改修', shortLabel: '八王子', type: '改修', address: '東京都八王子市本町1-3-7', manager: '中村 恵', updated: '2026-07-10', status: 'completed',
     progress: 100, siteNo: 'GNB-2025-022', client: '八王子市', start: '2025-11-01', end: '2026-07-05',
     workers: 0, safetyOpen: 0, reportPending: false, photos: ['外観', '内装', '設備', '共用', '搬入', '完了'],
-    mapX: 22, mapY: 55 },
+    photoSrc: SITE_PHOTOS, mapX: 16, mapY: 44 },
 
-  { id: 'g-008', name: '品川区オフィス内装工事', type: '内装', address: '東京都品川区大崎1-2-2', manager: '佐藤 誠', updated: '2026-07-18', status: 'inspection',
+  { id: 'g-008', name: '品川区オフィス内装工事', shortLabel: '品川', type: '内装', address: '東京都品川区大崎1-2-2', manager: '佐藤 誠', updated: '2026-07-18', status: 'inspection',
     progress: 58, siteNo: 'GNB-2026-018', client: '大崎テック株式会社', start: '2026-05-25', end: '2026-09-30',
     workers: 8, safetyOpen: 2, reportPending: true, photos: ['OAフロア', '天井', '配線', '会議室', '搬入', '養生'],
-    mapX: 72, mapY: 55 }
+    photoSrc: SITE_PHOTOS, mapX: 56, mapY: 48 }
 ];
 
 var PATROL_ROUTE = [
@@ -860,19 +882,30 @@ function renderMap() {
     var col = pinColor(s);
     var sel = s.id === selectedSiteId ? ' selected' : '';
     var pulse = currentView === 'patrol' && getActivePatrolSiteId() === s.id ? ' pulse' : '';
+    var short = s.shortLabel || s.name;
     return '<g class="map-pin' + sel + pulse + '" data-id="' + s.id + '" transform="translate(' + s.mapX + ',' + s.mapY + ')" onclick="selectSite(\'' + s.id + '\')">' +
-      '<circle class="pin-dot" r="5.5" fill="' + col + '" stroke="#1C1917" stroke-width="1.5"/>' +
-      '<circle r="10" fill="transparent"/>' +
-      '<text y="-10" text-anchor="middle" fill="#D6D3D1" font-size="4.5" font-family="IBM Plex Sans JP,sans-serif">' + escapeHtml(s.name.slice(0, 6)) + '</text></g>';
+      '<g class="pin-core">' +
+      '<circle class="pin-dot" r="4.2" fill="' + col + '" stroke="#1C1917" stroke-width="1.2"/>' +
+      '<path d="M0 4.2 L-3.2 9.5 L3.2 9.5 Z" fill="' + col + '" stroke="#1C1917" stroke-width=".8"/>' +
+      '</g>' +
+      '<circle class="pin-hit" r="9"/>' +
+      '<text class="pin-label" y="-8" text-anchor="middle">' + escapeHtml(short) + '</text></g>';
   }).join('');
 
-  host.innerHTML = '<svg viewBox="0 0 100 85" xmlns="http://www.w3.org/2000/svg" aria-label="東京神奈川簡易地図">' +
+  host.innerHTML = '<svg viewBox="0 0 100 85" xmlns="http://www.w3.org/2000/svg" aria-label="東京神奈川簡易地図" role="img">' +
+    '<defs><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1E293B"/><stop offset="100%" stop-color="#0F172A"/></linearGradient></defs>' +
     '<rect width="100" height="85" fill="#2A2826"/>' +
-    '<path d="M0 55 Q20 48 35 52 T55 50 T75 58 T100 54 L100 85 L0 85Z" fill="#1E293B" opacity=".85"/>' +
-    '<path d="M8 20 L92 18 L88 78 L12 80Z" fill="none" stroke="#44403C" stroke-width=".6" stroke-dasharray="2 2"/>' +
-    '<text x="50" y="12" text-anchor="middle" fill="#57534E" font-size="5" font-family="IBM Plex Mono,monospace">TOKYO / KANAGAWA</text>' +
-    '<line x1="15" y1="30" x2="85" y2="30" stroke="#44403C" stroke-width=".4"/>' +
-    '<line x1="20" y1="15" x2="20" y2="75" stroke="#44403C" stroke-width=".4"/>' +
+    /* 東京湾〜相模湾の簡易海岸線 */
+    '<path d="M62 28 L78 30 L88 42 L92 58 L86 72 L70 78 L58 70 L55 55 L58 40 Z" fill="url(#sea)" opacity=".9"/>' +
+    '<path d="M70 78 Q82 80 95 74 L100 85 L60 85 Z" fill="url(#sea)" opacity=".7"/>' +
+    /* 陸域アウトライン */
+    '<path d="M8 22 L55 18 L62 28 L58 40 L55 55 L40 62 L22 58 L12 42 Z" fill="#35322F" stroke="#57534E" stroke-width=".5"/>' +
+    '<path d="M12 42 L22 58 L40 62 L55 55 L58 70 L45 78 L18 72 L10 55 Z" fill="#302E2B" stroke="#57534E" stroke-width=".5"/>' +
+    '<text class="map-region-label" x="32" y="38">TOKYO</text>' +
+    '<text class="map-region-label" x="28" y="68">KANAGAWA</text>' +
+    '<text class="map-region-label" x="78" y="52" fill="#64748B">TOKYO BAY</text>' +
+    '<line x1="10" y1="20" x2="90" y2="20" stroke="#44403C" stroke-width=".3" stroke-dasharray="1.5 1.5"/>' +
+    '<line x1="15" y1="12" x2="15" y2="80" stroke="#44403C" stroke-width=".3" stroke-dasharray="1.5 1.5"/>' +
     pins + '</svg>';
 }
 
@@ -923,8 +956,10 @@ function selectSite(id, updateHash) {
 }
 
 function renderFilmstrip(s) {
+  var srcs = s.photoSrc || SITE_PHOTOS;
   var html = s.photos.map(function (label, i) {
     var pid = 'photo-' + i;
+    var src = srcs[i % srcs.length];
     var findings = s.id === 'g-001' ? AI_FINDINGS.filter(function (f) { return f.photoIdx === i; }) : [];
     var badgeHtml = findings.map(function (f) {
       return '<span class="risk-badge ' + f.severity + '" id="badge-' + i + '-' + f.severity + '">' +
@@ -934,7 +969,9 @@ function renderFilmstrip(s) {
       return '<span class="risk-pin ' + f.severity + '" id="pin-' + i + '-' + fi + '" style="left:' + f.pinX + '%;top:' + f.pinY + '%"></span>';
     }).join('');
     return '<article class="film-card" id="' + pid + '" onclick="openPhoto(' + i + ')">' +
-      '<div class="film-thumb">' + pinHtml + badgeHtml + '<span class="ph-icon">🏗</span></div>' +
+      '<div class="film-thumb">' + pinHtml + badgeHtml +
+      '<img src="' + src + '" alt="' + escapeHtml(label) + '" loading="lazy">' +
+      '</div>' +
       '<div class="film-foot"><div class="ph-label">PHOTO-' + String(i + 1).padStart(2, '0') + '</div>' +
       '<div class="ph-zone">' + escapeHtml(label) + '</div></div></article>';
   }).join('');
@@ -950,8 +987,10 @@ function openPhoto(idx) {
   var card = document.getElementById('photo-' + idx);
   if (card) { card.classList.add('selected'); card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); }
   document.getElementById('modalTitle').textContent = 'PHOTO-' + String(idx + 1).padStart(2, '0') + ' ' + s.photos[idx];
+  var srcs = s.photoSrc || SITE_PHOTOS;
+  var src = srcs[idx % srcs.length];
   var modalBody = document.getElementById('modalBody');
-  modalBody.innerHTML = '<div class="modal-img" id="modalImg"><span>🏗</span></div>';
+  modalBody.innerHTML = '<div class="modal-img" id="modalImg"><img src="' + src + '" alt="' + escapeHtml(s.photos[idx]) + '"></div>';
   var canAi = s.id === 'g-001';
   document.getElementById('modalAiBtn').disabled = !canAi;
   document.getElementById('photoModal').classList.add('open');
