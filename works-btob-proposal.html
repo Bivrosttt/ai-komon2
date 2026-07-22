@@ -1,422 +1,506 @@
-<!-- 2026-07-22: BtoB営業AI提案書ショーケース — iframeスライドビューア＋PDF導線 -->
+<!-- 2026-07-22: 提案書をBRIEF同型キャンバス道具に作り直し -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BtoB提案書（営業AI活用・16:9）｜AI顧問室</title>
-<meta name="description" content="架空IT商材卸「サンプルテック」向け営業AI活用提案書。8枚・960×540、PowerPoint不使用。iframeビューアで全スライドを閲覧できます。">
+<title>BtoB提案書キャンバス（営業AI活用・サンプルテック）｜AI顧問室</title>
+<meta name="description" content="架空IT商材卸「サンプルテック」向け営業AI活用提案を、3列キャンバス上で組み立てるインタラクティブデモ。課題メモ→論点→アウトライン＋ROIから提案書を生成。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
-<meta property="og:title" content="BtoB提案書（営業AI活用・16:9）｜AI顧問室">
-<meta property="og:description" content="提案書・課題整理・90日ロードマップ・ROI試算まで。AI+コードで約2時間、PowerPoint不使用のBtoB提案書サンプル。">
+<meta property="og:title" content="BtoB提案書キャンバス（営業AI活用）｜AI顧問室">
+<meta property="og:description" content="課題メモ・論点カード・提案アウトラインを1枚キャンバスで編集し、提案書スライドを生成するデモ。">
 <meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-btob-proposal.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-btob-proposal.html">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D; --blue: #2D6CB5;
-    --gold: #C9A227; --ink: #1A2433; --gray: #5B6B7F; --line: #DDE4EC; --bg-soft: #F4F7FA; --white: #FFF;
+    --navy: #0B2447; --navy-deep: #061528; --navy-mid: #15325C; --navy-light: #1E3A5F;
+    --gold: #C9A227; --gold-soft: rgba(201,162,39,.15); --gold-line: rgba(201,162,39,.35);
+    --ink: #F8FAFC; --gray: #94A3B8; --gray-soft: #64748B;
+    --line: rgba(148,163,184,.2); --card: #132743; --card-border: rgba(201,162,39,.22);
+    --doc-bg: #0E1F38; --green: #34D399; --amber: #FBBF24;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.9; background: var(--white); }
-  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7;
+    background: var(--navy-deep); -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: 'Noto Serif JP', serif; line-height: 1.45; font-weight: 700; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
   a { text-decoration: none; color: inherit; }
-  button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; }
-  .container { max-width: 980px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 72px 0; }
-  .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-weight: 700; font-size: 15px; transition: opacity .2s, transform .1s; }
-  .btn:hover { opacity: .85; }
-  .btn:active { transform: scale(.98); }
-  .btn-gold { background: var(--gold); color: var(--navy-deep); }
-  .btn-outline { border: 1px solid rgba(255,255,255,.35); color: #fff; }
-  .btn-outline:hover { background: rgba(255,255,255,.08); opacity: 1; }
-  .btn-line { border: 1px solid var(--line); color: var(--navy); background: var(--white); }
-  .btn-line:hover { background: var(--bg-soft); opacity: 1; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  input, textarea { font-family: inherit; }
+  ::selection { background: var(--gold-soft); color: var(--ink); }
 
-  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
-  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .logo { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--navy); }
-  nav.header-nav { display: flex; gap: 20px; align-items: center; }
-  .back { font-size: 13px; color: var(--blue); }
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: var(--navy-deep); color: #CBD5E1; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .demo-frame-bar b { color: var(--gold); font-weight: 700; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 4px; white-space: nowrap;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.1); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
 
-  .hero { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 60%, var(--navy-light)); color: var(--white); padding: 68px 0 56px; }
-  .hero .label { font-size: 12px; letter-spacing: .2em; color: var(--gold); font-weight: 700; }
-  .hero h1 { font-size: clamp(24px, 4vw, 34px); margin: 10px 0 14px; }
-  .hero p { color: #C7D3E4; max-width: 660px; font-size: 15px; }
-  .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-  .hero-chip {
-    font-size: 11px; font-weight: 700; letter-spacing: .04em;
-    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22);
-    color: #E4EBF5; border-radius: 999px; padding: 5px 14px;
-  }
+  .app-shell { min-height: calc(100vh - 44px); display: flex; flex-direction: column; }
 
-  .theater { background: #0A0A0A; padding: 40px 0 44px; }
-  .theater .frame { max-width: 900px; margin: 0 auto; padding: 0 24px; }
-
-  .deck-toolbar {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    flex-wrap: wrap; margin-bottom: 16px;
+  .app-top {
+    flex: 0 0 auto; background: rgba(6,21,40,.96); border-bottom: 2px solid var(--gold);
+    padding: 14px 20px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    position: sticky; top: 44px; z-index: 80;
   }
-  .deck-toolbar .slide-indicator {
-    font-size: 13px; color: #C7D3E4; font-variant-numeric: tabular-nums;
+  .brand { flex: 0 0 auto; }
+  .brand .k { font-size: 18px; color: var(--gold); letter-spacing: .06em; }
+  .brand .tag { font-size: 9px; color: var(--gray-soft); letter-spacing: .14em; font-family: 'IBM Plex Mono', monospace; display: block; margin-top: 2px; }
+  .deal-chip {
+    flex: 1; min-width: 200px; font-size: 12.5px; color: var(--gray);
+    border-left: 3px solid var(--gold); padding-left: 12px;
   }
-  .deck-toolbar .slide-indicator strong { color: #fff; font-weight: 700; }
-  .deck-nav { display: flex; gap: 8px; align-items: center; }
-  .deck-nav button {
-    min-width: 44px; min-height: 44px; padding: 0 16px; border-radius: 6px;
-    border: 1px solid rgba(255,255,255,.25); color: #E4EBF5; font-size: 13px; font-weight: 700;
-    transition: background .2s, border-color .2s;
+  .deal-chip strong { color: var(--ink); font-weight: 700; }
+  .top-actions { flex: 0 0 auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .btn-gen {
+    display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 6px;
+    background: var(--gold); color: var(--navy-deep); font-weight: 700; font-size: 13.5px;
+    transition: filter .15s, transform .1s; min-height: 44px;
   }
-  .deck-nav button:hover:not(:disabled) { background: rgba(255,255,255,.1); border-color: var(--gold); color: #fff; }
-  .deck-nav button:disabled { opacity: .35; cursor: not-allowed; }
-  .deck-nav .nav-arrow { font-size: 16px; padding: 0 14px; }
-
-  .stage-shell {
-    position: relative; width: 100%; overflow: hidden; border-radius: 8px;
-    background: var(--navy-deep); box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  .btn-gen:hover { filter: brightness(1.06); }
+  .btn-gen:active { transform: scale(.99); }
+  .btn-gen:disabled { opacity: .6; cursor: wait; }
+  .btn-gen .spin {
+    width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(6,21,40,.25);
+    border-top-color: var(--navy-deep); animation: spin .7s linear infinite; display: none;
   }
-  .stage-scaler {
-    width: 960px; height: 540px; transform-origin: top left; overflow: hidden; position: relative;
-  }
-  .stage-scaler iframe {
-    position: absolute; top: 0; left: 0; width: 960px; height: 4320px; border: 0;
-    transition: margin-top .28s ease;
-  }
-  .stage-loading {
-    position: absolute; inset: 0; display: grid; place-items: center;
-    background: rgba(7,26,53,.85); color: #C7D3E4; font-size: 13px; z-index: 2;
-  }
-  .stage-loading.hidden { display: none; }
-  .spinner-ring {
-    width: 36px; height: 36px; border-radius: 50%; margin-bottom: 12px;
-    border: 3px solid rgba(255,255,255,.15); border-top-color: var(--gold);
-    animation: spin .8s linear infinite;
-  }
+  .btn-gen.loading .spin { display: inline-block; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  .thumb-strip {
-    display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; margin-top: 16px;
+  .proposal-canvas {
+    flex: 1; padding: 16px 16px 0; background:
+      linear-gradient(90deg, transparent 49.5%, rgba(201,162,39,.04) 49.5%, rgba(201,162,39,.04) 50.5%, transparent 50.5%),
+      linear-gradient(0deg, transparent 49.5%, rgba(201,162,39,.04) 49.5%, rgba(201,162,39,.04) 50.5%, transparent 50.5%);
+    background-size: 72px 72px; background-color: var(--doc-bg);
   }
-  .thumb-btn {
-    position: relative; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden;
-    border: 2px solid rgba(255,255,255,.15); background: var(--navy-deep);
-    transition: border-color .2s, box-shadow .2s; min-height: 44px;
+  .canvas-grid {
+    display: grid; grid-template-columns: 1fr 1.1fr 1fr; gap: 14px; min-height: 420px;
   }
-  .thumb-btn:hover { border-color: rgba(201,162,39,.55); }
-  .thumb-btn.active { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(201,162,39,.35); }
-  .thumb-btn .thumb-num {
-    position: absolute; top: 4px; left: 6px; z-index: 2;
-    font-size: 9px; font-weight: 700; color: var(--gold); letter-spacing: .04em;
+  .canvas-col {
+    background: var(--card); border: 1px solid var(--card-border); border-radius: 8px;
+    display: flex; flex-direction: column; overflow: hidden; min-height: 380px;
   }
-  .thumb-btn .thumb-label {
-    position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
-    padding: 12px 4px 4px; font-size: 8px; font-weight: 700; color: #fff; text-align: center;
-    background: linear-gradient(0deg, rgba(7,26,53,.92), transparent); line-height: 1.3;
+  .col-head {
+    padding: 12px 14px; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: baseline; background: rgba(6,21,40,.5);
   }
-  .thumb-btn .thumb-preview {
-    position: absolute; inset: 0; width: 960px; height: 540px;
-    transform-origin: top left; pointer-events: none; opacity: .92;
+  .col-head h2 { font-size: 14px; color: var(--gold); }
+  .col-head span { font-size: 9px; color: var(--gray-soft); letter-spacing: .12em; font-family: 'IBM Plex Mono', monospace; }
+  .col-body { flex: 1; padding: 14px; overflow-y: auto; }
+
+  .memo-area {
+    width: 100%; min-height: 200px; resize: vertical; background: var(--navy-deep);
+    border: 1px solid var(--line); border-radius: 6px; color: var(--ink); font-size: 13px;
+    line-height: 1.85; padding: 12px;
+  }
+  .memo-area:focus { outline: 2px solid var(--gold-line); border-color: var(--gold); }
+  .memo-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .memo-tag {
+    font-size: 10.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    background: var(--gold-soft); border: 1px solid var(--gold-line); color: var(--gold);
   }
 
-  .theater .meta {
-    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    margin-top: 16px; font-size: 12px; color: #9FB0C7;
+  .arg-card {
+    background: var(--navy-deep); border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px 14px; margin-bottom: 10px; cursor: pointer; transition: border-color .15s, box-shadow .15s;
   }
-  .theater .meta strong { color: #E4EBF5; font-weight: 700; }
-  .theater .meta a { color: var(--gold); text-decoration: underline; }
+  .arg-card:hover { border-color: var(--gold-line); }
+  .arg-card.active { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold-line); }
+  .arg-card .num { font-size: 10px; color: var(--gold); font-weight: 700; letter-spacing: .08em; margin-bottom: 4px; }
+  .arg-card h3 { font-size: 13px; color: var(--ink); margin-bottom: 4px; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
+  .arg-card p { font-size: 11.5px; color: var(--gray); line-height: 1.65; }
+  .arg-card .impact { font-size: 10px; color: var(--amber); margin-top: 6px; font-weight: 700; }
 
-  .note-band { background: var(--bg-soft); }
-  .section-head { max-width: 640px; margin-bottom: 36px; }
-  .section-head .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 10px; }
-  .section-head h2 { font-size: clamp(21px, 3.4vw, 27px); color: var(--navy); margin-bottom: 10px; }
-  .section-head p { font-size: 13.5px; color: var(--gray); }
-
-  .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
-  .step-card { background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
-  .step-num { font-family: 'Noto Serif JP', serif; font-size: 13px; font-weight: 700; color: var(--gold); letter-spacing: .06em; margin-bottom: 8px; }
-  .step-card h3 { font-size: 15.5px; color: var(--navy); margin-bottom: 8px; }
-  .step-card p { font-size: 12.5px; color: var(--gray); margin-bottom: 10px; }
-  .step-tech { display: inline-block; font-size: 10.5px; font-weight: 700; color: var(--navy); background: rgba(201,162,39,.12); border: 1px solid rgba(201,162,39,.35); border-radius: 999px; padding: 3px 10px; }
-
-  .chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 40px; align-items: center; }
-  .chip { font-size: 12.5px; background: var(--white); border: 1px solid var(--line); color: var(--navy); border-radius: 999px; padding: 5px 16px; }
-  .chip-heading { font-size: 13px; font-weight: 700; color: var(--navy); }
-
-  .disclaimer { background: var(--white); border-left: 4px solid var(--gold); padding: 14px 18px; font-size: 12.5px; color: var(--gray); margin-top: 32px; line-height: 1.8; }
-  .disclaimer strong { color: var(--ink); }
-
-  .action-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .action-row .btn { font-size: 14px; padding: 12px 26px; }
-
-  .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; }
-  .cta h2 { font-size: 26px; margin-bottom: 12px; }
-  .cta p { color: #C7D3E4; margin-bottom: 30px; }
-
-  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 32px 0; text-align: center; }
-  footer a { text-decoration: underline; }
-
-  @media (max-width: 820px) {
-    .hero h1 { font-size: 25px; }
-    section { padding: 52px 0; }
-    .thumb-strip { grid-template-columns: repeat(4, 1fr); }
+  .outline-block { margin-bottom: 14px; }
+  .outline-block h3 {
+    font-size: 11px; color: var(--gold); letter-spacing: .1em; margin-bottom: 8px;
+    font-family: 'IBM Plex Mono', monospace; font-weight: 600;
   }
-  @media (max-width: 480px) {
-    .header-inner { height: 58px; }
-    .theater { padding: 32px 0 36px; }
-    .theater .meta { font-size: 11px; }
-    .thumb-strip { grid-template-columns: repeat(4, 1fr); gap: 6px; }
-    .deck-toolbar { flex-direction: column; align-items: flex-start; }
-    .step-card { padding: 18px; }
+  .outline-list { list-style: none; }
+  .outline-list li {
+    font-size: 12.5px; color: var(--gray); padding: 6px 0 6px 14px; border-left: 2px solid var(--line);
+    margin-bottom: 4px; min-height: 1.4em;
+  }
+  .outline-list li.filled { color: var(--ink); border-left-color: var(--gold); }
+  .outline-list li.typing::after { content: '▋'; animation: blink .8s step-end infinite; color: var(--gold); margin-left: 2px; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .roi-box {
+    margin-top: 16px; padding: 14px; border-radius: 8px; background: rgba(6,21,40,.7);
+    border: 1px solid var(--gold-line);
+  }
+  .roi-box h4 { font-size: 12px; color: var(--gold); margin-bottom: 10px; }
+  .roi-row { display: flex; justify-content: space-between; font-size: 12px; padding: 5px 0; border-bottom: 1px dashed var(--line); }
+  .roi-row:last-child { border-bottom: none; }
+  .roi-row .lbl { color: var(--gray); }
+  .roi-row .val { color: var(--green); font-weight: 700; font-family: 'IBM Plex Mono', monospace; }
+  .roi-row .val.pending { color: var(--gray-soft); }
+
+  .output-zone {
+    padding: 20px 16px 32px; background: var(--navy-deep); border-top: 2px solid var(--gold);
+    opacity: 0; transform: translateY(12px); transition: opacity .4s, transform .4s;
+  }
+  .output-zone.visible { opacity: 1; transform: none; }
+  .output-head {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .output-head h2 { font-size: 17px; color: var(--gold); }
+  .output-head p { font-size: 12px; color: var(--gray); }
+
+  .slide-strip {
+    display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 18px;
+    scrollbar-width: thin;
+  }
+  .strip-btn {
+    flex: 0 0 auto; min-width: 88px; padding: 8px 10px; border-radius: 6px;
+    border: 2px solid var(--line); background: var(--card); text-align: center; cursor: pointer;
+    transition: border-color .15s;
+  }
+  .strip-btn:hover { border-color: var(--gold-line); }
+  .strip-btn.active { border-color: var(--gold); background: var(--gold-soft); }
+  .strip-btn .sn { font-size: 9px; color: var(--gold); font-weight: 700; }
+  .strip-btn .sl { font-size: 10px; color: var(--ink); margin-top: 3px; line-height: 1.35; }
+
+  .slide-deck { display: grid; gap: 12px; }
+  .slide-page {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy-mid));
+    border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden;
+    transition: max-height .35s ease;
+  }
+  .slide-page summary {
+    list-style: none; cursor: pointer; padding: 14px 18px; display: flex;
+    align-items: center; gap: 12px; user-select: none;
+  }
+  .slide-page summary::-webkit-details-marker { display: none; }
+  .slide-page summary .pg-num {
+    font-size: 11px; font-weight: 700; color: var(--gold); font-family: 'IBM Plex Mono', monospace;
+    min-width: 28px;
+  }
+  .slide-page summary .pg-title { flex: 1; font-size: 14px; font-weight: 700; }
+  .slide-page summary .pg-chev { color: var(--gray); transition: transform .2s; }
+  .slide-page[open] summary .pg-chev { transform: rotate(180deg); }
+  .slide-inner {
+    padding: 0 18px 18px; font-size: 13px; color: var(--gray); line-height: 1.85;
+    border-top: 1px solid var(--line);
+  }
+  .slide-inner strong { color: var(--ink); }
+  .slide-inner ul { margin: 8px 0 8px 18px; }
+  .slide-inner .hl { color: var(--gold); font-weight: 700; }
+
+  .komon-cta {
+    background: linear-gradient(155deg, var(--navy-deep), var(--navy)); text-align: center;
+    padding: 56px 24px 40px; border-top: 1px solid var(--line);
+  }
+  .komon-cta .cta-label { font-size: 10px; letter-spacing: .22em; color: var(--gold); font-weight: 700; }
+  .komon-cta h2 { font-size: clamp(22px, 4vw, 28px); margin: 12px 0; color: var(--ink); }
+  .komon-cta h2 em { font-style: normal; color: var(--gold); }
+  .komon-cta p { font-size: 14px; color: var(--gray); max-width: 520px; margin: 0 auto 24px; }
+  .komon-cta .btn {
+    display: inline-block; padding: 14px 36px; border-radius: 6px; background: var(--gold);
+    color: var(--navy-deep); font-weight: 700; font-size: 15px;
+  }
+  .komon-cta .foot { margin-top: 20px; font-size: 12px; color: var(--gray-soft); }
+
+  .gen-toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--card); border: 1px solid var(--gold-line); color: var(--ink);
+    padding: 10px 18px; border-radius: 8px; font-size: 13px; z-index: 950;
+    transition: transform .3s; pointer-events: none;
+  }
+  .gen-toast.show { transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 900px) {
+    .canvas-grid { grid-template-columns: 1fr; }
+    .canvas-col { min-height: auto; }
+  }
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; height: 52px; flex-wrap: wrap; padding: 6px 12px; }
+    body { padding-top: 52px; }
+    .app-top { top: 52px; }
   }
 </style>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
 </head>
 <body>
 
-<header>
-  <div class="container header-inner">
-    <a href="index.html" class="logo">AI顧問室</a>
-    <nav class="header-nav">
-      <a href="works.html" class="back">← 作品一覧へ</a>
-      <a href="index.html#contact" class="btn btn-gold" style="padding:9px 22px; font-size:13px;">無料相談</a>
-    </nav>
-  </div>
-</header>
-
-<div class="hero">
-  <div class="container">
-    <span class="label">BTOB PROPOSAL DECK</span>
-    <h1>PowerPointなしで、ここまで。</h1>
-    <p>架空クライアント「株式会社サンプルテック（IT商材卸・42名）」向けの営業AI活用提案書です。表紙からROI試算・お見積りまで全8枚。HTML+CSSで960×540の印刷対応デックを制作し、御社ロゴ・案件内容への差し替えもテキスト編集だけで可能です。</p>
-    <div class="hero-chips">
-      <span class="hero-chip">制作約2時間</span>
-      <span class="hero-chip">AI + コード</span>
-      <span class="hero-chip">16:9（960×540）</span>
-      <span class="hero-chip">全8スライド</span>
-      <span class="hero-chip">御社ロゴ差替可</span>
-    </div>
-  </div>
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> のサンプル成果物デモです。架空クライアント「サンプルテック」向けの提案書組み立て道具です。</span>
+  <a href="works.html" class="frame-link">作品一覧</a>
 </div>
 
-<div class="theater" id="viewer">
-  <div class="frame">
-    <div class="deck-toolbar">
-      <div class="slide-indicator" aria-live="polite">
-        <strong id="slideTitle">表紙</strong> — <span id="slideCounter">1 / 8</span>
-      </div>
-      <div class="deck-nav">
-        <button type="button" class="nav-arrow" id="btnPrev" aria-label="前のスライド">←</button>
-        <button type="button" id="btnNext" aria-label="次のスライド">次へ →</button>
-      </div>
+<div class="app-shell">
+  <header class="app-top">
+    <div class="brand">
+      <div class="k">PROPOSAL CANVAS</div>
+      <span class="tag">BTOB DECK BUILDER</span>
     </div>
+    <div class="deal-chip">
+      <strong>株式会社サンプルテック</strong>（IT商材卸・42名）<br>
+      提案テーマ：営業AI活用 — 見積作成・提案書・追客の標準化
+    </div>
+    <div class="top-actions">
+      <button type="button" class="btn-gen" id="btnGenerate">
+        <span class="spin"></span>
+        <span class="lbl">提案書を生成</span>
+      </button>
+    </div>
+  </header>
 
-    <div class="stage-shell" id="stageShell">
-      <div class="stage-loading" id="stageLoading">
-        <div style="text-align:center;">
-          <div class="spinner-ring" style="margin:0 auto 12px;"></div>
-          提案書を読み込んでいます…
+  <div class="proposal-canvas">
+    <div class="canvas-grid">
+      <section class="canvas-col" aria-label="課題メモ">
+        <div class="col-head"><h2>課題メモ</h2><span>ISSUES</span></div>
+        <div class="col-body">
+          <textarea class="memo-area" id="memoArea" aria-label="商談メモ">7/10 初回ヒアリング（営業部長 山本様）
+・見積作成に1件あたり平均4時間、属人化
+・提案書はPowerPointテンプレが乱立、更新に半日
+・追客メールは担当ごとに文体バラバラ、開封率12%
+・CRM入力が後回し→商談履歴が散逸
+・来週7/24に役員向け再提案、ROI必須</textarea>
+          <div class="memo-tags">
+            <span class="memo-tag">見積4h/件</span>
+            <span class="memo-tag">PPT乱立</span>
+            <span class="memo-tag">追客12%</span>
+            <span class="memo-tag">CRM未入力</span>
+          </div>
         </div>
-      </div>
-      <div class="stage-scaler" id="stageScaler">
-        <iframe
-          id="deckFrame"
-          src="works/src/btob-ai-proposal-deck.html"
-          title="BtoB営業AI活用提案書（全8スライド）"
-          loading="eager"
-          tabindex="-1"></iframe>
-      </div>
-    </div>
+      </section>
 
-    <div class="thumb-strip" id="thumbStrip" role="tablist" aria-label="スライドサムネイル"></div>
+      <section class="canvas-col" aria-label="論点カード">
+        <div class="col-head"><h2>論点カード</h2><span>ARGUMENTS</span></div>
+        <div class="col-body" id="argCol">
+          <article class="arg-card active" data-arg="0">
+            <div class="num">論点 01</div>
+            <h3>見積・提案の工数削減</h3>
+            <p>商材SKU 2,400点×案件別カスタム。テンプレ更新のたびに全員が個別修正。</p>
+            <div class="impact">▲ 月120h の非営業工数</div>
+          </article>
+          <article class="arg-card" data-arg="1">
+            <div class="num">論点 02</div>
+            <h3>商談ナレッジの蓄積</h3>
+            <p>CRM未入力率38%。勝ちパターンがベテラン頭の中に閉じ込められている。</p>
+            <div class="impact">▲ 新人立ち上がり 6ヶ月</div>
+          </article>
+          <article class="arg-card" data-arg="2">
+            <div class="num">論点 03</div>
+            <h3>追客の型化と可視化</h3>
+            <p>Day3/7/14の追客が担当依存。パイプライン停滞が見えにくい。</p>
+            <div class="impact">▲ 失注の40%が「音沙汰なし」</div>
+          </article>
+        </div>
+      </section>
 
-    <div class="meta">
-      <span><strong>形式：</strong>960×540（16:9）｜印刷・PDF出力対応HTML</span>
-      <span><a href="works/btob-ai-proposal-deck.pdf" download>PDF版をダウンロード</a>（準備中の場合あり）</span>
+      <section class="canvas-col" aria-label="提案アウトラインとROI">
+        <div class="col-head"><h2>提案アウトライン</h2><span>OUTLINE + ROI</span></div>
+        <div class="col-body">
+          <div class="outline-block">
+            <h3>DECK STRUCTURE</h3>
+            <ul class="outline-list" id="outlineList">
+              <li id="ol0">表紙 — 営業AI活用ご提案</li>
+              <li id="ol1">エグゼクティブサマリー（3要点＋数値）</li>
+              <li id="ol2">現状課題（3論点）</li>
+              <li id="ol3">提案概要 — 4モジュール構成</li>
+              <li id="ol4">90日ロードマップ</li>
+              <li id="ol5">ROI試算（悲観/標準/楽観）</li>
+              <li id="ol6">お見積り・次のステップ</li>
+            </ul>
+          </div>
+          <div class="roi-box">
+            <h4>ROI 試算（年間）</h4>
+            <div class="roi-row"><span class="lbl">見積工数削減</span><span class="val pending" id="roi1">—</span></div>
+            <div class="roi-row"><span class="lbl">提案書作成時間</span><span class="val pending" id="roi2">—</span></div>
+            <div class="roi-row"><span class="lbl">追客返信率改善</span><span class="val pending" id="roi3">—</span></div>
+            <div class="roi-row"><span class="lbl">投資回収</span><span class="val pending" id="roi4">—</span></div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
+
+  <section class="output-zone" id="outputZone" aria-hidden="true">
+    <div class="output-head">
+      <div>
+        <h2>生成された提案書（8枚）</h2>
+        <p>下のストリップでページ選択、カードを開いて詳細を確認できます。</p>
+      </div>
+    </div>
+    <div class="slide-strip" id="slideStrip" role="tablist" aria-label="スライドストリップ"></div>
+    <div class="slide-deck" id="slideDeck"></div>
+  </section>
 </div>
 
-<section class="note-band">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">HOW IT WAS MADE</span>
-      <h2>この提案書に含まれる8枚</h2>
-      <p>BtoB営業の「見せ方」に必要な要素——課題整理、提案概要、ロードマップ、ROI、見積、次のステップ——を1本のデックに統合。PowerPointテンプレの管理コストなく、ブラウザでそのままプレゼンできます。</p>
-    </div>
+<div class="komon-cta">
+  <span class="cta-label">AI KOMONSHITSU</span>
+  <h2>御社の提案書も、<em>キャンバスから生成。</em></h2>
+  <p>PowerPointなし・約2時間でここまで。無料相談で御社案件の構成と費用感をお話しします。</p>
+  <a href="index.html?from=works-btob-proposal#contact" class="btn">同じ品質を相談する →</a>
+  <p class="foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</p>
+</div>
 
-    <div class="step-grid">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <h3>表紙</h3>
-        <p>クライアント名・提案タイトル・発行元・日付。御社ロゴに差し替え可能な構成。</p>
-        <span class="step-tech">Cover</span>
-      </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <h3>エグゼクティブサマリー</h3>
-        <p>3つの要点と削減率・削減工数・90日定着など、経営判断に必要な数字を1枚に集約。</p>
-        <span class="step-tech">Summary</span>
-      </div>
-      <div class="step-card">
-        <div class="step-num">03–05</div>
-        <h3>課題 → 提案 → 90日計画</h3>
-        <p>現状3論点、AI下ごしらえ+人の確認、4モジュール、Month1–3のロードマップ。</p>
-        <span class="step-tech">Storyline</span>
-      </div>
-      <div class="step-card">
-        <div class="step-num">06–08</div>
-        <h3>ROI → 見積 → 次のステップ</h3>
-        <p>悲観/標準/楽観の試算表、月額50万〜のスコープ、無料診断CTA付きクロージング。</p>
-        <span class="step-tech">Closing</span>
-      </div>
-    </div>
-
-    <div class="chip-row">
-      <span class="chip-heading">御社なら、同じ品質で作れるもの：</span>
-      <span class="chip">SaaS導入提案</span>
-      <span class="chip">DX伴走提案</span>
-      <span class="chip">AI活用提案</span>
-      <span class="chip">月次報告デック</span>
-    </div>
-
-    <div class="action-row">
-      <a href="works/btob-ai-proposal-deck.pdf" class="btn btn-line" download>PDF版をダウンロード</a>
-      <a href="works/src/btob-ai-proposal-deck.html" class="btn btn-line" target="_blank" rel="noopener">デックHTMLを別タブで開く</a>
-    </div>
-
-    <div class="disclaimer">
-      ※ 本ページの提案書は<strong>架空の企業「株式会社サンプルテック」</strong>を題材にしたサンプルです。クライアント名・数値・連絡先はすべて想定値であり、実在の取引・契約を示すものではありません。実案件では御社のブランド・書式・承認フローに合わせて制作します。
-    </div>
-  </div>
-</section>
-
-<section class="cta" id="contact">
-  <div class="container">
-    <h2>御社の提案書も、2時間でここまで。</h2>
-    <p>無料相談で、御社の商材・案件に合わせた提案書の構成と費用感をお話しします。</p>
-    <a href="index.html?from=works-btob-proposal#contact" class="btn btn-gold" style="font-size:16px; padding:16px 44px;">同じ品質を相談する →</a>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
-  </div>
-</footer>
+<div class="gen-toast" id="genToast" aria-live="polite"></div>
 
 <script>
 (function () {
   'use strict';
 
-  var SLIDE_H = 540;
-  var SLIDE_W = 960;
-  var TOTAL = 8;
-  var LABELS = ['表紙', 'サマリー', '現状課題', '提案概要', '90日計画', 'ROI試算', 'お見積り', '次のステップ'];
+  var OUTLINE_FULL = [
+    '表紙 — 営業AI活用ご提案（2026年7月版）',
+    'エグゼクティブサマリー：工数▲65%・90日定着・月額50万〜',
+    '現状課題：見積属人化 / CRM未入力 / 追客バラつき',
+    '提案概要：見積AI・提案キャンバス・追客シーケンス・CRM自動入力',
+    '90日計画：Month1導入 → Month2横展開 → Month3定着KPI',
+    'ROI：悲観+180万 / 標準+420万 / 楽観+680万（年間）',
+    'お見積り：構築120万＋月額50万｜次：7/24 役員向け再提案'
+  ];
 
-  var current = 0;
-  var scale = 1;
+  var SLIDES = [
+    { title: '表紙', body: '<p><strong>株式会社サンプルテック 御中</strong></p><p class="hl">営業プロセスAI活用 ご提案書</p><p>2026年7月22日｜AI顧問室</p><p>営業部 42名規模 — 見積・提案・追客の標準化</p>' },
+    { title: 'エグゼクティブサマリー', body: '<ul><li><strong>見積作成</strong> 4h→1.2h（▲70%）</li><li><strong>提案書</strong> 半日→2時間（PowerPoint不使用）</li><li><strong>追客</strong> Day3/7/14 テンプレ＋AI下書き</li></ul><p>90日で定着、<span class="hl">投資回収8〜11ヶ月</span></p>' },
+    { title: '現状課題', body: '<ul><li>見積：SKU 2,400点×案件別 → <strong>月120h非営業工数</strong></li><li>CRM：未入力率38% → ナレッジ散逸</li><li>追客：開封率12% → 失注40%が音沙汰なし</li></ul>' },
+    { title: '提案概要', body: '<p><strong>4モジュール</strong></p><ul><li>① 見積AI（商材マスタ連動）</li><li>② 提案キャンバス（本デモ同型）</li><li>③ 追客シーケンス（Day3/7/14）</li><li>④ CRM自動入力（商談後ワンクリック）</li></ul>' },
+    { title: '90日ロードマップ', body: '<ul><li><strong>Month1</strong>：見積AI＋提案キャンバス PoC（営業5名）</li><li><strong>Month2</strong>：追客シーケンス全社展開</li><li><strong>Month3</strong>：CRM連携・KPIダッシュボード定着</li></ul>' },
+    { title: 'ROI試算', body: '<p>年間効果（標準シナリオ）</p><ul><li>見積工数：▲960h → <strong>約384万円</strong></li><li>提案書：▲48件×4h → <strong>約96万円</strong></li><li>追客改善：成約率+2pt → <strong>約180万円</strong></li></ul><p>合計 <span class="hl">+420万円/年</span>｜投資回収 <strong>9ヶ月</strong></p>' },
+    { title: 'お見積り', body: '<ul><li>初期構築：<strong>120万円</strong>（90日伴走込み）</li><li>月額運用：<strong>50万円</strong>（AI利用・保守・定例支援）</li><li>オプション：既存CRM API連携 +30万</li></ul>' },
+    { title: '次のステップ', body: '<p><strong>7/24（木）役員向け再提案</strong>に向け、本デックをベースに御社ロゴ・商材名を差し替え可能です。</p><p>次アクション：<span class="hl">無料診断30分</span> → PoCスコープ確定 → 契約</p>' }
+  ];
 
-  var stageShell = document.getElementById('stageShell');
-  var stageScaler = document.getElementById('stageScaler');
-  var deckFrame = document.getElementById('deckFrame');
-  var stageLoading = document.getElementById('stageLoading');
-  var thumbStrip = document.getElementById('thumbStrip');
-  var slideTitle = document.getElementById('slideTitle');
-  var slideCounter = document.getElementById('slideCounter');
-  var btnPrev = document.getElementById('btnPrev');
-  var btnNext = document.getElementById('btnNext');
+  var btnGenerate = document.getElementById('btnGenerate');
+  var outlineList = document.getElementById('outlineList');
+  var outputZone = document.getElementById('outputZone');
+  var slideStrip = document.getElementById('slideStrip');
+  var slideDeck = document.getElementById('slideDeck');
+  var genToast = document.getElementById('genToast');
+  var argCards = document.querySelectorAll('.arg-card');
+  var busy = false;
+  var timers = [];
 
-  function clamp(n) {
-    return Math.max(0, Math.min(TOTAL - 1, n));
+  argCards.forEach(function (card) {
+    card.addEventListener('click', function () {
+      argCards.forEach(function (c) { c.classList.remove('active'); });
+      card.classList.add('active');
+    });
+  });
+
+  function clearTimers() {
+    timers.forEach(clearTimeout);
+    timers = [];
   }
 
-  function layoutStage() {
-    var w = stageShell.clientWidth;
-    scale = w / SLIDE_W;
-    stageScaler.style.transform = 'scale(' + scale + ')';
-    stageShell.style.height = (SLIDE_H * scale) + 'px';
-    deckFrame.style.marginTop = (-current * SLIDE_H) + 'px';
+  function toast(msg) {
+    genToast.textContent = msg;
+    genToast.classList.add('show');
+    setTimeout(function () { genToast.classList.remove('show'); }, 2600);
   }
 
-  function updateUI() {
-    slideTitle.textContent = LABELS[current];
-    slideCounter.textContent = (current + 1) + ' / ' + TOTAL;
-    btnPrev.disabled = current === 0;
-    btnNext.disabled = current === TOTAL - 1;
-
-    var thumbs = thumbStrip.querySelectorAll('.thumb-btn');
-    for (var i = 0; i < thumbs.length; i++) {
-      var active = i === current;
-      thumbs[i].classList.toggle('active', active);
-      thumbs[i].setAttribute('aria-selected', active ? 'true' : 'false');
+  function typeOutline(index, done) {
+    if (index >= OUTLINE_FULL.length) { done(); return; }
+    var li = document.getElementById('ol' + index);
+    if (!li) { typeOutline(index + 1, done); return; }
+    li.classList.add('typing');
+    li.textContent = '';
+    var text = OUTLINE_FULL[index];
+    var i = 0;
+    function tick() {
+      if (i < text.length) {
+        li.textContent += text.charAt(i);
+        i++;
+        timers.push(setTimeout(tick, 18 + Math.random() * 22));
+      } else {
+        li.classList.remove('typing');
+        li.classList.add('filled');
+        timers.push(setTimeout(function () { typeOutline(index + 1, done); }, 120));
+      }
     }
+    tick();
   }
 
-  function goTo(index) {
-    current = clamp(index);
-    deckFrame.style.marginTop = (-current * SLIDE_H) + 'px';
-    updateUI();
+  function fillRoi() {
+    var vals = ['▲960h（384万円）', '▲48件×4h（96万円）', '返信率 3%→9%', '9ヶ月（標準）'];
+    ['roi1', 'roi2', 'roi3', 'roi4'].forEach(function (id, i) {
+      var el = document.getElementById(id);
+      el.textContent = vals[i];
+      el.classList.remove('pending');
+    });
   }
 
-  function buildThumbs() {
-    thumbStrip.innerHTML = '';
-    for (var i = 0; i < TOTAL; i++) {
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'thumb-btn' + (i === 0 ? ' active' : '');
-      btn.setAttribute('role', 'tab');
-      btn.setAttribute('aria-label', 'スライド' + (i + 1) + '：' + LABELS[i]);
-      btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-      btn.dataset.index = String(i);
-
-      var num = document.createElement('span');
-      num.className = 'thumb-num';
-      num.textContent = String(i + 1).padStart(2, '0');
-
-      var label = document.createElement('span');
-      label.className = 'thumb-label';
-      label.textContent = LABELS[i];
-
-      btn.appendChild(num);
-      btn.appendChild(label);
-      btn.addEventListener('click', function () {
-        goTo(parseInt(this.dataset.index, 10));
+  function buildOutput() {
+    slideStrip.innerHTML = '';
+    slideDeck.innerHTML = '';
+    SLIDES.forEach(function (s, i) {
+      var stripBtn = document.createElement('button');
+      stripBtn.type = 'button';
+      stripBtn.className = 'strip-btn' + (i === 0 ? ' active' : '');
+      stripBtn.setAttribute('role', 'tab');
+      stripBtn.innerHTML = '<div class="sn">' + String(i + 1).padStart(2, '0') + '</div><div class="sl">' + s.title + '</div>';
+      stripBtn.addEventListener('click', function () {
+        document.querySelectorAll('.strip-btn').forEach(function (b) { b.classList.remove('active'); });
+        stripBtn.classList.add('active');
+        var det = document.getElementById('slide-' + i);
+        if (det) { det.open = true; det.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
       });
-      thumbStrip.appendChild(btn);
-    }
+      slideStrip.appendChild(stripBtn);
+
+      var details = document.createElement('details');
+      details.className = 'slide-page';
+      details.id = 'slide-' + i;
+      if (i === 0) details.open = true;
+      details.innerHTML =
+        '<summary><span class="pg-num">' + String(i + 1).padStart(2, '0') + '</span>' +
+        '<span class="pg-title">' + s.title + '</span>' +
+        '<span class="pg-chev">▼</span></summary>' +
+        '<div class="slide-inner">' + s.body + '</div>';
+      slideDeck.appendChild(details);
+    });
   }
 
-  btnPrev.addEventListener('click', function () { goTo(current - 1); });
-  btnNext.addEventListener('click', function () { goTo(current + 1); });
+  btnGenerate.addEventListener('click', function () {
+    if (busy) return;
+    busy = true;
+    clearTimers();
+    btnGenerate.classList.add('loading');
+    btnGenerate.disabled = true;
+    toast('メモと論点を読み込んでいます…');
 
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+    timers.push(setTimeout(function () {
+      toast('アウトラインを生成中…');
+      typeOutline(0, function () {
+        fillRoi();
+        buildOutput();
+        outputZone.classList.add('visible');
+        outputZone.setAttribute('aria-hidden', 'false');
+        btnGenerate.classList.remove('loading');
+        btnGenerate.disabled = false;
+        btnGenerate.querySelector('.lbl').textContent = '再生成';
+        busy = false;
+        toast('提案書8枚を生成しました');
+        outputZone.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }, 600));
   });
-
-  deckFrame.addEventListener('load', function () {
-    stageLoading.classList.add('hidden');
-    deckFrame.style.height = (TOTAL * SLIDE_H) + 'px';
-    layoutStage();
-    updateUI();
-  });
-
-  buildThumbs();
-  layoutStage();
-  updateUI();
-
-  window.addEventListener('resize', layoutStage);
 })();
 </script>
-
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
 </body>
 </html>
