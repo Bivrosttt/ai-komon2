@@ -1,4 +1,4 @@
-<!-- 2026-07-22: HANKYOをSLA壁＋カードレーン骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 -->
+<!-- 2026-07-22: HANKYOをSLA壁＋カードレーン骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 ／ 物件サムネ＋シートヒーロー写真 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -191,6 +191,10 @@
   }
   .sla-tile .sla-meta { font-size: 11.5px; color: #CBD5E1; margin-top: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .sla-tile .sla-type { font-size: 10px; color: #64748B; margin-top: 4px; }
+  .sla-tile-thumb {
+    position: absolute; top: 12px; right: 12px; width: 44px; height: 44px;
+    object-fit: cover; border-radius: 6px; border: 1px solid rgba(201,162,39,.35);
+  }
 
   .prop-chips {
     flex: 0 0 auto; display: flex; gap: 8px; padding: 10px 16px; overflow-x: auto;
@@ -200,6 +204,10 @@
   .prop-chip {
     flex: 0 0 auto; font-size: 10.5px; color: #CBD5E1; background: rgba(255,255,255,.06);
     border: 1px solid rgba(201,162,39,.2); border-radius: 999px; padding: 5px 12px; white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .prop-chip-thumb {
+    width: 22px; height: 22px; object-fit: cover; border-radius: 999px; flex: 0 0 auto;
   }
   .prop-chip b { color: var(--gold); font-weight: 600; }
 
@@ -225,10 +233,15 @@
   .lane-body { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 10px; }
 
   .card {
-    background: rgba(255,255,255,.97); border-radius: 8px; padding: 12px 12px 10px;
+    background: rgba(255,255,255,.97); border-radius: 8px; padding: 10px 12px 10px 10px;
     border-left: 4px solid var(--gold); box-shadow: 0 4px 16px rgba(0,0,0,.18);
     cursor: pointer; transition: transform .15s, box-shadow .15s;
+    display: flex; gap: 10px; align-items: flex-start;
   }
+  .card-thumb {
+    width: 52px; height: 52px; object-fit: cover; border-radius: 6px; flex: 0 0 auto;
+  }
+  .card-main { flex: 1; min-width: 0; }
   .card:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,.22); }
   .card.urgent { border-left-color: var(--red); }
   .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
@@ -265,9 +278,13 @@
   }
   .detail-sheet.open { transform: translateX(0); }
   .sheet-head {
-    flex: 0 0 auto; padding: 16px 18px; background: var(--navy-deep); color: #F8FAFC;
-    border-bottom: 2px solid var(--gold);
+    flex: 0 0 auto; padding: 0 0 16px; background: var(--navy-deep); color: #F8FAFC;
+    border-bottom: 2px solid var(--gold); position: relative;
   }
+  .sheet-hero {
+    display: block; width: 100%; height: 148px; object-fit: cover;
+  }
+  .sheet-head-inner { padding: 14px 18px 0; position: relative; }
   .sheet-close {
     position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 6px;
     border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #fff;
@@ -458,10 +475,13 @@
 <div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
 <aside class="detail-sheet" id="detailSheet" aria-hidden="true">
   <div class="sheet-head">
-    <button class="sheet-close" onclick="closeSheet()" aria-label="閉じる">×</button>
-    <h2 id="sheetTitle">—</h2>
-    <p class="sub" id="sheetSub">—</p>
-    <div class="sheet-sla mono" id="sheetSla">SLA —</div>
+    <img id="sheetHero" class="sheet-hero" alt="" hidden>
+    <div class="sheet-head-inner">
+      <button class="sheet-close" onclick="closeSheet()" aria-label="閉じる">×</button>
+      <h2 id="sheetTitle">—</h2>
+      <p class="sub" id="sheetSub">—</p>
+      <div class="sheet-sla mono" id="sheetSla">SLA —</div>
+    </div>
   </div>
   <div class="sheet-body" id="sheetBody"></div>
 </aside>
@@ -490,58 +510,58 @@ var LANE_NEXT = { unreplied: 'following', following: 'confirmed' };
 
 var INQUIRIES = [
   { id: 'h-001', customer: '山田 花子', email: 'yamada.h@example.com', phone: '090-1234-5678',
-    type: 'viewing', property: '港区麻布台タワーレジデンス 302', channel: 'SUUMO', assigned: '佐藤 誠',
+    type: 'viewing', property: '港区麻布台タワーレジデンス 302', photo: 'assets/hankyo/prop-azabudai.jpg', channel: 'SUUMO', assigned: '佐藤 誠',
     received: '2026-07-18T09:42:00', lane: 'unreplied', slaSeconds: 38 * 60,
     message: 'こんにちは。港区麻布台タワーレジデンス302号室の内見を希望しています。今週末（7/19または7/20）の午前中で空きはありますか？駐車場の利用可否も教えてください。',
     budget: '購入検討（1.2億前後）', moveIn: '2026年10月希望' },
   { id: 'h-002', customer: '鈴木 一郎', email: 'suzuki.i@example.com', phone: '080-9876-5432',
-    type: 'appraisal', property: '世田谷区桜丘 戸建（築15年）', channel: '自社サイト', assigned: '田中 健',
+    type: 'appraisal', property: '世田谷区桜丘 戸建（築15年）', photo: 'assets/hankyo/prop-sakuragaoka.jpg', channel: '自社サイト', assigned: '田中 健',
     received: '2026-07-18T08:15:00', lane: 'unreplied', slaSeconds: 12 * 60,
     message: '世田谷区桜丘の戸建（築15年・土地80㎡）の売却査定をお願いしたいです。近隣相場と売却スケジュールの目安を知りたいです。',
     budget: '—', moveIn: '—' },
   { id: 'h-008', customer: '加藤 真理', email: 'kato.m@example.com', phone: '080-7777-3333',
-    type: 'rental', property: '港区六本木ヒルズレジデンス 3201', channel: 'SUUMO', assigned: '田中 健',
+    type: 'rental', property: '港区六本木ヒルズレジデンス 3201', photo: 'assets/hankyo/prop-roppongi.jpg', channel: 'SUUMO', assigned: '田中 健',
     received: '2026-07-15T09:30:00', lane: 'unreplied', slaSeconds: -45 * 60,
     message: '六本木ヒルズレジデンス3201号室の賃貸について。法人契約は可能か、敷金・礼金の条件を教えてください。至急確認希望です。',
     budget: '家賃35万前後', moveIn: '2026年8月15日' },
   { id: 'h-004', customer: '伊藤 直樹', email: 'ito.n@example.com', phone: '090-3333-7777',
-    type: 'viewing', property: '横浜みなとみらいタワー 4502', channel: 'athome', assigned: '鈴木 美咲',
+    type: 'viewing', property: '横浜みなとみらいタワー 4502', photo: 'assets/hankyo/prop-minatomirai.jpg', channel: 'athome', assigned: '鈴木 美咲',
     received: '2026-07-17T11:20:00', lane: 'following',
     message: '横浜みなとみらいタワー4502号室の内見希望です。眺望と管理費について詳しく知りたいです。平日夜間（19時以降）も対応可能でしょうか。',
     budget: '購入検討（9,500万前後）', moveIn: '2026年12月' },
   { id: 'h-005', customer: '渡辺 さくら', email: 'watanabe.s@example.com', phone: '080-2222-8888',
-    type: 'rental', property: '渋谷スカイレジデンス 801', channel: 'SUUMO', assigned: '田中 健',
+    type: 'rental', property: '渋谷スカイレジデンス 801', photo: 'assets/hankyo/prop-shibuya.jpg', channel: 'SUUMO', assigned: '田中 健',
     received: '2026-07-16T14:05:00', lane: 'following',
     message: '渋谷スカイレジデンス801号室の賃貸。2人入居予定で、駅徒歩5分以内が条件です。内見可能日を3候補いただけますか。',
     budget: '家賃22万前後', moveIn: '2026年9月' },
   { id: 'h-003', customer: '高橋 美穂', email: 'takahashi.m@example.com', phone: '070-5555-1234',
-    type: 'rental', property: '品川シーサイドマンション 1205', channel: 'HOME\'S', assigned: '佐藤 誠',
+    type: 'rental', property: '品川シーサイドマンション 1205', photo: 'assets/hankyo/prop-shinagawa.jpg', channel: 'HOME\'S', assigned: '佐藤 誠',
     received: '2026-07-17T16:30:00', lane: 'following',
     message: '品川シーサイドマンション1205号室の賃貸について問い合わせです。ペット（小型犬）可か、初期費用の概算を教えてください。',
     budget: '家賃18万前後', moveIn: '2026年8月1日' },
   { id: 'h-007', customer: '小林 拓也', email: 'kobayashi.t@example.com', phone: '070-4444-9999',
-    type: 'viewing', property: '目黒区中目黒 デザイナーズ 203', channel: 'HOME\'S', assigned: '鈴木 美咲',
+    type: 'viewing', property: '目黒区中目黒 デザイナーズ 203', photo: 'assets/hankyo/prop-meguro.jpg', channel: 'HOME\'S', assigned: '鈴木 美咲',
     received: '2026-07-15T17:45:00', lane: 'confirmed',
     message: '中目黒のデザイナーズマンション203号室、内見希望です。リモートワーク用の書斎スペースがあるか確認したいです。',
     budget: '購入検討（8,800万）', moveIn: '2026年11月' },
   { id: 'h-009', customer: '松本 健太', email: 'matsumoto.k@example.com', phone: '090-8888-2222',
-    type: 'viewing', property: '鎌倉材木座 海側戸建', channel: 'athome', assigned: '佐藤 誠',
+    type: 'viewing', property: '鎌倉材木座 海側戸建', photo: 'assets/hankyo/prop-kamakura.jpg', channel: 'athome', assigned: '佐藤 誠',
     received: '2026-07-14T13:10:00', lane: 'confirmed',
     message: '鎌倉材木座の海側戸建の内見希望です。第二希望として湘南エリアも検討中。ローン事前審査済みです。',
     budget: '購入（1.5億前後）', moveIn: '2027年3月' },
   { id: 'h-006', customer: '中村 恵', email: 'nakamura.e@example.com', phone: '090-6666-1111',
-    type: 'appraisal', property: '港区赤坂 分譲マンション 1502', channel: '自社サイト', assigned: '佐藤 誠',
+    type: 'appraisal', property: '港区赤坂 分譲マンション 1502', photo: 'assets/hankyo/prop-akasaka.jpg', channel: '自社サイト', assigned: '佐藤 誠',
     received: '2026-07-16T10:00:00', lane: 'confirmed',
     message: '赤坂の分譲マンション（築8年・70㎡）の売却査定を依頼したいです。リノベ済みで、同フロアの成約事例があれば共有ください。',
     budget: '—', moveIn: '—' }
 ];
 
 var PROPERTIES = [
-  { name: '麻布台302', full: '港区麻布台タワーレジデンス 302', memo: '角部屋・駐車場1台可' },
-  { name: '品川1205', full: '品川シーサイドマンション 1205', memo: 'ペット相談可' },
-  { name: '桜丘戸建', full: '世田谷区桜丘 戸建', memo: '査定アポ調整中' },
-  { name: 'みなとみらい4502', full: '横浜みなとみらいタワー 4502', memo: '夜間内見可' },
-  { name: '六本木3201', full: '六本木ヒルズレジデンス 3201', memo: 'SLA超過—至急' }
+  { name: '麻布台302', full: '港区麻布台タワーレジデンス 302', memo: '角部屋・駐車場1台可', photo: 'assets/hankyo/prop-azabudai.jpg' },
+  { name: '品川1205', full: '品川シーサイドマンション 1205', memo: 'ペット相談可', photo: 'assets/hankyo/prop-shinagawa.jpg' },
+  { name: '桜丘戸建', full: '世田谷区桜丘 戸建', memo: '査定アポ調整中', photo: 'assets/hankyo/prop-sakuragaoka.jpg' },
+  { name: 'みなとみらい4502', full: '横浜みなとみらいタワー 4502', memo: '夜間内見可', photo: 'assets/hankyo/prop-minatomirai.jpg' },
+  { name: '六本木3201', full: '六本木ヒルズレジデンス 3201', memo: 'SLA超過—至急', photo: 'assets/hankyo/prop-roppongi.jpg' }
 ];
 
 var H001_REPLY_TEXT = '山田 花子 様\n\nお問い合わせいただきありがとうございます。\n港区エステート株式会社の佐藤でございます。\n\n港区麻布台タワーレジデンス302号室の内見について、下記日程でご案内可能です。\n\n■ 内見候補\n・7月19日（土）10:00〜11:00\n・7月20日（日）10:30〜11:30\n\n駐車場は1台まで無料でご利用いただけます（要事前予約）。\n\nご都合の良い日時をお知らせください。\n何卒よろしくお願いいたします。\n\n港区エステート株式会社\n佐藤 誠';
@@ -598,6 +618,7 @@ function renderSlaWall() {
     if (q) {
       var critical = q.slaSeconds <= 15 * 60;
       html += '<div class="sla-tile' + (critical ? ' critical' : '') + '" onclick="openSheet(\'' + q.id + '\')" role="button" tabindex="0">' +
+        (q.photo ? '<img class="sla-tile-thumb" src="' + q.photo + '" alt="" loading="lazy">' : '') +
         '<div class="sla-label">SLA REMAINING</div>' +
         '<div class="sla-digits mono" data-sla-id="' + q.id + '">' + formatSla(q.slaSeconds) + '</div>' +
         '<div class="sla-meta">' + escapeHtml(q.customer) + ' — ' + escapeHtml(q.property) + '</div>' +
@@ -611,7 +632,9 @@ function renderSlaWall() {
 
 function renderPropChips() {
   document.getElementById('propChips').innerHTML = PROPERTIES.map(function (p) {
-    return '<span class="prop-chip"><b>' + escapeHtml(p.name) + '</b> ' + escapeHtml(p.memo) + '</span>';
+    return '<span class="prop-chip">' +
+      (p.photo ? '<img class="prop-chip-thumb" src="' + p.photo + '" alt="" loading="lazy">' : '') +
+      '<b>' + escapeHtml(p.name) + '</b> ' + escapeHtml(p.memo) + '</span>';
   }).join('');
 }
 
@@ -634,11 +657,13 @@ function cardHtml(q, lane) {
     ? '<button class="btn-advance" onclick="event.stopPropagation();advanceCard(\'' + q.id + '\')">進める →</button>'
     : '';
   return '<article class="card' + (urgent ? ' urgent' : '') + '" onclick="openSheet(\'' + q.id + '\')" role="button" tabindex="0">' +
+    (q.photo ? '<img class="card-thumb" src="' + q.photo + '" alt="" loading="lazy">' : '') +
+    '<div class="card-main">' +
     '<div class="card-top"><span class="card-name">' + escapeHtml(q.customer) + '</span>' + timerHtml + '</div>' +
     '<div class="card-prop">' + escapeHtml(q.property) + '</div>' +
     '<div class="card-foot"><div class="card-tags">' +
     '<span class="tag">' + TYPE_LABEL[q.type] + '</span>' +
-    '<span class="tag tag-channel">' + escapeHtml(q.channel) + '</span></div>' + advanceHtml + '</div></article>';
+    '<span class="tag tag-channel">' + escapeHtml(q.channel) + '</span></div>' + advanceHtml + '</div></div></article>';
 }
 
 function renderBoard() {
@@ -687,6 +712,15 @@ function openSheet(id) {
   if (!q) return;
   activeCardId = id;
   location.hash = 'card/' + id;
+  var hero = document.getElementById('sheetHero');
+  if (q.photo) {
+    hero.src = q.photo;
+    hero.alt = q.property;
+    hero.hidden = false;
+  } else {
+    hero.hidden = true;
+    hero.removeAttribute('src');
+  }
   document.getElementById('sheetTitle').textContent = q.customer;
   document.getElementById('sheetSub').textContent = q.property + ' · ' + TYPE_LABEL[q.type] + ' · ' + q.channel;
   var slaEl = document.getElementById('sheetSla');
