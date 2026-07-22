@@ -1,4 +1,4 @@
-<!-- 2026-07-22: monitor.html連携・新デモへのリンクを追加 -->
+<!-- 2026-07-22: casesをCase Theater（90日スクラブ）に作り直し。JS文字列のアポストロフィ崩れを修正 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -23,6 +23,7 @@
     --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D; --blue: #2D6CB5;
     --gold: #C9A227; --ink: #1A2433; --gray: #5B6B7F; --line: #DDE4EC;
     --bg-soft: #F4F7FA; --white: #FFF;
+    --red-soft: #FEE2E2; --green-soft: #DCFCE7;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -46,33 +47,92 @@
   .hero h1 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 14px; }
   .hero p { color: #c7d3e4; max-width: 680px; font-size: 15px; }
   .disclaimer { background: var(--bg-soft); border-left: 4px solid var(--gold); padding: 16px 20px; font-size: 13px; color: var(--gray); margin-bottom: 40px; }
-  .case-grid { display: grid; gap: 28px; }
-  .case-card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--white); }
-  .case-head { background: var(--navy); color: var(--white); padding: 24px 28px; }
-  .case-meta { font-size: 11px; letter-spacing: .1em; color: var(--gold); font-weight: 700; margin-bottom: 8px; }
-  .case-head h2 { font-size: 22px; margin-bottom: 6px; }
-  .case-head p { font-size: 13px; color: #c7d3e4; }
-  .case-body { padding: 28px; display: grid; gap: 24px; }
-  .timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .tl-step { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 6px; padding: 18px; }
-  .tl-step span { font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--blue); }
-  .tl-step h3 { font-size: 15px; color: var(--navy); margin: 8px 0 6px; }
-  .tl-step p { font-size: 13px; color: var(--gray); }
-  .result-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .result { text-align: center; background: var(--bg-soft); border-radius: 6px; padding: 16px 12px; }
-  .result b { display: block; font-family: 'Noto Serif JP', serif; font-size: 22px; color: var(--navy); }
-  .result small { font-size: 11px; color: var(--gray); }
+
+  /* Case Theater */
+  .theater-wrap { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--white); box-shadow: 0 8px 32px rgba(11,36,71,.06); }
+  .case-tabs { display: flex; background: var(--navy-deep); overflow-x: auto; }
+  .case-tab { flex: 1; min-width: 140px; padding: 16px 18px; border: none; background: transparent; color: #8fa3be; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s, background .2s; white-space: nowrap; }
+  .case-tab:hover { color: #c7d3e4; }
+  .case-tab.active { color: var(--white); border-bottom-color: var(--gold); background: rgba(201,162,39,.08); }
+  .case-tab .tab-no { display: block; font-size: 10px; letter-spacing: .12em; color: var(--gold); margin-bottom: 2px; }
+  .theater-head { background: var(--navy); color: var(--white); padding: 22px 28px; }
+  .theater-head .case-meta { font-size: 11px; letter-spacing: .1em; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+  .theater-head h2 { font-size: 20px; margin-bottom: 4px; }
+  .theater-head p { font-size: 13px; color: #c7d3e4; }
+  .theater-stage { display: grid; grid-template-columns: 1fr 280px 1fr; gap: 0; min-height: 380px; }
+  .pane { padding: 20px; display: flex; flex-direction: column; }
+  .pane-before { background: #FEF2F2; border-right: 1px solid var(--line); }
+  .pane-after { background: #F0FDF4; border-left: 1px solid var(--line); }
+  .pane-label { font-size: 10px; font-weight: 800; letter-spacing: .14em; margin-bottom: 10px; }
+  .pane-before .pane-label { color: #B91C1C; }
+  .pane-after .pane-label { color: #15803D; }
+  .mock { flex: 1; border-radius: 8px; border: 1px solid var(--line); background: var(--white); padding: 14px; font-size: 11px; line-height: 1.55; overflow: hidden; position: relative; transition: opacity .35s; }
+  .mock-title { font-weight: 700; font-size: 12px; color: var(--navy); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .mock-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; opacity: 1; transition: opacity .35s, transform .35s; }
+  .mock-row.dim { opacity: .35; }
+  .mock-row.hide { opacity: 0; transform: translateY(4px); height: 0; margin: 0; overflow: hidden; }
+  .mock-row.show { opacity: 1; transform: translateY(0); }
+  .mock-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .mock-dot.red { background: #EF4444; }
+  .mock-dot.amber { background: #F59E0B; }
+  .mock-dot.green { background: #22C55E; }
+  .mock-dot.blue { background: var(--blue); }
+  .mock-bubble { flex: 1; background: var(--bg-soft); border-radius: 6px; padding: 6px 10px; border: 1px solid var(--line); }
+  .mock-bubble.alert { background: var(--red-soft); border-color: #FECACA; }
+  .mock-bubble.ok { background: var(--green-soft); border-color: #BBF7D0; }
+  .mock-bubble.ai { background: #EFF6FF; border-color: #BFDBFE; }
+  .mock-cell { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-bottom: 8px; }
+  .mock-cell span { background: var(--bg-soft); border: 1px solid var(--line); padding: 4px; text-align: center; font-size: 9px; border-radius: 2px; }
+  .mock-cell span.err { background: #FEE2E2; color: #B91C1C; }
+  .mock-cell span.ok { background: #DCFCE7; color: #15803D; }
+  .mock-badge { display: inline-block; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 999px; margin-left: 4px; }
+  .mock-badge.late { background: #FEE2E2; color: #B91C1C; }
+  .mock-badge.done { background: #DCFCE7; color: #15803D; }
+  .mock-badge.ai { background: #DBEAFE; color: #1D4ED8; }
+  .mock-stack { position: absolute; bottom: 10px; right: 10px; font-size: 9px; color: var(--gray); background: rgba(255,255,255,.9); padding: 4px 8px; border-radius: 4px; border: 1px solid var(--line); }
+
+  .scrubber-col { background: var(--bg-soft); padding: 20px 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+  .day-display { text-align: center; }
+  .day-num { font-family: 'Noto Serif JP', serif; font-size: 42px; font-weight: 700; color: var(--navy); line-height: 1; }
+  .day-num span { font-size: 16px; color: var(--gray); font-family: 'Noto Sans JP', sans-serif; font-weight: 500; }
+  .day-change { font-size: 12px; font-weight: 700; color: var(--navy); margin-top: 8px; line-height: 1.5; min-height: 2.8em; }
+  .day-change-sub { font-size: 11px; color: var(--gray); font-weight: 500; margin-top: 4px; line-height: 1.6; }
+  .scrub-track { width: 100%; position: relative; padding: 8px 0; }
+  .scrub-input { width: 100%; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 999px; background: linear-gradient(to right, var(--gold) 0%, var(--gold) var(--pct, 0%), var(--line) var(--pct, 0%)); outline: none; cursor: pointer; }
+  .scrub-input::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--navy); border: 3px solid var(--gold); cursor: grab; box-shadow: 0 2px 8px rgba(11,36,71,.25); }
+  .scrub-input::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--navy); border: 3px solid var(--gold); cursor: grab; }
+  .scrub-marks { display: flex; justify-content: space-between; width: 100%; margin-top: 6px; }
+  .scrub-mark { font-size: 10px; font-weight: 700; color: var(--gray); cursor: pointer; padding: 2px 4px; border-radius: 4px; transition: color .2s, background .2s; }
+  .scrub-mark.active { color: var(--navy); background: rgba(201,162,39,.15); }
+  .scrub-hint { font-size: 10px; color: var(--gray); text-align: center; }
+
+  .theater-foot { padding: 20px 28px 24px; border-top: 1px solid var(--line); background: var(--white); }
+  .result-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+  .result { text-align: center; background: var(--bg-soft); border-radius: 6px; padding: 14px 10px; border: 1px solid var(--line); transition: transform .3s; }
+  .result b { display: block; font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--navy); transition: color .3s; }
+  .result small { font-size: 10.5px; color: var(--gray); }
+  .result.lit { transform: scale(1.02); border-color: var(--gold); }
+  .result.lit b { color: var(--gold); }
   .case-links { display: flex; flex-wrap: wrap; gap: 10px; }
-  .case-links a { font-size: 12px; font-weight: 700; color: var(--blue); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; background: var(--white); }
+  .case-links a { font-size: 12px; font-weight: 700; color: var(--blue); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; background: var(--white); transition: border-color .2s, background .2s; }
+  .case-links a:hover { border-color: var(--navy); background: var(--bg-soft); }
+  .case-links a.primary { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
   .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; }
   .cta h2 { font-size: 28px; margin-bottom: 12px; }
   .cta p { color: #c7d3e4; margin-bottom: 24px; }
   footer { background: var(--navy-deep); color: #9fb0c7; font-size: 13px; padding: 32px 0; text-align: center; }
   footer a { text-decoration: underline; }
-  @media (max-width: 820px) {
-    .timeline, .result-row { grid-template-columns: 1fr; }
+
+  @media (max-width: 900px) {
+    .theater-stage { grid-template-columns: 1fr; grid-template-rows: auto auto auto; min-height: auto; }
+    .pane-before { border-right: none; border-bottom: 1px solid var(--line); }
+    .pane-after { border-left: none; border-top: 1px solid var(--line); }
+    .scrubber-col { border-left: none; border-right: none; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); order: -1; }
+    .mock { min-height: 200px; }
     section { padding: 56px 0; }
     .section-title { font-size: 26px; }
+    .result-row { grid-template-columns: 1fr; }
   }
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
@@ -90,93 +150,53 @@
 </header>
 <div class="hero">
   <div class="container">
-    <span class="section-label">CASE STORIES</span>
+    <span class="section-label">CASE THEATER</span>
     <h1>似た会社の、90日の変化。</h1>
-    <p>ここにあるのは、匿名化したストーリーです。業種・人数・課題はリアルなイメージを持てるよう整えていますが、固有名詞や数値の一部は説明のために調整しています。</p>
+    <p>スライダーを動かすと、業務のBefore/Afterが目の前で変わります。ここにあるのは匿名化したストーリーです。固有名詞や数値の一部は説明のために調整しています。</p>
   </div>
 </div>
 <section>
   <div class="container">
     <div class="disclaimer">※すべて架空・匿名化したサンプルストーリーです。実在の顧客事例ではありません。効果や削減時間を保証するものではありません。<br><br>本物の事例は <a href="monitor.html" style="color:var(--blue);font-weight:700;">モニター企業募集</a> 完了後にここへ差し替え予定です。</div>
-    <div class="case-grid">
 
-      <article class="case-card" id="case-manufacturing">
-        <div class="case-head">
-          <div class="case-meta">CASE 01｜製造業</div>
-          <h2>従業員32名・部品加工メーカー</h2>
-          <p>課題：日報と報告書が終業後に残る。現場監督が事務所に引き戻されていた。</p>
+    <div class="theater-wrap" id="case-theater">
+      <div class="case-tabs" role="tablist">
+        <button class="case-tab active" role="tab" data-case="manufacturing" aria-selected="true"><span class="tab-no">CASE 01</span>製造業</button>
+        <button class="case-tab" role="tab" data-case="realestate"><span class="tab-no">CASE 02</span>不動産</button>
+        <button class="case-tab" role="tab" data-case="sales"><span class="tab-no">CASE 03</span>BtoB営業</button>
+      </div>
+      <div class="theater-head" id="theater-head"></div>
+      <div class="theater-stage">
+        <div class="pane pane-before">
+          <div class="pane-label">BEFORE — 導入前</div>
+          <div class="mock" id="mock-before" aria-live="polite"></div>
         </div>
-        <div class="case-body">
-          <div class="timeline">
-            <div class="tl-step"><span>DAY 01—30</span><h3>現場と事務を棚卸し</h3><p>日報・写真整理・見積下準備の3業務を洗い出し、日報から着手。</p></div>
-            <div class="tl-step"><span>DAY 31—60</span><h3>現場写真→報告書AIを試作</h3><p>御社書式で試作品を構築。監督3名が実案件で検証。</p></div>
-            <div class="tl-step"><span>DAY 61—90</span><h3>確認フローを固定</h3><p>「AI下書き→監督確認→提出」を現場手順化。研修1回実施。</p></div>
+        <div class="scrubber-col">
+          <div class="day-display">
+            <div class="day-num"><span>DAY </span><span id="day-val">0</span></div>
+            <div class="day-change" id="day-change"></div>
+            <div class="day-change-sub" id="day-change-sub"></div>
           </div>
-          <div class="result-row">
-            <div class="result"><b>週6時間</b><small>報告書作成の目安削減（社内試算）</small></div>
-            <div class="result"><b>3名</b><small>最初に定着した現場監督</small></div>
-            <div class="result"><b>1本</b><small>次に横展開する業務（見積下準備）</small></div>
+          <div class="scrub-track">
+            <input type="range" class="scrub-input" id="day-scrub" min="0" max="90" step="1" value="0" aria-label="導入からの経過日数">
+            <div class="scrub-marks">
+              <span class="scrub-mark active" data-day="0">0</span>
+              <span class="scrub-mark" data-day="30">30</span>
+              <span class="scrub-mark" data-day="60">60</span>
+              <span class="scrub-mark" data-day="90">90</span>
+            </div>
           </div>
-          <div class="case-links">
-            <a href="for/kensetsu.html">建設向け入口</a>
-            <a href="demo-photo-report.html">現場写真→報告書</a>
-            <a href="demo-progress-match.html">出来高突合</a>
-            <a href="lp-story.html">90日物語LP</a>
-          </div>
+          <p class="scrub-hint">← ドラッグして変化を見る</p>
         </div>
-      </article>
-
-      <article class="case-card" id="case-realestate">
-        <div class="case-head">
-          <div class="case-meta">CASE 02｜不動産</div>
-          <h2>従業員18名・地域密着の不動産会社</h2>
-          <p>課題：反響返信が遅い。夜間・休日の問い合わせを取りこぼしていた。</p>
+        <div class="pane pane-after">
+          <div class="pane-label">AFTER — 変化後</div>
+          <div class="mock" id="mock-after" aria-live="polite"></div>
         </div>
-        <div class="case-body">
-          <div class="timeline">
-            <div class="tl-step"><span>DAY 01—30</span><h3>反響フローを可視化</h3><p>ポータル反響→一次返信→内見調整のボトルネックを特定。</p></div>
-            <div class="tl-step"><span>DAY 31—60</span><h3>問い合わせ返信AIを導入</h3><p>テンプレと確認者を決め、一次返信の下書きを自動化。</p></div>
-            <div class="tl-step"><span>DAY 61—90</span><h3>追客シナリオを追加</h3><p>「今すぐ客」以外向けのフォローメール案を週次で生成。</p></div>
-          </div>
-          <div class="result-row">
-            <div class="result"><b>平均18分</b><small>一次返信までの時間（導入前は数時間）</small></div>
-            <div class="result"><b>24h</b><small>夜間反響にも下書きが用意される体制</small></div>
-            <div class="result"><b>2件</b><small>追客再開につながった案件（社内報告）</small></div>
-          </div>
-          <div class="case-links">
-            <a href="for/fudosan.html">不動産向け入口</a>
-            <a href="demo-hankyo-sla.html">反響5分SLA</a>
-            <a href="demo-followup-seq.html">追客シーケンス</a>
-            <a href="lp-fudosan.html">不動産LP</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="case-card" id="case-sales">
-        <div class="case-head">
-          <div class="case-meta">CASE 03｜BtoB営業</div>
-          <h2>従業員45名・IT商材の営業組織</h2>
-          <p>課題：提案書づくりに時間がかかり、エース営業の工数が足りない。</p>
-        </div>
-        <div class="case-body">
-          <div class="timeline">
-            <div class="tl-step"><span>DAY 01—30</span><h3>営業工程を分解</h3><p>商談準備・議事録・提案初稿の3工程を計測。提案初稿から着手。</p></div>
-            <div class="tl-step"><span>DAY 31—60</span><h3>見積書AI＋資料スライドAI</h3><p>御社テンプレで試作。トップ営業2名が実案件で検証。</p></div>
-            <div class="tl-step"><span>DAY 61—90</span><h3>CRM入力前の整理を共通化</h3><p>商談後メモ→要点抽出→CRM入力案の流れをチーム標準化。</p></div>
-          </div>
-          <div class="result-row">
-            <div class="result"><b>約40%</b><small>提案初稿までの時間短縮（体感）</small></div>
-            <div class="result"><b>8名</b><small>テンプレ利用を開始した営業</small></div>
-            <div class="result"><b>1工程</b><small>次に整備する工程（商談前リサーチ）</small></div>
-          </div>
-          <div class="case-links">
-            <a href="for/sales.html">営業向け入口</a>
-            <a href="demo-brief-box.html">商談前リサーチ</a>
-            <a href="demo-proposal-gen.html">提案書生成</a>
-          </div>
-        </div>
-      </article>
-
+      </div>
+      <div class="theater-foot">
+        <div class="result-row" id="result-row"></div>
+        <div class="case-links" id="case-links"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -196,5 +216,259 @@
 <script src="analytics-config.js"></script>
 <script src="analytics.js"></script>
 <script src="ga4-events.js"></script>
+<script>
+(function(){
+  var CASES = {
+    manufacturing: {
+      meta: { no: 'CASE 01｜製造業', title: '従業員32名・部品加工メーカー', desc: '課題：日報と報告書が終業後に残る。現場監督が事務所に引き戻されていた。' },
+      milestones: [
+        { day: 0, title: '出発点', change: '終業後2時間が報告書づくり', sub: '現場と事務所の往復。写真はLINEに散らばり、Excelは手入力。' },
+        { day: 30, title: '棚卸し完了', change: '日報・写真・見積下準備を洗い出し', sub: '3業務のうち日報から着手。現場3名が試用開始。' },
+        { day: 60, title: '試作が回る', change: '現場写真→報告書AIを実案件で検証', sub: '御社書式の試作品。監督3名が現場で使い始める。' },
+        { day: 90, title: '手順が固定', change: 'AI下書き→監督確認→提出が標準', sub: '週6時間削減の目安。次は見積下準備へ横展開。' }
+      ],
+      before: function(d){ return mockMfgBefore(); },
+      after: function(d){
+        if (d < 15) return mockMfgAfterEarly();
+        if (d < 45) return mockMfgAfterMid();
+        if (d < 75) return mockMfgAfterLate();
+        return mockMfgAfterDone();
+      },
+      metrics: [
+        { val: '週6時間', label: '報告書作成の目安削減（社内試算）', litAt: 60 },
+        { val: '3名', label: '最初に定着した現場監督', litAt: 30 },
+        { val: '1本', label: '次に横展開する業務（見積下準備）', litAt: 90 }
+      ],
+      links: [
+        { href: 'works-genba.html', label: 'GENBA現場OS', primary: true },
+        { href: 'demo-photo-report.html', label: '現場写真→報告書' },
+        { href: 'for/kensetsu.html', label: '建設向け入口' }
+      ]
+    },
+    realestate: {
+      meta: { no: 'CASE 02｜不動産', title: '従業員18名・地域密着の不動産会社', desc: '課題：反響返信が遅い。夜間・休日の問い合わせを取りこぼしていた。' },
+      milestones: [
+        { day: 0, title: '出発点', change: '一次返信まで平均数時間', sub: 'ポータル反響がメールに溜まり、夜間は放置。' },
+        { day: 30, title: 'ボトルネック特定', change: '反響→一次返信→内見の流れを可視化', sub: '「誰が・いつ・何を返すか」が曖昧だった。' },
+        { day: 60, title: '下書きが届く', change: '問い合わせ返信AI＋確認者を固定', sub: 'テンプレと確認フロー。平均18分まで短縮。' },
+        { day: 90, title: '追客まで回る', change: 'Day3/7/14フォロー案を週次生成', sub: '24h体制。追客再開2件（社内報告）。' }
+      ],
+      before: function(d){ return mockReBefore(); },
+      after: function(d){
+        if (d < 15) return mockReAfterEarly();
+        if (d < 45) return mockReAfterMid();
+        if (d < 75) return mockReAfterLate();
+        return mockReAfterDone();
+      },
+      metrics: [
+        { val: '平均18分', label: '一次返信までの時間（導入前は数時間）', litAt: 60 },
+        { val: '24h', label: '夜間反響にも下書きが用意される体制', litAt: 60 },
+        { val: '2件', label: '追客再開につながった案件（社内報告）', litAt: 90 }
+      ],
+      links: [
+        { href: 'works-hankyo.html', label: 'HANKYO反響CRM', primary: true },
+        { href: 'demo-inquiry.html', label: '問い合わせ返信デモ' },
+        { href: 'for/fudosan.html', label: '不動産向け入口' }
+      ]
+    },
+    sales: {
+      meta: { no: 'CASE 03｜BtoB営業', title: '従業員45名・IT商材の営業組織', desc: '課題：提案書づくりに時間がかかり、エース営業の工数が足りない。' },
+      milestones: [
+        { day: 0, title: '出発点', change: '提案初稿に丸1日', sub: '商談準備・議事録・提案がバラバラ。CRM入力も後回し。' },
+        { day: 30, title: '工程を計測', change: '商談準備・議事録・提案初稿を分解', sub: 'ボトルネックは提案初稿。ここから着手。' },
+        { day: 60, title: 'テンプレが効く', change: '見積書AI＋資料スライドAIを試作', sub: 'トップ営業2名が実案件で検証。約40%短縮（体感）。' },
+        { day: 90, title: 'チーム標準化', change: '商談後メモ→要点→CRM入力案', sub: '8名がテンプレ利用開始。次は商談前リサーチ。' }
+      ],
+      before: function(d){ return mockSalesBefore(); },
+      after: function(d){
+        if (d < 15) return mockSalesAfterEarly();
+        if (d < 45) return mockSalesAfterMid();
+        if (d < 75) return mockSalesAfterLate();
+        return mockSalesAfterDone();
+      },
+      metrics: [
+        { val: '約40%', label: '提案初稿までの時間短縮（体感）', litAt: 60 },
+        { val: '8名', label: 'テンプレ利用を開始した営業', litAt: 90 },
+        { val: '1工程', label: '次に整備する工程（商談前リサーチ）', litAt: 90 }
+      ],
+      links: [
+        { href: 'works-brief.html', label: 'BRIEF営業WS', primary: true },
+        { href: 'works-btob-proposal.html', label: '提案キャンバス' },
+        { href: 'for/sales.html', label: '営業向け入口' }
+      ]
+    }
+  };
+
+  function mockMfgBefore(){
+    return '<div class="mock-title">現場LINE + 日報Excel<span class="mock-badge late">未提出 3件</span></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">監督A「写真送った。報告書は帰宅後で…」</div></div>' +
+      '<div class="mock-row"><div class="mock-dot amber"></div><div class="mock-bubble">現場B「Excelまた手入力。同じ項目3回目」</div></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">事務「昨日の分まだ。客先提出が遅れる」</div></div>' +
+      '<div class="mock-cell"><span class="err">写真</span><span class="err">—</span><span class="err">—</span><span class="err">未</span><span>日付</span><span>手入力</span><span class="err">?</span><span class="err">?</span><span>工程</span><span class="err">空</span><span class="err">空</span><span class="err">空</span></div>' +
+      '<div class="mock-stack">終業後 +2h</div>';
+  }
+  function mockMfgAfterEarly(){
+    return '<div class="mock-title">業務棚卸しシート<span class="mock-badge">Day 30</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble">①日報 ②写真整理 ③見積下準備 — 優先度付け</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">日報から着手。試用メンバー3名決定</div></div>' +
+      '<div class="mock-row dim"><div class="mock-dot amber"></div><div class="mock-bubble">報告書AI — 次フェーズ</div></div>' +
+      '<div class="mock-cell"><span class="ok">日報</span><span>着手</span><span class="ok">✓</span><span>—</span></div>';
+  }
+  function mockMfgAfterMid(){
+    return '<div class="mock-title">現場写真→報告書AI<span class="mock-badge ai">試作稼働</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">写真3枚アップ → 御社書式で下書き生成</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">AI「工程A完了。是正事項：配管支持」</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">監督確認待ち — 提出前チェック</div></div>' +
+      '<div class="mock-cell"><span class="ok">写真</span><span class="ok">AI</span><span class="ok">確認</span><span>提出</span></div>';
+  }
+  function mockMfgAfterLate(){
+    return mockMfgAfterMid().replace('試作稼働','3名定着');
+  }
+  function mockMfgAfterDone(){
+    return '<div class="mock-title">現場報告フロー<span class="mock-badge done">標準手順</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">①写真アップ → ②AI下書き → ③監督確認 → ④提出</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">週6時間削減（社内試算）。研修1回で全現場展開</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">次：見積下準備へ横展開予定</div></div>' +
+      '<div class="mock-cell"><span class="ok">✓</span><span class="ok">✓</span><span class="ok">✓</span><span class="ok">✓</span></div>' +
+      '<div class="mock-stack" style="color:#15803D;font-weight:700;">終業後 0h</div>';
+  }
+
+  function mockReBefore(){
+    return '<div class="mock-title">反響受信箱<span class="mock-badge late">未返信 7件</span></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">SUUMO 22:14「内見希望」<span class="mock-badge late">18h経過</span></div></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">HOMES 昨日「資料請求」<span class="mock-badge late">未対応</span></div></div>' +
+      '<div class="mock-row"><div class="mock-dot amber"></div><div class="mock-bubble">担当者不在 — 誰が返すか不明</div></div>' +
+      '<div class="mock-stack">平均 数時間</div>';
+  }
+  function mockReAfterEarly(){
+    return '<div class="mock-title">反響フロー可視化<span class="mock-badge">Day 30</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble">反響 → 一次返信 → 内見調整 の3段階を整理</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot amber"></div><div class="mock-bubble">ボトルネック：一次返信の担当とSLAが未定</div></div>' +
+      '<div class="mock-row dim"><div class="mock-dot green"></div><div class="mock-bubble ok">追客シナリオ — 次フェーズ</div></div>';
+  }
+  function mockReAfterMid(){
+    return '<div class="mock-title">問い合わせ返信AI<span class="mock-badge ai">下書き生成</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">SUUMO 22:14 → AI下書き「内見候補3枠」</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">確認者：田中 → 送信（平均18分）</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">夜間反響も朝イチで下書き済み</div></div>' +
+      '<div class="mock-stack" style="color:#15803D;">SLA 18分</div>';
+  }
+  function mockReAfterLate(){ return mockReAfterMid(); }
+  function mockReAfterDone(){
+    return '<div class="mock-title">反響CRM + 追客<span class="mock-badge done">24h体制</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">一次返信：平均18分。全反響に下書き</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">Day3/7/14 フォロー案を週次生成</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">追客再開 2件（社内報告）</div></div>' +
+      '<div class="mock-cell"><span class="ok">反響</span><span class="ok">返信</span><span class="ok">追客</span><span class="ok">内見</span></div>';
+  }
+
+  function mockSalesBefore(){
+    return '<div class="mock-title">提案書づくり<span class="mock-badge late">初稿 8h</span></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">エース営業「提案3件同時。今日中に無理」</div></div>' +
+      '<div class="mock-row"><div class="mock-dot amber"></div><div class="mock-bubble">PowerPoint白紙。前回資料をコピペ…</div></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">CRM入力未完了 — 商談メモが散在</div></div>' +
+      '<div class="mock-stack">提案初稿 丸1日</div>';
+  }
+  function mockSalesAfterEarly(){
+    return '<div class="mock-title">営業工程マップ<span class="mock-badge">Day 30</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble">商談準備 / 議事録 / 提案初稿 — 時間計測</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot amber"></div><div class="mock-bubble">ボトルネック確定：提案初稿から着手</div></div>' +
+      '<div class="mock-row dim"><div class="mock-dot green"></div><div class="mock-bubble ok">テンプレ試作 — 次フェーズ</div></div>';
+  }
+  function mockSalesAfterMid(){
+    return '<div class="mock-title">提案キャンバス + AI<span class="mock-badge ai">試作稼働</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">商談メモ → 論点カード → 章立て自動</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">見積書AI + スライド8枚を生成</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">トップ2名検証 — 約40%短縮（体感）</div></div>';
+  }
+  function mockSalesAfterLate(){ return mockSalesAfterMid().replace('試作稼働','2名定着'); }
+  function mockSalesAfterDone(){
+    return '<div class="mock-title">営業ワークスペース<span class="mock-badge done">8名利用</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">商談後メモ → 要点抽出 → CRM入力案</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">提案初稿：約40%短縮。テンプレ標準化</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">次：商談前リサーチ工程を整備</div></div>' +
+      '<div class="mock-cell"><span class="ok">準備</span><span class="ok">提案</span><span class="ok">CRM</span><span class="ok">追客</span></div>';
+  }
+
+  var currentCase = 'manufacturing';
+  var dayVal = 0;
+  var scrub = document.getElementById('day-scrub');
+  var dayDisplay = document.getElementById('day-val');
+  var dayChange = document.getElementById('day-change');
+  var dayChangeSub = document.getElementById('day-change-sub');
+  var mockBefore = document.getElementById('mock-before');
+  var mockAfter = document.getElementById('mock-after');
+  var theaterHead = document.getElementById('theater-head');
+  var resultRow = document.getElementById('result-row');
+  var caseLinks = document.getElementById('case-links');
+  var marks = document.querySelectorAll('.scrub-mark');
+  var tabs = document.querySelectorAll('.case-tab');
+
+  function nearestMilestone(c, day){
+    var ms = c.milestones;
+    var best = ms[0];
+    for (var i = 0; i < ms.length; i++){
+      if (day >= ms[i].day) best = ms[i];
+    }
+    return best;
+  }
+
+  function render(){
+    var c = CASES[currentCase];
+    var m = nearestMilestone(c, dayVal);
+    theaterHead.innerHTML = '<div class="case-meta">' + c.meta.no + '</div><h2>' + c.meta.title + '</h2><p>' + c.meta.desc + '</p>';
+    mockBefore.innerHTML = c.before(dayVal);
+    mockAfter.innerHTML = c.after(dayVal);
+    dayDisplay.textContent = dayVal;
+    dayChange.textContent = m.change;
+    dayChangeSub.textContent = m.sub;
+    scrub.value = dayVal;
+    scrub.style.setProperty('--pct', (dayVal / 90 * 100) + '%');
+    marks.forEach(function(el){
+      var d = parseInt(el.dataset.day, 10);
+      el.classList.toggle('active', Math.abs(dayVal - d) <= 15 || (dayVal === 0 && d === 0) || (dayVal >= 75 && d === 90));
+    });
+    resultRow.innerHTML = c.metrics.map(function(r){
+      return '<div class="result' + (dayVal >= r.litAt ? ' lit' : '') + '"><b>' + r.val + '</b><small>' + r.label + '</small></div>';
+    }).join('');
+    caseLinks.innerHTML = c.links.map(function(l){
+      return '<a href="' + l.href + '"' + (l.primary ? ' class="primary"' : '') + '>' + l.label + '</a>';
+    }).join('');
+  }
+
+  scrub.addEventListener('input', function(){
+    dayVal = parseInt(scrub.value, 10);
+    render();
+  });
+  marks.forEach(function(el){
+    el.addEventListener('click', function(){
+      dayVal = parseInt(el.dataset.day, 10);
+      render();
+    });
+  });
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      currentCase = tab.dataset.case;
+      dayVal = 0;
+      tabs.forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      if (location.hash !== '#case-' + currentCase) history.replaceState(null, '', '#case-' + currentCase);
+      render();
+    });
+  });
+
+  var hash = location.hash.replace('#case-','');
+  if (CASES[hash]) {
+    currentCase = hash;
+    tabs.forEach(function(t){
+      var on = t.dataset.case === hash;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+  render();
+})();
+</script>
 </body>
 </html>
