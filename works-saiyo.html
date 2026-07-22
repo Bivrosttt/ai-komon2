@@ -1,4 +1,4 @@
-<!-- 2026-07-22: SAIYOを採用カンバン骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 -->
+<!-- 2026-07-22: SAIYOブラッシュアップ — 候補者ポートレート写真をカード／シートに組み込み -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -201,9 +201,18 @@
   .card.demo-star { border-color: var(--purple); box-shadow: 0 0 0 2px rgba(124,58,237,.15); }
   .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
   .card-avatar {
-    width: 32px; height: 32px; border-radius: 50%; background: var(--lavender-mid); color: var(--purple-deep);
+    width: 40px; height: 40px; border-radius: 50%; background: var(--lavender-mid); color: var(--purple-deep);
     display: grid; place-items: center; font-size: 12px; font-weight: 800; flex: 0 0 auto;
+    overflow: hidden; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(124,58,237,.18);
   }
+  .card-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sheet-avatar {
+    width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex: 0 0 auto;
+    border: 3px solid var(--lavender-mid); box-shadow: 0 4px 14px rgba(124,58,237,.2);
+    background: var(--lavender-mid); display: grid; place-items: center; font-weight: 800; color: var(--purple-deep);
+  }
+  .sheet-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sheet-head-row { display: flex; align-items: center; gap: 14px; }
   .card-main { flex: 1; min-width: 0; }
   .card-name { font-size: 13.5px; font-weight: 800; color: var(--ink); }
   .card-job { font-size: 11px; color: var(--gray-soft); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -455,9 +464,14 @@
 <aside class="detail-sheet" id="detailSheet" aria-hidden="true">
   <div class="sheet-head">
     <button class="sheet-close" onclick="closeSheet()" aria-label="閉じる">×</button>
-    <h2 id="sheetTitle">—</h2>
-    <p class="sub" id="sheetSub">—</p>
-    <div class="sheet-lane" id="sheetLane">—</div>
+    <div class="sheet-head-row">
+      <div class="sheet-avatar" id="sheetAvatar"></div>
+      <div style="min-width:0;flex:1;">
+        <h2 id="sheetTitle">—</h2>
+        <p class="sub" id="sheetSub">—</p>
+        <div class="sheet-lane" id="sheetLane">—</div>
+      </div>
+    </div>
   </div>
   <div class="sheet-body" id="sheetBody"></div>
 </aside>
@@ -490,14 +504,14 @@ var JOBS = [
 ];
 
 var CANDIDATES = [
-  { id: 'c-001', name: '田中 健太', initials: '田', jobId: 'job-001', lane: 'first', interviewer: '山本 CTO', applied: '2026-07-10', hasMemo: true, demoAi: true },
-  { id: 'c-002', name: '佐藤 美咲', initials: '佐', jobId: 'job-001', lane: 'docs', interviewer: '—', applied: '2026-07-19', hasMemo: false, demoAi: false },
-  { id: 'c-003', name: '鈴木 大輔', initials: '鈴', jobId: 'job-001', lane: 'offer', interviewer: '山本 CTO', applied: '2026-06-28', hasMemo: true, demoAi: false },
-  { id: 'c-005', name: '山田 花子', initials: '山', jobId: 'job-002', lane: 'final', interviewer: 'CS部長 伊藤', applied: '2026-07-05', hasMemo: true, demoAi: false },
-  { id: 'c-007', name: '高橋 ゆい', initials: '高', jobId: 'job-003', lane: 'first', interviewer: '採用 デモ', applied: '2026-07-14', hasMemo: true, demoAi: false },
-  { id: 'c-008', name: '渡辺 亮', initials: '渡', jobId: 'job-003', lane: 'docs', interviewer: '—', applied: '2026-07-20', hasMemo: false, demoAi: false },
-  { id: 'c-009', name: '小林 あかり', initials: '小', jobId: 'job-002', lane: 'final', interviewer: 'CS部長 伊藤', applied: '2026-07-08', hasMemo: true, demoAi: false },
-  { id: 'c-010', name: '加藤 翔', initials: '加', jobId: 'job-002', lane: 'offer', interviewer: 'CS部長 伊藤', applied: '2026-06-20', hasMemo: true, demoAi: false }
+  { id: 'c-001', name: '田中 健太', initials: '田', photo: 'assets/saiyo/c-001.jpg', jobId: 'job-001', lane: 'first', interviewer: '山本 CTO', applied: '2026-07-10', hasMemo: true, demoAi: true },
+  { id: 'c-002', name: '佐藤 美咲', initials: '佐', photo: 'assets/saiyo/c-002.jpg', jobId: 'job-001', lane: 'docs', interviewer: '—', applied: '2026-07-19', hasMemo: false, demoAi: false },
+  { id: 'c-003', name: '鈴木 大輔', initials: '鈴', photo: 'assets/saiyo/c-003.jpg', jobId: 'job-001', lane: 'offer', interviewer: '山本 CTO', applied: '2026-06-28', hasMemo: true, demoAi: false },
+  { id: 'c-005', name: '山田 花子', initials: '山', photo: 'assets/saiyo/c-005.jpg', jobId: 'job-002', lane: 'final', interviewer: 'CS部長 伊藤', applied: '2026-07-05', hasMemo: true, demoAi: false },
+  { id: 'c-007', name: '高橋 ゆい', initials: '高', photo: 'assets/saiyo/c-007.jpg', jobId: 'job-003', lane: 'first', interviewer: '採用 デモ', applied: '2026-07-14', hasMemo: true, demoAi: false },
+  { id: 'c-008', name: '渡辺 亮', initials: '渡', photo: 'assets/saiyo/c-008.jpg', jobId: 'job-003', lane: 'docs', interviewer: '—', applied: '2026-07-20', hasMemo: false, demoAi: false },
+  { id: 'c-009', name: '小林 あかり', initials: '小', photo: 'assets/saiyo/c-009.jpg', jobId: 'job-002', lane: 'final', interviewer: 'CS部長 伊藤', applied: '2026-07-08', hasMemo: true, demoAi: false },
+  { id: 'c-010', name: '加藤 翔', initials: '加', photo: 'assets/saiyo/c-010.jpg', jobId: 'job-002', lane: 'offer', interviewer: 'CS部長 伊藤', applied: '2026-06-20', hasMemo: true, demoAi: false }
 ];
 
 var INTERVIEW_MEMOS = {
@@ -605,6 +619,13 @@ function renderKanban() {
   }).join('');
 }
 
+function avatarHtml(c, cls) {
+  if (c.photo) {
+    return '<div class="' + cls + '"><img src="' + escapeHtml(c.photo) + '" alt="' + escapeHtml(c.name) + '" loading="lazy"></div>';
+  }
+  return '<div class="' + cls + '">' + escapeHtml(c.initials) + '</div>';
+}
+
 function cardHtml(c, lane) {
   var job = findJob(c.jobId);
   var advanceHtml = LANE_NEXT[lane]
@@ -613,7 +634,7 @@ function cardHtml(c, lane) {
   var memoTag = c.hasMemo ? '<span class="tag tag-memo">メモあり</span>' : '';
   return '<article class="card' + (c.demoAi ? ' demo-star' : '') + '" onclick="openSheet(\'' + c.id + '\')" role="button" tabindex="0">' +
     '<div class="card-top">' +
-    '<div class="card-avatar">' + escapeHtml(c.initials) + '</div>' +
+    avatarHtml(c, 'card-avatar') +
     '<div class="card-main"><div class="card-name">' + escapeHtml(c.name) + '</div>' +
     '<div class="card-job">' + escapeHtml(job ? job.title : '—') + '</div></div></div>' +
     '<div class="card-meta">担当: ' + escapeHtml(c.interviewer) + ' · 応募 ' + escapeHtml(c.applied.slice(5)) + '</div>' +
@@ -655,6 +676,12 @@ function openSheet(id) {
   document.getElementById('sheetTitle').textContent = c.name;
   document.getElementById('sheetSub').textContent = (job ? job.title : '—') + ' · ' + (job ? job.dept : '');
   document.getElementById('sheetLane').textContent = LANE_LABEL[c.lane];
+  var av = document.getElementById('sheetAvatar');
+  if (c.photo) {
+    av.innerHTML = '<img src="' + escapeHtml(c.photo) + '" alt="' + escapeHtml(c.name) + '">';
+  } else {
+    av.textContent = c.initials;
+  }
   renderSheetBody(c);
   document.getElementById('sheetOverlay').classList.add('open');
   document.getElementById('detailSheet').classList.add('open');
