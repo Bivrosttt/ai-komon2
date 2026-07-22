@@ -1,4 +1,5 @@
 <!-- 2026-07-22: MIMIYORIを会話3ペイン骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 -->
+<!-- 2026-07-22: 顧客・担当エージェントのアバター写真を追加（authenticity polish） -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -165,11 +166,17 @@
   .filter-chip.active { background: var(--coral); color: #fff; border-color: var(--coral); }
   .ticket-scroll { flex: 1; overflow-y: auto; }
   .ticket-item {
-    display: block; width: 100%; text-align: left; padding: 12px 14px; border: none; border-bottom: 1px solid var(--line);
-    background: #fff; cursor: pointer; transition: background .15s;
+    display: flex; align-items: flex-start; gap: 10px; width: 100%; text-align: left; padding: 12px 14px;
+    border: none; border-bottom: 1px solid var(--line); background: #fff; cursor: pointer; transition: background .15s;
   }
   .ticket-item:hover { background: var(--coral-bg); }
   .ticket-item.active { background: var(--coral-soft); border-left: 3px solid var(--coral); }
+  .ticket-item .ti-avatar {
+    width: 36px; height: 36px; border-radius: 50%; flex: 0 0 auto; overflow: hidden;
+    background: #F1EDE8; box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--line);
+  }
+  .ticket-item .ti-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ticket-item .ti-body { flex: 1; min-width: 0; }
   .ticket-item .ti-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
   .ticket-item .ti-name { font-size: 13px; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .ticket-item .ti-time { font-size: 10px; color: var(--gray-soft); flex: 0 0 auto; }
@@ -194,6 +201,12 @@
     flex: 0 0 auto; padding: 14px 18px; background: #fff; border-bottom: 1px solid var(--line);
     display: flex; align-items: center; justify-content: space-between; gap: 12px;
   }
+  .thread-head .th-avatar {
+    width: 44px; height: 44px; border-radius: 50%; flex: 0 0 auto; overflow: hidden;
+    background: #F1EDE8; box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--line);
+  }
+  .thread-head .th-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thread-head .th-main { flex: 1; min-width: 0; }
   .thread-head .th-main h3 { font-size: 15px; margin-bottom: 2px; }
   .thread-head .th-sub { font-size: 11.5px; color: var(--gray-soft); }
   .thread-head .th-tags { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
@@ -203,11 +216,13 @@
   .msg-row.agent { align-self: flex-end; flex-direction: row-reverse; }
   .msg-row.system { align-self: center; max-width: 100%; }
   .msg-avatar {
-    width: 32px; height: 32px; border-radius: 50%; flex: 0 0 auto; display: grid; place-items: center;
-    font-size: 11px; font-weight: 700;
+    width: 36px; height: 36px; border-radius: 50%; flex: 0 0 auto; display: grid; place-items: center;
+    font-size: 11px; font-weight: 700; overflow: hidden;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--line);
   }
+  .msg-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .msg-row.customer .msg-avatar { background: #F1EDE8; color: var(--gray); }
-  .msg-row.agent .msg-avatar { background: var(--coral); color: #fff; }
+  .msg-row.agent .msg-avatar { background: var(--coral); color: #fff; box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--coral-soft); }
   .msg-bubble {
     padding: 11px 14px; border-radius: 18px; font-size: 13.5px; line-height: 1.65; position: relative;
   }
@@ -467,6 +482,7 @@
 <script>
 var CHANNEL_LABEL = { mail: 'メール', form: 'フォーム', chat: 'チャット', line: 'LINE' };
 var CHANNEL_CLASS = { mail: 'ch-mail', form: 'ch-form', chat: 'ch-chat', line: 'ch-line' };
+var AGENT_PHOTO = 'assets/mimiyori/agent-aya.jpg';
 
 var M001_DRAFT =
 '佐藤様\n\n' +
@@ -477,7 +493,7 @@ var M001_DRAFT =
 
 var TICKETS = [
   {
-    id: 'm-001', customer: '佐藤 太郎', email: 'sato.t@example.com', channel: 'mail',
+    id: 'm-001', customer: '佐藤 太郎', email: 'sato.t@example.com', channel: 'mail', photo: 'assets/mimiyori/m-001.jpg',
     status: 'open', time: '09:14', subject: 'パスワードを忘れました',
     intents: ['パスワード再設定', '本人確認', '再送案内'],
     knowledge: [
@@ -492,7 +508,7 @@ var TICKETS = [
     aiDemo: true
   },
   {
-    id: 'm-002', customer: '田中 美咲', email: 'tanaka.m@example.com', channel: 'form',
+    id: 'm-002', customer: '田中 美咲', email: 'tanaka.m@example.com', channel: 'form', photo: 'assets/mimiyori/m-002.jpg',
     status: 'open', time: '08:52', subject: '請求書の宛名変更',
     intents: ['請求書修正', '会社名変更'], knowledge: [],
     messages: [
@@ -500,7 +516,7 @@ var TICKETS = [
     ]
   },
   {
-    id: 'm-003', customer: '鈴木 健', email: 'suzuki.k@example.com', channel: 'chat',
+    id: 'm-003', customer: '鈴木 健', email: 'suzuki.k@example.com', channel: 'chat', photo: 'assets/mimiyori/m-003.jpg',
     status: 'pending', time: '08:41', subject: '二要素認証が効かない',
     intents: ['2FA障害', '端末変更'], knowledge: [],
     messages: [
@@ -510,7 +526,7 @@ var TICKETS = [
     ]
   },
   {
-    id: 'm-004', customer: '山本 直樹', email: 'yamamoto.n@example.com', channel: 'line',
+    id: 'm-004', customer: '山本 直樹', email: 'yamamoto.n@example.com', channel: 'line', photo: 'assets/mimiyori/m-004.jpg',
     status: 'open', time: '08:28', subject: 'プラン変更のタイミング',
     intents: ['プラン変更', '日割り'], knowledge: [],
     messages: [
@@ -518,7 +534,7 @@ var TICKETS = [
     ]
   },
   {
-    id: 'm-005', customer: '伊藤 さくら', email: 'ito.s@example.com', channel: 'mail',
+    id: 'm-005', customer: '伊藤 さくら', email: 'ito.s@example.com', channel: 'mail', photo: 'assets/mimiyori/m-005.jpg',
     status: 'open', time: '08:05', subject: 'APIレート制限について',
     intents: ['API制限', 'Enterprise'], knowledge: [],
     messages: [
@@ -526,7 +542,7 @@ var TICKETS = [
     ]
   },
   {
-    id: 'm-006', customer: '渡辺 亮', email: 'watanabe.r@example.com', channel: 'form',
+    id: 'm-006', customer: '渡辺 亮', email: 'watanabe.r@example.com', channel: 'form', photo: 'assets/mimiyori/m-006.jpg',
     status: 'done', time: '07:48', subject: '退会手続き',
     intents: ['解約'], knowledge: [],
     messages: [
@@ -536,7 +552,7 @@ var TICKETS = [
     ]
   },
   {
-    id: 'm-007', customer: '中村 葵', email: 'nakamura.a@example.com', channel: 'chat',
+    id: 'm-007', customer: '中村 葵', email: 'nakamura.a@example.com', channel: 'chat', photo: 'assets/mimiyori/m-007.jpg',
     status: 'open', time: '07:22', subject: 'データエクスポート',
     intents: ['CSV出力', '保持期間'], knowledge: [],
     messages: [
@@ -544,7 +560,7 @@ var TICKETS = [
     ]
   },
   {
-    id: 'm-008', customer: '小林 大輔', email: 'kobayashi.d@example.com', channel: 'line',
+    id: 'm-008', customer: '小林 大輔', email: 'kobayashi.d@example.com', channel: 'line', photo: 'assets/mimiyori/m-008.jpg',
     status: 'pending', time: '06:55', subject: '招待メールが届かない',
     intents: ['招待再送', 'ドメイン許可'], knowledge: [],
     messages: [
@@ -553,7 +569,7 @@ var TICKETS = [
     ]
   },
   {
-    id: 'm-009', customer: '加藤 真由', email: 'kato.m@example.com', channel: 'mail',
+    id: 'm-009', customer: '加藤 真由', email: 'kato.m@example.com', channel: 'mail', photo: 'assets/mimiyori/m-009.jpg',
     status: 'open', time: '06:30', subject: '領収書の再発行',
     intents: ['領収書', 'PDF再送'], knowledge: [],
     messages: [
@@ -574,6 +590,13 @@ function escapeHtml(str) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+function avatarHtml(photo, fallback, alt) {
+  if (photo) {
+    return '<img src="' + escapeHtml(photo) + '" alt="' + escapeHtml(alt || fallback) + '" loading="lazy">';
+  }
+  return escapeHtml(fallback);
 }
 
 function showToast(msg) {
@@ -624,21 +647,32 @@ function renderTicketList() {
   var html = list.map(function (t) {
     var st = statusLabel(t.status);
     var preview = t.messages[t.messages.length - 1].text;
+    var initial = t.customer.charAt(0);
     return '<button class="ticket-item' + (t.id === activeTicketId ? ' active' : '') + '" onclick="selectTicket(\'' + t.id + '\')">' +
+      '<div class="ti-avatar">' + avatarHtml(t.photo, initial, t.customer) + '</div>' +
+      '<div class="ti-body">' +
       '<div class="ti-top"><span class="ti-name">' + escapeHtml(t.customer) + '</span><span class="ti-time">' + escapeHtml(t.time) + '</span></div>' +
       '<div class="ti-preview">' + escapeHtml(t.subject) + '</div>' +
       '<div class="ti-meta">' +
         '<span class="ch-badge ' + CHANNEL_CLASS[t.channel] + '">' + CHANNEL_LABEL[t.channel] + '</span>' +
         '<span class="st-badge ' + st.cls + '">' + st.text + '</span>' +
-      '</div></button>';
+      '</div></div></button>';
   }).join('');
   document.getElementById('ticketList').innerHTML = html || '<div class="thread-empty">該当チケットなし</div>';
 }
 
 function renderThread(t) {
   document.getElementById('threadHead').style.display = 'flex';
-  document.getElementById('threadTitle').textContent = t.customer + ' — ' + t.subject;
-  document.getElementById('threadSub').textContent = t.email + ' · ' + CHANNEL_LABEL[t.channel];
+  var headAvatar = t.photo
+    ? '<div class="th-avatar">' + avatarHtml(t.photo, t.customer.charAt(0), t.customer) + '</div>'
+    : '';
+  document.getElementById('threadHead').innerHTML =
+    headAvatar +
+    '<div class="th-main">' +
+      '<h3 id="threadTitle">' + escapeHtml(t.customer + ' — ' + t.subject) + '</h3>' +
+      '<p class="th-sub" id="threadSub">' + escapeHtml(t.email + ' · ' + CHANNEL_LABEL[t.channel]) + '</p>' +
+    '</div>' +
+    '<div class="th-tags" id="threadTags"></div>';
   var st = statusLabel(t.status);
   document.getElementById('threadTags').innerHTML =
     '<span class="ch-badge ' + CHANNEL_CLASS[t.channel] + '">' + CHANNEL_LABEL[t.channel] + '</span>' +
@@ -656,8 +690,10 @@ function renderThread(t) {
       return '<div class="msg-row system"><div class="msg-bubble">' + escapeHtml(m.text) + '</div></div>';
     }
     var isAgent = m.role === 'agent';
+    var photo = isAgent ? AGENT_PHOTO : t.photo;
+    var alt = isAgent ? '彩花' : t.customer;
     return '<div class="msg-row ' + (isAgent ? 'agent' : 'customer') + '">' +
-      '<div class="msg-avatar">' + escapeHtml(m.name) + '</div>' +
+      '<div class="msg-avatar">' + avatarHtml(photo, m.name, alt) + '</div>' +
       '<div><div class="msg-bubble">' + escapeHtml(m.text) + '</div>' +
       '<div class="msg-meta">' + escapeHtml(m.time) + '</div></div></div>';
   }).join('');
