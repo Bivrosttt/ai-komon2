@@ -1,0 +1,1359 @@
+<!-- 2026-07-22: SHAIN（社内FAQ）SaaS級デモ — ソフトグリーンWiki/ヘルプセンターUI・新人質問→出典→回答下書き→ナレッジ追加 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社内FAQデモ（出典付きAI回答・ナレッジ蓄積）｜AI顧問室</title>
+<meta name="description" content="架空の社内FAQクラウド「SHAIN」のフル機能デモです。新人の質問に規程・マニュアル出典付きでAIが回答下書きを生成し、ナレッジ記事として蓄積。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="社内FAQデモ（出典付きAI回答・ナレッジ蓄積）｜AI顧問室">
+<meta property="og:description" content="架空の社内FAQクラウド「SHAIN」のフル機能デモです。新人の質問に規程・マニュアル出典付きでAIが回答下書きを生成します。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-shain.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-shain.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #059669; --green-deep: #047857; --green-light: #10B981;
+    --mint: #ECFDF5; --mint-mid: #D1FAE5; --mint-deep: #A7F3D0;
+    --pri: #059669; --pri-deep: #047857; --pri-bg: #ECFDF5;
+    --ink: #064E3B; --gray: #3D6B5C; --gray-soft: #6B8F82;
+    --line: #BBF7D0; --bg-soft: #ECFDF5; --white: #FFFFFF;
+    --amber: #B45309; --amber-bg: #FEF3C7;
+    --red: #DC2626; --red-bg: #FEE2E2;
+    --blue: #0369A1; --blue-bg: #E0F2FE;
+    --slate-bg: #D1FAE5;
+    --cite-hl: #FDE68A;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--bg-soft);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { line-height: 1.45; font-weight: 700; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea, select { font-family: inherit; }
+  img, svg { max-width: 100%; }
+  ::selection { background: var(--mint-deep); color: var(--ink); }
+
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: var(--ink); color: #A7F3D0; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 2px solid var(--green);
+  }
+  .demo-frame-bar b { color: #ECFDF5; font-weight: 700; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 999px; white-space: nowrap; transition: background .15s;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.12); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; gap: 8px; height: 52px; }
+    .demo-frame-bar .frame-text { line-height: 1.5; }
+    .demo-frame-bar .frame-link { padding: 4px 9px; font-size: 10.5px; }
+    body { padding-top: 52px; }
+  }
+
+  #view-login {
+    min-height: calc(100vh - 44px); display: grid; grid-template-columns: 1.05fr 1fr;
+    background: var(--bg-soft);
+  }
+  #view-login.hide { display: none; }
+  .login-hero {
+    position: relative; background: linear-gradient(155deg, #064E3B 0%, #047857 50%, #059669 100%);
+    color: #ECFDF5; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+  }
+  .login-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 85% 15%, rgba(16,185,129,.22) 0%, transparent 45%),
+                radial-gradient(circle at 15% 85%, rgba(236,253,245,.1) 0%, transparent 40%);
+  }
+  .login-hero::after {
+    content: '?'; position: absolute; right: 52px; bottom: 12%; font-size: 120px; font-weight: 700;
+    color: rgba(255,255,255,.08); line-height: 1;
+  }
+  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .22em; color: #A7F3D0; font-weight: 700; margin-bottom: 18px; position: relative; }
+  .login-hero h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 16em; position: relative; }
+  .login-hero h2 em { font-style: normal; color: #D1FAE5; }
+  .login-hero p { font-size: 14px; color: #6EE7B7; max-width: 28em; line-height: 1.9; position: relative; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; position: relative; }
+  .hero-tags span {
+    padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+    font-size: 11.5px; color: #D1FAE5;
+  }
+  .login-panel {
+    display: flex; align-items: center; justify-content: center; padding: 40px 28px;
+    background: linear-gradient(180deg, #fff 0%, var(--bg-soft) 100%);
+  }
+  .login-card {
+    width: 100%; max-width: 400px; background: #fff; border-radius: 16px; padding: 40px 36px 30px;
+    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(5,150,105,.1); border-top: 4px solid var(--green);
+  }
+  .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .login-logo .k { font-size: 28px; font-weight: 700; color: var(--green); letter-spacing: .04em; }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .14em; }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .login-field { margin-bottom: 14px; }
+  .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
+  .login-field input {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px; font-size: 14px;
+    color: var(--gray-soft); background: var(--mint); cursor: not-allowed;
+  }
+  .login-btn {
+    width: 100%; padding: 13px; border: none; border-radius: 10px; background: var(--green); color: #fff;
+    font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-btn:hover { filter: brightness(1.06); }
+  .login-btn:active { transform: scale(.99); }
+  .login-btn:disabled { opacity: .75; cursor: wait; }
+  .login-spin {
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.35);
+    border-top-color: #fff; animation: spin .7s linear infinite; display: none;
+  }
+  .login-btn.loading .login-spin { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .login-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center; border-top: 1px solid var(--line); padding-top: 14px; }
+  @media (max-width: 860px) {
+    #view-login { grid-template-columns: 1fr; }
+    .login-hero { min-height: 220px; padding: 36px 28px; }
+    .login-hero::after { display: none; }
+  }
+
+  #view-app { display: none; }
+  #view-app.show { display: block; }
+  .app-frame { display: flex; align-items: flex-start; min-height: calc(100vh - 44px); }
+  .sidebar {
+    width: 248px; flex: 0 0 auto; background: #fff; color: var(--ink);
+    display: flex; flex-direction: column; position: sticky; top: 44px; height: calc(100vh - 44px);
+    padding: 20px 0; z-index: 50; border-right: 1px solid var(--line);
+    box-shadow: inset 4px 0 0 var(--green);
+  }
+  .sidebar-brand { padding: 0 20px 18px; border-bottom: 1px solid var(--line); margin-bottom: 12px; display: flex; align-items: baseline; gap: 6px; }
+  .sidebar-brand .k { font-size: 18px; font-weight: 700; color: var(--green); letter-spacing: .06em; }
+  .sidebar-brand .tag-en { font-size: 9px; color: var(--gray-soft); letter-spacing: .12em; }
+  .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 12px; overflow-y: auto; }
+  .nav-btn {
+    display: flex; align-items: center; gap: 11px; padding: 11px 12px; border-radius: 10px; border: none; background: none;
+    color: var(--gray); font-size: 13.5px; font-weight: 500; text-align: left; width: 100%; transition: background .15s, color .15s;
+  }
+  .nav-btn svg { flex: 0 0 auto; opacity: .85; }
+  .nav-btn:hover { background: var(--mint); color: var(--ink); }
+  .nav-btn.active { background: var(--pri-bg); color: var(--green-deep); font-weight: 700; }
+  .sidebar-foot { padding: 14px 20px 0; border-top: 1px solid var(--line); margin-top: 14px; }
+  .sidebar-user { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+  .sidebar-user .avatar {
+    width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: #fff;
+    display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: 0 0 auto;
+  }
+  .sidebar-user .u-name { font-size: 12.5px; font-weight: 700; color: var(--ink); }
+  .sidebar-user .u-role { font-size: 10.5px; color: var(--gray-soft); }
+  .logout-link { display: block; font-size: 11.5px; color: var(--gray); padding: 6px 2px; }
+  .logout-link:hover { color: var(--green-deep); }
+  .hamburger-btn {
+    display: none; width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line); background: #fff;
+    align-items: center; justify-content: center; flex: 0 0 auto;
+  }
+  .main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .app-header {
+    position: sticky; top: 44px; z-index: 40; height: 60px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.97);
+    backdrop-filter: blur(4px); display: flex; align-items: center; gap: 14px; padding: 0 24px;
+  }
+  .app-header h1.view-name { font-size: 15.5px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .header-search { flex: 1; min-width: 0; display: flex; justify-content: center; }
+  .header-search-inner { position: relative; width: 100%; max-width: 380px; }
+  .header-search-inner input {
+    width: 100%; padding: 9px 14px 9px 36px; border: 1px solid var(--line); border-radius: 999px; font-size: 13px; background: var(--mint);
+  }
+  .header-search-inner svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); pointer-events: none; opacity: .5; }
+  .header-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; }
+  .icon-btn {
+    position: relative; width: 38px; height: 38px; border-radius: 10px; border: 1px solid transparent; background: none;
+    display: grid; place-items: center; color: var(--ink); transition: background .15s;
+  }
+  .icon-btn:hover { background: var(--mint); }
+  .notif-badge {
+    position: absolute; top: 3px; right: 3px; min-width: 15px; height: 15px; border-radius: 999px; background: var(--red);
+    color: #fff; font-size: 9.5px; font-weight: 700; display: grid; place-items: center; padding: 0 3px; border: 2px solid #fff;
+  }
+  .dropdown-wrap { position: relative; }
+  .dropdown-panel {
+    position: absolute; top: calc(100% + 8px); right: 0; width: 320px; background: #fff; border: 1px solid var(--line);
+    border-radius: 14px; box-shadow: 0 18px 44px rgba(5,150,105,.12); z-index: 80; display: none; overflow: hidden;
+  }
+  .dropdown-panel.open { display: block; animation: dropIn .16s ease; }
+  @keyframes dropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .dropdown-head { padding: 12px 16px; font-size: 12.5px; font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--line); background: var(--mint); }
+  .notif-item { display: flex; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 12.5px; transition: background .15s; }
+  .notif-item:last-child { border-bottom: none; }
+  .notif-item:hover { background: var(--mint); }
+  .notif-item .dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; margin-top: 6px; }
+  .notif-item .txt { flex: 1; }
+  .notif-item .time { font-size: 10.5px; color: var(--gray-soft); margin-top: 3px; }
+
+  .main-scroll { flex: 1; padding: 24px 28px 48px; }
+  .view { display: none; }
+  .view.active { display: block; animation: fadeIn .2s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .view-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .view-head h2 { font-size: 20px; color: var(--ink); }
+  .view-head .lead { font-size: 12.5px; color: var(--gray); margin-top: 4px; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+  .kpi-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 16px;
+    position: relative; overflow: hidden;
+  }
+  .kpi-card::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green);
+  }
+  .kpi-card .k-label { font-size: 11px; color: var(--gray-soft); font-weight: 700; margin-bottom: 8px; }
+  .kpi-card .k-num { font-size: 28px; font-weight: 700; color: var(--green); line-height: 1; }
+  .kpi-card .k-unit { font-size: 13px; color: var(--gray); margin-left: 2px; }
+  .kpi-card .k-sub { font-size: 11px; color: var(--gray-soft); margin-top: 8px; }
+
+  .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .panel {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px;
+  }
+  .panel h3 { font-size: 14.5px; margin-bottom: 4px; }
+  .panel .panel-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 14px; }
+  .task-list { display: flex; flex-direction: column; gap: 8px; }
+  .task-row {
+    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px;
+    cursor: pointer; transition: background .15s, border-color .15s;
+  }
+  .task-row:hover { background: var(--mint); border-color: var(--green-light); }
+  .task-row .t-avatar {
+    width: 34px; height: 34px; border-radius: 50%; background: var(--mint-mid); color: var(--green-deep);
+    display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: 0 0 auto;
+  }
+  .task-row .t-main { flex: 1; min-width: 0; }
+  .task-row .t-title { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .task-row .t-sub { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 12.5px; }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; margin-top: 7px; }
+  .timeline-text { line-height: 1.6; }
+  .timeline-date { font-size: 10.5px; color: var(--gray-soft); margin-top: 3px; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px;
+    font-size: 11px; font-weight: 700; white-space: nowrap;
+  }
+  .badge-new { background: var(--red-bg); color: var(--red); }
+  .badge-drafted { background: var(--blue-bg); color: var(--blue); }
+  .badge-open { background: var(--amber-bg); color: var(--amber); }
+  .badge-solved { background: var(--mint-mid); color: var(--green-deep); }
+  .badge-human { background: var(--green); color: #fff; }
+  .badge-cat { background: var(--slate-bg); color: var(--gray); }
+  .badge-ai { background: var(--pri-bg); color: var(--green-deep); border: 1px solid var(--line); }
+
+  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tab-chip {
+    padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-size: 12.5px;
+    color: var(--gray); font-weight: 500; transition: all .15s; white-space: nowrap; display: flex; align-items: center; gap: 6px;
+  }
+  .tab-chip:hover { border-color: var(--green); }
+  .tab-chip.active { background: var(--green); color: #fff; border-color: var(--green); font-weight: 700; }
+  .tab-chip .cnt { font-size: 10.5px; background: rgba(0,0,0,.08); padding: 1px 6px; border-radius: 999px; }
+  .tab-chip.active .cnt { background: rgba(255,255,255,.22); }
+  .search-box { position: relative; margin-left: auto; }
+  .search-box input {
+    padding: 9px 14px 9px 34px; border: 1px solid var(--line); border-radius: 999px; font-size: 13px; width: 280px; background: #fff;
+  }
+  .search-box input:focus { outline: 2px solid var(--green); }
+  .search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: .5; }
+
+  .table-wrap { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.data-table th {
+    text-align: left; padding: 12px 16px; background: var(--mint); color: var(--gray); font-weight: 700; font-size: 11.5px;
+    border-bottom: 1px solid var(--line); white-space: nowrap;
+  }
+  table.data-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
+  table.data-table tbody tr { cursor: pointer; transition: background .12s; }
+  table.data-table tbody tr:hover { background: var(--mint); }
+  table.data-table tbody tr:last-child td { border-bottom: none; }
+  table.data-table td.name-cell { font-weight: 700; }
+  .row-hot { background: #F0FDF4; }
+  .row-hot:hover { background: #DCFCE7 !important; }
+  .empty-row td { text-align: center; color: var(--gray-soft); padding: 40px 16px; }
+  .ch-cell { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--gray); }
+
+  .article-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .article-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px 20px 18px;
+    transition: box-shadow .15s, border-color .15s; cursor: pointer; position: relative;
+  }
+  .article-card:hover { box-shadow: 0 10px 28px rgba(5,150,105,.1); border-color: var(--green-light); }
+  .article-card .ac-cat { font-size: 10.5px; font-weight: 700; color: var(--green-deep); letter-spacing: .06em; margin-bottom: 8px; }
+  .article-card h4 { font-size: 15px; margin-bottom: 8px; line-height: 1.45; }
+  .article-card p { font-size: 12px; color: var(--gray-soft); line-height: 1.65; }
+  .article-card .ac-meta { margin-top: 14px; font-size: 11px; color: var(--gray-soft); display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .article-card .ac-ai { position: absolute; top: 14px; right: 14px; }
+
+  .detail-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--gray); margin-bottom: 14px; }
+  .detail-back:hover { color: var(--green-deep); }
+  .detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+  .detail-head h2 { font-size: 18px; line-height: 1.5; }
+  .detail-head .sub { font-size: 12px; color: var(--gray); margin-top: 5px; }
+  .detail-grid { display: grid; grid-template-columns: 1.1fr minmax(300px, 400px); gap: 20px; align-items: start; }
+
+  .thread-wrap { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .thread-toolbar {
+    padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--mint);
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  }
+  .thread-toolbar .tt-label { font-size: 12px; font-weight: 700; color: var(--green-deep); }
+  .thread-body { padding: 20px 22px; max-height: 420px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px; }
+  .chat-row { max-width: 88%; display: flex; flex-direction: column; gap: 4px; }
+  .chat-row.from-employee { align-self: flex-start; }
+  .chat-row.from-agent { align-self: flex-end; align-items: flex-end; }
+  .chat-name { font-size: 10.5px; color: var(--gray-soft); font-weight: 700; }
+  .chat-bubble {
+    padding: 12px 16px; border-radius: 14px; font-size: 13.5px; line-height: 1.75; white-space: pre-wrap;
+  }
+  .chat-row.from-employee .chat-bubble { background: var(--mint); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+  .chat-row.from-agent .chat-bubble { background: var(--green); color: #fff; border-bottom-right-radius: 4px; }
+  .chat-time { font-size: 10px; color: var(--gray-soft); }
+
+  .side-panel { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; position: sticky; top: 120px; }
+  .side-panel-head { padding: 14px 18px; border-bottom: 1px solid var(--line); background: var(--green); color: #fff; }
+  .side-panel-head h4 { font-size: 13.5px; }
+  .side-panel-head p { font-size: 11px; color: #A7F3D0; margin-top: 3px; }
+  .side-panel-body { padding: 18px; max-height: calc(100vh - 200px); overflow-y: auto; }
+  .side-tabs { display: flex; border-bottom: 1px solid var(--line); margin: -18px -18px 16px; }
+  .side-tab-btn {
+    flex: 1; padding: 11px 8px; border: none; background: none; font-size: 12px; font-weight: 700; color: var(--gray-soft);
+    border-bottom: 2px solid transparent; transition: all .15s;
+  }
+  .side-tab-btn.active { color: var(--green-deep); border-bottom-color: var(--green); }
+  .side-tab-pane { display: none; }
+  .side-tab-pane.active { display: block; }
+
+  .ai-start-box { text-align: center; padding: 24px 12px; }
+  .ai-start-box p { font-size: 12.5px; color: var(--gray); line-height: 1.75; margin-bottom: 16px; }
+  .btn-ai-run {
+    width: 100%; padding: 12px 16px; border: none; border-radius: 10px; background: var(--green); color: #fff;
+    font-weight: 700; font-size: 13.5px; transition: filter .15s;
+  }
+  .btn-ai-run:hover { filter: brightness(1.06); }
+  .btn-skip { background: none; border: none; color: var(--gray-soft); font-size: 11.5px; margin-top: 8px; }
+  .btn-skip:hover { color: var(--green-deep); }
+  .analyze-box { text-align: center; padding: 28px 12px; }
+  .an-spinner {
+    width: 36px; height: 36px; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--green);
+    animation: spin .8s linear infinite; margin: 0 auto 14px;
+  }
+  .an-text { font-size: 13.5px; font-weight: 700; color: var(--green-deep); }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+  .analysis-tag {
+    padding: 6px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 700; opacity: 0; transform: translateY(6px);
+    transition: all .25s ease;
+  }
+  .analysis-tag.in { opacity: 1; transform: none; }
+  .tag-intent { background: var(--mint-mid); color: var(--green-deep); }
+  .tag-dept { background: var(--blue-bg); color: var(--blue); }
+  .tag-urgency { background: var(--amber-bg); color: var(--amber); }
+
+  .source-list { display: flex; flex-direction: column; gap: 10px; }
+  .source-card {
+    border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; background: #fff;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .source-card.active { border-color: var(--green); box-shadow: 0 0 0 2px rgba(5,150,105,.12); background: var(--mint); }
+  .source-card .sc-doc { font-size: 10.5px; font-weight: 700; color: var(--green-deep); letter-spacing: .06em; }
+  .source-card .sc-section { font-size: 13px; font-weight: 700; margin: 4px 0 8px; }
+  .source-card .sc-text { font-size: 12.5px; line-height: 1.75; color: var(--ink); }
+  .source-card .sc-text mark { background: var(--cite-hl); padding: 0 2px; border-radius: 2px; }
+  .source-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .source-pill {
+    padding: 5px 11px; border-radius: 999px; background: var(--mint); color: var(--green-deep); font-size: 11px; font-weight: 700;
+    border: 1px solid var(--line); cursor: pointer;
+  }
+  .source-pill.active { background: var(--green); color: #fff; border-color: var(--green); }
+
+  .draft-box { border: 1px solid var(--line); border-radius: 12px; background: var(--mint); padding: 16px 18px; margin-bottom: 12px; }
+  .draft-text-preview { font-size: 13px; line-height: 1.85; color: var(--ink); white-space: pre-wrap; min-height: 160px; }
+  .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--green); animation: blink .8s step-end infinite; vertical-align: text-bottom; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .draft-note { display: flex; gap: 8px; align-items: flex-start; font-size: 11px; color: var(--gray-soft); margin-bottom: 14px; line-height: 1.6; }
+  .kb-add-card {
+    border: 2px dashed var(--green-light); border-radius: 14px; padding: 18px; background: #fff; margin-top: 14px;
+    opacity: 0; transform: translateY(8px); transition: all .3s ease;
+  }
+  .kb-add-card.in { opacity: 1; transform: none; }
+  .kb-add-card h5 { font-size: 13px; color: var(--green-deep); margin-bottom: 6px; }
+  .kb-add-card p { font-size: 12px; color: var(--gray); line-height: 1.65; margin-bottom: 12px; }
+  .btn-approve {
+    width: 100%; padding: 11px; border: none; border-radius: 10px; background: var(--green); color: #fff;
+    font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .complete-banner {
+    display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 10px; background: var(--mint-mid); color: var(--green-deep);
+    font-size: 12.5px; font-weight: 700; margin-bottom: 14px; opacity: 0; transform: translateY(4px); transition: all .25s;
+  }
+  .complete-banner.in { opacity: 1; transform: none; }
+  .generic-cta-card { margin-top: 14px; padding: 14px; border-radius: 12px; background: var(--mint); border: 1px solid var(--line); }
+
+  .settings-section { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; margin-bottom: 16px; }
+  .settings-section h3 { font-size: 14.5px; margin-bottom: 4px; }
+  .settings-section .sec-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; }
+  .member-row, .toggle-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
+  }
+  .member-row:last-child, .toggle-row:last-child { border-bottom: none; }
+  .member-row .m-name { font-size: 13px; font-weight: 700; }
+  .member-row .m-mail { font-size: 11px; color: var(--gray-soft); }
+  .role-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+  .role-admin { background: var(--pri-bg); color: var(--green-deep); }
+  .role-editor { background: var(--blue-bg); color: var(--blue); }
+  .role-member { background: var(--slate-bg); color: var(--gray); }
+  .toggle-row .tg-label { font-size: 13px; color: var(--ink); }
+  .toggle-row .tg-desc { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
+  .switch { position: relative; width: 42px; height: 24px; flex: 0 0 auto; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch .track { position: absolute; inset: 0; background: #D1FAE5; border-radius: 999px; cursor: pointer; transition: background .2s; }
+  .switch .track::before {
+    content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%;
+    transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  }
+  .switch input:checked + .track { background: var(--green); }
+  .switch input:checked + .track::before { transform: translateX(18px); }
+
+  #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
+  .toast {
+    background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 12px; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
+  }
+  @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+
+  .komon-cta {
+    background: linear-gradient(135deg, #064E3B 0%, #047857 55%, #059669 100%);
+    color: #fff; padding: 76px 24px 40px; text-align: center;
+  }
+  .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
+  .komon-cta .cta-label { display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: #A7F3D0; font-weight: 700; margin-bottom: 16px; }
+  .komon-cta h2 { font-size: 30px; margin-bottom: 16px; line-height: 1.5; }
+  .komon-cta h2 em { font-style: normal; color: #D1FAE5; }
+  .komon-cta p.lead { font-size: 14.5px; color: #6EE7B7; margin-bottom: 32px; line-height: 1.9; }
+  .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn { display: inline-block; padding: 15px 34px; border-radius: 10px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s; }
+  .btn:hover { opacity: .87; }
+  .btn-accent { background: #fff; color: var(--green-deep); }
+  .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #6EE7B7; }
+  .komon-cta .cta-foot a { color: #A7F3D0; }
+  .komon-cta .cta-foot a:hover { color: #fff; }
+
+  .mobile-nav-overlay { display: none; }
+  @media (max-width: 900px) {
+    .grid-2col { grid-template-columns: 1fr; }
+    .detail-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .article-grid { grid-template-columns: 1fr 1fr; }
+    .side-panel { position: static; }
+  }
+  @media (max-width: 780px) {
+    .hamburger-btn { display: flex; }
+    .sidebar {
+      position: fixed; top: 44px; left: 0; bottom: 0; height: auto; z-index: 300; transform: translateX(-100%);
+      transition: transform .25s ease; box-shadow: 20px 0 60px rgba(0,0,0,.25); width: 240px;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .mobile-nav-overlay.open { display: block; position: fixed; inset: 44px 0 0 0; background: rgba(0,0,0,.4); z-index: 290; }
+    .app-header { padding: 0 14px; gap: 8px; }
+    .header-search { display: none; }
+    .main-scroll { padding: 18px 14px 40px; }
+    .search-box { width: 100%; margin-left: 0; }
+    .search-box input { width: 100%; }
+    .toolbar { flex-direction: column; align-items: stretch; }
+    .komon-cta h2 { font-size: 23px; }
+    .komon-cta { padding: 56px 18px 32px; }
+    .thread-body { max-height: none; }
+  }
+  @media (max-width: 480px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+    .article-grid { grid-template-columns: 1fr; }
+    table.data-table thead { display: none; }
+    table.data-table, table.data-table tbody, table.data-table tr, table.data-table td { display: block; width: 100%; }
+    table.data-table tbody tr { border-bottom: 1px solid var(--line); padding: 12px 14px; }
+    table.data-table td { border-bottom: none; padding: 3px 0; }
+    table.data-table td::before { content: attr(data-label); display: inline-block; min-width: 76px; font-size: 10.5px; color: var(--gray-soft); font-weight: 700; }
+    .chat-row { max-width: 94%; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> が制作した架空プロダクトのデモです。データはすべてサンプルで、実際のサービスではありません。</span>
+  <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+</div>
+
+<div id="view-login">
+  <div class="login-hero">
+    <div class="hero-kicker">INTERNAL FAQ WIKI</div>
+    <h2>新人の質問に<em>出典付き</em>で答える。</h2>
+    <p>就業規則・マニュアル・社内Wikiを横断検索。AIが回答下書きを生成し、解決した内容はナレッジ記事として自動蓄積します。</p>
+    <div class="hero-tags"><span>休暇</span><span>経費</span><span>PC</span><span>入館</span><span>オンボーディング</span></div>
+  </div>
+  <div class="login-panel">
+    <div class="login-card">
+      <div class="login-logo"><span class="k">SHAIN</span><span class="tag-en">INTERNAL FAQ</span></div>
+      <p class="login-sub">社内の「わからない」を、ナレッジに。</p>
+      <div class="login-field">
+        <label for="loginMail">メールアドレス</label>
+        <input id="loginMail" type="text" value="demo@growthtech.example" readonly>
+      </div>
+      <div class="login-field">
+        <label for="loginPass">パスワード</label>
+        <input id="loginPass" type="password" value="dummydummy" readonly>
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">
+        <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
+      </button>
+      <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
+    </div>
+  </div>
+</div>
+
+<div id="view-app">
+  <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleSidebar(false)"></div>
+  <div class="app-frame">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand"><span class="k">SHAIN</span><span class="tag-en">INTERNAL FAQ</span></div>
+      <nav class="sidebar-nav">
+        <button class="nav-btn" data-nav="dashboard" onclick="go('dashboard')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg>
+          ダッシュボード
+        </button>
+        <button class="nav-btn" data-nav="inbox" onclick="go('inbox')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          質問受信箱
+        </button>
+        <button class="nav-btn" data-nav="knowledge" onclick="go('knowledge')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/><path d="M8 7h8M8 11h6"/></svg>
+          ナレッジ記事
+        </button>
+        <button class="nav-btn" data-nav="settings" onclick="go('settings')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l1.9-1.5-2-3.4-2.3.7a7.6 7.6 0 0 0-2.6-1.5L14 2h-4l-.4 2.8a7.6 7.6 0 0 0-2.6 1.5l-2.3-.7-2 3.4L4.6 10.5a7.6 7.6 0 0 0 0 3L2.7 15l2 3.4 2.3-.7c.77.66 1.65 1.17 2.6 1.5L10 22h4l.4-2.8c.95-.33 1.83-.84 2.6-1.5l2.3.7 2-3.4Z"/></svg>
+          設定
+        </button>
+      </nav>
+      <div class="sidebar-foot">
+        <div class="sidebar-user">
+          <div class="avatar">総</div>
+          <div><div class="u-name">デモ 花子</div><div class="u-role">総務・人事</div></div>
+        </div>
+        <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+      </div>
+    </aside>
+
+    <div class="main-col">
+      <header class="app-header">
+        <button class="hamburger-btn" onclick="toggleSidebar()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <h1 class="view-name" id="viewNameLabel">ダッシュボード</h1>
+        <div class="header-search">
+          <div class="header-search-inner">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+            <input type="text" placeholder="社内Wikiを検索（見た目のみ）" disabled>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="dropdown-wrap">
+            <button class="icon-btn" onclick="toggleDropdown('notifPanel')">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+              <span class="notif-badge" id="notifBadgeCount">3</span>
+            </button>
+            <div class="dropdown-panel" id="notifPanel">
+              <div class="dropdown-head">通知</div>
+              <div id="notifList"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-scroll">
+        <section class="view" id="view-dashboard">
+          <div class="view-head">
+            <div><h2>ダッシュボード</h2><p class="lead">2026年7月22日時点の社内FAQデスク（サンプルデータ）</p></div>
+          </div>
+          <div class="kpi-grid" id="kpiGrid"></div>
+          <div class="grid-2col">
+            <div class="panel">
+              <h3>未回答・下書き待ち</h3>
+              <p class="panel-note">AI回答下書きの生成が可能な質問</p>
+              <div class="task-list" id="pendingList"></div>
+            </div>
+            <div class="panel">
+              <h3>最近のアクティビティ</h3>
+              <p class="panel-note">質問・回答・ナレッジ追加の履歴</p>
+              <div class="timeline" id="activityTimeline"></div>
+            </div>
+          </div>
+          <div class="panel" style="margin-top:16px;">
+            <h3>よく見られている記事</h3>
+            <p class="panel-note">今月のアクセス上位（サンプル）</p>
+            <div class="article-grid" id="popularArticles"></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-inbox">
+          <div class="view-head">
+            <div><h2>質問受信箱</h2><p class="lead">新人・社員から届いた質問 <span id="inboxTotalCount"></span>件</p></div>
+          </div>
+          <div class="toolbar">
+            <div class="tab-row" id="statusTabRow"></div>
+            <div class="search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+              <input type="text" id="questionSearchInput" placeholder="質問者・件名で絞り込み" oninput="renderInboxTable()">
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>質問者</th><th>件名</th><th>チャネル</th><th>カテゴリ</th><th>受信</th><th>ステータス</th></tr>
+              </thead>
+              <tbody id="inboxTbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="view" id="view-question-detail">
+          <a href="#inbox" class="detail-back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>
+            質問受信箱へ戻る
+          </a>
+          <div class="detail-head">
+            <div>
+              <h2 id="detailTitle">質問詳細</h2>
+              <p class="sub" id="detailSub"></p>
+            </div>
+            <span class="badge badge-new" id="detailStatusBadge">未回答</span>
+          </div>
+          <div class="detail-grid">
+            <div class="thread-wrap">
+              <div class="thread-toolbar">
+                <span class="tt-label">スレッド</span>
+                <span id="threadChannelNote" style="font-size:11px;color:var(--gray-soft);"></span>
+              </div>
+              <div class="thread-body" id="threadBody"></div>
+            </div>
+            <div class="side-panel">
+              <div class="side-panel-head">
+                <h4>AI回答アシスト</h4>
+                <p>規程・マニュアル出典 → 回答下書き → ナレッジ追加</p>
+              </div>
+              <div class="side-panel-body">
+                <div class="side-tabs">
+                  <button class="side-tab-btn active" data-tab="draft" onclick="switchSideTab('draft')">回答下書き</button>
+                  <button class="side-tab-btn" data-tab="sources" onclick="switchSideTab('sources')">出典</button>
+                  <button class="side-tab-btn" data-tab="profile" onclick="switchSideTab('profile')">質問者</button>
+                </div>
+                <div class="side-tab-pane active" id="pane-draft"></div>
+                <div class="side-tab-pane" id="pane-sources"></div>
+                <div class="side-tab-pane" id="pane-profile"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-knowledge">
+          <div class="view-head">
+            <div><h2>ナレッジ記事リスト</h2><p class="lead">社内FAQ Wikiに公開中の記事 <span id="kbTotalCount"></span>本</p></div>
+          </div>
+          <div class="toolbar">
+            <div class="tab-row" id="kbCatRow"></div>
+          </div>
+          <div class="article-grid" id="kbGrid"></div>
+        </section>
+
+        <section class="view" id="view-settings">
+          <div class="view-head">
+            <div><h2>設定</h2><p class="lead">メンバー権限・AI機能・通知の設定（見た目のみ動作します）</p></div>
+          </div>
+          <div class="settings-section">
+            <h3>メンバーと権限</h3>
+            <p class="sec-note">総務・人事・各部門リーダーのロールを管理します</p>
+            <div id="memberList"></div>
+          </div>
+          <div class="settings-section">
+            <h3>AI機能</h3>
+            <p class="sec-note">出典検索・回答下書き・ナレッジ自動追加の設定です</p>
+            <div id="aiToggleList"></div>
+          </div>
+          <div class="settings-section">
+            <h3>通知設定</h3>
+            <p class="sec-note">新規質問・下書き完了・ナレッジ追加の通知です</p>
+            <div id="notifToggleList"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</div>
+
+<div class="komon-cta">
+  <div class="cta-inner">
+    <span class="cta-label">AI KOMONSHITSU</span>
+    <h2>このようなシステムを、<em>御社専用に。</em></h2>
+    <p class="lead">「SHAIN」は本デモのために作った架空のプロダクトです。AI顧問室では、就業規則・マニュアル・社内Wikiを横断検索し、出典付き回答とナレッジ蓄積を組み込んだ社内FAQシステムを構築します。</p>
+    <div class="cta-btn-row">
+      <a href="index.html?from=works-shain#contact" class="btn btn-accent">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
+    </div>
+    <div class="cta-foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+
+<script>
+
+var TODAY_STR = '2026-07-22';
+var NOW = new Date(2026, 6, 22, 10, 30, 0);
+
+function fmtDate(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+}
+function fmtDateTime(iso) {
+  var d = new Date(iso);
+  return (d.getMonth() + 1) + '/' + d.getDate() + ' ' + pad2(d.getHours()) + ':' + pad2(d.getMinutes());
+}
+function pad2(n) { return (n < 10 ? '0' : '') + n; }
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function showToast(msg) {
+  var host = document.getElementById('toastHost');
+  var el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  host.appendChild(el);
+  setTimeout(function () { el.remove(); }, 2700);
+}
+
+var STATUS_LABEL = { new: '未回答', drafted: 'AI下書きあり', open: '対応中', solved: '解決済み' };
+var CHANNEL_ICONS = {
+  'Slack': '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/>',
+  'Teams': '<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/>',
+  'フォーム': '<path d="M9 3h6a1 1 0 0 1 1 1v1h1a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h1V4a1 1 0 0 1 1-1Z"/><path d="M9 12h6M9 16h6"/>',
+  '対面': '<circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>'
+};
+function channelIcon(ch) {
+  return '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' + (CHANNEL_ICONS[ch] || '') + '</svg>';
+}
+
+var QUESTIONS = [
+  { id: 'q-001', employee: '新井 陽菜', initials: '新', dept: '営業部', joinDate: '2026-07-01', subject: '有給休暇はいつから取れますか？',
+    channel: 'Slack', category: '休暇', status: 'new', aiDrafted: false, receivedAt: '2026-07-22T09:15:00', solvedDate: null,
+    thread: [{ from: 'employee', time: '2026-07-22T09:15:00', text: '7月入社の新卒です。有給休暇はいつから取得できますか？来月に少し休みたいのですが、申請方法も教えてください。' }] },
+  { id: 'q-002', employee: '木村 拓也', initials: '木', dept: '開発部', joinDate: '2026-06-10', subject: '経費精算の締め日はいつですか？',
+    channel: 'Teams', category: '経費', status: 'drafted', aiDrafted: true, receivedAt: '2026-07-21T14:20:00', solvedDate: null,
+    thread: [{ from: 'employee', time: '2026-07-21T14:20:00', text: '先週の出張分を精算したいのですが、締め日と必要な領収書のルールを確認したいです。' }] },
+  { id: 'q-003', employee: '林 美月', initials: '林', dept: 'マーケ部', joinDate: '2026-07-08', subject: '社用PCの初期設定手順',
+    channel: 'フォーム', category: 'PC', status: 'open', aiDrafted: false, receivedAt: '2026-07-22T08:40:00', solvedDate: null,
+    thread: [
+      { from: 'employee', time: '2026-07-22T08:40:00', text: '配布されたMacBookの初期設定で、VPNとSlack以外に必須のアプリはありますか？' },
+      { from: 'agent', time: '2026-07-22T09:05:00', text: '確認中です。社用PCセットアップガイドを参照してあらためてご案内します。' }
+    ] },
+  { id: 'q-004', employee: '渡辺 誠', initials: '渡', dept: 'CS部', joinDate: '2026-07-15', subject: '入館証の申請方法を教えてください',
+    channel: 'Slack', category: '入館', status: 'new', aiDrafted: false, receivedAt: '2026-07-22T10:50:00', solvedDate: null,
+    thread: [{ from: 'employee', time: '2026-07-22T10:50:00', text: '来週から出社予定です。入館証（セキュリティカード）の申請はどこから行えばよいでしょうか。' }] },
+  { id: 'q-005', employee: '佐々木 玲', initials: '佐', dept: '人事部', joinDate: '2025-04-01', subject: 'リモートワーク申請の書き方',
+    channel: 'Teams', category: '勤務', status: 'solved', aiDrafted: true, receivedAt: '2026-07-18T11:00:00', solvedDate: '2026-07-19',
+    thread: [
+      { from: 'employee', time: '2026-07-18T11:00:00', text: '週2リモートの申請フォームの書き方がよく分かりません。承認フローも教えてください。' },
+      { from: 'agent', time: '2026-07-19T09:30:00', text: '佐々木さん\n\nリモートワーク申請は社内ポータルの「勤怠・リモート」から提出できます。上長承認後、総務が記録します。詳細はナレッジ「リモートワーク申請とセキュリティ」をご参照ください。\n\n総務 デモ花子' }
+    ] },
+  { id: 'q-006', employee: '中島 大', initials: '中', dept: '営業部', joinDate: '2026-07-01', subject: '名刺発注はどこからできますか？',
+    channel: 'フォーム', category: '備品', status: 'new', aiDrafted: false, receivedAt: '2026-07-22T13:10:00', solvedDate: null,
+    thread: [{ from: 'employee', time: '2026-07-22T13:10:00', text: '名刺がまだ届いていません。発注方法と通常の納期を教えてください。' }] },
+  { id: 'q-007', employee: '石田 彩', initials: '石', dept: '開発部', joinDate: '2026-06-20', subject: '社内Wi-Fiの接続方法',
+    channel: 'Slack', category: 'PC', status: 'drafted', aiDrafted: true, receivedAt: '2026-07-21T16:45:00', solvedDate: null,
+    thread: [{ from: 'employee', time: '2026-07-21T16:45:00', text: 'オフィス来社時にGuestではなく社内Wi-Fiに接続したいです。SSIDと設定手順を教えてください。' }] },
+  { id: 'q-008', employee: '藤原 健', initials: '藤', dept: '経理部', joinDate: '2024-10-01', subject: '慶弔休暇の取得条件',
+    channel: '対面', category: '休暇', status: 'solved', aiDrafted: false, receivedAt: '2026-07-17T15:30:00', solvedDate: '2026-07-17',
+    thread: [
+      { from: 'employee', time: '2026-07-17T15:30:00', text: '親族の法事のため、慶弔休暇を取得したいです。対象範囲と日数を確認したいです。' },
+      { from: 'agent', time: '2026-07-17T16:10:00', text: '就業規則第28条に基づき、二親等以内の場合は3日間取得可能です。人事部へ届出書を提出してください。' }
+    ] }
+];
+
+var KNOWLEDGE = [
+  { id: 'kb-001', title: '有給休暇の取得・申請手順', category: '休暇', views: 342, updated: '2026-06-01', aiAdded: false,
+    summary: '入社6か月後の付与日数、Workdayでの申請フロー、上長承認のタイミングをまとめています。' },
+  { id: 'kb-002', title: '経費精算ルールと期限', category: '経費', views: 218, updated: '2026-05-15', aiAdded: false,
+    summary: '月末締め・翌月5営業日までの申請、領収書要件、交通費・宿泊費の上限を記載。' },
+  { id: 'kb-003', title: '社用PCセットアップガイド', category: 'PC', views: 189, updated: '2026-07-01', aiAdded: false,
+    summary: 'Mac/Windows別の初期設定、必須アプリ（VPN・MDM・Slack）、セキュリティ設定の手順。' },
+  { id: 'kb-004', title: 'オフィス入館・退館マニュアル', category: '入館', views: 156, updated: '2026-04-20', aiAdded: false,
+    summary: 'セキュリティカード申請、来客対応、退館時の施錠確認手順を記載。' },
+  { id: 'kb-005', title: 'リモートワーク申請とセキュリティ', category: '勤務', views: 274, updated: '2026-06-10', aiAdded: true,
+    summary: '週2までのリモート申請フォーム、VPN接続、画面ロック・機密情報取扱いの注意点。' },
+  { id: 'kb-006', title: '名刺・備品の発注方法', category: '備品', views: 98, updated: '2026-03-08', aiAdded: false,
+    summary: '名刺は総務ポータルから申請、通常5営業日で納品。備品はNotion在庫表からリクエスト。' }
+];
+
+var ACTIVITY_LOG = [
+  { text: '<b>AI</b>が新井 陽菜さんの質問に対する出典検索を開始', time: '25分前', color: 'var(--green)' },
+  { text: '<b>デモ 花子</b>が佐々木 玲さんへの回答を送信し、対応完了', time: '3日前', color: 'var(--blue)' },
+  { text: '<b>システム</b>が「リモートワーク申請とセキュリティ」をナレッジに自動追加', time: '3日前', color: 'var(--green-deep)' },
+  { text: '<b>木村 拓也</b>さんの経費精算質問にAI下書きが生成されました', time: '昨日', color: 'var(--green)' },
+  { text: '<b>林 美月</b>さんのPC設定質問が対応中に変更', time: '今日 09:05', color: 'var(--amber)' }
+];
+
+var MEMBERS = [
+  { name: 'デモ 花子', mail: 'demo@growthtech.example', role: 'admin' },
+  { name: '総務 太郎', mail: 'soumu@growthtech.example', role: 'editor' },
+  { name: '人事 美咲', mail: 'jinji@growthtech.example', role: 'editor' },
+  { name: '営業部 リーダー', mail: 'sales-lead@growthtech.example', role: 'member' }
+];
+var ROLE_LABEL = { admin: '管理者', editor: '編集者', member: '閲覧のみ' };
+
+var AI_TOGGLES = [
+  { label: '規程・マニュアル横断検索', desc: '就業規則・社内Wiki・オンボーディング資料を横断照合', on: true },
+  { label: '出典条文ハイライト', desc: '回答に引用元ドキュメントと該当箇所を表示', on: true },
+  { label: '回答下書きの自動生成', desc: '質問内容から社内FAQ形式の回答文を生成', on: true },
+  { label: '解決後のナレッジ自動追加', desc: '対応完了後、FAQ記事の追加案を提示', on: true },
+  { label: '送信前に必ず人の確認', desc: '回答送信前に担当者承認を必須化', on: true }
+];
+var NOTIF_TOGGLES = [
+  { label: '新規質問のSlack通知', desc: '未回答の質問が届いたら即時通知', on: true },
+  { label: 'AI下書き生成完了', desc: '下書きが生成できたタイミングで通知', on: true },
+  { label: 'ナレッジ記事の自動追加', desc: 'FAQ記事が追加された際に通知', on: false }
+];
+
+var Q001_TAGS = [
+  { cls: 'tag-intent', label: '意図: 有給休暇の取得条件' },
+  { cls: 'tag-dept', label: '対象: 入社1か月目・新卒' },
+  { cls: 'tag-urgency', label: '緊急度: 低' }
+];
+var Q001_SOURCES = [
+  { id: 's1', doc: '就業規則', section: '第24条（年次有給休暇）', text: '従業員が<mark>6か月間継続して勤務</mark>し、所定労働日の<mark>8割以上出勤</mark>した場合、10日の年次有給休暇を付与する。' },
+  { id: 's2', doc: 'オンボーディングマニュアル', section: '3章 休暇・勤怠', text: '有給休暇の申請は<mark>Workday「休暇申請」</mark>から行う。取得希望日の<mark>3営業日前まで</mark>に上長承認を得ること。入社直後で付与前でも、<mark>時間単位の欠勤調整</mark>は人事相談可。' }
+];
+var Q001_DRAFT = '新井 陽菜 さん\n\nお問い合わせありがとうございます。総務のデモ花子です。\n\n有給休暇は、入社6か月後かつ所定労働日の8割以上出勤した時点で10日付与されます（就業規則 第24条）。7月入社の場合、付与は2027年1月頃の見込みです。\n\n申請方法はWorkdayの「休暇申請」から行い、取得希望日の3営業日前までに上長承認をお願いしています（オンボーディングマニュアル 3章）。\n\n入社直後でどうしても休みが必要な場合は、人事・総務へ個別相談ください。\n\nご不明点があれば、またお気軽にどうぞ。';
+var Q001_KB_TITLE = '入社直後の有給休暇Q&A';
+var Q001_KB_SUMMARY = '入社6か月・出勤率8割で10日付与、Workday申請、入社直後の相談窓口についてまとめたFAQ。';
+
+var VIEW_NAMES = { dashboard: 'ダッシュボード', inbox: '質問受信箱', knowledge: 'ナレッジ記事', settings: '設定' };
+var STATUS_TABS = [
+  { key: 'all', label: 'すべて' },
+  { key: 'new', label: '未回答' },
+  { key: 'drafted', label: 'AI下書きあり' },
+  { key: 'open', label: '対応中' },
+  { key: 'solved', label: '解決済み' }
+];
+var KB_CATS = ['すべて', '休暇', '経費', 'PC', '入館', '勤務', '備品'];
+
+var draftState = null;
+var q001Runtime = { kbAdded: false, sent: false };
+var loggedIn = false;
+var currentInboxFilter = 'all';
+var currentKbFilter = 'すべて';
+var CURRENT_DETAIL_ID = null;
+
+function findQuestion(id) { return QUESTIONS.filter(function (q) { return q.id === id; })[0]; }
+function countByStatus(s) { return QUESTIONS.filter(function (q) { return q.status === s; }).length; }
+function countSolvedToday() { return QUESTIONS.filter(function (q) { return q.status === 'solved' && q.solvedDate === TODAY_STR; }).length; }
+
+function isLoggedIn() { return loggedIn; }
+
+function handleRoute() {
+  var hash = location.hash.replace('#', '') || 'login';
+  if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
+  if (hash === 'login') { showLoginScreen(); return; }
+  showAppScreen();
+  if (hash.indexOf('question/') === 0) {
+    openQuestionDetail(hash.split('/')[1]);
+    setActiveNav(null);
+    return;
+  }
+  var view = ['dashboard', 'inbox', 'knowledge', 'settings'].indexOf(hash) >= 0 ? hash : 'dashboard';
+  showView(view);
+  setActiveNav(view);
+}
+
+function showLoginScreen() {
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+}
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+}
+
+function showView(name) {
+  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
+  var el = document.getElementById('view-' + name);
+  if (el) el.classList.add('active');
+  document.getElementById('viewNameLabel').textContent = VIEW_NAMES[name] || 'スレッド';
+  if (name === 'dashboard') renderDashboard();
+  if (name === 'inbox') renderInboxView();
+  if (name === 'knowledge') renderKnowledgeView();
+  if (name === 'settings') renderSettings();
+  toggleSidebar(false);
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function setActiveNav(name) {
+  document.querySelectorAll('.nav-btn').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.nav === name);
+  });
+}
+
+function go(name) { location.hash = name; }
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  renderNotifDropdown();
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') loggedIn = true;
+  handleRoute();
+});
+
+function doLogin() {
+  var btn = document.getElementById('loginBtn');
+  if (btn.classList.contains('loading')) return;
+  btn.classList.add('loading');
+  btn.disabled = true;
+  setTimeout(function () {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    loggedIn = true;
+    if (location.hash === '#dashboard') handleRoute();
+    else location.hash = 'dashboard';
+  }, 800);
+}
+function doLogout() {
+  loggedIn = false;
+  showToast('ログアウトしました');
+}
+
+function toggleSidebar(force) {
+  var sb = document.getElementById('sidebar');
+  var ov = document.getElementById('mobileOverlay');
+  var open = typeof force === 'boolean' ? force : !sb.classList.contains('open');
+  sb.classList.toggle('open', open);
+  ov.classList.toggle('open', open);
+}
+
+function toggleDropdown(id) {
+  var el = document.getElementById(id);
+  var willOpen = !el.classList.contains('open');
+  document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
+  if (willOpen) el.classList.add('open');
+}
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('.dropdown-wrap')) {
+    document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
+  }
+});
+
+function renderNotifDropdown() {
+  var items = [
+    { color: 'var(--green)', text: '新井 陽菜さんから新しい質問が届きました', time: '25分前' },
+    { color: 'var(--blue)', text: '木村 拓也さんのAI回答下書きが生成されました', time: '昨日' },
+    { color: 'var(--amber)', text: '林 美月さんの質問が対応中です', time: '今日' }
+  ];
+  document.getElementById('notifList').innerHTML = items.map(function (n) {
+    return '<div class="notif-item"><span class="dot" style="background:' + n.color + '"></span><div class="txt">' + escapeHtml(n.text) + '<div class="time">' + escapeHtml(n.time) + '</div></div></div>';
+  }).join('');
+  document.getElementById('notifBadgeCount').textContent = items.length;
+}
+
+function kpiCardHtml(label, num, unit, sub) {
+  return '<div class="kpi-card"><div class="k-label">' + escapeHtml(label) + '</div><div><span class="k-num">' + num + '</span><span class="k-unit">' + unit + '</span></div><div class="k-sub">' + escapeHtml(sub) + '</div></div>';
+}
+
+function renderDashboard() {
+  document.getElementById('kpiGrid').innerHTML = [
+    kpiCardHtml('未回答', countByStatus('new'), '件', '本日 +' + countByStatus('new')),
+    kpiCardHtml('AI下書き待ち', QUESTIONS.filter(function (q) { return q.aiDrafted; }).length, '件', '確認して送信'),
+    kpiCardHtml('今月解決', QUESTIONS.filter(function (q) { return q.status === 'solved'; }).length, '件', 'ナレッジ追加 ' + KNOWLEDGE.filter(function (k) { return k.aiAdded; }).length + '本'),
+    kpiCardHtml('Wiki記事', KNOWLEDGE.length, '本', '今月PV 1,277')
+  ].join('');
+
+  var pending = QUESTIONS.filter(function (q) { return q.status === 'new' || (q.status === 'drafted' && q.aiDrafted); }).slice(0, 4);
+  document.getElementById('pendingList').innerHTML = pending.length ? pending.map(function (q) {
+    return '<div class="task-row" onclick="location.hash=\'question/' + q.id + '\'">' +
+      '<div class="t-avatar">' + escapeHtml(q.initials) + '</div>' +
+      '<div class="t-main"><div class="t-title">' + escapeHtml(q.subject) + '</div><div class="t-sub">' + escapeHtml(q.employee) + ' ・ ' + escapeHtml(q.category) + '</div></div>' +
+      '<span class="badge badge-' + q.status + '">' + STATUS_LABEL[q.status] + '</span></div>';
+  }).join('') : '<p style="font-size:12px;color:var(--gray-soft);">対応待ちの質問はありません。</p>';
+
+  document.getElementById('activityTimeline').innerHTML = ACTIVITY_LOG.map(function (a) {
+    return '<div class="timeline-item"><span class="timeline-dot" style="background:' + a.color + '"></span><div><div class="timeline-text">' + a.text + '</div><div class="timeline-date">' + escapeHtml(a.time) + '</div></div></div>';
+  }).join('');
+
+  var popular = KNOWLEDGE.slice().sort(function (a, b) { return b.views - a.views; }).slice(0, 3);
+  document.getElementById('popularArticles').innerHTML = popular.map(function (k) {
+    return articleCardHtml(k);
+  }).join('');
+}
+
+function renderInboxView() {
+  document.getElementById('inboxTotalCount').textContent = QUESTIONS.length;
+  renderStatusTabs();
+  renderInboxTable();
+}
+function renderStatusTabs() {
+  document.getElementById('statusTabRow').innerHTML = STATUS_TABS.map(function (t) {
+    var count = t.key === 'all' ? QUESTIONS.length : countByStatus(t.key);
+    return '<button class="tab-chip ' + (currentInboxFilter === t.key ? 'active' : '') + '" onclick="setInboxFilter(\'' + t.key + '\')">' +
+      t.label + '<span class="cnt">' + count + '</span></button>';
+  }).join('');
+}
+function setInboxFilter(key) {
+  currentInboxFilter = key;
+  renderStatusTabs();
+  renderInboxTable();
+}
+function renderInboxTable() {
+  var qEl = document.getElementById('questionSearchInput');
+  var q = qEl ? (qEl.value || '').trim().toLowerCase() : '';
+  var rows = QUESTIONS.filter(function (t) {
+    if (currentInboxFilter !== 'all' && t.status !== currentInboxFilter) return false;
+    if (!q) return true;
+    return t.employee.toLowerCase().indexOf(q) >= 0 || t.subject.toLowerCase().indexOf(q) >= 0;
+  }).sort(function (a, b) { return new Date(b.receivedAt) - new Date(a.receivedAt); });
+
+  var tbody = document.getElementById('inboxTbody');
+  if (!rows.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="6">該当する質問がありません。</td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.map(function (t) {
+    var hot = t.status === 'new';
+    return '<tr class="' + (hot ? 'row-hot' : '') + '" onclick="location.hash=\'question/' + t.id + '\'">' +
+      '<td class="name-cell" data-label="質問者">' + escapeHtml(t.employee) + '</td>' +
+      '<td data-label="件名">' + escapeHtml(t.subject) + '</td>' +
+      '<td data-label="チャネル"><span class="ch-cell">' + channelIcon(t.channel) + t.channel + '</span></td>' +
+      '<td data-label="カテゴリ">' + escapeHtml(t.category) + '</td>' +
+      '<td data-label="受信">' + fmtDateTime(t.receivedAt) + '</td>' +
+      '<td data-label="ステータス"><span class="badge badge-' + t.status + '">' + STATUS_LABEL[t.status] + '</span></td></tr>';
+  }).join('');
+}
+
+function articleCardHtml(k) {
+  return '<div class="article-card" onclick="go(\'knowledge\')">' +
+    (k.aiAdded ? '<span class="badge badge-ai ac-ai">AI追加</span>' : '') +
+    '<div class="ac-cat">' + escapeHtml(k.category) + '</div>' +
+    '<h4>' + escapeHtml(k.title) + '</h4>' +
+    '<p>' + escapeHtml(k.summary) + '</p>' +
+    '<div class="ac-meta"><span>PV ' + k.views + '</span><span>更新 ' + fmtDate(k.updated) + '</span></div></div>';
+}
+
+function renderKnowledgeView() {
+  document.getElementById('kbTotalCount').textContent = KNOWLEDGE.length;
+  document.getElementById('kbCatRow').innerHTML = KB_CATS.map(function (c) {
+    var count = c === 'すべて' ? KNOWLEDGE.length : KNOWLEDGE.filter(function (k) { return k.category === c; }).length;
+    return '<button class="tab-chip ' + (currentKbFilter === c ? 'active' : '') + '" onclick="setKbFilter(\'' + c + '\')">' +
+      c + '<span class="cnt">' + count + '</span></button>';
+  }).join('');
+  var list = currentKbFilter === 'すべて' ? KNOWLEDGE : KNOWLEDGE.filter(function (k) { return k.category === currentKbFilter; });
+  document.getElementById('kbGrid').innerHTML = list.map(articleCardHtml).join('');
+}
+function setKbFilter(c) {
+  currentKbFilter = c;
+  renderKnowledgeView();
+}
+
+function openQuestionDetail(id) {
+  var q = findQuestion(id);
+  CURRENT_DETAIL_ID = id;
+  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
+  document.getElementById('view-question-detail').classList.add('active');
+  document.getElementById('viewNameLabel').textContent = 'スレッド';
+
+  if (!q) {
+    document.getElementById('detailTitle').textContent = '質問が見つかりません';
+    return;
+  }
+
+  document.getElementById('detailTitle').textContent = q.subject;
+  document.getElementById('detailSub').innerHTML =
+    escapeHtml(q.employee) + '（' + escapeHtml(q.dept) + '）　／　<span class="ch-cell" style="display:inline-flex;">' + channelIcon(q.channel) + q.channel + '</span>　／　' + escapeHtml(q.category);
+  var badge = document.getElementById('detailStatusBadge');
+  badge.className = 'badge badge-' + q.status;
+  badge.textContent = STATUS_LABEL[q.status];
+  document.getElementById('threadChannelNote').textContent = fmtDateTime(q.receivedAt) + ' 受信';
+  renderThread(q);
+  renderProfileTab(q);
+
+  if (id === 'q-001') setupDraftPane(q);
+  else {
+    document.getElementById('pane-draft').innerHTML = genericDraftHtml(q);
+    document.getElementById('pane-sources').innerHTML = '<p style="font-size:12px;color:var(--gray-soft);">出典表示のフル体験は「' + escapeHtml(findQuestion('q-001').employee) + '」さんの質問でご覧いただけます。</p>';
+  }
+  switchSideTab('draft');
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function renderThread(q) {
+  document.getElementById('threadBody').innerHTML = q.thread.map(function (m) {
+    var name = m.from === 'employee' ? q.employee : 'デモ 花子（総務）';
+    return '<div class="chat-row from-' + m.from + '"><div class="chat-name">' + escapeHtml(name) + '</div>' +
+      '<div class="chat-bubble">' + escapeHtml(m.text) + '</div><div class="chat-time">' + fmtDateTime(m.time) + '</div></div>';
+  }).join('');
+}
+
+function renderProfileTab(q) {
+  document.getElementById('pane-profile').innerHTML =
+    '<table style="width:100%;font-size:13px;border-collapse:collapse;">' +
+    '<tr><td style="padding:8px 0;color:var(--gray-soft);width:90px;">氏名</td><td style="font-weight:700;">' + escapeHtml(q.employee) + '</td></tr>' +
+    '<tr><td style="padding:8px 0;color:var(--gray-soft);">部署</td><td>' + escapeHtml(q.dept) + '</td></tr>' +
+    '<tr><td style="padding:8px 0;color:var(--gray-soft);">入社日</td><td>' + fmtDate(q.joinDate) + '</td></tr>' +
+    '<tr><td style="padding:8px 0;color:var(--gray-soft);">チャネル</td><td>' + escapeHtml(q.channel) + '</td></tr></table>';
+}
+
+function switchSideTab(tab) {
+  document.querySelectorAll('.side-tab-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.tab === tab); });
+  document.querySelectorAll('.side-tab-pane').forEach(function (p) { p.classList.remove('active'); });
+  var el = document.getElementById('pane-' + tab);
+  if (el) el.classList.add('active');
+}
+
+function genericDraftHtml(q) {
+  var note = q.status === 'new' ? 'まだAI下書きは生成されていません。'
+    : q.status === 'drafted' ? 'AI回答下書きが生成済みです。担当者確認待ち。'
+    : q.status === 'open' ? '担当者が手動で対応中です。'
+    : '対応は完了しています。';
+  return '<div class="ai-start-box"><p>' + note + '<br>出典検索→回答下書き→ナレッジ追加のフル体験は「' + escapeHtml(findQuestion('q-001').employee) + '」さんの質問でご覧いただけます。</p>' +
+    '<div class="generic-cta-card"><a href="#question/q-001" class="btn-ai-run" style="display:block;text-align:center;text-decoration:none;">q-001のフル体験を見る</a></div></div>';
+}
+
+function setupDraftPane(q) {
+  draftState = { phase: 'idle', timers: [], runId: null, editedText: '' };
+  renderDraftIdle();
+  document.getElementById('pane-sources').innerHTML = '<p style="font-size:12px;color:var(--gray-soft);">AI回答生成後、出典条文がここに表示されます。</p>';
+}
+function clearDraftTimers() {
+  if (!draftState) return;
+  draftState.timers.forEach(function (id) { clearTimeout(id); });
+  draftState.timers = [];
+}
+function renderDraftIdle() {
+  document.getElementById('pane-draft').innerHTML =
+    '<div class="ai-start-box"><p>AIが規程・マニュアルを横断検索し、<br>出典付きの回答下書きを作成します。</p>' +
+    '<button class="btn-ai-run" onclick="startAiDraft()">AI回答下書きを生成</button></div>';
+}
+
+function startAiDraft() {
+  if (!draftState || draftState.phase !== 'idle') return;
+  var myRun = {};
+  draftState.runId = myRun;
+  draftState.phase = 'analyzing';
+  document.getElementById('pane-draft').innerHTML =
+    '<div class="analyze-box"><div class="an-spinner"></div><div class="an-text">質問を分析中…</div><div class="tag-list" id="analysisTagList"></div></div>' +
+    '<button class="btn-skip" onclick="skipAiDraft()">⏩ すべて表示</button>';
+  var idx = 0;
+  function stepTag() {
+    if (!draftState || draftState.runId !== myRun || draftState.phase !== 'analyzing') return;
+    if (idx >= Q001_TAGS.length) {
+      var t2 = setTimeout(function () { beginSourceSearch(myRun); }, 400);
+      draftState.timers.push(t2);
+      return;
+    }
+    var host = document.getElementById('analysisTagList');
+    var span = document.createElement('span');
+    span.className = 'analysis-tag ' + Q001_TAGS[idx].cls;
+    span.textContent = Q001_TAGS[idx].label;
+    host.appendChild(span);
+    requestAnimationFrame(function () { span.classList.add('in'); });
+    idx++;
+    var t = setTimeout(stepTag, 350);
+    draftState.timers.push(t);
+  }
+  draftState.timers.push(setTimeout(stepTag, 400));
+}
+
+function beginSourceSearch(myRun) {
+  if (!draftState || draftState.runId !== myRun) return;
+  draftState.phase = 'sources';
+  document.getElementById('pane-draft').innerHTML =
+    '<div class="analyze-box"><div class="an-spinner"></div><div class="an-text">規程・マニュアルを検索中…</div></div>';
+  switchSideTab('sources');
+  document.getElementById('pane-sources').innerHTML =
+    '<div class="analyze-box"><div class="an-spinner"></div><div class="an-text">出典条文を抽出中…</div></div>';
+  var t = setTimeout(function () { revealSources(myRun); }, 1200);
+  draftState.timers.push(t);
+}
+
+function revealSources(myRun) {
+  if (!draftState || draftState.runId !== myRun) return;
+  draftState.phase = 'sourced';
+  document.getElementById('pane-sources').innerHTML =
+    '<div class="source-pills" id="sourcePills"></div><div class="source-list" id="sourceList"></div>';
+  Q001_SOURCES.forEach(function (s, i) {
+    document.getElementById('sourcePills').insertAdjacentHTML('beforeend',
+      '<span class="source-pill ' + (i === 0 ? 'active' : '') + '" onclick="highlightSource(\'' + s.id + '\')">' + escapeHtml(s.doc) + '</span>');
+    document.getElementById('sourceList').insertAdjacentHTML('beforeend', sourceCardHtml(s, i === 0));
+  });
+  switchSideTab('draft');
+  document.getElementById('pane-draft').innerHTML =
+    '<div class="analyze-box"><div class="an-text">回答下書きを生成中…</div><div class="an-spinner"></div></div>';
+  var t = setTimeout(function () { beginTypingDraft(myRun); }, 800);
+  draftState.timers.push(t);
+}
+
+function sourceCardHtml(s, active) {
+  return '<div class="source-card ' + (active ? 'active' : '') + '" id="source-' + s.id + '" onclick="highlightSource(\'' + s.id + '\')">' +
+    '<div class="sc-doc">' + escapeHtml(s.doc) + '</div><div class="sc-section">' + escapeHtml(s.section) + '</div>' +
+    '<div class="sc-text">' + s.text + '</div></div>';
+}
+function highlightSource(id) {
+  document.querySelectorAll('.source-card').forEach(function (el) { el.classList.toggle('active', el.id === 'source-' + id); });
+  document.querySelectorAll('.source-pill').forEach(function (el, i) {
+    el.classList.toggle('active', Q001_SOURCES[i] && Q001_SOURCES[i].id === id);
+  });
+}
+
+function beginTypingDraft(myRun) {
+  if (!draftState || draftState.runId !== myRun) return;
+  draftState.phase = 'typing';
+  document.getElementById('pane-draft').innerHTML =
+    '<div class="draft-note"><span class="badge badge-human">人が確認</span><span>生成後に編集できます。送信前に必ず内容を確認してください。</span></div>' +
+    '<div class="draft-box"><div class="draft-text-preview" id="draftPreview"></div></div>' +
+    '<button class="btn-approve" id="btnSendDraft" disabled onclick="sendDraft()">回答を送信<span class="badge badge-human">人が確認</span></button>' +
+    '<div id="kbAddSlot"></div>';
+  typeDraftText(Q001_DRAFT, myRun, function () {
+    document.getElementById('btnSendDraft').disabled = false;
+    showKbAddCard();
+  });
+}
+
+function typeDraftText(fullText, myRun, onDone) {
+  var el = document.getElementById('draftPreview');
+  var shown = 0;
+  function tick() {
+    if (!draftState || draftState.runId !== myRun) return;
+    shown = Math.min(fullText.length, shown + 2);
+    if (el) el.textContent = fullText.slice(0, shown);
+    if (shown >= fullText.length) {
+      if (el) el.innerHTML = escapeHtml(fullText);
+      draftState.phase = 'ready';
+      if (onDone) onDone();
+      return;
+    }
+    if (el) el.innerHTML = escapeHtml(fullText.slice(0, shown)) + '<span class="draft-cursor"></span>';
+    draftState.timers.push(setTimeout(tick, 24));
+  }
+  tick();
+}
+
+function showKbAddCard() {
+  if (q001Runtime.kbAdded) return;
+  var slot = document.getElementById('kbAddSlot');
+  if (!slot) return;
+  slot.innerHTML =
+    '<div class="kb-add-card" id="kbAddCard"><h5>📚 ナレッジ記事の追加案</h5>' +
+    '<p><strong>' + escapeHtml(Q001_KB_TITLE) + '</strong><br>' + escapeHtml(Q001_KB_SUMMARY) + '</p>' +
+    '<button class="btn-approve" onclick="addKnowledge()">Wikiに追加<span class="badge badge-human">人が確認</span></button></div>';
+  requestAnimationFrame(function () {
+    var card = document.getElementById('kbAddCard');
+    if (card) card.classList.add('in');
+  });
+}
+
+function sendDraft() {
+  var q = findQuestion('q-001');
+  if (!q || q001Runtime.sent) return;
+  q.thread.push({ from: 'agent', time: '2026-07-22T10:45:00', text: Q001_DRAFT });
+  q.status = 'solved';
+  q.solvedDate = TODAY_STR;
+  q.aiDrafted = true;
+  q001Runtime.sent = true;
+  renderThread(q);
+  var badge = document.getElementById('detailStatusBadge');
+  badge.className = 'badge badge-solved';
+  badge.textContent = STATUS_LABEL.solved;
+  document.getElementById('pane-draft').insertAdjacentHTML('afterbegin',
+    '<div class="complete-banner in">✓ 回答を送信しました（デモ）</div>');
+  document.getElementById('btnSendDraft').disabled = true;
+  showToast('回答を送信しました');
+}
+
+function addKnowledge() {
+  if (q001Runtime.kbAdded) return;
+  KNOWLEDGE.unshift({
+    id: 'kb-new', title: Q001_KB_TITLE, category: '休暇', views: 0, updated: TODAY_STR, aiAdded: true,
+    summary: Q001_KB_SUMMARY
+  });
+  q001Runtime.kbAdded = true;
+  var card = document.getElementById('kbAddCard');
+  if (card) {
+    card.innerHTML = '<h5>✓ ナレッジ記事を追加しました</h5><p>「' + escapeHtml(Q001_KB_TITLE) + '」がWikiに公開されました（デモ）。</p>';
+  }
+  showToast('ナレッジ記事をWikiに追加しました');
+}
+
+function skipAiDraft() {
+  if (!draftState) return;
+  clearDraftTimers();
+  draftState.runId = {};
+  draftState.phase = 'ready';
+  document.getElementById('pane-sources').innerHTML =
+    '<div class="source-pills">' + Q001_SOURCES.map(function (s, i) {
+      return '<span class="source-pill ' + (i === 0 ? 'active' : '') + '" onclick="highlightSource(\'' + s.id + '\')">' + escapeHtml(s.doc) + '</span>';
+    }).join('') + '</div><div class="source-list">' + Q001_SOURCES.map(function (s, i) { return sourceCardHtml(s, i === 0); }).join('') + '</div>';
+  document.getElementById('pane-draft').innerHTML =
+    '<div class="draft-note"><span class="badge badge-human">人が確認</span><span>生成後に編集できます。</span></div>' +
+    '<div class="draft-box"><div class="draft-text-preview">' + escapeHtml(Q001_DRAFT) + '</div></div>' +
+    '<button class="btn-approve" onclick="sendDraft()">回答を送信<span class="badge badge-human">人が確認</span></button><div id="kbAddSlot"></div>';
+  showKbAddCard();
+  showToast('出典付き回答下書きを表示しました');
+}
+
+function renderSettings() {
+  document.getElementById('memberList').innerHTML = MEMBERS.map(function (m) {
+    return '<div class="member-row"><div><div class="m-name">' + escapeHtml(m.name) + '</div><div class="m-mail">' + escapeHtml(m.mail) + '</div></div>' +
+      '<span class="role-badge role-' + m.role + '">' + ROLE_LABEL[m.role] + '</span></div>';
+  }).join('');
+  document.getElementById('aiToggleList').innerHTML = AI_TOGGLES.map(function (t, i) {
+    return toggleRowHtml('ai-' + i, t.label, t.desc, t.on);
+  }).join('');
+  document.getElementById('notifToggleList').innerHTML = NOTIF_TOGGLES.map(function (t, i) {
+    return toggleRowHtml('nt-' + i, t.label, t.desc, t.on);
+  }).join('');
+}
+function toggleRowHtml(id, label, desc, on) {
+  return '<div class="toggle-row"><div><div class="tg-label">' + escapeHtml(label) + '</div><div class="tg-desc">' + escapeHtml(desc) + '</div></div>' +
+    '<label class="switch"><input type="checkbox" id="' + id + '" ' + (on ? 'checked' : '') + ' onchange="onToggleChange(this)"><span class="track"></span></label></div>';
+}
+function onToggleChange(input) {
+  showToast(input.checked ? '設定をONにしました（デモ）' : '設定をOFFにしました（デモ）');
+}
+</script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
+</body>
+</html>
