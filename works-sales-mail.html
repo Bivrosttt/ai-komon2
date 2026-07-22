@@ -1,36 +1,416 @@
-<!-- 2026-07-22: 営業メール Before/After 成果物サンプル -->
+<!-- 2026-07-22: BtoB追客メール Before/After インタラクティブショーケース（Outlook風UI・Day3/7/14タブ・差分ハイライト）を新規制作 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>営業メール Before/After｜作品ショーケース｜AI顧問室</title>
-<meta name="description" content="追客・フォローメールのBefore/Afterサンプル。テンプレ化前後の比較。">
+<title>営業メール Before/After（BtoB追客テンプレ化）｜AI顧問室</title>
+<meta name="description" content="クラウド在庫管理SaaSの追客メールを、汎用テンプレから商談メモ起点のパーソナライズ文へ。Outlook風UIでBefore/After Day3・Day7・Day14を切り替え比較。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="営業メール Before/After（BtoB追客テンプレ化）｜AI顧問室">
+<meta property="og:description" content="追客メールのテンプレ化前後を、メールクライアントUIで見比べ。商談メモから差分ハイライト付きの追客文を生成。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-sales-mail.html">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-sales-mail.html">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0B2447;--gold:#C9A227;--ink:#1A2433;--gray:#5B6B7F;--line:#DDE4EC;--bg:#F4F7FA}
-*{margin:0;padding:0;box-sizing:border-box} body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);line-height:1.85}
-h1,h2{font-family:'Noto Serif JP',serif} a{color:var(--navy)}
-.container{max-width:880px;margin:0 auto;padding:0 24px}
-header{border-bottom:1px solid var(--line);padding:16px 0} .back{font-size:13px;color:#2D6CB5}
-.hero{padding:48px 0 32px} .cat{font-size:12px;color:#2D6CB5;font-weight:700;letter-spacing:.08em}
-.hero h1{font-size:clamp(26px,4vw,34px);margin:8px 0 12px;color:var(--navy)}
-.preview{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:28px;margin:24px 0}
-.cta{text-align:center;padding:40px 0 56px;border-top:1px solid var(--line)}
-.btn{display:inline-block;background:var(--gold);color:#071A35;padding:12px 28px;border-radius:4px;font-weight:700;text-decoration:none}
-footer{background:#071A35;color:#9fb0c7;text-align:center;padding:24px;font-size:13px}
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D; --blue: #2D6CB5;
+    --gold: #C9A227; --gold-soft: rgba(201,162,39,.18); --ink: #1A2433; --gray: #5B6B7F;
+    --line: #DDE4EC; --bg-soft: #F4F7FA; --white: #FFF;
+    --outlook-bg: #F3F2F1; --outlook-sidebar: #FAF9F8; --outlook-accent: #0078D4;
+    --highlight: #FFF3CD; --highlight-border: #E8C547;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.85; background: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  button { font: inherit; color: inherit; cursor: pointer; background: none; border: none; }
+  .container { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 72px 0; }
+  .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-weight: 700; font-size: 15px; transition: opacity .2s, transform .1s; }
+  .btn:hover { opacity: .85; }
+  .btn:active { transform: scale(.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--navy); }
+  .back { font-size: 13px; color: var(--blue); }
+  nav.header-nav { display: flex; gap: 20px; align-items: center; }
+
+  .hero { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 60%, var(--navy-light)); color: var(--white); padding: 68px 0 56px; }
+  .hero .label { font-size: 12px; letter-spacing: .2em; color: var(--gold); font-weight: 700; }
+  .hero h1 { font-size: clamp(24px, 4vw, 34px); margin: 10px 0 14px; }
+  .hero p { color: #C7D3E4; max-width: 720px; font-size: 15px; }
+  .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+  .hero-chip { font-size: 11.5px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: 5px 14px; color: #E4EBF5; }
+
+  /* ---------- mail theater ---------- */
+  .theater { background: var(--navy-deep); padding: 40px 0 44px; }
+  .theater .frame { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  .mode-tabs { display: inline-flex; flex-wrap: wrap; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 4px; gap: 4px; margin-bottom: 18px; }
+  .mode-tab { padding: 10px 20px; min-height: 44px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #C7D3E4; transition: background .2s, color .2s; white-space: nowrap; }
+  .mode-tab:hover { color: #fff; }
+  .mode-tab.active { background: var(--gold); color: var(--navy-deep); }
+
+  .highlight-legend { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; font-size: 12px; color: #9FB0C7; opacity: 0; visibility: hidden; transition: opacity .2s; }
+  .highlight-legend.visible { opacity: 1; visibility: visible; }
+  .highlight-legend .swatch { width: 14px; height: 14px; border-radius: 2px; background: var(--highlight); border: 1px solid var(--highlight-border); }
+
+  .mail-app {
+    display: grid; grid-template-columns: 220px 1fr;
+    background: var(--outlook-bg); border-radius: 8px; overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0,0,0,.45); min-height: 560px;
+    border: 1px solid rgba(255,255,255,.08);
+  }
+
+  .mail-sidebar { background: var(--outlook-sidebar); border-right: 1px solid #EDEBE9; display: flex; flex-direction: column; }
+  .mail-appbar { padding: 12px 14px; border-bottom: 1px solid #EDEBE9; background: var(--white); }
+  .mail-appbar .app-title { font-size: 13px; font-weight: 700; color: var(--outlook-accent); display: flex; align-items: center; gap: 8px; }
+  .mail-appbar .app-title::before { content: ''; width: 18px; height: 18px; background: var(--outlook-accent); border-radius: 3px; display: inline-block; }
+  .mail-folders { padding: 8px 0; font-size: 12.5px; }
+  .mail-folder { padding: 7px 14px; color: var(--gray); display: flex; justify-content: space-between; }
+  .mail-folder.active { background: rgba(0,120,212,.08); color: var(--outlook-accent); font-weight: 700; border-left: 3px solid var(--outlook-accent); }
+  .mail-folder .count { font-size: 11px; background: #EDEBE9; border-radius: 999px; padding: 1px 7px; color: var(--gray); }
+  .mail-folder.active .count { background: rgba(0,120,212,.15); color: var(--outlook-accent); }
+
+  .mail-list { border-top: 1px solid #EDEBE9; flex: 1; overflow: hidden; }
+  .mail-list-item { padding: 10px 14px; border-bottom: 1px solid #EDEBE9; cursor: default; }
+  .mail-list-item.selected { background: rgba(0,120,212,.06); border-left: 3px solid var(--outlook-accent); }
+  .mail-list-item .sender { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+  .mail-list-item .subject { font-size: 11.5px; color: var(--gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mail-list-item .date { font-size: 10.5px; color: #A19F9D; margin-top: 3px; }
+  .mail-list-item.dim { opacity: .55; }
+
+  .mail-main { display: flex; flex-direction: column; background: var(--white); min-width: 0; }
+  .mail-toolbar { display: flex; align-items: center; gap: 12px; padding: 10px 18px; border-bottom: 1px solid #EDEBE9; background: #FAF9F8; font-size: 12px; color: var(--gray); flex-wrap: wrap; }
+  .mail-toolbar .tool { padding: 4px 10px; border: 1px solid #EDEBE9; border-radius: 4px; background: var(--white); }
+  .mail-toolbar .tool.primary { background: var(--outlook-accent); color: #fff; border-color: var(--outlook-accent); }
+
+  .mail-header { padding: 20px 24px 16px; border-bottom: 1px solid #EDEBE9; }
+  .mail-header h2 { font-family: 'Noto Sans JP', sans-serif; font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 12px; line-height: 1.4; }
+  .mail-meta { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 12.5px; color: var(--gray); }
+  .mail-meta dt { font-weight: 700; color: #605E5C; min-width: 52px; }
+  .mail-meta dd { color: var(--ink); }
+
+  .mail-body { padding: 22px 24px 28px; font-size: 14px; line-height: 1.95; color: var(--ink); flex: 1; overflow-y: auto; }
+  .mail-body p { margin-bottom: 14px; }
+  .mail-body .sig { margin-top: 24px; font-size: 13px; color: var(--gray); line-height: 1.7; border-top: 1px solid #EDEBE9; padding-top: 16px; }
+  .mail-body .cta-block { background: var(--bg-soft); border-left: 3px solid var(--outlook-accent); padding: 14px 16px; margin: 18px 0; border-radius: 0 6px 6px 0; font-size: 13.5px; }
+  .mail-body .cta-block strong { color: var(--navy); }
+
+  .hl { background: var(--highlight); border-bottom: 2px solid var(--highlight-border); padding: 0 2px; border-radius: 2px; }
+  body.mode-before .hl { background: transparent; border-bottom: none; padding: 0; }
+
+  .theater .meta { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 16px; font-size: 12px; color: #9FB0C7; }
+  .theater .meta strong { color: #E4EBF5; font-weight: 700; }
+
+  /* ---------- process section ---------- */
+  .note-band { background: var(--bg-soft); }
+  .section-head { max-width: 640px; margin-bottom: 36px; }
+  .section-head .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 10px; }
+  .section-head h2 { font-size: clamp(21px, 3.4vw, 27px); color: var(--navy); margin-bottom: 10px; }
+  .section-head p { font-size: 13.5px; color: var(--gray); }
+
+  .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+  .step-card { background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+  .step-num { font-family: 'Noto Serif JP', serif; font-size: 13px; font-weight: 700; color: var(--gold); letter-spacing: .06em; margin-bottom: 8px; }
+  .step-card h3 { font-size: 15.5px; color: var(--navy); margin-bottom: 8px; }
+  .step-card p { font-size: 12.5px; color: var(--gray); }
+
+  .disclaimer { background: var(--white); border-left: 4px solid var(--gold); padding: 14px 18px; font-size: 12.5px; color: var(--gray); margin-top: 32px; line-height: 1.8; }
+  .disclaimer strong { color: var(--ink); }
+
+  .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; }
+  .cta h2 { font-size: 26px; margin-bottom: 12px; }
+  .cta p { color: #C7D3E4; margin-bottom: 30px; }
+
+  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 32px 0; text-align: center; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 820px) {
+    .mail-app { grid-template-columns: 1fr; min-height: auto; }
+    .mail-sidebar { display: none; }
+    .hero h1 { font-size: 25px; }
+    section { padding: 52px 0; }
+  }
+  @media (max-width: 480px) {
+    .header-inner { height: 58px; }
+    .mode-tab { padding: 9px 14px; font-size: 12px; }
+    .mail-body { padding: 16px 18px 22px; font-size: 13.5px; }
+    .theater { padding: 32px 0 36px; }
+  }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
 </head>
-<body>
-<header><div class="container"><a href="works.html" class="back">← 作品ショーケース</a></div></header>
-<main class="container">
-  <div class="hero"><div class="cat">BtoB営業・メール</div><h1>営業メール Before/After</h1><p style="color:var(--gray);max-width:640px">毎回ゼロから書いていた追客メールを、顧客別の下書きから磨き込む流れに。</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><span style="font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px">Before/After</span><span style="font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px">追客3通</span><span style="font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px">テンプレ化</span></div></div>
-  <div class="preview"><article style="border:1px solid var(--line);border-radius:6px;padding:16px;margin-bottom:12px"><h3 style="font-size:16px;color:var(--navy);margin-bottom:6px">Before</h3><p style="font-size:14px;color:var(--gray)">「お世話になっております。進捗いかがでしょうか…」（毎回同文）</p></article><article style="border:1px solid var(--line);border-radius:6px;padding:16px;margin-bottom:12px"><h3 style="font-size:16px;color:var(--navy);margin-bottom:6px">After Day3</h3><p style="font-size:14px;color:var(--gray)">内見の論点を引用したパーソナライズ文</p></article><article style="border:1px solid var(--line);border-radius:6px;padding:16px;margin-bottom:12px"><h3 style="font-size:16px;color:var(--navy);margin-bottom:6px">After Day7</h3><p style="font-size:14px;color:var(--gray)">比較検討中の条件を確認する一文</p></article><article style="border:1px solid var(--line);border-radius:6px;padding:16px;margin-bottom:12px"><h3 style="font-size:16px;color:var(--navy);margin-bottom:6px">After Day14</h3><p style="font-size:14px;color:var(--gray)">休眠顧客向け・新着通知オプトイン</p></article></div>
-  <p style="font-size:13px;color:var(--gray);border-left:4px solid var(--gold);padding-left:14px">※架空サンプルです。実際は御社のブランド・書式・承認フローに合わせて制作します。</p>
-</main>
-<div class="cta"><a href="index.html?from=works-sales-mail#contact" class="btn">同じ品質を相談する →</a></div>
-<footer><a href="index.html" style="color:#9fb0c7">AI顧問室</a></footer>
+<body class="mode-before">
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo">AI顧問室</a>
+    <nav class="header-nav">
+      <a href="works.html" class="back">← 作品一覧へ</a>
+      <a href="index.html?from=works-sales-mail#contact" class="btn btn-gold" style="padding:9px 22px; font-size:13px;">無料相談</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="label">BtoB SALES MAIL</span>
+    <h1>追客メール、毎回ゼロから書かない。</h1>
+    <p>商談メモとCRM情報を起点に、Day3・Day7・Day14の追客文をテンプレ化。下のOutlook風UIで、汎用テンプレ（Before）とAI下書き＋人の確認（After）をタブ切替で見比べられます。題材は架空のIT商材「StockPilot（クラウド在庫管理SaaS）」×見込み客「株式会社ミライ物流」です。</p>
+    <div class="hero-chips">
+      <span class="hero-chip">Before / After 4パターン</span>
+      <span class="hero-chip">商談メモ起点のパーソナライズ</span>
+      <span class="hero-chip">差分ハイライト表示</span>
+    </div>
+  </div>
+</div>
+
+<div class="theater">
+  <div class="frame">
+    <div class="mode-tabs" role="tablist" aria-label="メールバージョンの切り替え">
+      <button type="button" class="mode-tab active" data-mode="before" role="tab" aria-selected="true">Before</button>
+      <button type="button" class="mode-tab" data-mode="day3" role="tab" aria-selected="false">After Day3</button>
+      <button type="button" class="mode-tab" data-mode="day7" role="tab" aria-selected="false">After Day7</button>
+      <button type="button" class="mode-tab" data-mode="day14" role="tab" aria-selected="false">After Day14</button>
+    </div>
+
+    <div class="highlight-legend" id="highlightLegend" aria-hidden="true">
+      <span class="swatch"></span>
+      <span>黄色＝商談メモ・CRMからAIが差し込んだパーソナライズ箇所</span>
+    </div>
+
+    <div class="mail-app" id="mailApp">
+      <aside class="mail-sidebar">
+        <div class="mail-appbar">
+          <div class="app-title">Outlook</div>
+        </div>
+        <div class="mail-folders">
+          <div class="mail-folder active">送信済み<span class="count">12</span></div>
+          <div class="mail-folder">下書き<span class="count">3</span></div>
+          <div class="mail-folder">テンプレ<span class="count">8</span></div>
+        </div>
+        <div class="mail-list">
+          <div class="mail-list-item selected" id="listActive">
+            <div class="sender">株式会社ミライ物流 様</div>
+            <div class="subject" id="listSubject">Re: StockPilot ご提案の件</div>
+            <div class="date" id="listDate">2026/7/8（火） 10:42</div>
+          </div>
+          <div class="mail-list-item dim">
+            <div class="sender">株式会社東都商事 様</div>
+            <div class="subject">Re: 在庫可視化のご案内</div>
+            <div class="date">2026/7/5（土） 16:20</div>
+          </div>
+          <div class="mail-list-item dim">
+            <div class="sender">有限会社カワムラ商会 様</div>
+            <div class="subject">Re: デモのお礼</div>
+            <div class="date">2026/7/3（木） 09:15</div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="mail-main">
+        <div class="mail-toolbar">
+          <span class="tool primary">返信</span>
+          <span class="tool">転送</span>
+          <span class="tool">下書き保存</span>
+          <span style="margin-left:auto;font-size:11px;" id="toolbarBadge">テンプレ送信</span>
+        </div>
+
+        <header class="mail-header">
+          <h2 id="mailSubject">Re: StockPilot（クラウド在庫管理SaaS）ご提案の件</h2>
+          <dl class="mail-meta">
+            <dt>宛先</dt><dd>株式会社ミライ物流　物流管理部　佐藤 健太 様</dd>
+            <dt>差出人</dt><dd>株式会社ネクストリンクス　営業部　田中 美咲 &lt;misaki.tanaka@nextlinks.co.jp&gt;</dd>
+            <dt>日時</dt><dd id="mailDate">2026年7月8日（火）10:42</dd>
+          </dl>
+        </header>
+
+        <article class="mail-body" id="mailBody" aria-live="polite"></article>
+      </main>
+    </div>
+
+    <div class="meta">
+      <span id="metaLeft"><strong>制作時間：</strong>約90分（商談メモ整理30分＋下書き生成40分＋人の確認20分）</span>
+      <span id="metaRight"><strong>用途：</strong>BtoB SaaS営業の追客メール標準化・新人オンボーディング</span>
+    </div>
+  </div>
+</div>
+
+<section class="note-band">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">HOW IT WORKS</span>
+      <h2>テンプレ化の3ステップ</h2>
+      <p>CRMの商談メモ・デモ録画の文字起こし・競合比較シートを入力に、追客タイミング別の下書きを生成。最終送信前は必ず担当者が事実関係を確認します。</p>
+    </div>
+
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>商談メモを構造化</h3>
+        <p>「3拠点の在庫がExcelで分散」「月末棚卸に2日」「WMS連携の懸念」など、論点をタグ付けしてCRMに残します。</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Day別テンプレ＋差し込み</h3>
+        <p>Day3はデモのお礼と論点の再確認、Day7は比較検討の障壁整理、Day14は休眠化防止の具体オファー——役割を固定します。</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>人が最終確認して送信</h3>
+        <p>数値・導入時期・競合名は必ず人が確認。AIは「下書き係」、送信責任は営業担当が持つ運用にします。</p>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      ※ このページの<strong>株式会社ミライ物流・StockPilot・ネクストリンクス</strong>はすべて架空のサンプルです。メール本文・差分ハイライトは、AI顧問室が制作したデモ用の成果物イメージです。実際の導入では御社の商材・トーン＆マナー・法務チェックに合わせて制作します。
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の追客メールも、テンプレ化しませんか。</h2>
+    <p>無料相談で、商談メモの整理方法と追客フローの設計をお話しします。</p>
+    <a href="index.html?from=works-sales-mail#contact" class="btn btn-gold" style="font-size:16px; padding:16px 44px;">同じ品質を相談する →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var body = document.body;
+  var mailBody = document.getElementById('mailBody');
+  var mailSubject = document.getElementById('mailSubject');
+  var mailDate = document.getElementById('mailDate');
+  var listDate = document.getElementById('listDate');
+  var listSubject = document.getElementById('listSubject');
+  var toolbarBadge = document.getElementById('toolbarBadge');
+  var highlightLegend = document.getElementById('highlightLegend');
+  var metaLeft = document.getElementById('metaLeft');
+  var tabs = document.querySelectorAll('.mode-tab');
+
+  var EMAILS = {
+    before: {
+      subject: 'Re: StockPilot（クラウド在庫管理SaaS）ご提案の件',
+      date: '2026年7月8日（火）10:42',
+      listDate: '2026/7/8（火） 10:42',
+      badge: 'テンプレ送信',
+      metaLeft: '<strong>制作時間：</strong>約5分（毎回コピペ）｜<strong>問題：</strong>開封率12%・返信率3%',
+      body: '<p>株式会社ミライ物流<br>物流管理部　佐藤 健太 様</p>' +
+        '<p>いつもお世話になっております。<br>株式会社ネクストリンクスの田中です。</p>' +
+        '<p>先日はお時間をいただき、ありがとうございました。</p>' +
+        '<p>StockPilotのご提案について、<strong>進捗いかがでしょうか。</strong>ご検討のほど、何卒よろしくお願いいたします。</p>' +
+        '<p>ご不明点等ございましたら、お気軽にお問い合わせください。<br>引き続きどうぞよろしくお願いいたします。</p>' +
+        '<div class="sig">株式会社ネクストリンクス<br>営業部　田中 美咲<br>TEL: 03-5555-1200<br>misaki.tanaka@nextlinks.co.jp</div>'
+    },
+    day3: {
+      subject: 'Re: 7/5デモのお礼｜3拠点在庫の可視化について',
+      date: '2026年7月8日（火）10:42',
+      listDate: '2026/7/8（火） 10:42',
+      badge: 'AI下書き → 確認済',
+      metaLeft: '<strong>制作時間：</strong>約25分｜<strong>差分：</strong>デモ内容の言及＋論点の再確認',
+      body: '<p>株式会社ミライ物流<br>物流管理部　佐藤 健太 様</p>' +
+        '<p>いつもお世話になっております。<br>株式会社ネクストリンクスの田中です。</p>' +
+        '<p><span class="hl">7月5日（金）のオンラインデモ</span>では貴重なお時間をいただき、誠にありがとうございました。当日は<span class="hl">川崎・名古屋・福岡の3拠点</span>それぞれの在庫状況をリアルタイムで一覧できる画面をご覧いただき、<span class="hl">「拠点間の在庫移動が見えにくい」</span>というお話が印象に残っております。</p>' +
+        '<p>デモ後、社内でご確認いただく際に<span class="hl">「既存の基幹システム（オーダーワン）との連携タイミング」</span>が論点になりそうでしたので、補足資料として<span class="hl">API連携の概略図（PDF 2ページ）</span>を添付いたします。導入初期はCSV連携から始め、3ヶ月目以降にAPI連携へ段階移行する事例が多いです。</p>' +
+        '<p>もしよろしければ、<span class="hl">来週7/15（火）11:00〜30分</span>、物流管理部の皆様向けにQ&amp;Aセッションを設定させていただけないでしょうか。ご都合が合わない場合は、候補日を2〜3ついただければ調整いたします。</p>' +
+        '<div class="sig">株式会社ネクストリンクス<br>営業部　田中 美咲<br>TEL: 03-5555-1200<br>misaki.tanaka@nextlinks.co.jp</div>'
+    },
+    day7: {
+      subject: 'Re: 月末棚卸2日→半日への短縮イメージ（同業事例）',
+      date: '2026年7月12日（土）09:30',
+      listDate: '2026/7/12（土） 09:30',
+      badge: 'AI下書き → 確認済',
+      metaLeft: '<strong>制作時間：</strong>約20分｜<strong>差分：</strong>課題の数値化＋同業事例',
+      body: '<p>株式会社ミライ物流<br>物流管理部　佐藤 健太 様</p>' +
+        '<p>いつもお世話になっております。<br>株式会社ネクストリンクスの田中です。</p>' +
+        '<p>先日お送りしたAPI連携資料は、ご確認いただけましたでしょうか。</p>' +
+        '<p>デモの際、佐藤様より<span class="hl">「月末の全拠点棚卸に丸2日かかり、Excelの突合でミスが月1〜2件出る」</span>とお伺いしました。比較検討中とのことでしたので、<span class="hl">同規模の3PL（従業員120名・拠点4）</span>がStockPilot導入後<span class="hl">棚卸時間を2日→0.5日</span>に短縮した事例概要を共有します。</p>' +
+        '<ul style="margin:0 0 14px 20px;font-size:13.5px;color:var(--gray);">' +
+        '<li>導入前：拠点別Excel＋週次で手動集計</li>' +
+        '<li>導入3ヶ月：リアルタイム在庫＋アラートで欠品率▲18%</li>' +
+        '<li>導入6ヶ月：WMS API連携で入出庫データ自動反映</li></ul>' +
+        '<p>御社の場合、<span class="hl">まず川崎拠点のみPoC（4週間）</span>から始める案も可能です。現在<span class="hl">既存WMS（LogiTrack）との共存</span>をご懸念とのことでしたが、PoC期間中はCSVエクスポート連携のみで運用し、本番切替の判断材料にできます。</p>' +
+        '<p>比較検討表（A社・B社含む）をお持ちでしたら、<span class="hl">「必須条件」と「あれば嬉しい条件」</span>を教えていただければ、該当機能の有無を1枚に整理してお返しします。</p>' +
+        '<div class="sig">株式会社ネクストリンクス<br>営業部　田中 美咲<br>TEL: 03-5555-1200<br>misaki.tanaka@nextlinks.co.jp</div>'
+    },
+    day14: {
+      subject: 'Re: 川崎拠点PoCのご提案（2週間無償・導入支援付き）',
+      date: '2026年7月19日（土）14:10',
+      listDate: '2026/7/19（土） 14:10',
+      badge: 'AI下書き → 確認済',
+      metaLeft: '<strong>制作時間：</strong>約18分｜<strong>差分：</strong>具体オファー＋期限付きCTA',
+      body: '<p>株式会社ミライ物流<br>物流管理部　佐藤 健太 様</p>' +
+        '<p>いつもお世話になっております。<br>株式会社ネクストリンクスの田中です。</p>' +
+        '<p>ここ2週間、社内調整のお時間をいただきありがとうございます。ご多忙の中恐縮ですが、<span class="hl">8月の繁忙期前</span>に在庫可視化の効果を数字で確認できるよう、今回<span class="hl">川崎拠点限定・2週間の無償PoC</span>をご提案させてください。</p>' +
+        '<div class="cta-block">' +
+        '<strong>【PoC概要】</strong><br>' +
+        '・期間：8/4（月）〜8/15（金）の2週間<br>' +
+        '・対象：<span class="hl">川崎DCのSKU約800点</span>（既存Excelデータをインポート）<br>' +
+        '・支援：<span class="hl">導入支援エンジニア1名が週2回オンライン伴走</span><br>' +
+        '・成果物：棚卸時間の実測比較レポート（Before/After）</div>' +
+        '<p>7/5のデモでお話しいただいた<span class="hl">「拠点間移動の可視化」と「月末棚卸の短縮」</span>を、実データで検証できます。PoC終了後に継続しない場合も、データはエクスポートして返却いたします。</p>' +
+        '<p>ご意向をお聞かせいただける場合、<span class="hl">7/25（金）17:00</span>までにご返信いただけますと、8月開始のリソース確保が可能です。15分のお電話でも構いません。</p>' +
+        '<p>下記リンクから、PoCの詳細スケジュール（PDF）をご確認いただけます。<br>' +
+        '<span class="hl">https://nextlinks.co.jp/stockpilot/poc-mirai-logi（架空URL）</span></p>' +
+        '<div class="sig">株式会社ネクストリンクス<br>営業部　田中 美咲<br>TEL: 03-5555-1200<br>misaki.tanaka@nextlinks.co.jp</div>'
+    }
+  };
+
+  var activeMode = 'before';
+
+  function switchMode(mode) {
+    if (!EMAILS[mode]) return;
+    activeMode = mode;
+    var e = EMAILS[mode];
+
+    mailBody.innerHTML = e.body;
+    mailSubject.textContent = e.subject;
+    mailDate.textContent = e.date;
+    listDate.textContent = e.listDate;
+    listSubject.textContent = e.subject.length > 28 ? e.subject.slice(0, 28) + '…' : e.subject;
+    toolbarBadge.textContent = e.badge;
+    metaLeft.innerHTML = e.metaLeft;
+
+    body.classList.toggle('mode-before', mode === 'before');
+    highlightLegend.classList.toggle('visible', mode !== 'before');
+
+    tabs.forEach(function (tab) {
+      var isActive = tab.getAttribute('data-mode') === mode;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      switchMode(tab.getAttribute('data-mode'));
+    });
+  });
+
+  switchMode('before');
+})();
+</script>
+
 </body>
 </html>
