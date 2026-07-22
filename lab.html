@@ -1,4 +1,4 @@
-<!-- 2026-07-22: 実物ラボ — 倉庫セクション削除・カタログ拡張・旧ハブはリダイレクト -->
+<!-- 2026-07-22: 実物ラボを業種主導の階層UIに変更（旗艦→1発→90日→もっと見る） -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>実物ラボ｜触る・試す・変わるを一画面で｜AI顧問室</title>
-<meta name="description" content="業務SaaS級デスク・1発デモ・90日ストーリー・制作物を、業種フィルタとモード切替で厳選表示。AI顧問室の実物入口（試作）。">
+<meta name="description" content="業種を選ぶと、旗艦デスク→1発デモ→90日ストーリーの順で実物が並びます。AI顧問室の統合入口。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
 <meta property="og:title" content="実物ラボ｜AI顧問室">
-<meta property="og:description" content="触る机・1発体験・90日の変化・作った物——実物を見る統合ハブ（試作）。">
+<meta property="og:description" content="触る机・1発体験・90日の変化——業種ごとに最初に触るべき実物から見せます。">
 <meta property="og:url" content="https://ai-komon.bivrost.co.jp/lab.html">
 <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -30,7 +30,6 @@
   a { text-decoration: none; color: inherit; }
   img { max-width: 100%; display: block; }
   .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 64px 0; }
   .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-weight: 700; font-size: 15px; transition: opacity .2s; }
   .btn:hover { opacity: .85; }
   .btn-gold { background: var(--gold); color: var(--navy-deep); }
@@ -41,20 +40,14 @@
   .header-nav { display: flex; align-items: center; gap: 18px; font-size: 13px; }
   .header-nav a { color: var(--blue); font-weight: 600; }
 
-  .hero { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 60%, var(--navy-light)); color: var(--white); padding: 84px 0 72px; }
+  .hero { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 60%, var(--navy-light)); color: var(--white); padding: 72px 0 56px; }
   .hero .label { font-size: 12px; letter-spacing: .2em; color: var(--gold); font-weight: 700; }
-  .hero h1 { font-size: clamp(30px, 4.5vw, 42px); margin: 12px 0 16px; }
-  .hero p { color: #C7D3E4; max-width: 720px; font-size: 15px; }
+  .hero h1 { font-size: clamp(28px, 4.2vw, 40px); margin: 12px 0 14px; }
+  .hero p { color: #C7D3E4; max-width: 680px; font-size: 15px; }
 
-  .note-banner { background: #FFFBEB; border-bottom: 1px solid #FDE68A; padding: 14px 0; font-size: 13px; color: var(--ink); }
-  .note-banner .container { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
-  .note-banner strong { color: var(--navy); font-size: 12px; letter-spacing: .08em; }
-
-  .controls { background: var(--bg-soft); border-bottom: 1px solid var(--line); padding: 28px 0 24px; position: sticky; top: 64px; z-index: 90; }
-  .control-row { margin-bottom: 18px; }
-  .control-row:last-child { margin-bottom: 0; }
+  .controls { background: var(--bg-soft); border-bottom: 1px solid var(--line); padding: 22px 0; position: sticky; top: 64px; z-index: 90; }
   .control-label { font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--gray); margin-bottom: 10px; }
-  .chip-row, .tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip {
     border: 1px solid var(--line); background: var(--white); color: var(--ink);
     font-family: inherit; font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 999px;
@@ -62,19 +55,41 @@
   }
   .chip:hover { border-color: var(--navy); }
   .chip.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
-  .mode-tab {
-    border: none; background: transparent; color: var(--gray); font-family: inherit;
-    font-size: 14px; font-weight: 700; padding: 10px 18px; border-radius: 6px; cursor: pointer;
-    border-bottom: 3px solid transparent; transition: color .2s, background .2s, border-color .2s;
-  }
-  .mode-tab small { display: block; font-size: 10px; font-weight: 600; letter-spacing: .04em; opacity: .85; margin-top: 2px; }
-  .mode-tab:hover { color: var(--navy); background: rgba(255,255,255,.6); }
-  .mode-tab.active { color: var(--navy); background: var(--white); border-bottom-color: var(--gold); box-shadow: 0 2px 8px rgba(11,36,71,.06); }
 
-  .grid-section { padding: 48px 0 72px; }
-  .mode-lead { font-size: 14px; color: var(--gray); margin-bottom: 28px; max-width: 720px; }
-  .mode-lead b { color: var(--navy); }
-  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+  .lane { padding: 48px 0 8px; }
+  .lane:last-of-type { padding-bottom: 56px; }
+  .lane-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+  .lane-kicker { font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--gold); }
+  .lane-head h2 { font-size: clamp(22px, 3vw, 28px); color: var(--navy); margin-top: 4px; }
+  .lane-lead { font-size: 13.5px; color: var(--gray); max-width: 640px; margin-top: 6px; }
+  .lane-count { font-size: 12px; font-weight: 700; color: var(--gray); }
+
+  .flag-grid { display: grid; gap: 20px; }
+  .flag-grid.multi { grid-template-columns: repeat(3, 1fr); }
+  .flag-card {
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--white);
+    display: grid; grid-template-columns: 1.15fr 1fr; min-height: 280px;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  a.flag-card:hover { transform: translateY(-3px); border-color: var(--accent, var(--navy)); box-shadow: 0 12px 32px rgba(11,36,71,.1); }
+  .flag-grid.multi .flag-card { grid-template-columns: 1fr; min-height: 0; }
+  .flag-visual { position: relative; background: var(--bg-soft); min-height: 220px; }
+  .flag-grid.multi .flag-visual { min-height: 160px; aspect-ratio: 16/10; }
+  .flag-visual img { width: 100%; height: 100%; object-fit: cover; object-position: top; position: absolute; inset: 0; }
+  .flag-accent { position: absolute; inset: 0 auto 0 0; width: 5px; background: var(--accent, var(--navy)); z-index: 1; }
+  .flag-badge {
+    position: absolute; top: 14px; left: 18px; z-index: 1;
+    font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 999px;
+    background: var(--gold); color: var(--navy-deep);
+  }
+  .flag-body { padding: 28px 28px 30px; display: flex; flex-direction: column; gap: 10px; }
+  .flag-en { font-size: 12px; font-weight: 700; color: var(--accent, var(--blue)); letter-spacing: .12em; }
+  .flag-body h3 { font-size: clamp(24px, 3vw, 30px); color: var(--navy); }
+  .flag-paradigm { font-size: 11px; font-weight: 700; color: var(--navy); background: var(--bg-soft); display: inline-block; padding: 3px 10px; border-radius: 4px; align-self: flex-start; }
+  .flag-desc { font-size: 14px; color: var(--gray); flex: 1; }
+  .flag-cta { font-size: 15px; font-weight: 700; color: var(--gold); margin-top: 8px; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .lab-card {
     border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;
     background: var(--white); transition: transform .2s, border-color .2s, box-shadow .2s;
@@ -89,36 +104,41 @@
   }
   .lab-badge.gold { background: var(--gold); color: var(--navy-deep); }
   .lab-badge.story { background: rgba(11,36,71,.88); }
-  .lab-body { padding: 18px 20px 22px; display: flex; flex-direction: column; flex: 1; gap: 8px; }
+  .lab-body { padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1; gap: 7px; }
   .lab-en { font-size: 11px; font-weight: 700; color: var(--accent, var(--blue)); letter-spacing: .1em; }
-  .lab-body h3 { font-size: 18px; color: var(--navy); }
-  .lab-paradigm { font-size: 10.5px; font-weight: 700; color: var(--navy); background: var(--bg-soft); display: inline-block; padding: 2px 8px; border-radius: 4px; letter-spacing: .06em; align-self: flex-start; }
-  .lab-desc { font-size: 13px; color: var(--gray); flex: 1; line-height: 1.75; }
-  .lab-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .lab-tags span { font-size: 10px; font-weight: 700; color: var(--navy); background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px; }
-  .lab-cta { font-size: 13.5px; font-weight: 700; color: var(--gold); margin-top: 4px; }
+  .lab-body h3 { font-size: 17px; color: var(--navy); }
+  .lab-paradigm { font-size: 10.5px; font-weight: 700; color: var(--navy); background: var(--bg-soft); display: inline-block; padding: 2px 8px; border-radius: 4px; align-self: flex-start; }
+  .lab-desc { font-size: 12.5px; color: var(--gray); flex: 1; line-height: 1.7; }
+  .lab-cta { font-size: 13px; font-weight: 700; color: var(--gold); margin-top: 4px; }
 
-  .empty-state {
-    grid-column: 1 / -1; text-align: center; padding: 56px 24px;
-    border: 1px dashed var(--line); border-radius: 10px; background: var(--bg-soft);
+  .more-wrap { border: 1px solid var(--line); border-radius: 10px; background: var(--bg-soft); overflow: hidden; }
+  .more-toggle {
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 18px 22px; background: transparent; border: none; cursor: pointer; font-family: inherit; text-align: left;
   }
-  .empty-state h3 { font-size: 20px; color: var(--navy); margin-bottom: 8px; }
-  .empty-state p { font-size: 14px; color: var(--gray); margin-bottom: 16px; }
-  .empty-state button { font-family: inherit; cursor: pointer; }
+  .more-toggle strong { font-size: 15px; color: var(--navy); display: block; }
+  .more-toggle span { font-size: 13px; color: var(--gray); }
+  .more-chevron { font-size: 18px; color: var(--navy); transition: transform .2s; flex-shrink: 0; }
+  .more-wrap.open .more-chevron { transform: rotate(180deg); }
+  .more-body { display: none; padding: 0 22px 22px; }
+  .more-wrap.open .more-body { display: block; }
+  .more-sub { font-size: 12px; font-weight: 700; letter-spacing: .1em; color: var(--gray); margin: 8px 0 12px; }
+  .more-body .card-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .more-body + .more-sub, .more-body .more-sub + .card-grid { margin-top: 8px; }
 
-  .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; }
+  .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; padding: 64px 0; }
   .cta h2 { font-size: 28px; margin-bottom: 12px; }
   .cta p { color: #C7D3E4; font-size: 14px; margin-bottom: 28px; }
 
   footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 32px 0; text-align: center; }
   footer a { text-decoration: underline; margin: 0 6px; }
 
-  @media (max-width: 820px) {
-    section { padding: 48px 0; }
-    .controls { top: 64px; padding: 20px 0 18px; }
-    .header-nav a:not(.btn) { display: none; }
-    .mode-tab { flex: 1 1 calc(50% - 8px); text-align: center; padding: 10px 12px; font-size: 13px; }
+  @media (max-width: 900px) {
+    .flag-grid.multi { grid-template-columns: 1fr; }
+    .flag-card { grid-template-columns: 1fr; }
+    .flag-visual { aspect-ratio: 16/10; min-height: 0; }
     .card-grid { grid-template-columns: 1fr; }
+    .header-nav a:not(.btn) { display: none; }
   }
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
@@ -130,7 +150,7 @@
   <div class="container header-inner">
     <a href="index.html" class="logo">AI顧問室</a>
     <nav class="header-nav" aria-label="ヘッダーナビ">
-      <a href="#desks">触る机</a>
+      <a href="#flagship">旗艦デスク</a>
       <a href="#shots">1発体験</a>
       <a href="index.html">公式サイト</a>
       <a href="index.html#contact" class="btn btn-gold" style="padding:9px 20px;font-size:13px;">無料相談</a>
@@ -141,42 +161,86 @@
 <div class="hero">
   <div class="container">
     <span class="label">MATERIAL LAB</span>
-    <h1>実物を見る。</h1>
-    <p>触る業務デスク・1発デモ・90日ストーリー・制作物——厳選した実物だけを、業種とモードで切り替えます。</p>
-  </div>
-</div>
-
-<div class="note-banner" role="note">
-  <div class="container">
-    <strong>試作中</strong>
-    <span>入口は実物ラボに一本化。works / demos はここへ誘導。Case Theater は stories から。</span>
+    <h1>最初に触る実物から。</h1>
+    <p>業種を選ぶと、旗艦デスク → 1発デモ → 90日ストーリーの順で並びます。残りは「もっと見る」に畳みます。</p>
   </div>
 </div>
 
 <div class="controls" id="controls">
   <div class="container">
-    <div class="control-row">
-      <div class="control-label">業種</div>
-      <div class="chip-row" id="ind-chips" role="group" aria-label="業種フィルタ"></div>
-    </div>
-    <div class="control-row">
-      <div class="control-label">モード</div>
-      <div class="tab-row" id="mode-tabs" role="tablist"></div>
-    </div>
+    <div class="control-label">業種</div>
+    <div class="chip-row" id="ind-chips" role="group" aria-label="業種フィルタ"></div>
   </div>
 </div>
 
-<section class="grid-section">
-  <div class="container">
-    <p class="mode-lead" id="mode-lead"></p>
-    <div class="card-grid" id="card-grid" aria-live="polite"></div>
-  </div>
-</section>
+<main id="lab-main">
+  <section class="lane" id="flagship">
+    <div class="container">
+      <div class="lane-head">
+        <div>
+          <div class="lane-kicker">01 · FLAGSHIP</div>
+          <h2 id="flag-title">旗艦デスク</h2>
+          <p class="lane-lead" id="flag-lead">ログインして全画面を操作できる、業務SaaS級の本命。</p>
+        </div>
+      </div>
+      <div class="flag-grid" id="flag-grid"></div>
+    </div>
+  </section>
+
+  <section class="lane" id="shots">
+    <div class="container">
+      <div class="lane-head">
+        <div>
+          <div class="lane-kicker">02 · ONE-SHOT</div>
+          <h2>1発体験</h2>
+          <p class="lane-lead">旗艦と同型の、登録不要ワンショット。まずここでも体感できます。</p>
+        </div>
+        <span class="lane-count" id="shot-count"></span>
+      </div>
+      <div class="card-grid" id="shot-grid"></div>
+    </div>
+  </section>
+
+  <section class="lane" id="stories">
+    <div class="container">
+      <div class="lane-head">
+        <div>
+          <div class="lane-kicker">03 · 90 DAYS</div>
+          <h2>90日の変化</h2>
+          <p class="lane-lead">似た会社がどう変わるか。Case Theater でスクラブできます。</p>
+        </div>
+      </div>
+      <div class="card-grid" id="story-grid"></div>
+    </div>
+  </section>
+
+  <section class="lane" id="more">
+    <div class="container">
+      <div class="lane-head">
+        <div>
+          <div class="lane-kicker">04 · MORE</div>
+          <h2>もっと見る</h2>
+          <p class="lane-lead">他デスク・残りのデモ・制作物。必要なら開いてください。</p>
+        </div>
+      </div>
+      <div class="more-wrap" id="more-wrap">
+        <button type="button" class="more-toggle" id="more-toggle" aria-expanded="false">
+          <div>
+            <strong id="more-label">他の実物を見る</strong>
+            <span id="more-sub">制作物・追加デモ・他デスク</span>
+          </div>
+          <span class="more-chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="more-body" id="more-body"></div>
+      </div>
+    </div>
+  </section>
+</main>
 
 <section class="cta">
   <div class="container">
     <h2>御社の業務で、何から触りますか？</h2>
-    <p>無料相談（30分）で、デスク・デモ・90日の進め方を一緒に整理します。</p>
+    <p>無料相談（30分）で、旗艦デスクと90日の進め方を一緒に整理します。</p>
     <a href="index.html?from=lab#contact" class="btn btn-gold">無料相談を予約する</a>
   </div>
 </section>
@@ -203,27 +267,64 @@
     { id: 'yoko', label: '横断', tags: ['横断'] }
   ];
 
-  var MODES = [
-    { id: 'desks', label: 'desks', sub: '触る机', lead: '<b>触る机</b> — ログインして全画面を操作できる業務SaaS級デモ。操作の主語が1つに決まっています。' },
-    { id: 'shots', label: 'shots', sub: '1発体験', lead: '<b>1発体験</b> — 業種向けの体験デモをまとめています（厳選。全部ではなく触る価値のあるもの）。登録不要・ワンショット。' },
-    { id: 'stories', label: 'stories', sub: '90日の変化', lead: '<b>90日の変化</b> — Case Theater のスクラブで、似た会社がどう変わるかをBefore/Afterで見られます。' },
-    { id: 'craft', label: 'craft', sub: '作った物', lead: '<b>作った物</b> — 提案キャンバス・追客壁・動画・3Dなど、成果物サンプルをそのまま触れます。' }
-  ];
+  /* 業種 → 旗艦 / 表に出す1発 / ストーリー（残りはもっと見る） */
+  var CURATED = {
+    all: {
+      title: '本線デスク',
+      lead: 'まず触るならここ。紙面・グリッド・会話——主語が違う3つの旗艦。',
+      flagships: ['kawasu', 'soroban', 'mimiyori'],
+      shots: ['shot-keiyaku', 'shot-inquiry', 'shot-photo-report'],
+      stories: ['story-mfg', 'story-re', 'story-sales']
+    },
+    kensetsu: {
+      title: 'GENBA',
+      lead: '建設の旗艦。現場マップを主語に、点検→是正→日報→出来高まで。',
+      flagships: ['genba'],
+      shots: ['shot-photo-report', 'shot-progress', 'shot-safety-patrol'],
+      stories: ['story-mfg']
+    },
+    fudosan: {
+      title: 'HANKYO',
+      lead: '不動産の旗艦。SLAタイマーを主語に、反響→一次返信→追客まで。',
+      flagships: ['hankyo'],
+      shots: ['shot-hankyo-sla', 'shot-followup', 'shot-staging'],
+      stories: ['story-re']
+    },
+    eigyo: {
+      title: 'BRIEF',
+      lead: '営業の旗艦。商談キャンバスを主語に、リサーチ→論点→議事録まで。',
+      flagships: ['brief'],
+      shots: ['shot-brief', 'shot-quote', 'shot-proposal-gen'],
+      stories: ['story-sales']
+    },
+    kanri: {
+      title: 'KAWASU',
+      lead: '管理の旗艦。契約書1枚を主語に、スキャン→赤入れ→捺印風完了まで。',
+      flagships: ['kawasu'],
+      shots: ['shot-keiyaku', 'shot-receipt', 'shot-policy'],
+      stories: []
+    },
+    yoko: {
+      title: 'MIMIYORI',
+      lead: '横断の旗艦。1スレッド会話を主語に、問い合わせ→AI下書き→送信。',
+      flagships: ['mimiyori'],
+      shots: ['shot-inquiry', 'shot-support', 'shot-minutes'],
+      stories: []
+    }
+  };
 
   var CATALOG = [
-    /* desks */
-    { id:'kawasu', mode:'desks', industry:['横断','管理'], title:'KAWASU', en:'カワス', paradigm:'主語：紙面', desc:'契約書1枚を主語に、AIが条項スキャン→赤入れ→修正文案→捺印風完了まで。', href:'works-contract.html', thumb:'assets/thumbs/works-contract.jpg', accent:'#B91C1C', cta:'▶ ログインして触る', badge:'ログインして触る' },
-    { id:'soroban', mode:'desks', industry:['横断','管理'], title:'SOROBAN', en:'ソロバン', paradigm:'主語：グリッド', desc:'1行グリッドを主語に、セル順次入力→検算→確定緑。請求書読取から仕訳提案まで。', href:'works-invoice.html', thumb:'assets/thumbs/works-invoice.jpg', accent:'#0D9488', cta:'▶ ログインして触る', badge:'ログインして触る' },
-    { id:'mimiyori', mode:'desks', industry:['横断'], title:'MIMIYORI', en:'ミミヨリ', paradigm:'主語：会話', desc:'1スレッド会話を主語に、問い合わせ→AI下書き→確認送信。3ペインの会話デスク。', href:'works-support.html', thumb:'assets/thumbs/works-support.jpg', accent:'#EA580C', cta:'▶ ログインして触る', badge:'ログインして触る' },
-    { id:'genba', mode:'desks', industry:['建設'], title:'GENBA', en:'ゲンバ', paradigm:'主語：マップ', desc:'現場マップ上のピンを主語に、写真点検→是正指示→日報下書き→出来高突合まで。', href:'works-genba.html', thumb:'assets/thumbs/works-genba.jpg', accent:'#EAB308', cta:'▶ ログインして触る', badge:'ログインして触る' },
-    { id:'hankyo', mode:'desks', industry:['不動産'], title:'HANKYO', en:'ハンキョウ', paradigm:'主語：SLA', desc:'SLAタイマーを主語に、反響→一次返信→Day3/7/14追客。取りこぼしを可視化して潰す。', href:'works-hankyo.html', thumb:'assets/thumbs/works-hankyo.jpg', accent:'#C9A227', cta:'▶ ログインして触る', badge:'ログインして触る' },
-    { id:'brief', mode:'desks', industry:['営業'], title:'BRIEF', en:'ブリーフ', paradigm:'主語：キャンバス', desc:'商談キャンバスを主語に、リサーチ→論点→章立て→議事録を1画面で組み立てる。', href:'works-brief.html', thumb:'assets/thumbs/works-brief.jpg', accent:'#38BDF8', cta:'▶ ログインして触る', badge:'ログインして触る' },
+    { id:'kawasu', mode:'desks', industry:['横断','管理'], title:'KAWASU', en:'カワス', paradigm:'主語：紙面', desc:'契約書1枚を主語に、AIが条項スキャン→赤入れ→修正文案→捺印風完了まで。', href:'works-contract.html', thumb:'assets/thumbs/works-contract.jpg', accent:'#B91C1C', cta:'▶ ログインして触る', badge:'旗艦デスク' },
+    { id:'soroban', mode:'desks', industry:['横断','管理'], title:'SOROBAN', en:'ソロバン', paradigm:'主語：グリッド', desc:'1行グリッドを主語に、セル順次入力→検算→確定緑。請求書読取から仕訳提案まで。', href:'works-invoice.html', thumb:'assets/thumbs/works-invoice.jpg', accent:'#0D9488', cta:'▶ ログインして触る', badge:'旗艦デスク' },
+    { id:'mimiyori', mode:'desks', industry:['横断'], title:'MIMIYORI', en:'ミミヨリ', paradigm:'主語：会話', desc:'1スレッド会話を主語に、問い合わせ→AI下書き→確認送信。3ペインの会話デスク。', href:'works-support.html', thumb:'assets/thumbs/works-support.jpg', accent:'#EA580C', cta:'▶ ログインして触る', badge:'旗艦デスク' },
+    { id:'genba', mode:'desks', industry:['建設'], title:'GENBA', en:'ゲンバ', paradigm:'主語：マップ', desc:'現場マップ上のピンを主語に、写真点検→是正指示→日報下書き→出来高突合まで。', href:'works-genba.html', thumb:'assets/thumbs/works-genba.jpg', accent:'#EAB308', cta:'▶ ログインして触る', badge:'旗艦デスク' },
+    { id:'hankyo', mode:'desks', industry:['不動産'], title:'HANKYO', en:'ハンキョウ', paradigm:'主語：SLA', desc:'SLAタイマーを主語に、反響→一次返信→Day3/7/14追客。取りこぼしを可視化して潰す。', href:'works-hankyo.html', thumb:'assets/thumbs/works-hankyo.jpg', accent:'#C9A227', cta:'▶ ログインして触る', badge:'旗艦デスク' },
+    { id:'brief', mode:'desks', industry:['営業'], title:'BRIEF', en:'ブリーフ', paradigm:'主語：キャンバス', desc:'商談キャンバスを主語に、リサーチ→論点→章立て→議事録を1画面で組み立てる。', href:'works-brief.html', thumb:'assets/thumbs/works-brief.jpg', accent:'#38BDF8', cta:'▶ ログインして触る', badge:'旗艦デスク' },
     { id:'kitei', mode:'desks', industry:['管理'], title:'KITEI', en:'キテイ', paradigm:'主語：条文リーダー', desc:'規程条文を主語に、質問→出典付き回答→稟議下書きまで。就業規則改定にも対応。', href:'works-kitei.html', thumb:'assets/thumbs/works-kitei.jpg', accent:'#2563EB', cta:'▶ ログインして触る', badge:'ログインして触る' },
     { id:'saiyo', mode:'desks', industry:['管理'], title:'SAIYO', en:'サイヨウ', paradigm:'主語：採用カンバン', desc:'候補者カードを主語に、面接メモ→評価表→合否メール→求人下書きまで進める。', href:'works-saiyo.html', thumb:'assets/thumbs/works-saiyo.jpg', accent:'#7C3AED', cta:'▶ ログインして触る', badge:'ログインして触る' },
     { id:'shain', mode:'desks', industry:['管理'], title:'SHAIN', en:'シャイン', paradigm:'主語：Wiki', desc:'社内Wikiを主語に、新人の質問→出典付き回答→ナレッジ蓄積。Wiki＋Ask。', href:'works-shain.html', thumb:'assets/thumbs/works-shain.jpg', accent:'#059669', cta:'▶ ログインして触る', badge:'ログインして触る' },
     { id:'tateru', mode:'desks', industry:['建設'], title:'TATERU', en:'タテル', paradigm:'主語：週カレンダー', desc:'週カレンダー上の案件カードを主語に、工程チェック→完工→請求ドラフト生成まで連動。', href:'works-system.html', thumb:'assets/thumbs/works-system.jpg', accent:'#0B2447', cta:'▶ ログインして触る', badge:'ログインして触る' },
 
-    /* shots — 建設 */
     { id:'shot-keiyaku', mode:'shots', industry:['管理'], title:'契約書要点チェック', en:'KAWASU同型', paradigm:'紙面レビュー', desc:'契約書1枚からリスク条項を抽出。KAWASUと同じ「紙面」主語の軽デモ。', href:'demo-keiyaku.html', thumb:'assets/thumbs/demo-keiyaku.jpg', accent:'#B91C1C', cta:'▶ 1発で試す', badge:'登録不要・1発' },
     { id:'shot-receipt', mode:'shots', industry:['管理'], title:'レシート仕訳AI', en:'SOROBAN同型', paradigm:'帳票グリッド', desc:'レシート撮影→勘定科目つき表に整理。SOROBANと同じ「グリッド」主語。', href:'demo-receipt.html', thumb:'assets/thumbs/demo-receipt.jpg', accent:'#0D9488', cta:'▶ 1発で試す', badge:'登録不要・1発' },
     { id:'shot-inquiry', mode:'shots', industry:['横断'], title:'問い合わせ返信AI', en:'MIMIYORI同型', paradigm:'会話3ペイン', desc:'届いた問い合わせから返信案をすぐ用意。MIMIYORIと同じ「会話」主語。', href:'demo-inquiry.html', thumb:'assets/thumbs/demo-inquiry.jpg', accent:'#EA580C', cta:'▶ 1発で試す', badge:'登録不要・1発' },
@@ -256,36 +357,40 @@
     { id:'shot-menu', mode:'shots', industry:['横断'], title:'メニュー表生成', en:'横断', paradigm:'メニュー制作', desc:'料理写真・価格からメニュー表のたたき台を生成。飲食・小売向け。', href:'demo-menu.html', thumb:'assets/thumbs/demo-menu.jpg', accent:'#EA580C', cta:'▶ 1発で試す', badge:'登録不要・1発' },
     { id:'shot-kuchikomi', mode:'shots', industry:['横断'], title:'口コミ返信', en:'横断', paradigm:'レビュー対応', desc:'口コミ内容に合わせた返信案を生成。MEO・評判管理の初動支援。', href:'demo-kuchikomi.html', thumb:'assets/thumbs/demo-kuchikomi.jpg', accent:'#EA580C', cta:'▶ 1発で試す', badge:'登録不要・1発' },
 
-    /* stories */
     { id:'story-mfg', mode:'stories', industry:['建設'], title:'部品加工メーカー', en:'CASE 01', paradigm:'Case Theater', desc:'Case Theater 90日スクラブ — 日報・報告書が終業後に残る現場の変化。', href:'cases.html#case-manufacturing', thumb:'assets/thumbs/works-genba.jpg', accent:'#EAB308', cta:'▶ 90日をスクラブ', badge:'90日スクラブ', badgeClass:'story' },
     { id:'story-re', mode:'stories', industry:['不動産'], title:'地域密着の不動産', en:'CASE 02', paradigm:'Case Theater', desc:'Case Theater 90日スクラブ — 反響返信の遅れと夜間取りこぼしの変化。', href:'cases.html#case-realestate', thumb:'assets/thumbs/works-hankyo.jpg', accent:'#C9A227', cta:'▶ 90日をスクラブ', badge:'90日スクラブ', badgeClass:'story' },
     { id:'story-sales', mode:'stories', industry:['営業'], title:'BtoB営業チーム', en:'CASE 03', paradigm:'Case Theater', desc:'Case Theater 90日スクラブ — 提案準備と追客が属人化していた営業の変化。', href:'cases.html#case-sales', thumb:'assets/thumbs/works-brief.jpg', accent:'#38BDF8', cta:'▶ 90日をスクラブ', badge:'90日スクラブ', badgeClass:'story' },
 
-    /* craft */
-    { id:'craft-btob', mode:'craft', industry:['営業'], title:'3列提案キャンバス', en:'BtoB営業', paradigm:'提案キャンバス', desc:'課題メモ・論点カード・アウトラインを触って「提案書を生成」。PDFではなく操作する道具。', href:'works-btob-proposal.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#0B2447', cta:'▶ キャンバスを触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-mail', mode:'craft', industry:['営業'], title:'Dayレーン追客壁', en:'BtoB営業', paradigm:'追客タイムライン', desc:'商談メモからDay3/7/14追客3通を生成。Before/Afterトグル・編集・送信デモ。', href:'works-sales-mail.html', thumb:'assets/thumbs/works-brief.jpg', accent:'#2D6CB5', cta:'▶ 追客壁を触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-internal-news', mode:'craft', industry:['管理'], title:'社内報', en:'管理部門', paradigm:'社内マガジン', desc:'社内報VOL.1（社長メッセージ・成功事例）とAI利用規程改定の正式文書。ページめくり・条文参照ができる閲覧道具。', href:'works-internal-news.html', thumb:'assets/thumbs/works-presenter.jpg', accent:'#2563EB', cta:'▶ 社内文書を見る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-ai-service', mode:'craft', industry:['横断'], title:'既存サービス+AI', en:'攻めのAI', paradigm:'AI診断ポータル', desc:'問合せフォームを3問AI診断に置き換えたBefore/After。既存サービスにAIを組み込むPoC。', href:'works-ai-service.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#C9A227', cta:'▶ ポータルを触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-slides', mode:'craft', industry:['営業'], title:'提案スライド', en:'プレゼン', paradigm:'動くスライド', desc:'タイピング演出・フリップカード・章立て自動生成。PDFではなく触れる提案スライド。', href:'works-slides.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#2D6CB5', cta:'▶ スライドを触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-video', mode:'craft', industry:['横断'], title:'住宅プロモーション映像', en:'実写動画', paradigm:'動画生成', desc:'撮影なし・CG会社なし。15秒の実写品質ムービーをブラウザで再生。', href:'works-video.html', thumb:'assets/works/videos/house-promo-poster.jpg', accent:'#C9A227', cta:'▶ 映像を再生', badge:'実AI動画', badgeClass:'gold' },
-    { id:'craft-motion', mode:'craft', industry:['横断'], title:'モーション', en:'モーション', paradigm:'モーショングラフィックス', desc:'テキスト・図形・写真を組み合わせたモーション動画。説明・訴求用の動きのあるビジュアル。', href:'works-motion.html', thumb:'assets/thumbs/works-motion.jpg', accent:'#7C3AED', cta:'▶ モーションを再生', badge:'実AI動画', badgeClass:'gold' },
-    { id:'craft-creative', mode:'craft', industry:['横断'], title:'ブランドクリエイティブ一式', en:'ブランド', paradigm:'クリエイティブ', desc:'ロゴ・バナー・チラシ・SNS・30秒動画広告まで。すべてAI＋コードで制作。', href:'works-creative.html', thumb:'assets/thumbs/works-creative.jpg', accent:'#7C3AED', cta:'▶ 一式を見る', badge:'動画広告つき', badgeClass:'gold' },
-    { id:'craft-3d', mode:'craft', industry:['建設'], title:'間取り図→3D内見', en:'3D', paradigm:'実寸3D', desc:'実寸再現3D。俯瞰・一人称ウォークスルー。Blender×model-viewer。', href:'works-3d.html', thumb:'assets/thumbs/works-3d.jpg', accent:'#0B2447', cta:'▶ ビューアを開く', badge:'触って回せます', badgeClass:'gold' },
-    { id:'craft-splat', mode:'craft', industry:['建設'], title:'Gaussian Splat', en:'3D', paradigm:'実写3D', desc:'実写から生成した3D都市空間。Gaussian Splattingで空間をブラウザ上で体験。', href:'works-splat.html', thumb:'assets/thumbs/works-splat.jpg', accent:'#0B2447', cta:'▶ 3D空間を見る', badge:'触って回せます', badgeClass:'gold' },
-    { id:'craft-kitchen', mode:'craft', industry:['建設'], title:'キッチンパース', en:'リフォーム', paradigm:'カラーシミュ', desc:'キッチンの色・素材をリアルタイムで差し替え。リフォーム提案のビジュアル支援。', href:'works-kitchen.html', thumb:'assets/thumbs/works-kitchen.jpg', accent:'#EAB308', cta:'▶ シミュレータを触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-paint', mode:'craft', industry:['建設'], title:'外壁塗装パース', en:'リフォーム', paradigm:'カラーシミュ', desc:'外壁の色・質感をリアルタイムで差し替え。塗装提案の完成イメージを即提示。', href:'works-paint.html', thumb:'assets/thumbs/works-paint.jpg', accent:'#EAB308', cta:'▶ シミュレータを触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-edit', mode:'craft', industry:['横断'], title:'動画編集', en:'動画', paradigm:'Before/After', desc:'素材のトリミング・テロップ・BGM差し替えのBefore/After。AI動画編集の品質サンプル。', href:'works-edit.html', thumb:'assets/thumbs/works-edit.jpg', accent:'#C9A227', cta:'▶ 編集デモを見る', badge:'実AI動画', badgeClass:'gold' },
-    { id:'craft-presenter', mode:'craft', industry:['横断'], title:'操作マニュアル', en:'マニュアル', paradigm:'AIプレゼンター', desc:'AI生成プレゼンターが操作手順を音声解説。社内研修・ヘルプページ向け。', href:'works-presenter.html', thumb:'assets/thumbs/works-presenter.jpg', accent:'#2563EB', cta:'▶ マニュアルを見る', badge:'操作できる', badgeClass:'gold' }
+    { id:'craft-btob', mode:'craft', industry:['営業'], title:'3列提案キャンバス', en:'BtoB営業', paradigm:'提案キャンバス', desc:'課題メモ・論点カード・アウトラインを触って「提案書を生成」。', href:'works-btob-proposal.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#0B2447', cta:'▶ キャンバスを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-mail', mode:'craft', industry:['営業'], title:'Dayレーン追客壁', en:'BtoB営業', paradigm:'追客タイムライン', desc:'商談メモからDay3/7/14追客3通を生成。Before/Afterトグル付き。', href:'works-sales-mail.html', thumb:'assets/thumbs/works-brief.jpg', accent:'#2D6CB5', cta:'▶ 追客壁を触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-internal-news', mode:'craft', industry:['管理'], title:'社内報', en:'管理部門', paradigm:'社内マガジン', desc:'社内報VOL.1とAI利用規程改定。ページめくり・条文参照ができる閲覧道具。', href:'works-internal-news.html', thumb:'assets/thumbs/works-presenter.jpg', accent:'#2563EB', cta:'▶ 社内文書を見る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-ai-service', mode:'craft', industry:['横断'], title:'既存サービス+AI', en:'攻めのAI', paradigm:'AI診断ポータル', desc:'問合せフォームを3問AI診断に置き換えたBefore/After。', href:'works-ai-service.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#C9A227', cta:'▶ ポータルを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-slides', mode:'craft', industry:['営業'], title:'提案スライド', en:'プレゼン', paradigm:'動くスライド', desc:'タイピング演出・フリップカード・章立て自動生成。', href:'works-slides.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#2D6CB5', cta:'▶ スライドを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-video', mode:'craft', industry:['横断'], title:'住宅プロモーション映像', en:'実写動画', paradigm:'動画生成', desc:'撮影なし・CG会社なし。15秒の実写品質ムービー。', href:'works-video.html', thumb:'assets/works/videos/house-promo-poster.jpg', accent:'#C9A227', cta:'▶ 映像を再生', badge:'実AI動画', badgeClass:'gold' },
+    { id:'craft-motion', mode:'craft', industry:['横断'], title:'モーション', en:'モーション', paradigm:'モーショングラフィックス', desc:'テキスト・図形・写真を組み合わせたモーション動画。', href:'works-motion.html', thumb:'assets/thumbs/works-motion.jpg', accent:'#7C3AED', cta:'▶ モーションを再生', badge:'実AI動画', badgeClass:'gold' },
+    { id:'craft-creative', mode:'craft', industry:['横断'], title:'ブランドクリエイティブ一式', en:'ブランド', paradigm:'クリエイティブ', desc:'ロゴ・バナー・チラシ・SNS・30秒動画広告まで。', href:'works-creative.html', thumb:'assets/thumbs/works-creative.jpg', accent:'#7C3AED', cta:'▶ 一式を見る', badge:'動画広告つき', badgeClass:'gold' },
+    { id:'craft-3d', mode:'craft', industry:['建設'], title:'間取り図→3D内見', en:'3D', paradigm:'実寸3D', desc:'実寸再現3D。俯瞰・一人称ウォークスルー。', href:'works-3d.html', thumb:'assets/thumbs/works-3d.jpg', accent:'#0B2447', cta:'▶ ビューアを開く', badge:'触って回せます', badgeClass:'gold' },
+    { id:'craft-splat', mode:'craft', industry:['建設'], title:'Gaussian Splat', en:'3D', paradigm:'実写3D', desc:'実写から生成した3D都市空間。ブラウザ上で体験。', href:'works-splat.html', thumb:'assets/thumbs/works-splat.jpg', accent:'#0B2447', cta:'▶ 3D空間を見る', badge:'触って回せます', badgeClass:'gold' },
+    { id:'craft-kitchen', mode:'craft', industry:['建設'], title:'キッチンパース', en:'リフォーム', paradigm:'カラーシミュ', desc:'キッチンの色・素材をリアルタイムで差し替え。', href:'works-kitchen.html', thumb:'assets/thumbs/works-kitchen.jpg', accent:'#EAB308', cta:'▶ シミュレータを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-paint', mode:'craft', industry:['建設'], title:'外壁塗装パース', en:'リフォーム', paradigm:'カラーシミュ', desc:'外壁の色・質感をリアルタイムで差し替え。', href:'works-paint.html', thumb:'assets/thumbs/works-paint.jpg', accent:'#EAB308', cta:'▶ シミュレータを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-edit', mode:'craft', industry:['横断'], title:'動画編集', en:'動画', paradigm:'Before/After', desc:'トリミング・テロップ・BGM差し替えのBefore/After。', href:'works-edit.html', thumb:'assets/thumbs/works-edit.jpg', accent:'#C9A227', cta:'▶ 編集デモを見る', badge:'実AI動画', badgeClass:'gold' },
+    { id:'craft-presenter', mode:'craft', industry:['横断'], title:'操作マニュアル', en:'マニュアル', paradigm:'AIプレゼンター', desc:'AI生成プレゼンターが操作手順を音声解説。', href:'works-presenter.html', thumb:'assets/thumbs/works-presenter.jpg', accent:'#2563EB', cta:'▶ マニュアルを見る', badge:'操作できる', badgeClass:'gold' }
   ];
 
-  var state = { mode: 'desks', ind: 'all' };
+  var byId = {};
+  CATALOG.forEach(function(item){ byId[item.id] = item; });
+
+  var state = { ind: 'all', moreOpen: false };
   var indChips = document.getElementById('ind-chips');
-  var modeTabs = document.getElementById('mode-tabs');
-  var cardGrid = document.getElementById('card-grid');
-  var modeLead = document.getElementById('mode-lead');
+  var flagGrid = document.getElementById('flag-grid');
+  var shotGrid = document.getElementById('shot-grid');
+  var storyGrid = document.getElementById('story-grid');
+  var moreWrap = document.getElementById('more-wrap');
+  var moreBody = document.getElementById('more-body');
+  var moreToggle = document.getElementById('more-toggle');
+  var storiesSection = document.getElementById('stories');
 
   function indById(id){ return INDUSTRIES.find(function(x){ return x.id === id; }) || INDUSTRIES[0]; }
-  function modeById(id){ return MODES.find(function(x){ return x.id === id; }) || MODES[0]; }
 
   function matchesIndustry(item, indId){
     if (indId === 'all') return true;
@@ -293,9 +398,45 @@
     return item.industry.some(function(tag){ return ind.tags.indexOf(tag) !== -1; });
   }
 
+  function pick(ids){
+    return ids.map(function(id){ return byId[id]; }).filter(Boolean);
+  }
+
+  function cardHtml(item, compact){
+    var badgeClass = item.badgeClass ? ' ' + item.badgeClass : '';
+    return '<a class="lab-card" href="' + item.href + '" style="--accent:' + item.accent + '">' +
+      '<div class="lab-visual"><span class="lab-accent"></span>' +
+      '<img src="' + item.thumb + '" alt="" loading="lazy">' +
+      '<span class="lab-badge' + badgeClass + '">' + item.badge + '</span></div>' +
+      '<div class="lab-body">' +
+      '<span class="lab-en">' + item.en + '</span>' +
+      '<h3>' + item.title + '</h3>' +
+      '<span class="lab-paradigm">' + item.paradigm + '</span>' +
+      (compact ? '' : '<p class="lab-desc">' + item.desc + '</p>') +
+      '<span class="lab-cta">' + item.cta + '</span>' +
+      '</div></a>';
+  }
+
+  function flagHtml(item){
+    return '<a class="flag-card" href="' + item.href + '" style="--accent:' + item.accent + '">' +
+      '<div class="flag-visual"><span class="flag-accent"></span>' +
+      '<img src="' + item.thumb + '" alt="" loading="lazy">' +
+      '<span class="flag-badge">' + item.badge + '</span></div>' +
+      '<div class="flag-body">' +
+      '<span class="flag-en">' + item.en + '</span>' +
+      '<h3>' + item.title + '</h3>' +
+      '<span class="flag-paradigm">' + item.paradigm + '</span>' +
+      '<p class="flag-desc">' + item.desc + '</p>' +
+      '<span class="flag-cta">' + item.cta + '</span>' +
+      '</div></a>';
+  }
+
   function buildHash(){
-    if (state.ind === 'all') return '#' + state.mode;
-    return '#' + state.mode + '/' + state.ind;
+    return state.ind === 'all' ? '' : '#' + state.ind;
+  }
+
+  function modeSection(id){
+    return id === 'flagship' || id === 'shots' || id === 'stories' || id === 'more' || id === 'desks' || id === 'craft';
   }
 
   function parseRoute(){
@@ -305,78 +446,100 @@
 
     var raw = (location.hash || '').replace(/^#/, '');
     if (!raw) return;
-
     var parts = raw.split('/').filter(Boolean);
-    if (parts[0] && modeById(parts[0]).id === parts[0]) state.mode = parts[0];
-    if (parts[1] && indById(parts[1]).id === parts[1]) state.ind = parts[1];
+    if (modeSection(parts[0])) {
+      if (parts[1] && indById(parts[1]).id === parts[1]) state.ind = parts[1];
+      return;
+    }
+    if (indById(parts[0]).id === parts[0]) state.ind = parts[0];
   }
 
-  function syncUrl(replace){
-    var next = buildHash();
-    if (location.hash === next) return;
-    var fn = replace ? 'replaceState' : 'pushState';
-    history[fn]({ mode: state.mode, ind: state.ind }, '', next + location.search.replace(/(\?|&)ind=[^&]*/g, function(m, p){ return p === '?' ? '?' : ''; }).replace(/\?$/, ''));
+  function setInd(ind, replace){
+    if (!indById(ind)) return;
+    state.ind = ind;
+    state.moreOpen = false;
+    renderAll(replace);
   }
 
   function renderControls(){
     indChips.innerHTML = INDUSTRIES.map(function(ind){
       return '<button type="button" class="chip' + (state.ind === ind.id ? ' active' : '') + '" data-ind="' + ind.id + '">' + ind.label + '</button>';
     }).join('');
-
-    modeTabs.innerHTML = MODES.map(function(m){
-      return '<button type="button" class="mode-tab' + (state.mode === m.id ? ' active' : '') + '" role="tab" aria-selected="' + (state.mode === m.id) + '" data-mode="' + m.id + '">' + m.label + '<small>' + m.sub + '</small></button>';
-    }).join('');
   }
 
-  function renderCards(){
-    var mode = modeById(state.mode);
-    modeLead.innerHTML = mode.lead;
+  function renderLanes(){
+    var curated = CURATED[state.ind] || CURATED.all;
+    var featuredIds = curated.flagships.concat(curated.shots).concat(curated.stories);
+    var featuredSet = {};
+    featuredIds.forEach(function(id){ featuredSet[id] = true; });
 
-    var items = CATALOG.filter(function(item){
-      return item.mode === state.mode && matchesIndustry(item, state.ind);
-    });
+    document.getElementById('flag-title').textContent = curated.title;
+    document.getElementById('flag-lead').textContent = curated.lead;
 
-    if (!items.length) {
-      cardGrid.innerHTML = '<div class="empty-state"><h3>該当する実物がありません</h3><p>この業種 × モードの組み合わせでは、まだカードを置いていません。</p><button type="button" class="chip active" id="reset-filter">すべての業種を表示</button></div>';
-      var reset = document.getElementById('reset-filter');
-      if (reset) reset.addEventListener('click', function(){ setInd('all', true); });
-      return;
+    var flags = pick(curated.flagships);
+    flagGrid.className = 'flag-grid' + (flags.length > 1 ? ' multi' : '');
+    flagGrid.innerHTML = flags.map(flagHtml).join('');
+
+    var shots = pick(curated.shots);
+    shotGrid.innerHTML = shots.map(function(item){ return cardHtml(item, false); }).join('');
+    document.getElementById('shot-count').textContent = '表に出す ' + shots.length + ' 本';
+
+    var stories = pick(curated.stories);
+    if (!stories.length) {
+      storiesSection.style.display = 'none';
+    } else {
+      storiesSection.style.display = '';
+      storyGrid.className = 'card-grid';
+      if (stories.length === 1) storyGrid.style.gridTemplateColumns = '1fr';
+      else storyGrid.style.gridTemplateColumns = '';
+      storyGrid.innerHTML = stories.map(function(item){ return cardHtml(item, false); }).join('');
     }
 
-    cardGrid.innerHTML = items.map(function(item){
-      var badgeClass = item.badgeClass ? ' ' + item.badgeClass : '';
-      var tags = item.industry.map(function(t){ return '<span>' + t + '</span>'; }).join('');
-      return '<a class="lab-card" href="' + item.href + '" style="--accent:' + item.accent + '">' +
-        '<div class="lab-visual"><span class="lab-accent"></span>' +
-        '<img src="' + item.thumb + '" alt="" loading="lazy">' +
-        '<span class="lab-badge' + badgeClass + '">' + item.badge + '</span></div>' +
-        '<div class="lab-body">' +
-        '<span class="lab-en">' + item.en + '</span>' +
-        '<h3>' + item.title + '</h3>' +
-        '<span class="lab-paradigm">' + item.paradigm + '</span>' +
-        '<p class="lab-desc">' + item.desc + '</p>' +
-        '<div class="lab-tags">' + tags + '</div>' +
-        '<span class="lab-cta">' + item.cta + '</span>' +
-        '</div></a>';
-    }).join('');
+    var moreDesks = CATALOG.filter(function(item){
+      return item.mode === 'desks' && !featuredSet[item.id] && matchesIndustry(item, state.ind);
+    });
+    var moreShots = CATALOG.filter(function(item){
+      return item.mode === 'shots' && !featuredSet[item.id] && matchesIndustry(item, state.ind);
+    });
+    var moreCraft = CATALOG.filter(function(item){
+      return item.mode === 'craft' && matchesIndustry(item, state.ind);
+    });
+    var moreStories = CATALOG.filter(function(item){
+      return item.mode === 'stories' && !featuredSet[item.id] && matchesIndustry(item, state.ind);
+    });
+
+    var totalMore = moreDesks.length + moreShots.length + moreCraft.length + moreStories.length;
+    document.getElementById('more-label').textContent = '他の実物を見る（' + totalMore + '）';
+    document.getElementById('more-sub').textContent =
+      (moreDesks.length ? 'デスク' + moreDesks.length + ' · ' : '') +
+      (moreShots.length ? 'デモ' + moreShots.length + ' · ' : '') +
+      (moreCraft.length ? '制作物' + moreCraft.length : '');
+
+    var html = '';
+    if (moreDesks.length) {
+      html += '<div class="more-sub">他のデスク</div><div class="card-grid">' + moreDesks.map(function(i){ return cardHtml(i, true); }).join('') + '</div>';
+    }
+    if (moreShots.length) {
+      html += '<div class="more-sub">残りの1発体験</div><div class="card-grid">' + moreShots.map(function(i){ return cardHtml(i, true); }).join('') + '</div>';
+    }
+    if (moreStories.length) {
+      html += '<div class="more-sub">他の90日ストーリー</div><div class="card-grid">' + moreStories.map(function(i){ return cardHtml(i, false); }).join('') + '</div>';
+    }
+    if (moreCraft.length) {
+      html += '<div class="more-sub">作った物</div><div class="card-grid">' + moreCraft.map(function(i){ return cardHtml(i, true); }).join('') + '</div>';
+    }
+    moreBody.innerHTML = html || '<p style="font-size:13px;color:var(--gray);padding:8px 0;">この業種の追加実物は、いま表のレーンにすべて出しています。</p>';
+
+    moreWrap.classList.toggle('open', state.moreOpen);
+    moreToggle.setAttribute('aria-expanded', state.moreOpen ? 'true' : 'false');
   }
 
   function renderAll(replace){
     renderControls();
-    renderCards();
-    syncUrl(replace);
-  }
-
-  function setMode(mode, replace){
-    if (!modeById(mode)) return;
-    state.mode = mode;
-    renderAll(replace);
-  }
-
-  function setInd(ind, replace){
-    if (!indById(ind)) return;
-    state.ind = ind;
-    renderAll(replace);
+    renderLanes();
+    var next = 'lab.html' + location.search + buildHash();
+    var cur = location.pathname.split('/').pop() + location.search + (location.hash || '');
+    if (cur !== next) history[replace ? 'replaceState' : 'pushState']({ ind: state.ind }, '', next);
   }
 
   indChips.addEventListener('click', function(e){
@@ -385,31 +548,56 @@
     setInd(btn.dataset.ind, false);
   });
 
-  modeTabs.addEventListener('click', function(e){
-    var btn = e.target.closest('[data-mode]');
-    if (!btn) return;
-    setMode(btn.dataset.mode, false);
+  moreToggle.addEventListener('click', function(){
+    state.moreOpen = !state.moreOpen;
+    moreWrap.classList.toggle('open', state.moreOpen);
+    moreToggle.setAttribute('aria-expanded', state.moreOpen ? 'true' : 'false');
   });
 
   window.addEventListener('popstate', function(){
-    if (history.state && history.state.mode) {
-      state.mode = history.state.mode;
-      state.ind = history.state.ind || 'all';
-    } else {
-      parseRoute();
-    }
+    if (history.state && history.state.ind) state.ind = history.state.ind;
+    else { state.ind = 'all'; parseRoute(); }
+    state.moreOpen = false;
     renderControls();
-    renderCards();
+    renderLanes();
   });
 
   window.addEventListener('hashchange', function(){
+    var raw = (location.hash || '').replace(/^#/, '');
+    if (modeSection(raw)) return;
     parseRoute();
+    state.moreOpen = false;
     renderControls();
-    renderCards();
+    renderLanes();
   });
 
   parseRoute();
-  renderAll(true);
+
+  var initialHash = (location.hash || '').replace(/^#/, '');
+  var scrollTarget = null;
+  if (initialHash === 'shots' || initialHash.indexOf('shots/') === 0) scrollTarget = 'shots';
+  else if (initialHash === 'stories' || initialHash.indexOf('stories/') === 0) scrollTarget = 'stories';
+  else if (initialHash === 'craft' || initialHash === 'more' || initialHash.indexOf('craft/') === 0) {
+    scrollTarget = 'more';
+    state.moreOpen = true;
+  } else if (initialHash === 'desks' || initialHash === 'flagship' || initialHash.indexOf('desks/') === 0) {
+    scrollTarget = 'flagship';
+  }
+
+  renderControls();
+  renderLanes();
+  if (!scrollTarget) {
+    var next = 'lab.html' + location.search + buildHash();
+    var cur = location.pathname.split('/').pop() + location.search + (location.hash || '');
+    if (cur !== next) history.replaceState({ ind: state.ind }, '', next);
+  }
+
+  if (scrollTarget) {
+    requestAnimationFrame(function(){
+      var el = document.getElementById(scrollTarget);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 })();
 </script>
 <script src="analytics-config.js"></script>
