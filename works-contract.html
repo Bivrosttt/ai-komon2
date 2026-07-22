@@ -1,4 +1,4 @@
-<!-- 2026-07-22: KAWASUを契約紙面レビュー＋朱印骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 -->
+<!-- 2026-07-22: KAWASU契約紙面レビュー＋契約スキャン画像（assets/contract）と捺印印影を接続 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -186,6 +186,15 @@
     background: linear-gradient(90deg, transparent, var(--seal), transparent);
     animation: scanLine 1.8s ease-in-out infinite; pointer-events: none;
   }
+  .paper-scan-banner {
+    margin: -48px -52px 28px; border-bottom: 1px solid var(--paper-line);
+    max-height: 240px; overflow: hidden; background: #fff;
+  }
+  .paper-scan-banner img {
+    display: block; width: 100%; max-width: 100%; object-fit: cover; object-position: top center;
+    opacity: 0.94; box-shadow: inset 0 -1px 0 rgba(28,25,23,.06);
+  }
+  .paper-body { position: relative; z-index: 1; }
   @keyframes scanLine {
     0% { top: 0; opacity: .3; }
     50% { opacity: 1; }
@@ -272,11 +281,14 @@
   .panel-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 10px; text-align: center; }
 
   .hanko-overlay {
-    position: absolute; right: 48px; bottom: 48px; width: 88px; height: 88px;
-    border: 3px solid var(--seal); border-radius: 6px; display: grid; place-items: center;
-    color: var(--seal); font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700;
-    letter-spacing: .15em; opacity: 0; transform: scale(2.2) rotate(-12deg); pointer-events: none;
-    background: rgba(247,241,229,.85); box-shadow: 0 0 0 4px rgba(194,58,43,.15);
+    position: absolute; right: 48px; bottom: 48px; width: 96px; height: 96px;
+    display: grid; place-items: center; opacity: 0;
+    transform: scale(2.2) rotate(-12deg); pointer-events: none;
+    background: transparent; border: none; box-shadow: none;
+  }
+  .hanko-overlay img {
+    display: block; width: 100%; height: 100%; object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(194,58,43,.35));
   }
   .hanko-overlay.stamp {
     animation: hankoStamp .55s cubic-bezier(.2,.9,.3,1) forwards;
@@ -285,7 +297,7 @@
     0% { opacity: 0; transform: scale(2.4) rotate(-18deg); }
     55% { opacity: 1; transform: scale(.92) rotate(-6deg); }
     75% { transform: scale(1.04) rotate(-8deg); }
-    100% { opacity: .92; transform: scale(1) rotate(-8deg); }
+    100% { opacity: .94; transform: scale(1) rotate(-8deg); }
   }
   .sealed-banner {
     display: none; text-align: center; margin-top: 24px; padding: 12px; background: var(--green-bg);
@@ -329,7 +341,8 @@
     }
     .paper-col { min-height: auto; padding-bottom: 16px; }
     .contract-paper { padding: 32px 24px 48px; }
-    .hanko-overlay { right: 24px; bottom: 32px; width: 72px; height: 72px; font-size: 18px; }
+    .paper-scan-banner { margin: -32px -24px 20px; max-height: 180px; }
+    .hanko-overlay { right: 24px; bottom: 32px; width: 80px; height: 80px; }
   }
   @media (max-width: 640px) {
     .review-bar { top: calc(52px + 48px); }
@@ -407,7 +420,7 @@
     <div class="paper-col">
       <article class="contract-paper serif" id="contractPaper">
         <div id="paperContent"></div>
-        <div class="hanko-overlay" id="hankoOverlay">承認</div>
+        <div class="hanko-overlay" id="hankoOverlay"><img src="assets/contract/seal-hanko.jpg" alt="承認印"></div>
         <div class="sealed-banner" id="sealedBanner">✓ 電子捺印完了 — 契約書は締結済みです</div>
       </article>
     </div>
@@ -449,6 +462,7 @@
 var CONTRACTS = {
   nda: {
     id: 'nda',
+    scan: 'assets/contract/nda.jpg',
     title: '秘密保持契約書（相互）',
     counterparty: '株式会社テックベンダー',
     meta: '契約番号：KWS-2026-0142｜起案：法務部｜有効期間：3年',
@@ -492,6 +506,7 @@ var CONTRACTS = {
   },
   vendor: {
     id: 'vendor',
+    scan: 'assets/contract/vendor.jpg',
     title: '業務委託基本契約書',
     counterparty: '合同会社デジタルワークス',
     meta: '契約番号：KWS-2026-0089｜起案：調達部｜更新：2026-04-01',
@@ -527,6 +542,7 @@ var CONTRACTS = {
   },
   saas: {
     id: 'saas',
+    scan: 'assets/contract/saas.jpg',
     title: 'SaaS利用契約書',
     counterparty: 'クラウドサービス株式会社',
     meta: '契約番号：KWS-2026-0201｜プラン：Business｜50 ID',
@@ -554,6 +570,7 @@ var CONTRACTS = {
   },
   lease: {
     id: 'lease',
+    scan: 'assets/contract/lease.jpg',
     title: 'オフィス賃貸借契約書（概要）',
     counterparty: 'サンプルビル管理株式会社',
     meta: '契約番号：KWS-2025-0312｜区画：5F-A｜面積：120㎡',
@@ -567,6 +584,7 @@ var CONTRACTS = {
   },
   msa: {
     id: 'msa',
+    scan: 'assets/contract/msa.jpg',
     title: '取引基本契約書（売買）',
     counterparty: '株式会社サプライチェーン',
     meta: '契約番号：KWS-2026-0055｜部門：調達部',
@@ -620,7 +638,11 @@ function renderContractSelect() {
 
 function renderPaper(contract, options) {
   options = options || {};
-  var html = '<h1 class="paper-title">' + escapeHtml(contract.title) + '</h1>';
+  var scanBanner = contract.scan
+    ? '<div class="paper-scan-banner"><img src="' + escapeHtml(contract.scan) + '" alt="' + escapeHtml(contract.title) + ' スキャン"></div>'
+    : '';
+  var html = scanBanner + '<div class="paper-body">';
+  html += '<h1 class="paper-title">' + escapeHtml(contract.title) + '</h1>';
   html += '<div class="paper-meta">' + escapeHtml(contract.meta) + '<br>相手方：' + escapeHtml(contract.counterparty) + '</div>';
   contract.clauses.forEach(function (cl) {
     var risk = contract.risks.find(function (r) { return r.clauseId === cl.id; });
@@ -631,7 +653,9 @@ function renderPaper(contract, options) {
     html += '<div class="clause-head"><span class="clause-num">' + escapeHtml(cl.num) + '</span>' + badge + '</div>';
     html += '<div class="clause-text">' + cl.text + '</div></section>';
   });
+  html += '</div>';
   document.getElementById('paperContent').innerHTML = html;
+  document.getElementById('contractPaper').classList.toggle('has-scan', !!contract.scan);
   document.getElementById('hankoOverlay').classList.remove('stamp');
   document.getElementById('sealedBanner').classList.remove('show');
   if (options.sealed || contract.status === 'sealed') {
