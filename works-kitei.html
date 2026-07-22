@@ -1,4 +1,4 @@
-<!-- 2026-07-22: KITEI（規程・稟議）SaaS級デモ — 藍グレー官公庁寄りUI・出典付き規程検索・稟議下書き生成 -->
+<!-- 2026-07-22: KITEIを条文リーダー＋付箋注釈骨格に作り直し -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>規程・稟議管理デモ（出典付きAI検索・稟議下書き）｜AI顧問室</title>
-<meta name="description" content="架空の規程・稟議管理クラウド「KITEI」のフル機能デモです。就業規則・稟議規程・出張規程を出典付きで検索し、稟議書下書きまで生成。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta name="description" content="架空の規程・稟議管理クラウド「KITEI」のフル機能デモです。就業規則・稟議規程・出張規程を条文リーダーで読み、付箋注釈と稟議下書きまで体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
 <meta property="og:title" content="規程・稟議管理デモ（出典付きAI検索・稟議下書き）｜AI顧問室">
-<meta property="og:description" content="架空の規程・稟議管理クラウド「KITEI」のフル機能デモです。就業規則・稟議規程・出張規程を出典付きで検索し、稟議書下書きまで生成。">
+<meta property="og:description" content="架空の規程・稟議管理クラウド「KITEI」のフル機能デモです。就業規則・稟議規程・出張規程を条文リーダーで読み、付箋注釈と稟議下書きまで体験できます。">
 <meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-kitei.html">
 <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -18,21 +18,18 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1E3A5F; --navy-deep: #152A45; --navy-mid: #2D4A6F; --navy-light: #334155;
-    --accent: #2563EB; --accent-deep: #1D4ED8; --accent-bg: #EFF6FF;
-    --pri: #2563EB; --pri-deep: #1D4ED8; --pri-bg: #EFF6FF;
+    --navy: #1E3A5F; --navy-deep: #152A45; --navy-mid: #2D4A6F;
+    --accent: #3B82F6; --accent-soft: #93C5FD; --accent-bg: #EFF6FF;
     --ink: #1E293B; --gray: #475569; --gray-soft: #64748B;
     --line: #CBD5E1; --bg-soft: #F1F5F9; --white: #FFFFFF;
-    --teal: #0D9488; --teal-bg: #CCFBF1;
-    --amber: #B45309; --amber-bg: #FEF3C7;
-    --red: #DC2626; --red-bg: #FEE2E2;
+    --paper: #FDFCF8; --paper-line: #E8E4DA;
+    --sticky: #FEF08A; --sticky-border: #EAB308; --sticky-ink: #713F12;
+    --hl: #FDE68A; --hl-glow: rgba(253,230,138,.55);
     --green: #059669; --green-bg: #D1FAE5;
-    --purple: #6366F1; --purple-bg: #EEF2FF;
-    --slate-bg: #E2E8F0;
-    --cite-hl: #FDE68A;
+    --scan: rgba(59,130,246,.18);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -42,9 +39,10 @@
   }
   h1, h2, h3 { line-height: 1.4; font-weight: 700; }
   .serif { font-family: 'Noto Serif JP', serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
   a { text-decoration: none; color: inherit; }
   button { font-family: inherit; cursor: pointer; }
-  input, textarea, select { font-family: inherit; }
+  input, textarea { font-family: inherit; }
   img, svg { max-width: 100%; }
   ::selection { background: var(--accent-bg); color: var(--ink); }
 
@@ -52,9 +50,9 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
     background: var(--navy-deep); color: #CBD5E1; display: flex; align-items: center;
     justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
-    border-bottom: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent-soft);
   }
-  .demo-frame-bar b { color: #93C5FD; font-weight: 700; }
+  .demo-frame-bar b { color: var(--accent-soft); font-weight: 700; }
   .demo-frame-bar .frame-link {
     flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
     padding: 5px 12px; border-radius: 4px; white-space: nowrap; transition: background .15s;
@@ -83,44 +81,44 @@
     background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255,255,255,.03) 28px, rgba(255,255,255,.03) 29px);
   }
   .login-hero::after {
-    content: '規'; position: absolute; right: 48px; bottom: 14%; font-size: 110px; font-weight: 700;
-    font-family: 'Noto Serif JP', serif; color: rgba(37,99,235,.1); line-height: 1;
+    content: '第'; position: absolute; right: 48px; bottom: 14%; font-size: 110px; font-weight: 700;
+    font-family: 'Noto Serif JP', serif; color: rgba(147,197,253,.1); line-height: 1;
   }
-  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .24em; color: #93C5FD; font-weight: 700; margin-bottom: 18px; position: relative; }
+  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .24em; color: var(--accent-soft); font-weight: 700; margin-bottom: 18px; position: relative; }
   .login-hero h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 16em; position: relative; font-family: 'Noto Serif JP', serif; }
-  .login-hero h2 em { font-style: normal; color: #93C5FD; }
+  .login-hero h2 em { font-style: normal; color: var(--accent-soft); }
   .login-hero p { font-size: 14px; color: #94A3B8; max-width: 28em; line-height: 1.9; position: relative; }
   .legal-strip { display: flex; gap: 0; margin-top: 28px; position: relative; }
-  .legal-strip span { flex: 1; height: 3px; background: var(--accent); opacity: .7; }
+  .legal-strip span { flex: 1; height: 3px; background: var(--accent-soft); opacity: .7; }
   .legal-strip span:nth-child(even) { background: rgba(255,255,255,.15); opacity: 1; }
   .login-panel {
     display: flex; align-items: center; justify-content: center; padding: 40px 28px;
     background: linear-gradient(180deg, #fff 0%, var(--bg-soft) 100%);
   }
   .login-card {
-    width: 100%; max-width: 400px; background: #fff; border-radius: 6px; padding: 40px 36px 30px;
-    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(30,58,95,.1); border-top: 4px solid var(--accent);
+    width: 100%; max-width: 400px; background: #fff; border-radius: 8px; padding: 40px 36px 30px;
+    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(30,58,95,.1); border-top: 4px solid var(--navy);
   }
   .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
   .login-logo .k { font-size: 28px; font-weight: 700; color: var(--navy); letter-spacing: .06em; font-family: 'Noto Serif JP', serif; }
-  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .14em; }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .14em; font-family: 'IBM Plex Mono', monospace; }
   .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
   .login-field { margin-bottom: 14px; }
   .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
   .login-field input {
-    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 4px; font-size: 14px;
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 6px; font-size: 14px;
     color: var(--gray-soft); background: var(--bg-soft); cursor: not-allowed;
   }
   .login-btn {
-    width: 100%; padding: 13px; border: none; border-radius: 4px; background: var(--accent); color: #fff;
+    width: 100%; padding: 13px; border: none; border-radius: 6px; background: var(--navy); color: #fff;
     font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .login-btn:hover { filter: brightness(1.06); }
+  .login-btn:hover { filter: brightness(1.08); }
   .login-btn:active { transform: scale(.99); }
   .login-btn:disabled { opacity: .75; cursor: wait; }
   .login-spin {
-    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.35);
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.25);
     border-top-color: #fff; animation: spin .7s linear infinite; display: none;
   }
   .login-btn.loading .login-spin { display: inline-block; }
@@ -132,396 +130,242 @@
     .login-hero::after { display: none; }
   }
 
-  #view-app { display: none; }
-  #view-app.show { display: block; }
-  .app-frame { display: flex; align-items: flex-start; min-height: calc(100vh - 44px); }
-  .sidebar {
-    width: 248px; flex: 0 0 auto; background: var(--navy-deep); color: #CBD5E1;
-    display: flex; flex-direction: column; position: sticky; top: 44px; height: calc(100vh - 44px);
-    padding: 20px 0; z-index: 50; border-right: 1px solid var(--navy-mid);
-    box-shadow: inset 4px 0 0 var(--accent);
-  }
-  .sidebar-brand { padding: 0 20px 18px; border-bottom: 1px solid var(--navy-mid); margin-bottom: 12px; display: flex; align-items: baseline; gap: 6px; }
-  .sidebar-brand .k { font-size: 18px; font-weight: 700; color: #93C5FD; letter-spacing: .08em; font-family: 'Noto Serif JP', serif; }
-  .sidebar-brand .tag-en { font-size: 9px; color: #64748B; letter-spacing: .12em; }
-  .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 12px; overflow-y: auto; }
-  .nav-btn {
-    display: flex; align-items: center; gap: 11px; padding: 11px 12px; border-radius: 4px; border: none; background: none;
-    color: #94A3B8; font-size: 13.5px; font-weight: 500; text-align: left; width: 100%; transition: background .15s, color .15s;
-  }
-  .nav-btn svg { flex: 0 0 auto; opacity: .85; }
-  .nav-btn:hover { background: rgba(255,255,255,.06); color: #F8FAFC; }
-  .nav-btn.active { background: rgba(37,99,235,.18); color: #93C5FD; font-weight: 700; }
-  .sidebar-foot { padding: 14px 20px 0; border-top: 1px solid var(--navy-mid); margin-top: 14px; }
-  .sidebar-user { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
-  .sidebar-user .avatar {
-    width: 30px; height: 30px; border-radius: 4px; background: var(--accent); color: #fff;
-    display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: 0 0 auto;
-  }
-  .sidebar-user .u-name { font-size: 12.5px; font-weight: 700; color: #F8FAFC; }
-  .sidebar-user .u-role { font-size: 10.5px; color: #64748B; }
-  .logout-link { display: block; font-size: 11.5px; color: #94A3B8; padding: 6px 2px; }
-  .logout-link:hover { color: #93C5FD; }
-  .hamburger-btn {
-    display: none; width: 38px; height: 38px; border-radius: 4px; border: 1px solid var(--line); background: #fff;
-    align-items: center; justify-content: center; flex: 0 0 auto;
-  }
-  .main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-  .app-header {
-    position: sticky; top: 44px; z-index: 40; height: 60px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.97);
-    backdrop-filter: blur(4px); display: flex; align-items: center; gap: 14px; padding: 0 24px;
-  }
-  .app-header h1.view-name { font-size: 15.5px; font-weight: 700; color: var(--ink); white-space: nowrap; font-family: 'Noto Serif JP', serif; }
-  .header-search { flex: 1; min-width: 0; display: flex; justify-content: center; }
-  .header-search-inner { position: relative; width: 100%; max-width: 380px; }
-  .header-search-inner input {
-    width: 100%; padding: 9px 14px 9px 36px; border: 1px solid var(--line); border-radius: 4px; font-size: 13px; background: var(--bg-soft);
-  }
-  .header-search-inner svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); pointer-events: none; opacity: .5; }
-  .header-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; }
-  .icon-btn {
-    position: relative; width: 38px; height: 38px; border-radius: 4px; border: 1px solid transparent; background: none;
-    display: grid; place-items: center; color: var(--ink); transition: background .15s;
-  }
-  .icon-btn:hover { background: var(--bg-soft); }
-  .notif-badge {
-    position: absolute; top: 3px; right: 3px; min-width: 15px; height: 15px; border-radius: 999px; background: var(--red);
-    color: #fff; font-size: 9.5px; font-weight: 700; display: grid; place-items: center; padding: 0 3px; border: 2px solid #fff;
-  }
-  .dropdown-wrap { position: relative; }
-  .dropdown-panel {
-    position: absolute; top: calc(100% + 8px); right: 0; width: 320px; background: #fff; border: 1px solid var(--line);
-    border-radius: 6px; box-shadow: 0 18px 44px rgba(30,58,95,.14); z-index: 80; display: none; overflow: hidden;
-  }
-  .dropdown-panel.open { display: block; animation: dropIn .16s ease; }
-  @keyframes dropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-  .dropdown-head { padding: 12px 16px; font-size: 12.5px; font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--line); background: var(--bg-soft); }
-  .notif-item { display: flex; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 12.5px; transition: background .15s; }
-  .notif-item:last-child { border-bottom: none; }
-  .notif-item:hover { background: var(--bg-soft); }
-  .notif-item .dot { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
-  .notif-item .txt { color: var(--ink); line-height: 1.6; }
-  .notif-item .time { color: var(--gray-soft); font-size: 10.5px; margin-top: 3px; }
+  #view-app { display: none; min-height: calc(100vh - 44px); flex-direction: column; }
+  #view-app.show { display: flex; }
 
-  .main-scroll { padding: 26px 30px 60px; }
-  .view { display: none; }
-  .view.active { display: block; }
-  .view-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-  .view-head h2 { font-size: 20px; color: var(--ink); font-family: 'Noto Serif JP', serif; }
-  .view-head .lead { font-size: 12.5px; color: var(--gray); margin-top: 4px; }
-
-  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 22px; }
-  .kpi-card { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; border-left: 3px solid var(--accent); transition: box-shadow .15s; }
-  .kpi-card:hover { box-shadow: 0 8px 24px rgba(30,58,95,.06); }
-  .kpi-card .kpi-label { font-size: 12px; color: var(--gray); font-weight: 700; display: flex; align-items: center; gap: 6px; }
-  .kpi-card .kpi-value { font-size: 27px; color: var(--ink); margin: 9px 0 4px; font-weight: 700; font-family: 'Noto Serif JP', serif; }
-  .kpi-card .kpi-value span { font-size: 13px; color: var(--gray-soft); font-weight: 500; margin-left: 2px; font-family: 'Noto Sans JP', sans-serif; }
-  .kpi-card .kpi-sub { font-size: 11px; color: var(--gray-soft); }
-  .kpi-swatch { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
-
-  .grid-2col { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; align-items: start; margin-bottom: 18px; }
-  .panel { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 20px 22px; }
-  .panel h3 { font-size: 14.5px; color: var(--ink); margin-bottom: 4px; font-weight: 700; font-family: 'Noto Serif JP', serif; }
-  .panel .panel-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; }
-
-  .task-list { display: flex; flex-direction: column; gap: 8px; }
-  .task-row {
-    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 6px;
-    transition: background .15s, border-color .15s; background: #fff; cursor: pointer;
+  .app-top {
+    height: 48px; flex: 0 0 auto; background: rgba(21,42,69,.97); border-bottom: 1px solid rgba(255,255,255,.08);
+    display: flex; align-items: center; gap: 12px; padding: 0 16px; position: sticky; top: 44px; z-index: 80;
   }
-  .task-row:hover { background: var(--accent-bg); border-color: var(--accent); }
-  .task-row .t-main { flex: 1; min-width: 0; }
-  .task-row .t-name { font-size: 13px; font-weight: 700; color: var(--ink); font-family: 'Noto Serif JP', serif; }
-  .task-row .t-sub { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
-  .task-row .t-arrow { flex: 0 0 auto; color: var(--gray-soft); }
-
-  .timeline { display: flex; flex-direction: column; gap: 0; }
-  .timeline-item { display: flex; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); }
-  .timeline-item:last-child { border-bottom: none; }
-  .timeline-dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; margin-top: 5px; }
-  .timeline-text { font-size: 12.5px; color: var(--ink); line-height: 1.6; }
-  .timeline-text b { font-weight: 700; }
-  .timeline-date { font-size: 10.5px; color: var(--gray-soft); margin-top: 2px; }
-
-  .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; white-space: nowrap; }
-  .badge-pending { background: var(--amber-bg); color: var(--amber); }
-  .badge-approved { background: var(--green-bg); color: var(--green); }
-  .badge-draft { background: var(--accent-bg); color: var(--accent-deep); }
-  .badge-human { background: var(--accent); color: #fff; }
-  .badge-cat { background: var(--slate-bg); color: var(--gray); }
-
-  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; }
-  .tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tab-chip {
-    padding: 8px 15px; border-radius: 4px; border: 1px solid var(--line); background: #fff; font-size: 12.5px;
-    color: var(--gray); font-weight: 500; transition: all .15s; white-space: nowrap; display: flex; align-items: center; gap: 6px;
+  .top-brand { display: flex; align-items: baseline; gap: 6px; flex: 0 0 auto; }
+  .top-brand .k { font-size: 16px; font-weight: 700; color: #F8FAFC; letter-spacing: .08em; font-family: 'Noto Serif JP', serif; }
+  .top-brand .tag-en { font-size: 9px; color: #64748B; letter-spacing: .12em; font-family: 'IBM Plex Mono', monospace; }
+  .top-center { flex: 1; text-align: center; font-size: 11.5px; color: #94A3B8; font-family: 'IBM Plex Mono', monospace; }
+  .top-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; }
+  .top-user { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #CBD5E1; }
+  .top-user .avatar {
+    width: 28px; height: 28px; border-radius: 6px; background: var(--accent-soft); color: var(--navy-deep);
+    display: grid; place-items: center; font-size: 11px; font-weight: 700;
   }
-  .tab-chip:hover { border-color: var(--accent); }
-  .tab-chip.active { background: var(--navy); color: #fff; border-color: var(--navy); font-weight: 700; }
-  .tab-chip .cnt { font-size: 10.5px; background: rgba(0,0,0,.08); padding: 1px 6px; border-radius: 999px; }
-  .tab-chip.active .cnt { background: rgba(255,255,255,.2); }
-  .search-box { position: relative; margin-left: auto; }
-  .search-box input {
-    padding: 9px 14px 9px 34px; border: 1px solid var(--line); border-radius: 4px; font-size: 13px; width: 280px; background: #fff;
-  }
-  .search-box input:focus { outline: 2px solid var(--accent); }
-  .search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: .5; }
+  .logout-link { font-size: 11px; color: #64748B; padding: 4px 8px; border: 1px solid #334155; border-radius: 4px; }
 
-  .table-wrap { background: #fff; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
-  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  table.data-table th {
-    text-align: left; padding: 12px 16px; background: var(--bg-soft); color: var(--gray); font-weight: 700; font-size: 11.5px;
-    border-bottom: 1px solid var(--line); white-space: nowrap;
+  .ask-zone {
+    flex: 0 0 auto; background: #fff; border-bottom: 1px solid var(--line); padding: 16px 20px 14px;
+    position: sticky; top: 92px; z-index: 70; box-shadow: 0 4px 20px rgba(30,58,95,.06);
   }
-  table.data-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
-  table.data-table tbody tr { cursor: pointer; transition: background .12s; }
-  table.data-table tbody tr:hover { background: var(--bg-soft); }
-  table.data-table tbody tr:last-child td { border-bottom: none; }
-  table.data-table td.name-cell { font-weight: 700; font-family: 'Noto Serif JP', serif; }
-  .row-hot { background: #EFF6FF; }
-  .row-hot:hover { background: #DBEAFE !important; }
-  .empty-row td { text-align: center; color: var(--gray-soft); padding: 40px 16px; }
+  .ask-label { font-size: 11px; letter-spacing: .16em; color: var(--navy); font-weight: 700; margin-bottom: 10px; }
+  .ask-row { display: flex; gap: 10px; align-items: stretch; }
+  .ask-input-wrap { flex: 1; position: relative; }
+  .ask-input {
+    width: 100%; padding: 13px 16px 13px 42px; border: 2px solid var(--line); border-radius: 10px;
+    font-size: 15px; background: var(--bg-soft); transition: border-color .2s, box-shadow .2s;
+  }
+  .ask-input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(30,58,95,.12); background: #fff; }
+  .ask-input.scanning { animation: inputPulse 1.2s ease infinite; }
+  @keyframes inputPulse { 0%,100% { box-shadow: 0 0 0 3px rgba(59,130,246,.15); } 50% { box-shadow: 0 0 0 6px rgba(59,130,246,.08); } }
+  .ask-icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--gray-soft); pointer-events: none;
+  }
+  .ask-submit {
+    flex: 0 0 auto; padding: 0 22px; border: none; border-radius: 10px; background: var(--navy); color: #fff;
+    font-weight: 700; font-size: 14px; transition: filter .15s;
+  }
+  .ask-submit:hover { filter: brightness(1.08); }
+  .ask-submit:disabled { opacity: .6; cursor: wait; }
+  .ask-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .ask-chip {
+    padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: #fff;
+    font-size: 12.5px; color: var(--gray); transition: all .15s; max-width: 100%; text-align: left;
+  }
+  .ask-chip:hover { border-color: var(--navy); color: var(--navy); background: var(--accent-bg); }
+  .ask-chip.active { border-color: var(--navy); background: var(--navy); color: #fff; }
 
-  .search-hero {
-    background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 28px 26px; margin-bottom: 18px;
-    border-top: 3px solid var(--navy);
+  .reader-wrap { flex: 1; display: grid; grid-template-columns: 240px 1fr; min-height: 0; }
+  .reader-toc {
+    background: #fff; border-right: 1px solid var(--line); padding: 20px 0; overflow-y: auto;
+    position: sticky; top: calc(44px + 48px + 88px); height: calc(100vh - 44px - 48px - 88px);
   }
-  .search-hero h3 { font-size: 16px; font-family: 'Noto Serif JP', serif; margin-bottom: 6px; color: var(--navy); }
-  .search-hero p { font-size: 12.5px; color: var(--gray); margin-bottom: 18px; }
-  .search-main { position: relative; margin-bottom: 16px; }
-  .search-main input {
-    width: 100%; padding: 14px 110px 14px 44px; border: 1px solid var(--line); border-radius: 6px; font-size: 14.5px; background: var(--bg-soft);
+  .toc-heading {
+    font-size: 10px; letter-spacing: .18em; color: var(--gray-soft); font-weight: 700;
+    padding: 0 18px 12px; border-bottom: 1px solid var(--line); margin-bottom: 8px;
   }
-  .search-main input:focus { outline: 2px solid var(--accent); background: #fff; }
-  .search-main svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: .45; }
-  .search-main .btn-search-go {
-    position: absolute; right: 6px; top: 50%; transform: translateY(-50%); padding: 9px 18px; border: none; border-radius: 4px;
-    background: var(--accent); color: #fff; font-weight: 700; font-size: 13px;
+  .toc-reg { margin-bottom: 4px; }
+  .toc-reg-btn {
+    width: 100%; text-align: left; padding: 10px 18px; border: none; background: transparent;
+    font-size: 13.5px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 8px;
+    border-left: 3px solid transparent; transition: background .12s;
   }
-  .sample-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .sample-chip {
-    padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-size: 12.5px;
-    color: var(--gray); transition: all .15s;
+  .toc-reg-btn:hover { background: var(--bg-soft); }
+  .toc-reg-btn.active { background: var(--accent-bg); border-left-color: var(--navy); color: var(--navy); }
+  .toc-reg-btn .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--line); flex: 0 0 auto; }
+  .toc-reg-btn.active .dot { background: var(--navy); }
+  .toc-articles { padding: 0 0 8px 28px; display: none; }
+  .toc-reg.open .toc-articles { display: block; }
+  .toc-art-btn {
+    width: 100%; text-align: left; padding: 6px 12px 6px 0; border: none; background: transparent;
+    font-size: 12px; color: var(--gray); transition: color .12s;
   }
-  .sample-chip:hover { border-color: var(--accent); color: var(--accent-deep); background: var(--accent-bg); }
+  .toc-art-btn:hover { color: var(--navy); }
+  .toc-art-btn.active { color: var(--navy); font-weight: 700; }
 
-  .reg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
-  .reg-card {
-    background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 18px 18px 16px; transition: box-shadow .15s, border-color .15s;
-    cursor: pointer;
+  .reader-body-wrap {
+    padding: 24px 20px 120px; overflow-y: auto; background: var(--bg-soft);
   }
-  .reg-card:hover { box-shadow: 0 8px 24px rgba(30,58,95,.08); border-color: var(--accent); }
-  .reg-card .rc-cat { font-size: 10.5px; font-weight: 700; color: var(--accent-deep); letter-spacing: .08em; margin-bottom: 8px; }
-  .reg-card h4 { font-size: 15px; font-family: 'Noto Serif JP', serif; margin-bottom: 6px; color: var(--navy); }
-  .reg-card p { font-size: 12px; color: var(--gray-soft); line-height: 1.65; }
-  .reg-card .rc-meta { margin-top: 12px; font-size: 11px; color: var(--gray-soft); display: flex; gap: 12px; flex-wrap: wrap; }
-
-  .detail-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--gray); margin-bottom: 14px; }
-  .detail-back:hover { color: var(--accent-deep); }
-  .detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
-  .detail-head h2 { font-size: 18px; font-family: 'Noto Serif JP', serif; line-height: 1.5; }
-  .detail-head .sub { font-size: 12px; color: var(--gray); margin-top: 5px; }
-  .detail-grid { display: grid; grid-template-columns: 1.15fr minmax(300px, 400px); gap: 20px; align-items: start; }
-
-  .answer-wrap { background: #fff; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
-  .answer-toolbar {
-    padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--bg-soft);
-    display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  .reader-paper {
+    max-width: 720px; margin: 0 auto; background: var(--paper); border: 1px solid var(--paper-line);
+    border-radius: 2px; box-shadow: 0 2px 0 rgba(30,58,95,.04), 0 12px 40px rgba(30,58,95,.08);
+    padding: 48px 56px 64px; position: relative; min-height: 480px;
   }
-  .answer-toolbar .at-label { font-size: 12px; font-weight: 700; color: var(--navy); font-family: 'Noto Serif JP', serif; }
-  .answer-body { padding: 22px 24px; min-height: 280px; }
-  .answer-placeholder { text-align: center; padding: 48px 20px; color: var(--gray-soft); }
-  .answer-placeholder svg { opacity: .35; margin-bottom: 14px; }
-  .answer-placeholder p { font-size: 13px; line-height: 1.8; }
-
-  .scan-box { text-align: center; padding: 56px 20px; }
-  .scan-spinner {
-    width: 42px; height: 42px; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--accent);
-    animation: spin .8s linear infinite; margin: 0 auto 16px;
+  .reader-paper::before {
+    content: ''; position: absolute; top: 0; left: 48px; right: 48px; height: 100%;
+    background: repeating-linear-gradient(transparent, transparent 31px, rgba(232,228,218,.5) 31px, rgba(232,228,218,.5) 32px);
+    pointer-events: none; z-index: 0;
   }
-  .scan-text { font-size: 14px; font-weight: 700; color: var(--navy); font-family: 'Noto Serif JP', serif; }
-  .scan-sub { font-size: 12px; color: var(--gray-soft); margin-top: 8px; }
+  .reader-paper.scanning::after {
+    content: ''; position: absolute; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation: scanLine 1.8s ease-in-out infinite; z-index: 5; pointer-events: none;
+  }
+  @keyframes scanLine { 0% { top: 0; opacity: .3; } 50% { opacity: 1; } 100% { top: calc(100% - 3px); opacity: .3; } }
+  .paper-head { position: relative; z-index: 1; margin-bottom: 36px; padding-bottom: 20px; border-bottom: 2px solid var(--navy); }
+  .paper-reg-title { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .paper-reg-meta { font-size: 12px; color: var(--gray-soft); }
+  .article-block { position: relative; z-index: 1; margin-bottom: 32px; scroll-margin-top: 180px; }
+  .article-num {
+    font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 700; color: var(--navy);
+    margin-bottom: 8px; letter-spacing: .04em;
+  }
+  .article-title { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
+  .article-p {
+    font-family: 'Noto Serif JP', serif; font-size: 15px; line-height: 2; color: #334155; margin-bottom: 8px;
+    transition: background .4s, box-shadow .4s; border-radius: 2px; padding: 2px 4px; margin-left: -4px;
+  }
+  .article-p.highlight {
+    background: var(--hl); box-shadow: 0 0 0 4px var(--hl-glow);
+    animation: hlPulse 1.2s ease 2;
+  }
+  @keyframes hlPulse { 0%,100% { box-shadow: 0 0 0 4px var(--hl-glow); } 50% { box-shadow: 0 0 0 8px rgba(253,230,138,.25); } }
 
-  .ai-answer-block { animation: fadeUp .35s ease; }
+  .sticky-notes-layer {
+    position: absolute; top: 0; right: -180px; width: 160px; height: 100%; pointer-events: none; z-index: 10;
+  }
+  .sticky-note {
+    position: absolute; width: 148px; padding: 10px 12px; background: var(--sticky);
+    border: 1px solid var(--sticky-border); border-radius: 2px 2px 2px 0;
+    box-shadow: 2px 3px 8px rgba(113,63,18,.15); font-size: 11px; line-height: 1.55; color: var(--sticky-ink);
+    transform: rotate(1.5deg); opacity: 0; animation: stickyIn .45s ease forwards;
+  }
+  .sticky-note::before {
+    content: ''; position: absolute; top: -1px; left: 20px; width: 14px; height: 6px;
+    background: rgba(234,179,8,.35); border-radius: 0 0 2px 2px;
+  }
+  .sticky-note .sn-label { font-size: 9px; letter-spacing: .12em; font-weight: 700; opacity: .7; margin-bottom: 4px; }
+  @keyframes stickyIn {
+    from { opacity: 0; transform: rotate(1.5deg) translateX(12px) scale(.92); }
+    to { opacity: 1; transform: rotate(1.5deg) translateX(0) scale(1); }
+  }
+
+  .answer-sheet {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+    background: #fff; border-top: 2px solid var(--navy); border-radius: 16px 16px 0 0;
+    box-shadow: 0 -8px 40px rgba(30,58,95,.15); transform: translateY(100%);
+    transition: transform .35s cubic-bezier(.32,.72,0,1); max-height: 72vh; display: flex; flex-direction: column;
+  }
+  .answer-sheet.open { transform: translateY(0); }
+  .sheet-handle {
+    flex: 0 0 auto; padding: 10px 20px 0; display: flex; align-items: center; justify-content: space-between;
+  }
+  .sheet-grab { width: 40px; height: 4px; background: var(--line); border-radius: 2px; margin: 0 auto 8px; }
+  .sheet-close-btn {
+    border: none; background: var(--bg-soft); width: 28px; height: 28px; border-radius: 6px;
+    font-size: 18px; color: var(--gray); line-height: 1;
+  }
+  .sheet-head { flex: 0 0 auto; padding: 0 24px 12px; border-bottom: 1px solid var(--line); }
+  .sheet-head h3 { font-size: 15px; color: var(--navy); display: flex; align-items: center; gap: 8px; }
+  .sheet-head h3 .ai-badge {
+    font-size: 10px; background: var(--accent-bg); color: var(--navy); padding: 2px 8px; border-radius: 4px;
+    font-weight: 700; letter-spacing: .06em;
+  }
+  .sheet-body { flex: 1; overflow-y: auto; padding: 20px 24px 28px; }
+  .answer-card {
+    background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; margin-bottom: 20px;
+    animation: fadeUp .35s ease;
+  }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  .ai-answer-block .ans-lead {
-    font-size: 14.5px; line-height: 1.85; color: var(--ink); font-family: 'Noto Serif JP', serif; margin-bottom: 18px;
+  .answer-card .q-text { font-size: 13px; color: var(--gray-soft); margin-bottom: 10px; }
+  .answer-card .a-text { font-size: 14.5px; line-height: 1.85; color: var(--ink); }
+  .cite-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .cite-tag {
+    font-size: 11px; padding: 4px 10px; border-radius: 4px; background: var(--accent-bg);
+    color: var(--navy); font-weight: 600; font-family: 'IBM Plex Mono', monospace;
   }
-  .cite-refs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-  .cite-ref-pill {
-    display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 4px;
-    background: var(--accent-bg); color: var(--accent-deep); font-size: 11.5px; font-weight: 700; cursor: pointer;
-    border: 1px solid #BFDBFE; transition: background .15s;
+  .ringi-section { border-top: 1px solid var(--line); padding-top: 18px; }
+  .ringi-section h4 { font-size: 13px; color: var(--navy); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .ringi-box {
+    background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px;
+    font-family: 'Noto Serif JP', serif; font-size: 13.5px; line-height: 1.9; color: var(--ink); min-height: 120px;
+    white-space: pre-wrap;
   }
-  .cite-ref-pill:hover { background: #DBEAFE; }
-  .cite-ref-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-  .cite-list { display: flex; flex-direction: column; gap: 12px; }
-  .cite-card {
-    border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; background: #fff; transition: border-color .15s, box-shadow .15s;
-  }
-  .cite-card.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(37,99,235,.12); background: #FAFCFF; }
-  .cite-card .cc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
-  .cite-card .cc-reg { font-size: 11px; font-weight: 700; color: var(--accent-deep); letter-spacing: .06em; }
-  .cite-card .cc-article { font-size: 14px; font-weight: 700; font-family: 'Noto Serif JP', serif; color: var(--navy); }
-  .cite-card .cc-title { font-size: 12px; color: var(--gray); margin-bottom: 10px; }
-  .cite-card .cc-text { font-size: 13.5px; line-height: 1.85; color: var(--ink); font-family: 'Noto Serif JP', serif; }
-  .cite-card .cc-text mark { background: var(--cite-hl); color: var(--ink); padding: 0 2px; border-radius: 2px; }
-
-  .side-panel { background: #fff; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; position: sticky; top: 120px; }
-  .side-panel-head { padding: 14px 18px; border-bottom: 1px solid var(--line); background: var(--navy); color: #fff; }
-  .side-panel-head h4 { font-size: 13.5px; font-family: 'Noto Serif JP', serif; }
-  .side-panel-head p { font-size: 11px; color: #93C5FD; margin-top: 3px; }
-  .side-panel-body { padding: 18px; }
-  .ai-start-box { text-align: center; padding: 24px 12px; }
-  .ai-start-box p { font-size: 12.5px; color: var(--gray); line-height: 1.75; margin-bottom: 16px; }
-  .btn-ai-run {
-    width: 100%; padding: 12px 16px; border: none; border-radius: 4px; background: var(--accent); color: #fff;
-    font-weight: 700; font-size: 13.5px; transition: filter .15s;
-  }
-  .btn-ai-run:hover { filter: brightness(1.06); }
-  .btn-ai-run:disabled { opacity: .5; cursor: not-allowed; }
-  .btn-outline {
-    width: 100%; padding: 11px 16px; border: 1px solid var(--line); border-radius: 4px; background: #fff;
-    font-weight: 700; font-size: 13px; color: var(--gray); margin-top: 10px;
-  }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent-deep); }
-  .complete-banner {
-    display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 4px; background: var(--green-bg); color: var(--green);
-    font-size: 12.5px; font-weight: 700; margin-bottom: 14px; opacity: 0; transform: translateY(4px); transition: all .25s;
-  }
-  .complete-banner.in { opacity: 1; transform: none; }
-  .draft-box { border: 1px solid var(--line); border-radius: 4px; background: var(--bg-soft); padding: 16px 18px; margin-bottom: 12px; }
-  .draft-text-preview { font-size: 13px; line-height: 1.85; color: var(--ink); font-family: 'Noto Serif JP', serif; white-space: pre-wrap; min-height: 180px; }
-  .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent); animation: blink .8s step-end infinite; vertical-align: text-bottom; }
+  .ringi-cursor { display: inline-block; width: 2px; height: 1em; background: var(--navy); animation: blink .8s step-end infinite; vertical-align: text-bottom; }
   @keyframes blink { 50% { opacity: 0; } }
-  .draft-note { display: flex; gap: 8px; align-items: flex-start; font-size: 11px; color: var(--gray-soft); margin-bottom: 14px; line-height: 1.6; }
-  .draft-cta { margin-bottom: 10px; }
-  .btn-approve-draft {
-    width: 100%; padding: 12px; border: none; border-radius: 4px; background: var(--navy); color: #fff;
-    font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px;
+  .ringi-actions { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-ringi {
+    padding: 10px 18px; border: none; border-radius: 8px; background: var(--navy); color: #fff;
+    font-weight: 700; font-size: 13px;
   }
-  .draft-reset { text-align: center; }
-  .draft-reset button { background: none; border: none; color: var(--gray-soft); font-size: 11.5px; }
-  .draft-reset button:hover { color: var(--accent-deep); }
-  .ai-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
-  .ai-toolbar .ai-count { font-size: 12px; font-weight: 700; color: var(--navy); }
-  .btn-skip { background: none; border: 1px solid var(--line); border-radius: 4px; padding: 5px 10px; font-size: 11px; color: var(--gray); }
-  .btn-skip:hover { border-color: var(--accent); color: var(--accent-deep); }
-
-  .ringi-list { display: flex; flex-direction: column; gap: 10px; }
-  .ringi-row {
-    display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 6px;
-    background: #fff; cursor: pointer; transition: background .15s, border-color .15s;
-  }
-  .ringi-row:hover { background: var(--accent-bg); border-color: var(--accent); }
-  .ringi-row .r-main { flex: 1; min-width: 0; }
-  .ringi-row .r-title { font-size: 13.5px; font-weight: 700; font-family: 'Noto Serif JP', serif; }
-  .ringi-row .r-sub { font-size: 11px; color: var(--gray-soft); margin-top: 3px; }
-  .ringi-editor-wrap { background: #fff; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
-  .ringi-editor-toolbar {
-    padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--bg-soft);
-    display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
-  }
-  .ringi-editor-body { padding: 24px 28px; }
-  .ringi-form-row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; margin-bottom: 14px; align-items: baseline; }
-  .ringi-form-row label { font-size: 12px; font-weight: 700; color: var(--gray); }
-  .ringi-form-row .val { font-size: 13.5px; font-family: 'Noto Serif JP', serif; color: var(--ink); }
-  .ringi-section { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
-  .ringi-section h4 { font-size: 13px; font-family: 'Noto Serif JP', serif; color: var(--navy); margin-bottom: 10px; }
-  .ringi-section p { font-size: 13.5px; line-height: 1.85; font-family: 'Noto Serif JP', serif; color: var(--ink); }
-
-  .settings-section { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 22px 24px; margin-bottom: 16px; }
-  .settings-section h3 { font-size: 14.5px; font-family: 'Noto Serif JP', serif; margin-bottom: 4px; }
-  .settings-section .sec-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; }
-  .member-row, .toggle-row {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
-  }
-  .member-row:last-child, .toggle-row:last-child { border-bottom: none; }
-  .member-row .m-name { font-size: 13px; font-weight: 700; }
-  .member-row .m-mail { font-size: 11px; color: var(--gray-soft); }
-  .role-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
-  .role-admin { background: var(--accent-bg); color: var(--accent-deep); }
-  .role-agent { background: var(--teal-bg); color: var(--teal); }
-  .role-member { background: var(--slate-bg); color: var(--gray); }
-  .toggle-row .tg-label { font-size: 13px; color: var(--ink); }
-  .toggle-row .tg-desc { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
-  .switch { position: relative; width: 42px; height: 24px; flex: 0 0 auto; }
-  .switch input { opacity: 0; width: 0; height: 0; }
-  .switch .track { position: absolute; inset: 0; background: #CBD5E1; border-radius: 999px; cursor: pointer; transition: background .2s; }
-  .switch .track::before {
-    content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%;
-    transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.3);
-  }
-  .switch input:checked + .track { background: var(--accent); }
-  .switch input:checked + .track::before { transform: translateX(18px); }
-
-  .cat-bar-wrap { margin-bottom: 14px; }
-  .cat-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-  .cat-row .cat-label { width: 100px; flex: 0 0 auto; font-size: 12px; font-weight: 700; color: var(--gray); }
-  .cat-row .cat-track { flex: 1; height: 10px; background: var(--slate-bg); border-radius: 5px; overflow: hidden; }
-  .cat-row .cat-fill { height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--navy), var(--accent)); }
-  .cat-row .cat-val { font-size: 12px; font-weight: 700; width: 48px; text-align: right; font-variant-numeric: tabular-nums; }
+  .btn-ringi:hover { filter: brightness(1.08); }
+  .btn-ringi.outline { background: #fff; color: var(--navy); border: 1px solid var(--line); }
+  .btn-skip { padding: 8px 12px; border: 1px solid var(--line); border-radius: 6px; background: #fff; font-size: 12px; color: var(--gray); }
 
   #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
   .toast {
-    background: var(--navy); color: #fff; padding: 11px 18px; border-radius: 6px; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    background: var(--navy); color: #fff; padding: 11px 16px; border-radius: 8px; font-size: 13px;
+    box-shadow: 0 8px 24px rgba(30,58,95,.25); max-width: 320px;
     animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
   }
   @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
   @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
 
   .komon-cta {
-    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
-    color: #fff; padding: 76px 24px 40px; text-align: center;
+    background: linear-gradient(165deg, #152A45 0%, #1E3A5F 50%, #2D4A6F 100%);
+    color: #F8FAFC; padding: 72px 24px 40px; text-align: center;
   }
   .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
-  .komon-cta .cta-label { display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: #93C5FD; font-weight: 700; margin-bottom: 16px; }
+  .komon-cta .cta-label { display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: var(--accent-soft); font-weight: 700; margin-bottom: 16px; }
   .komon-cta h2 { font-size: 30px; margin-bottom: 16px; line-height: 1.5; font-family: 'Noto Serif JP', serif; }
-  .komon-cta h2 em { font-style: normal; color: #93C5FD; }
+  .komon-cta h2 em { font-style: normal; color: var(--accent-soft); }
   .komon-cta p.lead { font-size: 14.5px; color: #94A3B8; margin-bottom: 32px; line-height: 1.9; }
-  .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
-  .btn { display: inline-block; padding: 15px 34px; border-radius: 4px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s, transform .1s; }
-  .btn:hover { opacity: .87; }
-  .btn-accent { background: var(--accent); color: #fff; }
-  .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+  .cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .btn { display: inline-block; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 14px; transition: filter .15s; }
+  .btn:hover { filter: brightness(1.06); }
+  .btn-gold { background: var(--accent-soft); color: var(--navy-deep); }
+  .btn-outline-cta { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.35); }
   .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #64748B; }
   .komon-cta .cta-foot a { color: #CBD5E1; }
   .komon-cta .cta-foot a:hover { color: #fff; }
 
-  .mobile-nav-overlay { display: none; }
-  @media (max-width: 900px) {
-    .grid-2col { grid-template-columns: 1fr; }
-    .detail-grid { grid-template-columns: 1fr; }
-    .kpi-grid { grid-template-columns: 1fr 1fr; }
-    .reg-grid { grid-template-columns: 1fr 1fr; }
-    .side-panel { position: static; }
-  }
-  @media (max-width: 780px) {
-    .hamburger-btn { display: flex; }
-    .sidebar {
-      position: fixed; top: 44px; left: 0; bottom: 0; height: auto; z-index: 300; transform: translateX(-100%);
-      transition: transform .25s ease; box-shadow: 20px 0 60px rgba(0,0,0,.3); width: 240px;
+  @media (max-width: 960px) {
+    .reader-wrap { grid-template-columns: 1fr; }
+    .reader-toc {
+      position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line);
+      padding: 12px 0; display: flex; flex-wrap: wrap; gap: 0; align-items: flex-start;
     }
-    .sidebar.open { transform: translateX(0); }
-    .mobile-nav-overlay.open { display: block; position: fixed; inset: 44px 0 0 0; background: rgba(0,0,0,.4); z-index: 290; }
-    .app-header { padding: 0 14px; gap: 8px; }
-    .header-search { display: none; }
-    .main-scroll { padding: 18px 14px 40px; }
-    .search-box { width: 100%; margin-left: 0; }
-    .search-box input { width: 100%; }
-    .toolbar { flex-direction: column; align-items: stretch; }
+    .toc-heading { width: 100%; padding: 0 16px 8px; margin-bottom: 0; border-bottom: none; }
+    .toc-reg { flex: 1 1 33%; min-width: 140px; }
+    .toc-articles { display: none !important; }
+    .reader-body-wrap { padding: 16px 12px 140px; }
+    .reader-paper { padding: 32px 24px 48px; }
+    .sticky-notes-layer { right: -8px; width: 120px; }
+    .sticky-note { width: 108px; font-size: 10px; padding: 8px; }
+  }
+  @media (max-width: 640px) {
+    .ask-zone { top: 96px; padding: 12px 14px; }
+    .ask-row { flex-direction: column; }
+    .ask-submit { padding: 12px; }
+    .app-top { top: 52px; }
+    .reader-paper { padding: 24px 18px 40px; }
+    .sticky-notes-layer { display: none; }
     .komon-cta h2 { font-size: 23px; }
     .komon-cta { padding: 56px 18px 32px; }
-  }
-  @media (max-width: 480px) {
-    .kpi-grid { grid-template-columns: 1fr; }
-    .reg-grid { grid-template-columns: 1fr; }
-    table.data-table thead { display: none; }
-    table.data-table, table.data-table tbody, table.data-table tr, table.data-table td { display: block; width: 100%; }
-    table.data-table tbody tr { border-bottom: 1px solid var(--line); padding: 12px 14px; }
-    table.data-table td { border-bottom: none; padding: 3px 0; }
-    table.data-table td::before { content: attr(data-label); display: inline-block; min-width: 76px; font-size: 10.5px; color: var(--gray-soft); font-weight: 700; }
   }
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
@@ -536,18 +380,18 @@
 
 <div id="view-login">
   <div class="login-hero">
-    <div class="hero-kicker">POLICY & APPROVAL DESK</div>
-    <h2>規程を<em>出典付き</em>で検索し、稟議まで一気通貫。</h2>
-    <p>就業規則・稟議規程・出張規程など社内規程を自然言語で検索。AIが条文を引用しながら回答し、必要に応じて稟議書下書きまで生成します。</p>
+    <div class="hero-kicker">POLICY &amp; APPROVAL DESK</div>
+    <h2>規程は、<em>ページで読む。</em>付箋で答える。</h2>
+    <p>就業規則・稟議規程・出張規程を見開きリーダーで読み、Askすると該当条文へスクロールし余白に付箋注釈。回答まとめから稟議下書きまで一気通貫。検索結果一覧ではなく、条文が主語のポリシーデスク。</p>
     <div class="legal-strip"><span></span><span></span><span></span><span></span><span></span><span></span></div>
   </div>
   <div class="login-panel">
     <div class="login-card">
       <div class="login-logo"><span class="k">KITEI</span><span class="tag-en">POLICY DESK</span></div>
-      <p class="login-sub">規程管理を、条文の安心感で。</p>
+      <p class="login-sub">条文を読み、根拠を付箋で示す。</p>
       <div class="login-field">
         <label for="loginMail">メールアドレス</label>
-        <input id="loginMail" type="text" value="demo@corp-policy.example" readonly>
+        <input id="loginMail" type="text" value="demo@sample-corp.example" readonly>
       </div>
       <div class="login-field">
         <label for="loginPass">パスワード</label>
@@ -562,218 +406,60 @@
 </div>
 
 <div id="view-app">
-  <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleSidebar(false)"></div>
-  <div class="app-frame">
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand"><span class="k">KITEI</span><span class="tag-en">POLICY DESK</span></div>
-      <nav class="sidebar-nav" id="sidebarNav">
-        <button class="nav-btn" data-nav="dashboard" onclick="go('dashboard')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
-          ダッシュボード
-        </button>
-        <button class="nav-btn" data-nav="search" onclick="go('search')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-          規程検索
-        </button>
-        <button class="nav-btn" data-nav="ringi" onclick="go('ringi')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-          稟議下書き
-        </button>
-        <button class="nav-btn" data-nav="settings" onclick="go('settings')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l1.9-1.5-2-3.4-2.3.7a7.6 7.6 0 0 0-2.6-1.5L14 2h-4l-.4 2.8a7.6 7.6 0 0 0-2.6 1.5l-2.3-.7-2 3.4L4.6 10.5a7.6 7.6 0 0 0 0 3L2.7 15l2 3.4 2.3-.7c.77.66 1.65 1.17 2.6 1.5L10 22h4l.4-2.8c.95-.33 1.83-.84 2.6-1.5l2.3.7 2-3.4Z"/></svg>
-          設定
-        </button>
-      </nav>
-      <div class="sidebar-foot">
-        <div class="sidebar-user">
-          <div class="avatar">総</div>
-          <div><div class="u-name">デモ 総務</div><div class="u-role">株式会社ポリシーテック</div></div>
-        </div>
-        <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+  <header class="app-top">
+    <div class="top-brand"><span class="k">KITEI</span><span class="tag-en">POLICY DESK</span></div>
+    <div class="top-center" id="topDate">2026-07-22 JST</div>
+    <div class="top-actions">
+      <div class="top-user">
+        <div class="avatar">総</div>
+        <span>デモ 総務</span>
       </div>
-    </aside>
+      <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+    </div>
+  </header>
 
-    <div class="main-col">
-      <header class="app-header">
-        <button class="hamburger-btn" onclick="toggleSidebar()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        </button>
-        <h1 class="view-name" id="viewNameLabel">ダッシュボード</h1>
-        <div class="header-search">
-          <div class="header-search-inner">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-            <input type="text" placeholder="規程・条文を検索（見た目のみ）" disabled>
-          </div>
-        </div>
-        <div class="header-actions">
-          <div class="dropdown-wrap">
-            <button class="icon-btn" onclick="toggleDropdown('notifPanel')">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-              <span class="notif-badge" id="notifBadgeCount">3</span>
-            </button>
-            <div class="dropdown-panel" id="notifPanel">
-              <div class="dropdown-head">通知</div>
-              <div id="notifList"></div>
-            </div>
-          </div>
-        </div>
-      </header>
+  <section class="ask-zone" aria-label="規程Ask">
+    <div class="ask-label">ASK — 規程に質問する</div>
+    <div class="ask-row">
+      <div class="ask-input-wrap">
+        <svg class="ask-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input class="ask-input" id="askInput" type="text" placeholder="例：出張で新幹線のぞみは使える？" autocomplete="off">
+      </div>
+      <button class="ask-submit" id="askSubmit" onclick="submitAsk()">Ask</button>
+    </div>
+    <div class="ask-chips" id="askChips"></div>
+  </section>
 
-      <main class="main-scroll">
-        <section class="view" id="view-dashboard">
-          <div class="view-head">
-            <div><h2>ダッシュボード</h2><p class="lead">2026年7月22日時点の規程・稟議サマリーです（サンプルデータ）</p></div>
-          </div>
-          <div class="kpi-grid" id="kpiGrid"></div>
-          <div class="grid-2col">
-            <div class="panel">
-              <h3>最近の規程検索</h3>
-              <p class="panel-note">直近のAI検索履歴（出典付き回答）</p>
-              <div class="task-list" id="recentSearchList"></div>
-            </div>
-            <div class="panel">
-              <h3>最近のアクティビティ</h3>
-              <p class="panel-note">規程改定・稟議・AI生成履歴（サンプル）</p>
-              <div class="timeline" id="activityTimeline"></div>
-            </div>
-          </div>
-          <div class="panel">
-            <h3>規程カテゴリ別 検索回数</h3>
-            <p class="panel-note">直近30日の検索回数（サンプル）</p>
-            <div id="categoryChart"></div>
-          </div>
-        </section>
-
-        <section class="view" id="view-search">
-          <div class="view-head">
-            <div><h2>規程検索</h2><p class="lead">就業規則・稟議規程・出張規程などを自然言語で検索</p></div>
-          </div>
-          <div class="search-hero">
-            <h3>条文を質問形式で検索</h3>
-            <p>AIが社内規程を横断検索し、出典条文をハイライトしながら回答します。</p>
-            <div class="search-main">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-              <input type="text" id="mainSearchInput" placeholder="例：有給休暇は何日前までに申請が必要ですか？" onkeydown="if(event.key==='Enter')submitSearch()">
-              <button class="btn-search-go" onclick="submitSearch()">検索</button>
-            </div>
-            <div class="sample-chips" id="sampleChips"></div>
-          </div>
-          <div class="view-head" style="margin-top:8px;">
-            <div><h2 style="font-size:16px;">登録規程一覧</h2></div>
-          </div>
-          <div class="toolbar">
-            <div class="tab-row" id="regTabRow"></div>
-            <div class="search-box">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-              <input type="text" id="regSearchInput" placeholder="規程名で絞り込み" oninput="renderRegTable()">
-            </div>
-          </div>
-          <div class="reg-grid" id="regGrid"></div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr><th>規程名</th><th>カテゴリ</th><th>改定日</th><th>条数</th><th>最終参照</th></tr>
-              </thead>
-              <tbody id="regTbody"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="view" id="view-result-detail">
-          <a href="#search" class="detail-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>
-            規程検索へ戻る
-          </a>
-          <div class="detail-head">
-            <div>
-              <h2 id="resultQuestion">検索結果</h2>
-              <p class="sub" id="resultSub">出典付きAI回答</p>
-            </div>
-            <span class="badge badge-draft" id="resultBadge">AI回答</span>
-          </div>
-          <div class="detail-grid">
-            <div class="answer-wrap">
-              <div class="answer-toolbar">
-                <span class="at-label">AI回答（出典ハイライト）</span>
-                <span class="badge badge-human">人が確認</span>
-              </div>
-              <div class="answer-body" id="answerBody">
-                <div class="answer-placeholder" id="answerPlaceholder">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
-                  <p>規程検索から質問を選択すると、<br>出典条文付きの回答がここに表示されます。</p>
-                </div>
-                <div id="answerContent" style="display:none;"></div>
-              </div>
-            </div>
-            <div class="side-panel">
-              <div class="side-panel-head">
-                <h4>出典条文</h4>
-                <p>クリックで該当箇所をハイライト</p>
-              </div>
-              <div class="side-panel-body" id="citePanelBody">
-                <div class="ai-start-box"><p>AI回答生成後、<br>引用元条文がここに表示されます。</p></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="view" id="view-ringi">
-          <div class="view-head">
-            <div><h2>稟議下書き</h2><p class="lead">規程検索結果から生成した稟議書下書きの一覧・編集（サンプル）</p></div>
-          </div>
-          <div class="grid-2col">
-            <div class="panel">
-              <h3>下書き一覧</h3>
-              <p class="panel-note">AI生成済み・作成中の稟議下書き</p>
-              <div class="ringi-list" id="ringiList"></div>
-            </div>
-            <div class="ringi-editor-wrap" id="ringiEditorWrap">
-              <div class="ringi-editor-toolbar">
-                <span class="at-label" id="ringiEditorTitle">稟議書プレビュー</span>
-                <span class="badge badge-pending" id="ringiEditorBadge">未選択</span>
-              </div>
-              <div class="ringi-editor-body" id="ringiEditorBody">
-                <div class="answer-placeholder">
-                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
-                  <p>左の一覧から稟議下書きを選択するか、<br>規程検索結果から「稟議下書きを生成」を実行してください。</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="view" id="view-settings">
-          <div class="view-head">
-            <div><h2>設定</h2><p class="lead">メンバー権限・AI機能・通知の設定です（見た目のみ動作します）</p></div>
-          </div>
-          <div class="settings-section">
-            <h3>メンバーと権限</h3>
-            <p class="sec-note">総務・法務・各部門担当のロールを管理します</p>
-            <div id="memberList"></div>
-          </div>
-          <div class="settings-section">
-            <h3>AI機能</h3>
-            <p class="sec-note">規程検索・出典表示・稟議下書き生成の設定です</p>
-            <div id="aiToggleList"></div>
-          </div>
-          <div class="settings-section">
-            <h3>通知設定</h3>
-            <p class="sec-note">規程改定・稟議承認・期限アラートの通知です</p>
-            <div id="notifToggleList"></div>
-          </div>
-        </section>
-      </main>
+  <div class="reader-wrap">
+    <nav class="reader-toc" id="readerToc" aria-label="規程目次"></nav>
+    <div class="reader-body-wrap">
+      <article class="reader-paper serif" id="readerPaper">
+        <div class="paper-head" id="paperHead"></div>
+        <div id="articleBody"></div>
+        <div class="sticky-notes-layer" id="stickyLayer"></div>
+      </article>
     </div>
   </div>
+</div>
+
+<div class="answer-sheet" id="answerSheet" aria-hidden="true">
+  <div class="sheet-handle">
+    <div style="flex:1;text-align:center"><div class="sheet-grab"></div></div>
+    <button class="sheet-close-btn" onclick="closeAnswerSheet()" aria-label="閉じる">×</button>
+  </div>
+  <div class="sheet-head">
+    <h3><span class="ai-badge">AI</span> 回答まとめ</h3>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
 </div>
 
 <div class="komon-cta">
   <div class="cta-inner">
     <span class="cta-label">AI KOMONSHITSU</span>
     <h2>このようなシステムを、<em>御社専用に。</em></h2>
-    <p class="lead">「KITEI」は本デモのために作った架空のプロダクトです。AI顧問室では、就業規則・稟議規程・社内規程を横断検索し、出典付き回答と稟議下書きまで一気通貫で実現する専用システムを構築します。</p>
+    <p class="lead">「KITEI」は本デモのために作った架空のプロダクトです。AI顧問室では、就業規則・稟議規程・社内規定を御社の文書に合わせて学習し、条文リーダー・出典付き回答・稟議下書き生成まで組み込んだ専用システムを構築します。</p>
     <div class="cta-btn-row">
-      <a href="index.html?from=works-kitei#contact" class="btn btn-accent">無料相談を予約する</a>
+      <a href="index.html?from=works-kitei#contact" class="btn btn-gold">無料相談を予約する</a>
       <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
     </div>
     <div class="cta-foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</div>
@@ -783,663 +469,422 @@
 <div id="toastHost"></div>
 
 <script>
+var REGULATIONS = {
+  shugyo: {
+    id: 'shugyo', title: '就業規則', meta: '改定日：2025年4月1日｜適用：全従業員',
+    articles: [
+      { id: 'shugyo-24', num: '第24条（年次有給休暇）', title: '付与時期',
+        paragraphs: [
+          '従業員が6か月間継続して勤務し、所定労働日の8割以上出勤した場合、10日の年次有給休暇を付与する。',
+          '継続勤務年数が1年を超えるごとに、所定の日数を加算する。入社6か月未満の従業員には、原則として年次有給休暇を付与しない。'
+        ]},
+      { id: 'shugyo-36', num: '第36条（時間外・休日労働）', title: '残業の上限',
+        paragraphs: [
+          '時間外労働は、1か月45時間、1年360時間を原則上限とする。特別条項発動時は年間720時間を超えない。',
+          '36協定の届出範囲を超える残業は、事前に所属長の承認と人事総務部の確認を要する。'
+        ]},
+      { id: 'shugyo-18', num: '第18条（テレワーク）', title: 'リモートワーク',
+        paragraphs: [
+          'テレワークは、所属長の承認を得て実施できる。原則として週2日までとし、コアタイム（10:00〜15:00）はオンラインで応答可能であること。',
+          '自宅以外の場所（カフェ等）でのテレワークは、情報セキュリティ規程第7条に定める条件を満たす場合に限り認める。'
+        ]}
+    ]
+  },
+  ringi: {
+    id: 'ringi', title: '稟議規程', meta: '改定日：2024年10月1日｜適用：全社',
+    articles: [
+      { id: 'ringi-5', num: '第5条（決裁権限）', title: '金額別決裁ルート',
+        paragraphs: [
+          '10万円未満：所属長決裁。10万円以上50万円未満：部門長決裁。50万円以上100万円未満：本部長決裁。',
+          '100万円以上500万円未満：執行役員決裁。500万円以上：代表取締役決裁。IT資産（PC・サーバー等）は第8条の特例を適用する。'
+        ]},
+      { id: 'ringi-8', num: '第8条（IT資産購入）', title: 'PC・機器購入',
+        paragraphs: [
+          '50万円未満のPC・周辺機器：情報システム部の見積確認のうえ、部門長決裁。50万円以上100万円未満：本部長＋情報システム部長の双方決裁。',
+          '100万円以上のPC購入（一括または年間合計）：執行役員決裁に加え、経理部の予算枠確認が必須。稟議書には見積3社比較を添付する。'
+        ]},
+      { id: 'ringi-12', num: '第12条（申請フロー）', title: '稟議の起票から決裁',
+        paragraphs: [
+          '稟議は社内ワークフローに起票し、起票者→所属長→決裁者の順に回付する。差戻し時は起票者が修正のうえ再申請する。',
+          '緊急稟議は所属長の事前口頭承認後、24時間以内に書面稟議を起票すること。口頭のみでは決裁完了とならない。'
+        ]}
+    ]
+  },
+  shuccho: {
+    id: 'shuccho', title: '出張規程', meta: '改定日：2025年1月15日｜適用：全従業員',
+    articles: [
+      { id: 'shuccho-6', num: '第6条（交通機関）', title: '新幹線・航空機',
+        paragraphs: [
+          '東京—大阪間等、片道550km超の移動は新幹線（のぞみ含む）または航空機を利用できる。のぞみ利用は「時間効率上やむを得ない場合」に限り、事前に所属長の承認を要する。',
+          '在来線特急・グリーン車は、所属長が業務上必要と認めた場合に限り利用可。タクシーは、公共交通機関が深夜帯等で利用困難な場合に限る。'
+        ]},
+      { id: 'shuccho-9', num: '第9条（宿泊）', title: '宿泊上限',
+        paragraphs: [
+          '宿泊費は1泊1万5,000円（税込）を上限とする。超過する場合は事前稟議（出張申請に理由を記載）が必要。',
+          '同一都市への連続出張が3泊を超える場合、4泊目以降は上限1万2,000円とする。'
+        ]},
+      { id: 'shuccho-14', num: '第14条（精算）', title: '経費精算',
+        paragraphs: [
+          '出張終了後7営業日以内に経費精算書を提出する。領収書は原本を経理部に提出し、電子控えをワークフローに添付する。',
+          '日当（国内：5,000円/日）は領収書不要。海外出張は別表1の日当表を適用する。'
+        ]}
+    ]
+  }
+};
 
-var TODAY_STR = '2026-07-22';
+var ASK_SAMPLES = [
+  {
+    id: 'shinkansen', label: '出張で新幹線のぞみは使える？',
+    regId: 'shuccho', articleId: 'shuccho-6', paraIndex: 0,
+    answer: '利用できます。ただし第6条により、のぞみは「時間効率上やむを得ない場合」に限り、事前に所属長の承認が必要です。550km超の区間（東京—大阪等）であれば新幹線利用自体は認められています。',
+    cites: ['出張規程 第6条'],
+    sticky: 'のぞみは事前承認が必要。550km超区間は新幹線可。',
+    ringi: '【出張申請】\n目的：大阪支社との定例打合せ\n期間：2026/8/5〜8/6\n交通：往復 東京→新大阪 のぞみ（時間効率のため）\n承認：所属長（第6条に基づくのぞみ利用）\n宿泊：第9条上限内（1泊15,000円）'
+  },
+  {
+    id: 'yukyu', label: '有給は入社何ヶ月から？',
+    regId: 'shugyo', articleId: 'shugyo-24', paraIndex: 0,
+    answer: '入社6か月後です。第24条により、6か月間継続勤務し所定労働日の8割以上出勤した時点で10日の年次有給休暇が付与されます。6か月未満の従業員には原則付与されません。',
+    cites: ['就業規則 第24条'],
+    sticky: '6か月＋出勤率8割で10日付与。',
+    ringi: null
+  },
+  {
+    id: 'pc100', label: '100万円のPC購入の稟議ルートは？',
+    regId: 'ringi', articleId: 'ringi-8', paraIndex: 1,
+    answer: '執行役員決裁が必要です。第8条（IT資産購入）により、100万円以上のPC購入は執行役員決裁に加え、経理部の予算枠確認が必須。見積3社比較の添付も求められます。第5条の一般決裁権限（100万〜500万：執行役員）も該当します。',
+    cites: ['稟議規程 第8条', '稟議規程 第5条'],
+    sticky: '100万円以上→執行役員＋経理確認。見積3社比較必須。',
+    ringi: '【稟議書】PC一括更新（100万円）\n件名：開発部ワークステーション更新（5台）\n金額：1,000,000円（税込）\n決裁ルート：執行役員（第8条・第5条）\n添付：見積3社比較、情報システム部所見\n経理部：予算枠確認済み（2026年度IT投資枠）'
+  }
+];
 
-function fmtDate(dateStr) {
-  var d = new Date(dateStr + 'T00:00:00');
-  return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
-}
+var loggedIn = false;
+var activeRegId = 'shugyo';
+var askState = { phase: 'idle', timers: [], runId: null, currentAsk: null };
+
 function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, function (c) {
-    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-  });
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
 function showToast(msg) {
   var host = document.getElementById('toastHost');
   var el = document.createElement('div');
   el.className = 'toast';
   el.textContent = msg;
   host.appendChild(el);
-  setTimeout(function () { el.remove(); }, 2700);
+  setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 2800);
 }
 
-var REGULATIONS = [
-  { id: 'reg-001', title: '就業規則', category: '人事', revised: '2026-04-01', articles: 42, chapters: 8, lastRef: '2026-07-22',
-    desc: '勤務時間・休暇・服務規律・懲戒等の基本規程。全従業員に適用。' },
-  { id: 'reg-002', title: '稟議規程', category: '経理', revised: '2026-03-15', articles: 28, chapters: 6, lastRef: '2026-07-21',
-    desc: '支出・契約・設備購入等の承認ルートと金額基準を定める規程。' },
-  { id: 'reg-003', title: '出張規程', category: '総務', revised: '2026-02-20', articles: 18, chapters: 4, lastRef: '2026-07-19',
-    desc: '国内・海外出張の申請手続、旅費・日当・精算方法を定める規程。' },
-  { id: 'reg-004', title: '情報セキュリティ規程', category: 'IT', revised: '2026-05-10', articles: 35, chapters: 7, lastRef: '2026-07-18',
-    desc: '情報資産の取扱い、アクセス管理、インシデント対応を定める規程。' },
-  { id: 'reg-005', title: '慶弔見舞金規程', category: '人事', revised: '2025-12-01', articles: 12, chapters: 3, lastRef: '2026-07-10',
-    desc: '結婚・出産・弔事等の見舞金支給基準と申請手続。' },
-  { id: 'reg-006', title: '副業・兼業規程', category: '人事', revised: '2026-01-08', articles: 14, chapters: 3, lastRef: '2026-07-08',
-    desc: '副業届出・禁止業務・利益相反管理のルール。' }
-];
+function renderAskChips() {
+  var host = document.getElementById('askChips');
+  host.innerHTML = ASK_SAMPLES.map(function (a) {
+    return '<button type="button" class="ask-chip" data-ask="' + a.id + '" onclick="selectChip(\'' + a.id + '\')">' + escapeHtml(a.label) + '</button>';
+  }).join('');
+}
 
-var SAMPLE_QUESTIONS = [
-  { id: 'q-001', text: '有給休暇は何日前までに申請が必要ですか？' },
-  { id: 'q-002', text: '100万円超の設備購入は誰の承認が必要ですか？' },
-  { id: 'q-003', text: '海外出張の日当はいくらですか？' },
-  { id: 'q-004', text: '育児休業中の社会保険料負担はどうなりますか？' }
-];
+function renderToc() {
+  var host = document.getElementById('readerToc');
+  var html = '<div class="toc-heading">目次 — REGULATIONS</div>';
+  Object.keys(REGULATIONS).forEach(function (key) {
+    var reg = REGULATIONS[key];
+    var open = key === activeRegId ? ' open' : '';
+    var active = key === activeRegId ? ' active' : '';
+    html += '<div class="toc-reg' + open + '" data-reg="' + key + '">';
+    html += '<button type="button" class="toc-reg-btn' + active + '" onclick="selectReg(\'' + key + '\')">';
+    html += '<span class="dot"></span>' + escapeHtml(reg.title) + '</button>';
+    html += '<div class="toc-articles">';
+    reg.articles.forEach(function (art) {
+      html += '<button type="button" class="toc-art-btn" onclick="scrollToArticle(\'' + art.id + '\')">' + escapeHtml(art.num) + '</button>';
+    });
+    html += '</div></div>';
+  });
+  host.innerHTML = html;
+}
 
-var QA = {
-  'q-001': {
-    question: '有給休暇は何日前までに申請が必要ですか？',
-    answer: '年次有給休暇の取得は、原則として休暇開始日の5営業日前までに、所定の休暇申請システムから申請してください。やむを得ない事情（急病・家族の急変等）がある場合は、直属の上長へ速やかに連絡のうえ、事後3営業日以内に申請手続を完了させてください。半日単位の取得も可能ですが、同様に5営業日前までの申請が原則です。',
-    citations: [
-      { id: 'c1', reg: '就業規則', article: '第24条', title: '年次有給休暇の取得', text: '年次有給休暇を取得する場合、原則として休暇開始日の<mark>5営業日前</mark>までに、所定の休暇申請システムから申請しなければならない。', hl: '5営業日前' },
-      { id: 'c2', reg: '就業規則', article: '第25条', title: 'やむを得ない場合の取扱い', text: '前条にかかわらず、急病・家族の急変その他やむを得ない事情により事前申請が困難な場合は、直属の上長へ速やかに連絡し、事後<mark>3営業日以内</mark>に申請手続を完了させなければならない。', hl: '3営業日以内' }
-    ],
-    ringiTitle: '有給休暇取得ルール周知の稟議',
-    ringiSubject: '就業規則第24条・第25条に基づく年次有給休暇申請期限の周知徹底',
-    ringiBody: '【目的】\n新入社員増加に伴い、年次有給休暇の申請期限（原則5営業日前）の周知徹底を図る。\n\n【内容】\n1. 就業規則第24条に基づき、有給休暇は原則5営業日前までに申請が必要であることを全社通知する。\n2. やむを得ない事情がある場合は第25条に基づき、上長連絡後3営業日以内の事後申請とする。\n3. 7月分の取得計画について、各部署長が部下の取得状況を確認する。\n\n【根拠条文】\n・就業規則 第24条（年次有給休暇の取得）\n・就業規則 第25条（やむを得ない場合の取扱い）\n\n【予算】\nなし（周知・運用改善のみ）\n\n【承認ルート】\n総務部長 → 人事部長 → 代表取締役（稟議規程第5条）'
-  },
-  'q-002': {
-    question: '100万円超の設備購入は誰の承認が必要ですか？',
-    answer: '100万円（税抜）を超える設備・備品の購入は、部門長承認に加え、稟議規程第8条に基づき「中規模支出稟議」として総務部長および経理部長の承認が必要です。300万円を超える場合は代表取締役の最終承認が必要となります。見積書2社以上の添付が必須です。',
-    citations: [
-      { id: 'c1', reg: '稟議規程', article: '第8条', title: '中規模支出（100万円超〜300万円以下）', text: '100万円（税抜）を超え300万円以下の設備・備品購入は、<mark>総務部長および経理部長</mark>の承認を得たうえで執行する。見積書2社以上を添付すること。', hl: '総務部長および経理部長' },
-      { id: 'c2', reg: '稟議規程', article: '第9条', title: '大規模支出（300万円超）', text: '300万円（税抜）を超える支出は、前条の承認に加え<mark>代表取締役</mark>の最終承認を必要とする。', hl: '代表取締役' }
-    ],
-    ringiTitle: '開発用PC一括購入（120万円）',
-    ringiSubject: '情シス部 開発用PC 5台購入（税抜120万円）',
-    ringiBody: '【目的】\n開発チームの生産性向上のため、高性能PC 5台を一括購入する。\n\n【内容】\n・品目：開発用ノートPC 5台\n・金額：税抜120万円（1台24万円）\n・納期：2026年8月中旬\n・見積：A社・B社の2社見積を添付\n\n【承認根拠】\n稟議規程第8条（中規模支出：100万円超〜300万円以下）\n→ 部門長 → 総務部長 → 経理部長\n\n【効果】\nビルド時間短縮により、月間約40時間の工数削減見込み。'
-  },
-  'q-003': {
-    question: '海外出張の日当はいくらですか？',
-    answer: '海外出張の日当は、出張規程第12条に基づき、地域区分ごとに定められています。A区分（北米・欧州主要国）は1日15,000円、B区分（アジア主要国）は1日10,000円、C区分（その他）は1日8,000円です。宿泊費は実費精算（上限あり）とし、日当は食事代込みの定額支給です。',
-    citations: [
-      { id: 'c1', reg: '出張規程', article: '第12条', title: '海外出張日当', text: '海外出張に際して支給する日当は、次のとおりとする。A区分（北米・欧州主要国）<mark>15,000円</mark>、B区分（アジア主要国）<mark>10,000円</mark>、C区分（その他）<mark>8,000円</mark>。', hl: '15,000円' },
-      { id: 'c2', reg: '出張規程', article: '第13条', title: '宿泊費・交通費', text: '宿泊費は実費精算とし、地域ごとの上限額を別表2に定める。日当には<mark>食事代を含む</mark>。', hl: '食事代を含む' }
-    ],
-    ringiTitle: 'シンガポール出張（営業部）',
-    ringiSubject: '営業部 田中 — シンガポール出張（2026/8/5-8/8）',
-    ringiBody: '【出張概要】\n・目的：現地パートナーとの契約交渉\n・期間：2026年8月5日〜8月8日（3泊4日）\n・行先：シンガポール（B区分）\n\n【旅費見積】\n・航空券：約18万円\n・宿泊費：1泊上限25,000円 × 3泊\n・日当：10,000円 × 4日 = 40,000円（出張規程第12条 B区分）\n\n【承認ルート】\n営業部長 → 総務部長（出張規程第4条）'
-  },
-  'q-004': {
-    question: '育児休業中の社会保険料負担はどうなりますか？',
-    answer: '育児休業中の健康保険料・厚生年金保険料は、就業規則第38条および関連法令に基づき、原則として会社と本人が休業前の負担割合で分担します。育児休業給付金の支給がある期間は、本人負担分の免除措置が適用される場合があります。詳細は総務部へ確認してください。',
-    citations: [
-      { id: 'c1', reg: '就業規則', article: '第38条', title: '育児休業', text: '育児休業を取得する従業員について、<mark>社会保険料の負担</mark>は休業前の標準報酬月額および負担割合に基づき会社と本人で分担する。', hl: '社会保険料の負担' },
-      { id: 'c2', reg: '就業規則', article: '第39条', title: '育児休業給付', text: '育児休業給付金の支給を受ける期間において、法令で定める範囲内で<mark>保険料免除</mark>の措置が適用される場合がある。', hl: '保険料免除' }
-    ],
-    ringiTitle: '育児休業取得届（営業部 佐藤）',
-    ringiSubject: '営業部 佐藤美咲 — 育児休業取得（2026/9/1〜）',
-    ringiBody: '【届出内容】\n・対象者：佐藤 美咲（営業部）\n・休業期間：2026年9月1日〜2027年8月31日（予定）\n・社会保険：就業規則第38条・第39条に基づき総務部で手続\n\n【引継ぎ】\n・担当顧客3社を同部 鈴木へ引継ぎ\n・復帰予定：2027年9月（時短勤務を検討）\n\n【承認】\n営業部長 → 人事部長 → 代表取締役'
+function renderRegulation(regId) {
+  var reg = REGULATIONS[regId];
+  if (!reg) return;
+  activeRegId = regId;
+  document.getElementById('paperHead').innerHTML =
+    '<h1 class="paper-reg-title">' + escapeHtml(reg.title) + '</h1>' +
+    '<p class="paper-reg-meta">' + escapeHtml(reg.meta) + '</p>';
+  var body = '';
+  reg.articles.forEach(function (art) {
+    body += '<section class="article-block" id="' + art.id + '" data-article="' + art.id + '">';
+    body += '<div class="article-num">' + escapeHtml(art.num) + '</div>';
+    if (art.title) body += '<div class="article-title">（' + escapeHtml(art.title) + '）</div>';
+    art.paragraphs.forEach(function (p, i) {
+      body += '<p class="article-p" data-para="' + i + '">' + escapeHtml(p) + '</p>';
+    });
+    body += '</section>';
+  });
+  document.getElementById('articleBody').innerHTML = body;
+  document.getElementById('stickyLayer').innerHTML = '';
+  renderToc();
+}
+
+function selectReg(regId) {
+  if (askState.phase !== 'idle') return;
+  location.hash = 'reader/' + regId;
+  renderRegulation(regId);
+}
+
+function scrollToArticle(articleId) {
+  var el = document.getElementById(articleId);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function selectChip(askId) {
+  var ask = ASK_SAMPLES.find(function (a) { return a.id === askId; });
+  if (!ask) return;
+  document.getElementById('askInput').value = ask.label;
+  document.querySelectorAll('.ask-chip').forEach(function (c) {
+    c.classList.toggle('active', c.getAttribute('data-ask') === askId);
+  });
+  runAskFlow(ask);
+}
+
+function submitAsk() {
+  var q = document.getElementById('askInput').value.trim();
+  if (!q) { showToast('質問を入力してください'); return; }
+  var ask = ASK_SAMPLES.find(function (a) { return a.label === q || q.indexOf(a.label.slice(0, 6)) >= 0; });
+  if (!ask) {
+    ask = ASK_SAMPLES.find(function (a) {
+      return q.indexOf('のぞみ') >= 0 || q.indexOf('新幹線') >= 0 ? a.id === 'shinkansen' :
+        q.indexOf('有給') >= 0 || q.indexOf('休暇') >= 0 ? a.id === 'yukyu' :
+        q.indexOf('PC') >= 0 || q.indexOf('100万') >= 0 || q.indexOf('稟議') >= 0 ? a.id === 'pc100' : false;
+    });
   }
-};
+  if (!ask) ask = ASK_SAMPLES[0];
+  runAskFlow(ask);
+}
 
-var RINGI_DRAFTS = [
-  { id: 'r-001', qid: 'q-001', title: '有給休暇取得ルール周知の稟議', dept: '総務部', author: 'デモ 総務', status: 'draft', updated: '2026-07-22', amount: 0 },
-  { id: 'r-002', qid: 'q-002', title: '開発用PC一括購入（120万円）', dept: '情シス部', author: '山田 技術', status: 'pending', updated: '2026-07-21', amount: 1200000 },
-  { id: 'r-003', qid: 'q-003', title: 'シンガポール出張（営業部）', dept: '営業部', author: '田中 営業', status: 'approved', updated: '2026-07-19', amount: 280000 },
-  { id: 'r-004', qid: null, title: '就業規則改定（2026年4月版）の周知', dept: '人事部', author: '人事 担当', status: 'approved', updated: '2026-04-05', amount: 0 }
-];
+function clearAskTimers() {
+  askState.timers.forEach(function (t) { clearTimeout(t); });
+  askState.timers = [];
+}
 
-var ACTIVITY_LOG = [
-  { text: '<b>AI</b>が「有給休暇申請期限」について出典付き回答を生成', time: '12分前', color: 'var(--accent)' },
-  { text: '<b>デモ 総務</b>が稟議下書き「有給休暇周知」を作成', time: '28分前', color: 'var(--teal)' },
-  { text: '<b>山田 技術</b>が「PC購入120万円」稟議を提出', time: '昨日', color: 'var(--amber)' },
-  { text: '<b>システム</b>が就業規則改定の全社通知を送信', time: '4/5', color: 'var(--green)' },
-  { text: '<b>田中 営業</b>の海外出張稟議が承認されました', time: '7/19', color: 'var(--purple)' }
-];
+function runAskFlow(ask) {
+  clearAskTimers();
+  var myRun = {};
+  askState.runId = myRun;
+  askState.phase = 'scanning';
+  askState.currentAsk = ask;
+  closeAnswerSheet();
 
-var MEMBERS = [
-  { name: 'デモ 総務', mail: 'demo@corp-policy.example', role: 'admin' },
-  { name: '法務 一郎', mail: 'legal@corp-policy.example', role: 'agent' },
-  { name: '人事 担当', mail: 'hr@corp-policy.example', role: 'agent' },
-  { name: '山田 技術', mail: 'yamada@corp-policy.example', role: 'member' }
-];
-var ROLE_LABEL = { admin: '管理者', agent: '法務/人事', member: '一般' };
+  document.getElementById('askSubmit').disabled = true;
+  document.getElementById('askInput').classList.add('scanning');
+  document.getElementById('readerPaper').classList.add('scanning');
+  document.getElementById('stickyLayer').innerHTML = '';
+  document.querySelectorAll('.article-p.highlight').forEach(function (p) { p.classList.remove('highlight'); });
 
-var AI_TOGGLES = [
-  { label: '規程横断AI検索', desc: '就業規則・稟議規程等を自然言語で横断検索', on: true },
-  { label: '出典条文ハイライト', desc: '回答に引用元条文をリンク・ハイライト表示', on: true },
-  { label: '稟議下書き自動生成', desc: '検索結果から稟議書フォーマットを生成', on: true },
-  { label: '生成後に必ず人の確認', desc: '稟議提出前に担当者承認を必須化', on: true }
-];
-var NOTIF_TOGGLES = [
-  { label: '規程改定の全社通知', desc: '規程改定時に関係者へプッシュ通知', on: true },
-  { label: '稟議承認期限アラート', desc: '未承認稟議の期限3日前に通知', on: true },
-  { label: '週次コンプライアンスサマリー', desc: '毎週月曜9:00に管理者へ送信', on: false }
-];
+  if (activeRegId !== ask.regId) renderRegulation(ask.regId);
+  location.hash = 'ask/' + ask.id;
 
-var VIEW_NAMES = { dashboard: 'ダッシュボード', search: '規程検索', ringi: '稟議下書き', settings: '設定' };
-var STATUS_RINGI = { draft: '下書き', pending: '承認待ち', approved: '承認済' };
+  askState.timers.push(setTimeout(function () {
+    if (askState.runId !== myRun) return;
+    askState.phase = 'notes';
+    document.getElementById('readerPaper').classList.remove('scanning');
+    document.getElementById('askInput').classList.remove('scanning');
 
-var loggedIn = false;
-var currentRegFilter = 'all';
-var currentQid = null;
-var activeCiteId = null;
-var searchState = null;
-var ringiState = null;
-var q001Runtime = { answerDone: false, ringiDone: false };
-var selectedRingiId = 'r-001';
+    var block = document.getElementById(ask.articleId);
+    if (block) {
+      block.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var para = block.querySelector('[data-para="' + ask.paraIndex + '"]');
+      if (para) {
+        para.classList.add('highlight');
+        placeStickyNote(para, ask.sticky);
+      }
+    }
 
-function findReg(id) { return REGULATIONS.filter(function (r) { return r.id === id; })[0]; }
-function findRingi(id) { return RINGI_DRAFTS.filter(function (r) { return r.id === id; })[0]; }
+    askState.timers.push(setTimeout(function () {
+      if (askState.runId !== myRun) return;
+      askState.phase = 'answer';
+      openAnswerSheet(ask, myRun);
+      document.getElementById('askSubmit').disabled = false;
+    }, 900));
+  }, 1600));
+}
+
+function placeStickyNote(paraEl, text) {
+  var layer = document.getElementById('stickyLayer');
+  var paper = document.getElementById('readerPaper');
+  var paperRect = paper.getBoundingClientRect();
+  var paraRect = paraEl.getBoundingClientRect();
+  var top = paraRect.top - paperRect.top + paper.scrollTop;
+  var note = document.createElement('div');
+  note.className = 'sticky-note';
+  note.style.top = Math.max(20, top) + 'px';
+  note.style.animationDelay = '0.1s';
+  note.innerHTML = '<div class="sn-label">AI NOTE</div>' + escapeHtml(text);
+  layer.appendChild(note);
+}
+
+function openAnswerSheet(ask, myRun) {
+  var sheet = document.getElementById('answerSheet');
+  var body = document.getElementById('sheetBody');
+  var citeHtml = ask.cites.map(function (c) { return '<span class="cite-tag">' + escapeHtml(c) + '</span>'; }).join('');
+  body.innerHTML =
+    '<div class="answer-card">' +
+    '<div class="q-text">Q. ' + escapeHtml(ask.label) + '</div>' +
+    '<div class="a-text">' + escapeHtml(ask.answer) + '</div>' +
+    '<div class="cite-tags">' + citeHtml + '</div></div>';
+
+  if (ask.ringi) {
+    body.innerHTML += '<div class="ringi-section"><h4>稟議下書き生成</h4><div class="ringi-box" id="ringiBox"></div><div class="ringi-actions" id="ringiActions"></div></div>';
+    sheet.classList.add('open');
+    sheet.setAttribute('aria-hidden', 'false');
+    askState.timers.push(setTimeout(function () {
+      if (askState.runId !== myRun) return;
+      typeRingiDraft(ask.ringi, myRun);
+    }, 400));
+  } else {
+    body.innerHTML += '<p style="font-size:13px;color:var(--gray-soft);margin-top:8px;">この質問は稟議起票の対象外です。条文の確認のみで完結します。</p>';
+    sheet.classList.add('open');
+    sheet.setAttribute('aria-hidden', 'false');
+    askState.phase = 'done';
+  }
+}
+
+function typeRingiDraft(fullText, myRun) {
+  askState.phase = 'typing';
+  var box = document.getElementById('ringiBox');
+  var actions = document.getElementById('ringiActions');
+  actions.innerHTML = '<button class="btn-skip" onclick="skipRingiTyping()">⏩ すべて表示</button>';
+  var shown = 0;
+  var tickMs = 38;
+  var charsPerTick = 2;
+  function tick() {
+    if (askState.runId !== myRun) return;
+    shown = Math.min(fullText.length, shown + charsPerTick);
+    box.textContent = fullText.slice(0, shown);
+    if (shown < fullText.length) {
+      box.innerHTML = escapeHtml(fullText.slice(0, shown)) + '<span class="ringi-cursor"></span>';
+    }
+    if (shown >= fullText.length) {
+      box.textContent = fullText;
+      finishRingi(myRun);
+      return;
+    }
+    askState.timers.push(setTimeout(tick, tickMs));
+  }
+  askState.timers.push(setTimeout(tick, tickMs));
+}
+
+function finishRingi(myRun) {
+  if (askState.runId !== myRun) return;
+  askState.phase = 'done';
+  document.getElementById('ringiActions').innerHTML =
+    '<button class="btn-ringi" onclick="showToast(\'稟議下書きをワークフローに保存しました（デモ）\')">ワークフローに保存</button>' +
+    '<button class="btn-ringi outline" onclick="showToast(\'コピーしました（デモ）\')">文案をコピー</button>' +
+    '<button class="btn-skip" onclick="resetAskDemo()">↺ リセット</button>';
+  showToast('稟議下書きが作成できました');
+}
+
+function skipRingiTyping() {
+  if (!askState.currentAsk || !askState.currentAsk.ringi) return;
+  clearAskTimers();
+  askState.runId = {};
+  document.getElementById('ringiBox').textContent = askState.currentAsk.ringi;
+  finishRingi({});
+}
+
+function closeAnswerSheet() {
+  document.getElementById('answerSheet').classList.remove('open');
+  document.getElementById('answerSheet').setAttribute('aria-hidden', 'true');
+}
+
+function resetAskDemo() {
+  clearAskTimers();
+  askState = { phase: 'idle', timers: [], runId: null, currentAsk: null };
+  closeAnswerSheet();
+  document.getElementById('askInput').value = '';
+  document.getElementById('askSubmit').disabled = false;
+  document.getElementById('askInput').classList.remove('scanning');
+  document.getElementById('readerPaper').classList.remove('scanning');
+  document.getElementById('stickyLayer').innerHTML = '';
+  document.querySelectorAll('.article-p.highlight').forEach(function (p) { p.classList.remove('highlight'); });
+  document.querySelectorAll('.ask-chip').forEach(function (c) { c.classList.remove('active'); });
+  location.hash = 'reader/' + activeRegId;
+  showToast('デモをリセットしました');
+}
 
 function isLoggedIn() { return loggedIn; }
+
+function showLoginScreen() {
+  closeAnswerSheet();
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+}
+
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+  renderAskChips();
+  renderRegulation(activeRegId);
+}
 
 function handleRoute() {
   var hash = location.hash.replace('#', '') || 'login';
   if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
   if (hash === 'login') { showLoginScreen(); return; }
   showAppScreen();
-  if (hash.indexOf('result/') === 0) {
-    openResultDetail(hash.split('/')[1]);
-    setActiveNav(null);
+
+  if (hash.indexOf('reader/') === 0) {
+    var regId = hash.split('/')[1];
+    if (REGULATIONS[regId]) {
+      activeRegId = regId;
+      renderRegulation(regId);
+    }
     return;
   }
-  var view = ['dashboard', 'search', 'ringi', 'settings'].indexOf(hash) >= 0 ? hash : 'dashboard';
-  showView(view);
-  setActiveNav(view);
+  if (hash.indexOf('ask/') === 0) {
+    var askId = hash.split('/')[1];
+    var ask = ASK_SAMPLES.find(function (a) { return a.id === askId; });
+    if (ask && askState.phase === 'idle') {
+      document.getElementById('askInput').value = ask.label;
+      runAskFlow(ask);
+    }
+    return;
+  }
+  if (hash !== 'reader' && hash.indexOf('reader') !== 0 && hash.indexOf('ask/') !== 0) {
+    location.hash = 'reader/' + activeRegId;
+  }
 }
-
-function showLoginScreen() {
-  document.getElementById('view-login').classList.remove('hide');
-  document.getElementById('view-app').classList.remove('show');
-}
-function showAppScreen() {
-  document.getElementById('view-login').classList.add('hide');
-  document.getElementById('view-app').classList.add('show');
-}
-
-function showView(name) {
-  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
-  var el = document.getElementById('view-' + name);
-  if (el) el.classList.add('active');
-  document.getElementById('viewNameLabel').textContent = VIEW_NAMES[name] || '検索結果詳細';
-  if (name === 'dashboard') renderDashboard();
-  if (name === 'search') renderSearchView();
-  if (name === 'ringi') renderRingiView();
-  if (name === 'settings') renderSettings();
-  toggleSidebar(false);
-  window.scrollTo({ top: 0, behavior: 'auto' });
-}
-
-function setActiveNav(name) {
-  document.querySelectorAll('.nav-btn').forEach(function (b) {
-    b.classList.toggle('active', b.dataset.nav === name);
-  });
-}
-
-function go(name) { location.hash = name; }
-
-window.addEventListener('hashchange', handleRoute);
-window.addEventListener('DOMContentLoaded', function () {
-  renderNotifDropdown();
-  var initialHash = location.hash.replace('#', '');
-  if (initialHash && initialHash !== 'login') loggedIn = true;
-  handleRoute();
-});
 
 function doLogin() {
   var btn = document.getElementById('loginBtn');
-  if (btn.classList.contains('loading')) return;
   btn.classList.add('loading');
   btn.disabled = true;
   setTimeout(function () {
+    loggedIn = true;
     btn.classList.remove('loading');
     btn.disabled = false;
-    loggedIn = true;
-    if (location.hash === '#dashboard') handleRoute();
-    else location.hash = 'dashboard';
-  }, 800);
+    location.hash = 'reader/shugyo';
+    handleRoute();
+    showToast('KITEI Policy Desk にログインしました');
+  }, 900);
 }
+
 function doLogout() {
+  resetAskDemo();
   loggedIn = false;
-  searchState = null;
-  ringiState = null;
-  showToast('ログアウトしました');
+  location.hash = 'login';
+  handleRoute();
+  showToast('ログアウトしました（デモ）');
 }
 
-function toggleSidebar(force) {
-  var sb = document.getElementById('sidebar');
-  var ov = document.getElementById('mobileOverlay');
-  var open = typeof force === 'boolean' ? force : !sb.classList.contains('open');
-  sb.classList.toggle('open', open);
-  ov.classList.toggle('open', open);
-}
-
-function toggleDropdown(id) {
-  var el = document.getElementById(id);
-  var willOpen = !el.classList.contains('open');
-  document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
-  if (willOpen) el.classList.add('open');
-}
-document.addEventListener('click', function (e) {
-  if (!e.target.closest('.dropdown-wrap')) {
-    document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
-  }
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') loggedIn = true;
+  document.getElementById('topDate').textContent = '2026-07-22 JST';
+  handleRoute();
 });
-
-function renderNotifDropdown() {
-  var items = [
-    { color: 'var(--accent)', text: '「有給休暇申請期限」のAI回答が生成されました', time: '12分前' },
-    { color: 'var(--amber)', text: '稟議「PC購入120万円」が承認待ちです', time: '昨日' },
-    { color: 'var(--green)', text: '就業規則（2026年4月改定）の周知が完了しました', time: '4/5' }
-  ];
-  document.getElementById('notifList').innerHTML = items.map(function (n) {
-    return '<div class="notif-item"><span class="dot" style="background:' + n.color + '"></span><div class="txt">' + escapeHtml(n.text) + '<div class="time">' + escapeHtml(n.time) + '</div></div></div>';
-  }).join('');
-  document.getElementById('notifBadgeCount').textContent = items.length;
-}
-
-function kpiCardHtml(label, value, unit, color, sub) {
-  return '<div class="kpi-card"><div class="kpi-label"><span class="kpi-swatch" style="background:' + color + '"></span>' + label + '</div>' +
-    '<div class="kpi-value">' + value + '<span>' + unit + '</span></div><div class="kpi-sub">' + sub + '</div></div>';
-}
-
-function renderDashboard() {
-  var pendingRingi = RINGI_DRAFTS.filter(function (r) { return r.status === 'pending' || r.status === 'draft'; }).length;
-  document.getElementById('kpiGrid').innerHTML = [
-    kpiCardHtml('登録規程', REGULATIONS.length, '件', 'var(--navy)', '就業・稟議・出張ほか'),
-    kpiCardHtml('今月のAI検索', 47, '回', 'var(--accent)', '出典付き回答'),
-    kpiCardHtml('稟議下書き', pendingRingi, '件', 'var(--amber)', '下書き・承認待ち'),
-    kpiCardHtml('規程改定', 2, '件', 'var(--green)', '2026年上半期')
-  ].join('');
-
-  document.getElementById('recentSearchList').innerHTML = SAMPLE_QUESTIONS.slice(0, 4).map(function (q) {
-    return '<div class="task-row" onclick="startSearch(\'' + q.id + '\')">' +
-      '<span class="badge badge-cat">AI</span>' +
-      '<span class="t-main"><div class="t-name">' + escapeHtml(q.text) + '</div>' +
-      '<div class="t-sub">出典付き回答 ・ ' + fmtDate('2026-07-22') + '</div></span>' +
-      '<span class="t-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></span></div>';
-  }).join('');
-
-  document.getElementById('activityTimeline').innerHTML = ACTIVITY_LOG.map(function (a) {
-    return '<div class="timeline-item"><span class="timeline-dot" style="background:' + a.color + '"></span>' +
-      '<div><div class="timeline-text">' + a.text + '</div><div class="timeline-date">' + a.time + '</div></div></div>';
-  }).join('');
-
-  var cats = { '人事': 18, '経理': 12, '総務': 9, 'IT': 8 };
-  var maxVal = Math.max.apply(null, Object.keys(cats).map(function (k) { return cats[k]; }));
-  document.getElementById('categoryChart').innerHTML = Object.keys(cats).map(function (k) {
-    var pct = Math.round(cats[k] / maxVal * 100);
-    return '<div class="cat-row"><span class="cat-label">' + k + '</span>' +
-      '<div class="cat-track"><div class="cat-fill" style="width:' + pct + '%"></div></div>' +
-      '<span class="cat-val">' + cats[k] + '</span></div>';
-  }).join('');
-}
-
-var REG_TABS = [
-  { key: 'all', label: 'すべて' },
-  { key: '人事', label: '人事' },
-  { key: '経理', label: '経理' },
-  { key: '総務', label: '総務' },
-  { key: 'IT', label: 'IT' }
-];
-
-function renderSearchView() {
-  document.getElementById('sampleChips').innerHTML = SAMPLE_QUESTIONS.map(function (q) {
-    return '<button class="sample-chip" onclick="startSearch(\'' + q.id + '\')">' + escapeHtml(q.text) + '</button>';
-  }).join('');
-
-  document.getElementById('regTabRow').innerHTML = REG_TABS.map(function (t) {
-    var count = t.key === 'all' ? REGULATIONS.length : REGULATIONS.filter(function (r) { return r.category === t.key; }).length;
-    return '<button class="tab-chip ' + (currentRegFilter === t.key ? 'active' : '') + '" onclick="setRegFilter(\'' + t.key + '\')">' +
-      t.label + '<span class="cnt">' + count + '</span></button>';
-  }).join('');
-
-  document.getElementById('regGrid').innerHTML = REGULATIONS.slice(0, 3).map(function (r) {
-    return '<div class="reg-card" onclick="showToast(\'『' + escapeHtml(r.title) + '』の条文一覧（デモ）\')">' +
-      '<div class="rc-cat">' + escapeHtml(r.category) + '</div>' +
-      '<h4>' + escapeHtml(r.title) + '</h4>' +
-      '<p>' + escapeHtml(r.desc) + '</p>' +
-      '<div class="rc-meta"><span>改定 ' + fmtDate(r.revised) + '</span><span>' + r.articles + '条</span></div></div>';
-  }).join('');
-
-  renderRegTable();
-}
-
-function setRegFilter(key) {
-  currentRegFilter = key;
-  renderSearchView();
-}
-
-function renderRegTable() {
-  var q = (document.getElementById('regSearchInput').value || '').trim().toLowerCase();
-  var rows = REGULATIONS.filter(function (item) {
-    if (currentRegFilter !== 'all' && item.category !== currentRegFilter) return false;
-    if (!q) return true;
-    return item.title.toLowerCase().indexOf(q) >= 0 || item.desc.toLowerCase().indexOf(q) >= 0;
-  });
-  var tbody = document.getElementById('regTbody');
-  if (!rows.length) {
-    tbody.innerHTML = '<tr class="empty-row"><td colspan="5">該当する規程がありません。</td></tr>';
-    return;
-  }
-  tbody.innerHTML = rows.map(function (item) {
-    var hot = item.id === 'reg-001';
-    return '<tr class="' + (hot ? 'row-hot' : '') + '" onclick="showToast(\'『' + escapeHtml(item.title) + '』詳細（デモ）\')">' +
-      '<td class="name-cell" data-label="規程名">' + escapeHtml(item.title) + '</td>' +
-      '<td data-label="カテゴリ"><span class="badge badge-cat">' + escapeHtml(item.category) + '</span></td>' +
-      '<td data-label="改定日">' + fmtDate(item.revised) + '</td>' +
-      '<td data-label="条数">' + item.articles + '条</td>' +
-      '<td data-label="最終参照">' + fmtDate(item.lastRef) + '</td></tr>';
-  }).join('');
-}
-
-function submitSearch() {
-  var val = (document.getElementById('mainSearchInput').value || '').trim();
-  if (!val) { showToast('質問を入力するか、サンプルチップを選択してください'); return; }
-  var matched = SAMPLE_QUESTIONS.filter(function (q) { return val.indexOf(q.text.slice(0, 6)) >= 0 || q.text.indexOf(val.slice(0, 6)) >= 0; })[0];
-  if (matched) startSearch(matched.id);
-  else startSearch('q-001');
-}
-
-function startSearch(qid) {
-  if (!QA[qid]) { showToast('該当するサンプル回答がありません'); return; }
-  location.hash = 'result/' + qid;
-}
-
-function openResultDetail(qid) {
-  var data = QA[qid];
-  if (!data) { location.hash = 'search'; return; }
-  currentQid = qid;
-  activeCiteId = null;
-  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
-  document.getElementById('view-result-detail').classList.add('active');
-  document.getElementById('viewNameLabel').textContent = '検索結果詳細';
-  document.getElementById('resultQuestion').textContent = data.question;
-  document.getElementById('resultSub').textContent = '参照規程: ' + data.citations.map(function (c) { return c.reg + ' ' + c.article; }).join(' / ');
-  document.getElementById('resultBadge').textContent = qid === 'q-001' && !q001Runtime.answerDone ? '検索中…' : 'AI回答';
-
-  if (qid === 'q-001' && !q001Runtime.answerDone) {
-    runAnswerAnimation(qid);
-  } else {
-    renderAnswerComplete(qid);
-  }
-  toggleSidebar(false);
-  window.scrollTo({ top: 0, behavior: 'auto' });
-}
-
-function runAnswerAnimation(qid) {
-  if (!searchState) searchState = { phase: 'idle', timers: [], runId: null };
-  if (searchState.phase !== 'idle' && searchState.phase !== 'done') return;
-  var myRun = {};
-  searchState.runId = myRun;
-  searchState.phase = 'scanning';
-
-  document.getElementById('answerPlaceholder').style.display = 'none';
-  document.getElementById('answerContent').style.display = 'block';
-  document.getElementById('answerContent').innerHTML =
-    '<div class="scan-box"><div class="scan-spinner"></div><div class="scan-text">規程データベースを検索中…</div>' +
-    '<div class="scan-sub">就業規則・稟議規程・出張規程を横断照合</div></div>';
-  document.getElementById('citePanelBody').innerHTML =
-    '<div class="ai-start-box"><p>条文を抽出しています…</p></div>';
-
-  var t = setTimeout(function () {
-    if (!searchState || searchState.runId !== myRun) return;
-    revealAnswerSequence(qid, myRun);
-  }, 1400);
-  searchState.timers.push(t);
-}
-
-function revealAnswerSequence(qid, myRun) {
-  var data = QA[qid];
-  searchState.phase = 'revealing';
-  var step = 0;
-
-  document.getElementById('answerContent').innerHTML =
-    '<div class="ai-toolbar"><span class="ai-count">出典付き回答を生成中…</span>' +
-    '<button class="btn-skip" onclick="skipAnswerReveal()">⏩ すべて表示</button></div>' +
-    '<div id="ansGenArea"><div class="ai-answer-block"><div class="ans-lead" id="ansLead"></div>' +
-    '<div class="cite-refs" id="citeRefPills"></div></div></div>';
-  document.getElementById('citePanelBody').innerHTML = '<div class="cite-list" id="citeGenList"></div>';
-
-  function nextStep() {
-    if (!searchState || searchState.runId !== myRun) return;
-    if (step === 0) {
-      typeAnswerLead(data.answer, myRun, function () {
-        step = 1;
-        nextStep();
-      });
-    } else if (step <= data.citations.length) {
-      var c = data.citations[step - 1];
-      document.getElementById('citeRefPills').insertAdjacentHTML('beforeend',
-        '<span class="cite-ref-pill" onclick="highlightCite(\'' + c.id + '\')">' + escapeHtml(c.reg + ' ' + c.article) + '</span>');
-      document.getElementById('citeGenList').insertAdjacentHTML('beforeend', citeCardHtml(c, false));
-      step++;
-      var t = setTimeout(nextStep, 550);
-      searchState.timers.push(t);
-    } else {
-      finishAnswer(qid, myRun);
-    }
-  }
-  nextStep();
-}
-
-function typeAnswerLead(fullText, myRun, onDone) {
-  var el = document.getElementById('ansLead');
-  var shown = 0;
-  var tickMs = 28;
-  var charsPerTick = 2;
-  function tick() {
-    if (!searchState || searchState.runId !== myRun) return;
-    shown = Math.min(fullText.length, shown + charsPerTick);
-    if (el) el.textContent = fullText.slice(0, shown);
-    if (shown >= fullText.length) { if (onDone) onDone(); return; }
-    var t = setTimeout(tick, tickMs);
-    searchState.timers.push(t);
-  }
-  tick();
-}
-
-function citeCardHtml(c, active) {
-  return '<div class="cite-card ' + (active ? 'active' : '') + '" id="cite-' + c.id + '" onclick="highlightCite(\'' + c.id + '\')">' +
-    '<div class="cc-head"><span class="cc-reg">' + escapeHtml(c.reg) + '</span><span class="cc-article">' + escapeHtml(c.article) + '</span></div>' +
-    '<div class="cc-title">' + escapeHtml(c.title) + '</div>' +
-    '<div class="cc-text">' + c.text + '</div></div>';
-}
-
-function finishAnswer(qid, myRun) {
-  if (!searchState || searchState.runId !== myRun) return;
-  searchState.phase = 'done';
-  if (qid === 'q-001') q001Runtime.answerDone = true;
-  document.getElementById('resultBadge').textContent = 'AI回答';
-  document.getElementById('citePanelBody').insertAdjacentHTML('beforeend',
-    '<div style="margin-top:14px;"><button class="btn-ai-run" onclick="startRingiGen(\'' + qid + '\')">稟議下書きを生成</button>' +
-    '<button class="btn-outline" onclick="go(\'ringi\')">稟議一覧へ</button></div>');
-  showToast('出典付き回答を生成しました');
-}
-
-function renderAnswerComplete(qid) {
-  var data = QA[qid];
-  document.getElementById('answerPlaceholder').style.display = 'none';
-  document.getElementById('answerContent').style.display = 'block';
-  document.getElementById('answerContent').innerHTML =
-    '<div class="ai-answer-block"><div class="ans-lead">' + escapeHtml(data.answer) + '</div>' +
-    '<div class="cite-refs">' + data.citations.map(function (c) {
-      return '<span class="cite-ref-pill" onclick="highlightCite(\'' + c.id + '\')">' + escapeHtml(c.reg + ' ' + c.article) + '</span>';
-    }).join('') + '</div></div>';
-  document.getElementById('citePanelBody').innerHTML =
-    '<div class="cite-list">' + data.citations.map(function (c) { return citeCardHtml(c, false); }).join('') + '</div>' +
-    '<div style="margin-top:14px;"><button class="btn-ai-run" onclick="startRingiGen(\'' + qid + '\')">稟議下書きを生成</button>' +
-    '<button class="btn-outline" onclick="go(\'ringi\')">稟議一覧へ</button></div>';
-}
-
-function skipAnswerReveal() {
-  if (!searchState || !currentQid) return;
-  searchState.timers.forEach(function (id) { clearTimeout(id); });
-  searchState.timers = [];
-  searchState.runId = {};
-  searchState.phase = 'done';
-  if (currentQid === 'q-001') q001Runtime.answerDone = true;
-  renderAnswerComplete(currentQid);
-  showToast('出典付き回答を表示しました');
-}
-
-function highlightCite(citeId) {
-  activeCiteId = citeId;
-  document.querySelectorAll('.cite-card').forEach(function (el) {
-    el.classList.toggle('active', el.id === 'cite-' + citeId);
-  });
-  document.querySelectorAll('.cite-ref-pill').forEach(function (el, i) {
-    var data = QA[currentQid];
-    if (!data) return;
-    var c = data.citations[i];
-    if (c) el.classList.toggle('active', c.id === citeId);
-  });
-  var target = document.getElementById('cite-' + citeId);
-  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-}
-
-function startRingiGen(qid) {
-  var data = QA[qid];
-  if (!data) return;
-  if (!ringiState) ringiState = { phase: 'idle', timers: [], runId: null };
-  if (ringiState.phase === 'typing') return;
-
-  go('ringi');
-  setTimeout(function () {
-    selectedRingiId = 'r-new-' + qid;
-    renderRingiEditorTyping(qid, data);
-  }, 300);
-}
-
-function renderRingiView() {
-  document.getElementById('ringiList').innerHTML = RINGI_DRAFTS.map(function (r) {
-    var qa = r.qid ? QA[r.qid] : null;
-    return '<div class="ringi-row ' + (selectedRingiId === r.id ? 'row-hot' : '') + '" onclick="selectRingi(\'' + r.id + '\')">' +
-      '<span class="badge badge-' + r.status + '">' + STATUS_RINGI[r.status] + '</span>' +
-      '<span class="r-main"><div class="r-title">' + escapeHtml(r.title) + '</div>' +
-      '<div class="r-sub">' + escapeHtml(r.dept) + ' ・ ' + escapeHtml(r.author) + ' ・ ' + fmtDate(r.updated) +
-      (r.amount ? ' ・ ¥' + r.amount.toLocaleString() : '') + '</div></span>' +
-      '<span class="t-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></span></div>';
-  }).join('');
-  if (selectedRingiId && selectedRingiId.indexOf('r-new-') !== 0) {
-    renderRingiEditorStatic(selectedRingiId);
-  }
-}
-
-function selectRingi(id) {
-  selectedRingiId = id;
-  ringiState = { phase: 'idle', timers: [], runId: null };
-  renderRingiView();
-}
-
-function renderRingiEditorStatic(id) {
-  var r = findRingi(id);
-  if (!r) return;
-  var qa = r.qid ? QA[r.qid] : null;
-  var body = qa ? qa.ringiBody : '【就業規則改定周知】\n2026年4月1日改定版就業規則の全社周知を実施しました。\n改定箇所：第24条（有給申請期限）ほか3条。';
-  document.getElementById('ringiEditorTitle').textContent = r.title;
-  document.getElementById('ringiEditorBadge').className = 'badge badge-' + r.status;
-  document.getElementById('ringiEditorBadge').textContent = STATUS_RINGI[r.status];
-  document.getElementById('ringiEditorBody').innerHTML = buildRingiHtml(r, qa, body);
-}
-
-function renderRingiEditorTyping(qid, data) {
-  var myRun = {};
-  ringiState.runId = myRun;
-  ringiState.phase = 'typing';
-  document.getElementById('ringiEditorTitle').textContent = data.ringiTitle;
-  document.getElementById('ringiEditorBadge').className = 'badge badge-draft';
-  document.getElementById('ringiEditorBadge').textContent = '生成中';
-  document.getElementById('ringiEditorBody').innerHTML =
-    '<div class="ai-toolbar"><span class="ai-count">稟議書下書きを生成中…</span>' +
-    '<button class="btn-skip" onclick="skipRingiTyping()">⏩ すべて表示</button></div>' +
-    '<div class="draft-box"><div class="draft-text-preview"><span id="ringiText"></span><span class="draft-cursor" id="ringiCursor"></span></div></div>' +
-    '<div class="draft-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>生成後、法務・上長が内容を確認してから提出してください。</div>';
-
-  typeRingiText('ringiText', data.ringiBody, 4800, myRun, function () {
-    if (!ringiState || ringiState.runId !== myRun) return;
-    finishRingiTyping(qid, data, myRun);
-  });
-}
-
-function typeRingiText(elId, fullText, duration, myRun, onDone) {
-  var tickMs = 38;
-  var totalTicks = Math.ceil(duration / tickMs);
-  var charsPerTick = Math.max(1, Math.ceil(fullText.length / totalTicks));
-  var shown = 0;
-  function tick() {
-    if (!ringiState || ringiState.runId !== myRun) return;
-    shown = Math.min(fullText.length, shown + charsPerTick);
-    var el = document.getElementById(elId);
-    if (el) el.textContent = fullText.slice(0, shown);
-    if (shown >= fullText.length) { if (onDone) onDone(); return; }
-    var t = setTimeout(tick, tickMs);
-    ringiState.timers.push(t);
-  }
-  var t0 = setTimeout(tick, tickMs);
-  ringiState.timers.push(t0);
-}
-
-function finishRingiTyping(qid, data, myRun) {
-  if (!ringiState || ringiState.runId !== myRun) return;
-  ringiState.phase = 'ready';
-  q001Runtime.ringiDone = true;
-  document.getElementById('ringiEditorBadge').className = 'badge badge-draft';
-  document.getElementById('ringiEditorBadge').textContent = '下書き';
-  document.getElementById('ringiEditorBody').innerHTML =
-    '<div class="complete-banner in"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>稟議下書きが生成されました</div>' +
-    buildRingiHtml({ title: data.ringiTitle, dept: '総務部', author: 'デモ 総務', updated: TODAY_STR, amount: 0 }, data, data.ringiBody) +
-    '<div class="draft-cta"><button class="btn-approve-draft" onclick="approveRingi()">内容を確認して稟議提出<span class="badge badge-human">人の確認</span></button></div>' +
-    '<div class="draft-reset"><button onclick="resetDemo()">↺ デモをリセット</button></div>';
-  showToast('稟議下書きを生成しました');
-}
-
-function buildRingiHtml(r, qa, body) {
-  return '<div class="ringi-form-row"><label>件名</label><div class="val">' + escapeHtml(qa ? qa.ringiSubject : r.title) + '</div></div>' +
-    '<div class="ringi-form-row"><label>起案部門</label><div class="val">' + escapeHtml(r.dept) + '</div></div>' +
-    '<div class="ringi-form-row"><label>起案者</label><div class="val">' + escapeHtml(r.author) + '</div></div>' +
-    '<div class="ringi-form-row"><label>起案日</label><div class="val">' + fmtDate(r.updated || TODAY_STR) + '</div></div>' +
-    (r.amount ? '<div class="ringi-form-row"><label>金額</label><div class="val">¥' + r.amount.toLocaleString() + '（税抜）</div></div>' : '') +
-    '<div class="ringi-section"><h4>稟議内容</h4><p style="white-space:pre-wrap;">' + escapeHtml(body) + '</p></div>';
-}
-
-function skipRingiTyping() {
-  if (!ringiState || !currentQid) return;
-  var data = QA[currentQid];
-  if (!data) return;
-  ringiState.timers.forEach(function (id) { clearTimeout(id); });
-  ringiState.timers = [];
-  ringiState.runId = {};
-  finishRingiTyping(currentQid, data, {});
-}
-
-function approveRingi() {
-  showToast('稟議内容を確認・提出しました（デモ）');
-}
-
-function resetDemo() {
-  if (searchState) searchState.timers.forEach(function (id) { clearTimeout(id); });
-  if (ringiState) ringiState.timers.forEach(function (id) { clearTimeout(id); });
-  searchState = { phase: 'idle', timers: [], runId: null };
-  ringiState = { phase: 'idle', timers: [], runId: null };
-  q001Runtime = { answerDone: false, ringiDone: false };
-  currentQid = null;
-  selectedRingiId = 'r-001';
-  showToast('デモ状態をリセットしました');
-  go('search');
-}
-
-function renderSettings() {
-  document.getElementById('memberList').innerHTML = MEMBERS.map(function (m) {
-    return '<div class="member-row"><div><div class="m-name">' + escapeHtml(m.name) + '</div><div class="m-mail">' + escapeHtml(m.mail) + '</div></div>' +
-      '<span class="role-badge role-' + m.role + '">' + ROLE_LABEL[m.role] + '</span></div>';
-  }).join('');
-  document.getElementById('aiToggleList').innerHTML = AI_TOGGLES.map(function (t, i) {
-    return toggleRowHtml('ai-' + i, t.label, t.desc, t.on);
-  }).join('');
-  document.getElementById('notifToggleList').innerHTML = NOTIF_TOGGLES.map(function (t, i) {
-    return toggleRowHtml('nt-' + i, t.label, t.desc, t.on);
-  }).join('');
-}
-function toggleRowHtml(id, label, desc, on) {
-  return '<div class="toggle-row"><div><div class="tg-label">' + escapeHtml(label) + '</div><div class="tg-desc">' + escapeHtml(desc) + '</div></div>' +
-    '<label class="switch"><input type="checkbox" id="' + id + '" ' + (on ? 'checked' : '') + ' onchange="onToggleChange(this)"><span class="track"></span></label></div>';
-}
-function onToggleChange(input) {
-  showToast(input.checked ? '設定をONにしました（デモ）' : '設定をOFFにしました（デモ）');
-}
+document.getElementById('askInput').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') submitAsk();
+});
 </script>
 <script src="analytics-config.js"></script>
 <script src="analytics.js"></script>
