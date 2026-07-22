@@ -1,4 +1,4 @@
-<!-- 2026-07-22: KITEIを条文リーダー＋付箋注釈骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 -->
+<!-- 2026-07-22: KITEI規程カバー画像をリーダー・目次選択状態に表示 ／ demo枠に作品一覧＋トップ2導線 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -200,6 +200,15 @@
   .toc-reg-btn.active { background: var(--accent-bg); border-left-color: var(--navy); color: var(--navy); }
   .toc-reg-btn .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--line); flex: 0 0 auto; }
   .toc-reg-btn.active .dot { background: var(--navy); }
+  .toc-reg-btn .toc-cover {
+    width: 28px; height: 28px; border-radius: 4px; object-fit: cover; flex: 0 0 auto;
+    opacity: 0; transition: opacity .15s;
+  }
+  .toc-reg-btn.active .toc-cover { opacity: 1; }
+  .paper-cover {
+    width: 100%; max-height: 168px; object-fit: cover; border-radius: 4px; margin-bottom: 24px;
+    border: 1px solid var(--paper-line); display: block;
+  }
   .toc-articles { padding: 0 0 8px 28px; display: none; }
   .toc-reg.open .toc-articles { display: block; }
   .toc-art-btn {
@@ -476,6 +485,7 @@
 var REGULATIONS = {
   shugyo: {
     id: 'shugyo', title: '就業規則', meta: '改定日：2025年4月1日｜適用：全従業員',
+    cover: 'assets/kitei/shugyo-cover.jpg',
     articles: [
       { id: 'shugyo-24', num: '第24条（年次有給休暇）', title: '付与時期',
         paragraphs: [
@@ -496,6 +506,7 @@ var REGULATIONS = {
   },
   ringi: {
     id: 'ringi', title: '稟議規程', meta: '改定日：2024年10月1日｜適用：全社',
+    cover: 'assets/kitei/ringi-cover.jpg',
     articles: [
       { id: 'ringi-5', num: '第5条（決裁権限）', title: '金額別決裁ルート',
         paragraphs: [
@@ -516,6 +527,7 @@ var REGULATIONS = {
   },
   shuccho: {
     id: 'shuccho', title: '出張規程', meta: '改定日：2025年1月15日｜適用：全従業員',
+    cover: 'assets/kitei/shuccho-cover.jpg',
     articles: [
       { id: 'shuccho-6', num: '第6条（交通機関）', title: '新幹線・航空機',
         paragraphs: [
@@ -596,6 +608,7 @@ function renderToc() {
     var active = key === activeRegId ? ' active' : '';
     html += '<div class="toc-reg' + open + '" data-reg="' + key + '">';
     html += '<button type="button" class="toc-reg-btn' + active + '" onclick="selectReg(\'' + key + '\')">';
+    if (reg.cover) html += '<img class="toc-cover" src="' + escapeHtml(reg.cover) + '" alt="">';
     html += '<span class="dot"></span>' + escapeHtml(reg.title) + '</button>';
     html += '<div class="toc-articles">';
     reg.articles.forEach(function (art) {
@@ -611,6 +624,7 @@ function renderRegulation(regId) {
   if (!reg) return;
   activeRegId = regId;
   document.getElementById('paperHead').innerHTML =
+    (reg.cover ? '<img class="paper-cover" src="' + escapeHtml(reg.cover) + '" alt="' + escapeHtml(reg.title) + '">' : '') +
     '<h1 class="paper-reg-title">' + escapeHtml(reg.title) + '</h1>' +
     '<p class="paper-reg-meta">' + escapeHtml(reg.meta) + '</p>';
   var body = '';

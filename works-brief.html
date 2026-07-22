@@ -1,4 +1,4 @@
-<!-- 2026-07-22: BRIEFを1枚キャンバス骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 -->
+<!-- 2026-07-22: BRIEF商談ロゴ画像（b-001〜008）を案件レール・顧客カードに表示 ／ demo枠に作品一覧＋トップ2導線 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -154,6 +154,8 @@
   }
   .rail-btn:hover { border-color: var(--sky); transform: scale(1.05); }
   .rail-btn.active { border-color: var(--sky); background: var(--sky-bg); color: var(--sky); box-shadow: 0 0 0 1px rgba(56,189,248,.25); }
+  .rail-btn.has-logo { padding: 0; overflow: hidden; background: var(--slate); }
+  .rail-btn .rail-logo { width: 100%; height: 100%; border-radius: 8px; object-fit: cover; display: block; }
   .rail-btn .rail-tip {
     position: absolute; left: calc(100% + 10px); top: 50%; transform: translateY(-50%);
     background: var(--slate); color: var(--ink); font-size: 11.5px; font-weight: 600; white-space: nowrap;
@@ -234,6 +236,8 @@
   .c-card .cc-body { font-size: 12px; color: var(--gray); line-height: 1.75; }
   .c-card.customer-main { border-left: 3px solid var(--sky); }
   .c-card.customer-main .cc-title { font-size: 17px; }
+  .customer-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .customer-logo { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex: 0 0 auto; border: 1px solid var(--line); }
 
   .arg-card { display: flex; gap: 10px; align-items: flex-start; }
   .arg-card .arg-num {
@@ -520,35 +524,35 @@ var DEALS = [
   { id: 'b-001', company: '株式会社ネクストリンク', product: 'クラウドSaaS導入', amount: 480, status: 'proposal',
     assigned: 'デモ 健太', nextMeeting: '2026-07-24', industry: 'IT/Web',
     contact: '田村 翔太（情報システム部 部長）', note: '既存オンプレCRMからクラウド移行を検討。来週の初回提案に向けてブリーフ生成が必要。',
-    initials: 'ネ' },
+    initials: 'ネ', logo: 'assets/brief/b-001.jpg' },
   { id: 'b-002', company: '東都データサービス', product: 'セキュリティ監査', amount: 220, status: 'discovery',
     assigned: '佐藤 玲奈', nextMeeting: '2026-07-25', industry: 'データセンター',
     contact: '小林 恵（セキュリティ室）', note: 'ISO27001更新に伴う外部監査。初回ヒアリング済み、要件整理中。',
-    initials: '東' },
+    initials: '東', logo: 'assets/brief/b-002.jpg' },
   { id: 'b-003', company: 'グローバル物流HD', product: '基幹クラウド移行', amount: 1200, status: 'negotiation',
     assigned: 'デモ 健太', nextMeeting: '2026-07-23', industry: '物流',
     contact: '中村 剛（DX推進室）', note: 'SAP周辺のクラウド移行。価格・スケジュールで最終交渉フェーズ。',
-    initials: '物' },
+    initials: '物', logo: 'assets/brief/b-003.jpg' },
   { id: 'b-004', company: 'メディアクリエイト', product: 'マーケ自動化', amount: 350, status: 'proposal',
     assigned: '田中 大輔', nextMeeting: '2026-07-26', industry: 'メディア',
     contact: '山本 彩（マーケティング部）', note: 'MAツール導入。競合3社比較中。ROI試算が論点。',
-    initials: 'メ' },
+    initials: 'メ', logo: 'assets/brief/b-004.jpg' },
   { id: 'b-005', company: 'フィナンシャルパートナーズ', product: 'BIダッシュボード', amount: 680, status: 'won',
     assigned: '佐藤 玲奈', nextMeeting: '—', industry: '金融',
     contact: '伊藤 健（経営企画部）', note: '成約済み。7月末キックオフ予定。',
-    initials: 'フィ' },
+    initials: 'フィ', logo: 'assets/brief/b-005.jpg' },
   { id: 'b-006', company: 'ヘルスケアイノベーション', product: '電子カルテ連携', amount: 890, status: 'discovery',
     assigned: '鈴木 真由', nextMeeting: '2026-07-28', industry: 'ヘルスケア',
     contact: '渡辺 美咲（医療情報部）', note: 'HL7 FHIR連携の要件ヒアリング段階。コンプライアンス確認が必要。',
-    initials: 'ヘ' },
+    initials: 'ヘ', logo: 'assets/brief/b-006.jpg' },
   { id: 'b-007', company: 'リテールテック', product: 'POS刷新', amount: 410, status: 'lost',
     assigned: '田中 大輔', nextMeeting: '—', industry: '小売',
     contact: '加藤 亮（店舗運営部）', note: '競合他社に決定。価格差が主因。',
-    initials: 'リ' },
+    initials: 'リ', logo: 'assets/brief/b-007.jpg' },
   { id: 'b-008', company: '製造ソリューションズ', product: 'IoT基盤', amount: 750, status: 'negotiation',
     assigned: 'デモ 健太', nextMeeting: '2026-07-27', industry: '製造',
     contact: '松本 浩二（生産技術部）', note: '工場IoT基盤構築。PoC結果を踏まえ本番提案へ。',
-    initials: '製' }
+    initials: '製', logo: 'assets/brief/b-008.jpg' }
 ];
 
 var B001_INSIGHTS = [
@@ -632,11 +636,19 @@ function doLogout() {
   showToast('ログアウトしました');
 }
 
+function dealLogoImg(d, cls) {
+  if (!d.logo) return '';
+  return '<img class="' + cls + '" src="' + escapeHtml(d.logo) + '" alt="' + escapeHtml(d.company) + '">';
+}
+function customerCardHead(d) {
+  return '<div class="customer-head">' + dealLogoImg(d, 'customer-logo') +
+    '<div class="cc-title">' + escapeHtml(d.company) + '</div></div>';
+}
 function renderDealRail() {
   var html = '<div class="rail-brand" title="BRIEF">B</div>';
   html += DEALS.filter(function (d) { return d.status !== 'won' && d.status !== 'lost'; }).map(function (d) {
-    return '<button class="rail-btn' + (d.id === currentDealId ? ' active' : '') + '" onclick="selectDeal(\'' + d.id + '\')" title="' + escapeHtml(d.company) + '">' +
-      escapeHtml(d.initials) + '<span class="rail-tip">' + escapeHtml(d.company) + '</span></button>';
+    return '<button class="rail-btn has-logo' + (d.id === currentDealId ? ' active' : '') + '" onclick="selectDeal(\'' + d.id + '\')" title="' + escapeHtml(d.company) + '">' +
+      dealLogoImg(d, 'rail-logo') + '<span class="rail-tip">' + escapeHtml(d.company) + '</span></button>';
   }).join('');
   document.getElementById('dealRail').innerHTML = html;
 }
@@ -684,7 +696,7 @@ function renderEmptyCanvas(d) {
     document.getElementById('colCustomer').innerHTML =
       '<div class="c-card customer-main show">' +
       '<div class="cc-label">CUSTOMER</div>' +
-      '<div class="cc-title">' + escapeHtml(d.company) + '</div>' +
+      customerCardHead(d) +
       '<div class="cc-body">' + escapeHtml(d.industry) + ' · ' + escapeHtml(d.contact) + '<br><br>' + escapeHtml(d.note) + '</div></div>';
     canvasState.customer = true;
   }
@@ -734,7 +746,7 @@ function appendCard(containerId, html, delay) {
 function customerMainCard(d) {
   return '<div class="c-card customer-main">' +
     '<div class="cc-label">DEAL · ' + escapeHtml(d.product) + '</div>' +
-    '<div class="cc-title">' + escapeHtml(d.company) + '</div>' +
+    customerCardHead(d) +
     '<div class="cc-body"><strong>キーパーソン</strong> ' + escapeHtml(d.contact) + '<br><br><strong>前回メモ</strong><br>' + escapeHtml(d.note) + '</div></div>';
 }
 

@@ -1,4 +1,4 @@
-<!-- 2026-07-22: SHAINをWiki＋Ask骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 -->
+<!-- 2026-07-22: SHAIN Wiki記事サムネ（kb-001〜006）をリスト・記事ヒーローに表示 ／ demo枠に作品一覧＋トップ2導線 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -202,8 +202,13 @@
   }
   .wiki-items { flex: 1; overflow-y: auto; padding: 8px; }
   .wiki-item {
-    display: block; width: 100%; text-align: left; padding: 12px 14px; border: 1px solid transparent;
+    display: flex; align-items: flex-start; gap: 12px; width: 100%; text-align: left; padding: 12px 14px; border: 1px solid transparent;
     border-radius: 10px; background: none; margin-bottom: 4px; transition: background .12s, border-color .12s;
+  }
+  .wiki-item .wi-body { flex: 1; min-width: 0; }
+  .wi-thumb {
+    width: 52px; height: 52px; border-radius: 10px; object-fit: cover; flex: 0 0 auto;
+    border: 1px solid var(--line); background: var(--mint);
   }
   .wiki-item:hover { background: var(--mint); border-color: var(--line); }
   .wiki-item.active { background: var(--mint-mid); border-color: var(--green-light); }
@@ -232,6 +237,10 @@
   .article-doc .ad-cat { font-size: 11px; font-weight: 700; color: var(--green-deep); letter-spacing: .08em; margin-bottom: 10px; }
   .article-doc h1 { font-size: clamp(22px, 3vw, 28px); margin-bottom: 8px; line-height: 1.4; }
   .article-doc .ad-meta { font-size: 11.5px; color: var(--gray-soft); margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+  .ad-hero {
+    width: 100%; max-height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 20px;
+    border: 1px solid var(--line); display: block;
+  }
   .article-doc .ad-body { font-size: 14.5px; line-height: 1.9; color: var(--ink); }
   .article-doc .ad-body h3 { font-size: 15px; margin: 28px 0 10px; color: var(--green-deep); }
   .article-doc .ad-body p { margin-bottom: 14px; border-radius: 6px; padding: 2px 4px; transition: background .4s, box-shadow .4s; }
@@ -448,6 +457,7 @@
 var ARTICLES = [
   {
     id: 'kb-001', category: '休暇', title: '有給休暇の取得・申請手順', updated: '2026-06-01', views: 342,
+    thumb: 'assets/shain/kb-001.jpg',
     body: [
       { id: 'p1', html: '年次有給休暇は、就業規則に基づき入社6か月後かつ所定労働日の8割以上出勤した時点で10日付与されます。付与日は入社日から起算し、7月入社の場合は翌年1月頃が目安です。' },
       { id: 'p2', html: '申請はWorkdayの「休暇申請」から行います。取得希望日の<strong>3営業日前まで</strong>に上長承認を得てください。半日単位（AM/PM）での取得も可能です。' },
@@ -457,6 +467,7 @@ var ARTICLES = [
   },
   {
     id: 'kb-002', category: '経費', title: '経費精算ルールと期限', updated: '2026-05-15', views: 218,
+    thumb: 'assets/shain/kb-002.jpg',
     body: [
       { id: 'p1', html: '経費精算は<strong>月末締め・翌月5営業日まで</strong>に申請してください。例：7月分は8月5営業日（8/7）が最終期限です。' },
       { id: 'p2', html: '領収書は原本をPDFスキャンし、Freee経費にアップロードします。1万円以上は但し書きに社名・用途を明記した領収書が必要です。' },
@@ -466,6 +477,7 @@ var ARTICLES = [
   },
   {
     id: 'kb-003', category: '勤務', title: 'リモートワーク申請とセキュリティ', updated: '2026-06-10', views: 274,
+    thumb: 'assets/shain/kb-003.jpg',
     body: [
       { id: 'p1', html: '週2日までのリモートワークは、社内ポータル「勤怠・リモート」から申請できます。申請は<strong>毎週月曜9:00まで</strong>に提出し、上長承認後に有効になります。' },
       { id: 'p2', html: 'リモート勤務中はVPN接続を必須とし、社用PCの画面ロック（離席時5分以内）を徹底してください。' },
@@ -475,6 +487,7 @@ var ARTICLES = [
   },
   {
     id: 'kb-004', category: 'PC', title: '社用PCセットアップ', updated: '2026-07-01', views: 189,
+    thumb: 'assets/shain/kb-004.jpg',
     body: [
       { id: 'p1', html: 'MacBook配布後、初回起動時にMDM（Jamf）登録を完了してください。Wi-Fi接続後、自動で必須アプリがインストールされます。' },
       { id: 'p2', html: '必須アプリ：VPN（GlobalProtect）、Slack、Google Chrome、1Password、Zoom。Windows端末はMicrosoft 365＋Defenderが自動導入されます。' },
@@ -484,6 +497,7 @@ var ARTICLES = [
   },
   {
     id: 'kb-005', category: '入館', title: 'オフィス入館', updated: '2026-04-20', views: 156,
+    thumb: 'assets/shain/kb-005.jpg',
     body: [
       { id: 'p1', html: '入館証（セキュリティカード）は入社手続き完了後、総務ポータル「入館証申請」から発行します。通常3営業日で受取可能です。' },
       { id: 'p2', html: '初回入館時は1F受付で顔写真付き身分証を提示し、カードをアクティベートしてください。' },
@@ -493,6 +507,7 @@ var ARTICLES = [
   },
   {
     id: 'kb-006', category: '備品', title: '名刺・備品発注', updated: '2026-03-08', views: 98,
+    thumb: 'assets/shain/kb-006.jpg',
     body: [
       { id: 'p1', html: '名刺は総務ポータル「名刺発注」から申請。デザインテンプレートは最新版（v3）を使用してください。' },
       { id: 'p2', html: '通常<strong>5営業日</strong>で納品。急ぎは備考欄に希望日を記載（最短3営業日、追加料金なし）。' },
@@ -587,11 +602,13 @@ function renderWikiList() {
   document.getElementById('wikiItems').innerHTML = list.map(function (a) {
     var added = kbAddedKeys[a.id];
     return '<button type="button" class="wiki-item' + (activeArticleId === a.id ? ' active' : '') + '" onclick="openArticle(\'' + a.id + '\')">' +
+      (a.thumb ? '<img class="wi-thumb" src="' + escapeHtml(a.thumb) + '" alt="">' : '') +
+      '<div class="wi-body">' +
       '<div class="wi-cat">' + escapeHtml(a.category) + '</div>' +
       '<div class="wi-title">' + escapeHtml(a.title) + '</div>' +
       '<div class="wi-meta">更新 ' + fmtDate(a.updated) + ' · PV ' + a.views + '</div>' +
       (added ? '<span class="wi-badge">AI追加済</span>' : '') +
-      '</button>';
+      '</div></button>';
   }).join('') || '<p style="padding:12px;font-size:12px;color:var(--gray-soft);">該当記事なし</p>';
 }
 
@@ -617,6 +634,7 @@ function openArticle(id, opts) {
     '<div class="ad-cat">' + escapeHtml(art.category) + '</div>' +
     '<h1>' + escapeHtml(art.title) + '</h1>' +
     '<div class="ad-meta">最終更新 ' + fmtDate(art.updated) + ' · PV ' + art.views + '</div>' +
+    (art.thumb ? '<img class="ad-hero" src="' + escapeHtml(art.thumb) + '" alt="' + escapeHtml(art.title) + '">' : '') +
     '<div class="ad-body">' + h3Blocks + bodyHtml + '</div>';
 
   renderWikiList();

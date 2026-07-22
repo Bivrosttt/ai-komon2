@@ -1,4 +1,4 @@
-<!-- 2026-07-22: マップピンtransformバグ修正＋現場写真6枚を組み込み ／ demo枠に作品一覧＋トップ2導線 -->
+<!-- 2026-07-22: 現場ごとに異なる写真セット（4〜6枚）へ密度改善 ／ og:imageを現場写真に ／ demo枠に作品一覧＋トップ2導線 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,7 +12,7 @@
 <meta property="og:title" content="現場管理OS構築デモ（AI写真点検・日報）｜AI顧問室">
 <meta property="og:description" content="架空の建設現場管理クラウド「ゲンバ」のフル機能デモです。現場写真をAIが点検し、安全指摘・是正指示・日報下書きを生成します。">
 <meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-genba.html">
-<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/genba/site-01.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-genba.html">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -721,43 +721,59 @@ var SITE_PHOTOS = [
 var SITES = [
   { id: 'g-001', name: '港区麻布台改修工事', shortLabel: '麻布台', type: '改修', address: '東京都港区麻布台1-2-3', manager: '佐藤 誠', updated: '2026-07-18', status: 'inspection',
     progress: 62, siteNo: 'GNB-2026-014', client: '麻布台プロパティ株式会社', start: '2026-05-10', end: '2026-10-31',
-    workers: 14, safetyOpen: 3, reportPending: true, photos: ['足場区画A', '外壁養生', '資材置場', '共用部', '配管室', '搬入路'],
-    photoSrc: SITE_PHOTOS, mapX: 58, mapY: 36 },
+    workers: 14, safetyOpen: 3, reportPending: true,
+    photos: ['足場区画A', '外壁養生', '資材置場', '共用部', '配管室', '搬入路'],
+    photoSrc: ['assets/genba/site-01.jpg', 'assets/genba/site-02.jpg', 'assets/genba/sheet.jpg', 'assets/genba/block.jpg', 'assets/genba/outlet.jpg', 'assets/genba/yard.jpg'],
+    mapX: 58, mapY: 36 },
 
   { id: 'g-002', name: '相模原市新築住宅', shortLabel: '相模原', type: '新築', address: '神奈川県相模原市中央区3-8-12', manager: '田中 健', updated: '2026-07-17', status: 'active',
     progress: 38, siteNo: 'GNB-2026-009', client: '個人（施主）', start: '2026-04-01', end: '2026-12-20',
-    workers: 9, safetyOpen: 0, reportPending: false, photos: ['基礎', '型枠', '鉄筋', '外構', '資材', '事務所'],
-    photoSrc: SITE_PHOTOS, mapX: 22, mapY: 48 },
+    workers: 9, safetyOpen: 0, reportPending: false,
+    photos: ['基礎', '型枠', '鉄筋', '外構', '資材', '事務所'],
+    photoSrc: ['assets/genba/site-03.jpg', 'assets/genba/rebar.jpg', 'assets/genba/formwork.jpg', 'assets/genba/block.jpg', 'assets/genba/yard.jpg', 'assets/genba/rain.jpg'],
+    mapX: 22, mapY: 48 },
 
   { id: 'g-003', name: '横浜市南区店舗改修', shortLabel: '横浜南', type: '改修', address: '神奈川県横浜市南区2-14-5', manager: '鈴木 美咲', updated: '2026-07-16', status: 'active',
     progress: 71, siteNo: 'GNB-2026-011', client: '南区フード株式会社', start: '2026-06-01', end: '2026-09-15',
-    workers: 7, safetyOpen: 1, reportPending: true, photos: ['店舗内装', '天井', '厨房', '外装', '搬入', '養生'],
-    photoSrc: SITE_PHOTOS, mapX: 48, mapY: 72 },
+    workers: 7, safetyOpen: 1, reportPending: true,
+    photos: ['店舗内装', '天井', '厨房', '外装', '搬入'],
+    photoSrc: ['assets/genba/site-04.jpg', 'assets/genba/cloth-a.jpg', 'assets/genba/cloth-b.jpg', 'assets/genba/outlet.jpg', 'assets/genba/sheet.jpg'],
+    mapX: 48, mapY: 72 },
 
   { id: 'g-004', name: '川崎市マンション大規模修繕', shortLabel: '川崎', type: '修繕', address: '神奈川県川崎市幸区5-1-8', manager: '高橋 一郎', updated: '2026-07-15', status: 'active',
     progress: 45, siteNo: 'GNB-2026-007', client: '川崎マンション管理組合', start: '2026-03-20', end: '2027-01-31',
-    workers: 22, safetyOpen: 2, reportPending: false, photos: ['足場', '外壁', '共用廊下', '屋上', '資材置場', '搬入'],
-    photoSrc: SITE_PHOTOS, mapX: 50, mapY: 58 },
+    workers: 22, safetyOpen: 2, reportPending: false,
+    photos: ['足場', '外壁', '共用廊下', '屋上', '資材置場', '搬入'],
+    photoSrc: ['assets/genba/site-05.jpg', 'assets/genba/site-06.jpg', 'assets/genba/sheet.jpg', 'assets/genba/block.jpg', 'assets/genba/rain.jpg', 'assets/genba/yard.jpg'],
+    mapX: 50, mapY: 58 },
 
   { id: 'g-005', name: '世田谷区木造2階建て新築', shortLabel: '世田谷', type: '新築', address: '東京都世田谷区桜丘4-6-2', manager: '伊藤 直樹', updated: '2026-07-14', status: 'active',
     progress: 24, siteNo: 'GNB-2026-016', client: '個人（施主）', start: '2026-06-15', end: '2027-02-28',
-    workers: 6, safetyOpen: 0, reportPending: true, photos: ['基礎', '地組', '型枠', '外構', '資材', '仮設'],
-    photoSrc: SITE_PHOTOS, mapX: 42, mapY: 42 },
+    workers: 6, safetyOpen: 0, reportPending: true,
+    photos: ['基礎', '地組', '型枠', '外構', '仮設'],
+    photoSrc: ['assets/genba/rebar.jpg', 'assets/genba/formwork.jpg', 'assets/genba/block.jpg', 'assets/genba/yard.jpg', 'assets/genba/site-02.jpg'],
+    mapX: 42, mapY: 42 },
 
   { id: 'g-006', name: '調布市倉庫増築工事', shortLabel: '調布', type: '増築', address: '東京都調布市深大寺2-11-4', manager: '渡辺 亮', updated: '2026-07-12', status: 'delayed',
     progress: 52, siteNo: 'GNB-2026-005', client: '調布ロジスティクス株式会社', start: '2026-02-01', end: '2026-08-31',
-    workers: 11, safetyOpen: 1, reportPending: true, photos: ['増築部', '鉄骨', '屋根', '搬入路', '資材', '養生'],
-    photoSrc: SITE_PHOTOS, mapX: 32, mapY: 40 },
+    workers: 11, safetyOpen: 1, reportPending: true,
+    photos: ['増築部', '鉄骨', '屋根', '搬入路', '養生'],
+    photoSrc: ['assets/genba/site-03.jpg', 'assets/genba/block.jpg', 'assets/genba/cloth-a.jpg', 'assets/genba/formwork.jpg', 'assets/genba/yard.jpg'],
+    mapX: 32, mapY: 40 },
 
   { id: 'g-007', name: '八王子市公共施設改修', shortLabel: '八王子', type: '改修', address: '東京都八王子市本町1-3-7', manager: '中村 恵', updated: '2026-07-10', status: 'completed',
     progress: 100, siteNo: 'GNB-2025-022', client: '八王子市', start: '2025-11-01', end: '2026-07-05',
-    workers: 0, safetyOpen: 0, reportPending: false, photos: ['外観', '内装', '設備', '共用', '搬入', '完了'],
-    photoSrc: SITE_PHOTOS, mapX: 16, mapY: 44 },
+    workers: 0, safetyOpen: 0, reportPending: false,
+    photos: ['外観', '内装', '設備', '共用'],
+    photoSrc: ['assets/genba/site-01.jpg', 'assets/genba/site-04.jpg', 'assets/genba/sheet.jpg', 'assets/genba/outlet.jpg'],
+    mapX: 16, mapY: 44 },
 
   { id: 'g-008', name: '品川区オフィス内装工事', shortLabel: '品川', type: '内装', address: '東京都品川区大崎1-2-2', manager: '佐藤 誠', updated: '2026-07-18', status: 'inspection',
     progress: 58, siteNo: 'GNB-2026-018', client: '大崎テック株式会社', start: '2026-05-25', end: '2026-09-30',
-    workers: 8, safetyOpen: 2, reportPending: true, photos: ['OAフロア', '天井', '配線', '会議室', '搬入', '養生'],
-    photoSrc: SITE_PHOTOS, mapX: 56, mapY: 48 }
+    workers: 8, safetyOpen: 2, reportPending: true,
+    photos: ['OAフロア', '天井', '配線', '会議室', '養生'],
+    photoSrc: ['assets/genba/site-05.jpg', 'assets/genba/cloth-b.jpg', 'assets/genba/outlet.jpg', 'assets/genba/rain.jpg', 'assets/genba/yard.jpg'],
+    mapX: 56, mapY: 48 }
 ];
 
 var PATROL_ROUTE = [
@@ -961,7 +977,8 @@ function selectSite(id, updateHash) {
 
 function renderFilmstrip(s) {
   var srcs = s.photoSrc || SITE_PHOTOS;
-  var html = s.photos.map(function (label, i) {
+  var count = Math.min(s.photos.length, srcs.length);
+  var html = s.photos.slice(0, count).map(function (label, i) {
     var pid = 'photo-' + i;
     var src = srcs[i % srcs.length];
     var findings = s.id === 'g-001' ? AI_FINDINGS.filter(function (f) { return f.photoIdx === i; }) : [];
@@ -980,7 +997,7 @@ function renderFilmstrip(s) {
       '<div class="ph-zone">' + escapeHtml(label) + '</div></div></article>';
   }).join('');
   document.getElementById('filmstrip').innerHTML = html;
-  document.getElementById('filmDetailBar').innerHTML = '<b>' + escapeHtml(s.name) + '</b> — 写真' + s.photos.length + '枚。クリックで拡大・AI点検。';
+  document.getElementById('filmDetailBar').innerHTML = '<b>' + escapeHtml(s.name) + '</b> — 写真' + count + '枚。クリックで拡大・AI点検。';
 }
 
 function openPhoto(idx) {
