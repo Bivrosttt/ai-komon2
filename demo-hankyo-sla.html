@@ -1,75 +1,406 @@
-<!-- 2026-07-22: LP約束1:1デモ（demo-hankyo-sla.html） -->
+<!-- 2026-07-22: 軽デモをHANKYO同型（SLA＋一次返信）に揃え -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>反響5分SLAタイマー 体験デモ｜AI顧問室</title>
-<meta name="description" content="不動産反響の一次返信を5分以内に。SLAタイマーと返信下書きを体験できるデモ。">
-<meta property="og:title" content="反響5分SLAタイマー 体験デモ｜AI顧問室">
-<meta property="og:description" content="不動産反響の一次返信を5分以内に。SLAタイマーと返信下書きを体験できるデモ。">
+<title>反響5分SLAタイマー 体験デモ（一次返信）｜AI顧問室</title>
+<meta name="description" content="不動産反響のSLAカウントダウンとAI一次返信下書き。問い合わせカードを選び、5分以内返信を体験できるHANKYO同型の軽量デモです。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="反響5分SLAタイマー 体験デモ（一次返信）｜AI顧問室">
+<meta property="og:description" content="SLAタイマー付き反響一覧とAI一次返信下書き。送信でSLA達成を確認できるHANKYO同型デモ。">
 <meta property="og:url" content="https://ai-komon.bivrost.co.jp/demo-hankyo-sla.html">
 <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 <style>
-  :root { --navy:#0B2447; --navy-deep:#071A35; --blue:#2D6CB5; --gold:#C9A227; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg:#F4F7FA; --white:#FFF; --ok:#2F7A4F; --warn:#B45309; }
-  *{margin:0;padding:0;box-sizing:border-box} body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);line-height:1.85;background:var(--white)}
-  h1,h2{font-family:'Noto Serif JP',serif;line-height:1.45} a{text-decoration:none;color:inherit}
-  .container{max-width:960px;margin:0 auto;padding:0 24px}
-  header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
-  .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
-  .logo{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;color:var(--navy)}
-  .back{font-size:13px;color:var(--blue);font-weight:600}
-  .hero{background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:#fff;padding:72px 0 56px}
-  .tag{display:inline-block;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 14px;font-size:12px;color:#dce6f5;margin-bottom:16px}
-  .hero h1{font-size:clamp(26px,4vw,36px);margin-bottom:12px}.hero h1 em{font-style:normal;color:var(--gold)}
-  .hero p{color:#c7d3e4;max-width:640px;font-size:15px}
-  .note{background:var(--bg);border-bottom:1px solid var(--line);padding:14px 0;font-size:13px;color:var(--gray)}
-  .panel{margin:40px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--white)}
-  .panel-head{background:var(--navy);color:#fff;padding:16px 20px;font-size:14px;font-weight:700}
-  .panel-body{padding:22px 20px}
-  .row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-  .chip{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;cursor:pointer;background:#fff}
-  .chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-  .out{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:16px;min-height:120px;font-size:14px;white-space:pre-wrap}
-  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
-  .stat{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:12px;text-align:center}
-  .stat b{display:block;font-family:'Noto Serif JP',serif;font-size:22px;color:var(--navy)}
-  .stat small{font-size:11px;color:var(--gray)}
-  .btn{display:inline-block;padding:12px 26px;border-radius:4px;font-weight:700;font-size:14px;border:none;cursor:pointer;font-family:inherit}
-  .btn-gold{background:var(--gold);color:var(--navy-deep)} .btn-navy{background:var(--navy);color:#fff}
-  .cta{text-align:center;padding:56px 0;background:var(--bg);border-top:1px solid var(--line)}
-  footer{background:var(--navy-deep);color:#9fb0c7;font-size:13px;padding:28px 0;text-align:center}
-  footer a{text-decoration:underline}
-  @media(max-width:720px){.stat-grid{grid-template-columns:1fr}}
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --gold: #C9A227; --gold-soft: rgba(201,162,39,.15);
+    --ink: #1A2433; --gray: #5B6B7F; --gray-soft: #8A9BB0;
+    --line: #DDE4EC; --bg: #F4F7FA; --white: #FFFFFF;
+    --ok: #2F7A4F; --ok-bg: #E8F5EE; --warn: #B45309; --warn-bg: #FEF3C7; --danger: #B91C1C;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.75; background: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.45; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; border: none; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; }
+
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong { font-family: 'Noto Serif JP', serif; font-size: 22px; color: var(--navy); }
+  .logo span { font-size: 11px; color: var(--gray-soft); letter-spacing: .1em; }
+  .header-links { display: flex; align-items: center; gap: 20px; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 6px; font-weight: 700; font-size: 14px; transition: filter .15s, transform .1s; }
+  .btn:hover { filter: brightness(1.05); }
+  .btn-gold { background: var(--gold); color: var(--navy); }
+  .btn-navy { background: var(--navy); color: #fff; }
+  .btn-navy:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
+
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, #163A6B 100%);
+    color: #F0F4FA; padding: 72px 0 56px;
+  }
+  .hero-label { display: inline-block; border: 1px solid rgba(201,162,39,.5); border-radius: 999px; font-size: 12px; padding: 5px 16px; letter-spacing: .12em; margin-bottom: 20px; color: var(--gold); }
+  .demo-hero h1 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 16px; }
+  .demo-hero h1 em { font-style: normal; color: var(--gold); }
+  .demo-hero .sub { font-size: 15px; color: #A8B8CC; max-width: 640px; }
+
+  .note-banner { background: var(--bg); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding: 16px 24px; }
+  .note-box { display: flex; gap: 10px; font-size: 13px; color: var(--gray); max-width: 900px; }
+  .note-box strong { color: var(--ink); }
+
+  .demo-section { background: var(--bg); }
+  .section-label { display: block; font-size: 12px; letter-spacing: .2em; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+  .section-title { font-size: 28px; color: var(--navy); margin-bottom: 16px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 40px; font-size: 15px; }
+
+  .demo-core {
+    display: grid; grid-template-columns: 280px 1fr;
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+    background: #fff; box-shadow: 0 16px 40px rgba(11,36,71,.12); min-height: 480px;
+  }
+  .inquiry-list { border-right: 1px solid var(--line); background: var(--bg); display: flex; flex-direction: column; }
+  .inquiry-list-head {
+    padding: 12px 14px; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--gray-soft);
+    border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;
+  }
+  .sla-badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 999px; background: var(--warn-bg); color: var(--warn); font-weight: 700; }
+
+  .inquiry-card {
+    padding: 12px 14px; border-bottom: 1px solid var(--line); cursor: pointer; text-align: left;
+    background: transparent; width: 100%; transition: background .15s; position: relative;
+  }
+  .inquiry-card:hover { background: rgba(255,255,255,.7); }
+  .inquiry-card.active { background: #fff; box-shadow: inset 3px 0 0 var(--gold); }
+  .inquiry-card.replied { opacity: .75; }
+  .inquiry-card .ic-subj { font-size: 13px; font-weight: 700; margin-bottom: 4px; line-height: 1.4; }
+  .inquiry-card .ic-meta { font-size: 11px; color: var(--gray-soft); margin-bottom: 8px; }
+  .inquiry-card .ic-timer {
+    font-family: var(--mono); font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 6px; background: var(--warn-bg); color: var(--warn);
+  }
+  .inquiry-card .ic-timer.ok { background: var(--ok-bg); color: var(--ok); }
+  .inquiry-card .ic-timer.danger { background: #FEE2E2; color: var(--danger); animation: pulse 1s ease infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .7; } }
+
+  .main-pane { display: grid; grid-template-rows: auto 1fr auto; min-height: 480px; }
+  .detail-head { padding: 14px 16px; border-bottom: 1px solid var(--line); background: var(--navy); color: #fff; }
+  .detail-head h3 { font-size: 15px; margin-bottom: 4px; }
+  .detail-head p { font-size: 11.5px; color: #A8B8CC; }
+  .detail-head .head-timer { font-family: var(--mono); font-size: 20px; font-weight: 600; color: var(--gold); margin-top: 8px; }
+
+  .inbound-box { padding: 16px; background: #FAFBFD; border-bottom: 1px solid var(--line); flex: 1; overflow-y: auto; }
+  .inbound-label { font-size: 10px; letter-spacing: .12em; color: var(--gray-soft); margin-bottom: 8px; font-weight: 700; }
+  .inbound-text { font-size: 13px; line-height: 1.75; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+
+  .draft-panel { border-top: 1px solid var(--line); background: #fff; padding: 14px 16px; }
+  .draft-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .draft-head h4 { font-size: 11px; letter-spacing: .12em; color: var(--navy); }
+  .draft-badge { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--gold-soft); color: var(--navy); }
+  .draft-box {
+    border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px;
+    font-size: 13px; line-height: 1.75; min-height: 100px; background: var(--bg); white-space: pre-wrap;
+  }
+  .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--navy); vertical-align: text-bottom; animation: blink .8s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .draft-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+  .draft-note { font-size: 11px; color: var(--gray-soft); }
+  .day3-hint { margin-top: 10px; font-size: 11px; color: var(--gray); padding: 8px 12px; background: var(--gold-soft); border-radius: 6px; display: none; }
+  .day3-hint.show { display: block; }
+
+  .saas-link { margin-top: 20px; text-align: center; }
+  .saas-link a { font-size: 13px; font-weight: 700; color: var(--navy); border-bottom: 1px solid rgba(11,36,71,.35); padding-bottom: 2px; margin: 0 8px; }
+
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .f-step { background: var(--bg); border-radius: 8px; padding: 24px; border-top: 3px solid var(--gold); }
+  .f-step .no { width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: var(--gold); font-size: 13px; font-weight: 700; display: grid; place-items: center; margin-bottom: 12px; }
+  .f-step h3 { font-size: 16px; margin-bottom: 8px; color: var(--navy); }
+  .f-step p { font-size: 13.5px; color: var(--gray); line-height: 1.75; }
+
+  .cta { background: var(--navy); color: #fff; text-align: center; }
+  .cta h2 { font-size: 26px; margin-bottom: 14px; }
+  .cta p { color: #C7D3E4; margin-bottom: 28px; font-size: 15px; }
+  .cta-ctas { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+  footer { background: #071A35; color: #8FA3BC; padding: 32px 0; font-size: 13px; }
+  footer .logo strong { color: #fff; font-size: 18px; }
+
+  @media (max-width: 720px) {
+    .demo-core { grid-template-columns: 1fr; }
+    .inquiry-list { border-right: none; border-bottom: 1px solid var(--line); max-height: 200px; overflow-y: auto; }
+  }
+  @media (max-width: 600px) { .logo span { display: none; } section { padding: 64px 0; } }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
 </head>
 <body>
-<header><div class="container header-inner"><a href="index.html" class="logo">AI顧問室</a><div style="display:flex;gap:16px;align-items:center"><a href="demos.html" class="back">← デモ一覧</a><a href="index.html?from=demo-hankyo-sla#contact" class="btn btn-gold" style="padding:9px 20px;font-size:13px">無料相談</a></div></div></header>
-<div class="hero"><div class="container"><span class="tag">EXPERIENCE DEMO</span><h1>反響が来た瞬間、<em>5分以内</em>に一次返信。</h1><p>lp-fudosan.html の「反響5分」と同じ名前のデモ。問い合わせ受信から返信案までの流れを、SLAタイマー付きで体験できます。</p></div></div>
-<div class="note"><div class="container">※サンプルデータの体験デモです。実際は御社の書式・ルールに合わせて構築します。</div></div>
-<main class="container">
-  <div class="panel"><div class="panel-head">反響SLAダッシュボード（サンプル）</div><div class="panel-body">
-    <div class="row" id="chips"><button type="button" class="chip active" data-i="0">内見希望・マンション</button><button type="button" class="chip" data-i="1">賃貸・初期費用</button><button type="button" class="chip" data-i="2">売却査定・戸建</button></div>
-    <div class="out" id="out"></div>
-    <div class="stat-grid"><div class="stat"><b>4:32</b><small>平均一次返信</small></div><div class="stat"><b>92%</b><small>5分以内率</small></div><div class="stat"><b>0件</b><small>返信漏れ</small></div></div>
-  </div></div>
-</main>
-<section class="cta"><div class="container"><h2>御社仕様で構築する</h2><p style="color:var(--gray);margin:10px 0 20px">デモは入口です。本番は御社の業務フローに合わせて設計・定着まで伴走します。</p><a href="index.html?from=demo-hankyo-sla#contact" class="btn btn-navy">無料相談を予約 →</a></div></section>
-<footer><div class="container"><a href="index.html">AI顧問室</a> · <a href="demos.html">デモ一覧</a> · <a href="privacy.html">プライバシー</a></div></footer>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-links">
+      <a href="demos.html">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold" style="padding:10px 20px;font-size:13px;">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">体験デモ · HANKYO同型</span>
+    <h1>反響が来た瞬間、<em>5分SLA</em>で一次返信。</h1>
+    <p class="sub">反響カードのSLAタイマーが刻々と減っていく。問い合わせを選ぶとAIが一次返信をタイプし、「送信（デモ）」でSLA達成を確認できます。Day3追客は別デモへ。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container note-box">
+    <span>※</span>
+    <p><strong>反響内容・物件名・顧客名はすべて架空のサンプルです。</strong>実際のメール送信は行わず、事前に用意したデモ演出でSLA＋一次返信フローを再現しています。</p>
+  </div>
+</div>
+
+<section class="demo-section" id="demo">
+  <div class="container">
+    <div class="demo-core">
+      <div class="inquiry-list" id="inquiryList"></div>
+      <div class="main-pane">
+        <div class="detail-head">
+          <h3 id="detailTitle">—</h3>
+          <p id="detailMeta">—</p>
+          <div class="head-timer" id="headTimer">—</div>
+        </div>
+        <div class="inbound-box">
+          <div class="inbound-label">反響本文</div>
+          <div class="inbound-text" id="inboundText">左の反響を選んでください</div>
+        </div>
+        <div class="draft-panel">
+          <div class="draft-head">
+            <h4>AI 一次返信</h4>
+            <span class="draft-badge">SLA 5分</span>
+          </div>
+          <div class="draft-box" id="draftBox">反響を選ぶとAIが一次返信を生成します…</div>
+          <div class="draft-actions">
+            <span class="draft-note">確認のうえ送信（デモ）</span>
+            <button type="button" class="btn btn-navy" id="btnSend" disabled style="padding:10px 22px;font-size:13px;">送信（デモ）</button>
+          </div>
+          <div class="day3-hint" id="day3Hint">✓ 一次返信完了 → <a href="demo-followup-seq.html">Day3追客レーン</a> へ続けられます</div>
+        </div>
+      </div>
+    </div>
+    <div class="saas-link">
+      <a href="works-hankyo.html">→ SaaS級でログイン操作（HANKYO フルデモ）</a>
+      <a href="demo-followup-seq.html">→ Day3/7/14 追客レーン（軽デモ）</a>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <span class="section-label">HOW IT WORKS</span>
+    <h2 class="section-title">これを御社仕様にするには</h2>
+    <p class="section-lead">HANKYO 同型のSLA＋一次返信体験です。ポータル反響・自社サイト問い合わせを一元化し、5分以内の初動を仕組み化します。</p>
+    <div class="flow-grid">
+      <div class="f-step"><div class="no">1</div><h3>反響ソースを接続</h3><p>SUUMO・HOME'S・自社フォームなど、反響チャネルを1つのインボックスに集約します。</p></div>
+      <div class="f-step"><div class="no">2</div><h3>SLAタイマーで初動管理</h3><p>5分SLAを可視化。未返信・遅延をアラートし、担当者の初動漏れを防ぎます。</p></div>
+      <div class="f-step"><div class="no">3</div><h3>AI下書き→人が送信</h3><p>物件マスタを根拠に一次返信を生成。確認して送信後、Day3/7/14の追客レーンへ自動連携します。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の反響対応で試したい方へ</h2>
+    <p>「5分以内の一次返信を仕組みにしたい」という段階で構いません。<br>まずは無料相談で、反響対応の現状をお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold">無料相談を予約する</a>
+      <a href="works-hankyo.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.45);color:#fff;">HANKYO フルデモを見る</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
 <script>
-const outputs = [
-    '⏱ SLA: 04:32 残り（目標5分）\n📩 反響: 内見希望（港区・2LDK・予算15万）\n✉ 返信案:\n「お問い合わせありがとうございます。本日17:00 / 明日10:00に内見枠をご用意できます。ご都合をお知らせください。」',
-    '⏱ SLA: 02:18 残り\n📩 反響: 賃貸・初期費用の質問\n✉ 返信案:\n「初期費用の目安は家賃の4〜5ヶ月分です。物件URLをお送りいただければ、内訳表付きでご案内します。」',
-    '⏱ SLA: 03:05 残り\n📩 反響: 売却査定（築18年・戸建）\n✉ 返信案:\n「査定のため、延床面積と築年を確認させてください。オンライン査定と現地査定、どちらをご希望ですか？」'
-];
-const out = document.getElementById('out');
-const chips = document.querySelectorAll('.chip');
-function show(i){ out.textContent = outputs[i]; chips.forEach((c,j)=>c.classList.toggle('active', j===i)); }
-chips.forEach(c=>c.addEventListener('click',()=>show(Number(c.dataset.i))));
-show(0);
+(function () {
+  var INQUIRIES = {
+    naiken: {
+      subject: '内見希望・港区2LDK',
+      meta: 'ポータル経由 · 佐藤様 · 今日 14:02',
+      startSec: 298,
+      inbound: 'グリーンヒルズ302号室（2LDK・15万）の内見を希望です。本日17時以降または週末で可能でしょうか。ペット（小型犬）飼育可能かも教えてください。',
+      draft: '佐藤様\n\nお問い合わせありがとうございます。\n本物件は小型犬・猫に限りペット飼育可能です。\n内見は本日17:00 / 19:00、土曜 11:00 / 14:00 でご案内可能です。\nご都合をお知らせください。'
+    },
+    chintai: {
+      subject: '賃貸 · 初期費用の確認',
+      meta: '自社サイト · 山田様 · 今日 14:04',
+      startSec: 272,
+      inbound: '桜ヶ丘レジデンス101の初期費用を教えてください。敷金・礼金・仲介手数料の内訳が知りたいです。入居時期は来月希望です。',
+      draft: '山田様\n\nお問い合わせありがとうございます。\n初期費用の目安は家賃の4〜5ヶ月分です。\n桜ヶ丘レジデンス101は、敷金1ヶ月・礼金1ヶ月・仲介手数料1.1ヶ月が目安となります。\n内訳表を本日中にお送りします。'
+    },
+    baikyaku: {
+      subject: '売却査定 · 戸建',
+      meta: 'リファラー広告 · 鈴木様 · 今日 14:05',
+      startSec: 255,
+      inbound: '横浜市の戸建（築18年・延床95㎡）の売却査定を希望します。オンライン査定と現地査定、どちらが早いでしょうか。',
+      draft: '鈴木様\n\n査定のお問い合わせありがとうございます。\nオンライン査定は本日中、現地査定は3営業日以内にご案内可能です。\n築年・延床面積を確認のうえ、最適な方法をご提案いたします。'
+    }
+  };
+
+  var order = ['naiken', 'chintai', 'baikyaku'];
+  var current = null;
+  var typingTimer = null;
+  var draftDone = false;
+  var tickInterval = null;
+  var timers = {};
+
+  order.forEach(function (id) {
+    timers[id] = { sec: INQUIRIES[id].startSec, replied: false, base: INQUIRIES[id].startSec };
+  });
+
+  var inquiryList = document.getElementById('inquiryList');
+  var detailTitle = document.getElementById('detailTitle');
+  var detailMeta = document.getElementById('detailMeta');
+  var headTimer = document.getElementById('headTimer');
+  var inboundText = document.getElementById('inboundText');
+  var draftBox = document.getElementById('draftBox');
+  var btnSend = document.getElementById('btnSend');
+  var day3Hint = document.getElementById('day3Hint');
+
+  function fmt(sec) {
+    var m = Math.floor(sec / 60);
+    var s = sec % 60;
+    return (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function timerClass(sec, replied) {
+    if (replied) return 'ok';
+    if (sec <= 60) return 'danger';
+    return '';
+  }
+
+  function renderList() {
+    var open = order.filter(function (id) { return !timers[id].replied; }).length;
+    inquiryList.innerHTML = '<div class="inquiry-list-head"><span>OPEN · ' + open + '</span><span class="sla-badge">SLA 5:00</span></div>' +
+      order.map(function (id) {
+        var q = INQUIRIES[id];
+        var t = timers[id];
+        var cls = 'inquiry-card' + (current === id ? ' active' : '') + (t.replied ? ' replied' : '');
+        var tc = timerClass(t.sec, t.replied);
+        var label = t.replied ? '✓ 返信済' : '⏱ ' + fmt(t.sec);
+        return '<button type="button" class="' + cls + '" data-id="' + id + '"><div class="ic-subj">' + q.subject + '</div><div class="ic-meta">' + q.meta + '</div><span class="ic-timer ' + tc + '">' + label + '</span></button>';
+      }).join('');
+  }
+
+  function updateHeadTimer() {
+    if (!current) return;
+    var t = timers[current];
+    if (t.replied) {
+      headTimer.textContent = '✓ SLA達成';
+      headTimer.style.color = '#6EE7A0';
+    } else {
+      headTimer.textContent = '残り ' + fmt(t.sec);
+      headTimer.style.color = t.sec <= 60 ? '#FCA5A5' : '#C9A227';
+    }
+  }
+
+  function clearTyping() {
+    if (typingTimer) clearTimeout(typingTimer);
+    typingTimer = null;
+  }
+
+  function typeDraft(text) {
+    draftBox.innerHTML = '';
+    draftDone = false;
+    btnSend.disabled = true;
+    day3Hint.classList.remove('show');
+    var pos = 0;
+    var cursor = document.createElement('span');
+    cursor.className = 'draft-cursor';
+    function step() {
+      draftBox.textContent = text.slice(0, pos);
+      draftBox.appendChild(cursor);
+      if (pos < text.length) {
+        pos++;
+        typingTimer = setTimeout(step, 14);
+      } else {
+        cursor.remove();
+        draftDone = true;
+        if (!timers[current].replied) btnSend.disabled = false;
+      }
+    }
+    step();
+  }
+
+  function selectInquiry(id) {
+    current = id;
+    var q = INQUIRIES[id];
+    clearTyping();
+    detailTitle.textContent = q.subject;
+    detailMeta.textContent = q.meta;
+    inboundText.textContent = q.inbound;
+    updateHeadTimer();
+    renderList();
+    if (timers[id].replied) {
+      draftBox.textContent = q.draft;
+      draftDone = true;
+      btnSend.disabled = true;
+      btnSend.textContent = '送信済み';
+      day3Hint.classList.add('show');
+    } else {
+      btnSend.textContent = '送信（デモ）';
+      draftBox.innerHTML = '<span style="color:var(--gray-soft);font-size:12px;">AIが一次返信を作成中…</span>';
+      setTimeout(function () { typeDraft(q.draft); }, 350);
+    }
+  }
+
+  inquiryList.addEventListener('click', function (e) {
+    var btn = e.target.closest('.inquiry-card');
+    if (!btn) return;
+    selectInquiry(btn.getAttribute('data-id'));
+  });
+
+  btnSend.addEventListener('click', function () {
+    if (!current || !draftDone || timers[current].replied) return;
+    timers[current].replied = true;
+    btnSend.disabled = true;
+    btnSend.textContent = '送信済み';
+    day3Hint.classList.add('show');
+    renderList();
+    updateHeadTimer();
+  });
+
+  tickInterval = setInterval(function () {
+    order.forEach(function (id) {
+      if (!timers[id].replied && timers[id].sec > 0) timers[id].sec--;
+    });
+    renderList();
+    updateHeadTimer();
+  }, 1000);
+
+  renderList();
+  selectInquiry('naiken');
+})();
 </script>
 </body>
 </html>
