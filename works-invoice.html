@@ -1,4 +1,4 @@
-<!-- 2026-07-22: SOROBANを帳票スプレッド骨格に作り直し -->
+<!-- 2026-07-22: SOROBANを帳票スプレッド骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -51,6 +51,7 @@
     border-bottom: 2px solid var(--ledger);
   }
   .demo-frame-bar b { color: #5EEAD4; font-weight: 700; }
+  .demo-frame-bar .frame-links { display: flex; gap: 8px; flex: 0 0 auto; align-items: center; }
   .demo-frame-bar .frame-link {
     flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
     padding: 5px 12px; border-radius: 4px; white-space: nowrap; transition: background .15s;
@@ -374,7 +375,10 @@
 
 <div class="demo-frame-bar">
   <span class="frame-text">これは <b>AI顧問室</b> が制作した架空プロダクトのデモです。データはすべてサンプルで、実際のサービスではありません。</span>
-  <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+  <div class="frame-links">
+    <a href="works.html" class="frame-link">作品一覧</a>
+    <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+  </div>
 </div>
 
 <div id="view-login">
