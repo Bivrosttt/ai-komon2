@@ -1,4 +1,4 @@
-<!-- 2026-07-22: systems・攻めAI入口・LP約束デモ・無料ツール導線を追加 -->
+<!-- 2026-07-22: 旧LP構成のまま gpt-image-2 生成ヒーロー4枚を追加 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -94,8 +94,42 @@
   .hero {
     background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
     color: var(--white);
-    padding: 110px 0 120px;
+    padding: 96px 0 88px;
   }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+    gap: 40px;
+    align-items: center;
+  }
+  .hero-photo { width: 100%; max-width: 440px; margin-left: auto; }
+  .hero-photo-frame {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.14);
+    box-shadow: 0 22px 50px rgba(0,0,0,.35);
+    aspect-ratio: 16/10;
+    max-height: 276px;
+    background: var(--navy-deep);
+  }
+  .hero-photo-frame img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center 22%;
+    display: block; transition: opacity .3s;
+  }
+  .hero-photo-frame img.is-fading { opacity: .2; }
+  .hero-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
+  .hero-thumb {
+    position: relative; border: 2px solid rgba(255,255,255,.2); border-radius: 6px;
+    overflow: hidden; padding: 0; background: none; cursor: pointer; aspect-ratio: 16/10;
+  }
+  .hero-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-thumb span {
+    position: absolute; inset: auto 0 0; padding: 3px 5px; font-size: 8px; font-weight: 700;
+    color: #fff; background: linear-gradient(0deg, rgba(7,26,53,.92), transparent);
+  }
+  .hero-thumb.is-active { border-color: var(--gold); box-shadow: 0 0 0 1px rgba(201,162,39,.35); }
+  .hero-thumb:hover { border-color: rgba(255,255,255,.55); }
   .hero-label {
     display: inline-block;
     border: 1px solid rgba(255,255,255,0.4);
@@ -114,7 +148,7 @@
   .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
   .hero-note { font-size: 13px; color: #9FB0C7; margin-top: 16px; }
   .hero-stats {
-    display: flex; gap: 48px; margin-top: 64px; flex-wrap: wrap;
+    display: flex; gap: 48px; margin-top: 48px; flex-wrap: wrap;
     border-top: 1px solid rgba(255,255,255,0.18); padding-top: 32px;
   }
   .hero-stats div span { display: block; }
@@ -404,6 +438,10 @@
 
   @media (max-width: 820px) {
     section { padding: 64px 0; }
+    .hero { padding: 80px 0 64px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+    .hero-photo { max-width: 100%; margin-left: 0; }
+    .hero-photo-frame { max-height: 240px; }
     .hero h1 { font-size: 32px; }
     .section-title { font-size: 26px; }
     nav { display: none; }
@@ -423,6 +461,7 @@
     .logo strong { font-size: 18px; white-space: nowrap; }
     .logo span { display: none; }
     .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+    .hero-thumbs { grid-template-columns: repeat(2, 1fr); }
   }
   @media (min-width: 601px) and (max-width: 1080px) {
     .logo { flex-wrap: nowrap; }
@@ -462,14 +501,29 @@
 
 <div class="hero">
   <div class="container">
-    <span class="hero-label">従業員10〜50名の中小企業のためのAI顧問サービス</span>
-    <h1>AI人材を雇う前に、<br><em>「AI顧問」</em>という選択。</h1>
-    <p class="sub">「ChatGPTを触ってみた。でも、会社は何も変わっていない」——そこから先を、経営歴15年×AI歴4年の顧問が伴走します。相談から実装、社内定着まで。</p>
-    <div class="hero-ctas">
-      <a href="#contact" class="btn btn-gold">無料AI活用診断を予約する（30分）</a>
-      <a href="#pricing" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">料金の目安を見る</a>
+    <div class="hero-inner">
+      <div>
+        <span class="hero-label">従業員10〜50名の中小企業のためのAI顧問サービス</span>
+        <h1>AI人材を雇う前に、<br><em>「AI顧問」</em>という選択。</h1>
+        <p class="sub">「ChatGPTを触ってみた。でも、会社は何も変わっていない」——そこから先を、経営歴15年×AI歴4年の顧問が伴走します。相談から実装、社内定着まで。</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-gold">無料AI活用診断を予約する（30分）</a>
+          <a href="#pricing" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">料金の目安を見る</a>
+        </div>
+        <p class="hero-note">※ 診断だけでも「自社で何から始めるべきか」が明確になります。無理な勧誘はありません。診断後の判断は自由です。</p>
+      </div>
+      <div class="hero-photo">
+        <div class="hero-photo-frame">
+          <img id="heroImg" src="assets/hero/hero-consultation.png" width="1536" height="1024" alt="中小企業の経営者とAI顧問が業務について話し合う様子">
+        </div>
+        <div class="hero-thumbs" role="tablist" aria-label="ヒーロー画像">
+          <button type="button" class="hero-thumb is-active" role="tab" aria-selected="true" data-src="assets/hero/hero-consultation.png" data-alt="経営者とAI顧問が打ち合わせする様子"><img src="assets/hero/hero-consultation.png" alt="" loading="lazy"><span>相談</span></button>
+          <button type="button" class="hero-thumb" role="tab" aria-selected="false" data-src="assets/hero/hero-workshop.png" data-alt="社員向けAI研修の様子"><img src="assets/hero/hero-workshop.png" alt="" loading="lazy"><span>研修</span></button>
+          <button type="button" class="hero-thumb" role="tab" aria-selected="false" data-src="assets/hero/hero-construction.png" data-alt="建設現場でタブレットを見ながら相談する様子"><img src="assets/hero/hero-construction.png" alt="" loading="lazy"><span>現場</span></button>
+          <button type="button" class="hero-thumb" role="tab" aria-selected="false" data-src="assets/hero/hero-desk-morning.png" data-alt="経営者が朝のデスクで方向性を掴んだ様子"><img src="assets/hero/hero-desk-morning.png" alt="" loading="lazy"><span>経営</span></button>
+        </div>
+      </div>
     </div>
-    <p class="hero-note">※ 診断だけでも「自社で何から始めるべきか」が明確になります。無理な勧誘はありません。診断後の判断は自由です。</p>
     <div class="hero-stats">
       <div><span class="stat-num">15年</span><span class="stat-label">経営者としての実務経験</span></div>
       <div><span class="stat-num">4年</span><span class="stat-label">AI活用・研究の専門歴</span></div>
@@ -1114,6 +1168,26 @@
 </div>
 
 <script>
+(function () {
+  var img = document.getElementById("heroImg");
+  var thumbs = document.querySelectorAll(".hero-thumb");
+  if (!img || !thumbs.length) return;
+  function pick(btn) {
+    for (var i = 0; i < thumbs.length; i++) {
+      thumbs[i].classList.toggle("is-active", thumbs[i] === btn);
+      thumbs[i].setAttribute("aria-selected", thumbs[i] === btn ? "true" : "false");
+    }
+    img.classList.add("is-fading");
+    setTimeout(function () {
+      img.src = btn.getAttribute("data-src");
+      img.alt = btn.getAttribute("data-alt") || "";
+      img.classList.remove("is-fading");
+    }, 120);
+  }
+  for (var j = 0; j < thumbs.length; j++) {
+    thumbs[j].addEventListener("click", function () { pick(this); });
+  }
+})();
 (function () {
   var bar = document.getElementById('mobile-cta');
   var shown = false;
