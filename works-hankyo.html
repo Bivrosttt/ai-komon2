@@ -1,0 +1,1485 @@
+<!-- 2026-07-22: HANKYO（反響CRM）SaaS級デモ — 紺×金CRM・SLA KPI・一次返信下書き・Day3/7/14追客シーケンス -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>反響CRM構築デモ（SLA追客・AI返信）｜AI顧問室</title>
+<meta name="description" content="架空の不動産反響CRM「ハンキョウ」のフル機能デモです。反響受信箱・SLAタイマー・AI一次返信下書き・Day3/7/14追客シーケンスまで体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="反響CRM構築デモ（SLA追客・AI返信）｜AI顧問室">
+<meta property="og:description" content="架空の不動産反響CRM「ハンキョウ」のフル機能デモです。反響受信箱・SLAタイマー・AI一次返信下書き・Day3/7/14追客シーケンスまで体験できます。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-hankyo.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-hankyo.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #061528; --navy-light: #15325C;
+    --gold: #C9A227; --gold-deep: #A8861A; --gold-bg: #F5EFD6;
+    --pri: #C9A227; --pri-deep: #8B6914; --pri-bg: #F5EFD6;
+    --ink: #0B2447; --gray: #475569; --gray-soft: #64748B;
+    --line: #CBD5E1; --bg-soft: #EEF3F9; --white: #FFFFFF;
+    --teal: #0E7490; --teal-bg: #CFFAFE;
+    --amber: #92400E; --amber-bg: #FEF3C7;
+    --red: #DC2626; --red-bg: #FEE2E2;
+    --green: #059669; --green-bg: #D1FAE5;
+    --slate-bg: #E2E8F0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--bg-soft);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { line-height: 1.4; font-weight: 700; }
+  .serif { font-family: 'Noto Serif JP', serif; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea, select { font-family: inherit; }
+  img, svg { max-width: 100%; }
+  ::selection { background: #F5EFD6; color: var(--ink); }
+
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: var(--navy-deep); color: #CBD5E1; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .demo-frame-bar b { color: var(--gold); font-weight: 700; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 4px; white-space: nowrap; transition: background .15s;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.12); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; gap: 8px; height: 52px; }
+    .demo-frame-bar .frame-text { line-height: 1.5; }
+    .demo-frame-bar .frame-link { padding: 4px 9px; font-size: 10.5px; }
+    body { padding-top: 52px; }
+  }
+
+  #view-login {
+    min-height: calc(100vh - 44px); display: grid; grid-template-columns: 1.05fr 1fr;
+    background: var(--bg-soft);
+  }
+  #view-login.hide { display: none; }
+  .login-hero {
+    position: relative; background: linear-gradient(155deg, #061528 0%, #0B2447 45%, #15325C 100%);
+    color: #F8FAFC; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+  }
+  .login-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(201,162,39,.12) 0%, transparent 50%);
+  }
+  .login-hero::after {
+    content: '反'; position: absolute; right: 56px; bottom: 18%; font-size: 120px; font-weight: 700;
+    font-family: 'Noto Serif JP', serif; color: rgba(201,162,39,.1); line-height: 1;
+  }
+  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .24em; color: var(--gold); font-weight: 700; margin-bottom: 18px; position: relative; }
+  .login-hero h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 16em; position: relative; }
+  .login-hero h2 em { font-style: normal; color: var(--gold); }
+  .login-hero p { font-size: 14px; color: #94A3B8; max-width: 28em; line-height: 1.9; position: relative; }
+  .gold-strip { display: flex; gap: 0; margin-top: 28px; position: relative; }
+  .gold-strip span { flex: 1; height: 4px; background: var(--gold); opacity: .7; }
+  .gold-strip span:nth-child(even) { background: rgba(255,255,255,.15); opacity: 1; }
+  .login-panel {
+    display: flex; align-items: center; justify-content: center; padding: 40px 28px;
+    background: linear-gradient(180deg, #fff 0%, var(--bg-soft) 100%);
+  }
+  .login-card {
+    width: 100%; max-width: 400px; background: #fff; border-radius: 8px; padding: 40px 36px 30px;
+    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(11,36,71,.1); border-top: 4px solid var(--gold);
+  }
+  .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .login-logo .k { font-size: 28px; font-weight: 700; color: var(--navy); letter-spacing: .06em; }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .14em; }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .login-field { margin-bottom: 14px; }
+  .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
+  .login-field input {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 6px; font-size: 14px;
+    color: var(--gray-soft); background: var(--bg-soft); cursor: not-allowed;
+  }
+  .login-btn {
+    width: 100%; padding: 13px; border: none; border-radius: 6px; background: var(--gold); color: var(--navy-deep);
+    font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-btn:hover { filter: brightness(1.06); }
+  .login-btn:active { transform: scale(.99); }
+  .login-btn:disabled { opacity: .75; cursor: wait; }
+  .login-spin {
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(6,21,40,.25);
+    border-top-color: var(--navy-deep); animation: spin .7s linear infinite; display: none;
+  }
+  .login-btn.loading .login-spin { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .login-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center; border-top: 1px solid var(--line); padding-top: 14px; }
+  @media (max-width: 860px) {
+    #view-login { grid-template-columns: 1fr; }
+    .login-hero { min-height: 220px; padding: 36px 28px; }
+    .login-hero::after { display: none; }
+  }
+
+  #view-app { display: none; }
+  #view-app.show { display: block; }
+  .app-frame { display: flex; align-items: flex-start; min-height: calc(100vh - 44px); }
+  .sidebar {
+    width: 248px; flex: 0 0 auto; background: var(--navy-deep); color: #CBD5E1;
+    display: flex; flex-direction: column; position: sticky; top: 44px; height: calc(100vh - 44px);
+    padding: 20px 0; z-index: 50; border-right: 1px solid var(--navy-light);
+    box-shadow: inset 4px 0 0 var(--gold);
+  }
+  .sidebar-brand { padding: 0 20px 18px; border-bottom: 1px solid var(--navy-light); margin-bottom: 12px; display: flex; align-items: baseline; gap: 6px; }
+  .sidebar-brand .k { font-size: 18px; font-weight: 700; color: var(--gold); letter-spacing: .08em; }
+  .sidebar-brand .tag-en { font-size: 9px; color: #64748B; letter-spacing: .12em; }
+  .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 12px; overflow-y: auto; }
+  .nav-btn {
+    display: flex; align-items: center; gap: 11px; padding: 11px 12px; border-radius: 6px; border: none; background: none;
+    color: #94A3B8; font-size: 13.5px; font-weight: 500; text-align: left; width: 100%; transition: background .15s, color .15s;
+  }
+  .nav-btn svg { flex: 0 0 auto; opacity: .85; }
+  .nav-btn:hover { background: rgba(255,255,255,.06); color: #F8FAFC; }
+  .nav-btn.active { background: rgba(201,162,39,.15); color: var(--gold); font-weight: 700; }
+  .sidebar-foot { padding: 14px 20px 0; border-top: 1px solid var(--navy-light); margin-top: 14px; }
+  .sidebar-user { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+  .sidebar-user .avatar {
+    width: 30px; height: 30px; border-radius: 6px; background: var(--gold); color: var(--navy-deep);
+    display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: 0 0 auto;
+  }
+  .sidebar-user .u-name { font-size: 12.5px; font-weight: 700; color: #F8FAFC; }
+  .sidebar-user .u-role { font-size: 10.5px; color: #64748B; }
+  .logout-link { display: block; font-size: 11.5px; color: #94A3B8; padding: 6px 2px; }
+  .logout-link:hover { color: var(--gold); }
+  .hamburger-btn {
+    display: none; width: 38px; height: 38px; border-radius: 6px; border: 1px solid var(--line); background: #fff;
+    align-items: center; justify-content: center; flex: 0 0 auto;
+  }
+  .main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  .app-header {
+    position: sticky; top: 44px; z-index: 40; height: 60px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.97);
+    backdrop-filter: blur(4px); display: flex; align-items: center; gap: 14px; padding: 0 24px;
+  }
+  .app-header h1.view-name { font-size: 15.5px; font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .header-search { flex: 1; min-width: 0; display: flex; justify-content: center; }
+  .header-search-inner { position: relative; width: 100%; max-width: 380px; }
+  .header-search-inner input {
+    width: 100%; padding: 9px 14px 9px 36px; border: 1px solid var(--line); border-radius: 6px; font-size: 13px; background: var(--bg-soft);
+  }
+  .header-search-inner svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); pointer-events: none; opacity: .5; }
+  .header-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; }
+  .icon-btn {
+    position: relative; width: 38px; height: 38px; border-radius: 6px; border: 1px solid transparent; background: none;
+    display: grid; place-items: center; color: var(--ink); transition: background .15s;
+  }
+  .icon-btn:hover { background: var(--bg-soft); }
+  .notif-badge {
+    position: absolute; top: 3px; right: 3px; min-width: 15px; height: 15px; border-radius: 999px; background: var(--red);
+    color: #fff; font-size: 9.5px; font-weight: 700; display: grid; place-items: center; padding: 0 3px; border: 2px solid #fff;
+  }
+  .dropdown-wrap { position: relative; }
+  .dropdown-panel {
+    position: absolute; top: calc(100% + 8px); right: 0; width: 320px; background: #fff; border: 1px solid var(--line);
+    border-radius: 8px; box-shadow: 0 18px 44px rgba(11,36,71,.16); z-index: 80; display: none; overflow: hidden;
+  }
+  .dropdown-panel.open { display: block; animation: dropIn .16s ease; }
+  @keyframes dropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .dropdown-head { padding: 12px 16px; font-size: 12.5px; font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+  .notif-item { display: flex; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 12.5px; transition: background .15s; }
+  .notif-item:last-child { border-bottom: none; }
+  .notif-item:hover { background: var(--bg-soft); }
+  .notif-item .dot { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
+  .notif-item .txt { color: var(--ink); line-height: 1.6; }
+  .notif-item .time { color: var(--gray-soft); font-size: 10.5px; margin-top: 3px; }
+
+  .main-scroll { padding: 26px 30px 60px; }
+  .view { display: none; }
+  .view.active { display: block; }
+  .view-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .view-head h2 { font-size: 20px; color: var(--ink); }
+  .view-head .lead { font-size: 12.5px; color: var(--gray); margin-top: 4px; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 22px; }
+  .kpi-card { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; border-left: 3px solid var(--gold); transition: box-shadow .15s; }
+  .kpi-card:hover { box-shadow: 0 8px 24px rgba(11,36,71,.06); }
+  .kpi-card .kpi-label { font-size: 12px; color: var(--gray); font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .kpi-card .kpi-value { font-size: 27px; color: var(--ink); margin: 9px 0 4px; font-weight: 700; font-family: 'Noto Serif JP', serif; }
+  .kpi-card .kpi-value span { font-size: 13px; color: var(--gray-soft); font-weight: 500; margin-left: 2px; font-family: 'Noto Sans JP', sans-serif; }
+  .kpi-card .kpi-sub { font-size: 11px; color: var(--gray-soft); }
+  .kpi-swatch { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
+
+  .grid-2col { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; align-items: start; margin-bottom: 18px; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; }
+  .panel h3 { font-size: 14.5px; color: var(--ink); margin-bottom: 4px; font-weight: 700; }
+  .panel .panel-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; }
+
+  .task-list { display: flex; flex-direction: column; gap: 8px; }
+  .task-row {
+    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px;
+    transition: background .15s, border-color .15s; background: #fff;
+  }
+  .task-row:hover { background: var(--bg-soft); border-color: var(--gold); }
+  .task-row .t-main { flex: 1; min-width: 0; }
+  .task-row .t-name { font-size: 13px; font-weight: 700; color: var(--ink); font-family: 'Noto Serif JP', serif; }
+  .task-row .t-sub { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
+  .task-row .t-arrow { flex: 0 0 auto; color: var(--gray-soft); }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; margin-top: 5px; }
+  .timeline-text { font-size: 12.5px; color: var(--ink); line-height: 1.6; }
+  .timeline-text b { font-weight: 700; }
+  .timeline-date { font-size: 10.5px; color: var(--gray-soft); margin-top: 2px; }
+
+  .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .badge-new { background: var(--red-bg); color: var(--red); }
+  .badge-replied { background: var(--teal-bg); color: var(--teal); }
+  .badge-following { background: var(--pri-bg); color: var(--pri-deep); }
+  .badge-closed { background: var(--slate-bg); color: var(--gray); }
+  .badge-overdue { background: var(--red-bg); color: var(--red); animation: pulse 2s ease infinite; }
+  .badge-human { background: var(--gold); color: var(--navy-deep); }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.7} }
+
+  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tab-chip {
+    padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-size: 12.5px;
+    color: var(--gray); font-weight: 500; transition: all .15s; white-space: nowrap; display: flex; align-items: center; gap: 6px;
+  }
+  .tab-chip:hover { border-color: var(--gold); }
+  .tab-chip.active { background: var(--navy); color: #fff; border-color: var(--navy); font-weight: 700; }
+  .tab-chip .cnt { font-size: 10.5px; background: rgba(0,0,0,.08); padding: 1px 6px; border-radius: 999px; }
+  .tab-chip.active .cnt { background: rgba(255,255,255,.2); }
+  .search-box { position: relative; margin-left: auto; }
+  .search-box input {
+    padding: 9px 14px 9px 34px; border: 1px solid var(--line); border-radius: 6px; font-size: 13px; width: 240px; background: #fff;
+  }
+  .search-box input:focus { outline: 2px solid var(--gold); }
+  .search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: .5; }
+
+  .table-wrap { background: #fff; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.data-table th {
+    text-align: left; padding: 12px 16px; background: var(--bg-soft); color: var(--gray); font-weight: 700; font-size: 11.5px;
+    border-bottom: 1px solid var(--line); white-space: nowrap;
+  }
+  table.data-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
+  table.data-table tbody tr { cursor: pointer; transition: background .12s; }
+  table.data-table tbody tr:hover { background: var(--bg-soft); }
+  table.data-table tbody tr:last-child td { border-bottom: none; }
+  table.data-table td.name-cell { font-weight: 700; font-family: 'Noto Serif JP', serif; }
+  table.data-table td.num-cell { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .row-alert { background: #FFF7ED; }
+  .row-alert:hover { background: #FEF3C7 !important; }
+  .row-sla { background: #FEF2F2; }
+  .row-sla:hover { background: #FEE2E2 !important; }
+  .empty-row td { text-align: center; color: var(--gray-soft); padding: 40px 16px; }
+
+  .sla-chip {
+    display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 6px;
+    font-size: 11px; font-weight: 700; font-family: 'Noto Serif JP', serif;
+  }
+  .sla-ok { background: var(--green-bg); color: var(--green); }
+  .sla-warn { background: var(--amber-bg); color: var(--amber); }
+  .sla-danger { background: var(--red-bg); color: var(--red); }
+
+  .detail-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--gray); margin-bottom: 14px; }
+  .detail-back:hover { color: var(--pri-deep); }
+  .detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+  .detail-head h2 { font-size: 19px; font-family: 'Noto Serif JP', serif; }
+  .detail-head .sub { font-size: 12px; color: var(--gray); margin-top: 5px; }
+  .detail-grid { display: grid; grid-template-columns: 1.2fr minmax(320px, 420px); gap: 20px; align-items: start; }
+
+  .thread-wrap { background: #fff; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .thread-toolbar { padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--bg-soft); display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .thread-toolbar .tt-label { font-size: 11.5px; color: var(--gray); font-weight: 700; letter-spacing: .06em; }
+  .sla-timer {
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 8px;
+    background: var(--navy); color: #fff; font-family: 'Noto Serif JP', serif; font-size: 13px; font-weight: 700;
+  }
+  .sla-timer.warn { background: var(--amber); color: #fff; }
+  .sla-timer.danger { background: var(--red); animation: pulse 1.5s ease infinite; }
+  .sla-timer.done { background: var(--green); }
+  .thread-body { padding: 20px; display: flex; flex-direction: column; gap: 14px; min-height: 360px; }
+  .msg-bubble { max-width: 92%; padding: 14px 16px; border-radius: 10px; font-size: 13px; line-height: 1.85; }
+  .msg-in { align-self: flex-start; background: var(--bg-soft); border: 1px solid var(--line); border-bottom-left-radius: 2px; }
+  .msg-out { align-self: flex-end; background: var(--navy); color: #F8FAFC; border-bottom-right-radius: 2px; }
+  .msg-meta { font-size: 10.5px; color: var(--gray-soft); margin-top: 6px; }
+  .msg-out .msg-meta { color: rgba(255,255,255,.65); text-align: right; }
+
+  .side-panel { background: #fff; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .side-tabs { display: flex; border-bottom: 1px solid var(--line); background: var(--bg-soft); }
+  .side-tab-btn {
+    flex: 1; padding: 13px 6px; font-size: 11.5px; font-weight: 700; color: var(--gray); background: none; border: none;
+    border-bottom: 2px solid transparent; transition: color .15s;
+  }
+  .side-tab-btn.active { color: var(--navy); border-bottom-color: var(--gold); background: #fff; }
+  .side-tab-body { padding: 20px; min-height: 480px; }
+  .side-tab-pane { display: none; }
+  .side-tab-pane.active { display: block; }
+
+  .ai-start-box { text-align: center; padding: 34px 8px 18px; }
+  .ai-start-box p { font-size: 12.5px; color: var(--gray); margin-bottom: 20px; line-height: 1.9; }
+  .btn-ai-run {
+    background: var(--gold); color: var(--navy-deep); border: none; padding: 12px 26px; border-radius: 6px; font-weight: 700; font-size: 13.5px;
+    display: inline-flex; align-items: center; gap: 8px; transition: filter .2s;
+  }
+  .btn-ai-run:hover { filter: brightness(1.06); }
+  .scan-box { text-align: center; padding: 28px 10px; }
+  .scan-box .scan-spinner {
+    width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--pri-bg); border-top-color: var(--gold); margin: 0 auto 16px;
+    animation: spin .8s linear infinite;
+  }
+  .scan-box .scan-text { font-size: 13px; color: var(--ink); font-weight: 700; margin-bottom: 6px; }
+  .ai-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; gap: 8px; flex-wrap: wrap; }
+  .ai-toolbar .ai-count { font-size: 12px; color: var(--gray); }
+  .btn-skip { font-size: 11.5px; color: var(--pri-deep); background: none; border: 1px solid var(--gold); padding: 5px 12px; border-radius: 6px; font-weight: 700; }
+  .btn-skip:hover { background: var(--pri-bg); }
+
+  .follow-tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .follow-tab {
+    flex: 1; min-width: 80px; padding: 10px 8px; border: 1px solid var(--line); border-radius: 6px; background: #fff;
+    font-size: 11.5px; font-weight: 700; color: var(--gray); text-align: center; transition: all .15s;
+  }
+  .follow-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .follow-tab.done { border-color: var(--green); color: var(--green); background: var(--green-bg); }
+  .follow-tab .ft-day { display: block; font-family: 'Noto Serif JP', serif; font-size: 13px; }
+
+  .draft-box { border: 1px solid var(--line); border-radius: 8px; background: #FAFBFC; padding: 14px 16px; min-height: 140px; }
+  .draft-text-preview { font-size: 13px; line-height: 1.95; white-space: pre-wrap; color: var(--ink); }
+  .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--gold); vertical-align: text-bottom; animation: blink .8s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .draft-note { margin-top: 10px; font-size: 11px; color: var(--gray-soft); display: flex; align-items: flex-start; gap: 6px; line-height: 1.7; }
+  .draft-cta { margin-top: 14px; }
+  .btn-approve-draft {
+    width: 100%; background: var(--navy); color: #fff; border: none; padding: 12px 18px; border-radius: 6px; font-weight: 700; font-size: 13px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-approve-draft:hover { filter: brightness(1.1); }
+  .btn-approve-draft:disabled { opacity: .55; cursor: wait; }
+  .draft-reset { margin-top: 12px; text-align: right; }
+  .draft-reset button { font-size: 11.5px; color: var(--gray); background: none; border: 1px solid var(--line); padding: 6px 12px; border-radius: 6px; }
+  .draft-reset button:hover { border-color: var(--gold); color: var(--pri-deep); }
+  .complete-banner {
+    background: var(--green-bg); color: var(--green); border-radius: 8px; padding: 12px 14px; font-size: 12.5px;
+    font-weight: 700; display: flex; align-items: center; gap: 8px; opacity: 0;
+  }
+  .complete-banner.in { animation: fadeIn .5s ease forwards; }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  .prop-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .prop-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px;
+    transition: box-shadow .15s, border-color .15s;
+  }
+  .prop-card:hover { box-shadow: 0 8px 24px rgba(11,36,71,.08); border-color: var(--gold); }
+  .prop-card h4 { font-size: 15px; font-family: 'Noto Serif JP', serif; margin-bottom: 6px; color: var(--navy); }
+  .prop-card .prop-meta { font-size: 11.5px; color: var(--gray-soft); margin-bottom: 12px; }
+  .prop-card .prop-memo { font-size: 12.5px; color: var(--ink); line-height: 1.8; background: var(--bg-soft); border-radius: 6px; padding: 12px 14px; }
+  .prop-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .prop-tag { font-size: 10.5px; padding: 3px 8px; border-radius: 999px; background: var(--pri-bg); color: var(--pri-deep); font-weight: 700; }
+
+  .meta-table { width: 100%; border-collapse: collapse; font-size: 12.8px; }
+  .meta-table th { text-align: left; width: 38%; color: var(--gray); font-weight: 700; padding: 10px 0; vertical-align: top; }
+  .meta-table td { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .meta-table tr:last-child td, .meta-table tr:last-child th { border-bottom: none; }
+
+  .settings-section { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 22px 24px; margin-bottom: 18px; }
+  .settings-section h3 { font-size: 14.5px; margin-bottom: 4px; }
+  .settings-section .sec-note { font-size: 11.5px; color: var(--gray-soft); margin-bottom: 16px; }
+  .member-row, .toggle-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
+  }
+  .member-row:last-child, .toggle-row:last-child { border-bottom: none; }
+  .member-row .m-name { font-size: 13px; font-weight: 700; }
+  .member-row .m-mail { font-size: 11px; color: var(--gray-soft); }
+  .role-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+  .role-admin { background: var(--pri-bg); color: var(--pri-deep); }
+  .role-agent { background: var(--teal-bg); color: var(--teal); }
+  .role-member { background: var(--slate-bg); color: var(--gray); }
+  .toggle-row .tg-label { font-size: 13px; color: var(--ink); }
+  .toggle-row .tg-desc { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
+  .switch { position: relative; width: 42px; height: 24px; flex: 0 0 auto; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch .track { position: absolute; inset: 0; background: #CBD5E1; border-radius: 999px; cursor: pointer; transition: background .2s; }
+  .switch .track::before {
+    content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%;
+    transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  }
+  .switch input:checked + .track { background: var(--gold); }
+  .switch input:checked + .track::before { transform: translateX(18px); }
+
+  #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
+  .toast {
+    background: var(--navy); color: #fff; padding: 11px 18px; border-radius: 8px; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
+  }
+  @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+
+  .komon-cta {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: #fff; padding: 76px 24px 40px; text-align: center;
+  }
+  .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
+  .komon-cta .cta-label { display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: var(--gold); font-weight: 700; margin-bottom: 16px; }
+  .komon-cta h2 { font-size: 30px; margin-bottom: 16px; line-height: 1.5; }
+  .komon-cta h2 em { font-style: normal; color: var(--gold); }
+  .komon-cta p.lead { font-size: 14.5px; color: #94A3B8; margin-bottom: 32px; line-height: 1.9; }
+  .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn { display: inline-block; padding: 15px 34px; border-radius: 6px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s, transform .1s; }
+  .btn:hover { opacity: .87; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #64748B; }
+  .komon-cta .cta-foot a { color: #CBD5E1; }
+  .komon-cta .cta-foot a:hover { color: #fff; }
+
+  .mobile-nav-overlay { display: none; }
+  @media (max-width: 900px) {
+    .grid-2col { grid-template-columns: 1fr; }
+    .detail-grid { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .prop-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 780px) {
+    .hamburger-btn { display: flex; }
+    .sidebar {
+      position: fixed; top: 44px; left: 0; bottom: 0; height: auto; z-index: 300; transform: translateX(-100%);
+      transition: transform .25s ease; box-shadow: 20px 0 60px rgba(0,0,0,.3); width: 240px;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .mobile-nav-overlay.open { display: block; position: fixed; inset: 44px 0 0 0; background: rgba(0,0,0,.4); z-index: 290; }
+    .app-header { padding: 0 14px; gap: 8px; }
+    .header-search { display: none; }
+    .main-scroll { padding: 18px 14px 40px; }
+    .search-box { width: 100%; margin-left: 0; }
+    .search-box input { width: 100%; }
+    .toolbar { flex-direction: column; align-items: stretch; }
+    .komon-cta h2 { font-size: 23px; }
+    .komon-cta { padding: 56px 18px 32px; }
+  }
+  @media (max-width: 480px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+    table.data-table thead { display: none; }
+    table.data-table, table.data-table tbody, table.data-table tr, table.data-table td { display: block; width: 100%; }
+    table.data-table tbody tr { border-bottom: 1px solid var(--line); padding: 12px 14px; }
+    table.data-table td { border-bottom: none; padding: 3px 0; }
+    table.data-table td.num-cell { text-align: left; }
+    table.data-table td::before { content: attr(data-label); display: inline-block; min-width: 76px; font-size: 10.5px; color: var(--gray-soft); font-weight: 700; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> が制作した架空プロダクトのデモです。データはすべてサンプルで、実際のサービスではありません。</span>
+  <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+</div>
+
+<div id="view-login">
+  <div class="login-hero">
+    <div class="hero-kicker">REAL ESTATE INQUIRY CRM</div>
+    <h2>反響を、<em>SLAで追い・AIで返す</em>まで。</h2>
+    <p>ポータル反響を一元管理し、初回返信SLAを可視化。AIが一次返信下書きとDay3/7/14追客シーケンスを生成。不動産営業デスクの反響対応を一気通貫。</p>
+    <div class="gold-strip"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+  <div class="login-panel">
+    <div class="login-card">
+      <div class="login-logo"><span class="k">HANKYO</span><span class="tag-en">INQUIRY CRM</span></div>
+      <p class="login-sub">反響を、逃さない。</p>
+      <div class="login-field">
+        <label for="loginMail">メールアドレス</label>
+        <input id="loginMail" type="text" value="demo@minato-estate.example" readonly>
+      </div>
+      <div class="login-field">
+        <label for="loginPass">パスワード</label>
+        <input id="loginPass" type="password" value="dummydummy" readonly>
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">
+        <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
+      </button>
+      <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
+    </div>
+  </div>
+</div>
+
+<div id="view-app">
+  <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleSidebar(false)"></div>
+  <div class="app-frame">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand"><span class="k">HANKYO</span><span class="tag-en">INQUIRY CRM</span></div>
+      <nav class="sidebar-nav" id="sidebarNav">
+        <button class="nav-btn" data-nav="dashboard" onclick="go('dashboard')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          ダッシュボード
+        </button>
+        <button class="nav-btn" data-nav="inbox" onclick="go('inbox')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-6l-2 3H10l-2-3H2"/><path d="M5.5 5h13A2.5 2.5 0 0 1 21 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5v-9A2.5 2.5 0 0 1 5.5 5Z"/></svg>
+          反響受信箱
+        </button>
+        <button class="nav-btn" data-nav="properties" onclick="go('properties')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+          物件メモ
+        </button>
+        <button class="nav-btn" data-nav="settings" onclick="go('settings')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l1.9-1.5-2-3.4-2.3.7a7.6 7.6 0 0 0-2.6-1.5L14 2h-4l-.4 2.8a7.6 7.6 0 0 0-2.6 1.5l-2.3-.7-2 3.4L4.6 10.5a7.6 7.6 0 0 0 0 3L2.7 15l2 3.4 2.3-.7c.77.66 1.65 1.17 2.6 1.5L10 22h4l.4-2.8c.95-.33 1.83-.84 2.6-1.5l2.3.7 2-3.4Z"/></svg>
+          設定
+        </button>
+      </nav>
+      <div class="sidebar-foot">
+        <div class="sidebar-user">
+          <div class="avatar">美</div>
+          <div><div class="u-name">デモ 美咲</div><div class="u-role">港区エステート株式会社</div></div>
+        </div>
+        <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+      </div>
+    </aside>
+
+    <div class="main-col">
+      <header class="app-header">
+        <button class="hamburger-btn" onclick="toggleSidebar()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <h1 class="view-name" id="viewNameLabel">ダッシュボード</h1>
+        <div class="header-search">
+          <div class="header-search-inner">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+            <input type="text" placeholder="顧客名・物件名を検索（見た目のみ）" disabled>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="dropdown-wrap">
+            <button class="icon-btn" onclick="toggleDropdown('notifPanel')">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+              <span class="notif-badge" id="notifBadgeCount">4</span>
+            </button>
+            <div class="dropdown-panel" id="notifPanel">
+              <div class="dropdown-head">通知</div>
+              <div id="notifList"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-scroll">
+        <section class="view" id="view-dashboard">
+          <div class="view-head">
+            <div><h2>ダッシュボード</h2><p class="lead">2026年7月18日時点のSLAサマリーです（サンプルデータ）</p></div>
+          </div>
+          <div class="kpi-grid" id="kpiGrid"></div>
+          <div class="grid-2col">
+            <div class="panel">
+              <h3>SLA要対応の反響</h3>
+              <p class="panel-note">未返信・SLA期限間近の反響を優先表示しています</p>
+              <div class="task-list" id="taskList"></div>
+            </div>
+            <div class="panel">
+              <h3>最近のアクティビティ</h3>
+              <p class="panel-note">直近の反響対応履歴（サンプル）</p>
+              <div class="timeline" id="activityTimeline"></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>反響チャネル別（今週）</h3>
+            <p class="panel-note">ポータル・自社サイトからの反響件数（サンプル）</p>
+            <div id="channelChart"></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-inbox">
+          <div class="view-head">
+            <div><h2>反響受信箱</h2><p class="lead">全<span id="inboxTotalCount">0</span>件の反響</p></div>
+          </div>
+          <div class="toolbar">
+            <div class="tab-row" id="statusTabRow"></div>
+            <div class="search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+              <input type="text" id="inboxSearchInput" placeholder="顧客名・物件名で検索" oninput="renderInboxTable()">
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>顧客名</th><th>種別</th><th>物件名</th><th>チャネル</th><th>担当</th><th>受信日時</th><th>SLA</th><th>ステータス</th></tr>
+              </thead>
+              <tbody id="inboxTbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="view" id="view-inquiry-detail">
+          <a href="#inbox" class="detail-back">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>
+            反響受信箱へ戻る
+          </a>
+          <div class="detail-head">
+            <div>
+              <h2 id="detailTitle">反響詳細</h2>
+              <p class="sub" id="detailSub">顧客名 / 物件名</p>
+            </div>
+            <span class="badge" id="detailStatusBadge"></span>
+          </div>
+          <div class="detail-grid">
+            <div class="thread-wrap">
+              <div class="thread-toolbar">
+                <span class="tt-label">反響スレッド</span>
+                <div class="sla-timer" id="slaTimer">SLA 残り —</div>
+              </div>
+              <div class="thread-body" id="threadBody"></div>
+            </div>
+            <div class="side-panel">
+              <div class="side-tabs" id="sideTabs">
+                <button class="side-tab-btn active" data-tab="reply" onclick="switchSideTab('reply')">一次返信</button>
+                <button class="side-tab-btn" data-tab="follow" onclick="switchSideTab('follow')">追客シーケンス</button>
+                <button class="side-tab-btn" data-tab="info" onclick="switchSideTab('info')">基本情報</button>
+              </div>
+              <div class="side-tab-body">
+                <div class="side-tab-pane active" id="pane-reply"></div>
+                <div class="side-tab-pane" id="pane-follow"></div>
+                <div class="side-tab-pane" id="pane-info"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="view-properties">
+          <div class="view-head">
+            <div><h2>物件メモ</h2><p class="lead">担当物件の営業メモ・反響状況（サンプル）</p></div>
+          </div>
+          <div class="toolbar">
+            <div class="tab-row" id="propTypeTabs"></div>
+          </div>
+          <div class="prop-grid" id="propGrid"></div>
+        </section>
+
+        <section class="view" id="view-settings">
+          <div class="view-head">
+            <div><h2>設定</h2><p class="lead">メンバー権限・SLA・通知の設定です（見た目のみ動作します）</p></div>
+          </div>
+          <div class="settings-section">
+            <h3>メンバーと権限</h3>
+            <p class="sec-note">組織内のメンバーとロールを管理します</p>
+            <div id="memberList"></div>
+          </div>
+          <div class="settings-section">
+            <h3>SLA設定</h3>
+            <p class="sec-note">反響種別ごとの初回返信SLA目標時間です</p>
+            <div id="slaToggleList"></div>
+          </div>
+          <div class="settings-section">
+            <h3>通知設定</h3>
+            <p class="sec-note">SLA違反リスク・追客タイミングの通知です</p>
+            <div id="notifToggleList"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</div>
+
+<div class="komon-cta">
+  <div class="cta-inner">
+    <span class="cta-label">AI KOMONSHITSU</span>
+    <h2>このようなシステムを、<em>御社専用に。</em></h2>
+    <p class="lead">「ハンキョウ」は本デモのために作った架空のプロダクトです。AI顧問室では、反響CRMに限らず、御社の営業フローそのものを学習してSLA管理・AI返信・追客シーケンスを組み込んだ専用システムを構築します。</p>
+    <div class="cta-btn-row">
+      <a href="index.html?from=works-hankyo#contact" class="btn btn-gold">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
+    </div>
+    <div class="cta-foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+
+<script>
+
+var TODAY = new Date(2026, 6, 18);
+var TODAY_STR = '2026-07-18';
+
+function fmtDate(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+}
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function showToast(msg) {
+  var host = document.getElementById('toastHost');
+  var el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  host.appendChild(el);
+  setTimeout(function () { el.remove(); }, 2700);
+}
+
+var STATUS_LABEL = {
+  new: '未返信',
+  replied: '返信済',
+  following: '追客中',
+  closed: '完了',
+  overdue: 'SLA超過'
+};
+
+var TYPE_LABEL = { viewing: '内見', appraisal: '査定', rental: '賃貸' };
+
+var INQUIRIES = [
+  { id: 'h-001', customer: '山田 花子', email: 'yamada.h@example.com', phone: '090-1234-5678',
+    type: 'viewing', property: '港区麻布台タワーレジデンス 302', channel: 'SUUMO', assigned: '佐藤 誠',
+    received: '2026-07-18T09:42:00', status: 'new', slaMinutes: 60, slaRemaining: 38,
+    message: 'こんにちは。港区麻布台タワーレジデンス302号室の内見を希望しています。今週末（7/19または7/20）の午前中で空きはありますか？駐車場の利用可否も教えてください。',
+    budget: '購入検討（1.2億前後）', moveIn: '2026年10月希望' },
+
+  { id: 'h-002', customer: '鈴木 一郎', email: 'suzuki.i@example.com', phone: '080-9876-5432',
+    type: 'appraisal', property: '世田谷区桜丘 戸建（築15年）', channel: '自社サイト', assigned: '田中 健',
+    received: '2026-07-18T08:15:00', status: 'new', slaMinutes: 120, slaRemaining: 12,
+    message: '世田谷区桜丘の戸建（築15年・土地80㎡）の売却査定をお願いしたいです。近隣相場と売却スケジュールの目安を知りたいです。',
+    budget: '—', moveIn: '—' },
+
+  { id: 'h-003', customer: '高橋 美穂', email: 'takahashi.m@example.com', phone: '070-5555-1234',
+    type: 'rental', property: '品川シーサイドマンション 1205', channel: 'HOME\'S', assigned: '佐藤 誠',
+    received: '2026-07-17T16:30:00', status: 'replied', slaMinutes: 60, slaRemaining: 0,
+    message: '品川シーサイドマンション1205号室の賃貸について問い合わせです。ペット（小型犬）可か、初期費用の概算を教えてください。',
+    budget: '家賃18万前後', moveIn: '2026年8月1日' },
+
+  { id: 'h-004', customer: '伊藤 直樹', email: 'ito.n@example.com', phone: '090-3333-7777',
+    type: 'viewing', property: '横浜みなとみらいタワー 4502', channel: 'athome', assigned: '鈴木 美咲',
+    received: '2026-07-17T11:20:00', status: 'following', slaMinutes: 60, slaRemaining: 0,
+    message: '横浜みなとみらいタワー4502号室の内見希望です。眺望と管理費について詳しく知りたいです。平日夜間（19時以降）も対応可能でしょうか。',
+    budget: '購入検討（9,500万前後）', moveIn: '2026年12月' },
+
+  { id: 'h-005', customer: '渡辺 さくら', email: 'watanabe.s@example.com', phone: '080-2222-8888',
+    type: 'rental', property: '渋谷スカイレジデンス 801', channel: 'SUUMO', assigned: '田中 健',
+    received: '2026-07-16T14:05:00', status: 'following', slaMinutes: 60, slaRemaining: 0,
+    message: '渋谷スカイレジデンス801号室の賃貸。2人入居予定で、駅徒歩5分以内が条件です。内見可能日を3候補いただけますか。',
+    budget: '家賃22万前後', moveIn: '2026年9月' },
+
+  { id: 'h-006', customer: '中村 恵', email: 'nakamura.e@example.com', phone: '090-6666-1111',
+    type: 'appraisal', property: '港区赤坂 分譲マンション 1502', channel: '自社サイト', assigned: '佐藤 誠',
+    received: '2026-07-16T10:00:00', status: 'replied', slaMinutes: 120, slaRemaining: 0,
+    message: '赤坂の分譲マンション（築8年・70㎡）の売却査定を依頼したいです。リノベ済みで、同フロアの成約事例があれば共有ください。',
+    budget: '—', moveIn: '—' },
+
+  { id: 'h-007', customer: '小林 拓也', email: 'kobayashi.t@example.com', phone: '070-4444-9999',
+    type: 'viewing', property: '目黒区中目黒 デザイナーズ 203', channel: 'HOME\'S', assigned: '鈴木 美咲',
+    received: '2026-07-15T17:45:00', status: 'closed', slaMinutes: 60, slaRemaining: 0,
+    message: '中目黒のデザイナーズマンション203号室、内見希望です。リモートワーク用の書斎スペースがあるか確認したいです。',
+    budget: '購入検討（8,800万）', moveIn: '2026年11月' },
+
+  { id: 'h-008', customer: '加藤 真理', email: 'kato.m@example.com', phone: '080-7777-3333',
+    type: 'rental', property: '港区六本木ヒルズレジデンス 3201', channel: 'SUUMO', assigned: '田中 健',
+    received: '2026-07-15T09:30:00', status: 'overdue', slaMinutes: 60, slaRemaining: -45,
+    message: '六本木ヒルズレジデンス3201号室の賃貸について。法人契約は可能か、敷金・礼金の条件を教えてください。至急確認希望です。',
+    budget: '家賃35万前後', moveIn: '2026年8月15日' },
+
+  { id: 'h-009', customer: '松本 健太', email: 'matsumoto.k@example.com', phone: '090-8888-2222',
+    type: 'viewing', property: '鎌倉材木座 海側戸建', channel: 'athome', assigned: '佐藤 誠',
+    received: '2026-07-14T13:10:00', status: 'closed', slaMinutes: 60, slaRemaining: 0,
+    message: '鎌倉材木座の海側戸建の内見希望です。第二希望として湘南エリアも検討中。ローン事前審査済みです。',
+    budget: '購入（1.5億前後）', moveIn: '2027年3月' }
+];
+
+var ACTIVITY_LOG = [
+  { text: '<b>AI</b>が『山田 花子』様への一次返信下書きを生成しました', time: '10分前', color: 'var(--gold)' },
+  { text: '<b>佐藤 誠</b>が『品川シーサイドマンション』反響に返信しました', time: '2時間前', color: 'var(--teal)' },
+  { text: '<b>田中 健</b>が『世田谷区桜丘 戸建』の査定反響を担当に設定', time: '3時間前', color: 'var(--navy-light)' },
+  { text: '<b>システム</b>が『加藤 真理』様の反響でSLA超過アラートを発報', time: '昨日 18:00', color: 'var(--red)' },
+  { text: '<b>鈴木 美咲</b>がDay7追客メール（横浜みなとみらい）を送信予約', time: '2日前', color: 'var(--gold-deep)' }
+];
+
+var PROPERTIES = [
+  { name: '港区麻布台タワーレジデンス 302', type: 'sale', price: '1億2,800万', area: '港区麻布台', inquiries: 3,
+    memo: '角部屋・南向き。内見は土日午前が人気。駐車場1台付き（月額2.5万）。ローン相談可。' },
+  { name: '品川シーサイドマンション 1205', type: 'rental', price: '家賃18.5万', area: '港区港南', inquiries: 2,
+    memo: 'ペット相談可（小型犬・猫）。初期費用概算：家賃+敷金+礼金+仲介=約95万。' },
+  { name: '世田谷区桜丘 戸建', type: 'sale', price: '査定中', area: '世田谷区桜丘', inquiries: 1,
+    memo: '築15年・土地80㎡。近隣成約：同区戸建 8,500万〜1.1億（2025-2026）。売却査定アポ調整中。' },
+  { name: '横浜みなとみらいタワー 4502', type: 'sale', price: '9,480万', area: '横浜市西区', inquiries: 2,
+    memo: '45階・オーシャンビュー。管理費2.8万/月。平日夜間内見対応可（要事前調整）。' },
+  { name: '渋谷スカイレジデンス 801', type: 'rental', price: '家賃22万', area: '渋谷区', inquiries: 1,
+    memo: '2LDK・駅徒歩4分。内見候補：7/19(土)14時、7/20(日)11時、7/21(月)19時。' },
+  { name: '港区六本木ヒルズレジデンス 3201', type: 'rental', price: '家賃35万', area: '港区六本木', inquiries: 1,
+    memo: '法人契約可。敷金2ヶ月・礼金1ヶ月。SLA超過中—至急対応要。' }
+];
+
+var MEMBERS = [
+  { name: 'デモ 美咲', mail: 'demo.misaki@minato-estate.example', role: 'admin' },
+  { name: '佐藤 誠', mail: 'sato@minato-estate.example', role: 'agent' },
+  { name: '田中 健', mail: 'tanaka@minato-estate.example', role: 'agent' },
+  { name: '鈴木 美咲', mail: 'suzuki@minato-estate.example', role: 'member' }
+];
+var ROLE_LABEL = { admin: '管理者', agent: '営業担当', member: '事務' };
+
+var SLA_TOGGLES = [
+  { label: '内見反響：初回返信SLA', desc: '受信から60分以内に一次返信', on: true },
+  { label: '査定反響：初回返信SLA', desc: '受信から120分以内に一次返信', on: true },
+  { label: '賃貸反響：初回返信SLA', desc: '受信から60分以内に一次返信', on: true },
+  { label: 'SLA 30分前に警告通知', desc: '期限30分前に担当者へプッシュ', on: true }
+];
+var NOTIF_TOGGLES = [
+  { label: 'SLA超過リスクを即時通知', desc: '残り15分以下でアラート', on: true },
+  { label: 'Day3/7/14追客リマインド', desc: '追客シーケンスの送信予定日', on: true },
+  { label: '未返信反響の日次サマリー', desc: '毎朝9:00に管理者へ送信', on: true }
+];
+
+var H001_REPLY_TEXT = '山田 花子 様\n\nお問い合わせいただきありがとうございます。\n港区エステート株式会社の佐藤でございます。\n\n港区麻布台タワーレジデンス302号室の内見について、下記日程でご案内可能です。\n\n■ 内見候補\n・7月19日（土）10:00〜11:00\n・7月20日（日）10:30〜11:30\n\n駐車場は1台まで無料でご利用いただけます（要事前予約）。\n\nご都合の良い日時をお知らせください。\n何卒よろしくお願いいたします。\n\n港区エステート株式会社\n佐藤 誠';
+
+var FOLLOW_UP_TEXTS = {
+  day3: '山田 花子 様\n\n先日は港区麻布台タワーレジデンス302号室の内見についてお問い合わせいただき、ありがとうございました。\n\n内見日程のご確認はいかがでしょうか。7/19（土）・7/20（日）の午前中でしたら、引き続きご案内可能です。\n\nご不明点や追加でご覧になりたい物件がございましたら、お気軽にご連絡ください。\n\n佐藤 誠',
+  day7: '山田 花子 様\n\nお世話になっております。港区エステートの佐藤です。\n\n麻布台エリアでは、同価格帯で「南向き角部屋」「駅徒歩5分以内」の物件が2件、新たに内見可能になりました。\n\nご購入時期（10月ご入居）に合わせたローンシミュレーションも無料で承ります。\n\n内見や資料請求をご希望の際は、本メールへご返信ください。\n\n佐藤 誠',
+  day14: '山田 花子 様\n\nご検討状況はいかがでしょうか。\n\n麻布台タワーレジデンス302号室は、同フロアの成約事例と比較しても好条件の物件です。今週末であれば、再度内見のご案内が可能です。\n\n「他社と比較中」「時期を見てから」など、率直なご状況をお聞かせいただければ、無理のない追客に切り替えます。\n\n引き続きよろしくお願いいたします。\n\n佐藤 誠'
+};
+
+var VIEW_NAMES = { dashboard: 'ダッシュボード', inbox: '反響受信箱', properties: '物件メモ', settings: '設定' };
+var replyState = null;
+var followState = null;
+var loggedIn = false;
+var currentStatusFilter = 'all';
+var currentPropFilter = 'all';
+var slaTimerInterval = null;
+var h001Runtime = { replySent: false, followSent: {} };
+
+function findInquiry(id) { return INQUIRIES.filter(function (q) { return q.id === id; })[0]; }
+function countByStatus(st) { return INQUIRIES.filter(function (q) { return q.status === st; }).length; }
+function newCount() { return countByStatus('new'); }
+function overdueCount() { return INQUIRIES.filter(function (q) { return q.status === 'overdue' || (q.status === 'new' && q.slaRemaining <= 15); }).length; }
+function followingCount() { return countByStatus('following'); }
+
+function isLoggedIn() { return loggedIn; }
+
+function handleRoute() {
+  var hash = location.hash.replace('#', '') || 'login';
+  if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
+  if (hash === 'login') { showLoginScreen(); return; }
+  showAppScreen();
+  if (hash.indexOf('inquiry/') === 0) {
+    openInquiryDetail(hash.split('/')[1]);
+    setActiveNav(null);
+    return;
+  }
+  var view = ['dashboard', 'inbox', 'properties', 'settings'].indexOf(hash) >= 0 ? hash : 'dashboard';
+  showView(view);
+  setActiveNav(view);
+}
+
+function showLoginScreen() {
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+}
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+}
+
+function showView(name) {
+  if (slaTimerInterval) { clearInterval(slaTimerInterval); slaTimerInterval = null; }
+  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
+  var el = document.getElementById('view-' + name);
+  if (el) el.classList.add('active');
+  document.getElementById('viewNameLabel').textContent = VIEW_NAMES[name] || '反響詳細';
+  if (name === 'dashboard') renderDashboard();
+  if (name === 'inbox') renderInboxView();
+  if (name === 'properties') renderProperties();
+  if (name === 'settings') renderSettings();
+  toggleSidebar(false);
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function setActiveNav(name) {
+  document.querySelectorAll('.nav-btn').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.nav === name);
+  });
+}
+
+function go(name) { location.hash = name; }
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  renderNotifDropdown();
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') loggedIn = true;
+  handleRoute();
+});
+
+function doLogin() {
+  var btn = document.getElementById('loginBtn');
+  if (btn.classList.contains('loading')) return;
+  btn.classList.add('loading');
+  btn.disabled = true;
+  setTimeout(function () {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    loggedIn = true;
+    if (location.hash === '#dashboard') handleRoute();
+    else location.hash = 'dashboard';
+  }, 800);
+}
+function doLogout() {
+  loggedIn = false;
+  replyState = null;
+  followState = null;
+  if (slaTimerInterval) { clearInterval(slaTimerInterval); slaTimerInterval = null; }
+  showToast('ログアウトしました');
+}
+
+function toggleSidebar(force) {
+  var sb = document.getElementById('sidebar');
+  var ov = document.getElementById('mobileOverlay');
+  var open = typeof force === 'boolean' ? force : !sb.classList.contains('open');
+  sb.classList.toggle('open', open);
+  ov.classList.toggle('open', open);
+}
+
+function toggleDropdown(id) {
+  var el = document.getElementById(id);
+  var willOpen = !el.classList.contains('open');
+  document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
+  if (willOpen) el.classList.add('open');
+}
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('.dropdown-wrap')) {
+    document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
+  }
+});
+
+function renderNotifDropdown() {
+  var items = [
+    { color: 'var(--red)', text: '『加藤 真理』様の反響がSLA超過しています', time: '45分超過' },
+    { color: 'var(--amber)', text: '『鈴木 一郎』様の査定反響—SLA残り12分', time: '12分前' },
+    { color: 'var(--gold)', text: '『山田 花子』様—AI一次返信下書きが作成されました', time: '10分前' },
+    { color: 'var(--teal)', text: '『伊藤 直樹』様—Day7追客メール送信予定（明日）', time: '1時間前' }
+  ];
+  document.getElementById('notifList').innerHTML = items.map(function (n) {
+    return '<div class="notif-item"><span class="dot" style="background:' + n.color + '"></span><div class="txt">' + escapeHtml(n.text) + '<div class="time">' + escapeHtml(n.time) + '</div></div></div>';
+  }).join('');
+  document.getElementById('notifBadgeCount').textContent = items.length;
+}
+
+function kpiCardHtml(label, value, unit, color, sub) {
+  return '<div class="kpi-card"><div class="kpi-label"><span class="kpi-swatch" style="background:' + color + '"></span>' + label + '</div>' +
+    '<div class="kpi-value">' + value + '<span>' + unit + '</span></div><div class="kpi-sub">' + sub + '</div></div>';
+}
+
+function slaChipHtml(q) {
+  if (q.status === 'closed' || q.status === 'replied' || q.status === 'following') {
+    return '<span class="sla-chip sla-ok">対応済</span>';
+  }
+  if (q.slaRemaining <= 0 && q.status === 'overdue') {
+    return '<span class="sla-chip sla-danger">超過 ' + Math.abs(q.slaRemaining) + '分</span>';
+  }
+  if (q.slaRemaining <= 15) {
+    return '<span class="sla-chip sla-danger">残り ' + q.slaRemaining + '分</span>';
+  }
+  if (q.slaRemaining <= 30) {
+    return '<span class="sla-chip sla-warn">残り ' + q.slaRemaining + '分</span>';
+  }
+  return '<span class="sla-chip sla-ok">残り ' + q.slaRemaining + '分</span>';
+}
+
+function renderDashboard() {
+  document.getElementById('kpiGrid').innerHTML = [
+    kpiCardHtml('未返信反響', newCount(), '件', 'var(--red)', '初回返信待ち'),
+    kpiCardHtml('SLA違反リスク', overdueCount(), '件', 'var(--amber)', '残り15分以下・超過'),
+    kpiCardHtml('平均初回返信', '42', '分', 'var(--teal)', '今週の実績（目標60分）'),
+    kpiCardHtml('追客待ち', followingCount(), '件', 'var(--gold)', 'Day3/7/14シーケンス中')
+  ].join('');
+
+  var tasks = INQUIRIES.filter(function (q) {
+    return q.status === 'new' || q.status === 'overdue' || (q.status === 'new' && q.slaRemaining <= 30);
+  }).sort(function (a, b) { return a.slaRemaining - b.slaRemaining; });
+
+  document.getElementById('taskList').innerHTML = tasks.slice(0, 6).map(function (q) {
+    var badge = q.status === 'overdue' ? 'badge-overdue' : (q.slaRemaining <= 15 ? 'badge-overdue' : 'badge-new');
+    return '<a class="task-row" href="#inquiry/' + q.id + '">' +
+      slaChipHtml(q) +
+      '<span class="t-main"><div class="t-name">' + escapeHtml(q.customer) + ' 様</div>' +
+      '<div class="t-sub">' + escapeHtml(q.property) + ' ・ ' + TYPE_LABEL[q.type] + '</div></span>' +
+      '<span class="badge ' + badge + '">' + STATUS_LABEL[q.status] + '</span>' +
+      '<span class="t-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></span></a>';
+  }).join('') || '<p style="font-size:12.5px;color:var(--gray-soft);">現在、SLA要対応の反響はありません。</p>';
+
+  document.getElementById('activityTimeline').innerHTML = ACTIVITY_LOG.map(function (a) {
+    return '<div class="timeline-item"><span class="timeline-dot" style="background:' + a.color + '"></span>' +
+      '<div><div class="timeline-text">' + a.text + '</div><div class="timeline-date">' + a.time + '</div></div></div>';
+  }).join('');
+
+  var channels = { SUUMO: 4, "HOME'S": 2, 'athome': 2, '自社サイト': 2 };
+  document.getElementById('channelChart').innerHTML = Object.keys(channels).map(function (ch) {
+    var pct = Math.round(channels[ch] / INQUIRIES.length * 100);
+    return '<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">' +
+      '<span style="width:100px;flex:0 0 auto;font-size:12px;font-weight:700;color:var(--gray);">' + escapeHtml(ch) + '</span>' +
+      '<div class="progress-bar-wrap" style="flex:1;display:flex;align-items:center;gap:8px;">' +
+      '<div style="flex:1;height:8px;background:var(--slate-bg);border-radius:4px;overflow:hidden;">' +
+      '<div style="height:100%;width:' + pct + '%;background:linear-gradient(90deg,var(--gold),var(--gold-deep));border-radius:4px;"></div></div>' +
+      '<span style="font-size:12px;font-weight:700;width:52px;text-align:right;">' + channels[ch] + '件</span></div></div>';
+  }).join('');
+}
+
+var STATUS_TABS = [
+  { key: 'all', label: 'すべて' },
+  { key: 'new', label: '未返信' },
+  { key: 'replied', label: '返信済' },
+  { key: 'following', label: '追客中' },
+  { key: 'overdue', label: 'SLA超過' },
+  { key: 'closed', label: '完了' }
+];
+
+function renderInboxView() {
+  document.getElementById('inboxTotalCount').textContent = INQUIRIES.length;
+  document.getElementById('statusTabRow').innerHTML = STATUS_TABS.map(function (t) {
+    var count = t.key === 'all' ? INQUIRIES.length : countByStatus(t.key);
+    return '<button class="tab-chip ' + (currentStatusFilter === t.key ? 'active' : '') + '" onclick="setStatusFilter(\'' + t.key + '\')">' +
+      t.label + '<span class="cnt">' + count + '</span></button>';
+  }).join('');
+  renderInboxTable();
+}
+function setStatusFilter(key) {
+  currentStatusFilter = key;
+  renderInboxView();
+}
+function renderInboxTable() {
+  var q = (document.getElementById('inboxSearchInput').value || '').trim().toLowerCase();
+  var rows = INQUIRIES.filter(function (item) {
+    if (currentStatusFilter !== 'all' && item.status !== currentStatusFilter) return false;
+    if (!q) return true;
+    return item.customer.toLowerCase().indexOf(q) >= 0 || item.property.toLowerCase().indexOf(q) >= 0;
+  });
+  var tbody = document.getElementById('inboxTbody');
+  if (!rows.length) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="8">該当する反響がありません。</td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.map(function (item) {
+    var alert = item.status === 'overdue' || (item.status === 'new' && item.slaRemaining <= 15);
+    var rowClass = item.status === 'overdue' ? 'row-sla' : (alert ? 'row-alert' : '');
+    var recv = item.received.replace('T', ' ').slice(0, 16);
+    return '<tr class="' + rowClass + '" onclick="location.hash=\'inquiry/' + item.id + '\'">' +
+      '<td class="name-cell" data-label="顧客名">' + escapeHtml(item.customer) + '</td>' +
+      '<td data-label="種別">' + TYPE_LABEL[item.type] + '</td>' +
+      '<td data-label="物件名">' + escapeHtml(item.property) + '</td>' +
+      '<td data-label="チャネル">' + escapeHtml(item.channel) + '</td>' +
+      '<td data-label="担当">' + escapeHtml(item.assigned) + '</td>' +
+      '<td data-label="受信">' + recv + '</td>' +
+      '<td data-label="SLA">' + slaChipHtml(item) + '</td>' +
+      '<td data-label="ステータス"><span class="badge badge-' + item.status + '">' + STATUS_LABEL[item.status] + '</span></td></tr>';
+  }).join('');
+}
+
+function openInquiryDetail(id) {
+  var q = findInquiry(id);
+  if (!q) { location.hash = 'inbox'; return; }
+  if (slaTimerInterval) { clearInterval(slaTimerInterval); slaTimerInterval = null; }
+  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
+  document.getElementById('view-inquiry-detail').classList.add('active');
+  document.getElementById('viewNameLabel').textContent = '反響詳細';
+  document.getElementById('detailTitle').textContent = q.customer + ' 様';
+  document.getElementById('detailSub').textContent = TYPE_LABEL[q.type] + ' ・ ' + q.property + ' ・ ' + q.channel;
+  var badge = document.getElementById('detailStatusBadge');
+  badge.className = 'badge badge-' + q.status;
+  badge.textContent = STATUS_LABEL[q.status];
+  renderThread(q);
+  startSlaTimer(q);
+  if (q.id === 'h-001') {
+    setupReplyPane(q);
+    setupFollowPane(q);
+  } else {
+    document.getElementById('pane-reply').innerHTML = genericAiHtml(q);
+    document.getElementById('pane-follow').innerHTML = genericAiHtml(q);
+  }
+  renderInfoTab(q);
+  switchSideTab('reply');
+  toggleSidebar(false);
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+function renderThread(q) {
+  var recv = q.received.replace('T', ' ').slice(0, 16);
+  var html = '<div class="msg-bubble msg-in">' + escapeHtml(q.message) +
+    '<div class="msg-meta">' + escapeHtml(q.customer) + ' 様 ・ ' + recv + ' ・ ' + escapeHtml(q.channel) + '</div></div>';
+  if (q.id === 'h-001' && h001Runtime.replySent) {
+    html += '<div class="msg-bubble msg-out">' + escapeHtml(H001_REPLY_TEXT) +
+      '<div class="msg-meta">佐藤 誠 ・ 送信済 ・ <span class="badge badge-human">人の確認</span></div></div>';
+  }
+  if (q.status === 'replied' || q.status === 'following') {
+    html += '<div class="msg-bubble msg-out">お問い合わせありがとうございます。担当より折り返しご連絡いたします。（サンプル返信）' +
+      '<div class="msg-meta">' + escapeHtml(q.assigned) + ' ・ 返信済</div></div>';
+  }
+  document.getElementById('threadBody').innerHTML = html;
+}
+
+function startSlaTimer(q) {
+  var el = document.getElementById('slaTimer');
+  if (!el) return;
+  function tick() {
+    if (q.status === 'closed' || q.status === 'replied' || q.status === 'following' || (q.id === 'h-001' && h001Runtime.replySent)) {
+      el.className = 'sla-timer done';
+      el.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg> SLA達成';
+      if (slaTimerInterval) { clearInterval(slaTimerInterval); slaTimerInterval = null; }
+      return;
+    }
+    if (q.slaRemaining <= 0) {
+      el.className = 'sla-timer danger';
+      el.textContent = 'SLA 超過 ' + Math.abs(q.slaRemaining) + '分';
+      return;
+    }
+    if (q.slaRemaining <= 15) {
+      el.className = 'sla-timer danger';
+    } else if (q.slaRemaining <= 30) {
+      el.className = 'sla-timer warn';
+    } else {
+      el.className = 'sla-timer';
+    }
+    el.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> SLA 残り ' + q.slaRemaining + '分';
+  }
+  tick();
+  if (q.status === 'new' || q.status === 'overdue') {
+    slaTimerInterval = setInterval(function () {
+      q.slaRemaining--;
+      tick();
+    }, 60000);
+  }
+}
+
+function genericAiHtml(q) {
+  var featured = findInquiry('h-001');
+  return '<div class="ai-start-box"><p>AI一次返信下書き〜Day3/7/14追客シーケンスのフル体験は「' + escapeHtml(featured.customer) + '」様の反響でご覧いただけます。</p>' +
+    '<a href="#inquiry/h-001" class="btn-ai-run">h-001のフル体験を見る</a></div>';
+}
+
+function renderInfoTab(q) {
+  document.getElementById('pane-info').innerHTML =
+    '<table class="meta-table"><tbody>' +
+    '<tr><th>反響ID</th><td>' + escapeHtml(q.id.toUpperCase()) + '</td></tr>' +
+    '<tr><th>顧客名</th><td>' + escapeHtml(q.customer) + '</td></tr>' +
+    '<tr><th>連絡先</th><td>' + escapeHtml(q.email) + '<br>' + escapeHtml(q.phone) + '</td></tr>' +
+    '<tr><th>物件名</th><td class="serif">' + escapeHtml(q.property) + '</td></tr>' +
+    '<tr><th>反響種別</th><td>' + TYPE_LABEL[q.type] + '</td></tr>' +
+    '<tr><th>予算/家賃</th><td>' + escapeHtml(q.budget) + '</td></tr>' +
+    '<tr><th>入居希望</th><td>' + escapeHtml(q.moveIn) + '</td></tr>' +
+    '<tr><th>担当</th><td>' + escapeHtml(q.assigned) + '</td></tr>' +
+    '<tr><th>初回返信SLA</th><td class="serif">' + q.slaMinutes + '分以内</td></tr>' +
+    '</tbody></table>';
+}
+
+function switchSideTab(tab) {
+  document.querySelectorAll('.side-tab-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.tab === tab); });
+  document.querySelectorAll('.side-tab-pane').forEach(function (p) { p.classList.remove('active'); });
+  var el = document.getElementById('pane-' + tab);
+  if (el) el.classList.add('active');
+}
+
+function setupReplyPane(q) {
+  replyState = { phase: 'idle', timers: [], runId: null };
+  if (h001Runtime.replySent) {
+    document.getElementById('pane-reply').innerHTML =
+      '<div class="complete-banner in"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>一次返信を送信しました（SLA達成）</div>' +
+      '<div class="draft-box" style="margin-top:14px;"><div class="draft-text-preview">' + escapeHtml(H001_REPLY_TEXT) + '</div></div>' +
+      '<div class="draft-reset"><button onclick="resetH001()">↺ リセット</button></div>';
+    return;
+  }
+  document.getElementById('pane-reply').innerHTML =
+    '<div class="ai-start-box">' +
+    '<p>AIが反響内容を分析し、一次返信の下書きを生成します。<br>送信前に担当者が内容を確認してください。</p>' +
+    '<button class="btn-ai-run" onclick="startAiReply()">AIで一次返信を生成</button></div>';
+}
+
+function startAiReply() {
+  if (!replyState || replyState.phase !== 'idle') return;
+  var myRun = {};
+  replyState.runId = myRun;
+  replyState.phase = 'scanning';
+  document.getElementById('pane-reply').innerHTML =
+    '<div class="scan-box"><div class="scan-spinner"></div><div class="scan-text">反響内容を分析中…</div>' +
+    '<div style="font-size:12px;color:var(--gray-soft);margin-top:8px;">物件情報・空き日程・駐車場条件を照合</div></div>';
+  var t = setTimeout(function () {
+    if (!replyState || replyState.runId !== myRun) return;
+    replyState.phase = 'typing';
+    document.getElementById('pane-reply').innerHTML =
+      '<div class="ai-toolbar"><span class="ai-count">一次返信下書きを作成中…</span>' +
+      '<button class="btn-skip" onclick="skipReplyTyping()">⏩ すべて表示</button></div>' +
+      '<div class="draft-box"><div class="draft-text-preview"><span id="replyText"></span><span class="draft-cursor" id="replyCursor"></span></div></div>' +
+      '<div class="draft-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>生成後、担当者が確認してから送信してください。</div>';
+    typeText('replyText', H001_REPLY_TEXT, 5000, myRun, function () {
+      if (!replyState || replyState.runId !== myRun) return;
+      finishReplyReady(myRun);
+    });
+  }, 1400);
+  replyState.timers.push(t);
+}
+
+function typeText(elId, fullText, duration, myRun, onDone) {
+  var tickMs = 42;
+  var totalTicks = Math.ceil(duration / tickMs);
+  var charsPerTick = Math.max(1, Math.ceil(fullText.length / totalTicks));
+  var shown = 0;
+  function tick() {
+    if (!replyState || replyState.runId !== myRun) return;
+    shown = Math.min(fullText.length, shown + charsPerTick);
+    var el = document.getElementById(elId);
+    if (el) el.textContent = fullText.slice(0, shown);
+    if (shown >= fullText.length) { if (onDone) onDone(); return; }
+    var t = setTimeout(tick, tickMs);
+    replyState.timers.push(t);
+  }
+  var t0 = setTimeout(tick, tickMs);
+  replyState.timers.push(t0);
+}
+
+function finishReplyReady(myRun) {
+  if (!replyState || replyState.runId !== myRun) return;
+  replyState.phase = 'ready';
+  document.getElementById('pane-reply').innerHTML =
+    '<div class="ai-toolbar"><span class="ai-count">一次返信下書きが作成できました</span></div>' +
+    '<div class="draft-box"><textarea class="draft-text-preview" style="width:100%;min-height:220px;border:none;background:transparent;resize:vertical;" id="replyEditor">' + escapeHtml(H001_REPLY_TEXT) + '</textarea></div>' +
+    '<div class="draft-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>内容を確認のうえ、送信してください。</div>' +
+    '<div class="draft-cta"><button class="btn-approve-draft" id="sendReplyBtn" onclick="sendReply()">内容を確認して送信<span class="badge badge-human">人の確認</span></button></div>' +
+    '<div class="draft-reset"><button onclick="resetH001()">↺ リセット</button></div>';
+  unlockFollowPane();
+}
+
+function skipReplyTyping() {
+  if (!replyState) return;
+  replyState.timers.forEach(function (id) { clearTimeout(id); });
+  replyState.timers = [];
+  replyState.runId = {};
+  finishReplyReady({});
+}
+
+function sendReply() {
+  if (!replyState || replyState.phase !== 'ready') return;
+  var btn = document.getElementById('sendReplyBtn');
+  if (btn) btn.disabled = true;
+  replyState.phase = 'sent';
+  h001Runtime.replySent = true;
+  var q = findInquiry('h-001');
+  if (q) { q.status = 'following'; q.slaRemaining = 0; }
+  showToast('一次返信を送信しました（SLA達成）');
+  renderThread(q);
+  startSlaTimer(q);
+  document.getElementById('pane-reply').innerHTML =
+    '<div class="complete-banner in"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>一次返信を送信しました。追客シーケンスタブでDay3/7/14を確認できます。</div>' +
+    '<div class="draft-reset"><button onclick="resetH001()">↺ リセット</button></div>';
+  switchSideTab('follow');
+}
+
+function setupFollowPane(q) {
+  followState = { phase: 'locked', timers: [], runId: null, activeDay: 'day3' };
+  renderFollowPane();
+}
+
+function unlockFollowPane() {
+  if (!followState) return;
+  followState.phase = 'idle';
+  renderFollowPane();
+}
+
+function renderFollowPane() {
+  if (!followState) return;
+  var locked = followState.phase === 'locked';
+  var days = [
+    { key: 'day3', label: 'Day 3', sub: '内見リマインド' },
+    { key: 'day7', label: 'Day 7', sub: '類似物件提案' },
+    { key: 'day14', label: 'Day 14', sub: '最終フォロー' }
+  ];
+  var tabsHtml = days.map(function (d) {
+    var cls = 'follow-tab';
+    if (followState.activeDay === d.key) cls += ' active';
+    if (h001Runtime.followSent[d.key]) cls += ' done';
+    return '<button class="' + cls + '" onclick="switchFollowDay(\'' + d.key + '\')"><span class="ft-day">' + d.label + '</span>' + d.sub + '</button>';
+  }).join('');
+
+  if (locked) {
+    document.getElementById('pane-follow').innerHTML =
+      '<div class="follow-tabs">' + tabsHtml + '</div>' +
+      '<div class="ai-start-box"><p>一次返信送信後、Day3/7/14の追客メール下書きが利用できます。<br>先に「一次返信」タブで下書きを生成・送信してください。</p></div>';
+    return;
+  }
+
+  var day = followState.activeDay;
+  if (h001Runtime.followSent[day]) {
+    document.getElementById('pane-follow').innerHTML =
+      '<div class="follow-tabs">' + tabsHtml + '</div>' +
+      '<div class="complete-banner in" style="margin-bottom:14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>' + day.toUpperCase() + ' 追客メール送信済</div>' +
+      '<div class="draft-box"><div class="draft-text-preview">' + escapeHtml(FOLLOW_UP_TEXTS[day]) + '</div></div>' +
+      '<div class="draft-reset"><button onclick="resetFollowDay(\'' + day + '\')">↺ この追客をリセット</button></div>';
+    return;
+  }
+
+  document.getElementById('pane-follow').innerHTML =
+    '<div class="follow-tabs">' + tabsHtml + '</div>' +
+    '<div class="ai-start-box" id="followContent">' +
+    '<p>' + day.toUpperCase().replace('DAY', 'Day ') + ' の追客メール下書きをAIが生成します。</p>' +
+    '<button class="btn-ai-run" onclick="startFollowDraft(\'' + day + '\')">AIで追客下書きを生成</button></div>';
+}
+
+function switchFollowDay(day) {
+  if (!followState || followState.phase === 'locked') return;
+  followState.activeDay = day;
+  renderFollowPane();
+}
+
+function startFollowDraft(day) {
+  if (!followState || followState.phase === 'locked') return;
+  var myRun = {};
+  followState.runId = myRun;
+  followState.phase = 'typing';
+  followState.activeDay = day;
+  var text = FOLLOW_UP_TEXTS[day];
+  var days = [
+    { key: 'day3', label: 'Day 3', sub: '内見リマインド' },
+    { key: 'day7', label: 'Day 7', sub: '類似物件提案' },
+    { key: 'day14', label: 'Day 14', sub: '最終フォロー' }
+  ];
+  var tabsHtml = days.map(function (d) {
+    var cls = 'follow-tab' + (day === d.key ? ' active' : '') + (h001Runtime.followSent[d.key] ? ' done' : '');
+    return '<button class="' + cls + '" onclick="switchFollowDay(\'' + d.key + '\')"><span class="ft-day">' + d.label + '</span>' + d.sub + '</button>';
+  }).join('');
+  document.getElementById('pane-follow').innerHTML =
+    '<div class="follow-tabs">' + tabsHtml + '</div>' +
+    '<div id="followContent"><div class="ai-toolbar"><span class="ai-count">' + day.toUpperCase() + ' 追客下書きを作成中…</span>' +
+    '<button class="btn-skip" onclick="skipFollowTyping()">⏩ すべて表示</button></div>' +
+    '<div class="draft-box"><div class="draft-text-preview"><span id="followText"></span><span class="draft-cursor"></span></div></div></div>';
+  typeTextFollow('followText', text, 4000, myRun, function () {
+    if (!followState || followState.runId !== myRun) return;
+    finishFollowReady(day, myRun);
+  });
+}
+
+function typeTextFollow(elId, fullText, duration, myRun, onDone) {
+  var tickMs = 42;
+  var totalTicks = Math.ceil(duration / tickMs);
+  var charsPerTick = Math.max(1, Math.ceil(fullText.length / totalTicks));
+  var shown = 0;
+  function tick() {
+    if (!followState || followState.runId !== myRun) return;
+    shown = Math.min(fullText.length, shown + charsPerTick);
+    var el = document.getElementById(elId);
+    if (el) el.textContent = fullText.slice(0, shown);
+    if (shown >= fullText.length) { if (onDone) onDone(); return; }
+    var t = setTimeout(tick, tickMs);
+    followState.timers.push(t);
+  }
+  var t0 = setTimeout(tick, tickMs);
+  followState.timers.push(t0);
+}
+
+function finishFollowReady(day, myRun) {
+  if (!followState || followState.runId !== myRun) return;
+  followState.phase = 'ready';
+  var text = FOLLOW_UP_TEXTS[day];
+  var tabsEl = document.querySelector('.follow-tabs');
+  var tabsHtml = tabsEl ? tabsEl.outerHTML : '';
+  document.getElementById('pane-follow').innerHTML =
+    tabsHtml +
+    '<div class="ai-toolbar"><span class="ai-count">' + day.toUpperCase() + ' 追客下書きが作成できました</span></div>' +
+    '<div class="draft-box"><textarea class="draft-text-preview" style="width:100%;min-height:200px;border:none;background:transparent;resize:vertical;" id="followEditor">' + escapeHtml(text) + '</textarea></div>' +
+    '<div class="draft-cta"><button class="btn-approve-draft" onclick="sendFollow(\'' + day + '\')">内容を確認して送信予約<span class="badge badge-human">人の確認</span></button></div>' +
+    '<div class="draft-reset"><button onclick="renderFollowPane()">↺ やり直し</button></div>';
+}
+
+function skipFollowTyping() {
+  if (!followState) return;
+  followState.timers.forEach(function (id) { clearTimeout(id); });
+  followState.timers = [];
+  var day = followState.activeDay;
+  followState.runId = {};
+  finishFollowReady(day, {});
+}
+
+function sendFollow(day) {
+  h001Runtime.followSent[day] = true;
+  followState.phase = 'idle';
+  showToast(day.toUpperCase() + ' 追客メールを送信予約しました');
+  renderFollowPane();
+}
+
+function resetFollowDay(day) {
+  h001Runtime.followSent[day] = false;
+  renderFollowPane();
+  showToast(day.toUpperCase() + ' 追客をリセットしました');
+}
+
+function resetH001() {
+  if (replyState) replyState.timers.forEach(function (id) { clearTimeout(id); });
+  if (followState) followState.timers.forEach(function (id) { clearTimeout(id); });
+  h001Runtime = { replySent: false, followSent: {} };
+  var q = findInquiry('h-001');
+  if (q) { q.status = 'new'; q.slaRemaining = 38; }
+  setupReplyPane(q);
+  setupFollowPane(q);
+  renderThread(q);
+  startSlaTimer(q);
+  showToast('反響詳細の状態を生成前にリセットしました');
+}
+
+var PROP_TABS = [
+  { key: 'all', label: 'すべて' },
+  { key: 'sale', label: '売買' },
+  { key: 'rental', label: '賃貸' }
+];
+
+function renderProperties() {
+  document.getElementById('propTypeTabs').innerHTML = PROP_TABS.map(function (t) {
+    var count = t.key === 'all' ? PROPERTIES.length : PROPERTIES.filter(function (p) { return p.type === t.key; }).length;
+    return '<button class="tab-chip ' + (currentPropFilter === t.key ? 'active' : '') + '" onclick="setPropFilter(\'' + t.key + '\')">' +
+      t.label + '<span class="cnt">' + count + '</span></button>';
+  }).join('');
+  var list = PROPERTIES.filter(function (p) {
+    return currentPropFilter === 'all' || p.type === currentPropFilter;
+  });
+  document.getElementById('propGrid').innerHTML = list.map(function (p) {
+    var typeLabel = p.type === 'sale' ? '売買' : '賃貸';
+    return '<div class="prop-card">' +
+      '<h4>' + escapeHtml(p.name) + '</h4>' +
+      '<div class="prop-meta">' + escapeHtml(p.area) + ' ・ ' + escapeHtml(p.price) + ' ・ 反響' + p.inquiries + '件</div>' +
+      '<div class="prop-memo">' + escapeHtml(p.memo) + '</div>' +
+      '<div class="prop-tags"><span class="prop-tag">' + typeLabel + '</span><span class="prop-tag">' + p.inquiries + '件の反響</span></div></div>';
+  }).join('');
+}
+function setPropFilter(key) {
+  currentPropFilter = key;
+  renderProperties();
+}
+
+function renderSettings() {
+  document.getElementById('memberList').innerHTML = MEMBERS.map(function (m) {
+    return '<div class="member-row"><div><div class="m-name">' + escapeHtml(m.name) + '</div><div class="m-mail">' + escapeHtml(m.mail) + '</div></div>' +
+      '<span class="role-badge role-' + m.role + '">' + ROLE_LABEL[m.role] + '</span></div>';
+  }).join('');
+  document.getElementById('slaToggleList').innerHTML = SLA_TOGGLES.map(function (t, i) {
+    return toggleRowHtml('sla-' + i, t.label, t.desc, t.on);
+  }).join('');
+  document.getElementById('notifToggleList').innerHTML = NOTIF_TOGGLES.map(function (t, i) {
+    return toggleRowHtml('nt-' + i, t.label, t.desc, t.on);
+  }).join('');
+}
+function toggleRowHtml(id, label, desc, on) {
+  return '<div class="toggle-row"><div><div class="tg-label">' + escapeHtml(label) + '</div><div class="tg-desc">' + escapeHtml(desc) + '</div></div>' +
+    '<label class="switch"><input type="checkbox" id="' + id + '" ' + (on ? 'checked' : '') + ' onchange="onToggleChange(this)"><span class="track"></span></label></div>';
+}
+function onToggleChange(input) {
+  showToast(input.checked ? '設定をONにしました（デモ）' : '設定をOFFにしました（デモ）');
+}
+</script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
+</body>
+</html>
