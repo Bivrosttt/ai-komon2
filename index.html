@@ -1,4 +1,4 @@
-<!-- 2026-07-22: ホームページ全面リデザイン — 実物プレビュー・編集デザイン・計測/フォーム/全導線維持（旧版: index-legacy.html） -->
+<!-- 2026-07-22: ホームページ全面リデザイン＋情報量整理 — 実物プレビュー・編集デザイン・計測/フォーム/全導線維持（旧版: index-legacy.html） -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -34,7 +34,7 @@ a{text-decoration:none;color:inherit}
 ul{list-style:none}
 .container{width:min(1140px,calc(100% - 48px));margin:auto}
 .narrow{width:min(820px,calc(100% - 48px));margin:auto}
-.section{padding:108px 0}
+.section{padding:84px 0}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
 .reveal.is-visible{opacity:1;transform:none}
 .eyebrow{display:flex;align-items:center;gap:9px;color:var(--gold);font:700 11px/1.3 var(--latin);letter-spacing:.16em;text-transform:uppercase;margin-bottom:16px}
@@ -105,7 +105,7 @@ header{position:fixed;inset:0 0 auto;z-index:200;background:rgba(255,255,255,.94
 .proof .heading{color:#fff}
 .proof .heading em{background:linear-gradient(transparent 72%,rgba(201,162,39,.35) 72%)}
 .proof .lead{color:#A8BDD4}
-.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.proof-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:720px;margin:0 auto}
 .proof-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;overflow:hidden;transition:transform .2s,border-color .2s}
 .proof-card:hover{transform:translateY(-4px);border-color:rgba(201,162,39,.45)}
 .proof-visual{height:148px;background:#071A35;position:relative;overflow:hidden}
@@ -286,13 +286,15 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
 .dt-body h3{font-size:17px;color:var(--navy);margin-bottom:6px}
 .dt-body p{font-size:12.5px;color:var(--gray);margin-bottom:10px}
 .dt-body .try{font-size:13px;font-weight:700;color:var(--gold)}
-.dt-more{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.demo-grid-static{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.demo-grid-static .dt-card{flex:none}
+.dt-more{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
 
 @media(max-width:900px){
   .nav a:not(.nav-cta){display:none}
   .hero-grid,.movie-inner,.profile-box{grid-template-columns:1fr}
   .section-head{grid-template-columns:125px 1fr;gap:28px}
-  .problem-grid,.value-grid,.service-grid,.reason-grid,.proof-grid{grid-template-columns:1fr}
+  .problem-grid,.value-grid,.service-grid,.reason-grid,.proof-grid,.demo-grid-static{grid-template-columns:1fr}
   .compare-grid{grid-template-columns:1fr}
   .vs{min-height:50px}
   .price-summary{grid-template-columns:1fr}
@@ -335,10 +337,8 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       <span><strong>AI顧問室</strong><small>Executive AI Partner</small></span>
     </a>
     <nav class="nav" aria-label="メインナビゲーション">
-      <a href="#industry">業種</a>
-      <a href="#levels">レベル</a>
       <a href="#proof">実物</a>
-      <a href="demos.html">デモ</a>
+      <a href="#industry">業種</a>
       <a href="#pricing">料金</a>
       <a href="#contact" class="nav-cta">無料診断</a>
     </nav>
@@ -351,8 +351,7 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
     <div class="reveal">
       <div class="hero-badge">従業員10〜50名の中小企業へ</div>
       <h1>AI人材を雇う前に、<br><em>「AI顧問」</em>という選択。</h1>
-      <p class="hero-sub">わかる言葉で話し、一緒に作り、社内に残す。</p>
-      <p class="hero-copy">「ChatGPTを触ってみた。でも、会社は何も変わっていない」——そこから先を、経営歴15年×AI歴4年の顧問が伴走します。相談から実装、社内定着まで、同じ責任者が一気通貫。</p>
+      <p class="hero-copy">経営歴15年×AI歴4年の顧問が、相談から実装・定着まで一気通貫で伴走します。</p>
       <div class="hero-actions">
         <a class="btn btn-gold" href="#contact">無料AI活用診断を予約（30分）</a>
         <a class="btn-ghost" href="#proof">実物を先に見る</a>
@@ -381,24 +380,24 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       <div class="eyebrow">Problems</div>
       <div>
         <h2 class="heading">AIを始めたいのに、<br><em>社内で役割が空いている。</em></h2>
-        <p class="lead">知識不足ではなく、「経営課題から実装までつなぐ人」がいないことが、AI活用を止めています。</p>
+        <p class="lead">止めているのは知識不足ではなく、経営と現場をつなぐ「外部AI責任者」の不在です。</p>
       </div>
     </div>
     <div class="problem-grid reveal">
       <article class="problem-card">
         <span class="problem-no">CASE 01</span>
         <h3>「何から始めればいいか、判断できない」</h3>
-        <p>候補は多い。でも、どこから手をつけると利益に効くのかが見えない。変な業者に騙されるのも怖い。</p>
+        <p>何から手をつけると利益に効くか、判断できない。</p>
       </article>
       <article class="problem-card">
         <span class="problem-no">CASE 02</span>
         <h3>「社長だけがChatGPTを使っている」</h3>
-        <p>個人では便利。でも会社の標準業務や数字の変化にはつながっていない。社員への展開の仕方が分からない。</p>
+        <p>社長だけが使っていて、会社の生産性に広がらない。</p>
       </article>
       <article class="problem-card">
         <span class="problem-no">CASE 03</span>
         <h3>「提案は受けた。誰が作って動かす？」</h3>
-        <p>立派な計画はある。現場で使える仕組みにする担当者がいない。取引先からのDX要請にも応えきれない。</p>
+        <p>提案はある。現場で動かす人がいない。</p>
       </article>
     </div>
     <div class="problem-close reveal">その空席を、<em>外部AI責任者</em>として埋めるのがAI顧問です。</div>
@@ -411,7 +410,7 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       <div class="eyebrow">Deliverables</div>
       <div>
         <h2 class="heading">提案書ではなく、<br><em>触れる実物を。</em></h2>
-        <p class="lead">PowerPointの約束ではなく、御社の書式・業務に合わせた提案書・メール・社内報・AIサービスまで。すべてサンプルデータで公開しています。</p>
+        <p class="lead">提案書とメール返信のサンプル。詳細は作品ショーケースへ。</p>
       </div>
     </div>
     <div class="proof-grid reveal">
@@ -430,48 +429,16 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
         </div>
         <div class="proof-body"><span>BEFORE / AFTER</span><h3>営業メール返信</h3><p>Outlook風UI。雑な下書きが、そのまま送れる返信に。</p></div>
       </a>
-      <a class="proof-card" href="works-internal-news.html">
-        <div class="proof-visual" style="background:linear-gradient(180deg,#0B2447 0%,#0B2447 28%,#FBF8F3 28%);padding:16px;">
-          <div class="pv-inner" style="background:#FBF8F3;border:1px solid #DDE4EC;border-radius:4px;padding:10px;font-family:'Noto Serif JP',serif;">
-            <div style="font-size:11px;font-weight:700;color:#0B2447;">社内報 Vol.12</div>
-            <div style="font-size:9px;color:#5B6B7F;margin-top:4px;">就業規則改定・AI活用方針を同時掲載</div>
-          </div>
-        </div>
-        <div class="proof-body"><span>INTERNAL</span><h3>社内報＋就業規則改定</h3><p>読みやすい社内報と、AI利用条項つき規程改定案。</p></div>
-      </a>
-      <a class="proof-card" href="works-ai-service.html">
-        <div class="proof-visual" style="background:#0A0A0A;padding:14px;">
-          <div class="pv-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-            <div style="background:#1A2433;border-radius:4px;padding:8px;font-size:8px;color:#C7D3E4;">Before: 長文説明</div>
-            <div style="background:#0B2447;border-radius:4px;padding:8px;font-size:8px;color:#F4E8C4;">After: 3ステップ診断</div>
-          </div>
-        </div>
-        <div class="proof-body"><span>PRODUCT</span><h3>攻めのAIサービス</h3><p>保険見直し診断。Before/After＋ウィザードUI。</p></div>
       </a>
     </div>
     <div class="proof-more reveal">
       <a class="btn btn-outline-light" href="works.html">作品ショーケースをすべて見る →</a>
-      <span style="display:inline-block;width:12px;"></span>
-      <a class="btn btn-outline-light" href="cases.html">導入ストーリーを見る →</a>
+      <a class="btn btn-outline-light" href="cases.html" style="margin-left:12px;">導入ストーリー →</a>
     </div>
   </div>
 </section>
 
-<div class="movie-band">
-  <div class="container movie-inner">
-    <div class="mv-player reveal">
-      <video id="brandMovie" controls playsinline preload="metadata" poster="assets/works/videos/brand-movie-poster.jpg">
-        <source src="assets/works/videos/brand-movie-42s.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="mv-copy reveal">
-      <div class="eyebrow" style="color:var(--gold);">Movie</div>
-      <h2><em>42秒</em>でわかる、AI顧問室。<span style="font-size:14px;color:var(--gold);margin-left:8px;">♪ 音声つき</span></h2>
-      <p>課題 → レベルマップ → 3つの流儀 → 料金まで、サービスの全体像をナレーションつきの1本に。その場で再生できます。</p>
-      <a class="btn btn-gold" href="#contact" style="margin-top:20px;">無料診断を予約する</a>
-    </div>
-  </div>
-</div>
+>
 <section class="section levels" id="levels">
   <div class="container">
     <div class="section-head reveal">
@@ -521,11 +488,7 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       show(1);
     })();
     </script>
-    <p class="levels-close">大事なのは、レベルを飛ばさないこと。<strong>Lv.1の会社にいきなり自動化を売りつける業者</strong>がうまくいかないのは、社内がついてこないからです。AI顧問室は御社の現在地を診断し、<strong>1段ずつ、確実に</strong>登る道筋を設計します。そして最終ゴールは、顧問がいなくても御社だけで登り続けられる<strong>「自走」</strong>です。</p>
-    <div class="mid-cta">
-      <p>御社はいま、どのレベルでしたか？</p>
-      <a href="#contact" class="btn btn-navy">無料診断で現在地を確かめる →</a>
-    </div>
+    <p class="levels-close">レベルを飛ばさず、<strong>1段ずつ確実に</strong>登る道筋を設計します。</p>
   </div>
 </section>
 
@@ -538,10 +501,7 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
         <p class="lead">私たちが構築するAIツールを、サンプルデータの体験デモでお見せします。すべて無料・登録不要。</p>
       </div>
     </div>
-    <div class="dt-scroller">
-      <button class="dt-nav prev" id="dtPrev" aria-label="前のデモへ">‹</button>
-      <button class="dt-nav next" id="dtNext" aria-label="次のデモへ">›</button>
-      <div class="dt-grid" id="dtGrid">
+    <div class="demo-grid-static reveal">
       <a class="dt-card" href="demo-inquiry.html">
         <div class="dt-visual">
           <span class="dt-badge">体験できます</span>
@@ -564,164 +524,44 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
           <span class="try">▶ デモを試す</span>
         </div>
       </a>
-      <a class="dt-card" href="demo-receipt.html">
-        <div class="dt-visual">
-          <span class="dt-badge">体験できます</span>
-          <img src="assets/thumbs/demo-receipt.jpg" alt="" loading="lazy">
-        </div>
-        <div class="dt-body">
-          <h3>レシート仕訳AI</h3>
-          <p>レシート3枚が、勘定科目つきの仕訳帳とCSVに。「紙が数字になる」を体感してください。</p>
-          <span class="try">▶ デモを試す</span>
-        </div>
-      </a>
-      <a class="dt-card" href="demo-menu.html">
-        <div class="dt-visual">
-          <span class="dt-badge">体験できます</span>
-          <img src="assets/thumbs/demo-menu.jpg" alt="" loading="lazy">
-        </div>
-        <div class="dt-body">
-          <h3>メニュー表AI</h3>
-          <p>手書きメニューが、料理写真つきの4ヶ国語メニューに変身。外国人客の「注文できない」を解消。</p>
-          <span class="try">▶ デモを試す</span>
-        </div>
-      </a>
-      <a class="dt-card" href="demo-keiri.html">
-        <div class="dt-visual">
-          <span class="dt-badge">リプレイ再生</span>
-          <img src="assets/thumbs/demo-keiri.jpg" alt="" loading="lazy">
-        </div>
-        <div class="dt-body">
-          <h3>AI経理部</h3>
-          <p>書類が届くたび、仕訳帳・支払カレンダー・資金繰り予測が同時に埋まる「経理の1日」。</p>
-          <span class="try">▶ リプレイを再生</span>
-        </div>
-      </a>
-      <a class="dt-card" href="demo-cockpit.html">
-        <div class="dt-visual">
-          <span class="dt-badge">体験できます</span>
-          <img src="assets/thumbs/demo-cockpit.jpg" alt="" loading="lazy">
-        </div>
-        <div class="dt-body">
-          <h3>AI経営コックピット</h3>
-          <p>会社の計器盤を毎朝1分。「先月の粗利は？」と聞けば、根拠つきで答えます。</p>
-          <span class="try">▶ デモを試す</span>
-        </div>
-      </a>
-      <a class="dt-card" href="demo-voice.html">
-        <div class="dt-visual">
-          <span class="dt-badge">音声を聴けます</span>
-          <img src="assets/thumbs/demo-voice.jpg" alt="" loading="lazy">
-        </div>
-        <div class="dt-body">
-          <h3>AI電話受付（実音声）</h3>
-          <p>予約の電話をAIが最初から最後まで応対。実際に生成した66秒の通話音声を聴けます。</p>
-          <span class="try">▶ 通話を聴く</span>
-        </div>
-      </a>
-      <a class="dt-card" href="demo-minutes.html">
-        <div class="dt-visual">
-          <span class="dt-badge">体験できます</span>
-          <img src="assets/thumbs/demo-minutes.jpg" alt="" loading="lazy">
-        </div>
-        <div class="dt-body">
-          <h3>議事録AI</h3>
-          <p>脱線だらけの会議録音から、決定事項・宿題・期日まで整理された議事録を自動作成。</p>
-          <span class="try">▶ デモを試す</span>
-        </div>
-      </a>
-      </div>
     </div>
-    <p class="dt-hint">← 横にスワイプすると、他のデモも見られます →</p>
-    <script>
-    (function () {
-      var grid = document.getElementById("dtGrid");
-      var step = 310;
-      document.getElementById("dtPrev").addEventListener("click", function () { grid.scrollBy({ left: -step * 2, behavior: "smooth" }); });
-      document.getElementById("dtNext").addEventListener("click", function () { grid.scrollBy({ left: step * 2, behavior: "smooth" }); });
-    })();
-    </script>
-    <div class="dt-more" style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-      <a href="demos.html" class="btn btn-navy">40の構築デモをすべて見る →</a>
-      <a href="works.html" class="btn btn-outline">作品ショーケースを見る →</a>
-      <a href="systems.html" class="btn btn-outline">SaaS3本を整理して見る →</a>
-      <a href="tools/" class="btn btn-outline">無料試算ツール →</a>
-    </div>
-    <p style="text-align:center; margin-top:14px; font-size:12.5px; color:var(--gray);">ショーケースには、パンフ・実AI動画・3D内見モデル・パースなど「成果物の品質サンプル」を掲載しています。</p>
+    <p class="dt-hint" style="display:none;">← 横にスワイプすると、他のデモも見られます →</p>
+    <div class="dt-more"><a href="demos.html" class="btn btn-navy">40の構築デモをすべて見る →</a></div>
   </div>
 </section>
 
-<section class="section philosophy">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow">What we do</div>
-      <div>
-        <h2 class="heading">まず話を聞く。<br><em>一緒に作る。社内に残す。</em></h2>
-        <p class="lead">流行のツールを紹介して終わりません。経営と現場をつなぎ、御社の仕事が実際に変わるところまで運びます。</p>
-      </div>
-    </div>
-    <div class="value-grid reveal">
-      <article class="value-card">
-        <span class="value-no">01 / LISTEN</span>
-        <h3>優先順位を決める</h3>
-        <p>売上・粗利・工数・人手不足から、最初に変える業務をひとつに絞ります。</p>
-        <span class="value-tag">経営相談 / 業務棚卸し / ROI</span>
-      </article>
-      <article class="value-card">
-        <span class="value-no">02 / BUILD</span>
-        <h3>動くものを作る</h3>
-        <p>見積、議事録、問い合わせ対応、自動化。提案ではなく、触れる形にします。</p>
-        <span class="value-tag">試作 / ツール選定 / 実装</span>
-      </article>
-      <article class="value-card">
-        <span class="value-no">03 / STAY</span>
-        <h3>ノウハウを残す</h3>
-        <p>使う場面と判断基準を標準化し、社員が自分たちで回せる状態を目指します。</p>
-        <span class="value-tag">研修 / ルール / 自走化</span>
-      </article>
-    </div>
-    <div class="human-note reveal">パソコンが苦手でも大丈夫です。専門用語を使わず、経営者と現場の言葉で進めます。</div>
-  </div>
-</section>
 
 <section class="section service" id="service">
   <div class="container">
     <div class="section-head reveal">
       <div class="eyebrow">Service</div>
       <div>
-        <h2 class="heading">必要な役割を、<br><em>ひとつの窓口で。</em></h2>
-        <p class="lead">相談、選定、実装、研修を別々に発注せず、同じ責任者が一気通貫で支援します。</p>
+        <h2 class="heading">聞く。<em>作る。残す。</em></h2>
+        <p class="lead">相談・実装・研修を、同じ責任者が一気通貫で。</p>
       </div>
     </div>
     <div class="service-grid reveal">
       <article class="service-card">
         <span class="service-icon">01</span>
         <div>
-          <h3>経営×AIの相談・壁打ち</h3>
-          <p>「この業務、AIでどうにかならないか」から、AI投資の判断まで経営者目線で整理。</p>
+          <h3>相談と優先順位</h3>
+          <p>経営目線で棚卸しし、最初に変える業務をひとつに絞ります。</p>
         </div>
       </article>
-      <article class="service-card">
-        <span class="service-icon">02</span>
-        <div>
-          <h3>AI導入ロードマップ</h3>
-          <p>業務を棚卸しし、利益への距離と実行難易度から優先順位を設計。策定して終わりではなく、実行まで伴走。</p>
-        </div>
-      </article>
-      <article class="service-card">
+<article class="service-card">
         <span class="service-icon">03</span>
         <div>
-          <h3>ツールの目利きと実装</h3>
-          <p>世界中の選択肢から必要なものを選び、足りない仕組みだけ構築。売上に効くものから顧問が直接作ります。</p>
-          <a href="implementation.html">導入支援の詳細 →</a>
+          <h3>実装</h3>
+          <p>提案ではなく触れる形に。足りない仕組みだけ構築します。</p>
+          <a href="implementation.html">導入支援 →</a>
         </div>
       </article>
       <article class="service-card">
         <span class="service-icon">04</span>
         <div>
-          <h3>社員研修・自走化支援</h3>
-          <p>御社の実業務を題材に、安全な使い方と日常運用を社内へ定着。最終ゴールは「自走」です。</p>
-          <a href="training.html">AI研修の詳細 →</a>
+          <h3>定着</h3>
+          <p>社員が自分たちで回せる状態を目指します。</p>
+          <a href="training.html">AI研修 →</a>
         </div>
       </article>
     </div>
@@ -734,7 +574,7 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       <div class="eyebrow">For your industry</div>
       <div>
         <h2 class="heading">業種から、<br><em>入口を選ぶ。</em></h2>
-        <p class="lead">31のLPや40のデモを一度に見せるのではなく、御社に近い入口から始められます。デモ・成果物・無料相談まで、1ページにまとめています。</p>
+        <p class="lead">御社に近い入口から。デモ・成果物・相談まで1ページに。</p>
       </div>
     </div>
     <p class="reveal" style="margin:-28px 0 24px;font-size:13px;color:var(--gray);">似た会社の変化は <a href="cases.html" style="color:var(--blue);font-weight:700;">導入ストーリー</a> もご覧ください。</p>
@@ -744,22 +584,6 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       <a class="ind-card is-live" href="for/sales.html"><div class="ind-tag">公開中</div><h3>営業組織（BtoB）</h3><p>商談準備・提案書・追客の下ごしらえ。</p><span class="ind-go">▶ 営業向けページ</span></a>
       <a class="ind-card is-live" href="for/backoffice.html"><div class="ind-tag">公開中</div><h3>管理部門</h3><p>経理・総務・採用前の業務整理。</p><span class="ind-go">▶ 管理部門向けページ</span></a>
       <a class="ind-card is-live" href="for/product.html"><div class="ind-tag">公開中</div><h3>攻めのAI・商品化</h3><p>効率化で終わらせない。AIを御社の売り物に。</p><span class="ind-go">▶ 商品化向けページ</span></a>
-    </div>
-  </div>
-</section>
-<section class="section reasons" id="reasons">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow" style="color:var(--gold);">Reasons</div>
-      <div>
-        <h2 class="heading">AIに詳しい人は増えた。<br><em>経営が分かる人は、少ない。</em></h2>
-        <p class="lead">「経営者の言葉でAIを語れる人」——それがAI顧問室の本質です。</p>
-      </div>
-    </div>
-    <div class="reason-grid reveal">
-      <article class="reason-item"><h3>経営歴15年の「経営目線」</h3><p>資金繰り、採用、組織の悩み——経営者の判断の重さを知っているからこそ、「儲けにつながるAI活用」だけを提案します。</p></article>
-      <article class="reason-item"><h3>AI歴4年の「目利き力」</h3><p>ChatGPT登場以前からあらゆるAIを実務で使い込んできました。御社に効くものを選び、足りないものは自ら実装できます。</p></article>
-      <article class="reason-item"><h3>提案で終わらない「伴走型」</h3><p>まず顧問が作って見せる。次に、社員が作れるように教える。ノウハウという資産が御社の中に残っていきます。</p></article>
     </div>
   </div>
 </section>
@@ -796,7 +620,6 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
         </ul>
       </article>
     </div>
-    <p style="text-align:center;margin-top:28px;" class="reveal"><a href="data.html" class="btn btn-outline">数字からじっくり検討する →</a></p>
   </div>
 </section>
 
@@ -806,7 +629,7 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       <div class="eyebrow">Pricing</div>
       <div>
         <h2 class="heading">料金の目安</h2>
-        <p class="lead">最初から複雑なプランを選ぶ必要はありません。まずAI活用診断で必要な支援を整理し、範囲に合った内容をご提案します。</p>
+        <p class="lead">診断後に、必要な支援だけを個別設計します。</p>
       </div>
     </div>
     <div class="price-summary reveal">
@@ -825,25 +648,10 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
         <a href="lp-ai-diagnosis.html#diagnosis" class="btn btn-navy" style="width:100%;text-align:center;">1分診断で必要な支援を整理する →</a>
       </div>
     </div>
-    <p class="price-note reveal">訪問回数・実装・研修など、支援範囲によって費用が変わります。デジタル化・AI導入補助金・人材開発支援助成金など、活用できる制度のご提案も行っています。</p>
-    <p style="text-align:center;margin-top:20px;" class="reveal"><a href="data.html" class="btn btn-navy">顧問料の元が取れるか、御社の数字でシミュレーション →</a></p>
+    <p class="price-note reveal">支援範囲により変動。補助金・助成金のご提案も可能です。<a href="data.html" style="color:var(--blue);font-weight:700;">数字で試算 →</a></p>
   </div>
 </section>
 
-<section class="section" id="flow">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow">Flow</div>
-      <div><h2 class="heading">ご契約までの流れ</h2></div>
-    </div>
-    <div class="flow-grid reveal">
-      <article class="flow-step"><div class="no">1</div><h3>無料AI活用診断（30分）</h3><p>現状の課題とAI活用の可能性をヒアリング。この時点で持ち帰れる気づきをお渡しします。</p></article>
-      <article class="flow-step"><div class="no">2</div><h3>現状診断</h3><p>業務内容を簡易診断し、AI活用の余地と優先順位を整理してご報告します。</p></article>
-      <article class="flow-step"><div class="no">3</div><h3>支援内容のご提案</h3><p>診断結果をもとに、御社に合った支援範囲と初月の動き方をご提案します。</p></article>
-      <article class="flow-step"><div class="no">4</div><h3>顧問契約スタート</h3><p>チャットグループを開設し、その日から相談可能に。最初の定例で90日計画を決めます。</p></article>
-    </div>
-  </div>
-</section>
 
 <section class="section" id="first90" style="background:var(--bg-soft);">
   <div class="container">
@@ -851,50 +659,29 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       <div class="eyebrow">First 90 days</div>
       <div>
         <h2 class="heading">契約後、最初の90日で<br><em>「変わった」を作る。</em></h2>
-        <p class="lead">大きなDX計画を作って終わらせず、小さく選び、早く作り、現場で直します。</p>
+        <p class="lead">小さく選び、早く作り、現場で直します。</p>
       </div>
     </div>
     <div class="phase-grid reveal">
-      <article class="phase-step"><div class="no">1ヶ月目</div><h3>業務の棚卸しと診断</h3><p>主要な業務をヒアリングし、「どこにAIを入れると最も利益に効くか」を優先順位付きのロードマップにまとめます。</p></article>
-      <article class="phase-step"><div class="no">2ヶ月目</div><h3>最初の成果をひとつ</h3><p>効果が出やすい業務をひとつ選び、実際に自動化・効率化します。「目に見える変化」をまず社内に作ります。</p></article>
-      <article class="phase-step"><div class="no">3ヶ月目</div><h3>定着と次の一手</h3><p>使われ方を検証して定着させ、ロードマップの次の施策へ。以降はこのサイクルを毎月回していきます。</p></article>
+      <article class="phase-step"><div class="no">1ヶ月目</div><h3>業務の棚卸しと診断</h3><p>業務を棚卸しし、最初のテーマを選定。</p></article>
+      <article class="phase-step"><div class="no">2ヶ月目</div><h3>最初の成果をひとつ</h3><p>ひとつ実装し、目に見える変化を作る。</p></article>
+      <article class="phase-step"><div class="no">3ヶ月目</div><h3>定着と次の一手</h3><p>定着させ、次の一手へ。</p></article>
     </div>
   </div>
 </section>
 
-<section class="section products" id="products">
+<section class="section more-links" id="products" style="background:var(--bg-soft);padding:56px 0;">
   <div class="container">
-    <div class="section-head reveal">
-      <div class="eyebrow">Products</div>
-      <div>
-        <h2 class="heading">「顧問はまだ早い」<br><em>という会社へ。</em></h2>
-        <p class="lead">毎月の顧問契約はまだ重い——そんな会社のために、単発で依頼できる2つの商品を用意しています。</p>
-      </div>
+    <p class="reveal" style="text-align:center;font-size:14px;color:var(--gray);margin-bottom:18px;">顧問契約の前から始められます</p>
+    <div class="reveal" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="training.html" class="btn btn-outline">AI研修（50万円〜）</a>
+      <a href="implementation.html" class="btn btn-outline">導入支援（80万円〜）</a>
+      <a href="systems.html" class="btn btn-outline">SaaS整理</a>
+      <a href="tools/" class="btn btn-outline">無料試算ツール</a>
     </div>
-    <div class="prod-grid reveal">
-      <div class="prod-card">
-        <h3>AI研修 —「全員が使える」を、会社の標準にする</h3>
-        <ul class="prod-plans">
-          <li><div class="pp-head"><span class="pp-name">ライト研修<small>（〜10名）</small></span><span class="pp-price">50万円</span></div><span class="pp-desc">半日×2回＋実務演習＋30日間の質問対応</span></li>
-          <li><div class="pp-head"><span class="pp-name">スタンダード研修<small>（〜25名）</small></span><span class="pp-price">100万円</span></div><span class="pp-desc">部門別ワークショップ×3＋業務適用ワーク＋60日サポート</span></li>
-          <li><div class="pp-head"><span class="pp-name">全社研修<small>（〜50名）</small></span><span class="pp-price">180万円</span></div><span class="pp-desc">階層別プログラム＋社内ガイドライン整備＋90日伴走</span></li>
-        </ul>
-        <p class="prod-note">1人あたり5万円→3.6万円（規模が大きいほど割安）</p>
-        <a href="training.html" class="btn btn-outline">研修の詳細を見る →</a>
-      </div>
-      <div class="prod-card">
-        <h3>導入支援・システム開発 —「動く仕組み」まで</h3>
-        <ul class="prod-menu">
-          <li><span>業務ツール導入・自動化ワークフロー構築</span><span class="pp-price">80万円〜</span></li>
-          <li><span>業務システム開発（要件定義〜運用引き渡し）</span><span class="pp-price">300万円〜</span></li>
-          <li><span>基幹連携・大規模開発</span><span class="pp-price">個別見積</span></li>
-        </ul>
-        <a href="implementation.html" class="btn btn-outline">導入支援の詳細を見る →</a>
-      </div>
-    </div>
-    <p class="prod-foot reveal">※価格はすべて税別表記です。内容により変動します。無料のAI活用診断で概算をご提示します。</p>
   </div>
 </section>
+
 
 <section class="section profile" id="profile">
   <div class="container">
@@ -907,9 +694,7 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       <div>
         <h3>AI顧問室 相談責任者</h3>
         <div class="role">株式会社Bivrost／AI導入支援</div>
-        <p style="font-family:var(--serif);font-weight:700;color:var(--navy);">経営課題を、現場で動くAI施策に変えます。</p>
-        <p>相談責任者は経営歴15年。複数事業の立ち上げ・拡大に携わる一方、AIを活用した業務改善やシステム開発を自ら実践してきました。開発したシステムは50を超え、自社開発のAIツールはProduct Huntで日間1位を獲得しています。</p>
-        <p>流行のツールではなく、売上・コスト・業務時間に効くかを基準に判断します。初回相談から導入設計、実装・研修・定着まで、同じ責任者が直接対応します。</p>
+        <p>経営歴15年×AI歴4年。儲けにつながるAI活用だけを、同じ責任者が相談から実装・定着まで担当します。</p>
         <div class="tags">
           <span class="tag">経営歴15年</span>
           <span class="tag">開発したシステム50超</span>
@@ -930,11 +715,8 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       <details><summary>ITに詳しい社員が一人もいませんが、大丈夫ですか？</summary><p>まったく問題ありません。むしろそういった会社のためのサービスです。専門用語を使わず、経営者の言葉でご説明します。ツールの構築や設定は顧問が直接行うので、社内に技術者は不要です。</p></details>
       <details><summary>どの業種でも対応できますか？</summary><p>はい。AI活用の要点は業種よりも「業務の構造」にあります。製造、建設、卸売、サービス業、士業など、幅広く対応可能です。</p></details>
       <details><summary>成果が出るまでどのくらいかかりますか？</summary><p>最初の90日で「目に見える変化」を1つ作ることを目標にしています。多くの場合、初月〜2ヶ月目で最初の業務自動化や効率化の成果を実感いただけます。</p></details>
-      <details><summary>途中で支援範囲を変更できますか？</summary><p>可能です。月50万円を基準に、訪問回数、実装、社員研修などの支援範囲を診断後に個別設計します。契約後も月単位で内容を見直せます。</p></details>
-      <details><summary>顧問契約の前に、単発で相談だけすることはできますか？</summary><p>初回の無料AI活用診断（30分）をご利用ください。無理な勧誘はありません。診断後の判断は自由です。</p></details>
-      <details><summary>補助金や助成金は使えますか？</summary><p>内容によって活用できる場合があります。デジタル化・AI導入補助金、人材開発支援助成金など、御社の状況に合わせて使える制度をご提案します。</p></details>
-      <details><summary>研修だけ、ツール導入だけを頼むこともできますか？</summary><p>可能です。まず研修や小さな自動化から始めて、手応えを見てから顧問契約に進むお客様も想定しています。</p></details>
-    </div>
+        <details><summary>顧問契約の前に、単発で相談だけすることはできますか？</summary><p>初回の無料AI活用診断（30分）をご利用ください。無理な勧誘はありません。診断後の判断は自由です。</p></details>
+        </div>
   </div>
 </section>
 
