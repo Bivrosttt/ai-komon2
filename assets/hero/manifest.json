@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-07-22T00:43:48.183449+00:00",
+  "model": "gpt-image-2",
+  "size": "1536x1024",
+  "quality": "medium",
+  "images": [
+    {
+      "stem": "01-consultation",
+      "file": "hero-consultation.png",
+      "model": "gpt-image-2",
+      "size": "1536x1024",
+      "quality": "medium",
+      "bytes": 1946064,
+      "prompt_file": "scripts/hero-prompts/01-consultation.md"
+    },
+    {
+      "stem": "02-workshop",
+      "file": "hero-workshop.png",
+      "model": "gpt-image-2",
+      "size": "1536x1024",
+      "quality": "medium",
+      "bytes": 2044966,
+      "prompt_file": "scripts/hero-prompts/02-workshop.md"
+    },
+    {
+      "stem": "03-construction",
+      "file": "hero-construction.png",
+      "model": "gpt-image-2",
+      "size": "1536x1024",
+      "quality": "medium",
+      "bytes": 2411302,
+      "prompt_file": "scripts/hero-prompts/03-construction.md"
+    },
+    {
+      "stem": "04-desk-morning",
+      "file": "hero-desk-morning.png",
+      "model": "gpt-image-2",
+      "size": "1536x1024",
+      "quality": "medium",
+      "bytes": 1834121,
+      "prompt_file": "scripts/hero-prompts/04-desk-morning.md"
+    }
+  ]
+}

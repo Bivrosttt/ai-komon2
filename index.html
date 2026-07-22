@@ -1,4 +1,4 @@
-<!-- 2026-07-22: ホームページ全面リデザイン＋情報量整理 — 実物プレビュー・編集デザイン・計測/フォーム/全導線維持（旧版: index-legacy.html） -->
+<!-- 2026-07-22: gpt-image-2 ヒーロー4枚＋サムネ切替／情報量整理版（旧: index-legacy.html） -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -79,7 +79,14 @@ header{position:fixed;inset:0 0 auto;z-index:200;background:rgba(255,255,255,.94
 .hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .hero-micro{font-size:11px;color:#7A8799;margin-top:14px}
 .hero-photo{position:relative}
-.hero-photo img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:160px 22px 22px 22px;box-shadow:0 28px 70px rgba(11,36,71,.18)}
+.hero-photo img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:160px 22px 22px 22px;box-shadow:0 28px 70px rgba(11,36,71,.18);transition:opacity .35s}
+.hero-photo img.is-fading{opacity:.15}
+.hero-thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.hero-thumb{position:relative;border:2px solid transparent;border-radius:10px;overflow:hidden;padding:0;background:none;cursor:pointer;aspect-ratio:3/2}
+.hero-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-thumb span{position:absolute;inset:auto 0 0;padding:4px 6px;font-size:9px;font-weight:700;color:#fff;background:linear-gradient(0deg,rgba(7,26,53,.88),transparent);text-align:left;line-height:1.3}
+.hero-thumb.is-active{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,162,39,.25)}
+.hero-thumb:hover{border-color:var(--navy-light)}
 .photo-card{position:absolute;left:-18px;bottom:24px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;width:240px;box-shadow:0 14px 36px rgba(11,36,71,.12)}
 .photo-card span{font:700 9px/1 var(--latin);letter-spacing:.12em;color:var(--gold)}
 .photo-card strong{display:block;font-size:13px;line-height:1.55;margin-top:6px;color:var(--navy)}
@@ -310,7 +317,7 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
   .photo-card{left:8px;bottom:10px;width:210px;padding:13px}
   .hero-stats{grid-template-columns:1fr}
   .hero-stats .stat{border-right:0;border-bottom:1px solid rgba(11,36,71,.12);padding:13px 4px}
-  .hero-stats .stat:last-child{border-bottom:0}
+  .hero-thumbs{grid-template-columns:repeat(2,1fr)}
   .section-head{display:block;margin-bottom:32px}
   .dt-nav{display:none}
   .dt-hint{display:block}
@@ -359,10 +366,24 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
       <p class="hero-micro">オンライン30分／相談後の契約は不要／無理な営業はありません</p>
     </div>
     <div class="hero-photo reveal">
-      <img src="assets/lp-official-v2/hero-consultation.png" width="1536" height="1024" alt="中小企業の経営者とAI顧問が業務について話し合う様子">
-      <div class="photo-card">
+      <img id="heroImg" src="assets/hero/hero-consultation.png" width="1536" height="1024" alt="中小企業の経営者とAI顧問が業務について話し合う様子">
+      <div class="photo-card" id="heroCaption">
         <span>LISTEN FIRST.</span>
         <strong>ツールの話より先に、御社の仕事を聞く。</strong>
+      </div>
+      <div class="hero-thumbs" role="tablist" aria-label="ヒーロー画像">
+        <button type="button" class="hero-thumb is-active" role="tab" aria-selected="true" data-src="assets/hero/hero-consultation.png" data-alt="経営者とAI顧問が打ち合わせする様子" data-tag="LISTEN FIRST." data-cap="ツールの話より先に、御社の仕事を聞く。">
+          <img src="assets/hero/hero-consultation.png" alt="" loading="lazy"><span>相談</span>
+        </button>
+        <button type="button" class="hero-thumb" role="tab" aria-selected="false" data-src="assets/hero/hero-workshop.png" data-alt="社員向けAI研修の様子" data-tag="TEAM." data-cap="社長だけでなく、社員が使えて初めて変わる。">
+          <img src="assets/hero/hero-workshop.png" alt="" loading="lazy"><span>研修</span>
+        </button>
+        <button type="button" class="hero-thumb" role="tab" aria-selected="false" data-src="assets/hero/hero-construction.png" data-alt="建設現場でタブレットを見ながら相談する様子" data-tag="GENBA." data-cap="現場の言葉で、AIを落とし込む。">
+          <img src="assets/hero/hero-construction.png" alt="" loading="lazy"><span>現場</span>
+        </button>
+        <button type="button" class="hero-thumb" role="tab" aria-selected="false" data-src="assets/hero/hero-desk-morning.png" data-alt="経営者が朝のデスクで方向性を掴んだ様子" data-tag="CLARITY." data-cap="社長の宿題を、会社の仕組みへ。">
+          <img src="assets/hero/hero-desk-morning.png" alt="" loading="lazy"><span>経営</span>
+        </button>
       </div>
     </div>
     <div class="hero-stats reveal">
@@ -840,6 +861,31 @@ footer{background:var(--navy-deep);color:#9FB0C7;padding:28px 0 88px;font-size:1
     var s=window.scrollY>500;
     if(s!==shown){shown=s;bar.classList.toggle('show',s);}
   },{passive:true});
+})();
+(function(){
+  var img=document.getElementById('heroImg');
+  var cap=document.getElementById('heroCaption');
+  var thumbs=document.querySelectorAll('.hero-thumb');
+  if(!img||!thumbs.length)return;
+  function pick(btn){
+    for(var i=0;i<thumbs.length;i++){
+      thumbs[i].classList.toggle('is-active',thumbs[i]===btn);
+      thumbs[i].setAttribute('aria-selected',thumbs[i]===btn?'true':'false');
+    }
+    img.classList.add('is-fading');
+    setTimeout(function(){
+      img.src=btn.getAttribute('data-src');
+      img.alt=btn.getAttribute('data-alt')||'';
+      if(cap){
+        cap.querySelector('span').textContent=btn.getAttribute('data-tag')||'';
+        cap.querySelector('strong').textContent=btn.getAttribute('data-cap')||'';
+      }
+      img.classList.remove('is-fading');
+    },120);
+  }
+  for(var j=0;j<thumbs.length;j++){
+    thumbs[j].addEventListener('click',function(){pick(this);});
+  }
 })();
 </script>
 </body>
