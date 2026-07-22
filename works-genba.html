@@ -1,4 +1,4 @@
-<!-- 2026-07-22: GENBA（現場OS）SaaS級デモ — 安全黄×charcoal工業UI・写真AI点検・日報下書き -->
+<!-- 2026-07-22: GENBAをマップ＋写真フィルム骨格に作り直し -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -30,12 +30,13 @@
     --concrete: #E7E5E4; --teal: #0E7A5F; --teal-bg: #D1FAE5;
     --amber: #92400E; --amber-bg: #FEF3C7;
     --red: #DC2626; --red-bg: #FEE2E2;
-    --slate-bg: #E7E5E4;
+    --map-bg: #2A2826; --map-line: #44403C; --map-water: #1E293B;
+    --charcoal: #141210; --safe: #22C55E;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'IBM Plex Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--bg-soft);
+    font-family: 'IBM Plex Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--charcoal);
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3 { line-height: 1.4; font-weight: 700; }
@@ -130,302 +131,326 @@
     .login-hero::after { display: none; }
   }
 
-  #view-app { display: none; }
-  #view-app.show { display: block; }
-  .app-frame { display: flex; align-items: flex-start; min-height: calc(100vh - 44px); }
-  .sidebar {
-    width: 248px; flex: 0 0 auto; background: var(--navy-deep); color: #E7E5E4;
-    display: flex; flex-direction: column; position: sticky; top: 44px; height: calc(100vh - 44px);
-    padding: 20px 0; z-index: 50; border-right: 1px solid #292524;
-    box-shadow: inset 4px 0 0 var(--gold);
-  }
-  .sidebar-brand { padding: 0 20px 18px; border-bottom: 1px solid #292524; margin-bottom: 12px; display: flex; align-items: baseline; gap: 6px; }
-  .sidebar-brand .k { font-size: 18px; font-weight: 700; color: var(--gold); letter-spacing: .08em; }
-  .sidebar-brand .tag-en { font-size: 9px; color: #78716C; letter-spacing: .12em; font-family: 'IBM Plex Mono', monospace; }
-  .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 12px; overflow-y: auto; }
-  .nav-btn {
-    display: flex; align-items: center; gap: 11px; padding: 11px 12px; border-radius: 2px; border: none; background: none;
-    color: #A8A29E; font-size: 13.5px; font-weight: 500; text-align: left; width: 100%; transition: background .15s, color .15s;
-  }
-  .nav-btn svg { flex: 0 0 auto; opacity: .85; }
-  .nav-btn:hover { background: rgba(255,255,255,.06); color: #FAFAF9; }
-  .nav-btn.active { background: rgba(234,179,8,.15); color: var(--gold); font-weight: 700; }
-  .sidebar-foot { padding: 14px 20px 0; border-top: 1px solid #292524; margin-top: 14px; }
-  .sidebar-user { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
-  .sidebar-user .avatar {
-    width: 30px; height: 30px; border-radius: 2px; background: var(--gold); color: var(--navy-deep);
-    display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: 0 0 auto;
-  }
-  .sidebar-user .u-name { font-size: 12.5px; font-weight: 700; color: #FAFAF9; }
-  .sidebar-user .u-role { font-size: 10.5px; color: #78716C; }
-  .logout-link { display: block; font-size: 11.5px; color: #A8A29E; padding: 6px 2px; }
-  .logout-link:hover { color: var(--gold); }
-  .hamburger-btn {
-    display: none; width: 38px; height: 38px; border-radius: 2px; border: 1px solid var(--line); background: #fff;
-    align-items: center; justify-content: center; flex: 0 0 auto;
-  }
-  .main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-  .app-header {
-    position: sticky; top: 44px; z-index: 40; height: 60px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.97);
-    backdrop-filter: blur(4px); display: flex; align-items: center; gap: 14px; padding: 0 24px;
-  }
-  .app-header h1.view-name { font-size: 15.5px; font-weight: 700; color: var(--ink); white-space: nowrap; }
-  .header-search { flex: 1; min-width: 0; display: flex; justify-content: center; }
-  .header-search-inner { position: relative; width: 100%; max-width: 380px; }
-  .header-search-inner input {
-    width: 100%; padding: 9px 14px 9px 36px; border: 1px solid var(--line); border-radius: 2px; font-size: 13px; background: var(--bg-soft);
-  }
-  .header-search-inner svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); pointer-events: none; opacity: .5; }
-  .header-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; }
-  .icon-btn {
-    position: relative; width: 38px; height: 38px; border-radius: 2px; border: 1px solid transparent; background: none;
-    display: grid; place-items: center; color: var(--ink); transition: background .15s;
-  }
-  .icon-btn:hover { background: var(--bg-soft); }
-  .notif-badge {
-    position: absolute; top: 3px; right: 3px; min-width: 15px; height: 15px; border-radius: 2px; background: var(--hazard);
-    color: #fff; font-size: 9.5px; font-weight: 700; display: grid; place-items: center; padding: 0 3px; border: 2px solid #fff;
-  }
-  .dropdown-wrap { position: relative; }
-  .dropdown-panel {
-    position: absolute; top: calc(100% + 8px); right: 0; width: 320px; background: #fff; border: 1px solid var(--line);
-    border-radius: 2px; box-shadow: 0 18px 44px rgba(15,23,42,.16); z-index: 80; display: none; overflow: hidden;
-  }
-  .dropdown-panel.open { display: block; animation: dropIn .16s ease; }
-  @keyframes dropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-  .dropdown-head { padding: 12px 16px; font-size: 12.5px; font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--line); background: var(--bg-soft); }
-  .notif-item { display: flex; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 12.5px; transition: background .15s; }
-  .notif-item:last-child { border-bottom: none; }
-  .notif-item:hover { background: var(--bg-soft); }
-  .notif-item .dot { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 1px; margin-top: 5px; }
-  .notif-item .txt { color: var(--ink); line-height: 1.6; }
-  .notif-item .time { color: var(--gray-soft); font-size: 10.5px; margin-top: 3px; }
+  #view-app { display: none; min-height: calc(100vh - 44px); flex-direction: column; }
+  #view-app.show { display: flex; }
 
-  .main-scroll { padding: 26px 30px 60px; }
-  .view { display: none; }
-  .view.active { display: block; }
-  .view-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-  .view-head h2 { font-size: 20px; color: var(--ink); }
-  .view-head .lead { font-size: 12.5px; color: var(--gray); margin-top: 4px; }
-
-  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 22px; }
-  .kpi-card { background: #fff; border: 1px solid var(--line); border-radius: 2px; padding: 18px 20px; border-left: 3px solid var(--gold); transition: box-shadow .15s; }
-  .kpi-card:hover { box-shadow: 0 8px 24px rgba(28,25,23,.06); }
-  .kpi-card .kpi-label { font-size: 12px; color: var(--gray); font-weight: 700; display: flex; align-items: center; gap: 6px; }
-  .kpi-card .kpi-value { font-size: 27px; color: var(--ink); margin: 9px 0 4px; font-weight: 700; font-family: 'IBM Plex Mono', monospace; }
-  .kpi-card .kpi-value span { font-size: 13px; color: var(--gray-soft); font-weight: 500; margin-left: 2px; font-family: 'IBM Plex Sans JP', sans-serif; }
-  .kpi-card .kpi-sub { font-size: 11px; color: var(--gray-soft); }
-  .kpi-swatch { width: 8px; height: 8px; border-radius: 1px; flex: 0 0 auto; }
-
-  .grid-2col { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; align-items: start; margin-bottom: 18px; }
-  .panel { background: #fff; border: 1px solid var(--line); border-radius: 2px; padding: 20px 22px; }
-  .panel h3 { font-size: 14.5px; color: var(--ink); margin-bottom: 4px; font-weight: 700; }
-  .panel .panel-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; }
-
-  .task-list { display: flex; flex-direction: column; gap: 8px; }
-  .task-row {
-    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 2px;
-    transition: background .15s, border-color .15s; background: #fff;
+  .top-bar {
+    height: 48px; flex: 0 0 auto; background: var(--navy-deep); border-bottom: 2px solid var(--gold);
+    display: flex; align-items: center; gap: 12px; padding: 0 16px; position: sticky; top: 44px; z-index: 80;
   }
-  .task-row:hover { background: var(--bg-soft); border-color: #A8A29E; }
-  .task-row .t-main { flex: 1; min-width: 0; }
-  .task-row .t-name { font-size: 13px; font-weight: 700; color: var(--ink); }
-  .task-row .t-sub { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
-  .task-row .t-arrow { flex: 0 0 auto; color: var(--gray-soft); }
-
-  .timeline { display: flex; flex-direction: column; gap: 0; }
-  .timeline-item { display: flex; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); }
-  .timeline-item:last-child { border-bottom: none; }
-  .timeline-dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 1px; margin-top: 5px; }
-  .timeline-text { font-size: 12.5px; color: var(--ink); line-height: 1.6; }
-  .timeline-text b { font-weight: 700; }
-  .timeline-date { font-size: 10.5px; color: var(--gray-soft); margin-top: 2px; }
-
-  .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 2px; font-size: 11px; font-weight: 700; white-space: nowrap; }
-  .badge-active { background: var(--teal-bg); color: var(--teal); }
-  .badge-inspection { background: var(--hazard-bg); color: var(--hazard); }
-  .badge-completed { background: var(--slate-bg); color: var(--gray); }
-  .badge-delayed { background: var(--red-bg); color: var(--red); }
-  .badge-high { background: var(--red-bg); color: var(--red); }
-  .badge-mid { background: var(--amber-bg); color: var(--amber); }
-  .badge-low { background: var(--slate-bg); color: var(--gray); }
-  .badge-human { background: var(--gold); color: var(--navy-deep); }
-  .badge-pending { background: var(--pri-bg); color: var(--pri-deep); }
-
-  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; }
-  .tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tab-chip {
-    padding: 8px 15px; border-radius: 2px; border: 1px solid var(--line); background: #fff; font-size: 12.5px;
-    color: var(--gray); font-weight: 500; transition: all .15s; white-space: nowrap; display: flex; align-items: center; gap: 6px;
+  .top-brand { display: flex; align-items: baseline; gap: 6px; flex: 0 0 auto; }
+  .top-brand .k { font-size: 16px; font-weight: 700; color: var(--gold); letter-spacing: .08em; }
+  .top-brand .tag-en { font-size: 9px; color: #78716C; letter-spacing: .12em; font-family: 'IBM Plex Mono', monospace; }
+  .nav-segments {
+    flex: 1; display: flex; justify-content: center; gap: 4px; min-width: 0;
   }
-  .tab-chip:hover { border-color: var(--gold); }
-  .tab-chip.active { background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 700; }
-  .tab-chip .cnt { font-size: 10.5px; background: rgba(0,0,0,.08); padding: 1px 6px; border-radius: 2px; }
-  .tab-chip.active .cnt { background: rgba(255,255,255,.2); }
-  .search-box { position: relative; margin-left: auto; }
-  .search-box input {
-    padding: 9px 14px 9px 34px; border: 1px solid var(--line); border-radius: 2px; font-size: 13px; width: 240px; background: #fff;
+  .nav-seg {
+    padding: 7px 16px; border: 1px solid transparent; border-radius: 2px; background: none;
+    color: #A8A29E; font-size: 12.5px; font-weight: 600; white-space: nowrap; transition: all .15s;
   }
-  .search-box input:focus { outline: 2px solid var(--gold); }
-  .search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: .5; }
+  .nav-seg:hover { color: #FAFAF9; background: rgba(255,255,255,.06); }
+  .nav-seg.active { color: var(--navy-deep); background: var(--gold); border-color: var(--gold-deep); font-weight: 700; }
+  .top-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; }
+  .top-date { font-size: 11px; color: #78716C; font-family: 'IBM Plex Mono', monospace; display: none; }
+  @media (min-width: 900px) { .top-date { display: block; } }
+  .user-btn {
+    display: flex; align-items: center; gap: 8px; padding: 5px 10px; border-radius: 2px;
+    border: 1px solid #44403C; background: rgba(255,255,255,.04); color: #E7E5E4; font-size: 12px;
+  }
+  .user-btn .avatar {
+    width: 26px; height: 26px; border-radius: 2px; background: var(--gold); color: var(--navy-deep);
+    display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  }
+  .menu-btn {
+    display: none; width: 36px; height: 36px; border-radius: 2px; border: 1px solid #44403C;
+    background: rgba(255,255,255,.04); color: #E7E5E4; align-items: center; justify-content: center;
+  }
+  .user-drawer-overlay { display: none; position: fixed; inset: 44px 0 0 0; background: rgba(0,0,0,.45); z-index: 200; }
+  .user-drawer-overlay.open { display: block; }
+  .user-drawer {
+    position: fixed; top: 44px; right: 0; bottom: 0; width: 260px; background: var(--navy-deep);
+    border-left: 2px solid var(--gold); z-index: 210; transform: translateX(100%); transition: transform .25s ease;
+    padding: 20px; color: #E7E5E4;
+  }
+  .user-drawer.open { transform: translateX(0); }
+  .user-drawer .u-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .user-drawer .u-role { font-size: 11px; color: #78716C; margin-bottom: 20px; }
+  .user-drawer .logout-link { font-size: 12px; color: #A8A29E; padding: 8px 0; display: block; }
+  .user-drawer .logout-link:hover { color: var(--gold); }
 
-  .table-wrap { background: #fff; border: 1px solid var(--line); border-radius: 2px; overflow: hidden; }
-  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  table.data-table th {
-    text-align: left; padding: 12px 16px; background: var(--concrete); color: var(--gray); font-weight: 700; font-size: 11.5px;
-    border-bottom: 1px solid var(--line); white-space: nowrap;
+  .workspace { flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .workspace.reconcile-mode { overflow-y: auto; }
+  .main-split {
+    flex: 1; display: grid; grid-template-columns: 40% 60%; min-height: 0;
   }
-  table.data-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
-  table.data-table tbody tr { cursor: pointer; transition: background .12s; }
-  table.data-table tbody tr:hover { background: var(--bg-soft); }
-  table.data-table tbody tr:last-child td { border-bottom: none; }
-  table.data-table td.name-cell { font-weight: 700; }
-  table.data-table td.num-cell { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; font-family: 'IBM Plex Mono', monospace; }
-  .row-alert { background: #FFF7ED; }
-  .row-alert:hover { background: #FFEDD5 !important; }
-  .empty-row td { text-align: center; color: var(--gray-soft); padding: 40px 16px; }
+  .workspace.reconcile-mode .main-split { flex: 0 0 auto; min-height: 46vh; max-height: 52vh; }
 
-  .detail-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--gray); margin-bottom: 14px; }
-  .detail-back:hover { color: var(--pri-deep); }
-  .detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
-  .detail-head h2 { font-size: 19px; }
-  .detail-head .sub { font-size: 12px; color: var(--gray); margin-top: 5px; }
-  .detail-grid { display: grid; grid-template-columns: 1.45fr minmax(300px, 380px); gap: 20px; align-items: start; }
+  .map-pane {
+    display: flex; flex-direction: column; min-height: 0; background: var(--map-bg);
+    border-right: 2px solid var(--gold);
+  }
+  .map-head {
+    padding: 10px 14px; background: rgba(20,18,16,.92); border-bottom: 1px solid #44403C;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .map-head h2 { font-size: 12.5px; color: #FAFAF9; font-weight: 700; }
+  .map-head .site-chip {
+    font-size: 10px; font-family: 'IBM Plex Mono', monospace; color: var(--gold);
+    background: rgba(234,179,8,.12); padding: 3px 8px; border-radius: 2px; border: 1px solid rgba(234,179,8,.25);
+  }
+  .map-body { flex: 1; position: relative; min-height: 220px; overflow: hidden; }
+  .map-svg-wrap { width: 100%; height: 100%; }
+  .map-svg-wrap svg { width: 100%; height: 100%; display: block; }
+  .map-pin {
+    cursor: pointer; transition: transform .15s;
+  }
+  .map-pin:hover { transform: scale(1.12); }
+  .map-pin.selected circle.pin-dot { stroke: #fff; stroke-width: 2.5; }
+  .map-pin.pulse circle.pin-dot { animation: pinPulse 1.4s ease infinite; }
+  @keyframes pinPulse { 0%,100% { filter: drop-shadow(0 0 0 rgba(234,179,8,0)); } 50% { filter: drop-shadow(0 0 8px rgba(234,179,8,.8)); } }
+  .map-legend {
+    position: absolute; left: 10px; bottom: 10px; display: flex; gap: 10px; font-size: 10px; color: #A8A29E;
+    background: rgba(20,18,16,.85); padding: 6px 10px; border-radius: 2px; border: 1px solid #44403C;
+  }
+  .map-legend span { display: flex; align-items: center; gap: 5px; }
+  .map-legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 
-  .photo-board-wrap { background: var(--concrete); border: 1px solid var(--line); border-radius: 2px; overflow: hidden; box-shadow: 0 12px 40px rgba(28,25,23,.06); }
-  .photo-toolbar { padding: 12px 20px; border-bottom: 1px solid var(--line); background: #FAFAF9; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-  .photo-toolbar .pt-label { font-size: 11.5px; color: var(--gray); font-weight: 700; letter-spacing: .06em; }
-  .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 16px; background: #D6D3D1; }
-  .photo-cell {
-    aspect-ratio: 4/3; border-radius: 2px; overflow: hidden; position: relative; background: linear-gradient(145deg, #A8A29E, #78716C);
-    border: 2px solid transparent; transition: border-color .3s, box-shadow .3s;
+  .patrol-panel {
+    display: none; max-height: 38%; overflow-y: auto; background: rgba(20,18,16,.95);
+    border-top: 1px solid #44403C;
   }
-  .photo-cell .ph-label {
-    position: absolute; left: 6px; bottom: 6px; font-size: 9.5px; font-weight: 700; color: #fff;
-    background: rgba(28,25,23,.65); padding: 2px 6px; border-radius: 1px; font-family: 'IBM Plex Mono', monospace;
+  .patrol-panel.show { display: block; }
+  .patrol-panel-head {
+    padding: 8px 14px; font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: .08em;
+    border-bottom: 1px solid #44403C; position: sticky; top: 0; background: rgba(20,18,16,.98);
   }
-  .photo-cell.scanning { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(234,179,8,.35); animation: scanPulse 1s ease infinite; }
-  .photo-cell.flagged { border-color: var(--hazard); box-shadow: 0 0 0 3px rgba(249,115,22,.35); }
-  .photo-cell.flagged::after {
-    content: '指摘'; position: absolute; top: 6px; right: 6px; font-size: 9px; font-weight: 700;
-    background: var(--hazard); color: #fff; padding: 2px 6px; border-radius: 1px;
+  .patrol-route { list-style: none; }
+  .patrol-stop {
+    display: flex; align-items: stretch; gap: 0; border-bottom: 1px solid #333; cursor: pointer;
+    transition: background .15s;
   }
-  @keyframes scanPulse { 0%,100%{opacity:1} 50%{opacity:.75} }
+  .patrol-stop:hover { background: rgba(255,255,255,.04); }
+  .patrol-stop.active { background: rgba(234,179,8,.12); border-left: 3px solid var(--gold); }
+  .patrol-stop.done { opacity: .55; }
+  .patrol-time {
+    flex: 0 0 58px; padding: 10px 8px; font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+    color: var(--gold); border-right: 1px solid #333; display: flex; align-items: center; justify-content: center;
+  }
+  .patrol-info { flex: 1; padding: 8px 12px; min-width: 0; }
+  .patrol-info .p-name { font-size: 12.5px; font-weight: 700; color: #FAFAF9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .patrol-info .p-sub { font-size: 10.5px; color: #78716C; margin-top: 2px; }
+  .patrol-badge {
+    align-self: center; margin-right: 10px; font-size: 9px; font-weight: 700; padding: 3px 7px; border-radius: 2px;
+  }
+  .patrol-badge.risk { background: var(--hazard-bg); color: var(--hazard); }
+  .patrol-badge.ok { background: var(--teal-bg); color: var(--teal); }
 
-  .side-panel { background: #fff; border: 1px solid var(--line); border-radius: 2px; overflow: hidden; }
-  .side-tabs { display: flex; border-bottom: 1px solid var(--line); background: var(--bg-soft); }
-  .side-tab-btn {
-    flex: 1; padding: 13px 6px; font-size: 12px; font-weight: 700; color: var(--gray); background: none; border: none;
-    border-bottom: 2px solid transparent; transition: color .15s;
+  .film-pane {
+    display: flex; flex-direction: column; min-height: 0; background: #1C1917;
   }
-  .side-tab-btn.active { color: var(--pri-deep); border-bottom-color: var(--gold); background: #fff; }
-  .side-tab-body { padding: 20px; min-height: 480px; }
-  .side-tab-pane { display: none; }
-  .side-tab-pane.active { display: block; }
-
-  .ai-start-box { text-align: center; padding: 34px 8px 18px; }
-  .ai-start-box p { font-size: 12.5px; color: var(--gray); margin-bottom: 20px; line-height: 1.9; }
+  .film-head {
+    padding: 10px 16px; background: rgba(28,25,23,.98); border-bottom: 1px solid #44403C;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  }
+  .film-head h2 { font-size: 13px; color: #FAFAF9; font-weight: 700; }
+  .film-head .film-meta { font-size: 11px; color: #78716C; }
+  .film-actions { display: flex; gap: 8px; flex-wrap: wrap; }
   .btn-ai-run {
-    background: var(--gold); color: var(--navy-deep); border: none; padding: 12px 26px; border-radius: 2px; font-weight: 700; font-size: 13.5px;
-    display: inline-flex; align-items: center; gap: 8px; transition: filter .2s;
+    padding: 7px 14px; border: none; border-radius: 2px; background: var(--gold); color: var(--navy-deep);
+    font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;
   }
-  .btn-ai-run:hover { filter: brightness(1.06); }
-  .scan-box { text-align: center; padding: 28px 10px; }
-  .scan-box .scan-spinner {
-    width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--pri-bg); border-top-color: var(--gold); margin: 0 auto 16px;
-    animation: spin .8s linear infinite;
+  .btn-ai-run:hover { filter: brightness(1.08); }
+  .btn-ai-run:disabled { opacity: .55; cursor: wait; }
+  .btn-ghost {
+    padding: 7px 12px; border: 1px solid #57534E; border-radius: 2px; background: transparent;
+    color: #D6D3D1; font-size: 11.5px; font-weight: 600;
   }
-  .scan-box .scan-text { font-size: 13px; color: var(--ink); font-weight: 700; margin-bottom: 6px; }
-  .scan-box .scan-photo { font-size: 12px; color: var(--pri-deep); font-weight: 700; min-height: 18px; font-family: 'IBM Plex Mono', monospace; }
-  .ai-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; gap: 8px; }
-  .ai-toolbar .ai-count { font-size: 12px; color: var(--gray); }
-  .btn-skip { font-size: 11.5px; color: var(--pri-deep); background: none; border: 1px solid var(--gold); padding: 5px 12px; border-radius: 2px; font-weight: 700; }
-  .btn-skip:hover { background: var(--pri-bg); }
-  .finding-card {
-    border: 1px solid var(--line); border-radius: 2px; padding: 14px 16px; margin-bottom: 12px; cursor: pointer;
-    transition: box-shadow .15s, border-color .15s; opacity: 0; transform: translateY(10px); background: #fff;
-    border-left: 3px solid var(--hazard);
-  }
-  .finding-card.in { animation: findingIn .5s ease forwards; }
-  @keyframes findingIn { to { opacity: 1; transform: none; } }
-  .finding-card:hover { box-shadow: 0 8px 22px rgba(15,23,42,.08); }
-  .finding-card .fc-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
-  .finding-card .fc-zone { font-size: 11px; color: var(--gray); font-weight: 700; font-family: 'IBM Plex Mono', monospace; }
-  .finding-card .fc-issue { font-size: 12.8px; color: var(--ink); font-weight: 700; margin-bottom: 8px; line-height: 1.7; }
-  .finding-card .fc-fix { font-size: 12px; color: var(--gray); background: var(--bg-soft); border-radius: 2px; padding: 10px 12px; line-height: 1.8; }
-  .finding-card .fc-fix b { display: block; font-size: 10.5px; color: var(--teal); margin-bottom: 4px; letter-spacing: .04em; }
-  .ai-summary-band {
-    margin-top: 6px; background: var(--pri-bg); border: 1px solid #FDE68A; border-radius: 2px; padding: 14px 16px;
-    font-size: 12.5px; color: var(--pri-deep); font-weight: 700; opacity: 0;
-  }
-  .ai-summary-band.in { animation: findingIn .5s ease forwards; }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
-  .draft-box { border: 1px solid var(--line); border-radius: 2px; background: #FAFAF9; padding: 14px 16px; min-height: 140px; }
-  .draft-text-preview { font-size: 13px; line-height: 1.95; white-space: pre-wrap; color: var(--ink); }
-  .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--gold); vertical-align: text-bottom; animation: blink .8s step-end infinite; }
-  @keyframes blink { 50% { opacity: 0; } }
-  .draft-note { margin-top: 10px; font-size: 11px; color: var(--gray-soft); display: flex; align-items: flex-start; gap: 6px; line-height: 1.7; }
-  .draft-cta { margin-top: 14px; }
-  .btn-approve-draft {
-    width: 100%; background: var(--ink); color: #fff; border: none; padding: 12px 18px; border-radius: 2px; font-weight: 700; font-size: 13px;
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  .filmstrip-wrap {
+    flex: 1; overflow-x: auto; overflow-y: hidden; padding: 14px 16px;
+    display: flex; align-items: stretch; gap: 12px; scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
-  .btn-approve-draft:hover { filter: brightness(1.1); }
-  .btn-approve-draft:disabled { opacity: .55; cursor: wait; }
-  .draft-reset { margin-top: 12px; text-align: right; }
-  .draft-reset button { font-size: 11.5px; color: var(--gray); background: none; border: 1px solid var(--line); padding: 6px 12px; border-radius: 2px; }
-  .draft-reset button:hover { border-color: var(--gold); color: var(--pri-deep); }
-  .complete-banner {
-    background: var(--teal-bg); color: var(--teal); border-radius: 2px; padding: 12px 14px; font-size: 12.5px;
-    font-weight: 700; display: flex; align-items: center; gap: 8px; opacity: 0;
-  }
-  .complete-banner.in { animation: findingIn .5s ease forwards; }
+  .filmstrip-wrap::-webkit-scrollbar { height: 6px; }
+  .filmstrip-wrap::-webkit-scrollbar-thumb { background: #57534E; border-radius: 3px; }
 
+  .film-card {
+    flex: 0 0 200px; scroll-snap-align: start; position: relative; border-radius: 2px;
+    border: 2px solid #44403C; background: linear-gradient(145deg, #292524 0%, #1C1917 100%);
+    cursor: pointer; transition: border-color .15s, transform .15s; overflow: hidden;
+    min-height: 160px; display: flex; flex-direction: column;
+  }
+  .film-card:hover { border-color: #78716C; transform: translateY(-2px); }
+  .film-card.selected { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+  .film-card.scanning { border-color: var(--gold); animation: scanPulse 1s ease infinite; }
+  .film-card.flagged { border-color: var(--hazard); }
+  @keyframes scanPulse { 50% { box-shadow: 0 0 16px rgba(234,179,8,.35); } }
+  .film-thumb {
+    flex: 1; position: relative; background:
+      repeating-linear-gradient(45deg, #333 0, #333 2px, #2a2a2a 2px, #2a2a2a 8px);
+    display: flex; align-items: center; justify-content: center; min-height: 110px;
+  }
+  .film-thumb::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%);
+  }
+  .film-thumb .ph-icon { font-size: 28px; opacity: .25; }
+  .film-foot {
+    padding: 8px 10px; background: rgba(20,18,16,.9); border-top: 1px solid #44403C;
+  }
+  .film-foot .ph-label { font-size: 10.5px; font-weight: 700; color: #E7E5E4; font-family: 'IBM Plex Mono', monospace; }
+  .film-foot .ph-zone { font-size: 10px; color: #78716C; margin-top: 2px; }
+  .risk-badge {
+    position: absolute; top: 8px; right: 8px; z-index: 2; font-size: 9px; font-weight: 700;
+    padding: 4px 7px; border-radius: 2px; opacity: 0; transform: scale(.8); transition: all .25s ease;
+  }
+  .risk-badge.show { opacity: 1; transform: scale(1); }
+  .risk-badge.high { background: var(--red); color: #fff; }
+  .risk-badge.mid { background: var(--hazard); color: #fff; }
+  .risk-badge.low { background: var(--pri-bg); color: var(--pri-deep); }
+  .risk-pin {
+    position: absolute; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff;
+    z-index: 3; opacity: 0; transform: scale(0); transition: all .3s cubic-bezier(.34,1.56,.64,1);
+    box-shadow: 0 2px 8px rgba(0,0,0,.4);
+  }
+  .risk-pin.show { opacity: 1; transform: scale(1); }
+  .risk-pin.high { background: var(--red); }
+  .risk-pin.mid { background: var(--hazard); }
+  .risk-pin.low { background: var(--gold); }
+
+  .film-detail-bar {
+    padding: 10px 16px; background: rgba(20,18,16,.95); border-top: 1px solid #44403C;
+    font-size: 11.5px; color: #A8A29E; min-height: 44px;
+  }
+  .film-detail-bar b { color: #FAFAF9; }
+
+  .reconcile-section {
+    display: none; background: var(--bg-soft); border-top: 3px solid var(--gold); padding: 16px 18px 24px;
+  }
+  .reconcile-section.show { display: block; }
+  .reconcile-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+  .reconcile-head h2 { font-size: 14px; color: var(--ink); }
   .reconcile-band {
-    background: var(--pri-bg); border: 1px solid #FDE68A; border-radius: 2px; padding: 13px 16px; font-size: 12.5px;
-    color: var(--pri-deep); margin-bottom: 18px; display: flex; gap: 10px; align-items: flex-start;
+    background: var(--pri-bg); border: 1px solid #FDE68A; border-radius: 2px; padding: 10px 14px; font-size: 12px;
+    color: var(--pri-deep); margin-bottom: 14px;
   }
+  .tab-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .tab-chip {
+    padding: 6px 12px; border-radius: 2px; border: 1px solid var(--line); background: #fff;
+    font-size: 11.5px; font-weight: 600; color: var(--gray);
+  }
+  .tab-chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .reconcile-table-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--line); border-radius: 2px; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.data-table thead { background: var(--navy-deep); color: #E7E5E4; }
+  table.data-table th { text-align: left; padding: 10px 12px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  table.data-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  table.data-table tbody tr:hover { background: var(--bg-soft); }
+  table.data-table tbody tr.row-alert { background: #FFF7ED; }
+  table.data-table .num-cell { text-align: right; font-family: 'IBM Plex Mono', monospace; }
+  table.data-table .name-cell { font-weight: 700; }
+  .badge {
+    display: inline-block; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 2px; white-space: nowrap;
+  }
+  .badge-high { background: var(--red-bg); color: var(--red); }
+  .badge-mid { background: var(--hazard-bg); color: var(--hazard); }
+  .badge-low { background: var(--pri-bg); color: var(--pri-deep); }
+  .badge-active { background: var(--teal-bg); color: var(--teal); }
+  .badge-inspection { background: var(--pri-bg); color: var(--pri-deep); }
+  .badge-delayed { background: var(--red-bg); color: var(--red); }
+  .badge-completed { background: var(--concrete); color: var(--gray); }
+  .badge-human { background: var(--teal-bg); color: var(--teal); font-size: 9px; margin-left: 4px; }
   .variance-pos { color: var(--teal); font-weight: 700; }
   .variance-neg { color: var(--red); font-weight: 700; }
   .variance-ok { color: var(--gray); font-weight: 700; }
-  .progress-bar-wrap { display: flex; align-items: center; gap: 8px; }
-  .progress-track { flex: 1; height: 8px; background: var(--slate-bg); border-radius: 1px; overflow: hidden; min-width: 60px; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-deep)); border-radius: 1px; }
 
-  .meta-table { width: 100%; border-collapse: collapse; font-size: 12.8px; }
-  .meta-table th { text-align: left; width: 38%; color: var(--gray); font-weight: 700; padding: 10px 0; vertical-align: top; }
-  .meta-table td { padding: 10px 0; border-bottom: 1px solid var(--line); }
-  .meta-table tr:last-child td, .meta-table tr:last-child th { border-bottom: none; }
-
-  .settings-section { background: #fff; border: 1px solid var(--line); border-radius: 2px; padding: 22px 24px; margin-bottom: 18px; }
-  .settings-section h3 { font-size: 14.5px; margin-bottom: 4px; }
-  .settings-section .sec-note { font-size: 11.5px; color: var(--gray-soft); margin-bottom: 16px; }
-  .member-row, .toggle-row {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
+  .photo-modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,.78); z-index: 500;
+    align-items: center; justify-content: center; padding: 20px;
   }
-  .member-row:last-child, .toggle-row:last-child { border-bottom: none; }
-  .member-row .m-name { font-size: 13px; font-weight: 700; }
-  .member-row .m-mail { font-size: 11px; color: var(--gray-soft); }
-  .role-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 2px; }
-  .role-admin { background: var(--pri-bg); color: var(--pri-deep); }
-  .role-site { background: var(--teal-bg); color: var(--teal); }
-  .role-member { background: var(--slate-bg); color: var(--gray); }
-  .toggle-row .tg-label { font-size: 13px; color: var(--ink); }
-  .toggle-row .tg-desc { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
-  .switch { position: relative; width: 42px; height: 24px; flex: 0 0 auto; }
-  .switch input { opacity: 0; width: 0; height: 0; }
-  .switch .track { position: absolute; inset: 0; background: #CBD5E1; border-radius: 2px; cursor: pointer; transition: background .2s; }
-  .switch .track::before {
-    content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 1px;
-    transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  .photo-modal-overlay.open { display: flex; }
+  .photo-modal {
+    width: min(720px, 100%); background: var(--navy-deep); border: 2px solid var(--gold); border-radius: 2px;
+    overflow: hidden; max-height: 90vh; display: flex; flex-direction: column;
   }
-  .switch input:checked + .track { background: var(--gold); }
-  .switch input:checked + .track::before { transform: translateX(18px); }
+  .photo-modal-head {
+    padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid #44403C;
+  }
+  .photo-modal-head h3 { font-size: 13px; color: #FAFAF9; }
+  .modal-close {
+    width: 32px; height: 32px; border: 1px solid #57534E; border-radius: 2px; background: none; color: #D6D3D1;
+    display: grid; place-items: center;
+  }
+  .photo-modal-body { position: relative; flex: 1; min-height: 280px; background: #292524; }
+  .photo-modal-body .modal-img {
+    width: 100%; height: 100%; min-height: 280px;
+    background: repeating-linear-gradient(45deg, #333 0, #333 2px, #2a2a2a 2px, #2a2a2a 10px);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .photo-modal-body .modal-img span { font-size: 48px; opacity: .2; }
+  .photo-modal-foot { padding: 12px 16px; border-top: 1px solid #44403C; display: flex; gap: 10px; flex-wrap: wrap; }
 
-  #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
+  .ai-drawer {
+    position: fixed; right: 16px; bottom: 16px; width: min(380px, calc(100vw - 32px)); max-height: min(420px, 55vh);
+    background: #fff; border: 2px solid var(--gold); border-radius: 2px; box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    z-index: 400; display: flex; flex-direction: column; transform: translateY(calc(100% + 40px));
+    transition: transform .35s cubic-bezier(.22,1,.36,1); overflow: hidden;
+  }
+  .ai-drawer.open { transform: translateY(0); }
+  .ai-drawer-head {
+    padding: 10px 14px; background: var(--navy-deep); color: #FAFAF9; display: flex;
+    align-items: center; justify-content: space-between; border-bottom: 2px solid var(--gold);
+  }
+  .ai-drawer-head h3 { font-size: 12.5px; font-weight: 700; }
+  .ai-drawer-head .drawer-phase { font-size: 10px; color: var(--gold); font-family: 'IBM Plex Mono', monospace; }
+  .ai-drawer-body { flex: 1; overflow-y: auto; padding: 12px 14px; background: var(--bg-soft); }
+  .finding-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 2px; padding: 12px; margin-bottom: 8px;
+    opacity: 0; transform: translateY(6px);
+  }
+  .finding-card.in { animation: findingIn .4s ease forwards; }
+  @keyframes findingIn { to { opacity: 1; transform: none; } }
+  .finding-card .fc-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+  .finding-card .fc-zone { font-size: 10px; color: var(--gray); font-weight: 700; font-family: 'IBM Plex Mono', monospace; }
+  .finding-card .fc-issue { font-size: 12px; font-weight: 700; margin-bottom: 6px; line-height: 1.6; }
+  .finding-card .fc-fix { font-size: 11px; color: var(--gray); background: var(--bg-soft); padding: 8px 10px; line-height: 1.7; }
+  .finding-card .fc-fix b { display: block; font-size: 10px; color: var(--teal); margin-bottom: 3px; }
+  .ai-summary-band {
+    background: var(--pri-bg); border: 1px solid #FDE68A; border-radius: 2px; padding: 10px 12px;
+    font-size: 11.5px; color: var(--pri-deep); font-weight: 700; margin-top: 6px;
+  }
+  .draft-box {
+    border: 1px solid var(--line); border-radius: 2px; background: #FAFAF9; padding: 10px 12px; min-height: 100px;
+    font-size: 12px; line-height: 1.85; white-space: pre-wrap; color: var(--ink);
+  }
+  .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--gold); vertical-align: text-bottom; animation: blink .8s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .draft-label { font-size: 10.5px; font-weight: 700; color: var(--gray); margin: 10px 0 5px; }
+  .draft-label:first-child { margin-top: 0; }
+  .btn-approve-draft {
+    width: 100%; margin-top: 10px; background: var(--ink); color: #fff; border: none; padding: 10px;
+    border-radius: 2px; font-weight: 700; font-size: 12px;
+  }
+  .btn-approve-draft:disabled { opacity: .55; }
+  .scan-box { text-align: center; padding: 20px 10px; }
+  .scan-spinner {
+    width: 36px; height: 36px; border-radius: 50%; border: 3px solid var(--line);
+    border-top-color: var(--gold); animation: spin .8s linear infinite; margin: 0 auto 12px;
+  }
+  .scan-text { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .scan-photo { font-size: 11px; color: var(--gray); margin-top: 8px; }
+  .btn-skip { font-size: 11px; color: var(--gray); background: none; border: 1px solid var(--line); padding: 5px 10px; border-radius: 2px; margin-top: 10px; }
+  .complete-banner {
+    background: var(--teal-bg); color: var(--teal); border-radius: 2px; padding: 10px 12px; font-size: 12px;
+    font-weight: 700; display: flex; align-items: center; gap: 8px;
+  }
+
+  #toastHost { position: fixed; bottom: 20px; left: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
   .toast {
-    background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 2px; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
+    background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 2px; font-size: 12.5px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25); animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
   }
   @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
   @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
@@ -440,7 +465,7 @@
   .komon-cta h2 em { font-style: normal; color: var(--gold); }
   .komon-cta p.lead { font-size: 14.5px; color: #D6D3D1; margin-bottom: 32px; line-height: 1.9; }
   .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
-  .btn { display: inline-block; padding: 15px 34px; border-radius: 2px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s, transform .1s; }
+  .btn { display: inline-block; padding: 15px 34px; border-radius: 2px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s; }
   .btn:hover { opacity: .87; }
   .btn-gold { background: var(--gold); color: var(--navy-deep); }
   .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
@@ -448,39 +473,28 @@
   .komon-cta .cta-foot a { color: #D6D3D1; }
   .komon-cta .cta-foot a:hover { color: #fff; }
 
-  .mobile-nav-overlay { display: none; }
   @media (max-width: 900px) {
-    .grid-2col { grid-template-columns: 1fr; }
-    .detail-grid { grid-template-columns: 1fr; }
-    .kpi-grid { grid-template-columns: 1fr 1fr; }
-    .photo-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 780px) {
-    .hamburger-btn { display: flex; }
-    .sidebar {
-      position: fixed; top: 44px; left: 0; bottom: 0; height: auto; z-index: 300; transform: translateX(-100%);
-      transition: transform .25s ease; box-shadow: 20px 0 60px rgba(0,0,0,.3); width: 240px;
-    }
-    .sidebar.open { transform: translateX(0); }
-    .mobile-nav-overlay.open { display: block; position: fixed; inset: 44px 0 0 0; background: rgba(0,0,0,.4); z-index: 290; }
-    .app-header { padding: 0 14px; gap: 8px; }
-    .header-search { display: none; }
-    .main-scroll { padding: 18px 14px 40px; }
-    .search-box { width: 100%; margin-left: 0; }
-    .search-box input { width: 100%; }
-    .toolbar { flex-direction: column; align-items: stretch; }
+    .main-split { grid-template-columns: 1fr; grid-template-rows: 42vh auto; }
+    .workspace.reconcile-mode .main-split { min-height: 38vh; max-height: none; }
+    .map-pane { border-right: none; border-bottom: 2px solid var(--gold); }
+    .nav-segments { justify-content: flex-start; overflow-x: auto; }
+    .nav-seg { padding: 6px 12px; font-size: 11.5px; }
+    .top-date { display: none !important; }
+    .menu-btn { display: flex; }
+    .user-btn .u-label { display: none; }
+    .film-card { flex: 0 0 170px; }
+    .ai-drawer { right: 8px; bottom: 8px; width: calc(100vw - 16px); }
     .komon-cta h2 { font-size: 23px; }
     .komon-cta { padding: 56px 18px 32px; }
   }
   @media (max-width: 480px) {
-    .kpi-grid { grid-template-columns: 1fr; }
     table.data-table thead { display: none; }
     table.data-table, table.data-table tbody, table.data-table tr, table.data-table td { display: block; width: 100%; }
-    table.data-table tbody tr { border-bottom: 1px solid var(--line); padding: 12px 14px; }
-    table.data-table td { border-bottom: none; padding: 3px 0; }
+    table.data-table tbody tr { border-bottom: 1px solid var(--line); padding: 10px 12px; }
+    table.data-table td { border-bottom: none; padding: 2px 0; }
     table.data-table td.num-cell { text-align: left; }
-    table.data-table td::before { content: attr(data-label); display: inline-block; min-width: 76px; font-size: 10.5px; color: var(--gray-soft); font-weight: 700; }
-    .photo-grid { grid-template-columns: 1fr; }
+    table.data-table td::before { content: attr(data-label); display: inline-block; min-width: 72px; font-size: 10px; color: var(--gray-soft); font-weight: 700; }
+    .film-card { flex: 0 0 150px; min-height: 140px; }
   }
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
@@ -521,187 +535,115 @@
 </div>
 
 <div id="view-app">
-  <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleSidebar(false)"></div>
-  <div class="app-frame">
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand"><span class="k">GENBA</span><span class="tag-en">SITE OS</span></div>
-      <nav class="sidebar-nav" id="sidebarNav">
-        <button class="nav-btn" data-nav="dashboard" onclick="go('dashboard')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
-          ダッシュボード
-        </button>
-        <button class="nav-btn" data-nav="sites" onclick="go('sites')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
-          現場一覧
-        </button>
-        <button class="nav-btn" data-nav="reconcile" onclick="go('reconcile')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-          出来高突合
-        </button>
-        <button class="nav-btn" data-nav="settings" onclick="go('settings')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l1.9-1.5-2-3.4-2.3.7a7.6 7.6 0 0 0-2.6-1.5L14 2h-4l-.4 2.8a7.6 7.6 0 0 0-2.6 1.5l-2.3-.7-2 3.4L4.6 10.5a7.6 7.6 0 0 0 0 3L2.7 15l2 3.4 2.3-.7c.77.66 1.65 1.17 2.6 1.5L10 22h4l.4-2.8c.95-.33 1.83-.84 2.6-1.5l2.3.7 2-3.4Z"/></svg>
-          設定
-        </button>
-      </nav>
-      <div class="sidebar-foot">
-        <div class="sidebar-user">
-          <div class="avatar">太</div>
-          <div><div class="u-name">デモ 太郎</div><div class="u-role">株式会社サンコウ工務店</div></div>
-        </div>
-        <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
-      </div>
-    </aside>
-
-    <div class="main-col">
-      <header class="app-header">
-        <button class="hamburger-btn" onclick="toggleSidebar()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        </button>
-        <h1 class="view-name" id="viewNameLabel">ダッシュボード</h1>
-        <div class="header-search">
-          <div class="header-search-inner">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-            <input type="text" placeholder="現場名・住所を検索（見た目のみ）" disabled>
-          </div>
-        </div>
-        <div class="header-actions">
-          <div class="dropdown-wrap">
-            <button class="icon-btn" onclick="toggleDropdown('notifPanel')">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-              <span class="notif-badge" id="notifBadgeCount">3</span>
-            </button>
-            <div class="dropdown-panel" id="notifPanel">
-              <div class="dropdown-head">通知</div>
-              <div id="notifList"></div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main class="main-scroll">
-        <section class="view" id="view-dashboard">
-          <div class="view-head">
-            <div><h2>ダッシュボード</h2><p class="lead">2026年7月18日時点のサマリーです（サンプルデータ）</p></div>
-          </div>
-          <div class="kpi-grid" id="kpiGrid"></div>
-          <div class="grid-2col">
-            <div class="panel">
-              <h3>要対応の現場</h3>
-              <p class="panel-note">安全指摘・日報未提出の現場を抽出しています</p>
-              <div class="task-list" id="taskList"></div>
-            </div>
-            <div class="panel">
-              <h3>最近のアクティビティ</h3>
-              <p class="panel-note">直近の現場操作履歴（サンプル）</p>
-              <div class="timeline" id="activityTimeline"></div>
-            </div>
-          </div>
-          <div class="panel">
-            <h3>進行中現場の進捗</h3>
-            <p class="panel-note">主要現場の工程進捗率（サンプル）</p>
-            <div id="progressChart"></div>
-          </div>
-        </section>
-
-        <section class="view" id="view-sites">
-          <div class="view-head">
-            <div><h2>現場一覧</h2><p class="lead">全<span id="sitesTotalCount">0</span>件の現場</p></div>
-          </div>
-          <div class="toolbar">
-            <div class="tab-row" id="statusTabRow"></div>
-            <div class="search-box">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-              <input type="text" id="siteSearchInput" placeholder="現場名・住所で検索" oninput="renderSitesTable()">
-            </div>
-          </div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr><th>現場名</th><th>種別</th><th>住所</th><th>所長</th><th>進捗</th><th>更新日</th><th>ステータス</th></tr>
-              </thead>
-              <tbody id="sitesTbody"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="view" id="view-site-detail">
-          <a href="#sites" class="detail-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>
-            現場一覧へ戻る
-          </a>
-          <div class="detail-head">
-            <div>
-              <h2 id="detailTitle">現場名</h2>
-              <p class="sub" id="detailSub">現場番号 / 住所</p>
-            </div>
-            <span class="badge" id="detailStatusBadge"></span>
-          </div>
-          <div class="detail-grid">
-            <div class="photo-board-wrap">
-              <div class="photo-toolbar">
-                <span class="pt-label">現場写真ボード</span>
-                <span class="pt-label mono" id="photoDateLabel">2026-07-18 撮影分</span>
-              </div>
-              <div class="photo-grid" id="photoGrid"></div>
-            </div>
-            <div class="side-panel">
-              <div class="side-tabs" id="sideTabs">
-                <button class="side-tab-btn active" data-tab="inspect" onclick="switchSideTab('inspect')">AI点検</button>
-                <button class="side-tab-btn" data-tab="report" onclick="switchSideTab('report')">日報下書き</button>
-                <button class="side-tab-btn" data-tab="info" onclick="switchSideTab('info')">基本情報</button>
-              </div>
-              <div class="side-tab-body">
-                <div class="side-tab-pane active" id="pane-inspect"></div>
-                <div class="side-tab-pane" id="pane-report"></div>
-                <div class="side-tab-pane" id="pane-info"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="view" id="view-reconcile">
-          <div class="view-head">
-            <div><h2>出来高突合</h2><p class="lead">請求書の数量と現場記録・写真を照合します</p></div>
-          </div>
-          <div class="reconcile-band">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:0 0 auto;margin-top:2px;"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
-            <span>AIが請求明細と現場写真・日報の数量を突合し、差異がある行をハイライトします。最終承認は担当者が行います。</span>
-          </div>
-          <div class="toolbar">
-            <div class="tab-row" id="reconcileSiteTabs"></div>
-          </div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr><th>工種 / 品目</th><th>請求数量</th><th>現場記録</th><th>差異</th><th>根拠写真</th><th>判定</th></tr>
-              </thead>
-              <tbody id="reconcileTbody"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="view" id="view-settings">
-          <div class="view-head">
-            <div><h2>設定</h2><p class="lead">メンバー権限・AI点検観点・通知の設定です（見た目のみ動作します）</p></div>
-          </div>
-          <div class="settings-section">
-            <h3>メンバーと権限</h3>
-            <p class="sec-note">組織内のメンバーとロールを管理します</p>
-            <div id="memberList"></div>
-          </div>
-          <div class="settings-section">
-            <h3>AI点検設定</h3>
-            <p class="sec-note">AIが現場写真を点検する際にチェックする観点です</p>
-            <div id="inspectToggleList"></div>
-          </div>
-          <div class="settings-section">
-            <h3>通知設定</h3>
-            <p class="sec-note">安全指摘・日報未提出の通知タイミングです</p>
-            <div id="notifToggleList"></div>
-          </div>
-        </section>
-      </main>
+  <header class="top-bar">
+    <div class="top-brand"><span class="k">GENBA</span><span class="tag-en">SITE OS</span></div>
+    <nav class="nav-segments" id="navSegments">
+      <button class="nav-seg" data-route="patrol" onclick="go('patrol')">今日の巡回</button>
+      <button class="nav-seg" data-route="map" onclick="go('map')">現場マップ</button>
+      <button class="nav-seg" data-route="reconcile" onclick="go('reconcile')">出来高</button>
+    </nav>
+    <div class="top-actions">
+      <span class="top-date mono" id="topDateLabel">2026-07-18</span>
+      <button class="menu-btn" id="menuBtn" onclick="toggleUserDrawer()" aria-label="メニュー">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <button class="user-btn" onclick="toggleUserDrawer()">
+        <span class="avatar">太</span>
+        <span class="u-label">デモ 太郎</span>
+      </button>
     </div>
+  </header>
+
+  <div class="user-drawer-overlay" id="userOverlay" onclick="toggleUserDrawer(false)"></div>
+  <aside class="user-drawer" id="userDrawer">
+    <div class="u-name">デモ 太郎</div>
+    <div class="u-role">株式会社サンコウ工務店</div>
+    <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+  </aside>
+
+  <div class="workspace" id="workspace">
+    <div class="main-split">
+      <section class="map-pane">
+        <div class="map-head">
+          <h2 id="mapTitle">東京〜神奈川エリア</h2>
+          <span class="site-chip mono" id="selectedSiteChip">—</span>
+        </div>
+        <div class="map-body">
+          <div class="map-svg-wrap" id="mapSvgHost"></div>
+          <div class="map-legend">
+            <span><i style="background:var(--safe)"></i>安全</span>
+            <span><i style="background:var(--hazard)"></i>指摘あり</span>
+          </div>
+        </div>
+        <div class="patrol-panel" id="patrolPanel">
+          <div class="patrol-panel-head">本日の巡回ルート — 佐藤 誠</div>
+          <ul class="patrol-route" id="patrolRoute"></ul>
+        </div>
+      </section>
+
+      <section class="film-pane">
+        <div class="film-head">
+          <div>
+            <h2 id="filmSiteName">現場を選択</h2>
+            <div class="film-meta" id="filmSiteMeta">地図のピンをクリック</div>
+          </div>
+          <div class="film-actions" id="filmActions">
+            <button class="btn-ai-run" id="btnAiInspect" onclick="startAiInspect()" disabled>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3"/></svg>
+              AIで写真点検
+            </button>
+            <button class="btn-ghost" onclick="openAiDrawer()">AIドロワー</button>
+          </div>
+        </div>
+        <div class="filmstrip-wrap" id="filmstrip"></div>
+        <div class="film-detail-bar" id="filmDetailBar">写真をクリックすると拡大表示・AI点検ができます。</div>
+      </section>
+    </div>
+
+    <section class="reconcile-section" id="reconcileSection">
+      <div class="reconcile-head">
+        <h2>出来高突合</h2>
+        <span class="mono" style="font-size:11px;color:var(--gray-soft);">請求 vs 現場記録</span>
+      </div>
+      <div class="reconcile-band">写真根拠付きで請求数量と現場記録を突合。差異がある行は要確認としてハイライトされます。</div>
+      <div class="tab-chips" id="reconcileSiteTabs"></div>
+      <div class="reconcile-table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>工種</th><th>請求</th><th>現場記録</th><th>差異</th><th>根拠写真</th><th>判定</th>
+            </tr>
+          </thead>
+          <tbody id="reconcileTbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="photo-modal-overlay" id="photoModal" onclick="closePhotoModal(event)">
+  <div class="photo-modal" onclick="event.stopPropagation()">
+    <div class="photo-modal-head">
+      <h3 id="modalTitle">PHOTO</h3>
+      <button class="modal-close" onclick="closePhotoModal()" aria-label="閉じる">✕</button>
+    </div>
+    <div class="photo-modal-body" id="modalBody">
+      <div class="modal-img" id="modalImg"><span>📷</span></div>
+    </div>
+    <div class="photo-modal-foot">
+      <button class="btn-ai-run" id="modalAiBtn" onclick="startAiInspectFromModal()">この写真をAI点検</button>
+      <button class="btn-ghost" onclick="closePhotoModal()">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<div class="ai-drawer" id="aiDrawer">
+  <div class="ai-drawer-head">
+    <h3>AI点検・日報</h3>
+    <span class="drawer-phase" id="drawerPhase">待機中</span>
+  </div>
+  <div class="ai-drawer-body" id="aiDrawerBody">
+    <p style="font-size:12px;color:var(--gray);line-height:1.8;">「AIで写真点検」を実行すると、指摘が写真上に表示され、是正指示・日報がここに生成されます。</p>
   </div>
 </div>
 
@@ -722,13 +664,16 @@
 
 <script>
 
-var TODAY = new Date(2026, 6, 18);
 var TODAY_STR = '2026-07-18';
+var loggedIn = false;
+var currentView = 'map';
+var selectedSiteId = 'g-001';
+var currentReconcileSite = 'g-001';
+var selectedPhotoIdx = null;
+var aiInspectState = null;
+var reportState = null;
+var g001Runtime = { approvedReport: false };
 
-function fmtDate(dateStr) {
-  var d = new Date(dateStr + 'T00:00:00');
-  return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
-}
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, function (c) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -744,89 +689,72 @@ function showToast(msg) {
 }
 
 var STATUS_LABEL = {
-  active: '施工中',
-  inspection: '点検待ち',
-  completed: '完工',
-  delayed: '遅延'
+  active: '施工中', inspection: '点検待ち', completed: '完工', delayed: '遅延'
 };
 
 var SITES = [
   { id: 'g-001', name: '港区麻布台改修工事', type: '改修', address: '東京都港区麻布台1-2-3', manager: '佐藤 誠', updated: '2026-07-18', status: 'inspection',
     progress: 62, siteNo: 'GNB-2026-014', client: '麻布台プロパティ株式会社', start: '2026-05-10', end: '2026-10-31',
-    workers: 14, safetyOpen: 3, reportPending: true, photos: ['足場区画A', '外壁養生', '資材置場', '共用部', '配管室', '搬入路'] },
+    workers: 14, safetyOpen: 3, reportPending: true, photos: ['足場区画A', '外壁養生', '資材置場', '共用部', '配管室', '搬入路'],
+    mapX: 68, mapY: 42 },
 
   { id: 'g-002', name: '相模原市新築住宅', type: '新築', address: '神奈川県相模原市中央区3-8-12', manager: '田中 健', updated: '2026-07-17', status: 'active',
     progress: 38, siteNo: 'GNB-2026-009', client: '個人（施主）', start: '2026-04-01', end: '2026-12-20',
-    workers: 9, safetyOpen: 0, reportPending: false, photos: ['基礎', '型枠', '鉄筋', '外構', '資材', '事務所'] },
+    workers: 9, safetyOpen: 0, reportPending: false, photos: ['基礎', '型枠', '鉄筋', '外構', '資材', '事務所'],
+    mapX: 28, mapY: 38 },
 
   { id: 'g-003', name: '横浜市南区店舗改修', type: '改修', address: '神奈川県横浜市南区2-14-5', manager: '鈴木 美咲', updated: '2026-07-16', status: 'active',
     progress: 71, siteNo: 'GNB-2026-011', client: '南区フード株式会社', start: '2026-06-01', end: '2026-09-15',
-    workers: 7, safetyOpen: 1, reportPending: true, photos: ['店舗内装', '天井', '厨房', '外装', '搬入', '養生'] },
+    workers: 7, safetyOpen: 1, reportPending: true, photos: ['店舗内装', '天井', '厨房', '外装', '搬入', '養生'],
+    mapX: 52, mapY: 72 },
 
   { id: 'g-004', name: '川崎市マンション大規模修繕', type: '修繕', address: '神奈川県川崎市幸区5-1-8', manager: '高橋 一郎', updated: '2026-07-15', status: 'active',
     progress: 45, siteNo: 'GNB-2026-007', client: '川崎マンション管理組合', start: '2026-03-20', end: '2027-01-31',
-    workers: 22, safetyOpen: 2, reportPending: false, photos: ['足場', '外壁', '共用廊下', '屋上', '資材置場', '搬入'] },
+    workers: 22, safetyOpen: 2, reportPending: false, photos: ['足場', '外壁', '共用廊下', '屋上', '資材置場', '搬入'],
+    mapX: 58, mapY: 58 },
 
   { id: 'g-005', name: '世田谷区木造2階建て新築', type: '新築', address: '東京都世田谷区桜丘4-6-2', manager: '伊藤 直樹', updated: '2026-07-14', status: 'active',
     progress: 24, siteNo: 'GNB-2026-016', client: '個人（施主）', start: '2026-06-15', end: '2027-02-28',
-    workers: 6, safetyOpen: 0, reportPending: true, photos: ['基礎', '地組', '型枠', '外構', '資材', '仮設'] },
+    workers: 6, safetyOpen: 0, reportPending: true, photos: ['基礎', '地組', '型枠', '外構', '資材', '仮設'],
+    mapX: 62, mapY: 52 },
 
   { id: 'g-006', name: '調布市倉庫増築工事', type: '増築', address: '東京都調布市深大寺2-11-4', manager: '渡辺 亮', updated: '2026-07-12', status: 'delayed',
     progress: 52, siteNo: 'GNB-2026-005', client: '調布ロジスティクス株式会社', start: '2026-02-01', end: '2026-08-31',
-    workers: 11, safetyOpen: 1, reportPending: true, photos: ['増築部', '鉄骨', '屋根', '搬入路', '資材', '養生'] },
+    workers: 11, safetyOpen: 1, reportPending: true, photos: ['増築部', '鉄骨', '屋根', '搬入路', '資材', '養生'],
+    mapX: 48, mapY: 48 },
 
   { id: 'g-007', name: '八王子市公共施設改修', type: '改修', address: '東京都八王子市本町1-3-7', manager: '中村 恵', updated: '2026-07-10', status: 'completed',
     progress: 100, siteNo: 'GNB-2025-022', client: '八王子市', start: '2025-11-01', end: '2026-07-05',
-    workers: 0, safetyOpen: 0, reportPending: false, photos: ['外観', '内装', '設備', '共用', '搬入', '完了'] },
+    workers: 0, safetyOpen: 0, reportPending: false, photos: ['外観', '内装', '設備', '共用', '搬入', '完了'],
+    mapX: 22, mapY: 55 },
 
   { id: 'g-008', name: '品川区オフィス内装工事', type: '内装', address: '東京都品川区大崎1-2-2', manager: '佐藤 誠', updated: '2026-07-18', status: 'inspection',
     progress: 58, siteNo: 'GNB-2026-018', client: '大崎テック株式会社', start: '2026-05-25', end: '2026-09-30',
-    workers: 8, safetyOpen: 2, reportPending: true, photos: ['OAフロア', '天井', '配線', '会議室', '搬入', '養生'] }
+    workers: 8, safetyOpen: 2, reportPending: true, photos: ['OAフロア', '天井', '配線', '会議室', '搬入', '養生'],
+    mapX: 72, mapY: 55 }
 ];
 
-var ACTIVITY_LOG = [
-  { text: '<b>AI</b>が『港区麻布台改修工事』の現場写真3枚を点検し、安全指摘2件を検出しました', time: '1時間前', color: 'var(--hazard)' },
-  { text: '<b>佐藤 誠</b>が『相模原市新築住宅』の日報を提出しました', time: '3時間前', color: 'var(--teal)' },
-  { text: '<b>田中 健</b>が『川崎市マンション大規模修繕』の出来高を確認しました', time: '昨日 17:40', color: 'var(--gold-deep)' },
-  { text: '<b>システム</b>が『調布市倉庫増築工事』の工程遅延アラートを発報しました', time: '昨日 09:15', color: 'var(--red)' },
-  { text: '<b>鈴木 美咲</b>が『横浜市南区店舗改修』の是正指示を現場へ共有しました', time: '2日前', color: 'var(--gold)' }
-];
-
-var MEMBERS = [
-  { name: 'デモ 太郎', mail: 'demo.taro@sankou-koumuten.example', role: 'admin' },
-  { name: '佐藤 誠', mail: 'sato@sankou-koumuten.example', role: 'site' },
-  { name: '田中 健', mail: 'tanaka@sankou-koumuten.example', role: 'site' },
-  { name: '鈴木 美咲', mail: 'suzuki@sankou-koumuten.example', role: 'member' }
-];
-var ROLE_LABEL = { admin: '管理者', site: '現場所長', member: '事務' };
-
-var INSPECT_TOGGLES = [
-  { label: 'ヘルメット着用', desc: '作業者のヘルメット着用をチェック', on: true },
-  { label: '足場・手すり', desc: '足場の手すり設置状況をチェック', on: true },
-  { label: '資材の置き方', desc: '資材の不正置き・通路占有をチェック', on: true },
-  { label: '養生・養生シート', desc: '養生シートの破れ・固定不良をチェック', on: true },
-  { label: '火気使用', desc: '火気使用時の消火器配置をチェック', on: false },
-  { label: '高所作業', desc: '安全帯の使用状況をチェック', on: true }
-];
-var NOTIF_TOGGLES = [
-  { label: '安全指摘発生時に即時通知', desc: 'AI点検で重要指摘が出た場合', on: true },
-  { label: '日報未提出を17:00に通知', desc: '当日17時時点で未提出の現場', on: true },
-  { label: '出来高差異を週次で通知', desc: '請求と現場記録の差異サマリー', on: true }
+var PATROL_ROUTE = [
+  { time: '08:30', siteId: 'g-001', note: '安全KY・午前作業確認', done: true },
+  { time: '10:15', siteId: 'g-008', note: '内装進捗・配線確認', done: true },
+  { time: '13:00', siteId: 'g-004', note: '外壁塗装・出来高確認', done: false },
+  { time: '15:30', siteId: 'g-003', note: '店舗改修・安全巡回', done: false },
+  { time: '17:00', siteId: 'g-006', note: '増築部・遅延状況ヒアリング', done: false }
 ];
 
 var AI_FINDINGS = [
   { severity: 'high', zone: 'PHOTO-02', photoIdx: 1, anchor: 'photo-1',
     issue: '足場区画Aの手すりが未設置です。高所作業中の墜落リスクがあります。',
-    fix: '作業再開前に手すりを設置し、設置完了写真をアップロードしてください。' },
+    fix: '作業再開前に手すりを設置し、設置完了写真をアップロードしてください。', pinX: 35, pinY: 28 },
   { severity: 'high', zone: 'PHOTO-04', photoIdx: 3, anchor: 'photo-3',
     issue: '共用部付近で作業者2名がヘルメット未着用です。',
-    fix: '全作業者にヘルメット着用を徹底し、KY活動で再確認してください。' },
+    fix: '全作業者にヘルメット着用を徹底し、KY活動で再確認してください。', pinX: 62, pinY: 45 },
   { severity: 'mid', zone: 'PHOTO-03', photoIdx: 2, anchor: 'photo-2',
     issue: '資材置場で合板が通路を占有しています。搬入路の幅が不足しています。',
-    fix: '資材を指定置場へ移動し、搬入路1.2m以上を確保してください。' },
+    fix: '資材を指定置場へ移動し、搬入路1.2m以上を確保してください。', pinX: 48, pinY: 55 },
   { severity: 'low', zone: 'PHOTO-02', photoIdx: 1, anchor: 'photo-1',
     issue: '外壁養生シートの端部固定が一部外れています。',
-    fix: '養生シートの端部を再固定し、風によるはく落防止措置を追加してください。' }
+    fix: '養生シートの端部を再固定し、風によるはく落防止措置を追加してください。', pinX: 72, pinY: 38 }
 ];
 
 var G001_REPORT_TEXT = '【2026年7月18日 作業日報（下書き）】\n\n■ 天候：晴れ　気温32℃\n■ 作業内容\n・外壁改修（3階北面）養生シート補修\n・配管室配管支持金具取付\n・資材置場整理\n\n■ 出勤人数：14名\n■ 使用機械：高所作業車1台、電動工具\n\n■ 安全・品質\n・AI点検により足場手すり未設置・ヘルメット未着用を検出\n・午後にKY活動を実施し、是正指示を現場周知\n\n■ 明日の予定\n・外壁改修（3階南面）継続\n・配管室配管接続\n\n■ 特記事項\n搬入路の資材移動を16:00までに完了予定。';
@@ -850,40 +778,24 @@ var RECONCILE_DATA = {
 
 var SCAN_PHOTOS = ['PHOTO-01 足場区画A', 'PHOTO-02 外壁養生', 'PHOTO-03 資材置場', 'PHOTO-04 共用部', 'PHOTO-05 配管室', 'PHOTO-06 搬入路'];
 
-var VIEW_NAMES = { dashboard: 'ダッシュボード', sites: '現場一覧', reconcile: '出来高突合', settings: '設定' };
-var aiInspectState = null;
-var reportState = null;
-var loggedIn = false;
-var currentStatusFilter = 'all';
-var currentReconcileSite = 'g-001';
-var g001Runtime = { approvedReport: false };
-
 function findSite(id) { return SITES.filter(function (s) { return s.id === id; })[0]; }
-function countByStatus(st) { return SITES.filter(function (s) { return s.status === st; }).length; }
-function activeSites() { return SITES.filter(function (s) { return s.status === 'active' || s.status === 'inspection' || s.status === 'delayed'; }); }
-function totalSafetyOpen() { return SITES.reduce(function (sum, s) { return sum + (s.safetyOpen || 0); }, 0); }
-function reportPendingCount() { return SITES.filter(function (s) { return s.reportPending; }).length; }
-
 function isLoggedIn() { return loggedIn; }
+function pinColor(site) { return (site.safetyOpen || 0) > 0 ? '#F97316' : '#22C55E'; }
 
 function handleRoute() {
   var hash = location.hash.replace('#', '') || 'login';
   if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
   if (hash === 'login') { showLoginScreen(); return; }
   showAppScreen();
-  if (hash.indexOf('site/') === 0) {
-    openSiteDetail(hash.split('/')[1]);
-    setActiveNav(null);
-    return;
-  }
-  var view = ['dashboard', 'sites', 'reconcile', 'settings'].indexOf(hash) >= 0 ? hash : 'dashboard';
+  var view = ['patrol', 'map', 'reconcile'].indexOf(hash) >= 0 ? hash : 'map';
   showView(view);
-  setActiveNav(view);
 }
 
 function showLoginScreen() {
   document.getElementById('view-login').classList.remove('hide');
   document.getElementById('view-app').classList.remove('show');
+  closeAiDrawer();
+  closePhotoModal();
 }
 function showAppScreen() {
   document.getElementById('view-login').classList.add('hide');
@@ -891,33 +803,23 @@ function showAppScreen() {
 }
 
 function showView(name) {
-  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
-  var el = document.getElementById('view-' + name);
-  if (el) el.classList.add('active');
-  document.getElementById('viewNameLabel').textContent = VIEW_NAMES[name] || '現場詳細';
-  if (name === 'dashboard') renderDashboard();
-  if (name === 'sites') renderSitesView();
-  if (name === 'reconcile') renderReconcile();
-  if (name === 'settings') renderSettings();
-  toggleSidebar(false);
-  window.scrollTo({ top: 0, behavior: 'auto' });
-}
-
-function setActiveNav(name) {
-  document.querySelectorAll('.nav-btn').forEach(function (b) {
-    b.classList.toggle('active', b.dataset.nav === name);
+  currentView = name;
+  document.querySelectorAll('.nav-seg').forEach(function (b) {
+    b.classList.toggle('active', b.dataset.route === name);
   });
+  var ws = document.getElementById('workspace');
+  var patrolPanel = document.getElementById('patrolPanel');
+  var reconcileSec = document.getElementById('reconcileSection');
+  ws.classList.toggle('reconcile-mode', name === 'reconcile');
+  patrolPanel.classList.toggle('show', name === 'patrol');
+  reconcileSec.classList.toggle('show', name === 'reconcile');
+  if (name === 'patrol') renderPatrolRoute();
+  if (name === 'reconcile') renderReconcile();
+  renderMap();
+  selectSite(selectedSiteId, false);
 }
 
 function go(name) { location.hash = name; }
-
-window.addEventListener('hashchange', handleRoute);
-window.addEventListener('DOMContentLoaded', function () {
-  renderNotifDropdown();
-  var initialHash = location.hash.replace('#', '');
-  if (initialHash && initialHash !== 'login') loggedIn = true;
-  handleRoute();
-});
 
 function doLogin() {
   var btn = document.getElementById('loginBtn');
@@ -928,227 +830,200 @@ function doLogin() {
     btn.classList.remove('loading');
     btn.disabled = false;
     loggedIn = true;
-    if (location.hash === '#dashboard') handleRoute();
-    else location.hash = 'dashboard';
+    if (location.hash === '#map') handleRoute();
+    else location.hash = 'map';
   }, 800);
 }
+
 function doLogout() {
   loggedIn = false;
   aiInspectState = null;
   reportState = null;
+  toggleUserDrawer(false);
+  closeAiDrawer();
+  closePhotoModal();
   showToast('ログアウトしました');
+  location.hash = 'login';
 }
 
-function toggleSidebar(force) {
-  var sb = document.getElementById('sidebar');
-  var ov = document.getElementById('mobileOverlay');
-  var open = typeof force === 'boolean' ? force : !sb.classList.contains('open');
-  sb.classList.toggle('open', open);
-  ov.classList.toggle('open', open);
+function toggleUserDrawer(force) {
+  var drawer = document.getElementById('userDrawer');
+  var overlay = document.getElementById('userOverlay');
+  var open = typeof force === 'boolean' ? force : !drawer.classList.contains('open');
+  drawer.classList.toggle('open', open);
+  overlay.classList.toggle('open', open);
 }
 
-function toggleDropdown(id) {
-  var el = document.getElementById(id);
-  var willOpen = !el.classList.contains('open');
-  document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
-  if (willOpen) el.classList.add('open');
+function renderMap() {
+  var host = document.getElementById('mapSvgHost');
+  var pins = SITES.map(function (s) {
+    var col = pinColor(s);
+    var sel = s.id === selectedSiteId ? ' selected' : '';
+    var pulse = currentView === 'patrol' && getActivePatrolSiteId() === s.id ? ' pulse' : '';
+    return '<g class="map-pin' + sel + pulse + '" data-id="' + s.id + '" transform="translate(' + s.mapX + ',' + s.mapY + ')" onclick="selectSite(\'' + s.id + '\')">' +
+      '<circle class="pin-dot" r="5.5" fill="' + col + '" stroke="#1C1917" stroke-width="1.5"/>' +
+      '<circle r="10" fill="transparent"/>' +
+      '<text y="-10" text-anchor="middle" fill="#D6D3D1" font-size="4.5" font-family="IBM Plex Sans JP,sans-serif">' + escapeHtml(s.name.slice(0, 6)) + '</text></g>';
+  }).join('');
+
+  host.innerHTML = '<svg viewBox="0 0 100 85" xmlns="http://www.w3.org/2000/svg" aria-label="東京神奈川簡易地図">' +
+    '<rect width="100" height="85" fill="#2A2826"/>' +
+    '<path d="M0 55 Q20 48 35 52 T55 50 T75 58 T100 54 L100 85 L0 85Z" fill="#1E293B" opacity=".85"/>' +
+    '<path d="M8 20 L92 18 L88 78 L12 80Z" fill="none" stroke="#44403C" stroke-width=".6" stroke-dasharray="2 2"/>' +
+    '<text x="50" y="12" text-anchor="middle" fill="#57534E" font-size="5" font-family="IBM Plex Mono,monospace">TOKYO / KANAGAWA</text>' +
+    '<line x1="15" y1="30" x2="85" y2="30" stroke="#44403C" stroke-width=".4"/>' +
+    '<line x1="20" y1="15" x2="20" y2="75" stroke="#44403C" stroke-width=".4"/>' +
+    pins + '</svg>';
 }
-document.addEventListener('click', function (e) {
-  if (!e.target.closest('.dropdown-wrap')) {
-    document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
+
+function getActivePatrolSiteId() {
+  for (var i = 0; i < PATROL_ROUTE.length; i++) {
+    if (!PATROL_ROUTE[i].done) return PATROL_ROUTE[i].siteId;
   }
-});
-
-function renderNotifDropdown() {
-  var items = [
-    { color: 'var(--hazard)', text: '『港区麻布台改修工事』でAI安全指摘2件が未対応です', time: '1時間前' },
-    { color: 'var(--amber)', text: '『品川区オフィス内装工事』の日報が未提出です', time: '今日 17:00予定' },
-    { color: 'var(--red)', text: '『調布市倉庫増築工事』が工程遅延アラート中です', time: '昨日' }
-  ];
-  document.getElementById('notifList').innerHTML = items.map(function (n) {
-    return '<div class="notif-item"><span class="dot" style="background:' + n.color + '"></span><div class="txt">' + escapeHtml(n.text) + '<div class="time">' + escapeHtml(n.time) + '</div></div></div>';
-  }).join('');
-  document.getElementById('notifBadgeCount').textContent = items.length;
+  return PATROL_ROUTE[PATROL_ROUTE.length - 1].siteId;
 }
 
-function kpiCardHtml(label, value, unit, color, sub) {
-  return '<div class="kpi-card"><div class="kpi-label"><span class="kpi-swatch" style="background:' + color + '"></span>' + label + '</div>' +
-    '<div class="kpi-value">' + value + '<span>' + unit + '</span></div><div class="kpi-sub">' + sub + '</div></div>';
-}
-
-function renderDashboard() {
-  document.getElementById('kpiGrid').innerHTML = [
-    kpiCardHtml('進行中現場', activeSites().length, '件', 'var(--teal)', '施工中・点検待ち・遅延'),
-    kpiCardHtml('安全指摘（未対応）', totalSafetyOpen(), '件', 'var(--hazard)', 'AI点検・手動指摘の合計'),
-    kpiCardHtml('日報未提出', reportPendingCount(), '件', 'var(--gold-deep)', '本日17:00締切'),
-    kpiCardHtml('出来高差異', 3, '行', 'var(--red)', '要確認の突合行')
-  ].join('');
-
-  var tasks = [];
-  SITES.filter(function (s) { return s.safetyOpen > 0; }).forEach(function (s) {
-    tasks.push({ s: s, label: '安全指摘 ' + s.safetyOpen + '件', badge: 'badge-inspection' });
-  });
-  SITES.filter(function (s) { return s.reportPending; }).slice(0, 3).forEach(function (s) {
-    tasks.push({ s: s, label: '日報未提出', badge: 'badge-pending' });
-  });
-  document.getElementById('taskList').innerHTML = tasks.slice(0, 6).map(function (t) {
-    return '<a class="task-row" href="#site/' + t.s.id + '">' +
-      '<span class="badge ' + t.badge + '">' + (t.badge === 'badge-pending' ? '日報待ち' : STATUS_LABEL[t.s.status]) + '</span>' +
-      '<span class="t-main"><div class="t-name">' + escapeHtml(t.s.name) + '</div><div class="t-sub">' + escapeHtml(t.s.address) + ' ・ ' + t.label + '</div></span>' +
-      '<span class="t-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></span></a>';
-  }).join('') || '<p style="font-size:12.5px;color:var(--gray-soft);">現在、要対応の現場はありません。</p>';
-
-  document.getElementById('activityTimeline').innerHTML = ACTIVITY_LOG.map(function (a) {
-    return '<div class="timeline-item"><span class="timeline-dot" style="background:' + a.color + '"></span>' +
-      '<div><div class="timeline-text">' + a.text + '</div><div class="timeline-date">' + a.time + '</div></div></div>';
-  }).join('');
-
-  var progressSites = SITES.filter(function (s) { return s.status !== 'completed'; }).slice(0, 5);
-  document.getElementById('progressChart').innerHTML = progressSites.map(function (s) {
-    return '<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">' +
-      '<span style="width:180px;flex:0 0 auto;font-size:12px;font-weight:700;color:var(--gray);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escapeHtml(s.name) + '</span>' +
-      '<div class="progress-bar-wrap" style="flex:1;"><div class="progress-track"><div class="progress-fill" style="width:' + s.progress + '%"></div></div>' +
-      '<span class="mono" style="font-size:12px;font-weight:700;width:42px;text-align:right;">' + s.progress + '%</span></div></div>';
+function renderPatrolRoute() {
+  var activeId = getActivePatrolSiteId();
+  document.getElementById('patrolRoute').innerHTML = PATROL_ROUTE.map(function (stop) {
+    var s = findSite(stop.siteId);
+    if (!s) return '';
+    var active = stop.siteId === activeId && !stop.done ? ' active' : '';
+    var done = stop.done ? ' done' : '';
+    var badge = s.safetyOpen > 0
+      ? '<span class="patrol-badge risk">' + s.safetyOpen + '件</span>'
+      : '<span class="patrol-badge ok">OK</span>';
+    return '<li class="patrol-stop' + active + done + '" data-site="' + stop.siteId + '" onclick="selectPatrolStop(\'' + stop.siteId + '\')">' +
+      '<span class="patrol-time">' + stop.time + '</span>' +
+      '<div class="patrol-info"><div class="p-name">' + escapeHtml(s.name) + '</div><div class="p-sub">' + escapeHtml(stop.note) + '</div></div>' +
+      badge + '</li>';
   }).join('');
 }
 
-var STATUS_TABS = [
-  { key: 'all', label: 'すべて' },
-  { key: 'active', label: '施工中' },
-  { key: 'inspection', label: '点検待ち' },
-  { key: 'delayed', label: '遅延' },
-  { key: 'completed', label: '完工' }
-];
-
-function renderSitesView() {
-  document.getElementById('sitesTotalCount').textContent = SITES.length;
-  document.getElementById('statusTabRow').innerHTML = STATUS_TABS.map(function (t) {
-    var count = t.key === 'all' ? SITES.length : countByStatus(t.key);
-    return '<button class="tab-chip ' + (currentStatusFilter === t.key ? 'active' : '') + '" onclick="setStatusFilter(\'' + t.key + '\')">' +
-      t.label + '<span class="cnt">' + count + '</span></button>';
-  }).join('');
-  renderSitesTable();
-}
-function setStatusFilter(key) {
-  currentStatusFilter = key;
-  renderSitesView();
-}
-function renderSitesTable() {
-  var q = (document.getElementById('siteSearchInput').value || '').trim().toLowerCase();
-  var rows = SITES.filter(function (s) {
-    if (currentStatusFilter !== 'all' && s.status !== currentStatusFilter) return false;
-    if (!q) return true;
-    return s.name.toLowerCase().indexOf(q) >= 0 || s.address.toLowerCase().indexOf(q) >= 0;
-  });
-  var tbody = document.getElementById('sitesTbody');
-  if (!rows.length) {
-    tbody.innerHTML = '<tr class="empty-row"><td colspan="7">該当する現場がありません。</td></tr>';
-    return;
-  }
-  tbody.innerHTML = rows.map(function (s) {
-    var alert = s.safetyOpen > 0 || s.reportPending;
-    return '<tr class="' + (alert ? 'row-alert' : '') + '" onclick="location.hash=\'site/' + s.id + '\'">' +
-      '<td class="name-cell" data-label="現場名">' + escapeHtml(s.name) + '</td>' +
-      '<td data-label="種別">' + escapeHtml(s.type) + '</td>' +
-      '<td data-label="住所">' + escapeHtml(s.address) + '</td>' +
-      '<td data-label="所長">' + escapeHtml(s.manager) + '</td>' +
-      '<td data-label="進捗"><div class="progress-bar-wrap"><div class="progress-track"><div class="progress-fill" style="width:' + s.progress + '%"></div></div><span class="mono">' + s.progress + '%</span></div></td>' +
-      '<td data-label="更新日">' + fmtDate(s.updated) + '</td>' +
-      '<td data-label="ステータス"><span class="badge badge-' + s.status + '">' + STATUS_LABEL[s.status] + '</span></td></tr>';
-  }).join('');
+function selectPatrolStop(siteId) {
+  selectSite(siteId);
+  if (currentView === 'patrol') renderPatrolRoute();
 }
 
-function openSiteDetail(id) {
+function selectSite(id, updateHash) {
+  if (updateHash === undefined) updateHash = true;
   var s = findSite(id);
-  if (!s) { location.hash = 'sites'; return; }
-  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
-  document.getElementById('view-site-detail').classList.add('active');
-  document.getElementById('viewNameLabel').textContent = '現場詳細';
-  document.getElementById('detailTitle').textContent = s.name;
-  document.getElementById('detailSub').textContent = s.siteNo + ' / ' + s.address;
-  var badge = document.getElementById('detailStatusBadge');
-  badge.className = 'badge badge-' + s.status;
-  badge.textContent = STATUS_LABEL[s.status];
-  document.getElementById('photoDateLabel').textContent = TODAY_STR + ' 撮影分';
-  renderPhotoGrid(s);
-  if (s.id === 'g-001') {
-    setupInspectPane();
-    setupReportPane();
-  } else {
-    document.getElementById('pane-inspect').innerHTML = genericAiHtml(s);
-    document.getElementById('pane-report').innerHTML = genericAiHtml(s);
-  }
-  renderInfoTab(s);
-  switchSideTab('inspect');
-  toggleSidebar(false);
-  window.scrollTo({ top: 0, behavior: 'auto' });
+  if (!s) return;
+  selectedSiteId = id;
+  document.getElementById('selectedSiteChip').textContent = s.siteNo;
+  document.getElementById('filmSiteName').textContent = s.name;
+  document.getElementById('filmSiteMeta').textContent = s.address + ' ・ ' + STATUS_LABEL[s.status] + ' ・ 進捗' + s.progress + '%';
+  document.getElementById('topDateLabel').textContent = TODAY_STR;
+  var canAi = s.id === 'g-001';
+  document.getElementById('btnAiInspect').disabled = !canAi;
+  renderMap();
+  renderFilmstrip(s);
+  if (currentView === 'patrol') renderPatrolRoute();
+  if (aiInspectState && aiInspectState.siteId !== s.id) resetAiInspect();
 }
 
-function renderPhotoGrid(s) {
-  document.getElementById('photoGrid').innerHTML = s.photos.map(function (label, i) {
-    return '<div class="photo-cell" id="photo-' + i + '"><span class="ph-label">PHOTO-' + String(i + 1).padStart(2, '0') + ' ' + escapeHtml(label) + '</span></div>';
+function renderFilmstrip(s) {
+  var html = s.photos.map(function (label, i) {
+    var pid = 'photo-' + i;
+    var findings = s.id === 'g-001' ? AI_FINDINGS.filter(function (f) { return f.photoIdx === i; }) : [];
+    var badgeHtml = findings.map(function (f) {
+      return '<span class="risk-badge ' + f.severity + '" id="badge-' + i + '-' + f.severity + '">' +
+        (f.severity === 'high' ? '重要' : f.severity === 'mid' ? '中' : '低') + '</span>';
+    }).join('');
+    var pinHtml = findings.map(function (f, fi) {
+      return '<span class="risk-pin ' + f.severity + '" id="pin-' + i + '-' + fi + '" style="left:' + f.pinX + '%;top:' + f.pinY + '%"></span>';
+    }).join('');
+    return '<article class="film-card" id="' + pid + '" onclick="openPhoto(' + i + ')">' +
+      '<div class="film-thumb">' + pinHtml + badgeHtml + '<span class="ph-icon">🏗</span></div>' +
+      '<div class="film-foot"><div class="ph-label">PHOTO-' + String(i + 1).padStart(2, '0') + '</div>' +
+      '<div class="ph-zone">' + escapeHtml(label) + '</div></div></article>';
   }).join('');
+  document.getElementById('filmstrip').innerHTML = html;
+  document.getElementById('filmDetailBar').innerHTML = '<b>' + escapeHtml(s.name) + '</b> — 写真' + s.photos.length + '枚。クリックで拡大・AI点検。';
 }
 
-function genericAiHtml(s) {
-  var featured = findSite('g-001');
-  return '<div class="ai-start-box"><p>AI写真点検〜安全指摘〜日報下書き生成のフル体験は「' + escapeHtml(featured.name) + '」でご覧いただけます。</p>' +
-    '<a href="#site/g-001" class="btn-ai-run">g-001のフル体験を見る</a></div>';
+function openPhoto(idx) {
+  var s = findSite(selectedSiteId);
+  if (!s) return;
+  selectedPhotoIdx = idx;
+  document.querySelectorAll('.film-card').forEach(function (c) { c.classList.remove('selected'); });
+  var card = document.getElementById('photo-' + idx);
+  if (card) { card.classList.add('selected'); card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); }
+  document.getElementById('modalTitle').textContent = 'PHOTO-' + String(idx + 1).padStart(2, '0') + ' ' + s.photos[idx];
+  var modalBody = document.getElementById('modalBody');
+  modalBody.innerHTML = '<div class="modal-img" id="modalImg"><span>🏗</span></div>';
+  var canAi = s.id === 'g-001';
+  document.getElementById('modalAiBtn').disabled = !canAi;
+  document.getElementById('photoModal').classList.add('open');
 }
 
-function renderInfoTab(s) {
-  document.getElementById('pane-info').innerHTML =
-    '<table class="meta-table"><tbody>' +
-    '<tr><th>現場番号</th><td class="mono">' + escapeHtml(s.siteNo) + '</td></tr>' +
-    '<tr><th>発注者</th><td>' + escapeHtml(s.client) + '</td></tr>' +
-    '<tr><th>現場所長</th><td>' + escapeHtml(s.manager) + '</td></tr>' +
-    '<tr><th>工期</th><td>' + fmtDate(s.start) + ' 〜 ' + fmtDate(s.end) + '</td></tr>' +
-    '<tr><th>本日の出勤</th><td>' + s.workers + '名</td></tr>' +
-    '<tr><th>進捗率</th><td>' + s.progress + '%</td></tr>' +
-    '<tr><th>安全指摘</th><td>' + (s.safetyOpen ? s.safetyOpen + '件（未対応）' : 'なし') + '</td></tr>' +
-    '</tbody></table>';
+function closePhotoModal(e) {
+  if (e && e.target && e.target.id !== 'photoModal') return;
+  document.getElementById('photoModal').classList.remove('open');
+  selectedPhotoIdx = null;
 }
 
-function switchSideTab(tab) {
-  document.querySelectorAll('.side-tab-btn').forEach(function (b) { b.classList.toggle('active', b.dataset.tab === tab); });
-  document.querySelectorAll('.side-tab-pane').forEach(function (p) { p.classList.remove('active'); });
-  var el = document.getElementById('pane-' + tab);
-  if (el) el.classList.add('active');
+function openAiDrawer() {
+  document.getElementById('aiDrawer').classList.add('open');
 }
 
-function setupInspectPane() {
-  aiInspectState = { phase: 'idle', scanTimer: null, cardTimer: null, runId: null };
-  renderInspectIdle();
+function closeAiDrawer() {
+  document.getElementById('aiDrawer').classList.remove('open');
 }
-function renderInspectIdle() {
-  document.getElementById('pane-inspect').innerHTML =
-    '<div class="ai-start-box">' +
-    '<div class="ai-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4.2"/></svg></div>' +
-    '<p>AIが現場写真6枚をスキャンし、安全上の指摘と是正文案を提示します。<br>実行には数秒かかります。</p>' +
-    '<button class="btn-ai-run" onclick="startAiInspect()">AIで写真を点検</button></div>';
+
+function setDrawerPhase(text) {
+  document.getElementById('drawerPhase').textContent = text;
+}
+
+function resetAiInspect() {
+  if (aiInspectState) {
+    if (aiInspectState.scanTimer) clearTimeout(aiInspectState.scanTimer);
+    if (aiInspectState.cardTimer) clearTimeout(aiInspectState.cardTimer);
+  }
+  if (reportState) clearReportTimers();
+  aiInspectState = null;
+  reportState = null;
   clearPhotoFlags();
+  setDrawerPhase('待機中');
+  document.getElementById('aiDrawerBody').innerHTML =
+    '<p style="font-size:12px;color:var(--gray);line-height:1.8;">「AIで写真点検」を実行すると、指摘が写真上に表示され、是正指示・日報がここに生成されます。</p>';
 }
 
 function clearPhotoFlags() {
-  document.querySelectorAll('.photo-cell').forEach(function (el) {
+  document.querySelectorAll('.film-card').forEach(function (el) {
     el.classList.remove('scanning', 'flagged');
+  });
+  document.querySelectorAll('.risk-badge, .risk-pin').forEach(function (el) {
+    el.classList.remove('show');
   });
 }
 
+function startAiInspectFromModal() {
+  closePhotoModal();
+  startAiInspect();
+}
+
 function startAiInspect() {
-  if (!aiInspectState || aiInspectState.phase !== 'idle') return;
+  var s = findSite(selectedSiteId);
+  if (!s || s.id !== 'g-001') {
+    showToast('AI点検のフル体験は「港区麻布台改修工事」でご覧いただけます');
+    selectSite('g-001');
+    return;
+  }
+  if (aiInspectState && aiInspectState.phase !== 'idle' && aiInspectState.phase !== 'done') return;
+  openAiDrawer();
   var myRun = {};
-  aiInspectState.runId = myRun;
-  aiInspectState.phase = 'scanning';
-  document.getElementById('pane-inspect').innerHTML =
+  aiInspectState = { phase: 'scanning', scanTimer: null, cardTimer: null, runId: myRun, siteId: 'g-001' };
+  setDrawerPhase('スキャン中…');
+  document.getElementById('aiDrawerBody').innerHTML =
     '<div class="scan-box"><div class="scan-spinner"></div><div class="scan-text">現場写真をスキャン中…</div>' +
     '<div class="scan-photo mono" id="scanPhotoLabel">' + SCAN_PHOTOS[0] + '</div>' +
-    '<div style="margin-top:18px;"><button class="btn-skip" onclick="skipAiInspect()">⏩ すべて表示</button></div></div>';
+    '<button class="btn-skip" onclick="skipAiInspect()">⏩ すべて表示</button></div>';
   clearPhotoFlags();
   var idx = 0;
   function scanStep() {
     if (!aiInspectState || aiInspectState.runId !== myRun || aiInspectState.phase !== 'scanning') return;
-    document.querySelectorAll('.photo-cell').forEach(function (el) { el.classList.remove('scanning'); });
+    document.querySelectorAll('.film-card').forEach(function (el) { el.classList.remove('scanning'); });
     var cell = document.getElementById('photo-' + idx);
     if (cell) cell.classList.add('scanning');
     var label = document.getElementById('scanPhotoLabel');
@@ -1169,17 +1044,18 @@ function startAiInspect() {
 function beginFindingsReveal(myRun) {
   if (!aiInspectState || aiInspectState.runId !== myRun) return;
   aiInspectState.phase = 'revealing';
-  document.getElementById('pane-inspect').innerHTML =
-    '<div class="ai-toolbar"><span class="ai-count" id="aiRevealCount">指摘 0/' + AI_FINDINGS.length + '件</span>' +
-    '<button class="btn-skip" onclick="skipAiInspect()">⏩ すべて表示</button></div>' +
-    '<div id="findingCardsHost"></div><div id="findingSummaryHost"></div>';
+  setDrawerPhase('指摘を分析中…');
+  document.getElementById('aiDrawerBody').innerHTML =
+    '<div style="font-size:11px;font-weight:700;color:var(--gray);margin-bottom:8px;" id="aiRevealCount">指摘 0/' + AI_FINDINGS.length + '件</div>' +
+    '<div id="findingCardsHost"></div><div id="findingSummaryHost"></div>' +
+    '<button class="btn-skip" onclick="skipAiInspect()" style="margin-top:8px;">⏩ すべて表示</button>';
   var idx = 0;
   var total = AI_FINDINGS.length;
   function revealStep() {
     if (!aiInspectState || aiInspectState.runId !== myRun || aiInspectState.phase !== 'revealing') return;
     if (idx >= total) return;
     appendFindingCard(idx);
-    flagPhoto(AI_FINDINGS[idx].photoIdx);
+    flagPhoto(AI_FINDINGS[idx]);
     idx++;
     updateRevealCount(idx, total);
     if (idx >= total) {
@@ -1188,14 +1064,18 @@ function beginFindingsReveal(myRun) {
       triggerReportDraft(myRun);
       return;
     }
-    aiInspectState.cardTimer = setTimeout(revealStep, 1100);
+    aiInspectState.cardTimer = setTimeout(revealStep, 900);
   }
-  aiInspectState.cardTimer = setTimeout(revealStep, 600);
+  aiInspectState.cardTimer = setTimeout(revealStep, 500);
 }
 
-function flagPhoto(idx) {
-  var cell = document.getElementById('photo-' + idx);
+function flagPhoto(finding) {
+  var cell = document.getElementById('photo-' + finding.photoIdx);
   if (cell) cell.classList.add('flagged');
+  var badges = document.querySelectorAll('#photo-' + finding.photoIdx + ' .risk-badge.' + finding.severity);
+  badges.forEach(function (b) { b.classList.add('show'); });
+  var pins = document.querySelectorAll('#photo-' + finding.photoIdx + ' .risk-pin.' + finding.severity);
+  pins.forEach(function (p) { p.classList.add('show'); });
 }
 
 function updateRevealCount(shown, total) {
@@ -1210,7 +1090,7 @@ function appendFindingCard(idx) {
   var sevLabel = f.severity === 'high' ? '重要度：高' : (f.severity === 'mid' ? '重要度：中' : '重要度：低');
   var div = document.createElement('div');
   div.className = 'finding-card';
-  div.setAttribute('onclick', "jumpToPhoto('" + f.anchor + "')");
+  div.setAttribute('onclick', "jumpToPhoto(" + f.photoIdx + ")");
   div.innerHTML =
     '<div class="fc-head"><span class="badge badge-' + f.severity + '">' + sevLabel + '</span><span class="fc-zone">' + escapeHtml(f.zone) + '</span></div>' +
     '<div class="fc-issue">' + escapeHtml(f.issue) + '</div>' +
@@ -1219,14 +1099,18 @@ function appendFindingCard(idx) {
   requestAnimationFrame(function () { div.classList.add('in'); });
 }
 
+function jumpToPhoto(idx) {
+  openPhoto(idx);
+}
+
 function appendInspectSummary() {
   var high = AI_FINDINGS.filter(function (f) { return f.severity === 'high'; }).length;
   var host = document.getElementById('findingSummaryHost');
   if (!host) return;
   host.innerHTML =
-    '<div class="ai-summary-band in" id="summaryBand">AI点検完了：指摘' + AI_FINDINGS.length + '件（重要' + high + '件）</div>' +
-    '<p style="font-size:11px;color:var(--gray-soft);margin-top:10px;line-height:1.8;">※AI点検は参考情報です。最終判断は現場所長・安全担当が行います。</p>' +
-    '<div class="draft-reset"><button onclick="setupInspectPane()">↺ もう一度実行</button></div>';
+    '<div class="ai-summary-band">AI点検完了：指摘' + AI_FINDINGS.length + '件（重要' + high + '件）</div>' +
+    '<p style="font-size:10px;color:var(--gray-soft);margin-top:8px;line-height:1.7;">※AI点検は参考情報です。最終判断は現場所長・安全担当が行います。</p>';
+  setDrawerPhase('点検完了');
 }
 
 function skipAiInspect() {
@@ -1235,66 +1119,37 @@ function skipAiInspect() {
   if (aiInspectState.cardTimer) clearTimeout(aiInspectState.cardTimer);
   aiInspectState.phase = 'done';
   aiInspectState.runId = {};
-  document.getElementById('pane-inspect').innerHTML =
-    '<div class="ai-toolbar"><span class="ai-count">指摘 ' + AI_FINDINGS.length + '/' + AI_FINDINGS.length + '件</span></div>' +
+  setDrawerPhase('点検完了');
+  document.getElementById('aiDrawerBody').innerHTML =
+    '<div style="font-size:11px;font-weight:700;color:var(--gray);margin-bottom:8px;">指摘 ' + AI_FINDINGS.length + '/' + AI_FINDINGS.length + '件</div>' +
     '<div id="findingCardsHost"></div><div id="findingSummaryHost"></div>';
   AI_FINDINGS.forEach(function (f, idx) {
     appendFindingCard(idx);
-    flagPhoto(f.photoIdx);
-    document.querySelectorAll('.finding-card')[idx].classList.add('in');
+    flagPhoto(f);
+    var cards = document.querySelectorAll('.finding-card');
+    if (cards[idx]) cards[idx].classList.add('in');
   });
   appendInspectSummary();
   triggerReportDraft({});
 }
 
-function jumpToPhoto(anchorId) {
-  var el = document.getElementById(anchorId);
-  if (!el) return;
-  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  el.classList.add('scanning');
-  setTimeout(function () { el.classList.remove('scanning'); }, 1200);
-}
-
 function triggerReportDraft(myRun) {
-  if (!reportState || reportState.phase !== 'idle') return;
-  setTimeout(function () {
-    if (reportState && reportState.phase === 'idle') startReportTyping(myRun);
-  }, 800);
-}
-
-function setupReportPane() {
-  reportState = { phase: 'idle', timers: [], runId: null };
-  document.getElementById('pane-report').innerHTML =
-    '<div class="ai-start-box"><p>AI点検完了後、日報下書きと是正指示書を自動生成します。<br>先に「AI点検」タブで点検を実行してください。</p></div>';
-}
-function clearReportTimers() {
-  if (!reportState) return;
-  reportState.timers.forEach(function (id) { clearTimeout(id); });
-  reportState.timers = [];
-}
-
-function startReportTyping(myRun) {
-  if (!reportState) return;
-  clearReportTimers();
-  reportState.runId = myRun;
-  reportState.phase = 'typing-report';
-  document.getElementById('pane-report').innerHTML =
-    '<div class="ai-toolbar"><span class="ai-count">日報下書きを作成中…</span><button class="btn-skip" onclick="skipReportTyping()">⏩ すべて表示</button></div>' +
-    '<p style="font-size:11px;color:var(--gray-soft);margin-bottom:8px;">① 作業日報</p>' +
-    '<div class="draft-box"><div class="draft-text-preview" id="reportPreview"><span id="reportText"></span><span class="draft-cursor" id="reportCursor"></span></div></div>' +
-    '<p style="font-size:11px;color:var(--gray-soft);margin:14px 0 8px;opacity:.4;">② 是正指示書（日報完了後に表示）</p>' +
-    '<div class="draft-box" style="opacity:.35;min-height:80px;" id="correctionBox"><span id="correctionText"></span></div>';
-
-  typeText('reportText', G001_REPORT_TEXT, 5500, myRun, function () {
+  setDrawerPhase('日報生成中…');
+  reportState = { phase: 'typing-report', runId: myRun, timers: [] };
+  var host = document.getElementById('aiDrawerBody');
+  var existing = host.innerHTML;
+  host.innerHTML = existing +
+    '<div class="draft-label">① 作業日報（生成中）</div><div class="draft-box" id="reportText"></div>' +
+    '<div class="draft-label">② 是正指示書</div><div class="draft-box" id="correctionText" style="opacity:.45;">（日報完了後に生成）</div>' +
+    '<button class="btn-skip" onclick="skipReportTyping()">⏩ 生成を完了</button>';
+  typeText('reportText', G001_REPORT_TEXT, 4500, myRun, function () {
     if (!reportState || reportState.runId !== myRun) return;
     reportState.phase = 'typing-correction';
-    var box = document.getElementById('correctionBox');
-    if (box) { box.style.opacity = '1'; box.innerHTML = '<div class="draft-text-preview"><span id="correctionText"></span><span class="draft-cursor" id="corrCursor"></span></div>'; }
-    var toolbar = document.querySelector('#pane-report .ai-toolbar .ai-count');
-    if (toolbar) toolbar.textContent = '是正指示書を作成中…';
-    typeText('correctionText', G001_CORRECTION_TEXT, 4500, myRun, function () {
-      if (!reportState || reportState.runId !== myRun) return;
-      finishReportReady(myRun);
+    setDrawerPhase('是正指示生成中…');
+    var corr = document.getElementById('correctionText');
+    if (corr) corr.style.opacity = '1';
+    typeText('correctionText', G001_CORRECTION_TEXT, 3800, myRun, function () {
+      finishReportReady();
     });
   });
 }
@@ -1317,25 +1172,41 @@ function typeText(elId, fullText, duration, myRun, onDone) {
   reportState.timers.push(t0);
 }
 
-function finishReportReady(myRun) {
-  if (!reportState || reportState.runId !== myRun) return;
-  reportState.phase = 'ready';
-  document.getElementById('pane-report').innerHTML =
-    '<div class="ai-toolbar"><span class="ai-count">下書きが作成できました</span></div>' +
-    '<p style="font-size:11px;font-weight:700;color:var(--gray);margin-bottom:6px;">① 作業日報</p>' +
-    '<div class="draft-box"><textarea class="draft-text-preview" style="width:100%;min-height:160px;border:none;background:transparent;resize:vertical;" id="reportEditor">' + escapeHtml(G001_REPORT_TEXT) + '</textarea></div>' +
-    '<p style="font-size:11px;font-weight:700;color:var(--gray);margin:14px 0 6px;">② 是正指示書</p>' +
-    '<div class="draft-box"><textarea class="draft-text-preview" style="width:100%;min-height:140px;border:none;background:transparent;resize:vertical;" id="correctionEditor">' + escapeHtml(G001_CORRECTION_TEXT) + '</textarea></div>' +
-    '<div class="draft-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>内容を確認のうえ、現場所長が承認してください。</div>' +
-    '<div class="draft-cta"><button class="btn-approve-draft" id="approveReportBtn" onclick="approveReport()">内容を確認して承認<span class="badge badge-human">人の確認</span></button></div>' +
-    '<div class="draft-reset"><button onclick="resetReport()">↺ リセット</button></div>';
+function clearReportTimers() {
+  if (!reportState || !reportState.timers) return;
+  reportState.timers.forEach(function (t) { clearTimeout(t); });
 }
 
 function skipReportTyping() {
   if (!reportState) return;
   clearReportTimers();
-  reportState.runId = {};
-  finishReportReady({});
+  finishReportReady();
+}
+
+function buildFindingsDrawerHtml() {
+  var cards = AI_FINDINGS.map(function (f, idx) {
+    var sevLabel = f.severity === 'high' ? '重要度：高' : (f.severity === 'mid' ? '重要度：中' : '重要度：低');
+    return '<div class="finding-card in" onclick="jumpToPhoto(' + f.photoIdx + ')">' +
+      '<div class="fc-head"><span class="badge badge-' + f.severity + '">' + sevLabel + '</span><span class="fc-zone">' + escapeHtml(f.zone) + '</span></div>' +
+      '<div class="fc-issue">' + escapeHtml(f.issue) + '</div>' +
+      '<div class="fc-fix"><b>是正文案</b>' + escapeHtml(f.fix) + '</div></div>';
+  }).join('');
+  var high = AI_FINDINGS.filter(function (f) { return f.severity === 'high'; }).length;
+  return cards +
+    '<div class="ai-summary-band">AI点検完了：指摘' + AI_FINDINGS.length + '件（重要' + high + '件）</div>';
+}
+
+function finishReportReady() {
+  if (!reportState) return;
+  reportState.phase = 'ready';
+  setDrawerPhase('承認待ち');
+  document.getElementById('aiDrawerBody').innerHTML =
+    buildFindingsDrawerHtml() +
+    '<div class="draft-label">① 作業日報</div>' +
+    '<div class="draft-box"><textarea style="width:100%;min-height:120px;border:none;background:transparent;resize:vertical;font-size:12px;line-height:1.85;" id="reportEditor">' + escapeHtml(G001_REPORT_TEXT) + '</textarea></div>' +
+    '<div class="draft-label">② 是正指示書</div>' +
+    '<div class="draft-box"><textarea style="width:100%;min-height:100px;border:none;background:transparent;resize:vertical;font-size:12px;line-height:1.85;" id="correctionEditor">' + escapeHtml(G001_CORRECTION_TEXT) + '</textarea></div>' +
+    '<button class="btn-approve-draft" id="approveReportBtn" onclick="approveReport()">内容を確認して承認 <span class="badge badge-human">人の確認</span></button>';
 }
 
 function approveReport() {
@@ -1346,21 +1217,10 @@ function approveReport() {
   g001Runtime.approvedReport = true;
   var s = findSite('g-001');
   if (s) s.reportPending = false;
+  setDrawerPhase('承認済み');
   showToast('日報と是正指示書を承認しました');
-  document.getElementById('pane-report').innerHTML =
-    '<div class="complete-banner in"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>日報・是正指示書を承認し、現場へ共有しました。</div>' +
-    '<div class="draft-reset"><button onclick="resetReport()">↺ リセット</button></div>';
-}
-
-function resetReport() {
-  clearReportTimers();
-  g001Runtime.approvedReport = false;
-  var s = findSite('g-001');
-  if (s) s.reportPending = true;
-  setupInspectPane();
-  setupReportPane();
-  clearPhotoFlags();
-  showToast('現場詳細の状態を生成前にリセットしました');
+  document.getElementById('aiDrawerBody').innerHTML =
+    '<div class="complete-banner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>日報・是正指示書を承認し、現場へ共有しました。</div>';
 }
 
 function renderReconcile() {
@@ -1372,10 +1232,13 @@ function renderReconcile() {
   }).join('');
   renderReconcileTable();
 }
+
 function setReconcileSite(id) {
   currentReconcileSite = id;
+  selectSite(id, false);
   renderReconcile();
 }
+
 function renderReconcileTable() {
   var rows = RECONCILE_DATA[currentReconcileSite] || [];
   document.getElementById('reconcileTbody').innerHTML = rows.map(function (r) {
@@ -1392,25 +1255,13 @@ function renderReconcileTable() {
   }).join('');
 }
 
-function renderSettings() {
-  document.getElementById('memberList').innerHTML = MEMBERS.map(function (m) {
-    return '<div class="member-row"><div><div class="m-name">' + escapeHtml(m.name) + '</div><div class="m-mail">' + escapeHtml(m.mail) + '</div></div>' +
-      '<span class="role-badge role-' + m.role + '">' + ROLE_LABEL[m.role] + '</span></div>';
-  }).join('');
-  document.getElementById('inspectToggleList').innerHTML = INSPECT_TOGGLES.map(function (t, i) {
-    return toggleRowHtml('it-' + i, t.label, t.desc, t.on);
-  }).join('');
-  document.getElementById('notifToggleList').innerHTML = NOTIF_TOGGLES.map(function (t, i) {
-    return toggleRowHtml('nt-' + i, t.label, t.desc, t.on);
-  }).join('');
-}
-function toggleRowHtml(id, label, desc, on) {
-  return '<div class="toggle-row"><div><div class="tg-label">' + escapeHtml(label) + '</div><div class="tg-desc">' + escapeHtml(desc) + '</div></div>' +
-    '<label class="switch"><input type="checkbox" id="' + id + '" ' + (on ? 'checked' : '') + ' onchange="onToggleChange(this)"><span class="track"></span></label></div>';
-}
-function onToggleChange(input) {
-  showToast(input.checked ? '設定をONにしました（デモ）' : '設定をOFFにしました（デモ）');
-}
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  renderMap();
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') loggedIn = true;
+  handleRoute();
+});
 </script>
 <script src="analytics-config.js"></script>
 <script src="analytics.js"></script>
