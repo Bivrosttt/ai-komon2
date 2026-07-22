@@ -1,16 +1,16 @@
-<!-- 2026-07-22: SAIYO（採用デスク）SaaS級デモ — ラベンダー×白カードUI・面接メモ→評価表AI・合否メール下書き -->
+<!-- 2026-07-22: SAIYOを採用カンバン骨格に作り直し -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>採用管理デモ（面接メモ→評価表AI・合否メール）｜AI顧問室</title>
-<meta name="description" content="架空の採用管理クラウド「SAIYO」のフル機能デモです。面接メモから評価表・合否メール下書きをAIが生成。候補者管理・求人下書きまで一気通貫で体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<title>採用管理デモ（採用カンバン・AI評価表）｜AI顧問室</title>
+<meta name="description" content="架空の採用管理クラウド「SAIYO」のフル機能デモです。4レーン看板で候補者を進め、面接メモから5軸評価表・合否メール下書きをAIが生成。中小企業向けAI顧問サービス「AI顧問室」が提供。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
-<meta property="og:title" content="採用管理デモ（面接メモ→評価表AI・合否メール）｜AI顧問室">
-<meta property="og:description" content="架空の採用管理クラウド「SAIYO」のフル機能デモです。面接メモから評価表・合否メール下書きをAIが生成します。">
+<meta property="og:title" content="採用管理デモ（採用カンバン・AI評価表）｜AI顧問室">
+<meta property="og:description" content="架空の採用管理クラウド「SAIYO」のフル機能デモです。カンバン看板で候補者を進め、面接メモから評価表・合否メール下書きをAIが生成します。">
 <meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-saiyo.html">
 <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -30,8 +30,7 @@
     --amber: #B45309; --amber-bg: #FEF3C7;
     --red: #DC2626; --red-bg: #FEE2E2;
     --green: #059669; --green-bg: #D1FAE5;
-    --pink: #DB2777; --pink-bg: #FCE7F3;
-    --slate-bg: #EDE9FE;
+    --lane-docs: #F5F3FF; --lane-first: #EDE9FE; --lane-final: #E9D5FF; --lane-offer: #DDD6FE;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -78,11 +77,10 @@
   }
   .login-hero::before {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 80% 20%, rgba(124,58,237,.25) 0%, transparent 50%),
-                radial-gradient(circle at 20% 80%, rgba(245,243,255,.08) 0%, transparent 40%);
+    background: radial-gradient(circle at 80% 20%, rgba(124,58,237,.25) 0%, transparent 50%);
   }
   .login-hero::after {
-    content: '採'; position: absolute; right: 48px; bottom: 14%; font-size: 110px; font-weight: 800;
+    content: '→'; position: absolute; right: 48px; bottom: 14%; font-size: 100px; font-weight: 800;
     color: rgba(124,58,237,.15); line-height: 1;
   }
   .login-hero .hero-kicker { font-size: 11px; letter-spacing: .24em; color: #C4B5FD; font-weight: 700; margin-bottom: 18px; position: relative; }
@@ -131,322 +129,220 @@
     .login-hero::after { display: none; }
   }
 
-  #view-app { display: none; }
-  #view-app.show { display: block; }
-  .app-frame { display: flex; align-items: flex-start; min-height: calc(100vh - 44px); }
-  .sidebar {
-    width: 248px; flex: 0 0 auto; background: var(--ink); color: #C4B5FD;
-    display: flex; flex-direction: column; position: sticky; top: 44px; height: calc(100vh - 44px);
-    padding: 20px 0; z-index: 50; border-right: 1px solid #3B2563;
-    box-shadow: inset 4px 0 0 var(--purple);
-  }
-  .sidebar-brand { padding: 0 20px 18px; border-bottom: 1px solid #3B2563; margin-bottom: 12px; display: flex; align-items: baseline; gap: 6px; }
-  .sidebar-brand .k { font-size: 18px; font-weight: 800; color: #DDD6FE; letter-spacing: .08em; }
-  .sidebar-brand .tag-en { font-size: 9px; color: #8B85A8; letter-spacing: .12em; }
-  .sidebar-nav { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 0 12px; overflow-y: auto; }
-  .nav-btn {
-    display: flex; align-items: center; gap: 11px; padding: 11px 12px; border-radius: 12px; border: none; background: none;
-    color: #A78BFA; font-size: 13.5px; font-weight: 500; text-align: left; width: 100%; transition: background .15s, color .15s;
-  }
-  .nav-btn svg { flex: 0 0 auto; opacity: .85; }
-  .nav-btn:hover { background: rgba(255,255,255,.06); color: #FAF5FF; }
-  .nav-btn.active { background: rgba(124,58,237,.28); color: #EDE9FE; font-weight: 700; }
-  .sidebar-foot { padding: 14px 20px 0; border-top: 1px solid #3B2563; margin-top: 14px; }
-  .sidebar-user { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
-  .sidebar-user .avatar {
-    width: 30px; height: 30px; border-radius: 50%; background: var(--purple); color: #fff;
-    display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: 0 0 auto;
-  }
-  .sidebar-user .u-name { font-size: 12.5px; font-weight: 700; color: #FAF5FF; }
-  .sidebar-user .u-role { font-size: 10.5px; color: #8B85A8; }
-  .logout-link { display: block; font-size: 11.5px; color: #A78BFA; padding: 6px 2px; }
-  .logout-link:hover { color: #DDD6FE; }
-  .hamburger-btn {
-    display: none; width: 38px; height: 38px; border-radius: 12px; border: 1px solid var(--line); background: #fff;
-    align-items: center; justify-content: center; flex: 0 0 auto;
-  }
-  .main-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-  .app-header {
-    position: sticky; top: 44px; z-index: 40; height: 60px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.97);
-    backdrop-filter: blur(4px); display: flex; align-items: center; gap: 14px; padding: 0 24px;
-  }
-  .app-header h1.view-name { font-size: 15.5px; font-weight: 800; color: var(--ink); white-space: nowrap; }
-  .header-search { flex: 1; min-width: 0; display: flex; justify-content: center; }
-  .header-search-inner { position: relative; width: 100%; max-width: 380px; }
-  .header-search-inner input {
-    width: 100%; padding: 9px 14px 9px 36px; border: 1px solid var(--line); border-radius: 999px; font-size: 13px; background: var(--lavender);
-  }
-  .header-search-inner svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); pointer-events: none; opacity: .5; }
-  .header-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; }
-  .icon-btn {
-    position: relative; width: 38px; height: 38px; border-radius: 12px; border: 1px solid transparent; background: none;
-    display: grid; place-items: center; color: var(--ink); transition: background .15s;
-  }
-  .icon-btn:hover { background: var(--lavender); }
-  .notif-badge {
-    position: absolute; top: 3px; right: 3px; min-width: 15px; height: 15px; border-radius: 999px; background: var(--pink);
-    color: #fff; font-size: 9.5px; font-weight: 700; display: grid; place-items: center; padding: 0 3px; border: 2px solid #fff;
-  }
-  .dropdown-wrap { position: relative; }
-  .dropdown-panel {
-    position: absolute; top: calc(100% + 8px); right: 0; width: 320px; background: #fff; border: 1px solid var(--line);
-    border-radius: 16px; box-shadow: 0 18px 44px rgba(124,58,237,.14); z-index: 80; display: none; overflow: hidden;
-  }
-  .dropdown-panel.open { display: block; animation: dropIn .16s ease; }
-  @keyframes dropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-  .dropdown-head { padding: 12px 16px; font-size: 12.5px; font-weight: 700; color: var(--ink); border-bottom: 1px solid var(--line); background: var(--lavender); }
-  .notif-item { display: flex; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 12.5px; transition: background .15s; }
-  .notif-item:last-child { border-bottom: none; }
-  .notif-item:hover { background: var(--lavender); }
-  .notif-item .dot { flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
-  .notif-item .txt { color: var(--ink); line-height: 1.6; }
-  .notif-item .time { color: var(--gray-soft); font-size: 10.5px; margin-top: 3px; }
+  #view-app { display: none; min-height: calc(100vh - 44px); flex-direction: column; }
+  #view-app.show { display: flex; }
 
-  .main-scroll { padding: 26px 30px 60px; }
-  .view { display: none; }
-  .view.active { display: block; }
-  .view-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-  .view-head h2 { font-size: 20px; color: var(--ink); }
-  .view-head .lead { font-size: 12.5px; color: var(--gray); margin-top: 4px; }
-
-  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 22px; }
-  .kpi-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; transition: box-shadow .15s, transform .15s; }
-  .kpi-card:hover { box-shadow: 0 8px 24px rgba(124,58,237,.08); transform: translateY(-1px); }
-  .kpi-card .kpi-label { font-size: 12px; color: var(--gray); font-weight: 700; display: flex; align-items: center; gap: 6px; }
-  .kpi-card .kpi-value { font-size: 27px; color: var(--ink); margin: 9px 0 4px; font-weight: 800; }
-  .kpi-card .kpi-value span { font-size: 13px; color: var(--gray-soft); font-weight: 500; margin-left: 2px; }
-  .kpi-card .kpi-sub { font-size: 11px; color: var(--gray-soft); }
-  .kpi-swatch { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
-
-  .grid-2col { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; align-items: start; margin-bottom: 18px; }
-  .panel { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; }
-  .panel h3 { font-size: 14.5px; color: var(--ink); margin-bottom: 4px; font-weight: 800; }
-  .panel .panel-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; }
-
-  .task-list { display: flex; flex-direction: column; gap: 8px; }
-  .task-row {
-    display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px;
-    transition: background .15s, border-color .15s; background: #fff; cursor: pointer;
+  .app-top {
+    height: 52px; flex: 0 0 auto; background: #fff; border-bottom: 2px solid var(--purple);
+    display: flex; align-items: center; gap: 12px; padding: 0 16px; position: sticky; top: 44px; z-index: 80;
+    box-shadow: 0 4px 20px rgba(124,58,237,.08);
   }
-  .task-row:hover { background: var(--lavender); border-color: var(--purple-light); }
-  .task-row .t-main { flex: 1; min-width: 0; }
-  .task-row .t-name { font-size: 13px; font-weight: 700; color: var(--ink); }
-  .task-row .t-sub { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
-  .task-row .t-arrow { flex: 0 0 auto; color: var(--gray-soft); }
-
-  .timeline { display: flex; flex-direction: column; gap: 0; }
-  .timeline-item { display: flex; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); }
-  .timeline-item:last-child { border-bottom: none; }
-  .timeline-dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; margin-top: 5px; }
-  .timeline-text { font-size: 12.5px; color: var(--ink); line-height: 1.6; }
-  .timeline-text b { font-weight: 700; }
-  .timeline-date { font-size: 10.5px; color: var(--gray-soft); margin-top: 2px; }
-
-  .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; white-space: nowrap; }
-  .badge-applied { background: var(--lavender-mid); color: var(--purple-deep); }
-  .badge-screening { background: var(--pri-bg); color: var(--purple); }
-  .badge-interview { background: var(--teal-bg); color: var(--teal); }
-  .badge-offer { background: var(--green-bg); color: var(--green); }
-  .badge-rejected { background: var(--red-bg); color: var(--red); }
-  .badge-withdrawn { background: var(--slate-bg); color: var(--gray); }
-  .badge-draft { background: var(--amber-bg); color: var(--amber); }
-  .badge-open { background: var(--green-bg); color: var(--green); }
-  .badge-closed { background: var(--slate-bg); color: var(--gray); }
-  .badge-human { background: var(--purple); color: #fff; }
-  .badge-cat { background: var(--lavender-mid); color: var(--purple-deep); }
-
-  .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 16px; }
-  .tab-row { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tab-chip {
-    padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font-size: 12.5px;
-    color: var(--gray); font-weight: 500; transition: all .15s; white-space: nowrap; display: flex; align-items: center; gap: 6px;
+  .top-brand { display: flex; align-items: baseline; gap: 6px; flex: 0 0 auto; }
+  .top-brand .k { font-size: 17px; font-weight: 800; color: var(--purple); letter-spacing: .06em; }
+  .top-brand .tag-en { font-size: 9px; color: var(--gray-soft); letter-spacing: .12em; }
+  .top-center { flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0; flex-wrap: wrap; }
+  .job-select-wrap { flex: 0 1 auto; min-width: 0; }
+  .job-select {
+    padding: 7px 32px 7px 12px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--lavender) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237C3AED' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;
+    font-size: 12.5px; font-weight: 700; color: var(--ink); max-width: 240px; appearance: none; cursor: pointer;
   }
-  .tab-chip:hover { border-color: var(--purple-light); }
-  .tab-chip.active { background: var(--purple); color: #fff; border-color: var(--purple); font-weight: 700; }
-  .tab-chip .cnt { font-size: 10.5px; background: rgba(0,0,0,.08); padding: 1px 6px; border-radius: 999px; }
-  .tab-chip.active .cnt { background: rgba(255,255,255,.2); }
-  .search-box { position: relative; margin-left: auto; }
-  .search-box input {
-    padding: 9px 14px 9px 34px; border: 1px solid var(--line); border-radius: 999px; font-size: 13px; width: 280px; background: #fff;
+  .kpi-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .kpi-chip {
+    font-size: 10.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    background: var(--lavender-mid); color: var(--purple-deep); border: 1px solid var(--line); white-space: nowrap;
   }
-  .search-box input:focus { outline: 2px solid var(--purple-light); }
-  .search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); opacity: .5; }
-
-  .job-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
-  .job-card {
-    background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px 18px 16px;
-    transition: box-shadow .15s, border-color .15s; cursor: pointer;
+  .kpi-chip b { color: var(--purple); }
+  .top-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; margin-left: auto; }
+  .top-user { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--gray); }
+  .top-user .avatar {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--purple); color: #fff;
+    display: grid; place-items: center; font-size: 11px; font-weight: 800;
   }
-  .job-card:hover { box-shadow: 0 8px 24px rgba(124,58,237,.1); border-color: var(--purple-light); }
-  .job-card .jc-dept { font-size: 10.5px; font-weight: 700; color: var(--purple); letter-spacing: .08em; margin-bottom: 8px; }
-  .job-card h4 { font-size: 15px; margin-bottom: 6px; color: var(--ink); }
-  .job-card p { font-size: 12px; color: var(--gray-soft); line-height: 1.65; }
-  .job-card .jc-meta { margin-top: 12px; font-size: 11px; color: var(--gray-soft); display: flex; gap: 12px; flex-wrap: wrap; }
+  .logout-link { font-size: 11px; color: var(--gray-soft); padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; }
+  .logout-link:hover { color: var(--purple); border-color: var(--purple); }
 
-  .table-wrap { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  table.data-table th {
-    text-align: left; padding: 12px 16px; background: var(--lavender); color: var(--gray); font-weight: 700; font-size: 11.5px;
-    border-bottom: 1px solid var(--line); white-space: nowrap;
+  .board-wrap { flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; background: var(--bg-soft); }
+
+  .kanban-scroll {
+    flex: 1; overflow-x: auto; overflow-y: hidden; min-height: 0;
+    -webkit-overflow-scrolling: touch; scrollbar-width: thin;
   }
-  table.data-table td { padding: 13px 16px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: middle; }
-  table.data-table tbody tr { cursor: pointer; transition: background .12s; }
-  table.data-table tbody tr:hover { background: var(--lavender); }
-  table.data-table tbody tr:last-child td { border-bottom: none; }
-  table.data-table td.name-cell { font-weight: 700; }
-  .row-hot { background: var(--pri-bg); }
-  .row-hot:hover { background: var(--lavender-mid) !important; }
-  .empty-row td { text-align: center; color: var(--gray-soft); padding: 40px 16px; }
-
-  .cand-avatar {
-    width: 34px; height: 34px; border-radius: 50%; background: var(--lavender-mid); color: var(--purple-deep);
-    display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: 0 0 auto;
+  .kanban {
+    display: grid; grid-template-columns: repeat(4, minmax(240px, 1fr)); gap: 0;
+    min-height: 100%; min-width: min(100%, 960px); height: 100%;
   }
-
-  .detail-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--gray); margin-bottom: 14px; }
-  .detail-back:hover { color: var(--purple-deep); }
-  .detail-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
-  .detail-head h2 { font-size: 18px; line-height: 1.5; }
-  .detail-head .sub { font-size: 12px; color: var(--gray); margin-top: 5px; }
-  .detail-head .cand-profile { display: flex; align-items: center; gap: 14px; }
-  .detail-head .cand-profile .cand-avatar { width: 48px; height: 48px; font-size: 16px; }
-  .detail-grid { display: grid; grid-template-columns: 1.1fr minmax(300px, 400px); gap: 20px; align-items: start; }
-
-  .memo-wrap { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-  .memo-toolbar {
-    padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--lavender);
-    display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  .lane {
+    display: flex; flex-direction: column; min-height: 0; border-right: 1px solid rgba(124,58,237,.12);
   }
-  .memo-toolbar .mt-label { font-size: 12px; font-weight: 700; color: var(--purple-deep); }
-  .memo-body { padding: 22px 24px; min-height: 280px; }
-  .memo-text { font-size: 13.5px; line-height: 1.85; color: var(--ink); white-space: pre-wrap; }
-  .memo-meta { font-size: 11px; color: var(--gray-soft); margin-bottom: 14px; display: flex; gap: 14px; flex-wrap: wrap; }
-
-  .side-panel { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; position: sticky; top: 120px; }
-  .side-panel-head { padding: 14px 18px; border-bottom: 1px solid var(--line); background: var(--purple); color: #fff; }
-  .side-panel-head h4 { font-size: 13.5px; }
-  .side-panel-head p { font-size: 11px; color: #DDD6FE; margin-top: 3px; }
-  .side-panel-body { padding: 18px; }
-
-  .scan-box { text-align: center; padding: 56px 20px; }
-  .scan-spinner {
-    width: 42px; height: 42px; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--purple);
-    animation: spin .8s linear infinite; margin: 0 auto 16px;
+  .lane:last-child { border-right: none; }
+  .lane[data-lane="docs"] { background: var(--lane-docs); }
+  .lane[data-lane="first"] { background: var(--lane-first); }
+  .lane[data-lane="final"] { background: var(--lane-final); }
+  .lane[data-lane="offer"] { background: var(--lane-offer); }
+  .lane-head {
+    flex: 0 0 auto; padding: 14px 14px 12px; border-bottom: 2px solid rgba(124,58,237,.15);
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
   }
-  .scan-text { font-size: 14px; font-weight: 700; color: var(--purple-deep); }
-  .scan-sub { font-size: 12px; color: var(--gray-soft); margin-top: 8px; }
+  .lane-head h3 { font-size: 14px; color: var(--purple-deep); font-weight: 800; }
+  .lane-count {
+    font-size: 12px; font-weight: 800; background: rgba(124,58,237,.12); color: var(--purple);
+    padding: 2px 10px; border-radius: 999px;
+  }
+  .lane-body { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 10px; }
 
-  .ai-start-box { text-align: center; padding: 24px 12px; }
-  .ai-start-box p { font-size: 12.5px; color: var(--gray); line-height: 1.75; margin-bottom: 16px; }
+  .card {
+    background: #fff; border-radius: 16px; padding: 12px 12px 10px;
+    border: 1px solid var(--line); box-shadow: 0 4px 16px rgba(124,58,237,.08);
+    cursor: pointer; transition: transform .15s, box-shadow .15s, border-color .15s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,.14); border-color: var(--purple-light); }
+  .card.demo-star { border-color: var(--purple); box-shadow: 0 0 0 2px rgba(124,58,237,.15); }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+  .card-avatar {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--lavender-mid); color: var(--purple-deep);
+    display: grid; place-items: center; font-size: 12px; font-weight: 800; flex: 0 0 auto;
+  }
+  .card-main { flex: 1; min-width: 0; }
+  .card-name { font-size: 13.5px; font-weight: 800; color: var(--ink); }
+  .card-job { font-size: 11px; color: var(--gray-soft); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-meta { font-size: 11px; color: var(--gray); margin-bottom: 8px; line-height: 1.5; }
+  .card-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 4px; }
+  .card-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tag {
+    font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+    background: var(--lavender); color: var(--purple-deep);
+  }
+  .tag-memo { background: var(--teal-bg); color: var(--teal); }
+  .btn-advance {
+    font-size: 10.5px; font-weight: 800; padding: 5px 10px; border-radius: 999px;
+    border: 1px solid var(--purple); background: transparent; color: var(--purple-deep);
+    transition: background .15s, color .15s;
+  }
+  .btn-advance:hover { background: var(--purple); color: #fff; }
+
+  .sheet-overlay {
+    position: fixed; inset: 44px 0 0 0; background: rgba(31,22,53,.45); z-index: 400;
+    opacity: 0; pointer-events: none; transition: opacity .25s ease;
+  }
+  .sheet-overlay.open { opacity: 1; pointer-events: auto; }
+  .detail-sheet {
+    position: fixed; top: 44px; right: 0; bottom: 0; width: min(500px, 100vw); z-index: 410;
+    background: #fff; border-left: 3px solid var(--purple); box-shadow: -16px 0 48px rgba(124,58,237,.2);
+    transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .detail-sheet.open { transform: translateX(0); }
+  .sheet-head {
+    flex: 0 0 auto; padding: 16px 18px; background: linear-gradient(135deg, var(--purple-deep) 0%, var(--purple) 100%);
+    color: #FAF5FF; position: relative;
+  }
+  .sheet-close {
+    position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.12); color: #fff;
+    display: grid; place-items: center; font-size: 18px; line-height: 1;
+  }
+  .sheet-close:hover { background: rgba(255,255,255,.22); }
+  .sheet-head h2 { font-size: 17px; margin-bottom: 4px; padding-right: 36px; }
+  .sheet-head .sub { font-size: 12px; color: #DDD6FE; }
+  .sheet-lane {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+    font-size: 12px; font-weight: 700; color: var(--purple-deep);
+    background: rgba(255,255,255,.9); padding: 4px 12px; border-radius: 999px;
+  }
+  .sheet-body { flex: 1; overflow-y: auto; padding: 16px 18px 24px; }
+
+  .memo-box {
+    background: var(--lavender); border-radius: 14px; padding: 12px 14px; margin-bottom: 16px;
+    border: 1px solid var(--line);
+  }
+  .memo-box .memo-label { font-size: 10px; color: var(--gray-soft); font-weight: 800; margin-bottom: 6px; letter-spacing: .08em; }
+  .memo-box .memo-meta { font-size: 11px; color: var(--purple); font-weight: 700; margin-bottom: 8px; }
+  .memo-box .memo-text { font-size: 13px; color: var(--ink); line-height: 1.75; white-space: pre-wrap; }
+  .memo-empty { font-size: 12.5px; color: var(--gray-soft); text-align: center; padding: 20px 12px; }
+
+  .sheet-section { margin-bottom: 18px; }
+  .sheet-section h4 { font-size: 13px; color: var(--purple-deep); margin-bottom: 10px; }
+
+  .ai-start-box {
+    text-align: center; padding: 24px 16px; background: linear-gradient(180deg, var(--lavender) 0%, #fff 100%);
+    border-radius: 14px; border: 1px dashed var(--purple-light);
+  }
+  .ai-start-box p { font-size: 13px; color: var(--gray); margin-bottom: 14px; line-height: 1.8; }
   .btn-ai-run {
-    width: 100%; padding: 12px 16px; border: none; border-radius: 999px; background: var(--purple); color: #fff;
-    font-weight: 700; font-size: 13.5px; transition: filter .15s;
+    padding: 12px 24px; border: none; border-radius: 999px; background: var(--purple); color: #fff;
+    font-weight: 800; font-size: 13.5px; transition: filter .15s;
   }
-  .btn-ai-run:hover { filter: brightness(1.06); }
-  .btn-ai-run:disabled { opacity: .5; cursor: not-allowed; }
-  .btn-outline {
-    width: 100%; padding: 11px 16px; border: 1px solid var(--line); border-radius: 999px; background: #fff;
-    font-weight: 700; font-size: 13px; color: var(--gray); margin-top: 10px;
+  .btn-ai-run:hover { filter: brightness(1.08); }
+  .scan-box { text-align: center; padding: 28px 16px; }
+  .scan-spinner {
+    width: 36px; height: 36px; border-radius: 50%; border: 3px solid var(--line);
+    border-top-color: var(--purple); animation: spin .8s linear infinite; margin: 0 auto 14px;
   }
-  .btn-outline:hover { border-color: var(--purple-light); color: var(--purple-deep); }
+  .scan-text { font-size: 13px; font-weight: 700; color: var(--ink); }
 
-  .eval-block { animation: fadeUp .35s ease; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  .eval-section { margin-bottom: 18px; }
-  .eval-section h5 { font-size: 12px; font-weight: 700; color: var(--purple-deep); margin-bottom: 8px; letter-spacing: .04em; }
-  .eval-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
-  .eval-row:last-child { border-bottom: none; }
-  .eval-score { display: flex; gap: 4px; }
-  .eval-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
-  .eval-dot.on { background: var(--purple); }
-  .eval-summary { font-size: 13.5px; line-height: 1.85; color: var(--ink); padding: 14px; background: var(--lavender); border-radius: 12px; }
-  .eval-verdict { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; font-size: 12.5px; font-weight: 700; margin-top: 12px; }
-  .eval-verdict.pass { background: var(--green-bg); color: var(--green); }
-  .eval-verdict.hold { background: var(--amber-bg); color: var(--amber); }
+  .eval-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+  .eval-table th, .eval-table td { padding: 8px 6px; text-align: left; font-size: 12px; border-bottom: 1px solid var(--line); }
+  .eval-table th { color: var(--gray-soft); font-weight: 700; font-size: 10.5px; }
+  .eval-bar-wrap { display: flex; align-items: center; gap: 8px; }
+  .eval-bar { flex: 1; height: 8px; background: var(--lavender); border-radius: 999px; overflow: hidden; }
+  .eval-bar-fill { height: 100%; background: linear-gradient(90deg, var(--purple-light), var(--purple)); border-radius: 999px; transition: width .6s ease; }
+  .eval-score { font-size: 12px; font-weight: 800; color: var(--purple); min-width: 28px; text-align: right; }
+  .eval-summary {
+    font-size: 12.5px; line-height: 1.85; color: var(--ink); background: var(--lavender); border-radius: 12px;
+    padding: 12px 14px; margin-bottom: 12px; border: 1px solid var(--line);
+  }
+  .verdict-badge {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px;
+    font-size: 12px; font-weight: 800; margin-bottom: 14px;
+  }
+  .verdict-pass { background: var(--green-bg); color: var(--green); }
+  .verdict-hold { background: var(--amber-bg); color: var(--amber); }
 
-  .mail-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+  .radar-wrap { display: flex; justify-content: center; margin-bottom: 14px; }
+  .radar-svg { width: 180px; height: 180px; }
+
+  .mail-tabs { display: flex; gap: 0; margin-bottom: 14px; border-bottom: 2px solid var(--line); }
   .mail-tab {
-    flex: 1; padding: 8px 10px; border: 1px solid var(--line); border-radius: 999px; background: #fff;
-    font-size: 11.5px; font-weight: 700; color: var(--gray); text-align: center; transition: all .15s;
+    flex: 1; padding: 10px 8px; border: none; background: none; font-size: 12px; font-weight: 700;
+    color: var(--gray-soft); border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color .15s;
   }
-  .mail-tab.active { background: var(--purple); color: #fff; border-color: var(--purple); }
-  .mail-preview { border: 1px solid var(--line); border-radius: 12px; background: var(--lavender); padding: 16px 18px; margin-bottom: 12px; }
-  .mail-subject { font-size: 12px; font-weight: 700; color: var(--purple-deep); margin-bottom: 10px; }
-  .mail-body { font-size: 13px; line-height: 1.85; color: var(--ink); white-space: pre-wrap; min-height: 120px; }
+  .mail-tab:hover { color: var(--ink); }
+  .mail-tab.active { color: var(--purple); border-bottom-color: var(--purple); }
+  .mail-tab.pass-tab.active { color: var(--green); border-bottom-color: var(--green); }
+  .mail-tab.reject-tab.active { color: var(--red); border-bottom-color: var(--red); }
+
+  .ai-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .ai-count { font-size: 12px; color: var(--gray-soft); font-weight: 700; }
+  .btn-skip { font-size: 11px; color: var(--gray-soft); background: none; border: none; padding: 4px 8px; }
+  .btn-skip:hover { color: var(--ink); }
+  .draft-box {
+    background: var(--lavender); border: 1px solid var(--line); border-radius: 14px; padding: 14px;
+    min-height: 160px; margin-bottom: 10px;
+  }
+  .draft-subject { font-size: 11px; font-weight: 800; color: var(--purple); margin-bottom: 8px; }
+  .draft-text-preview { font-size: 13px; line-height: 1.85; white-space: pre-wrap; color: var(--ink); }
   .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--purple); animation: blink .8s step-end infinite; vertical-align: text-bottom; }
   @keyframes blink { 50% { opacity: 0; } }
-
-  .complete-banner {
-    display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 12px; background: var(--green-bg); color: var(--green);
-    font-size: 12.5px; font-weight: 700; margin-bottom: 14px; opacity: 0; transform: translateY(4px); transition: all .25s;
+  .draft-note {
+    display: flex; align-items: flex-start; gap: 6px; font-size: 11px; color: var(--gray-soft); margin-bottom: 12px;
   }
-  .complete-banner.in { opacity: 1; transform: none; }
-  .ai-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
-  .ai-toolbar .ai-count { font-size: 12px; font-weight: 700; color: var(--purple-deep); }
-  .btn-skip { background: none; border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; font-size: 11px; color: var(--gray); }
-  .btn-skip:hover { border-color: var(--purple-light); color: var(--purple-deep); }
-
-  .draft-editor-wrap { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-  .draft-editor-toolbar {
-    padding: 12px 20px; border-bottom: 1px solid var(--line); background: var(--lavender);
-    display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
-  }
-  .draft-editor-body { padding: 24px 28px; }
-  .draft-form-row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; margin-bottom: 14px; align-items: baseline; }
-  .draft-form-row label { font-size: 12px; font-weight: 700; color: var(--gray); }
-  .draft-form-row .val { font-size: 13.5px; color: var(--ink); }
-  .draft-section { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
-  .draft-section h4 { font-size: 13px; color: var(--purple-deep); margin-bottom: 10px; }
-  .draft-section p { font-size: 13.5px; line-height: 1.85; color: var(--ink); white-space: pre-wrap; }
-  .draft-list { display: flex; flex-direction: column; gap: 10px; }
-  .draft-row {
-    display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 14px;
-    background: #fff; cursor: pointer; transition: background .15s, border-color .15s;
-  }
-  .draft-row:hover { background: var(--lavender); border-color: var(--purple-light); }
-  .draft-row .d-main { flex: 1; min-width: 0; }
-  .draft-row .d-title { font-size: 13.5px; font-weight: 700; }
-  .draft-row .d-sub { font-size: 11px; color: var(--gray-soft); margin-top: 3px; }
-
-  .pipeline-bar { display: flex; gap: 0; margin-bottom: 18px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
-  .pipeline-stage { flex: 1; padding: 12px 8px; text-align: center; background: #fff; border-right: 1px solid var(--line); }
-  .pipeline-stage:last-child { border-right: none; }
-  .pipeline-stage .ps-num { font-size: 20px; font-weight: 800; color: var(--purple); }
-  .pipeline-stage .ps-label { font-size: 10.5px; color: var(--gray-soft); margin-top: 2px; }
-  .pipeline-stage.highlight { background: var(--lavender); }
-
-  .settings-section { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; margin-bottom: 16px; }
-  .settings-section h3 { font-size: 14.5px; margin-bottom: 4px; }
-  .settings-section .sec-note { font-size: 11px; color: var(--gray-soft); margin-bottom: 16px; }
-  .member-row, .toggle-row {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
-  }
-  .member-row:last-child, .toggle-row:last-child { border-bottom: none; }
-  .member-row .m-name { font-size: 13px; font-weight: 700; }
-  .member-row .m-mail { font-size: 11px; color: var(--gray-soft); }
-  .role-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
-  .role-admin { background: var(--pri-bg); color: var(--purple-deep); }
-  .role-recruiter { background: var(--teal-bg); color: var(--teal); }
-  .role-member { background: var(--slate-bg); color: var(--gray); }
-  .toggle-row .tg-label { font-size: 13px; color: var(--ink); }
-  .toggle-row .tg-desc { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
-  .switch { position: relative; width: 42px; height: 24px; flex: 0 0 auto; }
-  .switch input { opacity: 0; width: 0; height: 0; }
-  .switch .track { position: absolute; inset: 0; background: #DDD6FE; border-radius: 999px; cursor: pointer; transition: background .2s; }
-  .switch .track::before {
-    content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%;
-    transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.3);
-  }
-  .switch input:checked + .track { background: var(--purple); }
-  .switch input:checked + .track::before { transform: translateX(18px); }
-
   .btn-approve-draft {
     width: 100%; padding: 12px; border: none; border-radius: 999px; background: var(--purple); color: #fff;
-    font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-weight: 800; font-size: 13.5px; display: flex; align-items: center; justify-content: center; gap: 8px;
   }
+  .btn-approve-draft.reject { background: var(--gray); }
+  .btn-approve-draft.pass { background: var(--green); }
+  .btn-approve-draft:disabled { opacity: .6; cursor: wait; }
   .draft-reset { text-align: center; margin-top: 10px; }
-  .draft-reset button { background: none; border: none; color: var(--gray-soft); font-size: 11.5px; }
+  .draft-reset button { font-size: 11px; color: var(--gray-soft); background: none; border: none; padding: 6px; }
   .draft-reset button:hover { color: var(--purple-deep); }
+  .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; }
+  .badge-human { background: var(--lavender-mid); color: var(--purple-deep); }
+  .complete-banner {
+    display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 14px;
+    background: var(--green-bg); color: var(--green); font-size: 12.5px; font-weight: 700;
+  }
 
   #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
   .toast {
@@ -466,7 +362,7 @@
   .komon-cta h2 em { font-style: normal; color: #DDD6FE; }
   .komon-cta p.lead { font-size: 14.5px; color: #A78BFA; margin-bottom: 32px; line-height: 1.9; }
   .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
-  .btn { display: inline-block; padding: 15px 34px; border-radius: 999px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s, transform .1s; }
+  .btn { display: inline-block; padding: 15px 34px; border-radius: 999px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s; }
   .btn:hover { opacity: .87; }
   .btn-accent { background: var(--purple); color: #fff; }
   .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
@@ -474,41 +370,17 @@
   .komon-cta .cta-foot a { color: #C4B5FD; }
   .komon-cta .cta-foot a:hover { color: #fff; }
 
-  .mobile-nav-overlay { display: none; }
   @media (max-width: 900px) {
-    .grid-2col { grid-template-columns: 1fr; }
-    .detail-grid { grid-template-columns: 1fr; }
-    .kpi-grid { grid-template-columns: 1fr 1fr; }
-    .job-grid { grid-template-columns: 1fr 1fr; }
-    .side-panel { position: static; }
-  }
-  @media (max-width: 780px) {
-    .hamburger-btn { display: flex; }
-    .sidebar {
-      position: fixed; top: 44px; left: 0; bottom: 0; height: auto; z-index: 300; transform: translateX(-100%);
-      transition: transform .25s ease; box-shadow: 20px 0 60px rgba(0,0,0,.3); width: 240px;
-    }
-    .sidebar.open { transform: translateX(0); }
-    .mobile-nav-overlay.open { display: block; position: fixed; inset: 44px 0 0 0; background: rgba(0,0,0,.4); z-index: 290; }
-    .app-header { padding: 0 14px; gap: 8px; }
-    .header-search { display: none; }
-    .main-scroll { padding: 18px 14px 40px; }
-    .search-box { width: 100%; margin-left: 0; }
-    .search-box input { width: 100%; }
-    .toolbar { flex-direction: column; align-items: stretch; }
+    .top-center { flex: 1 1 100%; order: 3; margin-top: -4px; }
+    .app-top { flex-wrap: wrap; height: auto; padding: 10px 12px; gap: 8px; }
+    .job-select { max-width: 100%; width: 100%; }
+    .kanban { min-width: 960px; height: calc(100vh - 140px); }
     .komon-cta h2 { font-size: 23px; }
     .komon-cta { padding: 56px 18px 32px; }
-    .pipeline-bar { flex-wrap: wrap; }
-    .pipeline-stage { flex: 1 1 33%; border-bottom: 1px solid var(--line); }
   }
   @media (max-width: 480px) {
-    .kpi-grid { grid-template-columns: 1fr; }
-    .job-grid { grid-template-columns: 1fr; }
-    table.data-table thead { display: none; }
-    table.data-table, table.data-table tbody, table.data-table tr, table.data-table td { display: block; width: 100%; }
-    table.data-table tbody tr { border-bottom: 1px solid var(--line); padding: 12px 14px; }
-    table.data-table td { border-bottom: none; padding: 3px 0; }
-    table.data-table td::before { content: attr(data-label); display: inline-block; min-width: 76px; font-size: 10.5px; color: var(--gray-soft); font-weight: 700; }
+    .detail-sheet { width: 100vw; }
+    .top-user span { display: none; }
   }
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
@@ -523,15 +395,15 @@
 
 <div id="view-login">
   <div class="login-hero">
-    <div class="hero-kicker">HIRING DESK CLOUD</div>
-    <h2>面接メモから<em>評価表</em>と合否メールまで。</h2>
-    <p>候補者管理・求人下書き・面接評価をひとつのデスクで。AIが面接メモを構造化し、評価表と通過/お見送りメールの下書きを生成します。</p>
-    <div class="hero-dots"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="hero-kicker">HIRING PIPELINE BOARD</div>
+    <h2>候補者は、<em>レーンで進む。</em></h2>
+    <p>書類→一次→最終→内定の4レーン看板。カードを開けば面接メモからAIが5軸評価表と合否メールを生成。一覧ではなく、流れが主語の採用デスク。</p>
+    <div class="hero-dots"><span></span><span></span><span></span><span></span></div>
   </div>
   <div class="login-panel">
     <div class="login-card">
-      <div class="login-logo"><span class="k">SAIYO</span><span class="tag-en">HIRING DESK</span></div>
-      <p class="login-sub">採用を、もっと人間らしく。</p>
+      <div class="login-logo"><span class="k">SAIYO</span><span class="tag-en">HIRING BOARD</span></div>
+      <p class="login-sub">カードを進めて、採用を前に。</p>
       <div class="login-field">
         <label for="loginMail">メールアドレス</label>
         <input id="loginMail" type="text" value="demo@corp-hire.example" readonly>
@@ -549,202 +421,48 @@
 </div>
 
 <div id="view-app">
-  <div class="mobile-nav-overlay" id="mobileOverlay" onclick="toggleSidebar(false)"></div>
-  <div class="app-frame">
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-brand"><span class="k">SAIYO</span><span class="tag-en">HIRING DESK</span></div>
-      <nav class="sidebar-nav" id="sidebarNav">
-        <button class="nav-btn" data-nav="dashboard" onclick="go('dashboard')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg>
-          ダッシュボード
-        </button>
-        <button class="nav-btn" data-nav="jobs" onclick="go('jobs')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-          求人一覧
-        </button>
-        <button class="nav-btn" data-nav="draft" onclick="go('draft')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-          求人下書き
-        </button>
-        <button class="nav-btn" data-nav="settings" onclick="go('settings')">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l1.9-1.5-2-3.4-2.3.7a7.6 7.6 0 0 0-2.6-1.5L14 2h-4l-.4 2.8a7.6 7.6 0 0 0-2.6 1.5l-2.3-.7-2 3.4L4.6 10.5a7.6 7.6 0 0 0 0 3L2.7 15l2 3.4 2.3-.7c.77.66 1.65 1.17 2.6 1.5L10 22h4l.4-2.8c.95-.33 1.83-.84 2.6-1.5l2.3.7 2-3.4Z"/></svg>
-          設定
-        </button>
-      </nav>
-      <div class="sidebar-foot">
-        <div class="sidebar-user">
-          <div class="avatar">採</div>
-          <div><div class="u-name">デモ 採用</div><div class="u-role">株式会社ヒューマンテック</div></div>
-        </div>
-        <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+  <header class="app-top">
+    <div class="top-brand"><span class="k">SAIYO</span><span class="tag-en">HIRING BOARD</span></div>
+    <div class="top-center">
+      <div class="job-select-wrap">
+        <select class="job-select" id="jobSelect" onchange="onJobFilterChange()">
+          <option value="all">すべての求人</option>
+        </select>
       </div>
-    </aside>
+      <div class="kpi-chips" id="kpiChips"></div>
+    </div>
+    <div class="top-actions">
+      <div class="top-user">
+        <div class="avatar">採</div>
+        <span>デモ 採用</span>
+      </div>
+      <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+    </div>
+  </header>
 
-    <div class="main-col">
-      <header class="app-header">
-        <button class="hamburger-btn" onclick="toggleSidebar()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        </button>
-        <h1 class="view-name" id="viewNameLabel">ダッシュボード</h1>
-        <div class="header-search">
-          <div class="header-search-inner">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-            <input type="text" placeholder="候補者・求人を検索（見た目のみ）" disabled>
-          </div>
-        </div>
-        <div class="header-actions">
-          <div class="dropdown-wrap">
-            <button class="icon-btn" onclick="toggleDropdown('notifPanel')">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-              <span class="notif-badge" id="notifBadgeCount">3</span>
-            </button>
-            <div class="dropdown-panel" id="notifPanel">
-              <div class="dropdown-head">通知</div>
-              <div id="notifList"></div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main class="main-scroll">
-        <section class="view" id="view-dashboard">
-          <div class="view-head">
-            <div><h2>ダッシュボード</h2><p class="lead">2026年7月22日時点の採用パイプライン（サンプルデータ）</p></div>
-          </div>
-          <div class="kpi-grid" id="kpiGrid"></div>
-          <div class="pipeline-bar" id="pipelineBar"></div>
-          <div class="grid-2col">
-            <div class="panel">
-              <h3>面接予定・評価待ち</h3>
-              <p class="panel-note">AI評価表の生成が可能な候補者</p>
-              <div class="task-list" id="pendingEvalList"></div>
-            </div>
-            <div class="panel">
-              <h3>最近のアクティビティ</h3>
-              <p class="panel-note">面接・評価・メール下書きの履歴（サンプル）</p>
-              <div class="timeline" id="activityTimeline"></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="view" id="view-jobs">
-          <div class="view-head">
-            <div><h2>求人一覧</h2><p class="lead">公開中の求人ポジションと候補者パイプライン</p></div>
-          </div>
-          <div class="job-grid" id="jobGrid"></div>
-          <div class="toolbar">
-            <div class="tab-row" id="candTabRow"></div>
-            <div class="search-box">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
-              <input type="text" id="candSearchInput" placeholder="候補者名で絞り込み" oninput="renderCandTable()">
-            </div>
-          </div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr><th>候補者</th><th>応募求人</th><th>ステータス</th><th>面接日</th><th>担当</th></tr>
-              </thead>
-              <tbody id="candTbody"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="view" id="view-candidate-detail">
-          <a href="#jobs" class="detail-back">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>
-            求人一覧へ戻る
-          </a>
-          <div class="detail-head">
-            <div class="cand-profile">
-              <div class="cand-avatar" id="detailAvatar">田</div>
-              <div>
-                <h2 id="detailName">候補者詳細</h2>
-                <p class="sub" id="detailSub">面接メモ → AI評価表</p>
-              </div>
-            </div>
-            <span class="badge badge-interview" id="detailBadge">1次面接済</span>
-          </div>
-          <div class="detail-grid">
-            <div class="memo-wrap">
-              <div class="memo-toolbar">
-                <span class="mt-label">面接メモ（1次面接）</span>
-                <span class="badge badge-human">人が確認</span>
-              </div>
-              <div class="memo-body" id="memoBody">
-                <div class="memo-meta" id="memoMeta"></div>
-                <div class="memo-text" id="memoText"></div>
-              </div>
-            </div>
-            <div class="side-panel">
-              <div class="side-panel-head">
-                <h4>AI評価・合否メール</h4>
-                <p>面接メモから評価表とメール下書きを生成</p>
-              </div>
-              <div class="side-panel-body" id="aiPanelBody">
-                <div class="ai-start-box" id="aiStartBox">
-                  <p>面接メモをもとに、<br>評価表・合否メール下書きを生成します。</p>
-                  <button class="btn-ai-run" id="btnAiEval" onclick="startAiEval()">AIで評価表を生成</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="view" id="view-draft">
-          <div class="view-head">
-            <div><h2>求人下書き</h2><p class="lead">AI生成済み・作成中の求人票下書き（サンプル）</p></div>
-          </div>
-          <div class="grid-2col">
-            <div class="panel">
-              <h3>下書き一覧</h3>
-              <p class="panel-note">公開前の求人票ドラフト</p>
-              <div class="draft-list" id="draftList"></div>
-            </div>
-            <div class="draft-editor-wrap" id="draftEditorWrap">
-              <div class="draft-editor-toolbar">
-                <span class="mt-label" id="draftEditorTitle">求人票プレビュー</span>
-                <span class="badge badge-draft" id="draftEditorBadge">未選択</span>
-              </div>
-              <div class="draft-editor-body" id="draftEditorBody">
-                <div class="ai-start-box">
-                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="opacity:.35;margin-bottom:14px;"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-                  <p>左の一覧から求人下書きを選択するか、<br>「AIで求人票を生成」を実行してください。</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="view" id="view-settings">
-          <div class="view-head">
-            <div><h2>設定</h2><p class="lead">メンバー権限・AI機能・通知の設定です（見た目のみ動作します）</p></div>
-          </div>
-          <div class="settings-section">
-            <h3>メンバーと権限</h3>
-            <p class="sec-note">採用担当・面接官・管理者のロールを管理します</p>
-            <div id="memberList"></div>
-          </div>
-          <div class="settings-section">
-            <h3>AI機能</h3>
-            <p class="sec-note">面接評価表・合否メール・求人票生成の設定です</p>
-            <div id="aiToggleList"></div>
-          </div>
-          <div class="settings-section">
-            <h3>通知設定</h3>
-            <p class="sec-note">面接リマインド・評価期限・内定承諾の通知です</p>
-            <div id="notifToggleList"></div>
-          </div>
-        </section>
-      </main>
+  <div class="board-wrap">
+    <div class="kanban-scroll">
+      <div class="kanban" id="kanbanBoard"></div>
     </div>
   </div>
 </div>
+
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+<aside class="detail-sheet" id="detailSheet" aria-hidden="true">
+  <div class="sheet-head">
+    <button class="sheet-close" onclick="closeSheet()" aria-label="閉じる">×</button>
+    <h2 id="sheetTitle">—</h2>
+    <p class="sub" id="sheetSub">—</p>
+    <div class="sheet-lane" id="sheetLane">—</div>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+</aside>
 
 <div class="komon-cta">
   <div class="cta-inner">
     <span class="cta-label">AI KOMONSHITSU</span>
     <h2>このようなシステムを、<em>御社専用に。</em></h2>
-    <p class="lead">「SAIYO」は本デモのために作った架空のプロダクトです。AI顧問室では、面接メモから評価表・合否メール下書きまで一気通貫で実現する採用管理システムを構築します。</p>
+    <p class="lead">「SAIYO」は本デモのために作った架空のプロダクトです。AI顧問室では、採用カンバンに面接メモ→評価表→合否メールのAIフローを組み込んだ採用管理システムを構築します。</p>
     <div class="cta-btn-row">
       <a href="index.html?from=works-saiyo#contact" class="btn btn-accent">無料相談を予約する</a>
       <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
@@ -756,13 +474,82 @@
 <div id="toastHost"></div>
 
 <script>
-
 var TODAY_STR = '2026-07-22';
+var LANE_ORDER = ['docs', 'first', 'final', 'offer'];
+var LANE_LABEL = { docs: '書類', first: '一次面接', final: '最終', offer: '内定' };
+var LANE_NEXT = { docs: 'first', first: 'final', final: 'offer' };
 
-function fmtDate(dateStr) {
-  var d = new Date(dateStr + 'T00:00:00');
-  return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
-}
+var JOBS = [
+  { id: 'job-001', title: 'フロントエンドエンジニア', dept: 'エンジニアリング' },
+  { id: 'job-002', title: 'カスタマーサクセス', dept: 'CS' },
+  { id: 'job-003', title: '採用アシスタント', dept: '人事' }
+];
+
+var CANDIDATES = [
+  { id: 'c-001', name: '田中 健太', initials: '田', jobId: 'job-001', lane: 'first', interviewer: '山本 CTO', applied: '2026-07-10', hasMemo: true, demoAi: true },
+  { id: 'c-002', name: '佐藤 美咲', initials: '佐', jobId: 'job-001', lane: 'docs', interviewer: '—', applied: '2026-07-19', hasMemo: false, demoAi: false },
+  { id: 'c-003', name: '鈴木 大輔', initials: '鈴', jobId: 'job-001', lane: 'offer', interviewer: '山本 CTO', applied: '2026-06-28', hasMemo: true, demoAi: false },
+  { id: 'c-005', name: '山田 花子', initials: '山', jobId: 'job-002', lane: 'final', interviewer: 'CS部長 伊藤', applied: '2026-07-05', hasMemo: true, demoAi: false },
+  { id: 'c-007', name: '高橋 ゆい', initials: '高', jobId: 'job-003', lane: 'first', interviewer: '採用 デモ', applied: '2026-07-14', hasMemo: true, demoAi: false },
+  { id: 'c-008', name: '渡辺 亮', initials: '渡', jobId: 'job-003', lane: 'docs', interviewer: '—', applied: '2026-07-20', hasMemo: false, demoAi: false },
+  { id: 'c-009', name: '小林 あかり', initials: '小', jobId: 'job-002', lane: 'final', interviewer: 'CS部長 伊藤', applied: '2026-07-08', hasMemo: true, demoAi: false },
+  { id: 'c-010', name: '加藤 翔', initials: '加', jobId: 'job-002', lane: 'offer', interviewer: 'CS部長 伊藤', applied: '2026-06-20', hasMemo: true, demoAi: false }
+];
+
+var INTERVIEW_MEMOS = {
+  'c-001': {
+    date: '2026-07-21', interviewer: '山本 CTO', duration: '45分',
+    memo: '【自己紹介】\n前職でReact/Next.jsを3年。デザインシステム構築経験あり。\n\n【技術面】\n・TypeScript/Reactの理解は深い。Hooks/Context/状態管理の説明が的確\n・パフォーマンス最適化（memo, lazy load）の実例を具体的に説明\n・CSS-in-EmotionとTailwind両方経験。デザイナーとの協業フローも理解\n\n【カルチャー】\n・「ユーザー視点でUI改善提案をした事例」を聞いた際、NPS改善の具体数値付きで回答\n・チーム内のコードレビュー文化を重視。前職で週次レビューを主導\n\n【懸念点】\n・バックエンド（Node/API設計）の経験は浅め。ただし学習意欲は高い\n\n【総合】\n技術力・コミュニケーションともに高水準。最終面接（ペアプロ）推奨。',
+    eval: {
+      scores: [
+        { label: '技術力', score: 4, max: 5 },
+        { label: 'コミュニケーション', score: 5, max: 5 },
+        { label: 'カルチャーフィット', score: 4, max: 5 },
+        { label: '成長意欲', score: 5, max: 5 },
+        { label: '即戦力度', score: 4, max: 5 }
+      ],
+      summary: 'React/TypeScriptの実務経験3年。デザインシステム構築・パフォーマンス最適化の具体例を提示できており、技術面は高評価。ユーザー視点の改善提案やコードレビュー文化への共感も確認。バックエンド経験は浅いが学習意欲が高く、最終面接（ペアプロ）での判断を推奨。',
+      verdict: 'pass',
+      verdictLabel: '最終面接へ進める（推奨）'
+    },
+    mailPass: {
+      subject: '【株式会社ヒューマンテック】フロントエンドエンジニア 最終面接のご案内',
+      body: '田中 健太 様\n\nお世話になっております。\n株式会社ヒューマンテック 採用担当のデモです。\n\n先日は1次面接にお越しいただき、誠にありがとうございました。\n\n慎重に選考を進めさせていただいた結果、\n最終面接（ペアプログラミング形式・60分）にお進みいただきたく、\nご連絡いたしました。\n\n【候補日時】\n・7月28日（月）14:00〜15:00\n・7月29日（火）10:00〜11:00\n・7月30日（水）16:00〜17:00\n\nご都合の良い日時を2〜3候補、ご返信ください。\n\n引き続きよろしくお願いいたします。\n\n株式会社ヒューマンテック\n採用担当 デモ'
+    },
+    mailReject: {
+      subject: '【株式会社ヒューマンテック】選考結果のご連絡',
+      body: '田中 健太 様\n\nお世話になっております。\n株式会社ヒューマンテック 採用担当のデモです。\n\nこの度は貴重なお時間をいただき、誠にありがとうございました。\n\n慎重に選考を進めさせていただきましたが、\n誠に残念ながら今回は見送らせていただく運びとなりました。\n\n今後のご活躍を心よりお祈り申し上げます。\n\n株式会社ヒューマンテック\n採用担当 デモ'
+    }
+  },
+  'c-005': {
+    date: '2026-07-18', interviewer: 'CS部長 伊藤', duration: '40分',
+    memo: '【経歴】SaaS CS 2年。オンボーディング設計経験。\n【所感】顧客対応力は高いが、データ分析（SQL）経験不足。\n最終面接でケーススタディ予定。'
+  },
+  'c-007': {
+    date: '2026-07-20', interviewer: '採用 デモ', duration: '30分',
+    memo: '【所感】人事アシスタント経験1年。日程調整・ATS操作に慣れている。\n即日稼働可能。次回：実務シミュレーション。'
+  },
+  'c-009': {
+    date: '2026-07-16', interviewer: 'CS部長 伊藤', duration: '50分',
+    memo: '【経歴】BtoB SaaS CS 3年。解約率改善プロジェクトリード経験。\n【所感】顧客課題の深掘りが的確。最終面接で役員同席予定。'
+  },
+  'c-003': {
+    date: '2026-07-15', interviewer: '山本 CTO', duration: '60分',
+    memo: '【最終面接】ペアプロ合格。チームフィットも問題なし。内定提示済み・承諾待ち。'
+  },
+  'c-010': {
+    date: '2026-07-12', interviewer: 'CS部長 伊藤', duration: '45分',
+    memo: '【最終面接】ケーススタディ高評価。内定承諾済み。入社日調整中。'
+  }
+};
+
+var loggedIn = false;
+var activeJobFilter = 'all';
+var activeCardId = null;
+var aiState = null;
+var c001Runtime = { evalDone: false, mailSent: false, mailType: 'pass' };
+var activeMailTab = 'pass';
+
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, function (c) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -776,589 +563,388 @@ function showToast(msg) {
   host.appendChild(el);
   setTimeout(function () { el.remove(); }, 2700);
 }
-
-var JOBS = [
-  { id: 'job-001', title: 'フロントエンドエンジニア', dept: 'エンジニアリング', location: '東京（リモート可）', type: '正社員', salary: '500〜700万円', status: 'open', candidates: 4, posted: '2026-06-15',
-    desc: 'React/TypeScriptでのプロダクト開発。UI/UX改善とパフォーマンス最適化を担当。' },
-  { id: 'job-002', title: 'カスタマーサクセス', dept: 'CS', location: '東京', type: '正社員', salary: '450〜600万円', status: 'open', candidates: 2, posted: '2026-06-20',
-    desc: 'SaaS導入支援・オンボーディング・解約防止。顧客との関係構築が主なミッション。' },
-  { id: 'job-003', title: '採用アシスタント', dept: '人事', location: '東京（週2出社）', type: '契約社員', salary: '時給1,800円〜', status: 'open', candidates: 2, posted: '2026-07-01',
-    desc: '求人票作成・スカウト送付・面接日程調整。採用チームのオペレーション支援。' }
-];
-
-var CANDIDATES = [
-  { id: 'c-001', name: '田中 健太', initials: '田', jobId: 'job-001', status: 'interview', interviewDate: '2026-07-21', interviewer: '山本 CTO', stage: '1次面接済', hasMemo: true, aiReady: true },
-  { id: 'c-002', name: '佐藤 美咲', initials: '佐', jobId: 'job-001', status: 'screening', interviewDate: '—', interviewer: '—', stage: '書類選考中', hasMemo: false, aiReady: false },
-  { id: 'c-003', name: '鈴木 大輔', initials: '鈴', jobId: 'job-001', status: 'offer', interviewDate: '2026-07-18', interviewer: '山本 CTO', stage: '内定提示', hasMemo: true, aiReady: false },
-  { id: 'c-004', name: '中村 さくら', initials: '中', jobId: 'job-001', status: 'withdrawn', interviewDate: '2026-07-10', interviewer: '—', stage: '辞退', hasMemo: false, aiReady: false },
-  { id: 'c-005', name: '山田 花子', initials: '山', jobId: 'job-002', status: 'interview', interviewDate: '2026-07-22', interviewer: 'CS部長 伊藤', stage: '2次面接予定', hasMemo: true, aiReady: false },
-  { id: 'c-006', name: '伊藤 翔', initials: '伊', jobId: 'job-002', status: 'rejected', interviewDate: '2026-07-15', interviewer: 'CS部長 伊藤', stage: '不採用', hasMemo: true, aiReady: false },
-  { id: 'c-007', name: '高橋 ゆい', initials: '高', jobId: 'job-003', status: 'interview', interviewDate: '2026-07-20', interviewer: '採用 デモ', stage: '1次面接済', hasMemo: true, aiReady: false },
-  { id: 'c-008', name: '渡辺 亮', initials: '渡', jobId: 'job-003', status: 'applied', interviewDate: '—', interviewer: '—', stage: '応募受付', hasMemo: false, aiReady: false }
-];
-
-var INTERVIEW_MEMOS = {
-  'c-001': {
-    date: '2026-07-21', interviewer: '山本 CTO', duration: '45分',
-    memo: '【自己紹介】\n前職でReact/Next.jsを3年。デザインシステム構築経験あり。\n\n【技術面】\n・TypeScript/Reactの理解は深い。Hooks/Context/状態管理の説明が的確\n・パフォーマンス最適化（memo, lazy load）の実例を具体的に説明\n・CSS-in-EmotionとTailwind両方経験。デザイナーとの協業フローも理解\n\n【カルチャー】\n・「ユーザー視点でUI改善提案をした事例」を聞いた際、NPS改善の具体数値付きで回答\n・チーム内のコードレビュー文化を重視。前職で週次レビューを主導\n\n【懸念点】\n・バックエンド（Node/API設計）の経験は浅め。ただし学習意欲は高い\n\n【総合】\n技術力・コミュニケーションともに高水準。2次面接（ペアプロ）推奨。',
-    eval: {
-      scores: [
-        { label: '技術力', score: 4, max: 5 },
-        { label: 'コミュニケーション', score: 5, max: 5 },
-        { label: 'カルチャーフィット', score: 4, max: 5 },
-        { label: '成長意欲', score: 5, max: 5 },
-        { label: '即戦力', score: 4, max: 5 }
-      ],
-      summary: 'React/TypeScriptの実務経験3年。デザインシステム構築・パフォーマンス最適化の具体例を提示できており、技術面は高評価。ユーザー視点の改善提案やコードレビュー文化への共感も確認。バックエンド経験は浅いが学習意欲が高く、2次面接（ペアプロ）での最終判断を推奨。',
-      verdict: 'pass',
-      verdictLabel: '2次面接へ進める（推奨）'
-    },
-    mailPass: {
-      subject: '【株式会社ヒューマンテック】フロントエンドエンジニア 2次面接のご案内',
-      body: '田中 健太 様\n\nお世話になっております。\n株式会社ヒューマンテック 採用担当のデモです。\n\n先日は1次面接にお越しいただき、誠にありがとうございました。\n\n慎重に選考を進めさせていただいた結果、\n2次面接（ペアプログラミング形式・60分）にお進みいただきたく、\nご連絡いたしました。\n\n【候補日時】\n・7月28日（月）14:00〜15:00\n・7月29日（火）10:00〜11:00\n・7月30日（水）16:00〜17:00\n\nご都合の良い日時を2〜3候補、ご返信ください。\n\n引き続きよろしくお願いいたします。\n\n株式会社ヒューマンテック\n採用担当 デモ'
-    },
-    mailReject: {
-      subject: '【株式会社ヒューマンテック】選考結果のご連絡',
-      body: '田中 健太 様\n\nお世話になっております。\n株式会社ヒューマンテック 採用担当のデモです。\n\nこの度は貴重なお時間をいただき、誠にありがとうございました。\n\n慎重に選考を進めさせていただきましたが、\n誠に残念ながら今回は見送らせていただく運びとなりました。\n\n今後のご活躍を心よりお祈り申し上げます。\n\n株式会社ヒューマンテック\n採用担当 デモ'
-    }
-  },
-  'c-005': {
-    date: '2026-07-18', interviewer: 'CS部長 伊藤', duration: '40分',
-    memo: '【経歴】SaaS CS 2年。オンボーディング設計経験。\n【所感】顧客対応力は高いが、データ分析（SQL）経験不足。\n2次面接でケーススタディ予定。',
-    eval: null
-  },
-  'c-006': {
-    date: '2026-07-15', interviewer: 'CS部長 伊藤', duration: '35分',
-    memo: '【所感】BtoB経験なし。顧客課題の深掘りが浅い。\n不採用判断。お見送りメール送付済み。',
-    eval: null
-  },
-  'c-007': {
-    date: '2026-07-20', interviewer: '採用 デモ', duration: '30分',
-    memo: '【所感】人事アシスタント経験1年。日程調整・ATS操作に慣れている。\n即日稼働可能。次回：実務シミュレーション。',
-    eval: null
-  }
-};
-
-var JOB_DRAFTS = [
-  { id: 'd-001', jobId: 'job-001', title: 'フロントエンドエンジニア（改訂版）', status: 'draft', updated: '2026-07-22', author: 'デモ 採用',
-    body: '【募集背景】\nプロダクト開発チーム拡大に伴い、フロントエンドエンジニアを募集します。\n\n【仕事内容】\n・React/TypeScriptを用いたWebアプリ開発\n・デザインシステムの構築・運用\n・パフォーマンス最適化・A/Bテスト実装\n\n【必須スキル】\n・React/TypeScript 2年以上\n・Git/GitHubでのチーム開発経験\n\n【歓迎スキル】\n・Next.js / Storybook\n・UI/UXデザインとの協業経験\n\n【待遇】\n・年収：500〜700万円\n・リモートワーク可（週2出社）\n・フレックスタイム制' },
-  { id: 'd-002', jobId: null, title: 'プロダクトマネージャー（新規ポジション）', status: 'draft', updated: '2026-07-20', author: 'デモ 採用',
-    body: '【募集背景】\n新規プロダクト立ち上げに伴い、PMを募集します。\n\n【仕事内容】\n・プロダクトロードマップ策定\n・エンジニア・デザイナーとの要件定義\n・KPI設計と改善サイクル\n\n【必須スキル】\n・BtoB SaaS PM経験 3年以上\n・データドリブンな意思決定\n\n【待遇】\n・年収：700〜900万円\n・ストックオプション制度あり' },
-  { id: 'd-003', jobId: 'job-003', title: '採用アシスタント（公開済み）', status: 'published', updated: '2026-07-01', author: 'デモ 採用',
-    body: '【仕事内容】\n・求人票作成・更新\n・スカウトメール送付\n・面接日程調整・候補者対応\n\n【必須】\n・人事/採用アシスタント経験 1年以上\n・ATS操作経験\n\n【待遇】\n・時給1,800円〜2,200円\n・週2出社（渋谷オフィス）' }
-];
-
-var ACTIVITY_LOG = [
-  { text: '<b>AI</b>が田中 健太さんの面接評価表を生成', time: '18分前', color: 'var(--purple)' },
-  { text: '<b>デモ 採用</b>が2次面接案内メール下書きを確認', time: '32分前', color: 'var(--teal)' },
-  { text: '<b>CS部長 伊藤</b>が山田 花子さんの2次面接を設定', time: '昨日', color: 'var(--amber)' },
-  { text: '<b>システム</b>が鈴木 大輔さんへ内定通知を送信', time: '7/18', color: 'var(--green)' },
-  { text: '<b>伊藤 翔</b>さんへお見送りメールを送付', time: '7/15', color: 'var(--pink)' }
-];
-
-var MEMBERS = [
-  { name: 'デモ 採用', mail: 'demo@corp-hire.example', role: 'admin' },
-  { name: '山本 CTO', mail: 'yamamoto@corp-hire.example', role: 'recruiter' },
-  { name: 'CS部長 伊藤', mail: 'ito@corp-hire.example', role: 'recruiter' },
-  { name: '人事 佐々木', mail: 'sasaki@corp-hire.example', role: 'member' }
-];
-var ROLE_LABEL = { admin: '管理者', recruiter: '面接官', member: '一般' };
-
-var AI_TOGGLES = [
-  { label: '面接メモ→評価表生成', desc: '面接メモを構造化し、5軸評価表を自動生成', on: true },
-  { label: '合否メール下書き', desc: '通過/お見送りメールの下書きを自動生成', on: true },
-  { label: '求人票AI生成', desc: 'ポジション要件から求人票ドラフトを生成', on: true },
-  { label: '生成後に必ず人の確認', desc: 'メール送信前に担当者承認を必須化', on: true }
-];
-var NOTIF_TOGGLES = [
-  { label: '面接リマインド（前日）', desc: '面接官・候補者双方に前日9:00通知', on: true },
-  { label: '評価表未作成アラート', desc: '面接後48時間経過で担当者に通知', on: true },
-  { label: '週次採用パイプラインサマリー', desc: '毎週月曜9:00に管理者へ送信', on: false }
-];
-
-var VIEW_NAMES = { dashboard: 'ダッシュボード', jobs: '求人一覧', draft: '求人下書き', settings: '設定' };
-var STATUS_BADGE = { applied: 'badge-applied', screening: 'badge-screening', interview: 'badge-interview', offer: 'badge-offer', rejected: 'badge-rejected', withdrawn: 'badge-withdrawn' };
-var STATUS_LABEL = { applied: '応募受付', screening: '書類選考', interview: '面接中', offer: '内定', rejected: '不採用', withdrawn: '辞退' };
-
-var loggedIn = false;
-var currentCandFilter = 'all';
-var currentCandId = null;
-var selectedDraftId = 'd-001';
-var aiState = null;
-var c001Runtime = { evalDone: false, mailDone: false };
-var activeMailTab = 'pass';
-
 function findJob(id) { return JOBS.filter(function (j) { return j.id === id; })[0]; }
 function findCand(id) { return CANDIDATES.filter(function (c) { return c.id === id; })[0]; }
-function findDraft(id) { return JOB_DRAFTS.filter(function (d) { return d.id === id; })[0]; }
+function filteredCandidates() {
+  if (activeJobFilter === 'all') return CANDIDATES.slice();
+  return CANDIDATES.filter(function (c) { return c.jobId === activeJobFilter; });
+}
+
+function renderJobSelect() {
+  var sel = document.getElementById('jobSelect');
+  var html = '<option value="all">すべての求人</option>';
+  JOBS.forEach(function (j) {
+    html += '<option value="' + j.id + '"' + (activeJobFilter === j.id ? ' selected' : '') + '>' + escapeHtml(j.title) + '</option>';
+  });
+  sel.innerHTML = html;
+}
+
+function renderKpiChips() {
+  var list = filteredCandidates();
+  var offer = list.filter(function (c) { return c.lane === 'offer'; }).length;
+  var first = list.filter(function (c) { return c.lane === 'first'; }).length;
+  document.getElementById('kpiChips').innerHTML =
+    '<span class="kpi-chip">アクティブ <b>' + list.length + '</b></span>' +
+    '<span class="kpi-chip">面接中 <b>' + first + '</b></span>' +
+    '<span class="kpi-chip">内定 <b>' + offer + '</b></span>';
+}
+
+function renderKanban() {
+  var list = filteredCandidates();
+  var board = document.getElementById('kanbanBoard');
+  board.innerHTML = LANE_ORDER.map(function (lane) {
+    var cards = list.filter(function (c) { return c.lane === lane; });
+    var cardsHtml = cards.map(function (c) { return cardHtml(c, lane); }).join('');
+    return '<div class="lane" data-lane="' + lane + '">' +
+      '<div class="lane-head"><h3>' + LANE_LABEL[lane] + '</h3><span class="lane-count">' + cards.length + '</span></div>' +
+      '<div class="lane-body">' + (cardsHtml || '<p style="font-size:12px;color:var(--gray-soft);padding:8px;">カードなし</p>') + '</div></div>';
+  }).join('');
+}
+
+function cardHtml(c, lane) {
+  var job = findJob(c.jobId);
+  var advanceHtml = LANE_NEXT[lane]
+    ? '<button class="btn-advance" onclick="event.stopPropagation();advanceCard(\'' + c.id + '\')">進める →</button>'
+    : '';
+  var memoTag = c.hasMemo ? '<span class="tag tag-memo">メモあり</span>' : '';
+  return '<article class="card' + (c.demoAi ? ' demo-star' : '') + '" onclick="openSheet(\'' + c.id + '\')" role="button" tabindex="0">' +
+    '<div class="card-top">' +
+    '<div class="card-avatar">' + escapeHtml(c.initials) + '</div>' +
+    '<div class="card-main"><div class="card-name">' + escapeHtml(c.name) + '</div>' +
+    '<div class="card-job">' + escapeHtml(job ? job.title : '—') + '</div></div></div>' +
+    '<div class="card-meta">担当: ' + escapeHtml(c.interviewer) + ' · 応募 ' + escapeHtml(c.applied.slice(5)) + '</div>' +
+    '<div class="card-foot"><div class="card-tags">' + memoTag +
+    (c.demoAi ? '<span class="tag">AIデモ</span>' : '') + '</div>' + advanceHtml + '</div></article>';
+}
+
+function renderBoard() {
+  renderKpiChips();
+  renderKanban();
+}
+
+function onJobFilterChange() {
+  activeJobFilter = document.getElementById('jobSelect').value;
+  renderBoard();
+  if (activeCardId) {
+    var c = findCand(activeCardId);
+    if (!c || (activeJobFilter !== 'all' && c.jobId !== activeJobFilter)) closeSheet();
+  }
+}
+
+function advanceCard(id) {
+  var c = findCand(id);
+  if (!c || !LANE_NEXT[c.lane]) return;
+  c.lane = LANE_NEXT[c.lane];
+  showToast(c.name + ' を「' + LANE_LABEL[c.lane] + '」へ進めました');
+  renderBoard();
+  if (activeCardId === id) {
+    document.getElementById('sheetLane').textContent = LANE_LABEL[c.lane];
+  }
+}
+
+function openSheet(id) {
+  var c = findCand(id);
+  if (!c) return;
+  activeCardId = id;
+  location.hash = 'card/' + id;
+  var job = findJob(c.jobId);
+  document.getElementById('sheetTitle').textContent = c.name;
+  document.getElementById('sheetSub').textContent = (job ? job.title : '—') + ' · ' + (job ? job.dept : '');
+  document.getElementById('sheetLane').textContent = LANE_LABEL[c.lane];
+  renderSheetBody(c);
+  document.getElementById('sheetOverlay').classList.add('open');
+  document.getElementById('detailSheet').classList.add('open');
+  document.getElementById('detailSheet').setAttribute('aria-hidden', 'false');
+}
+
+function closeSheet() {
+  activeCardId = null;
+  if (aiState) aiState.timers.forEach(function (t) { clearTimeout(t); });
+  aiState = null;
+  document.getElementById('sheetOverlay').classList.remove('open');
+  document.getElementById('detailSheet').classList.remove('open');
+  document.getElementById('detailSheet').setAttribute('aria-hidden', 'true');
+  if (isLoggedIn() && location.hash.replace('#', '').indexOf('card/') === 0) location.hash = 'board';
+}
+
+function renderSheetBody(c) {
+  var memo = INTERVIEW_MEMOS[c.id];
+  var memoHtml = '';
+  if (memo) {
+    memoHtml = '<div class="memo-box"><div class="memo-label">面接メモ</div>' +
+      '<div class="memo-meta">' + escapeHtml(memo.date) + ' · ' + escapeHtml(memo.interviewer) + ' · ' + escapeHtml(memo.duration) + '</div>' +
+      '<div class="memo-text">' + escapeHtml(memo.memo) + '</div></div>';
+  } else {
+    memoHtml = '<div class="memo-box"><div class="memo-empty">面接メモはまだありません</div></div>';
+  }
+  document.getElementById('sheetBody').innerHTML = memoHtml + '<div id="aiPane"></div>';
+  setupAiPane(c);
+}
+
+function setupAiPane(c) {
+  var pane = document.getElementById('aiPane');
+  if (!c.demoAi) {
+    pane.innerHTML = '<div class="ai-start-box"><p>AI評価表・合否メールのフル演出は<br><b>田中 健太</b>さんのカードで体験できます。</p></div>';
+    return;
+  }
+  if (c001Runtime.mailSent) {
+    pane.innerHTML = '<div class="complete-banner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>' +
+      (c001Runtime.mailType === 'pass' ? '通過メール送信済 — 最終面接レーンへ移動' : 'お見送りメール送信済') + '</div>' +
+      '<div class="draft-reset"><button onclick="resetC001()">↺ デモをリセット</button></div>';
+    return;
+  }
+  if (c001Runtime.evalDone) {
+    renderEvalResult();
+    return;
+  }
+  pane.innerHTML = '<div class="sheet-section"><h4>AI評価・合否メール</h4>' +
+    '<div class="ai-start-box"><p>面接メモをもとに5軸評価表と<br>通過/お見送りメール下書きを生成します。</p>' +
+    '<button class="btn-ai-run" onclick="startAiEval()">AIで評価表を生成</button></div></div>';
+}
+
+function startAiEval() {
+  if (!activeCardId || activeCardId !== 'c-001') return;
+  aiState = { phase: 'scanning', timers: [], runId: {} };
+  var myRun = aiState.runId;
+  document.getElementById('aiPane').innerHTML =
+    '<div class="scan-box"><div class="scan-spinner"></div><div class="scan-text">面接メモを分析中…</div>' +
+    '<div style="font-size:12px;color:var(--gray-soft);margin-top:8px;">5軸評価・合否判断を生成</div></div>';
+  var t = setTimeout(function () {
+    if (!aiState || aiState.runId !== myRun) return;
+    c001Runtime.evalDone = true;
+    renderEvalResult();
+  }, 1600);
+  aiState.timers.push(t);
+}
+
+function renderEvalResult() {
+  var memo = INTERVIEW_MEMOS['c-001'];
+  var ev = memo.eval;
+  var radarHtml = buildRadarSvg(ev.scores);
+  var tableHtml = ev.scores.map(function (s) {
+    var pct = Math.round((s.score / s.max) * 100);
+    return '<tr><td>' + escapeHtml(s.label) + '</td><td><div class="eval-bar-wrap">' +
+      '<div class="eval-bar"><div class="eval-bar-fill" style="width:' + pct + '%"></div></div>' +
+      '<span class="eval-score">' + s.score + '/' + s.max + '</span></div></td></tr>';
+  }).join('');
+  document.getElementById('aiPane').innerHTML =
+    '<div class="sheet-section"><h4>AI評価表（5軸）</h4>' +
+    '<div class="radar-wrap">' + radarHtml + '</div>' +
+    '<table class="eval-table"><thead><tr><th>評価軸</th><th>スコア</th></tr></thead><tbody>' + tableHtml + '</tbody></table>' +
+    '<div class="eval-summary">' + escapeHtml(ev.summary) + '</div>' +
+    '<span class="verdict-badge verdict-pass">✓ ' + escapeHtml(ev.verdictLabel) + '</span></div>' +
+    '<div id="mailPaneWrap"></div>';
+  renderMailPane(findCand('c-001'));
+}
+
+function buildRadarSvg(scores) {
+  var cx = 90, cy = 90, r = 70, n = scores.length;
+  var levels = [0.2, 0.4, 0.6, 0.8, 1];
+  var grid = levels.map(function (lv) {
+    var pts = [];
+    for (var i = 0; i < n; i++) {
+      var a = (Math.PI * 2 * i / n) - Math.PI / 2;
+      pts.push((cx + r * lv * Math.cos(a)).toFixed(1) + ',' + (cy + r * lv * Math.sin(a)).toFixed(1));
+    }
+    return '<polygon points="' + pts.join(' ') + '" fill="none" stroke="#E4DEFF" stroke-width="1"/>';
+  }).join('');
+  var dataPts = [];
+  var labelPts = [];
+  for (var j = 0; j < n; j++) {
+    var ang = (Math.PI * 2 * j / n) - Math.PI / 2;
+    var val = scores[j].score / scores[j].max;
+    dataPts.push((cx + r * val * Math.cos(ang)).toFixed(1) + ',' + (cy + r * val * Math.sin(ang)).toFixed(1));
+    var lx = cx + (r + 18) * Math.cos(ang);
+    var ly = cy + (r + 18) * Math.sin(ang);
+    labelPts.push('<text x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#5B5478" font-weight="700">' + escapeHtml(scores[j].label.slice(0, 4)) + '</text>');
+  }
+  return '<svg class="radar-svg" viewBox="0 0 180 180">' + grid +
+    '<polygon points="' + dataPts.join(' ') + '" fill="rgba(124,58,237,.25)" stroke="#7C3AED" stroke-width="2"/>' +
+    labelPts.join('') + '</svg>';
+}
+
+function renderMailPane(c) {
+  var wrap = document.getElementById('mailPaneWrap') || document.getElementById('aiPane');
+  if (!wrap) return;
+  var memo = INTERVIEW_MEMOS['c-001'];
+  wrap.innerHTML = (c001Runtime.evalDone ? '' : '') +
+    '<div class="sheet-section"><h4>合否メール下書き</h4>' +
+    '<div class="mail-tabs">' +
+    '<button class="mail-tab pass-tab' + (activeMailTab === 'pass' ? ' active' : '') + '" onclick="switchMailTab(\'pass\')">通過メール</button>' +
+    '<button class="mail-tab reject-tab' + (activeMailTab === 'reject' ? ' active' : '') + '" onclick="switchMailTab(\'reject\')">お見送り</button></div>' +
+    '<div id="mailDraftPane"></div></div>';
+  renderMailDraftPane();
+}
+
+function switchMailTab(tab) {
+  activeMailTab = tab;
+  document.querySelectorAll('.mail-tab').forEach(function (b) {
+    b.classList.toggle('active', (tab === 'pass' && b.classList.contains('pass-tab')) || (tab === 'reject' && b.classList.contains('reject-tab')));
+  });
+  renderMailDraftPane();
+}
+
+function renderMailDraftPane() {
+  var pane = document.getElementById('mailDraftPane');
+  if (!pane) return;
+  if (c001Runtime.mailSent) return;
+  var memo = INTERVIEW_MEMOS['c-001'];
+  var mail = activeMailTab === 'pass' ? memo.mailPass : memo.mailReject;
+  if (!aiState || aiState.phase === 'idle' || aiState.phase === 'ready') {
+    if (!aiState || aiState.phase !== 'ready') {
+      pane.innerHTML = '<div class="ai-start-box"><p>' + (activeMailTab === 'pass' ? '通過' : 'お見送り') + 'メール下書きをAIが生成します。<br>送信するとレーンが進みます。</p>' +
+        '<button class="btn-ai-run" onclick="startMailDraft()">メール下書きを生成</button></div>';
+      return;
+    }
+  }
+  if (aiState && aiState.phase === 'typing') return;
+  if (aiState && aiState.phase === 'ready') {
+    pane.innerHTML =
+      '<div class="ai-toolbar"><span class="ai-count">下書きが作成できました</span></div>' +
+      '<div class="draft-box"><div class="draft-subject">件名: ' + escapeHtml(mail.subject) + '</div>' +
+      '<textarea class="draft-text-preview" style="width:100%;min-height:180px;border:none;background:transparent;resize:vertical;" id="mailEditor">' + escapeHtml(mail.body) + '</textarea></div>' +
+      '<div class="draft-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>内容を確認のうえ送信してください。<span class="badge badge-human">人の確認</span></div>' +
+      '<button class="btn-approve-draft ' + (activeMailTab === 'pass' ? 'pass' : 'reject') + '" id="sendMailBtn" onclick="sendMail()">内容を確認して送信</button>' +
+      '<div class="draft-reset"><button onclick="resetMailDraft()">↺ やり直し</button></div>';
+  }
+}
+
+function startMailDraft() {
+  var memo = INTERVIEW_MEMOS['c-001'];
+  var mail = activeMailTab === 'pass' ? memo.mailPass : memo.mailReject;
+  var fullText = '件名: ' + mail.subject + '\n\n' + mail.body;
+  aiState = aiState || { timers: [], runId: null };
+  var myRun = {};
+  aiState.runId = myRun;
+  aiState.phase = 'typing';
+  document.getElementById('mailDraftPane').innerHTML =
+    '<div class="ai-toolbar"><span class="ai-count">メール下書きを作成中…</span>' +
+    '<button class="btn-skip" onclick="skipMailTyping()">⏩ すべて表示</button></div>' +
+    '<div class="draft-box"><div class="draft-text-preview"><span id="mailText"></span><span class="draft-cursor"></span></div></div>';
+  typeMailText('mailText', fullText, 4500, myRun, function () {
+    if (!aiState || aiState.runId !== myRun) return;
+    aiState.phase = 'ready';
+    renderMailDraftPane();
+  });
+}
+
+function typeMailText(elId, fullText, duration, myRun, onDone) {
+  var tickMs = 42;
+  var totalTicks = Math.ceil(duration / tickMs);
+  var charsPerTick = Math.max(1, Math.ceil(fullText.length / totalTicks));
+  var shown = 0;
+  function tick() {
+    if (!aiState || aiState.runId !== myRun) return;
+    shown = Math.min(fullText.length, shown + charsPerTick);
+    var el = document.getElementById(elId);
+    if (el) el.textContent = fullText.slice(0, shown);
+    if (shown >= fullText.length) { if (onDone) onDone(); return; }
+    aiState.timers.push(setTimeout(tick, tickMs));
+  }
+  aiState.timers.push(setTimeout(tick, tickMs));
+}
+
+function skipMailTyping() {
+  if (!aiState) return;
+  aiState.timers.forEach(function (id) { clearTimeout(id); });
+  aiState.timers = [];
+  aiState.runId = {};
+  aiState.phase = 'ready';
+  renderMailDraftPane();
+}
+
+function resetMailDraft() {
+  if (aiState) aiState.timers.forEach(function (t) { clearTimeout(t); });
+  aiState = { phase: 'idle', timers: [], runId: null };
+  renderMailDraftPane();
+}
+
+function sendMail() {
+  if (!aiState || aiState.phase !== 'ready') return;
+  var btn = document.getElementById('sendMailBtn');
+  if (btn) btn.disabled = true;
+  c001Runtime.mailSent = true;
+  c001Runtime.mailType = activeMailTab;
+  var c = findCand('c-001');
+  if (c && activeMailTab === 'pass' && LANE_NEXT[c.lane]) {
+    c.lane = LANE_NEXT[c.lane];
+    showToast('通過メールを送信 — 「' + LANE_LABEL[c.lane] + '」へ進みました');
+  } else {
+    showToast('お見送りメールを送信しました（デモ）');
+  }
+  renderBoard();
+  document.getElementById('sheetLane').textContent = c ? LANE_LABEL[c.lane] : '—';
+  setupAiPane(c);
+}
+
+function resetC001() {
+  if (aiState) aiState.timers.forEach(function (t) { clearTimeout(t); });
+  aiState = null;
+  c001Runtime = { evalDone: false, mailSent: false, mailType: 'pass' };
+  activeMailTab = 'pass';
+  var c = findCand('c-001');
+  if (c) c.lane = 'first';
+  renderBoard();
+  if (activeCardId === 'c-001') renderSheetBody(c);
+  showToast('田中 健太さんのデモをリセットしました');
+}
 
 function isLoggedIn() { return loggedIn; }
+
+function showLoginScreen() {
+  closeSheet();
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+}
+
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+  renderJobSelect();
+  renderBoard();
+}
 
 function handleRoute() {
   var hash = location.hash.replace('#', '') || 'login';
   if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
   if (hash === 'login') { showLoginScreen(); return; }
   showAppScreen();
-  if (hash.indexOf('candidate/') === 0) {
-    openCandidateDetail(hash.split('/')[1]);
-    setActiveNav(null);
+  if (hash.indexOf('card/') === 0) {
+    var id = hash.split('/')[1];
+    if (findCand(id)) openSheet(id);
+    else location.hash = 'board';
     return;
   }
-  var view = ['dashboard', 'jobs', 'draft', 'settings'].indexOf(hash) >= 0 ? hash : 'dashboard';
-  showView(view);
-  setActiveNav(view);
+  if (hash !== 'board') location.hash = 'board';
+  closeSheet();
 }
 
-function showLoginScreen() {
-  document.getElementById('view-login').classList.remove('hide');
-  document.getElementById('view-app').classList.remove('show');
-}
-function showAppScreen() {
-  document.getElementById('view-login').classList.add('hide');
-  document.getElementById('view-app').classList.add('show');
-}
-
-function showView(name) {
-  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
-  var el = document.getElementById('view-' + name);
-  if (el) el.classList.add('active');
-  document.getElementById('viewNameLabel').textContent = VIEW_NAMES[name] || '候補者詳細';
-  if (name === 'dashboard') renderDashboard();
-  if (name === 'jobs') renderJobsView();
-  if (name === 'draft') renderDraftView();
-  if (name === 'settings') renderSettings();
-  toggleSidebar(false);
-  window.scrollTo({ top: 0, behavior: 'auto' });
+function doLogin() {
+  var btn = document.getElementById('loginBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+  setTimeout(function () {
+    loggedIn = true;
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    location.hash = 'board';
+    handleRoute();
+  }, 900);
 }
 
-function setActiveNav(name) {
-  document.querySelectorAll('.nav-btn').forEach(function (b) {
-    b.classList.toggle('active', b.dataset.nav === name);
-  });
+function doLogout() {
+  loggedIn = false;
+  location.hash = 'login';
+  handleRoute();
+  showToast('ログアウトしました（デモ）');
 }
-
-function go(name) { location.hash = name; }
 
 window.addEventListener('hashchange', handleRoute);
 window.addEventListener('DOMContentLoaded', function () {
-  renderNotifDropdown();
   var initialHash = location.hash.replace('#', '');
   if (initialHash && initialHash !== 'login') loggedIn = true;
   handleRoute();
 });
-
-function doLogin() {
-  var btn = document.getElementById('loginBtn');
-  if (btn.classList.contains('loading')) return;
-  btn.classList.add('loading');
-  btn.disabled = true;
-  setTimeout(function () {
-    btn.classList.remove('loading');
-    btn.disabled = false;
-    loggedIn = true;
-    if (location.hash === '#dashboard') handleRoute();
-    else location.hash = 'dashboard';
-  }, 800);
-}
-function doLogout() {
-  loggedIn = false;
-  aiState = null;
-  showToast('ログアウトしました');
-}
-
-function toggleSidebar(force) {
-  var sb = document.getElementById('sidebar');
-  var ov = document.getElementById('mobileOverlay');
-  var open = typeof force === 'boolean' ? force : !sb.classList.contains('open');
-  sb.classList.toggle('open', open);
-  ov.classList.toggle('open', open);
-}
-
-function toggleDropdown(id) {
-  var el = document.getElementById(id);
-  var willOpen = !el.classList.contains('open');
-  document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
-  if (willOpen) el.classList.add('open');
-}
-document.addEventListener('click', function (e) {
-  if (!e.target.closest('.dropdown-wrap')) {
-    document.querySelectorAll('.dropdown-panel').forEach(function (p) { p.classList.remove('open'); });
-  }
-});
-
-function renderNotifDropdown() {
-  var items = [
-    { color: 'var(--purple)', text: '田中 健太さんのAI評価表が生成されました', time: '18分前' },
-    { color: 'var(--amber)', text: '山田 花子さんの2次面接が明日14:00です', time: '今日' },
-    { color: 'var(--green)', text: '鈴木 大輔さんが内定を承諾しました', time: '7/18' }
-  ];
-  document.getElementById('notifList').innerHTML = items.map(function (n) {
-    return '<div class="notif-item"><span class="dot" style="background:' + n.color + '"></span><div class="txt">' + escapeHtml(n.text) + '<div class="time">' + escapeHtml(n.time) + '</div></div></div>';
-  }).join('');
-  document.getElementById('notifBadgeCount').textContent = items.length;
-}
-
-function kpiCardHtml(label, value, unit, color, sub) {
-  return '<div class="kpi-card"><div class="kpi-label"><span class="kpi-swatch" style="background:' + color + '"></span>' + label + '</div>' +
-    '<div class="kpi-value">' + value + '<span>' + unit + '</span></div><div class="kpi-sub">' + sub + '</div></div>';
-}
-
-function renderDashboard() {
-  var openJobs = JOBS.filter(function (j) { return j.status === 'open'; }).length;
-  var activeCands = CANDIDATES.filter(function (c) { return c.status !== 'rejected' && c.status !== 'withdrawn'; }).length;
-  var pendingEval = CANDIDATES.filter(function (c) { return c.aiReady; }).length;
-  document.getElementById('kpiGrid').innerHTML = [
-    kpiCardHtml('公開求人', openJobs, '件', 'var(--purple)', 'エンジニア・CS・人事'),
-    kpiCardHtml('アクティブ候補者', activeCands, '名', 'var(--teal)', '選考進行中'),
-    kpiCardHtml('評価待ち', pendingEval, '件', 'var(--amber)', 'AI評価表未生成'),
-    kpiCardHtml('今月内定', 1, '名', 'var(--green)', '鈴木 大輔（FE）')
-  ].join('');
-
-  var stages = [
-    { label: '応募', count: CANDIDATES.filter(function (c) { return c.status === 'applied'; }).length },
-    { label: '書類選考', count: CANDIDATES.filter(function (c) { return c.status === 'screening'; }).length },
-    { label: '面接中', count: CANDIDATES.filter(function (c) { return c.status === 'interview'; }).length },
-    { label: '内定', count: CANDIDATES.filter(function (c) { return c.status === 'offer'; }).length },
-    { label: '不採用/辞退', count: CANDIDATES.filter(function (c) { return c.status === 'rejected' || c.status === 'withdrawn'; }).length }
-  ];
-  document.getElementById('pipelineBar').innerHTML = stages.map(function (s, i) {
-    return '<div class="pipeline-stage ' + (i === 2 ? 'highlight' : '') + '"><div class="ps-num">' + s.count + '</div><div class="ps-label">' + s.label + '</div></div>';
-  }).join('');
-
-  var pending = CANDIDATES.filter(function (c) { return c.hasMemo && (c.aiReady || c.status === 'interview'); }).slice(0, 4);
-  document.getElementById('pendingEvalList').innerHTML = pending.map(function (c) {
-    var job = findJob(c.jobId);
-    return '<div class="task-row" onclick="openCandidate(\'' + c.id + '\')">' +
-      '<span class="cand-avatar">' + escapeHtml(c.initials) + '</span>' +
-      '<span class="t-main"><div class="t-name">' + escapeHtml(c.name) + '</div>' +
-      '<div class="t-sub">' + escapeHtml(job ? job.title : '') + ' ・ ' + escapeHtml(c.stage) + '</div></span>' +
-      (c.aiReady ? '<span class="badge badge-screening">AI評価可</span>' : '<span class="badge badge-cat">' + escapeHtml(c.stage) + '</span>') +
-      '<span class="t-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></span></div>';
-  }).join('');
-
-  document.getElementById('activityTimeline').innerHTML = ACTIVITY_LOG.map(function (a) {
-    return '<div class="timeline-item"><span class="timeline-dot" style="background:' + a.color + '"></span>' +
-      '<div><div class="timeline-text">' + a.text + '</div><div class="timeline-date">' + a.time + '</div></div></div>';
-  }).join('');
-}
-
-var CAND_TABS = [
-  { key: 'all', label: 'すべて' },
-  { key: 'applied', label: '応募' },
-  { key: 'screening', label: '書類選考' },
-  { key: 'interview', label: '面接中' },
-  { key: 'offer', label: '内定' }
-];
-
-function renderJobsView() {
-  document.getElementById('jobGrid').innerHTML = JOBS.map(function (j) {
-    return '<div class="job-card" onclick="filterByJob(\'' + j.id + '\')">' +
-      '<div class="jc-dept">' + escapeHtml(j.dept) + '</div>' +
-      '<h4>' + escapeHtml(j.title) + '</h4>' +
-      '<p>' + escapeHtml(j.desc) + '</p>' +
-      '<div class="jc-meta"><span>' + escapeHtml(j.location) + '</span><span>候補者 ' + j.candidates + '名</span>' +
-      '<span class="badge badge-' + j.status + '">' + (j.status === 'open' ? '募集中' : '終了') + '</span></div></div>';
-  }).join('');
-
-  document.getElementById('candTabRow').innerHTML = CAND_TABS.map(function (t) {
-    var count = t.key === 'all' ? CANDIDATES.length : CANDIDATES.filter(function (c) { return c.status === t.key; }).length;
-    return '<button class="tab-chip ' + (currentCandFilter === t.key ? 'active' : '') + '" onclick="setCandFilter(\'' + t.key + '\')">' +
-      t.label + '<span class="cnt">' + count + '</span></button>';
-  }).join('');
-
-  renderCandTable();
-}
-
-function filterByJob(jobId) {
-  currentJobFilter = jobId;
-  renderCandTable();
-  showToast('『' + (findJob(jobId) || {}).title + '』の候補者を表示（デモ）');
-}
-var currentJobFilter = null;
-
-function setCandFilter(key) {
-  currentCandFilter = key;
-  currentJobFilter = null;
-  renderJobsView();
-}
-
-function renderCandTable() {
-  var q = (document.getElementById('candSearchInput').value || '').trim().toLowerCase();
-  var rows = CANDIDATES.filter(function (item) {
-    if (currentCandFilter !== 'all' && item.status !== currentCandFilter) return false;
-    if (currentJobFilter && item.jobId !== currentJobFilter) return false;
-    if (!q) return true;
-    return item.name.toLowerCase().indexOf(q) >= 0;
-  });
-  var tbody = document.getElementById('candTbody');
-  if (!rows.length) {
-    tbody.innerHTML = '<tr class="empty-row"><td colspan="5">該当する候補者がいません。</td></tr>';
-    return;
-  }
-  tbody.innerHTML = rows.map(function (item) {
-    var job = findJob(item.jobId);
-    var hot = item.id === 'c-001';
-    return '<tr class="' + (hot ? 'row-hot' : '') + '" onclick="openCandidate(\'' + item.id + '\')">' +
-      '<td class="name-cell" data-label="候補者"><span style="display:flex;align-items:center;gap:10px;"><span class="cand-avatar">' + escapeHtml(item.initials) + '</span>' + escapeHtml(item.name) + '</span></td>' +
-      '<td data-label="応募求人">' + escapeHtml(job ? job.title : '') + '</td>' +
-      '<td data-label="ステータス"><span class="badge ' + STATUS_BADGE[item.status] + '">' + STATUS_LABEL[item.status] + '</span></td>' +
-      '<td data-label="面接日">' + (item.interviewDate === '—' ? '—' : fmtDate(item.interviewDate)) + '</td>' +
-      '<td data-label="担当">' + escapeHtml(item.interviewer) + '</td></tr>';
-  }).join('');
-}
-
-function openCandidate(id) { location.hash = 'candidate/' + id; }
-
-function openCandidateDetail(id) {
-  var cand = findCand(id);
-  if (!cand) { location.hash = 'jobs'; return; }
-  var job = findJob(cand.jobId);
-  var memo = INTERVIEW_MEMOS[id];
-  currentCandId = id;
-  activeMailTab = 'pass';
-
-  document.querySelectorAll('.view').forEach(function (v) { v.classList.remove('active'); });
-  document.getElementById('view-candidate-detail').classList.add('active');
-  document.getElementById('viewNameLabel').textContent = '候補者詳細';
-  document.getElementById('detailAvatar').textContent = cand.initials;
-  document.getElementById('detailName').textContent = cand.name;
-  document.getElementById('detailSub').textContent = (job ? job.title : '') + ' ・ ' + cand.stage;
-  document.getElementById('detailBadge').className = 'badge ' + STATUS_BADGE[cand.status];
-  document.getElementById('detailBadge').textContent = STATUS_LABEL[cand.status];
-
-  if (memo) {
-    document.getElementById('memoMeta').innerHTML =
-      '<span>面接日: ' + fmtDate(memo.date) + '</span><span>面接官: ' + escapeHtml(memo.interviewer) + '</span><span>' + memo.duration + '</span>';
-    document.getElementById('memoText').textContent = memo.memo;
-  } else {
-    document.getElementById('memoMeta').innerHTML = '';
-    document.getElementById('memoText').textContent = '面接メモはまだありません。';
-  }
-
-  if (id === 'c-001' && !c001Runtime.evalDone && cand.aiReady) {
-    document.getElementById('aiPanelBody').innerHTML =
-      '<div class="ai-start-box" id="aiStartBox"><p>面接メモをもとに、<br>評価表・合否メール下書きを生成します。</p>' +
-      '<button class="btn-ai-run" id="btnAiEval" onclick="startAiEval()">AIで評価表を生成</button></div>';
-  } else if (id === 'c-001' && c001Runtime.evalDone) {
-    renderEvalComplete('c-001');
-  } else if (memo && memo.eval) {
-    renderEvalComplete(id);
-  } else {
-    document.getElementById('aiPanelBody').innerHTML =
-      '<div class="ai-start-box"><p>この候補者の面接メモから<br>AI評価表を生成できます。</p>' +
-      '<button class="btn-ai-run" onclick="showToast(\'AI評価表を生成しました（デモ）\')">AIで評価表を生成</button></div>';
-  }
-
-  toggleSidebar(false);
-  window.scrollTo({ top: 0, behavior: 'auto' });
-}
-
-function startAiEval() {
-  if (currentCandId !== 'c-001') { showToast('AI評価表を生成しました（デモ）'); return; }
-  if (!aiState) aiState = { phase: 'idle', timers: [], runId: null };
-  if (aiState.phase !== 'idle' && aiState.phase !== 'done') return;
-  var myRun = {};
-  aiState.runId = myRun;
-  aiState.phase = 'scanning';
-
-  document.getElementById('aiPanelBody').innerHTML =
-    '<div class="scan-box"><div class="scan-spinner"></div><div class="scan-text">面接メモを解析中…</div>' +
-    '<div class="scan-sub">評価軸・合否判断・メール下書きを生成</div></div>';
-
-  var t = setTimeout(function () {
-    if (!aiState || aiState.runId !== myRun) return;
-    revealEvalSequence('c-001', myRun);
-  }, 1400);
-  aiState.timers.push(t);
-}
-
-function revealEvalSequence(cid, myRun) {
-  var memo = INTERVIEW_MEMOS[cid];
-  if (!memo || !memo.eval) return;
-  aiState.phase = 'revealing';
-  var eval = memo.eval;
-  var step = 0;
-
-  document.getElementById('aiPanelBody').innerHTML =
-    '<div class="ai-toolbar"><span class="ai-count">評価表を生成中…</span>' +
-    '<button class="btn-skip" onclick="skipEvalReveal()">⏩ すべて表示</button></div>' +
-    '<div id="evalGenArea"></div>';
-
-  function nextStep() {
-    if (!aiState || aiState.runId !== myRun) return;
-    if (step === 0) {
-      var scoresHtml = eval.scores.map(function (s) {
-        var dots = '';
-        for (var i = 0; i < s.max; i++) dots += '<span class="eval-dot ' + (i < s.score ? 'on' : '') + '"></span>';
-        return '<div class="eval-row"><span>' + escapeHtml(s.label) + '</span><span class="eval-score">' + dots + '</span></div>';
-      }).join('');
-      document.getElementById('evalGenArea').innerHTML =
-        '<div class="eval-block eval-section"><h5>5軸評価</h5>' + scoresHtml + '</div>';
-      step = 1;
-      var t = setTimeout(nextStep, 600);
-      aiState.timers.push(t);
-    } else if (step === 1) {
-      document.getElementById('evalGenArea').insertAdjacentHTML('beforeend',
-        '<div class="eval-block eval-section"><h5>総合所見</h5><div class="eval-summary" id="evalSummary"></div></div>');
-      typeText('evalSummary', eval.summary, myRun, function () {
-        step = 2;
-        nextStep();
-      });
-    } else if (step === 2) {
-      document.getElementById('evalGenArea').insertAdjacentHTML('beforeend',
-        '<div class="eval-block"><span class="eval-verdict ' + eval.verdict + '">' + escapeHtml(eval.verdictLabel) + '</span></div>');
-      step = 3;
-      var t = setTimeout(nextStep, 500);
-      aiState.timers.push(t);
-    } else {
-      finishEval(cid, myRun);
-    }
-  }
-  nextStep();
-}
-
-function typeText(elId, fullText, myRun, onDone) {
-  var el = document.getElementById(elId);
-  var shown = 0;
-  var tickMs = 24;
-  var charsPerTick = 3;
-  function tick() {
-    if (!aiState || aiState.runId !== myRun) return;
-    shown = Math.min(fullText.length, shown + charsPerTick);
-    if (el) el.textContent = fullText.slice(0, shown);
-    if (shown >= fullText.length) { if (onDone) onDone(); return; }
-    var t = setTimeout(tick, tickMs);
-    aiState.timers.push(t);
-  }
-  tick();
-}
-
-function finishEval(cid, myRun) {
-  if (!aiState || aiState.runId !== myRun) return;
-  aiState.phase = 'done';
-  c001Runtime.evalDone = true;
-  renderEvalComplete(cid);
-  showToast('評価表と合否メール下書きを生成しました');
-}
-
-function renderEvalComplete(cid) {
-  var memo = INTERVIEW_MEMOS[cid];
-  if (!memo || !memo.eval) return;
-  var eval = memo.eval;
-  var scoresHtml = eval.scores.map(function (s) {
-    var dots = '';
-    for (var i = 0; i < s.max; i++) dots += '<span class="eval-dot ' + (i < s.score ? 'on' : '') + '"></span>';
-    return '<div class="eval-row"><span>' + escapeHtml(s.label) + '</span><span class="eval-score">' + dots + '</span></div>';
-  }).join('');
-
-  document.getElementById('aiPanelBody').innerHTML =
-    '<div class="complete-banner in"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>AI評価表が生成されました</div>' +
-    '<div class="eval-section"><h5>5軸評価</h5>' + scoresHtml + '</div>' +
-    '<div class="eval-section"><h5>総合所見</h5><div class="eval-summary">' + escapeHtml(eval.summary) + '</div>' +
-    '<span class="eval-verdict ' + eval.verdict + '">' + escapeHtml(eval.verdictLabel) + '</span></div>' +
-    '<div class="eval-section"><h5>合否メール下書き</h5>' +
-    '<div class="mail-tabs">' +
-    '<button class="mail-tab ' + (activeMailTab === 'pass' ? 'active' : '') + '" onclick="switchMailTab(\'pass\')">通過メール</button>' +
-    '<button class="mail-tab ' + (activeMailTab === 'reject' ? 'active' : '') + '" onclick="switchMailTab(\'reject\')">お見送り</button></div>' +
-    '<div id="mailPreviewArea"></div></div>' +
-    '<button class="btn-approve-draft" onclick="approveMail()">内容を確認して送信<span class="badge badge-human">人の確認</span></button>' +
-    '<div class="draft-reset"><button onclick="resetDemo()">↺ デモをリセット</button></div>';
-
-  renderMailPreview(cid);
-}
-
-function switchMailTab(tab) {
-  activeMailTab = tab;
-  document.querySelectorAll('.mail-tab').forEach(function (el, i) {
-    el.classList.toggle('active', (i === 0 && tab === 'pass') || (i === 1 && tab === 'reject'));
-  });
-  renderMailPreview(currentCandId);
-}
-
-function renderMailPreview(cid) {
-  var memo = INTERVIEW_MEMOS[cid];
-  if (!memo) return;
-  var mail = activeMailTab === 'pass' ? memo.mailPass : memo.mailReject;
-  document.getElementById('mailPreviewArea').innerHTML =
-    '<div class="mail-preview"><div class="mail-subject">件名: ' + escapeHtml(mail.subject) + '</div>' +
-    '<div class="mail-body">' + escapeHtml(mail.body) + '</div></div>';
-}
-
-function skipEvalReveal() {
-  if (!aiState || currentCandId !== 'c-001') return;
-  aiState.timers.forEach(function (id) { clearTimeout(id); });
-  aiState.timers = [];
-  aiState.runId = {};
-  aiState.phase = 'done';
-  c001Runtime.evalDone = true;
-  renderEvalComplete('c-001');
-  showToast('評価表を表示しました');
-}
-
-function approveMail() {
-  showToast('メール内容を確認・送信しました（デモ）');
-}
-
-function resetDemo() {
-  if (aiState) aiState.timers.forEach(function (id) { clearTimeout(id); });
-  aiState = { phase: 'idle', timers: [], runId: null };
-  c001Runtime = { evalDone: false, mailDone: false };
-  currentCandId = null;
-  showToast('デモ状態をリセットしました');
-  go('jobs');
-}
-
-function renderDraftView() {
-  document.getElementById('draftList').innerHTML = JOB_DRAFTS.map(function (d) {
-    return '<div class="draft-row ' + (selectedDraftId === d.id ? 'row-hot' : '') + '" onclick="selectDraft(\'' + d.id + '\')">' +
-      '<span class="badge badge-' + (d.status === 'published' ? 'open' : 'draft') + '">' + (d.status === 'published' ? '公開済' : '下書き') + '</span>' +
-      '<span class="d-main"><div class="d-title">' + escapeHtml(d.title) + '</div>' +
-      '<div class="d-sub">' + escapeHtml(d.author) + ' ・ ' + fmtDate(d.updated) + '</div></span>' +
-      '<span class="t-arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></span></div>';
-  }).join('');
-  renderDraftEditor(selectedDraftId);
-}
-
-function selectDraft(id) {
-  selectedDraftId = id;
-  renderDraftView();
-}
-
-function renderDraftEditor(id) {
-  var d = findDraft(id);
-  if (!d) return;
-  document.getElementById('draftEditorTitle').textContent = d.title;
-  document.getElementById('draftEditorBadge').className = 'badge badge-' + (d.status === 'published' ? 'open' : 'draft');
-  document.getElementById('draftEditorBadge').textContent = d.status === 'published' ? '公開済' : '下書き';
-  var job = d.jobId ? findJob(d.jobId) : null;
-  document.getElementById('draftEditorBody').innerHTML =
-    '<div class="draft-form-row"><label>求人タイトル</label><div class="val">' + escapeHtml(d.title) + '</div></div>' +
-    (job ? '<div class="draft-form-row"><label>部署</label><div class="val">' + escapeHtml(job.dept) + '</div></div>' : '') +
-    '<div class="draft-form-row"><label>作成者</label><div class="val">' + escapeHtml(d.author) + '</div></div>' +
-    '<div class="draft-form-row"><label>更新日</label><div class="val">' + fmtDate(d.updated) + '</div></div>' +
-    '<div class="draft-section"><h4>求人票本文</h4><p>' + escapeHtml(d.body) + '</p></div>' +
-    (d.status === 'draft' ? '<div style="margin-top:18px;"><button class="btn-approve-draft" onclick="showToast(\'求人票を公開しました（デモ）\')">内容を確認して公開<span class="badge badge-human">人の確認</span></button></div>' : '');
-}
-
-function renderSettings() {
-  document.getElementById('memberList').innerHTML = MEMBERS.map(function (m) {
-    return '<div class="member-row"><div><div class="m-name">' + escapeHtml(m.name) + '</div><div class="m-mail">' + escapeHtml(m.mail) + '</div></div>' +
-      '<span class="role-badge role-' + m.role + '">' + ROLE_LABEL[m.role] + '</span></div>';
-  }).join('');
-  document.getElementById('aiToggleList').innerHTML = AI_TOGGLES.map(function (t, i) {
-    return toggleRowHtml('ai-' + i, t.label, t.desc, t.on);
-  }).join('');
-  document.getElementById('notifToggleList').innerHTML = NOTIF_TOGGLES.map(function (t, i) {
-    return toggleRowHtml('nt-' + i, t.label, t.desc, t.on);
-  }).join('');
-}
-function toggleRowHtml(id, label, desc, on) {
-  return '<div class="toggle-row"><div><div class="tg-label">' + escapeHtml(label) + '</div><div class="tg-desc">' + escapeHtml(desc) + '</div></div>' +
-    '<label class="switch"><input type="checkbox" id="' + id + '" ' + (on ? 'checked' : '') + ' onchange="onToggleChange(this)"><span class="track"></span></label></div>';
-}
-function onToggleChange(input) {
-  showToast(input.checked ? '設定をONにしました（デモ）' : '設定をOFFにしました（デモ）');
-}
 </script>
 <script src="analytics-config.js"></script>
 <script src="analytics.js"></script>
