@@ -1,36 +1,913 @@
-<!-- 2026-07-22: 既存サービス + AI Before/After 成果物サンプル -->
+<!-- 2026-07-22: 保険見直しコンサル向け「既存サービス + AI Before/After」成果物サンプルを本番品質で全面リライト。Before静的LP／After 3ステップAI診断ウィザード・指標パネル・PoC範囲・CTA を実装 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>既存サービス + AI Before/After｜作品ショーケース｜AI顧問室</title>
-<meta name="description" content="攻めのAI活用。会員ポータルにAI診断を組み込んだBefore/After成果物。">
+<title>既存サービス + AI Before/After（保険見直し診断）｜AI顧問室</title>
+<meta name="description" content="架空の保険見直しコンサル会社のWebサービスにAI診断を組み込んだBefore/Afterデモ。問い合わせフォームだけの旧LPと、3ステップAI診断→パーソナライズ提案→担当者相談までつなぐ新体験を比較できます。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="既存サービス + AI Before/After（保険見直し診断）｜AI顧問室">
+<meta property="og:description" content="問い合わせフォームだけだったLPを、AI診断→提案→担当者相談までつなぐ設計例。CVR+22%を想定した攻めAI・商品化サンプル。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-ai-service.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/thumbs/works-ai-service.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-ai-service.html">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0B2447;--gold:#C9A227;--ink:#1A2433;--gray:#5B6B7F;--line:#DDE4EC;--bg:#F4F7FA}
-*{margin:0;padding:0;box-sizing:border-box} body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);line-height:1.85}
-h1,h2{font-family:'Noto Serif JP',serif} a{color:var(--navy)}
-.container{max-width:880px;margin:0 auto;padding:0 24px}
-header{border-bottom:1px solid var(--line);padding:16px 0} .back{font-size:13px;color:#2D6CB5}
-.hero{padding:48px 0 32px} .cat{font-size:12px;color:#2D6CB5;font-weight:700;letter-spacing:.08em}
-.hero h1{font-size:clamp(26px,4vw,34px);margin:8px 0 12px;color:var(--navy)}
-.preview{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:28px;margin:24px 0}
-.cta{text-align:center;padding:40px 0 56px;border-top:1px solid var(--line)}
-.btn{display:inline-block;background:var(--gold);color:#071A35;padding:12px 28px;border-radius:4px;font-weight:700;text-decoration:none}
-footer{background:#071A35;color:#9fb0c7;text-align:center;padding:24px;font-size:13px}
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D; --blue: #2D6CB5;
+    --gold: #C9A227; --gold-light: #E8C96A; --ink: #1A2433; --gray: #5B6B7F;
+    --line: #DDE4EC; --bg-soft: #F4F7FA; --white: #FFF;
+    --before-accent: #6B7280; --after-accent: #2D6CB5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.85; background: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  button, input, select { font: inherit; color: inherit; }
+  button { cursor: pointer; background: none; border: none; }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 72px 0; }
+  .btn {
+    display: inline-block; padding: 14px 32px; border-radius: 4px;
+    font-weight: 700; font-size: 15px; transition: opacity .2s, transform .1s;
+  }
+  .btn:hover { opacity: .86; }
+  .btn:active { transform: scale(.98); }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-outline { border: 1.5px solid rgba(255,255,255,.45); color: #fff; }
+  .btn-outline:hover { background: rgba(255,255,255,.08); opacity: 1; }
+  .btn-line { border: 1px solid var(--line); color: var(--navy); background: var(--white); }
+  .btn-line:hover { background: var(--bg-soft); opacity: 1; }
+
+  /* ---------- header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 200;
+    background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 14px; }
+  .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .back-link {
+    display: grid; place-items: center; flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--line); color: var(--navy); font-size: 16px; transition: background .2s, border-color .2s;
+  }
+  .back-link:hover { background: var(--bg-soft); border-color: var(--navy); }
+  .title-wrap { min-width: 0; }
+  .title-wrap strong { display: block; font-family: 'Noto Serif JP', serif; font-size: 15.5px; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .title-wrap span { display: block; font-size: 9.5px; letter-spacing: .1em; color: var(--gray); }
+  .header-cta { flex: 0 0 auto; padding: 9px 20px; font-size: 13px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy) 58%, var(--navy-light));
+    color: var(--white); padding: 64px 0 52px;
+  }
+  .hero .label { font-size: 12px; letter-spacing: .2em; color: var(--gold); font-weight: 700; }
+  .hero h1 { font-size: clamp(24px, 4.2vw, 36px); margin: 10px 0 14px; }
+  .hero p { color: #C7D3E4; max-width: 680px; font-size: 15px; margin-bottom: 20px; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+    font-size: 12px; font-weight: 700; color: #E4EBF5;
+  }
+  .hero-chip b { color: var(--gold); font-weight: 700; }
+
+  /* ---------- showcase ---------- */
+  .showcase { background: var(--bg-soft); padding: 48px 0 56px; }
+  .showcase-head { margin-bottom: 22px; }
+  .showcase-head h2 { font-size: clamp(20px, 3.2vw, 26px); color: var(--navy); margin-bottom: 8px; }
+  .showcase-head p { font-size: 13.5px; color: var(--gray); max-width: 640px; }
+
+  .showcase-grid { display: grid; grid-template-columns: 1fr 280px; gap: 22px; align-items: start; }
+
+  .compare-shell {
+    background: var(--white); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: 0 18px 48px rgba(11,36,71,.1); overflow: hidden;
+  }
+  .compare-toolbar {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 14px 18px; border-bottom: 1px solid var(--line); background: #FAFBFD;
+  }
+  .mode-tabs {
+    display: inline-flex; background: var(--bg-soft); border: 1px solid var(--line);
+    border-radius: 999px; padding: 4px; gap: 4px;
+  }
+  .mode-tab {
+    padding: 9px 22px; min-height: 40px; border-radius: 999px; font-size: 13px; font-weight: 700;
+    color: var(--gray); transition: background .2s, color .2s;
+  }
+  .mode-tab:hover { color: var(--navy); }
+  .mode-tab.active { background: var(--navy); color: #fff; }
+  .mode-tab[data-mode="after"].active { background: var(--gold); color: var(--navy-deep); }
+  .compare-hint { font-size: 11px; color: var(--gray); }
+
+  /* browser chrome */
+  .browser-frame { background: #E8EDF3; }
+  .browser-bar {
+    display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+    background: #DDE4EC; border-bottom: 1px solid #C8D2DE;
+  }
+  .browser-dots { display: flex; gap: 5px; }
+  .browser-dots span { width: 10px; height: 10px; border-radius: 50%; background: #B8C4D4; }
+  .browser-dots span:first-child { background: #E8836B; }
+  .browser-dots span:nth-child(2) { background: #E8C547; }
+  .browser-dots span:nth-child(3) { background: #6BCB77; }
+  .browser-url {
+    flex: 1; min-width: 0; padding: 6px 12px; border-radius: 6px; background: var(--white);
+    border: 1px solid #C8D2DE; font-size: 11px; color: var(--gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .browser-viewport {
+    height: 520px; overflow: hidden auto; background: var(--white);
+    scrollbar-width: thin; scrollbar-color: #C8D2DE transparent;
+  }
+  .browser-viewport::-webkit-scrollbar { width: 6px; }
+  .browser-viewport::-webkit-scrollbar-thumb { background: #C8D2DE; border-radius: 999px; }
+
+  .panel { display: none; min-height: 100%; }
+  .panel.active { display: block; }
+
+  /* ---------- Before LP mock ---------- */
+  .before-lp { font-size: 13px; color: #444; }
+  .before-header {
+    display: flex; align-items: center; justify-content: space-between; padding: 14px 20px;
+    border-bottom: 2px solid #003366; background: #fff;
+  }
+  .before-logo { font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 700; color: #003366; }
+  .before-nav { display: flex; gap: 14px; font-size: 11px; color: #666; }
+  .before-hero {
+    padding: 36px 24px 28px; text-align: center;
+    background: linear-gradient(180deg, #EEF2F7 0%, #fff 100%);
+    border-bottom: 1px solid #ddd;
+  }
+  .before-hero h2 { font-family: 'Noto Serif JP', serif; font-size: 22px; color: #003366; margin-bottom: 10px; line-height: 1.55; }
+  .before-hero p { font-size: 12.5px; color: #666; max-width: 420px; margin: 0 auto 18px; line-height: 1.75; }
+  .before-cta-old {
+    display: inline-block; padding: 10px 28px; background: #003366; color: #fff;
+    font-size: 12px; font-weight: 700; border-radius: 2px;
+  }
+  .before-features { padding: 28px 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .before-feat {
+    text-align: center; padding: 18px 12px; border: 1px solid #ddd; border-radius: 4px; background: #FAFAFA;
+  }
+  .before-feat .ico { font-size: 28px; margin-bottom: 8px; }
+  .before-feat h3 { font-size: 13px; color: #003366; margin-bottom: 6px; font-weight: 700; }
+  .before-feat p { font-size: 11px; color: #777; line-height: 1.65; }
+  .before-form-section {
+    padding: 28px 24px 36px; background: #F5F5F5; border-top: 1px solid #ddd;
+  }
+  .before-form-section h3 { font-size: 15px; color: #003366; text-align: center; margin-bottom: 6px; font-weight: 700; }
+  .before-form-section .sub { text-align: center; font-size: 11px; color: #888; margin-bottom: 18px; }
+  .before-form { max-width: 400px; margin: 0 auto; }
+  .before-form label { display: block; font-size: 11px; color: #555; margin-bottom: 4px; font-weight: 600; }
+  .before-form .req { color: #c00; font-size: 10px; margin-left: 4px; }
+  .before-form .field { margin-bottom: 12px; }
+  .before-form input, .before-form select, .before-form textarea {
+    width: 100%; padding: 9px 10px; border: 1px solid #ccc; border-radius: 2px;
+    font-size: 12px; background: #fff;
+  }
+  .before-form textarea { min-height: 72px; resize: vertical; }
+  .before-form .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .before-form button {
+    width: 100%; margin-top: 8px; padding: 12px; background: #003366; color: #fff;
+    font-weight: 700; font-size: 13px; border-radius: 2px;
+  }
+  .before-form .note { font-size: 10px; color: #999; margin-top: 10px; text-align: center; line-height: 1.6; }
+
+  /* ---------- After AI wizard ---------- */
+  .after-lp { min-height: 100%; background: linear-gradient(180deg, #F8FAFD 0%, #fff 40%); }
+  .after-topbar {
+    display: flex; align-items: center; justify-content: space-between; padding: 12px 20px;
+    background: var(--navy); color: #fff;
+  }
+  .after-brand { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 700; }
+  .after-brand span { color: var(--gold); font-size: 11px; margin-left: 6px; font-family: 'Noto Sans JP', sans-serif; font-weight: 600; }
+  .after-badge {
+    font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    background: rgba(201,162,39,.2); border: 1px solid rgba(201,162,39,.45); color: var(--gold-light);
+  }
+  .wizard-wrap { padding: 24px 20px 28px; max-width: 480px; margin: 0 auto; }
+  .wizard-head { text-align: center; margin-bottom: 22px; }
+  .wizard-head h2 { font-size: 18px; color: var(--navy); margin-bottom: 6px; }
+  .wizard-head p { font-size: 12px; color: var(--gray); }
+
+  .step-indicator { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 24px; }
+  .step-dot-wrap { display: flex; align-items: center; }
+  .step-dot {
+    width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 12px; font-weight: 700; border: 2px solid var(--line); color: var(--gray); background: var(--white);
+    transition: border-color .2s, background .2s, color .2s;
+  }
+  .step-dot.done { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .step-dot.current { background: var(--gold); border-color: var(--gold); color: var(--navy-deep); }
+  .step-line { width: 36px; height: 2px; background: var(--line); }
+  .step-line.done { background: var(--navy); }
+  .step-labels { display: flex; justify-content: space-between; margin: -6px 0 20px; padding: 0 8px; }
+  .step-labels span { font-size: 10px; color: var(--gray); font-weight: 600; width: 33%; text-align: center; }
+  .step-labels span.active { color: var(--navy); }
+
+  .wizard-step { display: none; animation: fadeIn .25s ease; }
+  .wizard-step.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .wiz-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px; box-shadow: 0 8px 24px rgba(11,36,71,.06);
+  }
+  .wiz-card h3 { font-size: 14px; color: var(--navy); margin-bottom: 14px; }
+  .wiz-field { margin-bottom: 14px; }
+  .wiz-field label { display: block; font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .wiz-field select, .wiz-field input[type="number"] {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px;
+    font-size: 13px; background: var(--white);
+  }
+  .wiz-field select:focus, .wiz-field input:focus { outline: 2px solid rgba(45,108,181,.25); border-color: var(--blue); }
+  .wiz-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .check-list { display: flex; flex-direction: column; gap: 10px; }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px;
+    border: 1px solid var(--line); border-radius: 8px; cursor: pointer; transition: border-color .2s, background .2s;
+  }
+  .check-item:hover { border-color: var(--blue); background: rgba(45,108,181,.03); }
+  .check-item.selected { border-color: var(--gold); background: rgba(201,162,39,.08); }
+  .check-item input { margin-top: 3px; accent-color: var(--gold); flex: 0 0 auto; }
+  .check-item .ci-text { flex: 1; }
+  .check-item .ci-text strong { display: block; font-size: 13px; color: var(--navy); margin-bottom: 2px; }
+  .check-item .ci-text span { font-size: 11px; color: var(--gray); line-height: 1.5; }
+
+  .result-card { text-align: center; }
+  .result-score {
+    width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 16px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    display: grid; place-items: center; color: #fff; font-family: 'Noto Serif JP', serif;
+    box-shadow: 0 10px 28px rgba(11,36,71,.2);
+  }
+  .result-score b { display: block; font-size: 26px; line-height: 1; }
+  .result-score small { font-size: 10px; opacity: .85; }
+  .result-plan {
+    text-align: left; background: var(--bg-soft); border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;
+    border-left: 4px solid var(--gold);
+  }
+  .result-plan h4 { font-size: 13px; color: var(--navy); margin-bottom: 8px; }
+  .result-plan ul { list-style: none; font-size: 12px; color: var(--ink); }
+  .result-plan li { padding: 4px 0; padding-left: 16px; position: relative; }
+  .result-plan li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .result-note { font-size: 11px; color: var(--gray); margin-bottom: 14px; line-height: 1.7; }
+
+  .wiz-nav { display: flex; gap: 10px; margin-top: 18px; }
+  .wiz-btn {
+    flex: 1; padding: 11px 16px; border-radius: 6px; font-size: 13px; font-weight: 700;
+    transition: opacity .2s, transform .1s;
+  }
+  .wiz-btn:disabled { opacity: .4; cursor: not-allowed; }
+  .wiz-btn-back { background: var(--bg-soft); border: 1px solid var(--line); color: var(--navy); }
+  .wiz-btn-next { background: var(--navy); color: #fff; }
+  .wiz-btn-next.gold { background: var(--gold); color: var(--navy-deep); }
+  .wiz-btn-consult { width: 100%; background: var(--gold); color: var(--navy-deep); padding: 13px; border-radius: 6px; font-weight: 700; font-size: 14px; }
+
+  /* toast */
+  .toast {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px);
+    z-index: 500; padding: 14px 22px; border-radius: 10px;
+    background: var(--navy-deep); color: #fff; font-size: 13px; font-weight: 600;
+    box-shadow: 0 12px 40px rgba(7,26,53,.35); opacity: 0; pointer-events: none;
+    transition: transform .3s ease, opacity .3s ease; display: flex; align-items: center; gap: 10px;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  .toast-icon { color: var(--gold); font-size: 18px; }
+
+  /* ---------- metrics sidebar ---------- */
+  .metrics-col { display: flex; flex-direction: column; gap: 14px; }
+  .metric-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: 12px;
+    padding: 18px 16px; box-shadow: 0 10px 28px rgba(11,36,71,.06);
+  }
+  .metric-card .mc-label { font-size: 11px; font-weight: 700; letter-spacing: .06em; color: var(--gray); margin-bottom: 6px; }
+  .metric-card .mc-value {
+    font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; color: var(--navy); line-height: 1.2;
+  }
+  .metric-card .mc-value em { font-style: normal; color: var(--gold); }
+  .metric-card .mc-desc { font-size: 11.5px; color: var(--gray); margin-top: 6px; line-height: 1.65; }
+  .metric-card.highlight { border-color: rgba(201,162,39,.45); background: linear-gradient(180deg, #FFFCF3, #fff); }
+  .metric-card .mc-bar { height: 6px; border-radius: 999px; background: var(--bg-soft); margin-top: 10px; overflow: hidden; }
+  .metric-card .mc-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--gold), #E8C96A); }
+
+  .compare-caption {
+    margin-top: 14px; padding: 12px 16px; background: var(--white); border: 1px solid var(--line);
+    border-left: 4px solid var(--gold); border-radius: 6px; font-size: 12px; color: var(--gray); line-height: 1.75;
+  }
+  .compare-caption b { color: var(--navy); }
+
+  /* ---------- PoC section ---------- */
+  .poc-band { background: var(--white); }
+  .section-head { max-width: 640px; margin-bottom: 36px; }
+  .section-head .eyebrow { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .18em; color: var(--gold); margin-bottom: 10px; }
+  .section-head h2 { font-size: clamp(21px, 3.4vw, 27px); color: var(--navy); margin-bottom: 10px; }
+  .section-head p { font-size: 13.5px; color: var(--gray); }
+
+  .poc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 28px; }
+  .poc-card {
+    background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 22px;
+  }
+  .poc-card .pc-num { font-family: 'Noto Serif JP', serif; font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+  .poc-card h3 { font-size: 15px; color: var(--navy); margin-bottom: 8px; }
+  .poc-card p { font-size: 12.5px; color: var(--gray); line-height: 1.75; }
+  .poc-price {
+    display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+    padding: 20px 22px; background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    border-radius: 10px; color: #fff; margin-bottom: 24px;
+  }
+  .poc-price .pp-label { font-size: 12px; color: #C7D3E4; font-weight: 700; letter-spacing: .06em; }
+  .poc-price .pp-amount { font-family: 'Noto Serif JP', serif; font-size: clamp(28px, 4vw, 36px); font-weight: 700; color: var(--gold); }
+  .poc-price .pp-note { font-size: 12px; color: #9FB0C7; width: 100%; margin-top: 4px; }
+
+  .chip-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .chip { font-size: 12.5px; background: var(--white); border: 1px solid var(--line); color: var(--navy); border-radius: 999px; padding: 5px 16px; }
+  .chip-heading { font-size: 13px; font-weight: 700; color: var(--navy); }
+
+  .disclaimer {
+    background: var(--bg-soft); border-left: 4px solid var(--gold); padding: 14px 18px;
+    font-size: 12.5px; color: var(--gray); margin-top: 32px; line-height: 1.8;
+  }
+  .disclaimer strong { color: var(--ink); }
+
+  /* ---------- CTA ---------- */
+  .cta {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center;
+  }
+  .cta h2 { font-size: clamp(22px, 3.4vw, 28px); margin-bottom: 12px; }
+  .cta p { color: #C7D3E4; margin-bottom: 28px; font-size: 14px; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+  footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 32px 0; text-align: center; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 960px) {
+    .showcase-grid { grid-template-columns: 1fr; }
+    .metrics-col { display: grid; grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 720px) {
+    section { padding: 52px 0; }
+    .before-features { grid-template-columns: 1fr; }
+    .before-form .row2 { grid-template-columns: 1fr; }
+    .poc-grid { grid-template-columns: 1fr; }
+    .metrics-col { grid-template-columns: 1fr; }
+    .browser-viewport { height: 460px; }
+    .compare-toolbar { flex-direction: column; align-items: stretch; }
+    .compare-hint { text-align: center; }
+  }
+  @media (max-width: 480px) {
+    .header-inner { height: 58px; }
+    .title-wrap span { display: none; }
+    .hero { padding: 48px 0 40px; }
+    .wiz-grid2 { grid-template-columns: 1fr; }
+    .step-line { width: 24px; }
+  }
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
 </head>
 <body>
-<header><div class="container"><a href="works.html" class="back">← 作品ショーケース</a></div></header>
-<main class="container">
-  <div class="hero"><div class="cat">攻めAI・商品化</div><h1>既存サービス + AI Before/After</h1><p style="color:var(--gray);max-width:640px">ai-product.html 向け。問い合わせフォームだけだったLPを、AI診断→提案→予約までつなぐ設計例。</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><span style="font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px">PoC</span><span style="font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px">CVR改善</span><span style="font-size:11px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 12px">新商品化</span></div></div>
-  <div class="preview"><article style="border:1px solid var(--line);border-radius:6px;padding:16px;margin-bottom:12px"><h3 style="font-size:16px;color:var(--navy);margin-bottom:6px">Before</h3><p style="font-size:14px;color:var(--gray)">静的LP + 問い合わせフォーム</p></article><article style="border:1px solid var(--line);border-radius:6px;padding:16px;margin-bottom:12px"><h3 style="font-size:16px;color:var(--navy);margin-bottom:6px">After</h3><p style="font-size:14px;color:var(--gray)">3問診断 → パーソナライズ結果 → 担当者へ</p></article><article style="border:1px solid var(--line);border-radius:6px;padding:16px;margin-bottom:12px"><h3 style="font-size:16px;color:var(--navy);margin-bottom:6px">PoC範囲</h3><p style="font-size:14px;color:var(--gray)">4週間 / 50万円〜 / 本番判断は別途</p></article></div>
-  <p style="font-size:13px;color:var(--gray);border-left:4px solid var(--gold);padding-left:14px">※架空サンプルです。実際は御社のブランド・書式・承認フローに合わせて制作します。</p>
-</main>
-<div class="cta"><a href="index.html?from=works-ai-service#contact" class="btn">同じ品質を相談する →</a></div>
-<footer><a href="index.html" style="color:#9fb0c7">AI顧問室</a></footer>
+
+<header>
+  <div class="container header-inner">
+    <div class="brand">
+      <a class="back-link" href="works.html" aria-label="作品一覧へ戻る">←</a>
+      <div class="title-wrap">
+        <strong>既存サービス + AI</strong>
+        <span>AI SERVICE BEFORE / AFTER</span>
+      </div>
+    </div>
+    <a class="btn btn-gold header-cta" href="index.html?from=works-ai-service#contact">無料相談</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="container">
+    <span class="label">攻めAI・商品化</span>
+    <h1>問い合わせフォームだけのLPを、<br>AI診断で「売れる体験」に。</h1>
+    <p>架空の保険見直しコンサル「みらい保険設計」のWebサービスを題材に、Before（2018年型の静的LP）とAfter（3ステップAI診断ウィザード）を並べて比較できます。PoC 4週間で検証し、CVR改善と問い合わせの質向上を狙う攻めAIの実物サンプルです。</p>
+    <div class="hero-meta">
+      <span class="hero-chip"><b>PoC</b> 4週間</span>
+      <span class="hero-chip"><b>制作</b> 約1週間</span>
+      <span class="hero-chip"><b>題材</b> 保険見直しコンサル</span>
+      <span class="hero-chip"><b>想定効果</b> CVR +22%</span>
+    </div>
+  </div>
+</div>
+
+<section class="showcase">
+  <div class="container">
+    <div class="showcase-head">
+      <h2>Before / After を切り替えて比較</h2>
+      <p>左のタブで旧LPと新AI診断を切り替えられます。After側は実際に3ステップの診断フローを操作できます（架空データ・デモ用）。</p>
+    </div>
+
+    <div class="showcase-grid">
+      <div class="compare-shell">
+        <div class="compare-toolbar">
+          <div class="mode-tabs" role="tablist" aria-label="BeforeとAfterの切り替え">
+            <button type="button" class="mode-tab active" data-mode="before" role="tab" aria-selected="true" id="tabBefore">Before</button>
+            <button type="button" class="mode-tab" data-mode="after" role="tab" aria-selected="false" id="tabAfter">After</button>
+          </div>
+          <span class="compare-hint">※ ブラウザ内は架空のデモ画面です</span>
+        </div>
+
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <div class="browser-url" id="browserUrl">https://mirai-hoken.example.co.jp/</div>
+          </div>
+
+          <div class="browser-viewport" id="browserViewport">
+            <!-- ===== Before Panel ===== -->
+            <div class="panel active" id="panelBefore" role="tabpanel" aria-labelledby="tabBefore">
+              <div class="before-lp">
+                <header class="before-header">
+                  <div class="before-logo">みらい保険設計</div>
+                  <nav class="before-nav" aria-hidden="true">
+                    <span>会社概要</span><span>サービス</span><span>お問い合わせ</span>
+                  </nav>
+                </header>
+
+                <div class="before-hero">
+                  <h2>保険の見直しは<br>プロにお任せください</h2>
+                  <p>生命保険・医療保険・学資保険の見直しをサポート。無料相談受付中。まずはお気軽にお問い合わせください。</p>
+                  <span class="before-cta-old">お問い合わせはこちら</span>
+                </div>
+
+                <div class="before-features">
+                  <div class="before-feat">
+                    <div class="ico">📋</div>
+                    <h3>無料相談</h3>
+                    <p>初回相談は無料。現在の保険内容をお聞きします。</p>
+                  </div>
+                  <div class="before-feat">
+                    <div class="ico">👨‍💼</div>
+                    <h3>専門アドバイザー</h3>
+                    <p>経験豊富なFPが丁寧にご説明いたします。</p>
+                  </div>
+                  <div class="before-feat">
+                    <div class="ico">🏠</div>
+                    <h3>ご自宅でもOK</h3>
+                    <p>ご来店・オンライン・ご自宅いずれも対応可能です。</p>
+                  </div>
+                </div>
+
+                <div class="before-form-section">
+                  <h3>お問い合わせフォーム</h3>
+                  <p class="sub">2〜3営業日以内に担当者よりご連絡いたします</p>
+                  <form class="before-form" onsubmit="return false;">
+                    <div class="field">
+                      <label>お名前<span class="req">必須</span></label>
+                      <input type="text" placeholder="山田 太郎">
+                    </div>
+                    <div class="field">
+                      <label>フリガナ<span class="req">必須</span></label>
+                      <input type="text" placeholder="ヤマダ タロウ">
+                    </div>
+                    <div class="row2">
+                      <div class="field">
+                        <label>電話番号<span class="req">必須</span></label>
+                        <input type="tel" placeholder="090-1234-5678">
+                      </div>
+                      <div class="field">
+                        <label>メールアドレス<span class="req">必須</span></label>
+                        <input type="email" placeholder="example@mail.com">
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label>ご相談内容<span class="req">必須</span></label>
+                      <select>
+                        <option>選択してください</option>
+                        <option>生命保険の見直し</option>
+                        <option>医療保険の見直し</option>
+                        <option>その他</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label>現在の保険について</label>
+                      <textarea placeholder="加入中の保険会社名、種類、月額保険料などをご記入ください"></textarea>
+                    </div>
+                    <div class="field">
+                      <label>ご希望の連絡方法</label>
+                      <select>
+                        <option>電話</option>
+                        <option>メール</option>
+                        <option>どちらでも</option>
+                      </select>
+                    </div>
+                    <button type="submit">送信する</button>
+                    <p class="note">※ このフォームはデモ用の静的モックです。送信機能はありません。</p>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== After Panel ===== -->
+            <div class="panel" id="panelAfter" role="tabpanel" aria-labelledby="tabAfter" hidden>
+              <div class="after-lp">
+                <div class="after-topbar">
+                  <div class="after-brand">みらい保険設計 <span>AI診断</span></div>
+                  <span class="after-badge">✦ AI powered</span>
+                </div>
+
+                <div class="wizard-wrap">
+                  <div class="wizard-head">
+                    <h2>3分でわかる、あなたの保険診断</h2>
+                    <p>家族構成とお悩みから、最適な見直しプランをAIが提案します</p>
+                  </div>
+
+                  <div class="step-indicator" aria-hidden="true">
+                    <div class="step-dot-wrap">
+                      <span class="step-dot current" data-step="1">1</span>
+                      <span class="step-line"></span>
+                    </div>
+                    <div class="step-dot-wrap">
+                      <span class="step-dot" data-step="2">2</span>
+                      <span class="step-line"></span>
+                    </div>
+                    <div class="step-dot-wrap">
+                      <span class="step-dot" data-step="3">3</span>
+                    </div>
+                  </div>
+                  <div class="step-labels">
+                    <span class="active" data-step-label="1">家族構成</span>
+                    <span data-step-label="2">お悩み</span>
+                    <span data-step-label="3">診断結果</span>
+                  </div>
+
+                  <!-- Step 1 -->
+                  <div class="wizard-step active" data-wizard-step="1">
+                    <div class="wiz-card">
+                      <h3>Step 1 — 家族構成・年齢</h3>
+                      <div class="wiz-grid2">
+                        <div class="wiz-field">
+                          <label for="wizAdults">大人（本人・配偶者）</label>
+                          <select id="wizAdults">
+                            <option value="1">1人</option>
+                            <option value="2" selected>2人</option>
+                          </select>
+                        </div>
+                        <div class="wiz-field">
+                          <label for="wizChildren">お子さま</label>
+                          <select id="wizChildren">
+                            <option value="0">0人</option>
+                            <option value="1">1人</option>
+                            <option value="2" selected>2人</option>
+                            <option value="3">3人以上</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="wiz-grid2">
+                        <div class="wiz-field">
+                          <label for="wizAgeSelf">ご本人の年齢</label>
+                          <input type="number" id="wizAgeSelf" min="20" max="70" value="38">
+                        </div>
+                        <div class="wiz-field">
+                          <label for="wizAgeChild">末子の年齢</label>
+                          <input type="number" id="wizAgeChild" min="0" max="22" value="5">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="wiz-nav">
+                      <button type="button" class="wiz-btn wiz-btn-back" disabled>戻る</button>
+                      <button type="button" class="wiz-btn wiz-btn-next" id="btnStep1Next">次へ</button>
+                    </div>
+                  </div>
+
+                  <!-- Step 2 -->
+                  <div class="wizard-step" data-wizard-step="2">
+                    <div class="wiz-card">
+                      <h3>Step 2 — 現在の保険のお悩み</h3>
+                      <p style="font-size:12px;color:var(--gray);margin:-8px 0 14px;">当てはまるものをすべて選んでください</p>
+                      <div class="check-list" id="concernList">
+                        <label class="check-item">
+                          <input type="checkbox" name="concern" value="premium">
+                          <span class="ci-text"><strong>保険料が高い</strong><span>毎月の支払いが家計の負担になっている</span></span>
+                        </label>
+                        <label class="check-item">
+                          <input type="checkbox" name="concern" value="coverage">
+                          <span class="ci-text"><strong>保障内容がわからない</strong><span>何に入っているか説明を受けていない</span></span>
+                        </label>
+                        <label class="check-item">
+                          <input type="checkbox" name="concern" value="education">
+                          <span class="ci-text"><strong>学資保険を検討したい</strong><span>子どもの進学資金を効率よく準備したい</span></span>
+                        </label>
+                        <label class="check-item">
+                          <input type="checkbox" name="concern" value="medical">
+                          <span class="ci-text"><strong>医療保障が不足</strong><span>入院・通院の備えが十分か不安</span></span>
+                        </label>
+                        <label class="check-item">
+                          <input type="checkbox" name="concern" value="review">
+                          <span class="ci-text"><strong>10年以上見直していない</strong><span>ライフステージが変わったのにそのまま</span></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="wiz-nav">
+                      <button type="button" class="wiz-btn wiz-btn-back" id="btnStep2Back">戻る</button>
+                      <button type="button" class="wiz-btn wiz-btn-next" id="btnStep2Next" disabled>診断結果を見る</button>
+                    </div>
+                  </div>
+
+                  <!-- Step 3 -->
+                  <div class="wizard-step" data-wizard-step="3">
+                    <div class="wiz-card result-card">
+                      <div class="result-score">
+                        <b id="resultScore">82</b>
+                        <small>適合スコア</small>
+                      </div>
+                      <div class="result-plan">
+                        <h4 id="resultTitle">ファミリー向け 見直しプラン</h4>
+                        <ul id="resultList">
+                          <li>生命保険：死亡保障2000万円→必要保障1500万円に最適化</li>
+                          <li>医療保険：日額5,000円→入院一時金型への切替を提案</li>
+                          <li>学資保険：月1.5万円→児童手当活用で月1万円に圧縮可能</li>
+                        </ul>
+                      </div>
+                      <p class="result-note" id="resultNote">38歳・ご家族4名の構成では、重複保障の整理で<strong>月額約8,000円の削減</strong>が見込めます。詳細は担当FPが無料でご説明します。</p>
+                      <button type="button" class="wiz-btn-consult" id="btnConsult">担当者に相談する（無料）</button>
+                    </div>
+                    <div class="wiz-nav">
+                      <button type="button" class="wiz-btn wiz-btn-back" id="btnStep3Back">診断をやり直す</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="compare-caption" id="compareCaption"><b>Before：</b>2018年型の静的LP。問い合わせフォームが唯一のコンバージョン導線で、離脱率が高い典型パターンです。</p>
+      </div>
+
+      <aside class="metrics-col" aria-label="改善指標">
+        <div class="metric-card highlight">
+          <div class="mc-label">CVR（コンバージョン率）</div>
+          <div class="mc-value"><em>+22%</em></div>
+          <div class="mc-desc">AI診断完了→相談予約の転換率が向上。フォーム直送り比で試算。</div>
+          <div class="mc-bar"><div class="mc-bar-fill" style="width:72%"></div></div>
+        </div>
+        <div class="metric-card">
+          <div class="mc-label">問い合わせの質</div>
+          <div class="mc-value">向上</div>
+          <div class="mc-desc">診断結果付きリードで、初回面談前にニーズ把握。テンプレ回答が減少。</div>
+        </div>
+        <div class="metric-card">
+          <div class="mc-label">担当者の工数</div>
+          <div class="mc-value"><em>-35%</em></div>
+          <div class="mc-desc">ヒアリング時間をAI診断データで短縮。月40件想定で週6時間削減。</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="poc-band">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">PoC SCOPE</span>
+      <h2>4週間PoCで「売れる体験」を検証</h2>
+      <p>本番開発前に、御社の既存サービスにAI診断を組み込んだプロトタイプを作り、CVR・問い合わせ質・担当者負荷の改善余地を数値で確認します。</p>
+    </div>
+
+    <div class="poc-price">
+      <span class="pp-label">PoC 概算費用</span>
+      <span class="pp-amount">50万円〜</span>
+      <span class="pp-note">※ 既存サイトの規模・API連携・ブランド要件により変動。本番判断はPoC結果を見て別途ご提案。</span>
+    </div>
+
+    <div class="poc-grid">
+      <div class="poc-card">
+        <div class="pc-num">Week 1</div>
+        <h3>要件整理・体験設計</h3>
+        <p>既存LP/フォームの課題分析、診断フロー設計、推奨ロジックのたたき台。御社の商品・ターゲットに合わせた質問項目を確定。</p>
+      </div>
+      <div class="poc-card">
+        <div class="pc-num">Week 2–3</div>
+        <h3>プロトタイプ実装</h3>
+        <p>AI診断ウィザード、結果画面、担当者へのリード連携（メール/CRM）を実装。御社ブランドに合わせたUI調整。</p>
+      </div>
+      <div class="poc-card">
+        <div class="pc-num">Week 4</div>
+        <h3>検証・レポート</h3>
+        <p>限定トラフィックでA/BテストまたはBefore/After比較。CVR・離脱率・問い合わせ内容の変化をレポートし、本番Go/No-Go判断。</p>
+      </div>
+    </div>
+
+    <div class="chip-row">
+      <span class="chip-heading">同じアプローチが使える業種：</span>
+      <span class="chip">保険・FP</span>
+      <span class="chip">不動産</span>
+      <span class="chip">士業</span>
+      <span class="chip">BtoB SaaS</span>
+      <span class="chip">会員制サービス</span>
+    </div>
+
+    <div class="disclaimer">
+      ※ このデモは<strong>架空の保険見直しコンサル「みらい保険設計」</strong>を題材にしたサンプルです。診断ロジック・数値・プラン内容はデモ用の架空データであり、実際の保険商品の勧誘・比較ではありません。PoC費用・効果数値はあくまで目安です。
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社のサービスも、AIで「売れる体験」に。</h2>
+    <p>無料相談で、既存サービスへのAI組み込み方とPoCの進め方をお話しします。</p>
+    <div class="cta-actions">
+      <a href="index.html?from=works-ai-service#contact" class="btn btn-gold" style="font-size:16px;padding:16px 44px;">同じ品質を相談する →</a>
+      <a href="for/product.html" class="btn btn-outline">攻めのAI・商品化の入口を見る</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span class="toast-icon">✓</span>
+  <span id="toastMsg">担当者への相談リクエストを受け付けました</span>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Before / After toggle ---------- */
+  var tabBefore = document.getElementById('tabBefore');
+  var tabAfter = document.getElementById('tabAfter');
+  var panelBefore = document.getElementById('panelBefore');
+  var panelAfter = document.getElementById('panelAfter');
+  var browserUrl = document.getElementById('browserUrl');
+  var compareCaption = document.getElementById('compareCaption');
+  var browserViewport = document.getElementById('browserViewport');
+
+  var CAPTION = {
+    before: '<b>Before：</b>2018年型の静的LP。問い合わせフォームが唯一のコンバージョン導線で、離脱率が高い典型パターンです。',
+    after: '<b>After：</b>3ステップAI診断で自己理解→提案→相談まで一気通貫。診断完了データ付きリードで担当者の初回面談がスムーズに。'
+  };
+
+  function switchMode(mode) {
+    var isBefore = mode === 'before';
+    tabBefore.classList.toggle('active', isBefore);
+    tabBefore.setAttribute('aria-selected', isBefore ? 'true' : 'false');
+    tabAfter.classList.toggle('active', !isBefore);
+    tabAfter.setAttribute('aria-selected', !isBefore ? 'true' : 'false');
+    panelBefore.classList.toggle('active', isBefore);
+    panelAfter.classList.toggle('active', !isBefore);
+    panelBefore.hidden = !isBefore;
+    panelAfter.hidden = isBefore;
+    browserUrl.textContent = isBefore
+      ? 'https://mirai-hoken.example.co.jp/'
+      : 'https://mirai-hoken.example.co.jp/ai-diagnosis';
+    compareCaption.innerHTML = CAPTION[mode];
+    browserViewport.scrollTop = 0;
+  }
+
+  tabBefore.addEventListener('click', function () { switchMode('before'); });
+  tabAfter.addEventListener('click', function () { switchMode('after'); });
+
+  /* ---------- Wizard ---------- */
+  var currentStep = 1;
+  var wizAdults = document.getElementById('wizAdults');
+  var wizChildren = document.getElementById('wizChildren');
+  var wizAgeSelf = document.getElementById('wizAgeSelf');
+  var wizAgeChild = document.getElementById('wizAgeChild');
+  var concernList = document.getElementById('concernList');
+  var btnStep1Next = document.getElementById('btnStep1Next');
+  var btnStep2Back = document.getElementById('btnStep2Back');
+  var btnStep2Next = document.getElementById('btnStep2Next');
+  var btnStep3Back = document.getElementById('btnStep3Back');
+  var btnConsult = document.getElementById('btnConsult');
+  var resultScore = document.getElementById('resultScore');
+  var resultTitle = document.getElementById('resultTitle');
+  var resultList = document.getElementById('resultList');
+  var resultNote = document.getElementById('resultNote');
+  var toast = document.getElementById('toast');
+  var toastMsg = document.getElementById('toastMsg');
+  var toastTimer = null;
+
+  function getSelectedConcerns() {
+    return Array.prototype.slice.call(
+      concernList.querySelectorAll('input[name="concern"]:checked')
+    ).map(function (el) { return el.value; });
+  }
+
+  function updateCheckStyles() {
+    concernList.querySelectorAll('.check-item').forEach(function (item) {
+      var cb = item.querySelector('input');
+      item.classList.toggle('selected', cb.checked);
+    });
+    btnStep2Next.disabled = getSelectedConcerns().length === 0;
+  }
+
+  concernList.addEventListener('change', updateCheckStyles);
+
+  function updateStepUI(step) {
+    currentStep = step;
+    document.querySelectorAll('.wizard-step').forEach(function (el) {
+      el.classList.toggle('active', Number(el.dataset.wizardStep) === step);
+    });
+    document.querySelectorAll('.step-dot').forEach(function (dot) {
+      var n = Number(dot.dataset.step);
+      dot.classList.remove('done', 'current');
+      if (n < step) dot.classList.add('done');
+      if (n === step) dot.classList.add('current');
+    });
+    document.querySelectorAll('.step-line').forEach(function (line, i) {
+      line.classList.toggle('done', i < step - 1);
+    });
+    document.querySelectorAll('[data-step-label]').forEach(function (lbl) {
+      lbl.classList.toggle('active', Number(lbl.dataset.stepLabel) === step);
+    });
+  }
+
+  function buildResult() {
+    var adults = Number(wizAdults.value);
+    var children = Number(wizChildren.value);
+    var ageSelf = Number(wizAgeSelf.value);
+    var ageChild = Number(wizAgeChild.value);
+    var concerns = getSelectedConcerns();
+    var familySize = adults + children;
+    var score = 72 + Math.min(concerns.length * 4, 16) + (children > 0 ? 4 : 0);
+    if (score > 95) score = 95;
+
+    var title = 'ファミリー向け 見直しプラン';
+    if (children === 0 && adults === 1) title = '単身向け 最適化プラン';
+    else if (children >= 2) title = '子育て世代 見直しプラン';
+
+    var items = [];
+    if (concerns.indexOf('premium') !== -1) {
+      items.push('生命保険：重複保障の整理で月額約' + (3000 + children * 1500) + '円の削減見込み');
+    }
+    if (concerns.indexOf('coverage') !== -1) {
+      items.push('保障の見える化：現在の契約をカテゴリ別に整理し、不足分を可視化');
+    }
+    if (concerns.indexOf('education') !== -1) {
+      items.push('学資保険：月' + (children > 1 ? '1.2' : '1.5') + '万円→児童手当活用で月' + (children > 1 ? '0.8' : '1.0') + '万円に圧縮可能');
+    }
+    if (concerns.indexOf('medical') !== -1) {
+      items.push('医療保障：日額型→入院一時金型への切替で保障効率を改善');
+    }
+    if (concerns.indexOf('review') !== -1) {
+      items.push('長期契約：' + Math.max(ageSelf - 28, 10) + '年ぶりの見直しで時代に合った保障へ更新');
+    }
+    if (items.length === 0) {
+      items.push('総合診断：現在の保障バランスは良好。定期見直しで維持を推奨');
+    }
+
+    var savings = 4000 + concerns.length * 1200 + (children > 0 ? 2000 : 0);
+    resultScore.textContent = String(score);
+    resultTitle.textContent = title;
+    resultList.innerHTML = items.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+    resultNote.innerHTML = ageSelf + '歳・ご家族' + familySize + '名の構成では、診断内容から<strong>月額約' + savings.toLocaleString() + '円の削減</strong>が見込めます。詳細は担当FPが無料でご説明します。';
+  }
+
+  function resetWizard() {
+    wizAdults.value = '2';
+    wizChildren.value = '2';
+    wizAgeSelf.value = '38';
+    wizAgeChild.value = '5';
+    concernList.querySelectorAll('input').forEach(function (cb) { cb.checked = false; });
+    updateCheckStyles();
+    updateStepUI(1);
+  }
+
+  function showToast(msg) {
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 3200);
+  }
+
+  btnStep1Next.addEventListener('click', function () { updateStepUI(2); });
+  btnStep2Back.addEventListener('click', function () { updateStepUI(1); });
+  btnStep2Next.addEventListener('click', function () {
+    buildResult();
+    updateStepUI(3);
+    browserViewport.scrollTop = 0;
+  });
+  btnStep3Back.addEventListener('click', resetWizard);
+  btnConsult.addEventListener('click', function () {
+    showToast('担当者への相談リクエストを受け付けました（デモ）');
+  });
+
+  updateCheckStyles();
+})();
+</script>
+
 </body>
 </html>
