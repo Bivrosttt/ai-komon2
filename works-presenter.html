@@ -1,3 +1,4 @@
+<!-- 2026-07-23: C案ページ骨格適用 — 証拠→劇場→作り方→使い所→隣→CTA -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -77,6 +78,9 @@
     font-size: 11.5px; color: var(--gray); font-weight: 700;
   }
   .intro .ai-note b { color: var(--navy); }
+  .proof { background:#FFFBEB; border-bottom:1px solid #FDE68A; padding:13px 0; font-size:12.5px; color:var(--ink); }
+  .proof .container { display:flex; flex-wrap:wrap; gap:12px; }
+  .proof strong { color:var(--navy); letter-spacing:.1em; font-size:11px; }
 
   /* ---------- presenter section ---------- */
   .presenter { padding-bottom: 20px; }
@@ -232,6 +236,12 @@
   .integrity-box .ib-icon { font-size: 20px; flex: 0 0 auto; }
   .integrity-box h3 { font-size: 13px; color: var(--navy); margin-bottom: 6px; }
   .integrity-box p { font-size: 12px; color: var(--gray); line-height: 1.8; }
+  .neighbors { padding:0 0 56px; }
+  .neighbor-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .neighbor-card { display:block; padding:20px; border:1px solid var(--line); border-radius:10px; background:var(--white); box-shadow:0 10px 26px rgba(11,36,71,.05); transition:transform .2s,border-color .2s; }
+  .neighbor-card:hover { transform:translateY(-2px); border-color:var(--navy); }
+  .neighbor-card b { display:block; color:var(--navy); font-family:'Noto Serif JP',serif; margin:4px 0 6px; }
+  .neighbor-card p { font-size:12px; color:var(--gray); line-height:1.7; }
 
   /* ---------- closing CTA ---------- */
   .closing { padding: 50px 0 60px; text-align: center; }
@@ -250,6 +260,7 @@
     .lipsync-grid { grid-template-columns: 1fr; }
     .video-card { max-width: 320px; }
     .usecase-grid { grid-template-columns: 1fr 1fr; }
+    .neighbor-grid { grid-template-columns:1fr; }
   }
   @media (max-width: 480px) {
     .header-inner { height: 58px; }
@@ -272,7 +283,7 @@
 <header>
   <div class="container header-inner">
     <div class="brand">
-      <a class="back-link" href="works.html" aria-label="作品一覧へ戻る">←</a>
+      <a class="back-link" href="lab.html#craft" aria-label="実物ラボへ戻る">←</a>
       <div class="title-wrap">
         <strong>AIプレゼンター</strong>
         <span>AI-GENERATED PRESENTER DEMO</span>
@@ -282,9 +293,11 @@
   </div>
 </header>
 
+<div class="proof" role="note"><div class="container"><strong>EVIDENCE</strong><span>人物写真・声・口を動かす動画まで、撮影も出演者もゼロで数分で制作した案内動画です。</span></div></div>
+
 <section class="intro">
   <div class="container">
-    <span class="eyebrow">出演者ゼロの案内動画（AI画像生成 × AI音声合成 × AI動画生成）</span>
+    <span class="eyebrow">02 · THEATER｜出演者ゼロの案内動画（AI画像生成 × AI音声合成 × AI動画生成）</span>
     <h1>この受付スタッフ、実在しません。</h1>
     <p>写真も、声も、口を動かして話す動画も、すべてAIが生成しました。カメラマンも、スタジオも、収録も使っていません。「会社の顔として出せる社員がいない」という中小企業でも、案内・採用・研修の動画をゼロから作れることを確かめるデモです。</p>
     <span class="ai-note"><b>⚠ AI生成物です。</b>このページの人物・写真・音声・動画は実在しません。</span>
@@ -359,7 +372,7 @@
   <div class="container">
     <div class="reveal-grid">
       <div>
-        <span class="eyebrow">種明かし</span>
+        <span class="eyebrow">03 · HOW IT WAS MADE</span>
         <h2>写真も声も、<em>1秒も</em>収録していません。</h2>
         <p>写真は画像生成AIで作成しました。カメラも、モデルも、スタジオも使っていません。同じ人物に見えるよう、AIに繰り返し指示を出して仕上げています。</p>
         <p>声はGoogleの音声合成AI「Gemini TTS」で生成しました。ナレーション原稿を打ち込むだけで、抑揚のある自然な読み上げ音声ができあがります。</p>
@@ -407,7 +420,7 @@
 <section class="usecases">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">こんな場面で使えます</span>
+      <span class="eyebrow">04 · WHERE IT FITS｜こんな場面で使えます</span>
       <h2>「顔出しできる社員がいない」を、AIで解決する。</h2>
     </div>
     <div class="usecase-grid">
@@ -447,12 +460,23 @@
   </div>
 </section>
 
+<section class="neighbors">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">05 · NEXT TO THIS</span><h2>隣の実物</h2></div>
+    <div class="neighbor-grid">
+      <a class="neighbor-card" href="internal-news.html"><span class="eyebrow">INTERNAL NEWS</span><b>社内ニュース</b><p>伝える内容を日々の社内発信へつなげる。</p></a>
+      <a class="neighbor-card" href="works-creative.html"><span class="eyebrow">CREATIVE</span><b>ブランドクリエイティブ一式</b><p>話す人の世界観を販促物まで揃える。</p></a>
+      <a class="neighbor-card" href="works-video.html"><span class="eyebrow">VIDEO</span><b>AI生成動画</b><p>プレゼンターを映像の中の体験へ広げる。</p></a>
+    </div>
+  </div>
+</section>
+
 <section class="closing">
   <div class="container">
     <h2>出演者がいなくても、案内動画は作れます。</h2>
     <p>御社の業種・用途に合わせて、人物像から声、原稿まで一緒に設計します。まずは無料相談でご相談ください。</p>
-    <a class="btn btn-gold" href="index.html#contact">無料相談を申し込む</a>
-    <a class="btn btn-line" href="works.html">ほかの制作事例を見る</a>
+    <a class="btn btn-gold" href="index.html?from=works-presenter#contact">無料相談を申し込む</a>
+    <a class="btn btn-line" href="lab.html#craft">他の作った物を見る</a>
   </div>
 </section>
 
@@ -561,5 +585,8 @@
   });
 })();
 </script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
 </body>
 </html>

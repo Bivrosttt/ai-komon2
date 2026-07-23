@@ -1,3 +1,4 @@
+<!-- 2026-07-23: C案ページ骨格適用 — 証拠→劇場→作り方→使い所→隣→CTA -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -110,6 +111,15 @@
   .chip-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 40px; align-items: center; }
   .chip { font-size: 12.5px; background: var(--white); border: 1px solid var(--line); color: var(--navy); border-radius: 999px; padding: 5px 16px; }
   .chip-heading { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .proof { background:#FFFBEB; border-bottom:1px solid #FDE68A; padding:14px 0; font-size:13.5px; }
+  .proof .container { display:flex; gap:14px; flex-wrap:wrap; }
+  .proof strong { color:var(--navy); letter-spacing:.1em; font-size:11px; }
+  .neighbors { background:var(--white); }
+  .neighbor-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:22px; }
+  .neighbor-card { display:block; border:1px solid var(--line); border-radius:8px; padding:20px; background:var(--white); transition:transform .2s,border-color .2s; }
+  .neighbor-card:hover { transform:translateY(-2px); border-color:var(--navy); }
+  .neighbor-card b { display:block; color:var(--navy); font-family:'Noto Serif JP',serif; margin:4px 0 6px; }
+  .neighbor-card p { font-size:12.5px; color:var(--gray); line-height:1.65; }
 
   .disclaimer { background: var(--white); border-left: 4px solid var(--gold); padding: 14px 18px; font-size: 12.5px; color: var(--gray); margin-top: 32px; line-height: 1.8; }
   .disclaimer strong { color: var(--ink); }
@@ -122,6 +132,7 @@
   footer a { text-decoration: underline; }
 
   @media (max-width: 820px) { .hero h1 { font-size: 25px; } section { padding: 52px 0; } }
+  @media (max-width: 820px) { .neighbor-grid { grid-template-columns:1fr; } }
   @media (max-width: 480px) {
     .header-inner { height: 58px; }
     .mode-tab { padding: 9px 18px; font-size: 12.5px; }
@@ -141,11 +152,13 @@
   <div class="container header-inner">
     <a href="index.html" class="logo">AI顧問室</a>
     <nav class="header-nav">
-      <a href="works.html" class="back">← 作品一覧へ</a>
+      <a href="lab.html#craft" class="back">← 実物ラボへ</a>
       <a href="index.html#contact" class="btn btn-gold" style="padding:9px 22px; font-size:13px;">無料相談</a>
     </nav>
   </div>
 </header>
+
+<div class="proof" role="note"><div class="container"><strong>EVIDENCE</strong><span>同じ15秒の素材をワンタップ比較。AI音声・字幕・テロップまで、編集ソフトなしで完成版にしています。</span></div></div>
 
 <div class="hero">
   <div class="container">
@@ -210,7 +223,7 @@
 <section class="note-band">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">HOW IT WAS MADE</span>
+      <span class="eyebrow">03 · HOW IT WAS MADE</span>
       <h2>完成版に施した5つの工程</h2>
       <p>ナレーション録音も、字幕焼き込みも、テロップ合成も——専門の映像編集者もPremiereも使っていません。すべてAIとオープンソースのツール（ffmpeg）、そしてコードで実行しています。</p>
     </div>
@@ -257,7 +270,7 @@
     </div>
 
     <div class="chip-row">
-      <span class="chip-heading">御社なら、同じ作り方で内製化できるもの：</span>
+      <span class="chip-heading">04 · WHERE IT FITS｜御社なら、同じ作り方で内製化できるもの：</span>
       <span class="chip">お知らせ動画</span>
       <span class="chip">物件・商品紹介動画</span>
       <span class="chip">採用動画</span>
@@ -270,11 +283,23 @@
   </div>
 </section>
 
+<section class="neighbors">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">05 · NEXT TO THIS</span><h2>隣の実物</h2><p>素材づくりから編集、販促展開までを続けて見られます。</p></div>
+    <div class="neighbor-grid">
+      <a class="neighbor-card" href="works-video.html"><span class="eyebrow">VIDEO</span><b>AI生成動画</b><p>編集前の映像素材を、撮影なしでつくる。</p></a>
+      <a class="neighbor-card" href="works-motion.html"><span class="eyebrow">MOTION</span><b>モーション動画</b><p>コードで動きそのものを組み立てる。</p></a>
+      <a class="neighbor-card" href="works-creative.html"><span class="eyebrow">CREATIVE</span><b>ブランド一式</b><p>動画をバナー・SNS・紙へ広げる。</p></a>
+    </div>
+  </div>
+</section>
+
 <section class="cta" id="contact">
   <div class="container">
     <h2>御社の動画も、内製化してみませんか。</h2>
     <p>無料相談で、御社の題材に合わせた作り方と費用感をお話しします。</p>
-    <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 44px;">無料相談を予約する</a>
+    <a href="index.html?from=works-edit#contact" class="btn btn-gold" style="font-size:16px; padding:16px 44px;">無料相談を予約する</a>
+    <a href="lab.html#craft" class="back" style="display:inline-block;margin-left:18px;color:#fff;text-decoration:underline;">他の作った物を見る</a>
   </div>
 </section>
 
@@ -420,5 +445,8 @@
 })();
 </script>
 
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
 </body>
 </html>
