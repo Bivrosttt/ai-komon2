@@ -1,4 +1,4 @@
-<!-- 2026-07-23: 実物ラボ — E案旗艦＋craftを4ファミリーStudio化。ラベル日本語 -->
+<!-- 2026-07-23: 実物ラボ — stories（90日）を入口から除外。質が揃うまで非掲載。cases.htmlは残置 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>実物ラボ｜触る・試す・変わるを一画面で｜AI顧問室</title>
-<meta name="description" content="業務SaaS級デスク・1発デモ・90日ストーリー・制作物を、業種フィルタとモード切替で厳選表示。AI顧問室の実物入口（試作）。">
+<meta name="description" content="業務SaaS級デスク・1発デモ・制作物を、業種フィルタとモード切替で厳選表示。AI顧問室の実物入口。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
 <meta property="og:title" content="実物ラボ｜AI顧問室">
-<meta property="og:description" content="触る机・1発体験・90日の変化・作った物——実物を見る統合ハブ（試作）。">
+<meta property="og:description" content="触る机・1発体験・作った物——実物を見る統合ハブ。">
 <meta property="og:url" content="https://ai-komon.bivrost.co.jp/lab.html">
 <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -214,7 +214,7 @@
 <div class="note-banner" role="note">
   <div class="container">
     <strong>実物ラボ</strong>
-    <span>業種別の旗艦デスク＋棚。「作った物」は道具／文書／映像／空間のStudio表示です。</span>
+    <span>業種別の旗艦デスク＋棚。「作った物」は道具／文書／映像／空間のStudio表示。90日ストーリーは質が揃うまで非掲載。</span>
   </div>
 </div>
 
@@ -249,7 +249,7 @@
 <section class="cta">
   <div class="container">
     <h2>御社の業務で、何から触りますか？</h2>
-    <p>無料相談（30分）で、デスク・デモ・90日の進め方を一緒に整理します。</p>
+    <p>無料相談（30分）で、デスク・デモ・成果物の進め方を一緒に整理します。</p>
     <a href="index.html?from=lab#contact" class="btn btn-gold">無料相談を予約する</a>
   </div>
 </section>
@@ -279,7 +279,6 @@
   var MODES = [
     { id: 'desks', label: 'desks', sub: '触る机', lead: '<b>触る机</b> — ログインして全画面を操作できる業務SaaS級デモ。操作の主語が1つに決まっています。' },
     { id: 'shots', label: 'shots', sub: '1発体験', lead: '<b>1発体験</b> — 業種向けの体験デモをまとめています（厳選。全部ではなく触る価値のあるもの）。登録不要・ワンショット。' },
-    { id: 'stories', label: 'stories', sub: '90日の変化', lead: '<b>90日の変化</b> — Case Theater のスクラブで、似た会社がどう変わるかをBefore/Afterで見られます。' },
     { id: 'craft', label: 'craft', sub: '作った物', lead: '<b>作った物 Studio</b> — 道具・文書・映像・空間。種類ごとに骨格が違う成果物を、見本から触れます。' }
   ];
 
@@ -345,11 +344,6 @@
     { id:'shot-line-booking', mode:'shots', industry:['横断'], title:'LINE予約', en:'横断', paradigm:'予約導線', desc:'LINEから予約・リマインド・確認まで。店舗・サービス業の集客導線。', href:'demo-line-booking.html', thumb:'assets/thumbs/demo-line-booking.jpg', accent:'#059669', cta:'▶ 1発で試す', badge:'登録不要・1発' },
     { id:'shot-menu', mode:'shots', industry:['横断'], title:'メニュー表生成', en:'横断', paradigm:'メニュー制作', desc:'料理写真・価格からメニュー表のたたき台を生成。飲食・小売向け。', href:'demo-menu.html', thumb:'assets/thumbs/demo-menu.jpg', accent:'#EA580C', cta:'▶ 1発で試す', badge:'登録不要・1発' },
     { id:'shot-kuchikomi', mode:'shots', industry:['横断'], title:'口コミ返信', en:'横断', paradigm:'レビュー対応', desc:'口コミ内容に合わせた返信案を生成。MEO・評判管理の初動支援。', href:'demo-kuchikomi.html', thumb:'assets/thumbs/demo-kuchikomi.jpg', accent:'#EA580C', cta:'▶ 1発で試す', badge:'登録不要・1発' },
-
-    /* stories */
-    { id:'story-mfg', mode:'stories', industry:['建設'], title:'部品加工メーカー', en:'CASE 01', paradigm:'Case Theater', desc:'Case Theater 90日スクラブ — 日報・報告書が終業後に残る現場の変化。', href:'cases.html#case-manufacturing', thumb:'assets/thumbs/works-genba.jpg', accent:'#EAB308', cta:'▶ 90日をスクラブ', badge:'90日スクラブ', badgeClass:'story' },
-    { id:'story-re', mode:'stories', industry:['不動産'], title:'地域密着の不動産', en:'CASE 02', paradigm:'Case Theater', desc:'Case Theater 90日スクラブ — 反響返信の遅れと夜間取りこぼしの変化。', href:'cases.html#case-realestate', thumb:'assets/thumbs/works-hankyo.jpg', accent:'#C9A227', cta:'▶ 90日をスクラブ', badge:'90日スクラブ', badgeClass:'story' },
-    { id:'story-sales', mode:'stories', industry:['営業'], title:'BtoB営業チーム', en:'CASE 03', paradigm:'Case Theater', desc:'Case Theater 90日スクラブ — 提案準備と追客が属人化していた営業の変化。', href:'cases.html#case-sales', thumb:'assets/thumbs/works-brief.jpg', accent:'#38BDF8', cta:'▶ 90日をスクラブ', badge:'90日スクラブ', badgeClass:'story' },
 
     /* craft — family: tool|doc|media|space */
     { id:'craft-btob', mode:'craft', family:'tool', industry:['営業'], title:'3列提案キャンバス', en:'BtoB営業', paradigm:'提案キャンバス', desc:'課題メモ・論点カード・アウトラインを触って「提案書を生成」。PDFではなく操作する道具。', href:'works-btob-proposal.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#0B2447', cta:'▶ キャンバスを触る', badge:'操作できる', badgeClass:'gold' },
@@ -424,6 +418,8 @@
     if (!raw) return;
 
     var parts = raw.split('/').filter(Boolean);
+    /* 旧 #stories は desks へフォールバック */
+    if (parts[0] === 'stories') parts[0] = 'desks';
     if (parts[0] && modeById(parts[0]).id === parts[0]) state.mode = parts[0];
     if (parts[1] && indById(parts[1]).id === parts[1]) state.ind = parts[1];
   }
@@ -537,7 +533,6 @@
   var HERO = {
     desks: { title: 'まず、この1本。', lead: '業種ごとの旗艦デスクを最上段に。下の棚で同じ系統の机を比べられます。' },
     shots: { title: 'まず、1発で試す。', lead: '登録不要のワンショット。深い机と同型の主語で、短く体感できます。' },
-    stories: { title: 'まず、90日の変化。', lead: '似た会社のBefore/Afterをスクラブ。そこから机と成果物へ進めます。' },
     craft: { title: '作った物を、種類で見る。', lead: '道具・文書・映像・空間。カード一列ではなく、種類ごとの骨格で見せます。' }
   };
 
