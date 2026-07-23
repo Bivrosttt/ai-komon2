@@ -1,4 +1,4 @@
-<!-- 2026-07-22: casesをCase Theater（90日スクラブ）に作り直し。JS文字列のアポストロフィ崩れを修正 -->
+<!-- 2026-07-23: C案接続 — 各ケースに成果物（craft）リンクを追加。Theater本体は維持 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -117,6 +117,11 @@
   .case-links a { font-size: 12px; font-weight: 700; color: var(--blue); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; background: var(--white); transition: border-color .2s, background .2s; }
   .case-links a:hover { border-color: var(--navy); background: var(--bg-soft); }
   .case-links a.primary { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .case-links a.craft { border-color: var(--gold); color: var(--navy); background: #FFFBEB; }
+  .evidence-cap {
+    width: 100%; font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--gray);
+    margin: 4px 0 2px;
+  }
 
   .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; }
   .cta h2 { font-size: 28px; margin-bottom: 12px; }
@@ -243,6 +248,8 @@
       links: [
         { href: 'works-genba.html', label: 'GENBA現場OS', primary: true },
         { href: 'demo-photo-report.html', label: '現場写真→報告書' },
+        { href: 'works-3d.html', label: '成果物：間取り→3D', craft: true },
+        { href: 'works-paint.html', label: '成果物：外壁パース', craft: true },
         { href: 'for/kensetsu.html', label: '建設向け入口' }
       ]
     },
@@ -269,6 +276,8 @@
       links: [
         { href: 'works-hankyo.html', label: 'HANKYO反響CRM', primary: true },
         { href: 'demo-inquiry.html', label: '問い合わせ返信デモ' },
+        { href: 'works-video.html', label: '成果物：物件プロモ映像', craft: true },
+        { href: 'demo-staging.html', label: '成果物：ステージング', craft: true },
         { href: 'for/fudosan.html', label: '不動産向け入口' }
       ]
     },
@@ -294,7 +303,9 @@
       ],
       links: [
         { href: 'works-brief.html', label: 'BRIEF営業WS', primary: true },
-        { href: 'works-btob-proposal.html', label: '提案キャンバス' },
+        { href: 'works-btob-proposal.html', label: '成果物：提案キャンバス', craft: true },
+        { href: 'works-sales-mail.html', label: '成果物：追客壁', craft: true },
+        { href: 'works-slides.html', label: '成果物：提案スライド', craft: true },
         { href: 'for/sales.html', label: '営業向け入口' }
       ]
     }
@@ -432,9 +443,15 @@
     resultRow.innerHTML = c.metrics.map(function(r){
       return '<div class="result' + (dayVal >= r.litAt ? ' lit' : '') + '"><b>' + r.val + '</b><small>' + r.label + '</small></div>';
     }).join('');
-    caseLinks.innerHTML = c.links.map(function(l){
-      return '<a href="' + l.href + '"' + (l.primary ? ' class="primary"' : '') + '>' + l.label + '</a>';
-    }).join('');
+    var desk = c.links.filter(function(l){ return !l.craft; });
+    var craft = c.links.filter(function(l){ return l.craft; });
+    function linkHtml(l){
+      var cls = l.primary ? 'primary' : (l.craft ? 'craft' : '');
+      return '<a href="' + l.href + '"' + (cls ? ' class="' + cls + '"' : '') + '>' + l.label + '</a>';
+    }
+    caseLinks.innerHTML =
+      desk.map(linkHtml).join('') +
+      (craft.length ? '<div class="evidence-cap">この変化の成果物サンプル</div>' + craft.map(linkHtml).join('') : '');
   }
 
   scrub.addEventListener('input', function(){
