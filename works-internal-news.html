@@ -1,4 +1,4 @@
-<!-- 2026-07-22: 社内報VOL.1（A4マガジン調）＋就業規則改定案（AI利用5項目・承認フロー）タブ切替ショーケースを新規制作 -->
+<!-- 2026-07-23: C案補強 — 証拠帯・使い所・隣の実物・lab導線を追加（本体UI維持）／社内報VOL.1（A4マガジン調）＋就業規則改定案（AI利用5項目・承認フロー）タブ切替ショーケースを新規制作 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -185,6 +185,19 @@
   .cta h2 { font-size: 26px; margin-bottom: 12px; }
   .cta p { color: #C7D3E4; margin-bottom: 30px; }
 
+  .proof-band { background: var(--bg-soft); border-bottom: 1px solid var(--line); padding: 14px 0; font-size: 12.5px; color: var(--gray); }
+  .proof-band strong { color: var(--navy); margin-right: 8px; letter-spacing: .08em; }
+  .context-band { padding: 52px 0; background: var(--white); border-top: 1px solid var(--line); }
+  .context-kicker { color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: .16em; }
+  .fit-chips, .neighbor-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .fit-chip { border: 1px solid var(--line); border-radius: 999px; color: var(--navy); padding: 5px 11px; font-size: 11.5px; font-weight: 700; background: var(--bg-soft); }
+  .neighbor-grid { margin-top: 12px; }
+  .neighbor-card { flex: 1 1 210px; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg-soft); transition: border-color .2s, transform .2s; }
+  .neighbor-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .neighbor-card b { display: block; color: var(--navy); font-size: 13px; }
+  .neighbor-card span { color: var(--gray); font-size: 11.5px; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
   footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 32px 0; text-align: center; }
   footer a { text-decoration: underline; }
 
@@ -214,7 +227,7 @@
   <div class="container header-inner">
     <a href="index.html" class="logo">AI顧問室</a>
     <nav class="header-nav">
-      <a href="works.html" class="back">← 作品一覧へ</a>
+      <a href="lab.html#craft" class="back">← 実物ラボへ</a>
       <a href="index.html?from=works-internal-news#contact" class="btn btn-gold" style="padding:9px 22px; font-size:13px;">無料相談</a>
     </nav>
   </div>
@@ -226,6 +239,10 @@
     <h1>社内報も、規程改定も、社員が作れる品質へ。</h1>
     <p>AI活用定着の90日目に発行する社内報と、それに連動する就業規則改定案（AI利用）のサンプルです。架空のIT企業「サンプルテック株式会社」を題材に、マガジン調の社内報と正式な第○条形式の規程文書を、タブで切り替えて閲覧できます。</p>
   </div>
+</div>
+
+<div class="proof-band">
+  <div class="container"><strong>EVIDENCE</strong>社内報の成功事例とAI利用ルールを、A4マガジンと規程文書の2形式で切り替えて確認できる実物です。</div>
 </div>
 
 <div class="theater">
@@ -506,11 +523,29 @@
   </div>
 </section>
 
+<section class="context-band" aria-label="社内定着文書の使い所と関連成果物">
+  <div class="container">
+    <div class="context-kicker">WHERE IT FITS</div>
+    <div class="fit-chips">
+      <span class="fit-chip">AI導入後90日</span><span class="fit-chip">社内周知</span><span class="fit-chip">利用ルール整備</span><span class="fit-chip">研修定着</span>
+    </div>
+    <div class="context-kicker" style="margin-top:28px;">NEXT TO THIS</div>
+    <div class="neighbor-grid">
+      <a class="neighbor-card" href="works-ai-service.html"><b>既存サービス + AI</b><span>顧客向け体験をAI化する実物</span></a>
+      <a class="neighbor-card" href="works-presenter.html"><b>プレゼンテーション制作</b><span>変化を社内へ伝える実物</span></a>
+      <a class="neighbor-card" href="works-creative.html"><b>クリエイティブ制作</b><span>新しい取り組みを見せる実物</span></a>
+    </div>
+  </div>
+</section>
+
 <section class="cta" id="contact">
   <div class="container">
     <h2>御社の社内報・規程整備も、一緒に進めませんか。</h2>
     <p>無料相談で、AI定着に必要な社内コミュニケーション設計をお話しします。</p>
-    <a href="index.html?from=works-internal-news#contact" class="btn btn-gold" style="font-size:16px; padding:16px 44px;">同じ品質を相談する →</a>
+    <div class="cta-actions">
+      <a href="index.html?from=works-internal-news#contact" class="btn btn-gold" style="font-size:16px; padding:16px 44px;">同じ品質を相談する →</a>
+      <a href="lab.html#craft" class="btn" style="border:1px solid rgba(255,255,255,.45);color:#fff;">実物ラボで他の成果物を見る</a>
+    </div>
   </div>
 </section>
 

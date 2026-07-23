@@ -1,4 +1,4 @@
-<!-- 2026-07-22: 保険見直しコンサル向け「既存サービス + AI Before/After」成果物サンプルを本番品質で全面リライト。Before静的LP／After 3ステップAI診断ウィザード・指標パネル・PoC範囲・CTA を実装 -->
+<!-- 2026-07-23: C案補強 — 証拠帯・使い所・隣の実物・lab導線を追加（本体UI維持）／保険見直しコンサル向け「既存サービス + AI Before/After」成果物サンプルを本番品質で全面リライト -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -348,6 +348,18 @@
   .cta p { color: #C7D3E4; margin-bottom: 28px; font-size: 14px; }
   .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
+  .proof-band { background: var(--bg-soft); border-bottom: 1px solid var(--line); padding: 14px 0; font-size: 12.5px; color: var(--gray); }
+  .proof-band strong { color: var(--navy); margin-right: 8px; letter-spacing: .08em; }
+  .context-band { padding: 52px 0; background: var(--white); border-top: 1px solid var(--line); }
+  .context-kicker { color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: .16em; }
+  .fit-chips, .neighbor-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .fit-chip { border: 1px solid var(--line); border-radius: 999px; color: var(--navy); padding: 5px 11px; font-size: 11.5px; font-weight: 700; background: var(--bg-soft); }
+  .neighbor-grid { margin-top: 12px; }
+  .neighbor-card { flex: 1 1 210px; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg-soft); transition: border-color .2s, transform .2s; }
+  .neighbor-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .neighbor-card b { display: block; color: var(--navy); font-size: 13px; }
+  .neighbor-card span { color: var(--gray); font-size: 11.5px; }
+
   footer { background: var(--navy-deep); color: #9FB0C7; font-size: 13px; padding: 32px 0; text-align: center; }
   footer a { text-decoration: underline; }
 
@@ -382,7 +394,7 @@
 <header>
   <div class="container header-inner">
     <div class="brand">
-      <a class="back-link" href="works.html" aria-label="作品一覧へ戻る">←</a>
+      <a class="back-link" href="lab.html#craft" aria-label="実物ラボへ">←</a>
       <div class="title-wrap">
         <strong>既存サービス + AI</strong>
         <span>AI SERVICE BEFORE / AFTER</span>
@@ -404,6 +416,10 @@
       <span class="hero-chip"><b>想定効果</b> CVR +22%</span>
     </div>
   </div>
+</div>
+
+<div class="proof-band">
+  <div class="container"><strong>EVIDENCE</strong>静的LPを、診断・結果・担当者相談まで進む3ステップの顧客体験へ置き換えた、操作可能なBefore / Afterです。</div>
 </div>
 
 <section class="showcase">
@@ -720,13 +736,28 @@
   </div>
 </section>
 
+<section class="context-band" aria-label="AIサービス化の使い所と関連成果物">
+  <div class="container">
+    <div class="context-kicker">WHERE IT FITS</div>
+    <div class="fit-chips">
+      <span class="fit-chip">問い合わせLP改善</span><span class="fit-chip">診断コンテンツ</span><span class="fit-chip">PoC検証</span><span class="fit-chip">リード選別</span>
+    </div>
+    <div class="context-kicker" style="margin-top:28px;">NEXT TO THIS</div>
+    <div class="neighbor-grid">
+      <a class="neighbor-card" href="works-internal-news.html"><b>社内報・規程改定案</b><span>導入後の社内定着を支える実物</span></a>
+      <a class="neighbor-card" href="works-creative.html"><b>クリエイティブ制作</b><span>顧客体験を印象に残す実物</span></a>
+      <a class="neighbor-card" href="works-btob-proposal.html"><b>BtoB提案書キャンバス</b><span>PoCの価値を社内提案に変える実物</span></a>
+    </div>
+  </div>
+</section>
+
 <section class="cta" id="contact">
   <div class="container">
     <h2>御社のサービスも、AIで「売れる体験」に。</h2>
     <p>無料相談で、既存サービスへのAI組み込み方とPoCの進め方をお話しします。</p>
     <div class="cta-actions">
       <a href="index.html?from=works-ai-service#contact" class="btn btn-gold" style="font-size:16px;padding:16px 44px;">同じ品質を相談する →</a>
-      <a href="for/product.html" class="btn btn-outline">攻めのAI・商品化の入口を見る</a>
+      <a href="lab.html#craft" class="btn btn-outline">実物ラボで他の成果物を見る</a>
     </div>
   </div>
 </section>

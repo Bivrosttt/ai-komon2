@@ -1,4 +1,4 @@
-<!-- 2026-07-22: 追客メールをDayレーン壁の道具に作り直し ／ demo枠に作品一覧＋トップ2導線 -->
+<!-- 2026-07-23: C案補強 — 証拠帯・使い所・隣の実物・lab導線を追加（本体UI維持）／追客メールをDayレーン壁の道具に作り直し -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -206,6 +206,20 @@
   }
   .komon-cta .foot { margin-top: 20px; font-size: 12px; color: var(--gray-soft); }
 
+  .proof-band, .context-band { max-width: 1120px; margin: 0 auto; }
+  .proof-band { padding: 14px 16px; background: var(--navy); border-bottom: 1px solid var(--teal-line); color: var(--gray); font-size: 12.5px; }
+  .proof-band strong { color: #5EEAD4; margin-right: 8px; }
+  .context-band { padding: 32px 16px; background: var(--navy-deep); }
+  .context-kicker { color: #5EEAD4; font: 700 10px 'IBM Plex Mono', monospace; letter-spacing: .16em; }
+  .fit-chips, .neighbor-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .fit-chip { border: 1px solid var(--teal-line); border-radius: 999px; color: #99F6E4; padding: 4px 10px; font-size: 11px; }
+  .neighbor-grid { margin-top: 12px; }
+  .neighbor-card { flex: 1 1 190px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 7px; background: var(--card); }
+  .neighbor-card:hover { border-color: #5EEAD4; }
+  .neighbor-card b { display: block; color: var(--ink); font-size: 13px; }
+  .neighbor-card span { color: var(--gray); font-size: 11px; }
+  .cta-lab { display: inline-block; margin-top: 12px; color: #5EEAD4; font-size: 12px; text-decoration: underline; }
+
   .toast {
     position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
     background: var(--card); border: 1px solid var(--teal-line); color: var(--ink);
@@ -233,10 +247,12 @@
 <div class="demo-frame-bar">
   <span class="frame-text">これは <b>AI顧問室</b> のサンプル成果物デモです。架空SaaS「StockPilot」×見込み客「ミライ物流」の追客タイムラインです。</span>
   <div class="frame-links">
-    <a href="works.html" class="frame-link">作品一覧</a>
+    <a href="lab.html#craft" class="frame-link">実物ラボ</a>
     <a href="index.html" class="frame-link">AI顧問室トップへ</a>
   </div>
 </div>
+
+<div class="proof-band"><strong>EVIDENCE</strong>商談メモを起点に、Day3・7・14の追客を生成・比較・送信まで進められる営業運用の実物です。</div>
 
 <div class="app-shell">
   <header class="app-top">
@@ -346,6 +362,19 @@
   </div>
 </div>
 
+<section class="context-band" aria-label="追客メールの使い所と関連成果物">
+  <div class="context-kicker">WHERE IT FITS</div>
+  <div class="fit-chips">
+    <span class="fit-chip">商談後フォロー</span><span class="fit-chip">営業育成</span><span class="fit-chip">CRM定着</span><span class="fit-chip">失注掘り起こし</span>
+  </div>
+  <div class="context-kicker" style="margin-top:24px;">NEXT TO THIS</div>
+  <div class="neighbor-grid">
+    <a class="neighbor-card" href="works-btob-proposal.html"><b>BtoB提案書キャンバス</b><span>商談の論点を提案構成へ変える実物</span></a>
+    <a class="neighbor-card" href="works-slides.html"><b>スライド制作</b><span>伝える資料を組み立てる実物</span></a>
+    <a class="neighbor-card" href="works-ai-service.html"><b>既存サービス + AI</b><span>リード体験を育てる実物</span></a>
+  </div>
+</section>
+
 <div class="editor-sheet" id="editorSheet" aria-hidden="true">
   <div class="editor-panel" role="dialog" aria-labelledby="editorTitle">
     <div class="editor-head">
@@ -371,6 +400,7 @@
   <h2>追客メールも、<em>タイムラインで進める。</em></h2>
   <p>商談メモからDay3/7/14の下書きを生成。無料相談で御社の追客フロー設計をお話しします。</p>
   <a href="index.html?from=works-sales-mail#contact" class="btn">同じ品質を相談する →</a>
+  <br><a href="lab.html#craft" class="cta-lab">実物ラボで他の成果物を見る →</a>
   <p class="foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</p>
 </div>
 
