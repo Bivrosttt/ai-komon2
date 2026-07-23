@@ -1,4 +1,4 @@
-<!-- 2026-07-23: ビジュアルを理想形へ — 実写はproblems+industryのみ、他セクションの絵は削除 -->
+<!-- 2026-07-23: カード画像の縦伸びを修正 — aspect-ratio+height固定、帯として見せる -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -189,7 +189,8 @@
     overflow: hidden;
   }
   .p-visual {
-    display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+    display: block; width: 100%; height: 168px;
+    object-fit: cover; object-position: center 28%;
     background: #EDF3FA;
   }
   .p-card .who {
@@ -210,7 +211,8 @@
   .ind-card.is-live { border-top: 3px solid var(--gold); }
   .ind-card.is-soon { opacity: .72; }
   .ind-visual {
-    display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+    display: block; width: 100%; height: 128px;
+    object-fit: cover; object-position: center 35%;
     background: #EDF3FA;
   }
   .ind-tag { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin: 14px 18px 8px; }
@@ -564,19 +566,19 @@
     <h2 class="section-title">こんな悩み、ありませんか？</h2>
     <div class="card-grid">
       <div class="p-card">
-        <img class="p-visual" src="assets/site-visual/problem-01.jpg" alt="" width="1536" height="1024" loading="lazy">
+        <img class="p-visual" src="assets/site-visual/problem-01.jpg" alt="" width="640" height="168" loading="lazy">
         <div class="who">CASE 01｜何から始めるべきか分からない</div>
         <h3>「AIをやらなきゃとは思うが、正直よく分からない」</h3>
         <p>ニュースでAIの話を聞かない日はない。でも社内にITに詳しい人材はおらず、何から手を付ければいいのか判断できない。変な業者に騙されるのも怖い。</p>
       </div>
       <div class="p-card">
-        <img class="p-visual" src="assets/site-visual/problem-02.jpg" alt="" width="1536" height="1024" loading="lazy">
+        <img class="p-visual" src="assets/site-visual/problem-02.jpg" alt="" width="640" height="168" loading="lazy">
         <div class="who">CASE 02｜自分は使えるが、会社に広がらない</div>
         <h3>「社長の自分だけがChatGPTを使っている」</h3>
         <p>自分では日常的にAIを使っていて手応えもある。しかし社員への展開の仕方が分からず、会社としての生産性向上につながっていない。</p>
       </div>
       <div class="p-card">
-        <img class="p-visual" src="assets/site-visual/problem-03.jpg" alt="" width="1536" height="1024" loading="lazy">
+        <img class="p-visual" src="assets/site-visual/problem-03.jpg" alt="" width="640" height="168" loading="lazy">
         <div class="who">CASE 03｜周囲からDXを迫られている</div>
         <h3>「取引先や若手から、デジタル化を求められている」</h3>
         <p>業界全体がデジタル化に動き、取引先からの要請も増えてきた。判断を任せられる相談相手が社内にも周りにもいない。</p>
@@ -704,35 +706,35 @@
     <p style="margin:-36px 0 28px;font-size:13.5px;color:var(--gray);">実物は <a href="lab.html" style="color:var(--blue);font-weight:700;">実物ラボ</a> で触れます。</p>
     <div class="ind-grid">
       <a class="ind-card is-live" href="for/kensetsu.html">
-        <img class="ind-visual" src="assets/site-visual/ind-kensetsu.jpg" alt="" width="640" height="400" loading="lazy">
+        <img class="ind-visual" src="assets/site-visual/ind-kensetsu.jpg" alt="" width="640" height="128" loading="lazy">
         <div class="ind-tag">公開中</div>
         <h3>建設・工務店</h3>
         <p>日報・現場写真・見積の下ごしらえ。監督を現場に返す。</p>
         <span class="ind-go">▶ 建設向けページを見る</span>
       </a>
       <a class="ind-card is-live" href="for/fudosan.html">
-        <img class="ind-visual" src="assets/site-visual/ind-fudosan.jpg" alt="" width="640" height="400" loading="lazy">
+        <img class="ind-visual" src="assets/site-visual/ind-fudosan.jpg" alt="" width="640" height="128" loading="lazy">
         <div class="ind-tag">公開中</div>
         <h3>不動産</h3>
         <p>反響対応・追客・集客。5分で返す会社の仕組み。</p>
         <span class="ind-go">▶ 不動産向けページを見る</span>
       </a>
       <a class="ind-card is-live" href="for/sales.html">
-        <img class="ind-visual" src="assets/site-visual/ind-sales.jpg" alt="" width="640" height="400" loading="lazy">
+        <img class="ind-visual" src="assets/site-visual/ind-sales.jpg" alt="" width="640" height="128" loading="lazy">
         <div class="ind-tag">公開中</div>
         <h3>営業組織（BtoB）</h3>
         <p>商談準備・提案書・追客の下ごしらえ。</p>
         <span class="ind-go">▶ 営業向けページを見る</span>
       </a>
       <a class="ind-card is-live" href="for/backoffice.html">
-        <img class="ind-visual" src="assets/site-visual/ind-backoffice.jpg" alt="" width="640" height="400" loading="lazy">
+        <img class="ind-visual" src="assets/site-visual/ind-backoffice.jpg" alt="" width="640" height="128" loading="lazy">
         <div class="ind-tag">公開中</div>
         <h3>管理部門</h3>
         <p>経理・総務・採用前の業務整理。</p>
         <span class="ind-go">▶ 管理部門向けページを見る</span>
       </a>
       <a class="ind-card is-live" href="for/product.html">
-        <img class="ind-visual" src="assets/site-visual/ind-product.jpg" alt="" width="640" height="400" loading="lazy">
+        <img class="ind-visual" src="assets/site-visual/ind-product.jpg" alt="" width="640" height="128" loading="lazy">
         <div class="ind-tag">公開中</div>
         <h3>攻めのAI・商品化</h3>
         <p>効率化で終わらせない。AIを御社の売り物に。</p>
