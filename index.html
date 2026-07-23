@@ -1,4 +1,4 @@
-<!-- 2026-07-23: ヘッダー崩れ修正 — ナビ短縮・段階非表示・CTA短縮・ロゴnowrap -->
+<!-- 2026-07-23: セクションに粘土風ビジュアルを追加（problems/service/industry/levels/flow/reasons/first90） -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -185,29 +185,38 @@
     border: 1px solid var(--line);
     border-top: 4px solid var(--navy);
     border-radius: 6px;
-    padding: 32px 28px;
+    padding: 0 0 28px;
+    overflow: hidden;
+  }
+  .p-visual {
+    display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+    background: #EDF3FA;
   }
   .p-card .who {
     font-size: 12px; color: var(--blue); font-weight: 700; letter-spacing: 0.06em;
-    margin-bottom: 10px;
+    margin: 20px 28px 10px;
   }
-  .p-card h3 { font-size: 19px; color: var(--navy); margin-bottom: 14px; }
-  .p-card p { font-size: 14px; color: var(--gray); }
+  .p-card h3 { font-size: 19px; color: var(--navy); margin: 0 28px 14px; }
+  .p-card p { font-size: 14px; color: var(--gray); margin: 0 28px; }
 
   /* Industry hub */
   .industry { background: var(--bg-soft); }
   .ind-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
   .ind-card {
     background: var(--white); border: 1px solid var(--line); border-radius: 8px;
-    padding: 22px 20px; transition: border-color .2s;
+    padding: 0 0 18px; overflow: hidden; transition: border-color .2s;
   }
   a.ind-card:hover { border-color: var(--navy); }
   .ind-card.is-live { border-top: 3px solid var(--gold); }
   .ind-card.is-soon { opacity: .72; }
-  .ind-tag { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin-bottom: 8px; }
-  .ind-card h3 { font-size: 17px; color: var(--navy); margin-bottom: 6px; }
-  .ind-card p { font-size: 13px; color: var(--gray); margin-bottom: 12px; }
-  .ind-go { font-size: 13px; font-weight: 700; color: var(--gold); }
+  .ind-visual {
+    display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover;
+    background: #EDF3FA;
+  }
+  .ind-tag { font-size: 10px; font-weight: 700; letter-spacing: .08em; color: var(--blue); margin: 14px 18px 8px; }
+  .ind-card h3 { font-size: 17px; color: var(--navy); margin: 0 18px 6px; }
+  .ind-card p { font-size: 13px; color: var(--gray); margin: 0 18px 12px; }
+  .ind-go { display: inline-block; font-size: 13px; font-weight: 700; color: var(--gold); margin: 0 18px; }
   .ind-soon { font-size: 12px; font-weight: 700; color: var(--gray); }
   .problems-close {
     text-align: center; margin-top: 56px;
@@ -218,9 +227,14 @@
   /* Services */
   .s-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 24px; }
   .s-card {
-    border: 1px solid var(--line); border-radius: 6px; padding: 36px 32px;
-    display: flex; gap: 20px; align-items: flex-start;
+    border: 1px solid var(--line); border-radius: 6px; padding: 0;
+    display: flex; flex-direction: column; overflow: hidden; background: var(--white);
   }
+  .s-visual {
+    display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover;
+    background: #EDF3FA;
+  }
+  .s-body { display: flex; gap: 20px; align-items: flex-start; padding: 28px 28px 32px; }
   .s-num {
     font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 700;
     color: var(--gold); line-height: 1; min-width: 44px;
@@ -285,6 +299,11 @@
 
   /* Levels（横型ステップ） */
   .levels { background: var(--white); }
+  .lv-banner {
+    max-width: 940px; margin: 8px 0 28px; border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--line); background: #EDF3FA;
+  }
+  .lv-banner img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
   .lv-stairs { display: flex; align-items: flex-end; gap: 10px; max-width: 940px; padding-top: 18px; }
   .lv-step { flex: 1; min-width: 0; border: 1px solid var(--line); border-bottom: 4px solid var(--navy); border-radius: 8px 8px 0 0; background: var(--bg-soft); cursor: pointer; position: relative; padding: 12px 6px 8px; text-align: center; font-family: 'Noto Sans JP', sans-serif; height: var(--h); display: flex; flex-direction: column; align-items: center; gap: 6px; transition: background .2s, border-color .2s, transform .15s; }
   .lv-step:hover { transform: translateY(-3px); }
@@ -362,6 +381,11 @@
   .reasons .section-lead { color: #C7D3E4; }
   .r-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
   .r-item { border-top: 2px solid var(--gold); padding-top: 24px; }
+  .r-visual {
+    display: block; width: 88px; height: 88px; object-fit: cover;
+    border-radius: 12px; margin-bottom: 16px;
+    border: 1px solid rgba(255,255,255,.18);
+  }
   .r-item h3 { font-size: 20px; margin-bottom: 12px; color: var(--white); }
   .r-item p { font-size: 14px; color: #C7D3E4; }
 
@@ -410,10 +434,22 @@
 
   /* Flow */
   .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); }
-  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
-  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
-  .f-step p { font-size: 13px; color: var(--gray); }
+  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 0 0 24px; background: var(--white); overflow: hidden; }
+  .f-visual {
+    display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+    background: #EDF3FA;
+  }
+  .f-step .no {
+    font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700;
+    margin: 18px 22px 8px;
+  }
+  .f-step h3 { font-size: 17px; color: var(--navy); margin: 0 22px 8px; }
+  .f-step p { font-size: 13px; color: var(--gray); margin: 0 22px; }
+  .f90-banner {
+    max-width: 940px; margin: 8px auto 28px; border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--line); background: #EDF3FA;
+  }
+  .f90-banner img { display: block; width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: center; }
 
   /* Profile */
   .profile { background: var(--bg-soft); }
@@ -555,16 +591,19 @@
     <h2 class="section-title">こんな悩み、ありませんか？</h2>
     <div class="card-grid">
       <div class="p-card">
+        <img class="p-visual" src="assets/lp-visual/problem-choice.jpg" alt="" width="720" height="540" loading="lazy">
         <div class="who">CASE 01｜何から始めるべきか分からない</div>
         <h3>「AIをやらなきゃとは思うが、正直よく分からない」</h3>
         <p>ニュースでAIの話を聞かない日はない。でも社内にITに詳しい人材はおらず、何から手を付ければいいのか判断できない。変な業者に騙されるのも怖い。</p>
       </div>
       <div class="p-card">
+        <img class="p-visual" src="assets/lp-visual/problem-estimate.jpg" alt="" width="720" height="540" loading="lazy">
         <div class="who">CASE 02｜自分は使えるが、会社に広がらない</div>
         <h3>「社長の自分だけがChatGPTを使っている」</h3>
         <p>自分では日常的にAIを使っていて手応えもある。しかし社員への展開の仕方が分からず、会社としての生産性向上につながっていない。</p>
       </div>
       <div class="p-card">
+        <img class="p-visual" src="assets/lp-visual/problem-team.jpg" alt="" width="720" height="540" loading="lazy">
         <div class="who">CASE 03｜周囲からDXを迫られている</div>
         <h3>「取引先や若手から、デジタル化を求められている」</h3>
         <p>業界全体がデジタル化に動き、取引先からの要請も増えてきた。判断を任せられる相談相手が社内にも周りにもいない。</p>
@@ -596,6 +635,9 @@
     <span class="section-label">ROADMAP</span>
     <h2 class="section-title">会社のAI活用には「レベル」があります</h2>
     <p class="section-lead">「ChatGPTを触ってみた」から「AIに仕事を任せる」まで、会社のAI活用は段階的に進みます。AI顧問室の仕事は、御社のレベルを1段ずつ確実に上げることです。</p>
+    <figure class="lv-banner">
+      <img src="assets/site-visual/level-map.jpg" width="1600" height="900" alt="AI活用レベルをLv.0からLv.5まで階段で示したイメージ" loading="lazy">
+    </figure>
     <div class="lv-stairs" id="lvStairs" role="tablist" aria-label="AI活用レベル">
       <button class="lv-step faded" data-lv="0" style="--h:120px;" role="tab"><span class="n">Lv.0</span><span class="t">未導入</span><span class="s">まだ様子見</span></button>
       <button class="lv-step" data-lv="1" style="--h:148px;" role="tab"><span class="ribbon">多くのお客様はここから</span><span class="n">Lv.1</span><span class="t">お試し</span><span class="s">ChatGPTを<br>触ってみた</span></button>
@@ -651,33 +693,45 @@
     <p class="section-lead">単なるアドバイスで終わらせません。経営相談から、社内に定着するまでを一気通貫で支援します。</p>
     <div class="s-grid">
       <div class="s-card">
-        <div class="s-num">01</div>
-        <div>
-          <h3>経営×AIの相談・壁打ち</h3>
-          <p>チャットでいつでも相談可能。「この業務、AIでどうにかならないか」という現場の疑問から、経営戦略レベルの意思決定まで、経営者の目線で答えます。</p>
+        <img class="s-visual" src="assets/lp-visual/service-consult.jpg" alt="" width="960" height="600" loading="lazy">
+        <div class="s-body">
+          <div class="s-num">01</div>
+          <div>
+            <h3>経営×AIの相談・壁打ち</h3>
+            <p>チャットでいつでも相談可能。「この業務、AIでどうにかならないか」という現場の疑問から、経営戦略レベルの意思決定まで、経営者の目線で答えます。</p>
+          </div>
         </div>
       </div>
       <div class="s-card">
-        <div class="s-num">02</div>
-        <div>
-          <h3>AI導入ロードマップの策定と伴走</h3>
-          <p>御社の業務を棚卸しし、「どこにAIを入れると最も利益に効くか」を優先順位付きのロードマップに。策定して終わりではなく、実行まで定例で伴走します。</p>
+        <img class="s-visual" src="assets/lp-visual/service-roadmap.jpg" alt="" width="960" height="600" loading="lazy">
+        <div class="s-body">
+          <div class="s-num">02</div>
+          <div>
+            <h3>AI導入ロードマップの策定と伴走</h3>
+            <p>御社の業務を棚卸しし、「どこにAIを入れると最も利益に効くか」を優先順位付きのロードマップに。策定して終わりではなく、実行まで定例で伴走します。</p>
+          </div>
         </div>
       </div>
       <div class="s-card">
-        <div class="s-num">03</div>
-        <div>
-          <h3>ツールの目利きと、実装</h3>
-          <p>世界中のAIツール・OSSから「御社に合うもの」を選ぶ——毎日AIを使い込む顧問だからできる目利きです。既製で済むものは作らず、足りないものだけ、問い合わせ対応や見積AIなど売上に効くものから顧問が直接構築します。</p>
-          <p style="margin-top:10px;"><a href="implementation.html" style="color:var(--blue); font-weight:700; font-size:13.5px;">▶ 導入支援・構築だけの依頼も可能（詳細）</a></p>
+        <img class="s-visual" src="assets/lp-visual/service-build.jpg" alt="" width="960" height="600" loading="lazy">
+        <div class="s-body">
+          <div class="s-num">03</div>
+          <div>
+            <h3>ツールの目利きと、実装</h3>
+            <p>世界中のAIツール・OSSから「御社に合うもの」を選ぶ——毎日AIを使い込む顧問だからできる目利きです。既製で済むものは作らず、足りないものだけ、問い合わせ対応や見積AIなど売上に効くものから顧問が直接構築します。</p>
+            <p style="margin-top:10px;"><a href="implementation.html" style="color:var(--blue); font-weight:700; font-size:13.5px;">▶ 導入支援・構築だけの依頼も可能（詳細）</a></p>
+          </div>
         </div>
       </div>
       <div class="s-card">
-        <div class="s-num">04</div>
-        <div>
-          <h3>社員向けAI研修・自走化支援</h3>
-          <p>社長だけがAIを使えても会社は変わりません。ChatGPTの安全な使い方から始めて、最終的には社員が自分の業務用AIを「自作」できるレベルまで。ゴールは、御社だけで回り続ける「自走」です。</p>
-          <p style="margin-top:10px;"><a href="training.html" style="color:var(--blue); font-weight:700; font-size:13.5px;">▶ AI研修の詳細（カリキュラム・料金）</a></p>
+        <img class="s-visual" src="assets/lp-visual/service-train.jpg" alt="" width="960" height="600" loading="lazy">
+        <div class="s-body">
+          <div class="s-num">04</div>
+          <div>
+            <h3>社員向けAI研修・自走化支援</h3>
+            <p>社長だけがAIを使えても会社は変わりません。ChatGPTの安全な使い方から始めて、最終的には社員が自分の業務用AIを「自作」できるレベルまで。ゴールは、御社だけで回り続ける「自走」です。</p>
+            <p style="margin-top:10px;"><a href="training.html" style="color:var(--blue); font-weight:700; font-size:13.5px;">▶ AI研修の詳細（カリキュラム・料金）</a></p>
+          </div>
         </div>
       </div>
     </div>
@@ -692,30 +746,35 @@
     <p style="margin:-36px 0 28px;font-size:13.5px;color:var(--gray);">実物は <a href="lab.html" style="color:var(--blue);font-weight:700;">実物ラボ</a> で触れます。</p>
     <div class="ind-grid">
       <a class="ind-card is-live" href="for/kensetsu.html">
+        <img class="ind-visual" src="assets/site-visual/ind-kensetsu.jpg" alt="" width="640" height="400" loading="lazy">
         <div class="ind-tag">公開中</div>
         <h3>建設・工務店</h3>
         <p>日報・現場写真・見積の下ごしらえ。監督を現場に返す。</p>
         <span class="ind-go">▶ 建設向けページを見る</span>
       </a>
       <a class="ind-card is-live" href="for/fudosan.html">
+        <img class="ind-visual" src="assets/site-visual/ind-fudosan.jpg" alt="" width="640" height="400" loading="lazy">
         <div class="ind-tag">公開中</div>
         <h3>不動産</h3>
         <p>反響対応・追客・集客。5分で返す会社の仕組み。</p>
         <span class="ind-go">▶ 不動産向けページを見る</span>
       </a>
       <a class="ind-card is-live" href="for/sales.html">
+        <img class="ind-visual" src="assets/site-visual/ind-sales.jpg" alt="" width="640" height="400" loading="lazy">
         <div class="ind-tag">公開中</div>
         <h3>営業組織（BtoB）</h3>
         <p>商談準備・提案書・追客の下ごしらえ。</p>
         <span class="ind-go">▶ 営業向けページを見る</span>
       </a>
       <a class="ind-card is-live" href="for/backoffice.html">
+        <img class="ind-visual" src="assets/site-visual/ind-backoffice.jpg" alt="" width="640" height="400" loading="lazy">
         <div class="ind-tag">公開中</div>
         <h3>管理部門</h3>
         <p>経理・総務・採用前の業務整理。</p>
         <span class="ind-go">▶ 管理部門向けページを見る</span>
       </a>
       <a class="ind-card is-live" href="for/product.html">
+        <img class="ind-visual" src="assets/site-visual/ind-product.jpg" alt="" width="640" height="400" loading="lazy">
         <div class="ind-tag">公開中</div>
         <h3>攻めのAI・商品化</h3>
         <p>効率化で終わらせない。AIを御社の売り物に。</p>
@@ -849,14 +908,17 @@
     <p class="section-lead">AIに詳しい人は増えました。しかし「経営者の言葉でAIを語れる人」は、ほとんどいません。</p>
     <div class="r-grid">
       <div class="r-item">
+        <img class="r-visual" src="assets/site-visual/reason-management.jpg" alt="" width="176" height="176" loading="lazy">
         <h3>経営歴15年の「経営目線」</h3>
         <p>顧問自身が15年会社を経営してきました。資金繰り、採用、組織の悩み——経営者の判断の重さを知っているからこそ、「儲けにつながるAI活用」だけを提案します。</p>
       </div>
       <div class="r-item">
+        <img class="r-visual" src="assets/site-visual/reason-ai.jpg" alt="" width="176" height="176" loading="lazy">
         <h3>AI歴4年の「目利き力」</h3>
         <p>ChatGPT登場以前からあらゆるAIを実務で使い込んできました。世界中のツール・OSSの中から御社に効くものを選ぶ「目利き」ができ、足りないものは自ら実装できます。</p>
       </div>
       <div class="r-item">
+        <img class="r-visual" src="assets/site-visual/reason-accompany.jpg" alt="" width="176" height="176" loading="lazy">
         <h3>提案で終わらない「伴走型」</h3>
         <p>まず顧問が作って見せる。次に、社員が作れるように教える。外注と違い、ノウハウという資産が御社の中に残っていく伴走です。</p>
       </div>
@@ -928,21 +990,25 @@
     <h2 class="section-title">ご契約までの流れ</h2>
     <div class="flow-grid">
       <div class="f-step">
+        <img class="f-visual" src="assets/site-visual/flow-01-diagnosis.jpg" alt="" width="480" height="480" loading="lazy">
         <div class="no">1</div>
         <h3>無料AI活用診断（30分）</h3>
         <p>現状の課題とAI活用の可能性をヒアリング。この時点で持ち帰れる気づきをお渡しします。</p>
       </div>
       <div class="f-step">
+        <img class="f-visual" src="assets/site-visual/flow-02-report.jpg" alt="" width="480" height="480" loading="lazy">
         <div class="no">2</div>
         <h3>現状診断</h3>
         <p>業務内容を簡易診断し、AI活用の余地と優先順位を整理してご報告します。</p>
       </div>
       <div class="f-step">
+        <img class="f-visual" src="assets/site-visual/flow-03-proposal.jpg" alt="" width="480" height="480" loading="lazy">
         <div class="no">3</div>
         <h3>支援内容のご提案</h3>
         <p>診断結果をもとに、御社に合った支援範囲と初月の動き方をご提案します。</p>
       </div>
       <div class="f-step">
+        <img class="f-visual" src="assets/site-visual/flow-04-start.jpg" alt="" width="480" height="480" loading="lazy">
         <div class="no">4</div>
         <h3>顧問契約スタート</h3>
         <p>チャットグループを開設し、その日から相談可能に。最初の定例で90日計画を決めます。</p>
@@ -956,6 +1022,9 @@
     <span class="section-label">FIRST 90 DAYS</span>
     <h2 class="section-title">契約後、最初の90日でやること</h2>
     <p class="section-lead">「顧問」と聞くと何をしてくれるのか曖昧に感じるかもしれません。最初の3ヶ月の動きを、あらかじめお見せします。</p>
+    <figure class="f90-banner">
+      <img src="assets/lp-visual/first-90-days.jpg" width="1400" height="600" alt="契約後90日の3段階イメージ" loading="lazy">
+    </figure>
     <div class="flow-grid">
       <div class="f-step">
         <div class="no">1ヶ月目</div>
