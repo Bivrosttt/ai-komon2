@@ -1,4 +1,4 @@
-<!-- 2026-07-23: 実物ラボ — stories（90日）を入口から除外。質が揃うまで非掲載。cases.htmlは残置 -->
+<!-- 2026-07-23: craft Studio幅崩れ修正 — card-grid auto-fill 配下で1カラムに潰れていたのを is-studio で解除 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -108,10 +108,14 @@
   .mode-lead { font-size: 14px; color: var(--gray); margin-bottom: 28px; max-width: 720px; }
   .mode-lead b { color: var(--navy); }
   .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+  .card-grid.is-studio {
+    display: block;
+    grid-template-columns: none;
+  }
 
   /* craft Studio */
-  .studio { display: flex; flex-direction: column; gap: 36px; }
-  .studio-fam { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--white); }
+  .studio { display: flex; flex-direction: column; gap: 28px; width: 100%; }
+  .studio-fam { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--white); width: 100%; }
   .studio-fam-head {
     padding: 18px 22px 14px; background: linear-gradient(180deg, #F8FAFC, #EEF3F8);
     border-bottom: 1px solid var(--line);
@@ -119,24 +123,35 @@
   .studio-fam-head .k { font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--gold); }
   .studio-fam-head h3 { font-size: 22px; color: var(--navy); margin-top: 4px; }
   .studio-fam-head p { font-size: 13px; color: var(--gray); margin-top: 4px; max-width: 640px; }
-  .studio-fam-body { padding: 18px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 14px; }
+  .studio-fam-body {
+    padding: 18px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr); gap: 14px; align-items: stretch;
+  }
   .studio-feature {
     border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column;
-    transition: transform .2s, border-color .2s, box-shadow .2s;
+    min-width: 0; transition: transform .2s, border-color .2s, box-shadow .2s;
   }
   a.studio-feature:hover { transform: translateY(-2px); border-color: var(--accent, var(--navy)); box-shadow: 0 8px 24px rgba(11,36,71,.08); }
   .studio-feature .lab-visual { aspect-ratio: 16/10; }
-  .studio-side { display: flex; flex-direction: column; gap: 10px; }
-  .studio-side .lab-card { flex-direction: row; min-height: 96px; }
-  .studio-side .lab-visual { width: 112px; flex: 0 0 112px; aspect-ratio: auto; min-height: 96px; }
-  .studio-side .lab-body { padding: 12px 14px; gap: 4px; }
+  .studio-side { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .studio-side .lab-card {
+    flex-direction: row; align-items: stretch; min-height: 108px; min-width: 0;
+  }
+  .studio-side .lab-visual {
+    width: 128px; flex: 0 0 128px; aspect-ratio: auto; min-height: 108px; height: auto;
+  }
+  .studio-side .lab-body { padding: 12px 14px; gap: 4px; min-width: 0; justify-content: center; }
   .studio-side .lab-body h3 { font-size: 15px; }
+  .studio-side .lab-en, .studio-side .lab-cta { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .studio-side .lab-desc { display: none; }
   .studio-side .lab-tags { display: none; }
-  @media (max-width: 820px) {
+  @media (max-width: 900px) {
     .studio-fam-body { grid-template-columns: 1fr; }
+    .studio-side .lab-card { flex-direction: row; }
+    .studio-side .lab-visual { width: 112px; flex: 0 0 112px; aspect-ratio: auto; min-height: 96px; }
+  }
+  @media (max-width: 560px) {
     .studio-side .lab-card { flex-direction: column; }
-    .studio-side .lab-visual { width: 100%; flex: none; aspect-ratio: 16/10; }
+    .studio-side .lab-visual { width: 100%; flex: none; aspect-ratio: 16/10; min-height: 0; }
   }
   .lab-card {
     border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;
@@ -207,7 +222,7 @@
   <div class="container">
     <span class="label">実物ラボ</span>
     <h1 id="hero-title">まず、この1本。</h1>
-    <p id="hero-lead">業種ごとの旗艦デスクを最上段に固定。下の棚で1発デモ・90日ストーリー・制作物を切り替えます。</p>
+    <p id="hero-lead">業種ごとの旗艦デスクを最上段に。下の棚で1発デモと作った物を切り替えます。</p>
   </div>
 </div>
 
@@ -490,11 +505,13 @@
     });
     html += '</div>';
     if (!any) {
+      cardGrid.className = 'card-grid';
       cardGrid.innerHTML = '<div class="empty-state"><h3>該当する成果物がありません</h3><p>業種を「すべて」に戻すか、別の業種を選んでください。</p><button type="button" class="chip active" id="reset-filter">すべての業種を表示</button></div>';
       var reset = document.getElementById('reset-filter');
       if (reset) reset.addEventListener('click', function(){ setInd('all', true); });
       return;
     }
+    cardGrid.className = 'card-grid is-studio';
     cardGrid.innerHTML = html;
   }
 
@@ -519,6 +536,8 @@
       return;
     }
 
+    cardGrid.className = 'card-grid';
+
     if (!items.length) {
       cardGrid.innerHTML = '<div class="empty-state"><h3>該当する実物がありません</h3><p>この業種 × モードの組み合わせでは、まだカードを置いていません。</p><button type="button" class="chip active" id="reset-filter">すべての業種を表示</button></div>';
       var reset = document.getElementById('reset-filter');
@@ -526,7 +545,6 @@
       return;
     }
 
-    cardGrid.className = 'card-grid';
     cardGrid.innerHTML = items.map(function(item){ return cardHtml(item, false); }).join('');
   }
 
