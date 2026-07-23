@@ -1,3 +1,4 @@
+<!-- 2026-07-23: C案ページ骨格適用 — 証拠→劇場→作り方→使い所→隣→CTA -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -28,14 +29,14 @@
     --muted: #b7c5d8;
   }
   * { box-sizing: border-box; }
-  html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+  html, body { width: 100%; min-height: 100%; margin: 0; }
   body { font-family: 'Noto Sans JP', sans-serif; color: var(--white); background: #07101b; }
   button, a { font: inherit; }
   button { color: inherit; }
   a { color: inherit; text-decoration: none; }
 
   .topbar {
-    position: fixed; inset: 0 0 auto 0; z-index: 30; height: 62px;
+    position: sticky; top: 0; z-index: 30; height: 62px;
     display: flex; align-items: center; justify-content: space-between; gap: 18px;
     padding: 0 max(18px, env(safe-area-inset-left));
     background: rgba(5, 18, 36, .92); border-bottom: 1px solid var(--line);
@@ -61,7 +62,7 @@
   .icon-btn.gold { background: var(--gold); color: var(--navy-deep); border-color: var(--gold); font-weight: 700; }
   .icon-btn.gold:hover { filter: brightness(1.08); background: var(--gold); }
 
-  #stage { position: fixed; inset: 62px 0 0; overflow: hidden; background: radial-gradient(circle at 50% 35%, #33485c, #0b1724 70%); }
+  #stage { position: relative; height: min(720px, calc(100vh - 112px)); overflow: hidden; background: radial-gradient(circle at 50% 35%, #33485c, #0b1724 70%); }
   #stage canvas { display: block; width: 100%; height: 100%; outline: none; touch-action: none; }
 
   .loading {
@@ -154,6 +155,32 @@
   .credits a { text-decoration: underline; color: #e6cc72; }
   .credits-close { float: right; border: 1px solid var(--line); border-radius: 50%; width: 30px; height: 30px; background: rgba(255,255,255,.06); cursor: pointer; }
   .credits .sales-note { margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: rgba(255,255,255,.05); border: 1px solid var(--line); color: #d9e4f2; }
+  .proof { position: relative; z-index: 2; background: #fffbeb; border-bottom: 1px solid #fde68a; color: #1a2433; padding: 12px max(18px, env(safe-area-inset-left)); font-size: 12.5px; line-height: 1.6; }
+  .proof strong { color: #0b2447; font-size: 11px; letter-spacing: .13em; margin-right: 12px; }
+  .page-section { position: relative; z-index: 2; padding: 68px max(18px, env(safe-area-inset-left)); color: #1a2433; background: #fff; }
+  .page-section .content { max-width: 1080px; margin: 0 auto; }
+  .page-section .label { color: #a37e10; font-size: 11px; font-weight: 700; letter-spacing: .16em; }
+  .page-section h2 { margin: 7px 0 10px; color: #0b2447; font-family: 'Noto Serif JP', serif; font-size: 28px; }
+  .page-section .lead { color: #5b6b7f; max-width: 720px; font-size: 14px; line-height: 1.9; }
+  .how-grid, .neighbors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+  .how-card, .neighbor { border: 1px solid #dde4ec; border-radius: 10px; padding: 20px; background: #fff; }
+  .how-card b, .neighbor h3 { color: #0b2447; font-family: 'Noto Serif JP', serif; }
+  .how-card p, .neighbor p { color: #5b6b7f; font-size: 13px; line-height: 1.75; margin: 8px 0 0; }
+  .uses { background: #f4f7fa; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .chip { border: 1px solid #dde4ec; border-radius: 999px; background: #fff; color: #0b2447; font-size: 13px; font-weight: 700; padding: 7px 15px; }
+  .neighbors { background: #fff; }
+  .neighbor { transition: transform .2s, border-color .2s; }
+  .neighbor:hover { transform: translateY(-2px); border-color: #0b2447; }
+  .neighbor small { color: #a37e10; font-weight: 700; letter-spacing: .1em; }
+  .neighbor h3 { margin: 5px 0 0; font-size: 17px; }
+  .neighbor span { color: #2d6cb5; display: inline-block; font-size: 13px; font-weight: 700; margin-top: 10px; }
+  .page-cta { text-align: center; background: linear-gradient(135deg, #071a35, #0b2447); color: #fff; }
+  .page-cta h2 { color: #fff; }
+  .page-cta .lead { color: #c7d3e4; margin: 0 auto 24px; }
+  .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .cta-link { display: inline-block; border: 1px solid rgba(255,255,255,.35); border-radius: 5px; padding: 13px 24px; color: #fff; font-size: 14px; font-weight: 700; }
+  .cta-link.gold { background: var(--gold); border-color: var(--gold); color: var(--navy-deep); }
 
   /* --- mobile virtual controls --- */
   .mobile-controls { display: none; }
@@ -176,7 +203,7 @@
 
   @media (max-width: 760px), (pointer: coarse) {
     .topbar { height: 56px; }
-    #stage { inset: 56px 0 0; }
+    #stage { height: calc(100vh - 106px); }
     .title-wrap strong { font-size: 14px; }
     .title-wrap span, .icon-btn span { display: none; }
     .icon-btn { width: 36px; justify-content: center; padding: 0; }
@@ -192,6 +219,7 @@
     .start-card > p { margin-bottom: 12px; }
     .key-row { margin-bottom: 14px; }
   }
+  @media (max-width: 760px) { .how-grid, .neighbors-grid { grid-template-columns: 1fr; } .page-section { padding-top: 48px; padding-bottom: 48px; } }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
@@ -207,10 +235,13 @@
     </div>
   </div>
   <div class="top-actions">
+    <a class="icon-btn" href="lab.html#craft" aria-label="実物ラボへ">⌂ <span>実物ラボ</span></a>
     <a class="icon-btn gold" href="index.html#contact"><span>無料相談</span></a>
     <button class="icon-btn" id="creditBtn" type="button" aria-label="技術・データ情報を表示">ⓘ <span>技術・データ情報</span></button>
   </div>
 </header>
+
+<div class="proof" role="note"><strong>EVIDENCE</strong><span>530万個のガウス点で再構成した公開実写データを、約70MBのストリーミングでブラウザ内に一人称表示します。</span></div>
 
 <main id="stage" aria-label="3D Gaussian Splattingビューア">
   <div class="loading" id="loading">
@@ -281,7 +312,53 @@
   </aside>
 </main>
 
+<section class="page-section">
+  <div class="content">
+    <div class="label">03 · HOW IT WAS MADE</div>
+    <h2>写真から、歩ける空間へ。</h2>
+    <p class="lead">ポリゴンモデルを手で起こす代わりに、多視点写真を3D Gaussian Splattingで再構成し、軽量なブラウザビューアへ配信する構成です。</p>
+    <div class="how-grid">
+      <div class="how-card"><b>01｜撮影</b><p>店舗・現場を多方向から撮影し、位置と見え方の情報を集めます。</p></div>
+      <div class="how-card"><b>02｜再構成</b><p>写真の色と形状をガウス点群に変換し、実写らしい質感を保持します。</p></div>
+      <div class="how-card"><b>03｜公開</b><p>必要なデータだけを読み込み、サイト上で移動・視点操作できる形にします。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section uses">
+  <div class="content">
+    <div class="label">04 · WHERE IT FITS</div>
+    <h2>使い所</h2>
+    <p class="lead">「写真を並べる」よりも、現場の広がりと導線を伝えたい場所に向きます。</p>
+    <div class="chip-row"><span class="chip">店舗・ショールーム紹介</span><span class="chip">施工現場の記録</span><span class="chip">工場見学</span><span class="chip">不動産の事前内見</span><span class="chip">展示会デモ</span><span class="chip">採用コンテンツ</span></div>
+  </div>
+</section>
+
+<section class="page-section neighbors">
+  <div class="content">
+    <div class="label">05 · NEXT TO THIS</div>
+    <h2>隣の実物</h2>
+    <p class="lead">空間・仕様を別の角度から伝える体験も、実際に比較できます。</p>
+    <div class="neighbors-grid">
+      <a class="neighbor" href="works-3d.html"><small>3D VIEWER</small><h3>実寸3D内見</h3><p>間取り図から起こした住宅を、俯瞰と一人称で確認。</p><span>→ 見る</span></a>
+      <a class="neighbor" href="works-kitchen.html"><small>KITCHEN</small><h3>キッチンカラー</h3><p>写真を切り替え、仕様と概算価格をその場で選択。</p><span>→ 見る</span></a>
+      <a class="neighbor" href="works-paint.html"><small>PAINT</small><h3>外壁カラー</h3><p>現状と見比べながら、外壁の色を選ぶ営業デモ。</p><span>→ 見る</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="page-section page-cta">
+  <div class="content">
+    <h2>御社の場所も、歩ける実写3Dに。</h2>
+    <p class="lead">撮影条件・公開範囲・サイトへの組み込み方からご相談ください。</p>
+    <div class="cta-row"><a class="cta-link gold" href="index.html#contact">無料相談を予約する</a><a class="cta-link" href="lab.html#craft">他の実物ラボを見る</a></div>
+  </div>
+</section>
+
 <script src="assets/vendor/playcanvas/playcanvas.min.js"></script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
 <script>
 (function () {
   'use strict';

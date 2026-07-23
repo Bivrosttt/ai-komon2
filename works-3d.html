@@ -1,3 +1,4 @@
+<!-- 2026-07-23: C案ページ骨格適用 — 証拠→劇場→作り方→使い所→隣→CTA -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -215,6 +216,21 @@
   .f-step p { font-size: 13px; color: var(--gray); }
   .how-note { text-align: center; margin-top: 40px; font-size: 14px; color: var(--gray); }
   .how-note strong { color: var(--navy); }
+  .proof { background: #FFFBEB; border-bottom: 1px solid #FDE68A; padding: 13px 0; font-size: 13px; }
+  .proof .container { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+  .proof strong { color: var(--navy); letter-spacing: .12em; font-size: 11px; }
+  .theater-label { color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: .16em; margin-bottom: 8px; }
+  .uses { background: var(--white); }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; color: var(--navy); font-size: 13px; font-weight: 700; padding: 7px 15px; }
+  .neighbors { background: var(--bg-soft); }
+  .neighbors-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .neighbor { display: block; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); transition: transform .2s, border-color .2s; }
+  .neighbor:hover { transform: translateY(-2px); border-color: var(--navy); }
+  .neighbor small { color: var(--gold); font-weight: 700; letter-spacing: .1em; }
+  .neighbor h3 { color: var(--navy); font-size: 18px; margin: 5px 0; }
+  .neighbor p { color: var(--gray); font-size: 13px; line-height: 1.7; }
+  .neighbor span { display: inline-block; color: var(--blue); font-size: 13px; font-weight: 700; margin-top: 10px; }
 
   /* CTA */
   .cta {
@@ -240,6 +256,7 @@
     .header-right a.textlink { display: none; }
     .viewer-frame { height: 400px; }
     .viewer-controls { flex-direction: column; align-items: flex-start; }
+    .neighbors-grid { grid-template-columns: 1fr; }
   }
 
   /* Mobile/tablet header fit (auto-added 2026-07-18) */
@@ -268,15 +285,17 @@
   <div class="container header-inner">
     <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
     <div class="header-right">
-      <a href="works.html" class="textlink">作品一覧へ</a>
+      <a href="lab.html#craft" class="textlink">実物ラボ</a>
       <a href="index.html#contact" class="btn btn-gold header-cta">無料相談</a>
     </div>
   </div>
 </header>
 
+<div class="proof" role="note"><div class="container"><strong>EVIDENCE</strong><span>LDK23帖＋個室4室を、壁・建具・家具まで実寸で構築。ブラウザで俯瞰・一人称の両方から確認できます。</span></div></div>
+
 <div class="demo-hero">
   <div class="container">
-    <span class="hero-label">制作サンプル｜間取り図→実寸3D内見モデル</span>
+    <span class="hero-label">02 · THEATER｜間取り図→実寸3D内見モデル</span>
     <h1>2Dの間取り図が、<br><em>ブラウザで内見できる実寸3D</em>になる。</h1>
     <p class="sub">LDK23帖＋個室4室の間取りデータをもとに、壁・建具・水回り・家具まで実寸で再現した3Dモデルです。AIがOSSの3DソフトBlenderを直接操作して構築。俯瞰でぐるっと回すことも、一人称で中を歩くこともできます。高価な専用ソフトは使っていません。</p>
   </div>
@@ -293,7 +312,7 @@
 
 <section class="viewer-section" id="viewer">
   <div class="container">
-    <span class="section-label">3D VIEWER</span>
+    <span class="section-label">02 · THEATER / 3D VIEWER</span>
     <h2 class="section-title">間取り図どおりの住まいを、上から・中から確認</h2>
     <p class="section-lead">ドラッグで回転、ホイール（またはピンチ）でズーム。天井を外したドールハウス表示なので、ズームインすればLDK・洋室・水回りの中まで覗けます。中を歩きたい方は「一人称で室内を歩く」へ。何も操作しない間はゆっくり自動回転します。</p>
 
@@ -347,7 +366,7 @@
 
 <section class="how" id="how">
   <div class="container">
-    <span class="section-label">HOW TO CUSTOMIZE</span>
+    <span class="section-label">03 · HOW IT WAS MADE</span>
     <h2 class="section-title">これを御社仕様にするには</h2>
     <p class="section-lead">今ご覧いただいたのは説明用の様式化モデルですが、実際の案件では御社の図面・敷地条件・仕様に合わせて構築します。</p>
     <div class="flow-grid">
@@ -371,13 +390,35 @@
   </div>
 </section>
 
+<section class="uses">
+  <div class="container">
+    <span class="section-label">04 · WHERE IT FITS</span>
+    <h2 class="section-title">使い所</h2>
+    <p class="section-lead">図面を「読ませる」だけでなく、空間を自分で確かめられる体験に変えます。</p>
+    <div class="chip-row"><span class="chip">注文住宅の提案</span><span class="chip">分譲物件の内見</span><span class="chip">リフォーム前の確認</span><span class="chip">営業資料への埋め込み</span><span class="chip">採用・施設紹介</span><span class="chip">展示会デモ</span></div>
+  </div>
+</section>
+
+<section class="neighbors">
+  <div class="container">
+    <span class="section-label">05 · NEXT TO THIS</span>
+    <h2 class="section-title">隣の実物</h2>
+    <p class="section-lead">空間を見せる別の手段も、実際に操作して比べられます。</p>
+    <div class="neighbors-grid">
+      <a class="neighbor" href="works-splat.html"><small>GAUSSIAN SPLATTING</small><h3>実写3D都市ウォークスルー</h3><p>写真から再構成した空間を、一人称で歩く技術デモ。</p><span>→ 見る</span></a>
+      <a class="neighbor" href="works-kitchen.html"><small>KITCHEN</small><h3>キッチンカラー</h3><p>写真を切り替えながら、仕様と価格を選ぶデモ。</p><span>→ 見る</span></a>
+      <a class="neighbor" href="works-paint.html"><small>PAINT</small><h3>外壁カラー</h3><p>現状と比べながら外壁色を決める営業ツール。</p><span>→ 見る</span></a>
+    </div>
+  </div>
+</section>
+
 <section class="cta" id="contact">
   <div class="container">
     <h2>こうした制作を自社サイトに取り入れたい方へ</h2>
     <p>「うちの物件・サービスでもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、実現したいイメージをお聞かせください。</p>
     <div class="cta-ctas">
       <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
-      <a href="works.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">ほかの制作サンプルを見る</a>
+      <a href="lab.html#craft" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">ほかの実物ラボを見る</a>
     </div>
   </div>
 </section>
@@ -390,6 +431,9 @@
 </footer>
 
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
 <script>
 (function () {
   var frame = document.getElementById("viewerFrame");
