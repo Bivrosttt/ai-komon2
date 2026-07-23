@@ -1,4 +1,4 @@
-<!-- 2026-07-23: 実物ラボ — E案（固定ヒーロー＋棚）を実装。業種別旗艦を最上段に固定 -->
+<!-- 2026-07-23: 実物ラボ — E案旗艦＋craftを4ファミリーStudio化。ラベル日本語 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -108,6 +108,36 @@
   .mode-lead { font-size: 14px; color: var(--gray); margin-bottom: 28px; max-width: 720px; }
   .mode-lead b { color: var(--navy); }
   .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; }
+
+  /* craft Studio */
+  .studio { display: flex; flex-direction: column; gap: 36px; }
+  .studio-fam { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--white); }
+  .studio-fam-head {
+    padding: 18px 22px 14px; background: linear-gradient(180deg, #F8FAFC, #EEF3F8);
+    border-bottom: 1px solid var(--line);
+  }
+  .studio-fam-head .k { font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--gold); }
+  .studio-fam-head h3 { font-size: 22px; color: var(--navy); margin-top: 4px; }
+  .studio-fam-head p { font-size: 13px; color: var(--gray); margin-top: 4px; max-width: 640px; }
+  .studio-fam-body { padding: 18px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 14px; }
+  .studio-feature {
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+  }
+  a.studio-feature:hover { transform: translateY(-2px); border-color: var(--accent, var(--navy)); box-shadow: 0 8px 24px rgba(11,36,71,.08); }
+  .studio-feature .lab-visual { aspect-ratio: 16/10; }
+  .studio-side { display: flex; flex-direction: column; gap: 10px; }
+  .studio-side .lab-card { flex-direction: row; min-height: 96px; }
+  .studio-side .lab-visual { width: 112px; flex: 0 0 112px; aspect-ratio: auto; min-height: 96px; }
+  .studio-side .lab-body { padding: 12px 14px; gap: 4px; }
+  .studio-side .lab-body h3 { font-size: 15px; }
+  .studio-side .lab-desc { display: none; }
+  .studio-side .lab-tags { display: none; }
+  @media (max-width: 820px) {
+    .studio-fam-body { grid-template-columns: 1fr; }
+    .studio-side .lab-card { flex-direction: column; }
+    .studio-side .lab-visual { width: 100%; flex: none; aspect-ratio: 16/10; }
+  }
   .lab-card {
     border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;
     background: var(--white); transition: transform .2s, border-color .2s, box-shadow .2s;
@@ -166,7 +196,7 @@
     <a href="index.html" class="logo">AI顧問室</a>
     <nav class="header-nav" aria-label="ヘッダーナビ">
       <a href="#desks">触る机</a>
-      <a href="#shots">1発体験</a>
+      <a href="#craft">作った物</a>
       <a href="index.html">公式サイト</a>
       <a href="index.html#contact" class="btn btn-gold" style="padding:9px 20px;font-size:13px;">無料相談</a>
     </nav>
@@ -175,16 +205,16 @@
 
 <div class="hero">
   <div class="container">
-    <span class="label">MATERIAL LAB</span>
-    <h1>まず、この1本。</h1>
-    <p>業種ごとの旗艦デスクを最上段に固定。下の棚で1発デモ・90日ストーリー・制作物を切り替えます。</p>
+    <span class="label">実物ラボ</span>
+    <h1 id="hero-title">まず、この1本。</h1>
+    <p id="hero-lead">業種ごとの旗艦デスクを最上段に固定。下の棚で1発デモ・90日ストーリー・制作物を切り替えます。</p>
   </div>
 </div>
 
 <div class="note-banner" role="note">
   <div class="container">
-    <strong>E案実装</strong>
-    <span>固定ヒーロー＋棚。旗艦は業種で切り替わり、下は従来どおりモード棚です。</span>
+    <strong>実物ラボ</strong>
+    <span>業種別の旗艦デスク＋棚。「作った物」は道具／文書／映像／空間のStudio表示です。</span>
   </div>
 </div>
 
@@ -203,7 +233,7 @@
 
 <section class="flagship-section" id="flagship-section" aria-label="旗艦デスク">
   <div class="container">
-    <div class="flagship-kicker">FLAGSHIP · まず触る1本</div>
+    <div class="flagship-kicker">旗艦 · まず触る1本</div>
     <div id="flagship-slot"></div>
   </div>
 </section>
@@ -250,7 +280,14 @@
     { id: 'desks', label: 'desks', sub: '触る机', lead: '<b>触る机</b> — ログインして全画面を操作できる業務SaaS級デモ。操作の主語が1つに決まっています。' },
     { id: 'shots', label: 'shots', sub: '1発体験', lead: '<b>1発体験</b> — 業種向けの体験デモをまとめています（厳選。全部ではなく触る価値のあるもの）。登録不要・ワンショット。' },
     { id: 'stories', label: 'stories', sub: '90日の変化', lead: '<b>90日の変化</b> — Case Theater のスクラブで、似た会社がどう変わるかをBefore/Afterで見られます。' },
-    { id: 'craft', label: 'craft', sub: '作った物', lead: '<b>作った物</b> — 提案キャンバス・追客壁・動画・3Dなど、成果物サンプルをそのまま触れます。' }
+    { id: 'craft', label: 'craft', sub: '作った物', lead: '<b>作った物 Studio</b> — 道具・文書・映像・空間。種類ごとに骨格が違う成果物を、見本から触れます。' }
+  ];
+
+  var CRAFT_FAMILIES = [
+    { id: 'tool', label: '道具', kicker: '01 · 道具', lead: '触って成果が出る営業・提案の道具。', feature: 'craft-btob' },
+    { id: 'doc', label: '文書・PoC', kicker: '02 · 文書', lead: '読んで・めくって納得する文書とPoC。', feature: 'craft-ai-service' },
+    { id: 'media', label: '映像・クリエイティブ', kicker: '03 · 映像', lead: '見ることが主語。制作の証拠つき。', feature: 'craft-video' },
+    { id: 'space', label: '空間シミュ', kicker: '04 · 空間', lead: '提案現場で見せる、色と空間の道具。', feature: 'craft-kitchen' }
   ];
 
   /* 業種別の固定ヒーロー（編集で差し替え） */
@@ -314,21 +351,21 @@
     { id:'story-re', mode:'stories', industry:['不動産'], title:'地域密着の不動産', en:'CASE 02', paradigm:'Case Theater', desc:'Case Theater 90日スクラブ — 反響返信の遅れと夜間取りこぼしの変化。', href:'cases.html#case-realestate', thumb:'assets/thumbs/works-hankyo.jpg', accent:'#C9A227', cta:'▶ 90日をスクラブ', badge:'90日スクラブ', badgeClass:'story' },
     { id:'story-sales', mode:'stories', industry:['営業'], title:'BtoB営業チーム', en:'CASE 03', paradigm:'Case Theater', desc:'Case Theater 90日スクラブ — 提案準備と追客が属人化していた営業の変化。', href:'cases.html#case-sales', thumb:'assets/thumbs/works-brief.jpg', accent:'#38BDF8', cta:'▶ 90日をスクラブ', badge:'90日スクラブ', badgeClass:'story' },
 
-    /* craft */
-    { id:'craft-btob', mode:'craft', industry:['営業'], title:'3列提案キャンバス', en:'BtoB営業', paradigm:'提案キャンバス', desc:'課題メモ・論点カード・アウトラインを触って「提案書を生成」。PDFではなく操作する道具。', href:'works-btob-proposal.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#0B2447', cta:'▶ キャンバスを触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-mail', mode:'craft', industry:['営業'], title:'Dayレーン追客壁', en:'BtoB営業', paradigm:'追客タイムライン', desc:'商談メモからDay3/7/14追客3通を生成。Before/Afterトグル・編集・送信デモ。', href:'works-sales-mail.html', thumb:'assets/thumbs/works-brief.jpg', accent:'#2D6CB5', cta:'▶ 追客壁を触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-internal-news', mode:'craft', industry:['管理'], title:'社内報', en:'管理部門', paradigm:'社内マガジン', desc:'社内報VOL.1（社長メッセージ・成功事例）とAI利用規程改定の正式文書。ページめくり・条文参照ができる閲覧道具。', href:'works-internal-news.html', thumb:'assets/thumbs/works-presenter.jpg', accent:'#2563EB', cta:'▶ 社内文書を見る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-ai-service', mode:'craft', industry:['横断'], title:'既存サービス+AI', en:'攻めのAI', paradigm:'AI診断ポータル', desc:'問合せフォームを3問AI診断に置き換えたBefore/After。既存サービスにAIを組み込むPoC。', href:'works-ai-service.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#C9A227', cta:'▶ ポータルを触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-slides', mode:'craft', industry:['営業'], title:'提案スライド', en:'プレゼン', paradigm:'動くスライド', desc:'タイピング演出・フリップカード・章立て自動生成。PDFではなく触れる提案スライド。', href:'works-slides.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#2D6CB5', cta:'▶ スライドを触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-video', mode:'craft', industry:['横断'], title:'住宅プロモーション映像', en:'実写動画', paradigm:'動画生成', desc:'撮影なし・CG会社なし。15秒の実写品質ムービーをブラウザで再生。', href:'works-video.html', thumb:'assets/works/videos/house-promo-poster.jpg', accent:'#C9A227', cta:'▶ 映像を再生', badge:'実AI動画', badgeClass:'gold' },
-    { id:'craft-motion', mode:'craft', industry:['横断'], title:'モーション', en:'モーション', paradigm:'モーショングラフィックス', desc:'テキスト・図形・写真を組み合わせたモーション動画。説明・訴求用の動きのあるビジュアル。', href:'works-motion.html', thumb:'assets/thumbs/works-motion.jpg', accent:'#7C3AED', cta:'▶ モーションを再生', badge:'実AI動画', badgeClass:'gold' },
-    { id:'craft-creative', mode:'craft', industry:['横断'], title:'ブランドクリエイティブ一式', en:'ブランド', paradigm:'クリエイティブ', desc:'ロゴ・バナー・チラシ・SNS・30秒動画広告まで。すべてAI＋コードで制作。', href:'works-creative.html', thumb:'assets/thumbs/works-creative.jpg', accent:'#7C3AED', cta:'▶ 一式を見る', badge:'動画広告つき', badgeClass:'gold' },
-    { id:'craft-3d', mode:'craft', industry:['建設'], title:'間取り図→3D内見', en:'3D', paradigm:'実寸3D', desc:'実寸再現3D。俯瞰・一人称ウォークスルー。Blender×model-viewer。', href:'works-3d.html', thumb:'assets/thumbs/works-3d.jpg', accent:'#0B2447', cta:'▶ ビューアを開く', badge:'触って回せます', badgeClass:'gold' },
-    { id:'craft-splat', mode:'craft', industry:['建設'], title:'Gaussian Splat', en:'3D', paradigm:'実写3D', desc:'実写から生成した3D都市空間。Gaussian Splattingで空間をブラウザ上で体験。', href:'works-splat.html', thumb:'assets/thumbs/works-splat.jpg', accent:'#0B2447', cta:'▶ 3D空間を見る', badge:'触って回せます', badgeClass:'gold' },
-    { id:'craft-kitchen', mode:'craft', industry:['建設'], title:'キッチンパース', en:'リフォーム', paradigm:'カラーシミュ', desc:'キッチンの色・素材をリアルタイムで差し替え。リフォーム提案のビジュアル支援。', href:'works-kitchen.html', thumb:'assets/thumbs/works-kitchen.jpg', accent:'#EAB308', cta:'▶ シミュレータを触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-paint', mode:'craft', industry:['建設'], title:'外壁塗装パース', en:'リフォーム', paradigm:'カラーシミュ', desc:'外壁の色・質感をリアルタイムで差し替え。塗装提案の完成イメージを即提示。', href:'works-paint.html', thumb:'assets/thumbs/works-paint.jpg', accent:'#EAB308', cta:'▶ シミュレータを触る', badge:'操作できる', badgeClass:'gold' },
-    { id:'craft-edit', mode:'craft', industry:['横断'], title:'動画編集', en:'動画', paradigm:'Before/After', desc:'素材のトリミング・テロップ・BGM差し替えのBefore/After。AI動画編集の品質サンプル。', href:'works-edit.html', thumb:'assets/thumbs/works-edit.jpg', accent:'#C9A227', cta:'▶ 編集デモを見る', badge:'実AI動画', badgeClass:'gold' },
-    { id:'craft-presenter', mode:'craft', industry:['横断'], title:'操作マニュアル', en:'マニュアル', paradigm:'AIプレゼンター', desc:'AI生成プレゼンターが操作手順を音声解説。社内研修・ヘルプページ向け。', href:'works-presenter.html', thumb:'assets/thumbs/works-presenter.jpg', accent:'#2563EB', cta:'▶ マニュアルを見る', badge:'操作できる', badgeClass:'gold' }
+    /* craft — family: tool|doc|media|space */
+    { id:'craft-btob', mode:'craft', family:'tool', industry:['営業'], title:'3列提案キャンバス', en:'BtoB営業', paradigm:'提案キャンバス', desc:'課題メモ・論点カード・アウトラインを触って「提案書を生成」。PDFではなく操作する道具。', href:'works-btob-proposal.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#0B2447', cta:'▶ キャンバスを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-mail', mode:'craft', family:'tool', industry:['営業'], title:'Dayレーン追客壁', en:'BtoB営業', paradigm:'追客タイムライン', desc:'商談メモからDay3/7/14追客3通を生成。Before/Afterトグル・編集・送信デモ。', href:'works-sales-mail.html', thumb:'assets/thumbs/works-brief.jpg', accent:'#2D6CB5', cta:'▶ 追客壁を触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-internal-news', mode:'craft', family:'doc', industry:['管理'], title:'社内報', en:'管理部門', paradigm:'社内マガジン', desc:'社内報VOL.1（社長メッセージ・成功事例）とAI利用規程改定の正式文書。ページめくり・条文参照ができる閲覧道具。', href:'works-internal-news.html', thumb:'assets/thumbs/works-presenter.jpg', accent:'#2563EB', cta:'▶ 社内文書を見る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-ai-service', mode:'craft', family:'doc', industry:['横断'], title:'既存サービス+AI', en:'攻めのAI', paradigm:'AI診断ポータル', desc:'問合せフォームを3問AI診断に置き換えたBefore/After。既存サービスにAIを組み込むPoC。', href:'works-ai-service.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#C9A227', cta:'▶ ポータルを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-slides', mode:'craft', family:'media', industry:['営業'], title:'提案スライド', en:'プレゼン', paradigm:'動くスライド', desc:'タイピング演出・フリップカード・章立て自動生成。PDFではなく触れる提案スライド。', href:'works-slides.html', thumb:'assets/thumbs/works-slides.jpg', accent:'#2D6CB5', cta:'▶ スライドを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-video', mode:'craft', family:'media', industry:['横断','不動産'], title:'住宅プロモーション映像', en:'実写動画', paradigm:'動画生成', desc:'撮影なし・CG会社なし。15秒の実写品質ムービーをブラウザで再生。', href:'works-video.html', thumb:'assets/works/videos/house-promo-poster.jpg', accent:'#C9A227', cta:'▶ 映像を再生', badge:'実AI動画', badgeClass:'gold' },
+    { id:'craft-motion', mode:'craft', family:'media', industry:['横断'], title:'モーション', en:'モーション', paradigm:'モーショングラフィックス', desc:'テキスト・図形・写真を組み合わせたモーション動画。説明・訴求用の動きのあるビジュアル。', href:'works-motion.html', thumb:'assets/thumbs/works-motion.jpg', accent:'#7C3AED', cta:'▶ モーションを再生', badge:'実AI動画', badgeClass:'gold' },
+    { id:'craft-creative', mode:'craft', family:'media', industry:['横断'], title:'ブランドクリエイティブ一式', en:'ブランド', paradigm:'クリエイティブ', desc:'ロゴ・バナー・チラシ・SNS・30秒動画広告まで。すべてAI＋コードで制作。', href:'works-creative.html', thumb:'assets/thumbs/works-creative.jpg', accent:'#7C3AED', cta:'▶ 一式を見る', badge:'動画広告つき', badgeClass:'gold' },
+    { id:'craft-3d', mode:'craft', family:'space', industry:['建設'], title:'間取り図→3D内見', en:'3D', paradigm:'実寸3D', desc:'実寸再現3D。俯瞰・一人称ウォークスルー。Blender×model-viewer。', href:'works-3d.html', thumb:'assets/thumbs/works-3d.jpg', accent:'#0B2447', cta:'▶ ビューアを開く', badge:'触って回せます', badgeClass:'gold' },
+    { id:'craft-splat', mode:'craft', family:'space', industry:['建設'], title:'Gaussian Splat', en:'3D', paradigm:'実写3D', desc:'実写から生成した3D都市空間。Gaussian Splattingで空間をブラウザ上で体験。', href:'works-splat.html', thumb:'assets/thumbs/works-splat.jpg', accent:'#0B2447', cta:'▶ 3D空間を見る', badge:'触って回せます', badgeClass:'gold' },
+    { id:'craft-kitchen', mode:'craft', family:'space', industry:['建設'], title:'キッチンパース', en:'リフォーム', paradigm:'カラーシミュ', desc:'キッチンの色・素材をリアルタイムで差し替え。リフォーム提案のビジュアル支援。', href:'works-kitchen.html', thumb:'assets/thumbs/works-kitchen.jpg', accent:'#EAB308', cta:'▶ シミュレータを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-paint', mode:'craft', family:'space', industry:['建設'], title:'外壁塗装パース', en:'リフォーム', paradigm:'カラーシミュ', desc:'外壁の色・質感をリアルタイムで差し替え。塗装提案の完成イメージを即提示。', href:'works-paint.html', thumb:'assets/thumbs/works-paint.jpg', accent:'#EAB308', cta:'▶ シミュレータを触る', badge:'操作できる', badgeClass:'gold' },
+    { id:'craft-edit', mode:'craft', family:'media', industry:['横断'], title:'動画編集', en:'動画', paradigm:'Before/After', desc:'素材のトリミング・テロップ・BGM差し替えのBefore/After。AI動画編集の品質サンプル。', href:'works-edit.html', thumb:'assets/thumbs/works-edit.jpg', accent:'#C9A227', cta:'▶ 編集デモを見る', badge:'実AI動画', badgeClass:'gold' },
+    { id:'craft-presenter', mode:'craft', family:'media', industry:['横断','管理'], title:'操作マニュアル', en:'マニュアル', paradigm:'AIプレゼンター', desc:'AI生成プレゼンターが操作手順を音声解説。社内研修・ヘルプページ向け。', href:'works-presenter.html', thumb:'assets/thumbs/works-presenter.jpg', accent:'#2563EB', cta:'▶ マニュアルを見る', badge:'操作できる', badgeClass:'gold' }
   ];
 
   var state = { mode: 'desks', ind: 'all' };
@@ -337,6 +374,8 @@
   var cardGrid = document.getElementById('card-grid');
   var modeLead = document.getElementById('mode-lead');
   var flagshipSlot = document.getElementById('flagship-slot');
+  var flagshipSection = document.getElementById('flagship-section');
+  var shelfCap = document.querySelector('.shelf-cap');
   var byId = {};
   CATALOG.forEach(function(item){ byId[item.id] = item; });
 
@@ -361,7 +400,7 @@
       '<a class="flagship-card" href="' + item.href + '" style="--accent:' + item.accent + '">' +
       '<div class="flagship-visual"><span class="flagship-accent"></span>' +
       '<img src="' + item.thumb + '" alt="" loading="eager">' +
-      '<span class="flagship-badge">FLAGSHIP</span></div>' +
+      '<span class="flagship-badge">旗艦デスク</span></div>' +
       '<div class="flagship-body">' +
       '<span class="flagship-en">' + item.en + '</span>' +
       '<h2>' + item.title + '</h2>' +
@@ -406,17 +445,83 @@
     }).join('');
   }
 
+  function cardHtml(item, compact){
+    var badgeClass = item.badgeClass ? ' ' + item.badgeClass : '';
+    var tags = item.industry.map(function(t){ return '<span>' + t + '</span>'; }).join('');
+    return '<a class="lab-card" href="' + item.href + '" style="--accent:' + item.accent + '">' +
+      '<div class="lab-visual"><span class="lab-accent"></span>' +
+      '<img src="' + item.thumb + '" alt="" loading="lazy">' +
+      '<span class="lab-badge' + badgeClass + '">' + item.badge + '</span></div>' +
+      '<div class="lab-body">' +
+      '<span class="lab-en">' + item.en + '</span>' +
+      '<h3>' + item.title + '</h3>' +
+      '<span class="lab-paradigm">' + item.paradigm + '</span>' +
+      (compact ? '' : '<p class="lab-desc">' + item.desc + '</p>') +
+      (compact ? '' : '<div class="lab-tags">' + tags + '</div>') +
+      '<span class="lab-cta">' + item.cta + '</span>' +
+      '</div></a>';
+  }
+
+  function featureHtml(item){
+    var badgeClass = item.badgeClass ? ' ' + item.badgeClass : '';
+    return '<a class="studio-feature" href="' + item.href + '" style="--accent:' + item.accent + '">' +
+      '<div class="lab-visual"><span class="lab-accent"></span>' +
+      '<img src="' + item.thumb + '" alt="" loading="lazy">' +
+      '<span class="lab-badge' + badgeClass + '">見本</span></div>' +
+      '<div class="lab-body">' +
+      '<span class="lab-en">' + item.en + '</span>' +
+      '<h3>' + item.title + '</h3>' +
+      '<span class="lab-paradigm">' + item.paradigm + '</span>' +
+      '<p class="lab-desc">' + item.desc + '</p>' +
+      '<span class="lab-cta">' + item.cta + '</span>' +
+      '</div></a>';
+  }
+
+  function renderStudio(items){
+    var html = '<div class="studio">';
+    var any = false;
+    CRAFT_FAMILIES.forEach(function(fam){
+      var list = items.filter(function(i){ return i.family === fam.id; });
+      if (!list.length) return;
+      any = true;
+      var feature = list.find(function(i){ return i.id === fam.feature; }) || list[0];
+      var rest = list.filter(function(i){ return i.id !== feature.id; });
+      html += '<div class="studio-fam"><div class="studio-fam-head">' +
+        '<div class="k">' + fam.kicker + '</div><h3>' + fam.label + '</h3><p>' + fam.lead + '</p></div>' +
+        '<div class="studio-fam-body">' + featureHtml(feature) +
+        '<div class="studio-side">' + (rest.length ? rest.map(function(i){ return cardHtml(i, true); }).join('') : '<p style="font-size:13px;color:var(--gray);padding:12px;">この業種の追加実物は見本のみです。</p>') +
+        '</div></div></div>';
+    });
+    html += '</div>';
+    if (!any) {
+      cardGrid.innerHTML = '<div class="empty-state"><h3>該当する成果物がありません</h3><p>業種を「すべて」に戻すか、別の業種を選んでください。</p><button type="button" class="chip active" id="reset-filter">すべての業種を表示</button></div>';
+      var reset = document.getElementById('reset-filter');
+      if (reset) reset.addEventListener('click', function(){ setInd('all', true); });
+      return;
+    }
+    cardGrid.innerHTML = html;
+  }
+
   function renderCards(){
     var mode = modeById(state.mode);
     modeLead.innerHTML = mode.lead;
     var flag = currentFlagship();
+    var showFlag = state.mode === 'desks';
+    flagshipSection.style.display = showFlag ? '' : 'none';
+    if (shelfCap) {
+      shelfCap.textContent = state.mode === 'craft' ? '成果物 Studio' : (showFlag ? '同じ棚のほかの実物' : '実物一覧');
+    }
 
     var items = CATALOG.filter(function(item){
       if (item.mode !== state.mode || !matchesIndustry(item, state.ind)) return false;
-      /* desks棚では旗艦と二重に出さない */
       if (state.mode === 'desks' && flag && item.id === flag.id) return false;
       return true;
     });
+
+    if (state.mode === 'craft') {
+      renderStudio(items);
+      return;
+    }
 
     if (!items.length) {
       cardGrid.innerHTML = '<div class="empty-state"><h3>該当する実物がありません</h3><p>この業種 × モードの組み合わせでは、まだカードを置いていません。</p><button type="button" class="chip active" id="reset-filter">すべての業種を表示</button></div>';
@@ -425,26 +530,28 @@
       return;
     }
 
-    cardGrid.innerHTML = items.map(function(item){
-      var badgeClass = item.badgeClass ? ' ' + item.badgeClass : '';
-      var tags = item.industry.map(function(t){ return '<span>' + t + '</span>'; }).join('');
-      return '<a class="lab-card" href="' + item.href + '" style="--accent:' + item.accent + '">' +
-        '<div class="lab-visual"><span class="lab-accent"></span>' +
-        '<img src="' + item.thumb + '" alt="" loading="lazy">' +
-        '<span class="lab-badge' + badgeClass + '">' + item.badge + '</span></div>' +
-        '<div class="lab-body">' +
-        '<span class="lab-en">' + item.en + '</span>' +
-        '<h3>' + item.title + '</h3>' +
-        '<span class="lab-paradigm">' + item.paradigm + '</span>' +
-        '<p class="lab-desc">' + item.desc + '</p>' +
-        '<div class="lab-tags">' + tags + '</div>' +
-        '<span class="lab-cta">' + item.cta + '</span>' +
-        '</div></a>';
-    }).join('');
+    cardGrid.className = 'card-grid';
+    cardGrid.innerHTML = items.map(function(item){ return cardHtml(item, false); }).join('');
+  }
+
+  var HERO = {
+    desks: { title: 'まず、この1本。', lead: '業種ごとの旗艦デスクを最上段に。下の棚で同じ系統の机を比べられます。' },
+    shots: { title: 'まず、1発で試す。', lead: '登録不要のワンショット。深い机と同型の主語で、短く体感できます。' },
+    stories: { title: 'まず、90日の変化。', lead: '似た会社のBefore/Afterをスクラブ。そこから机と成果物へ進めます。' },
+    craft: { title: '作った物を、種類で見る。', lead: '道具・文書・映像・空間。カード一列ではなく、種類ごとの骨格で見せます。' }
+  };
+
+  function renderHero(){
+    var h = HERO[state.mode] || HERO.desks;
+    var t = document.getElementById('hero-title');
+    var l = document.getElementById('hero-lead');
+    if (t) t.textContent = h.title;
+    if (l) l.textContent = h.lead;
   }
 
   function renderAll(replace){
     renderControls();
+    renderHero();
     renderFlagship();
     renderCards();
     syncUrl(replace);
@@ -482,6 +589,7 @@
       parseRoute();
     }
     renderControls();
+    renderHero();
     renderFlagship();
     renderCards();
   });
@@ -489,6 +597,7 @@
   window.addEventListener('hashchange', function(){
     parseRoute();
     renderControls();
+    renderHero();
     renderFlagship();
     renderCards();
   });

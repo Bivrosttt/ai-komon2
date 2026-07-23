@@ -1,4 +1,4 @@
-<!-- 2026-07-23: C案補強 — 証拠帯・使い所・隣の実物・lab導線を追加（本体UI維持）／提案書をBRIEF同型キャンバス道具に作り直し -->
+<!-- 2026-07-23: C案補強 — 証拠帯・使い所・隣の実物・lab導線を追加（本体UI維持）／提案書をBRIEF同型キャンバス道具に作り直し ／ラベル日本語化／似た90日帯-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -267,7 +267,7 @@
   </div>
 </div>
 
-<div class="proof-band"><strong>EVIDENCE</strong>商談メモから論点・ROI・8枚の提案構成までを、営業の判断順に1画面で組み立てる実物デモです。</div>
+<div class="proof-band"><strong>ここが証拠</strong>商談メモから論点・ROI・8枚の提案構成までを、営業の判断順に1画面で組み立てる実物デモです。</div>
 
 <div class="app-shell">
   <header class="app-top">
@@ -371,11 +371,11 @@
 </div>
 
 <section class="context-band" aria-label="提案書キャンバスの使い所と関連成果物">
-  <div class="context-kicker">WHERE IT FITS</div>
+  <div class="context-kicker">使い所</div>
   <div class="fit-chips">
     <span class="fit-chip">役員向け再提案</span><span class="fit-chip">営業標準化</span><span class="fit-chip">ROI説明</span><span class="fit-chip">提案書の初稿</span>
   </div>
-  <div class="context-kicker" style="margin-top:24px;">NEXT TO THIS</div>
+  <div class="context-kicker" style="margin-top:24px;">隣の実物</div>
   <div class="neighbor-grid">
     <a class="neighbor-card" href="works-sales-mail.html"><b>追客メール・Dayレーン</b><span>提案後の接点を設計する実物</span></a>
     <a class="neighbor-card" href="works-slides.html"><b>スライド制作</b><span>伝わる構成へ磨き込む実物</span></a>
@@ -383,6 +383,7 @@
   </div>
 </section>
 
+<div id="craft-case-slot" data-case="sales"></div>
 <div class="komon-cta">
   <span class="cta-label">AI KOMONSHITSU</span>
   <h2>御社の提案書も、<em>キャンバスから生成。</em></h2>
@@ -536,5 +537,7 @@
 </script>
 <script src="analytics-config.js"></script>
 <script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+<script src="assets/craft-case-band.js"></script>
 </body>
 </html>

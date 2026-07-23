@@ -1,4 +1,4 @@
-<!-- 2026-07-23: C案テンプレ試作 — 証拠→劇場→作り方→使い所→隣の実物→CTA。戻すならこのファイルを前コミットに checkout -->
+<!-- 2026-07-23: C案テンプレ試作 — 証拠→劇場→作り方→使い所→隣の実物→CTA。戻すならこのファイルを前コミットに checkout ／ラベル日本語化／似た90日帯-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -166,7 +166,7 @@
 <!-- 1. 証拠フック -->
 <div class="proof" role="note">
   <div class="container">
-    <strong>EVIDENCE</strong>
+    <strong>ここが証拠</strong>
     <span>撮影なし · CG会社なし · 所要約15分 · プロンプト（文章指示）のみで生成した実写品質15秒</span>
   </div>
 </div>
@@ -174,7 +174,7 @@
 <!-- 2. 劇場 -->
 <section class="theater" id="theater">
   <div class="container frame">
-    <div class="kicker">MEDIA · THEATER</div>
+    <div class="kicker">映像 · 劇場</div>
     <h1>この映像、撮影していません。</h1>
     <p class="lead">カメラもドローンも使っていません。<b>文章の指示だけ</b>で、動画生成AIが作った住宅プロモーション映像です。</p>
     <video controls playsinline preload="metadata" poster="assets/works/videos/house-promo-poster.jpg">
@@ -191,7 +191,7 @@
 <!-- 3. 作り方の透明性 -->
 <section class="section" id="how">
   <div class="container">
-    <div class="section-label">03 · HOW IT WAS MADE</div>
+    <div class="section-label">03 · 作り方</div>
     <h2>作り方を隠さない。</h2>
     <p class="sec-lead">魔法ではなく、指示文の組み立てです。冒頭と工程だけ先に公開します。</p>
 
@@ -229,7 +229,7 @@
 <!-- 4. 使い所 -->
 <section class="section uses" id="uses">
   <div class="container">
-    <div class="section-label">04 · WHERE IT FITS</div>
+    <div class="section-label">04 · 使い所</div>
     <h2>使い所</h2>
     <p class="sec-lead">同じ作り方で、こうした映像に展開できます。</p>
     <div class="chip-row">
@@ -247,7 +247,7 @@
 <!-- 5. 隣の実物 -->
 <section class="section neighbors" id="neighbors">
   <div class="container">
-    <div class="section-label">05 · NEXT TO THIS</div>
+    <div class="section-label">05 · 隣の実物</div>
     <h2>隣の実物</h2>
     <p class="sec-lead">映像ファミリーの前後工程も触れます。</p>
     <div class="grid">
@@ -291,6 +291,7 @@
 </section>
 
 <!-- 6. CTA -->
+<div id="craft-case-slot" data-case="realestate"></div>
 <section class="cta" id="contact">
   <div class="container">
     <h2>御社の題材でも、同じ骨格で作れます。</h2>
@@ -316,5 +317,6 @@
 <script src="analytics-config.js"></script>
 <script src="analytics.js"></script>
 <script src="ga4-events.js"></script>
+<script src="assets/craft-case-band.js"></script>
 </body>
 </html>

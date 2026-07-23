@@ -1,4 +1,4 @@
-<!-- 2026-07-23: C案ページ骨格適用 — 証拠→劇場→作り方→使い所→隣→CTA -->
+<!-- 2026-07-23: C案ページ骨格適用 — 証拠→劇場→作り方→使い所→隣→CTA ／ラベル日本語化／似た90日帯-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -241,7 +241,7 @@
   </div>
 </header>
 
-<div class="proof" role="note"><strong>EVIDENCE</strong><span>530万個のガウス点で再構成した公開実写データを、約70MBのストリーミングでブラウザ内に一人称表示します。</span></div>
+<div class="proof" role="note"><strong>ここが証拠</strong><span>530万個のガウス点で再構成した公開実写データを、約70MBのストリーミングでブラウザ内に一人称表示します。</span></div>
 
 <main id="stage" aria-label="3D Gaussian Splattingビューア">
   <div class="loading" id="loading">
@@ -314,7 +314,7 @@
 
 <section class="page-section">
   <div class="content">
-    <div class="label">03 · HOW IT WAS MADE</div>
+    <div class="label">03 · 作り方</div>
     <h2>写真から、歩ける空間へ。</h2>
     <p class="lead">ポリゴンモデルを手で起こす代わりに、多視点写真を3D Gaussian Splattingで再構成し、軽量なブラウザビューアへ配信する構成です。</p>
     <div class="how-grid">
@@ -327,7 +327,7 @@
 
 <section class="page-section uses">
   <div class="content">
-    <div class="label">04 · WHERE IT FITS</div>
+    <div class="label">04 · 使い所</div>
     <h2>使い所</h2>
     <p class="lead">「写真を並べる」よりも、現場の広がりと導線を伝えたい場所に向きます。</p>
     <div class="chip-row"><span class="chip">店舗・ショールーム紹介</span><span class="chip">施工現場の記録</span><span class="chip">工場見学</span><span class="chip">不動産の事前内見</span><span class="chip">展示会デモ</span><span class="chip">採用コンテンツ</span></div>
@@ -336,7 +336,7 @@
 
 <section class="page-section neighbors">
   <div class="content">
-    <div class="label">05 · NEXT TO THIS</div>
+    <div class="label">05 · 隣の実物</div>
     <h2>隣の実物</h2>
     <p class="lead">空間・仕様を別の角度から伝える体験も、実際に比較できます。</p>
     <div class="neighbors-grid">
@@ -347,6 +347,7 @@
   </div>
 </section>
 
+<div id="craft-case-slot" data-case="manufacturing"></div>
 <section class="page-section page-cta">
   <div class="content">
     <h2>御社の場所も、歩ける実写3Dに。</h2>
@@ -681,5 +682,6 @@
   creditClose.addEventListener('click', () => credits.classList.remove('open'));
 })();
 </script>
+<script src="assets/craft-case-band.js"></script>
 </body>
 </html>
