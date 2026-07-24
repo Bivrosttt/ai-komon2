@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  var measurementConfig = window.AI_KOMON_MEASUREMENT_CONFIG || {};
+  var productionHosts = measurementConfig.productionHosts || ['ai-komon.bivrost.co.jp', 'www.ai-komon.bivrost.co.jp'];
+  if (productionHosts.indexOf(window.location.hostname) === -1) return;
+
   var pixelId = window.AI_KOMON_META_PIXEL_ID;
   if (!pixelId || window.__AI_KOMON_META_PIXEL_INITIALIZED) return;
   window.__AI_KOMON_META_PIXEL_INITIALIZED = true;
@@ -28,12 +32,15 @@
 
   function getAttribution() {
     var result = {};
-    var keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'from'];
+    var keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'fbclid', 'gclid', 'from'];
     var params = new URLSearchParams(window.location.search);
     keys.forEach(function (key) {
       var value = params.get(key);
       if (value) {
-        try { sessionStorage.setItem('ak_' + key, value); } catch (e) {}
+        try {
+          sessionStorage.setItem('ak_' + key, value);
+          if (key === 'from') sessionStorage.setItem('ai_komon_from', value);
+        } catch (e) {}
       }
       try { value = value || sessionStorage.getItem('ak_' + key); } catch (e) {}
       if (value) result[key] = value;
