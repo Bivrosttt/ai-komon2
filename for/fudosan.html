@@ -1,0 +1,232 @@
+<!-- 2026-07-22: LP約束1:1デモ・cases/systems導線を追加 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不動産会社向け｜AI顧問室</title>
+<meta name="description" content="不動産会社向け。反響対応・追客・集客の下ごしらえをAIで仕組み化。触れるデモ3本と成果物サンプルから、AI顧問の支援内容を確認できます。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="不動産会社向け｜AI顧問室">
+<meta property="og:description" content="反響から5分で返す会社が、契約を取っていく。不動産向けAI活用の入口ページ。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/for/fudosan.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/works/videos/house-promo-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --blue: #2D6CB5; --gold: #C9A227;
+    --accent: #2D6CB5; --ink: #1A2433; --gray: #5B6B7F; --line: #DDE4EC;
+    --bg-soft: #F4F7FA; --white: #FFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.85; background: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.45; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 72px 0; }
+  .section-label { display: block; font-size: 12px; letter-spacing: .18em; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+  .section-title { font-size: clamp(24px, 3.5vw, 32px); color: var(--navy); margin-bottom: 12px; }
+  .section-lead { color: var(--gray); font-size: 14px; max-width: 680px; margin-bottom: 32px; }
+  .btn { display: inline-block; padding: 14px 28px; border-radius: 4px; font-weight: 700; font-size: 14px; transition: opacity .2s; }
+  .btn:hover { opacity: .88; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); }
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .logo { font-family: 'Noto Serif JP', serif; font-size: 19px; font-weight: 700; color: var(--navy); }
+  .header-nav { display: flex; align-items: center; gap: 18px; font-size: 13px; }
+  .header-nav a { color: var(--blue); font-weight: 600; }
+  .hero { background: linear-gradient(135deg, var(--navy-deep), var(--navy) 55%, #2a3f5f); color: var(--white); padding: 88px 0 72px; position: relative; overflow: hidden; }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,26,53,.92) 0%, rgba(7,26,53,.5) 45%, rgba(7,26,53,.2) 100%), url('../assets/works/videos/house-promo-poster.jpg') center/cover no-repeat; z-index: 0; }
+  .hero .container { position: relative; z-index: 1; }
+  .hero-tag { display: inline-block; border: 1px solid var(--accent); color: #c7d9ff; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; }
+  .hero h1 { font-size: clamp(30px, 5vw, 44px); margin-bottom: 16px; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p { color: #c7d3e4; max-width: 620px; font-size: 15px; margin-bottom: 28px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .path { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--white); }
+  .path-step { padding: 18px 16px; border-right: 1px solid var(--line); font-size: 12px; }
+  .path-step:last-child { border-right: 0; }
+  .path-step strong { display: block; font-family: 'Noto Serif JP', serif; font-size: 15px; color: var(--navy); margin: 6px 0 4px; }
+  .path-no { font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--gold); }
+  .lp-band { background: var(--bg-soft); border-block: 1px solid var(--line); }
+  .lp-card { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 28px 30px; }
+  .lp-card h2 { font-size: 22px; color: var(--navy); margin-bottom: 8px; }
+  .lp-card p { font-size: 14px; color: var(--gray); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: border-color .2s; }
+  a.card:hover { border-color: var(--navy); }
+  .card-visual { height: 150px; background: var(--bg-soft); overflow: hidden; position: relative; }
+  .card-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .card-badge { position: absolute; top: 10px; right: 10px; background: var(--navy); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+  .card-body { padding: 18px 20px 22px; flex: 1; display: flex; flex-direction: column; }
+  .card-cat { font-size: 11px; font-weight: 700; color: var(--blue); margin-bottom: 6px; }
+  .card-body h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
+  .card-body p { font-size: 13px; color: var(--gray); flex: 1; }
+  .card-go { margin-top: 12px; font-size: 13px; font-weight: 700; color: var(--gold); }
+  .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; }
+  .cta h2 { font-size: 28px; margin-bottom: 12px; }
+  .cta p { color: #c7d3e4; font-size: 14px; margin-bottom: 24px; }
+  footer { background: var(--navy-deep); color: #9fb0c7; font-size: 13px; padding: 28px 0; text-align: center; }
+  footer a { text-decoration: underline; margin: 0 8px; }
+  @media (max-width: 900px) {
+    .path { grid-template-columns: 1fr 1fr; }
+    .path-step:nth-child(2) { border-right: 0; }
+    .path-step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    .lp-card { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .path { grid-template-columns: 1fr; }
+    .path-step { border-right: 0; border-bottom: 1px solid var(--line); }
+    .path-step:last-child { border-bottom: 0; }
+    .header-nav a:not(.btn) { display: none; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">AI顧問室</a>
+    <nav class="header-nav" aria-label="ヘッダーナビ">
+      <a href="../index.html">公式サイト</a>
+      <a href="../index.html?from=for-fudosan#contact" class="btn btn-gold" style="padding:9px 20px;font-size:13px;">無料相談</a>
+    </nav>
+  </div>
+</header>
+<div class="hero">
+  <div class="container">
+    <span class="hero-tag">不動産会社｜従業員10〜50名</span>
+    <h1>反響から5分で返す会社が、<em>契約</em>を取っていく。</h1>
+    <p>反響対応、追客、物件説明の下ごしらえ——スピードと質の両方が売上に直結します。不動産向けに厳選したデモ3本から、触って確かめてください。</p>
+    <div class="hero-actions">
+      <a href="#demos" class="btn btn-gold">デモ3本を触る</a>
+      <a href="../index.html?from=for-fudosan#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,.45);color:#fff;">30分無料相談</a>
+    </div>
+  </div>
+</div>
+<section style="padding:40px 0;">
+  <div class="container">
+    <div class="path" aria-label="このページの見方">
+      <div class="path-step"><span class="path-no">STEP 01</span><strong>このページ</strong>不動産向けに厳選</div>
+      <div class="path-step"><span class="path-no">STEP 02</span><strong>デモ3本</strong>触って確かめる</div>
+      <div class="path-step"><span class="path-no">STEP 03</span><strong>成果物2つ</strong>品質を見る</div>
+      <div class="path-step"><span class="path-no">STEP 04</span><strong>無料相談</strong>御社の着手順</div>
+    </div>
+  </div>
+</section>
+<section style="padding:28px 0 0;">
+  <div class="container">
+    <p style="font-size:13.5px;color:var(--gray);">似た会社の変化 → <a href="../cases.html" style="color:var(--blue);font-weight:700;">導入ストーリー</a>｜SaaS3本の整理 → <a href="../systems.html" style="color:var(--blue);font-weight:700;">systems.html</a></p>
+  </div>
+</section>
+<section class="lp-band">
+  <div class="container">
+    <span class="section-label">MESSAGE</span>
+    <div class="lp-card">
+      <div>
+        <h2>不動産向けの詳しい説明はこちら</h2>
+        <p>反響対応・追客・集客のAIレシピ、ROIの考え方、よくある質問まで——不動産会社向けLPで詳しく説明しています。</p>
+      </div>
+      <a href="../lp-fudosan.html" class="btn btn-navy">不動産LPを読む →</a>
+    </div>
+  </div>
+</section>
+<section id="demos">
+  <div class="container">
+    <span class="section-label">DEMO</span>
+    <h2 class="section-title">不動産向け・触れるデモ3本</h2>
+    <p class="section-lead">反響・顧客対応・予約に近い3本を選びました。すべて無料・登録不要です。</p>
+    <div class="grid-3">
+      <a class="card" href="../demo-hankyo-sla.html">
+        <div class="card-visual"><span class="card-badge">体験できます</span><img src="../assets/thumbs/demo-inquiry.jpg" alt="問い合わせ返信AIのデモ" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-cat">Lv.3｜反響対応</div>
+          <h3>反響5分SLAタイマー</h3>
+          <p>届いた反響メールから、すぐ送れる品質の返信案を数秒で。24時間・返信漏れゼロの一次対応。</p>
+          <span class="card-go">▶ デモを試す</span>
+        </div>
+      </a>
+      <a class="card" href="../demo-followup-seq.html">
+        <div class="card-visual"><span class="card-badge">体験できます</span><img src="../assets/thumbs/demo-staging.jpg" alt="バーチャルステージングのデモ" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-cat">Lv.3｜物件説明</div>
+          <h3>追客シーケンスAI</h3>
+          <p>空室写真を、家具配置済みのイメージに。内見前の説明・提案資料づくりを加速します。</p>
+          <span class="card-go">▶ デモを試す</span>
+        </div>
+      </a>
+      <a class="card" href="../demo-line-booking.html">
+        <div class="card-visual"><span class="card-badge">体験できます</span><img src="../assets/thumbs/demo-line-booking.jpg" alt="LINE予約受付のデモ" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-cat">Lv.4｜予約・追客</div>
+          <h3>LINE予約受付の全自動フロー</h3>
+          <p>内見予約のやり取りを自動化。反響から予約確定まで、人が介在するポイントだけ残します。</p>
+          <span class="card-go">▶ デモを試す</span>
+        </div>
+      </a>
+    </div>
+    <p style="margin-top:18px;font-size:13px;color:var(--gray);">ほかのデモは <a href="../demos.html" style="color:var(--blue);font-weight:700;">構築デモギャラリー</a> へ（建設・不動産フィルタあり）</p>
+  </div>
+</section>
+<section style="background:var(--bg-soft);">
+  <div class="container">
+    <span class="section-label">WORKS</span>
+    <h2 class="section-title">成果物の品質サンプル</h2>
+    <p class="section-lead">物件プロモーションや3D内見など、不動産営業に使える成果物の品質も確認できます。</p>
+    <div class="grid-2">
+      <a class="card" href="../works-video.html">
+        <div class="card-visual"><span class="card-badge">実AI動画</span><img src="../assets/works/videos/house-promo-poster.jpg" alt="住宅プロモーション映像" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-cat">動画・不動産</div>
+          <h3>住宅プロモーション映像</h3>
+          <p>撮影なしで作った15秒の実写品質ムービー。物件紹介・SNS・ポータル訴求に展開できます。</p>
+          <span class="card-go">▶ 映像を再生する</span>
+        </div>
+      </a>
+      <a class="card" href="../works-3d.html">
+        <div class="card-visual"><span class="card-badge">触って回せます</span><img src="../assets/thumbs/works-3d.jpg" alt="3D内見モデル" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-cat">3D・内見</div>
+          <h3>間取り図→3D内見モデル</h3>
+          <p>間取り図から実寸3Dを生成。内見前のイメージ共有・遠方顧客への説明に使えます。</p>
+          <span class="card-go">▶ ビューアを開く</span>
+        </div>
+      </a>
+    </div>
+    <p style="margin-top:18px;font-size:13px;color:var(--gray);">ほかの成果物は <a href="../works.html" style="color:var(--blue);font-weight:700;">作品ショーケース</a> へ</p>
+  </div>
+</section>
+<section class="cta">
+  <div class="container">
+    <span class="section-label">CONTACT</span>
+    <h2>御社の反響対応から、30分で整理します</h2>
+    <p>オンライン無料相談。契約の義務はありません。</p>
+    <a href="../index.html?from=for-fudosan#contact" class="btn btn-gold">不動産向け・無料AI活用診断を予約</a>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <p>運営：Bivrost Inc.｜© 2026 AI顧問室</p>
+    <p><a href="../index.html">公式サイト</a><a href="../privacy.html">プライバシー</a><a href="../tokushoho.html">特商法</a></p>
+  </div>
+</footer>
+<script src="../analytics-config.js"></script>
+<script src="../analytics.js"></script>
+<script src="../ga4-events.js"></script>
+<script src="../meta-pixel-config.js"></script>
+<script src="../meta-pixel.js"></script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!-- 2026-07-22: 軽デモをBRIEF同型（キャンバス）に揃え -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商談前リサーチボックス 体験デモ（1ページキャンバス）｜AI顧問室</title>
+<meta name="description" content="顧客・論点・章立ての3カラムキャンバスにAIが商談ブリーフをタイプ生成。BRIEF同型の軽量デモです。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="商談前リサーチボックス 体験デモ（1ページキャンバス）｜AI顧問室">
+<meta property="og:description" content="3カラムキャンバスで商談ブリーフをワンショット生成。BRIEF同型の軽量デモ。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/demo-brief-box.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #38BDF8; --sky-deep: #0284C7; --sky-bg: #F0F9FF; --sky-soft: #E0F2FE;
+    --navy: #0B2447; --navy-deep: #071A35;
+    --ink: #1A2433; --gray: #5B6B7F; --gray-soft: #8A9BB0;
+    --line: #BAE6FD; --white: #FFFFFF;
+    --gold: #C9A227;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.75; background: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.45; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; border: none; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; }
+
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong { font-family: 'Noto Serif JP', serif; font-size: 22px; color: var(--navy); }
+  .logo span { font-size: 11px; color: var(--gray-soft); letter-spacing: .1em; }
+  .header-links { display: flex; align-items: center; gap: 20px; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 700; font-size: 14px; transition: filter .15s, transform .1s; }
+  .btn:hover { filter: brightness(1.05); }
+  .btn-sky { background: var(--sky); color: var(--navy); }
+  .btn-sky:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-gold { background: var(--gold); color: var(--navy); }
+  .btn-outline { border: 1.5px solid var(--sky); color: var(--sky-deep); background: transparent; }
+
+  .demo-hero {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, #0C4A6E 50%, var(--sky-deep) 100%);
+    color: #F0F9FF; padding: 72px 0 56px;
+  }
+  .hero-label { display: inline-block; border: 1px solid rgba(56,189,248,.5); border-radius: 999px; font-size: 12px; padding: 5px 16px; letter-spacing: .12em; margin-bottom: 20px; color: var(--sky); }
+  .demo-hero h1 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 16px; }
+  .demo-hero h1 em { font-style: normal; color: var(--sky); }
+  .demo-hero .sub { font-size: 15px; color: #94C5E8; max-width: 640px; }
+
+  .note-banner { background: var(--sky-bg); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding: 16px 24px; }
+  .note-box { display: flex; gap: 10px; font-size: 13px; color: var(--gray); max-width: 900px; }
+  .note-box strong { color: var(--ink); }
+
+  .demo-section { background: var(--sky-bg); }
+  .section-label { display: block; font-size: 12px; letter-spacing: .2em; color: var(--sky-deep); font-weight: 700; margin-bottom: 10px; }
+  .section-title { font-size: 28px; color: var(--navy); margin-bottom: 16px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 40px; font-size: 15px; }
+
+  .input-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+  .company-input {
+    flex: 1; min-width: 200px; padding: 12px 16px; border: 1.5px solid var(--line);
+    border-radius: 8px; font-size: 14px; background: #fff;
+  }
+  .company-input:focus { outline: none; border-color: var(--sky); box-shadow: 0 0 0 3px rgba(56,189,248,.2); }
+
+  .demo-core {
+    border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+    background: #fff; box-shadow: 0 16px 40px rgba(2,132,199,.12);
+  }
+  .canvas-head {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    padding: 14px 18px; background: var(--navy); color: #E0F2FE; font-size: 13px;
+  }
+  .canvas-head .logo-mini {
+    width: 36px; height: 36px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(255,255,255,.2);
+  }
+  .canvas-head .title-block { display: flex; align-items: center; gap: 12px; }
+  .canvas-head h3 { font-size: 15px; color: #fff; }
+
+  .canvas-grid { display: grid; grid-template-columns: repeat(3, 1fr); min-height: 320px; }
+  .canvas-col { border-right: 1px solid var(--line); padding: 16px; display: flex; flex-direction: column; }
+  .canvas-col:last-child { border-right: none; }
+  .col-label {
+    font-size: 10px; letter-spacing: .14em; font-weight: 700; color: var(--sky-deep);
+    margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid var(--sky-soft);
+  }
+  .col-body {
+    flex: 1; font-size: 12.5px; line-height: 1.75; color: var(--gray);
+    white-space: pre-wrap; min-height: 200px;
+  }
+  .col-body.filling { color: var(--ink); background: var(--sky-soft); border-radius: 6px; padding: 8px; animation: pulse 1.2s ease infinite; }
+  .col-body.filled { color: var(--ink); }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .7; } }
+  .placeholder { color: var(--gray-soft); font-style: italic; font-size: 12px; }
+
+  .canvas-foot {
+    padding: 14px 18px; border-top: 1px solid var(--line); background: var(--sky-bg);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .canvas-foot p { font-size: 12px; color: var(--gray); }
+
+  .saas-link { margin-top: 20px; text-align: center; }
+  .saas-link a { font-size: 13px; font-weight: 700; color: var(--sky-deep); border-bottom: 1px solid rgba(2,132,199,.35); padding-bottom: 2px; }
+
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .f-step { background: var(--sky-bg); border-radius: 10px; padding: 24px; border-top: 3px solid var(--sky); }
+  .f-step .no { width: 28px; height: 28px; border-radius: 50%; background: var(--sky-deep); color: #fff; font-size: 13px; font-weight: 700; display: grid; place-items: center; margin-bottom: 12px; }
+  .f-step h3 { font-size: 16px; margin-bottom: 8px; color: var(--navy); }
+  .f-step p { font-size: 13.5px; color: var(--gray); line-height: 1.75; }
+
+  .cta { background: var(--navy); color: #fff; text-align: center; }
+  .cta h2 { font-size: 26px; margin-bottom: 14px; }
+  .cta p { color: #C7D3E4; margin-bottom: 28px; font-size: 15px; }
+  .cta-ctas { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+  footer { background: #071A35; color: #8FA3BC; padding: 32px 0; font-size: 13px; }
+  footer .logo strong { color: #fff; font-size: 18px; }
+
+  @media (max-width: 820px) {
+    .canvas-grid { grid-template-columns: 1fr; }
+    .canvas-col { border-right: none; border-bottom: 1px solid var(--line); }
+    .canvas-col:last-child { border-bottom: none; }
+  }
+  @media (max-width: 600px) { .logo span { display: none; } section { padding: 64px 0; } }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-links">
+      <a href="demos.html">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold" style="padding:10px 20px;font-size:13px;">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">体験デモ · BRIEF同型</span>
+    <h1>商談前の30分を、<em>1枚キャンバス</em>に。</h1>
+    <p class="sub">顧客・論点・章立ての3カラムに、AIが商談ブリーフをタイプ生成。「ブリーフ生成」を押すだけ。ログイン不要のワンショット体験です。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container note-box">
+    <span>※</span>
+    <p><strong>企業名・数値・論点はすべて架空のサンプルです。</strong>公開情報と社内メモを組み合わせたデモ演出です。実際の投資判断材料にはなりません。</p>
+  </div>
+</div>
+
+<section class="demo-section" id="demo">
+  <div class="container">
+    <div class="input-row">
+      <input type="text" class="company-input" id="companyInput" value="株式会社サンプルテック" placeholder="商談先企業名">
+      <button type="button" class="btn btn-sky" id="btnGenerate">ブリーフ生成</button>
+    </div>
+
+    <div class="demo-core">
+      <div class="canvas-head">
+        <div class="title-block">
+          <img src="assets/brief/b-001.jpg" alt="" class="logo-mini" id="clientLogo">
+          <div>
+            <h3 id="canvasTitle">商談ブリーフ — 未生成</h3>
+            <span style="font-size:11px;opacity:.8" id="canvasMeta">BRIEF 1-page canvas</span>
+          </div>
+        </div>
+        <span id="genStatus">待機中</span>
+      </div>
+      <div class="canvas-grid">
+        <div class="canvas-col">
+          <div class="col-label">顧客</div>
+          <div class="col-body" id="colClient"><span class="placeholder">生成後に表示…</span></div>
+        </div>
+        <div class="canvas-col">
+          <div class="col-label">論点</div>
+          <div class="col-body" id="colIssues"><span class="placeholder">生成後に表示…</span></div>
+        </div>
+        <div class="canvas-col">
+          <div class="col-label">章立て</div>
+          <div class="col-body" id="colOutline"><span class="placeholder">生成後に表示…</span></div>
+        </div>
+      </div>
+      <div class="canvas-foot">
+        <p>1枚PDF出力 · チーム共有 · CRM連携（本番）</p>
+        <span style="font-size:11px;color:var(--gray-soft)" id="wordCount">—</span>
+      </div>
+    </div>
+
+    <div class="saas-link">
+      <a href="works-brief.html">→ SaaS級でログイン操作（BRIEF フルデモ）</a>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <span class="section-label">HOW IT WORKS</span>
+    <h2 class="section-title">これを御社仕様にするには</h2>
+    <p class="section-lead">BRIEF 同型の1ページキャンバス体験です。商談前リサーチを標準化し、チーム全員が同じ前提で臨めます。</p>
+    <div class="flow-grid">
+      <div class="f-step"><div class="no">1</div><h3>商談先を入力</h3><p>企業名を入れるだけ。公開情報・過去商談メモ・業界データを横断して読み込みます。</p></div>
+      <div class="f-step"><div class="no">2</div><h3>3カラムに自動整理</h3><p>顧客プロファイル・確認論点・提案章立てを1枚に。担当者の属人リサーチを削減します。</p></div>
+      <div class="f-step"><div class="no">3</div><h3>商談後に更新</h3><p>商談メモを追記すると次回ブリーフが更新。提案精度がチーム全体で上がります。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の商談準備で試したい方へ</h2>
+    <p>「商談前リサーチに毎回30分かかっている」という段階で構いません。<br>まずは無料相談で、営業準備の現状をお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold">無料相談を予約する</a>
+      <a href="works-brief.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.45);color:#fff;">BRIEF フルデモを見る</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var BRIEF = {
+    client: '■ 株式会社サンプルテック\n従業員 120名 · SaaS（会計連携）\n直近: シリーズB調達 · 関西拠点開設\n決裁: 取締役COO（情シス管掌）\n競合: 既存ベンダーA社（3年契約 · 来年更新）',
+    issues: '【確認論点】\n① 商談後の議事録入力に何分かかっているか\n② 提案品質のばらつき — 属人化の程度\n③ 予算時期 · 決裁フロー · POC可否\n\n【仮説】\n営業5名で提案資料の作り直しが月40h超',
+    outline: '1. アジェンダ確認（5分）\n2. 現状ヒアリング — 議事録・提案フロー\n3. 同規模SaaS事例（2社）\n4. POC提案 — 2週間 · 1商談のみ\n5. 次回: 情シス同席 · セキュリティ確認'
+  };
+
+  var btnGenerate = document.getElementById('btnGenerate');
+  var companyInput = document.getElementById('companyInput');
+  var colClient = document.getElementById('colClient');
+  var colIssues = document.getElementById('colIssues');
+  var colOutline = document.getElementById('colOutline');
+  var canvasTitle = document.getElementById('canvasTitle');
+  var canvasMeta = document.getElementById('canvasMeta');
+  var genStatus = document.getElementById('genStatus');
+  var wordCount = document.getElementById('wordCount');
+  var running = false;
+
+  function typeInto(el, text, cb) {
+    el.classList.add('filling');
+    el.classList.remove('filled');
+    el.textContent = '';
+    var pos = 0;
+    function step() {
+      el.textContent = text.slice(0, pos);
+      if (pos < text.length) {
+        pos++;
+        setTimeout(step, 10);
+      } else {
+        el.classList.remove('filling');
+        el.classList.add('filled');
+        if (cb) cb();
+      }
+    }
+    step();
+  }
+
+  btnGenerate.addEventListener('click', function () {
+    if (running) return;
+    running = true;
+    btnGenerate.disabled = true;
+    var name = companyInput.value.trim() || '株式会社サンプルテック';
+    canvasTitle.textContent = '商談ブリーフ — ' + name;
+    canvasMeta.textContent = '生成中… · ' + new Date().toLocaleDateString('ja-JP');
+    genStatus.textContent = 'AI生成中';
+
+    colClient.innerHTML = colIssues.innerHTML = colOutline.innerHTML = '';
+    var clientText = BRIEF.client.replace('株式会社サンプルテック', name);
+
+    typeInto(colClient, clientText, function () {
+      typeInto(colIssues, BRIEF.issues, function () {
+        typeInto(colOutline, BRIEF.outline, function () {
+          genStatus.textContent = '生成完了';
+          canvasMeta.textContent = '更新: ' + new Date().toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+          var total = clientText.length + BRIEF.issues.length + BRIEF.outline.length;
+          wordCount.textContent = '約 ' + Math.round(total / 2) + ' 字';
+          running = false;
+          btnGenerate.disabled = false;
+          btnGenerate.textContent = '再生成';
+        });
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

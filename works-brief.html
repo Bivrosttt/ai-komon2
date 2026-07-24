@@ -1,0 +1,941 @@
+<!-- 2026-07-22: BRIEF商談ロゴ画像（b-001〜008）を案件レール・顧客カードに表示 ／ demo枠に作品一覧＋トップ2導線 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BtoB営業ワークスペース構築デモ（商談ブリーフ・提案AI）｜AI顧問室</title>
+<meta name="description" content="架空のBtoB営業ワークスペース「BRIEF」のフル機能デモです。1枚キャンバス上で商談ブリーフ生成・提案章立て・議事録下書きまで体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="BtoB営業ワークスペース構築デモ（商談ブリーフ・提案AI）｜AI顧問室">
+<meta property="og:description" content="架空のBtoB営業ワークスペース「BRIEF」のフル機能デモです。1枚キャンバス上で商談ブリーフ生成・提案章立て・議事録下書きまで体験できます。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-brief.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-brief.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --slate: #0F172A; --slate-deep: #020617; --slate-mid: #1E293B; --slate-light: #334155;
+    --sky: #38BDF8; --sky-deep: #0EA5E9; --sky-bg: rgba(56,189,248,.12);
+    --canvas: #111827; --canvas-grid: rgba(56,189,248,.06);
+    --ink: #F8FAFC; --gray: #94A3B8; --gray-soft: #64748B;
+    --line: rgba(148,163,184,.18); --card-bg: #1E293B; --card-border: rgba(56,189,248,.22);
+    --green: #34D399; --amber: #FBBF24; --purple: #A78BFA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--slate-deep);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { line-height: 1.4; font-weight: 700; font-family: 'Noto Serif JP', serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea { font-family: inherit; }
+  img, svg { max-width: 100%; }
+  ::selection { background: var(--sky-bg); color: var(--ink); }
+
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: var(--slate-deep); color: #CBD5E1; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 2px solid var(--sky);
+  }
+  .demo-frame-bar b { color: var(--sky); font-weight: 700; }
+  .demo-frame-bar .frame-links { display: flex; gap: 8px; flex: 0 0 auto; align-items: center; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 4px; white-space: nowrap; transition: background .15s;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.12); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; gap: 8px; height: 52px; }
+    .demo-frame-bar .frame-text { line-height: 1.5; }
+    .demo-frame-bar .frame-link { padding: 4px 9px; font-size: 10.5px; }
+    body { padding-top: 52px; }
+  }
+
+  #view-login {
+    min-height: calc(100vh - 44px); display: grid; grid-template-columns: 1.05fr 1fr;
+    background: #0B1220;
+  }
+  #view-login.hide { display: none; }
+  .login-hero {
+    position: relative; background: linear-gradient(155deg, #020617 0%, #0F172A 45%, #1E293B 100%);
+    color: var(--ink); padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+  }
+  .login-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, transparent 49.5%, rgba(56,189,248,.08) 49.5%, rgba(56,189,248,.08) 50.5%, transparent 50.5%),
+      linear-gradient(0deg, transparent 49.5%, rgba(56,189,248,.08) 49.5%, rgba(56,189,248,.08) 50.5%, transparent 50.5%);
+    background-size: 80px 80px; opacity: .35;
+  }
+  .login-hero::after {
+    content: 'Brief'; position: absolute; right: 40px; bottom: 14%; font-size: 96px; font-weight: 700;
+    font-family: 'Noto Serif JP', serif; color: rgba(56,189,248,.07); line-height: 1; letter-spacing: -.02em;
+  }
+  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .24em; color: var(--sky); font-weight: 700; margin-bottom: 18px; position: relative; }
+  .login-hero h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 16em; position: relative; }
+  .login-hero h2 em { font-style: normal; color: var(--sky); }
+  .login-hero p { font-size: 14px; color: var(--gray); max-width: 28em; line-height: 1.9; position: relative; }
+  .sky-strip { display: flex; gap: 0; margin-top: 28px; position: relative; }
+  .sky-strip span { flex: 1; height: 4px; background: var(--sky); opacity: .65; }
+  .sky-strip span:nth-child(even) { background: rgba(255,255,255,.08); opacity: 1; }
+  .login-panel {
+    display: flex; align-items: center; justify-content: center; padding: 40px 28px;
+    background: linear-gradient(180deg, #111827 0%, #0B1220 100%);
+  }
+  .login-card {
+    width: 100%; max-width: 400px; background: var(--slate-mid); border-radius: 10px; padding: 40px 36px 30px;
+    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(0,0,0,.35); border-top: 4px solid var(--sky);
+  }
+  .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .login-logo .k { font-size: 28px; font-weight: 700; color: var(--ink); letter-spacing: .06em; font-family: 'Noto Serif JP', serif; }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .14em; font-family: 'IBM Plex Mono', monospace; }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .login-field { margin-bottom: 14px; }
+  .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
+  .login-field input {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 6px; font-size: 14px;
+    color: var(--gray-soft); background: var(--slate); cursor: not-allowed;
+  }
+  .login-btn {
+    width: 100%; padding: 13px; border: none; border-radius: 6px; background: var(--sky); color: var(--slate-deep);
+    font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-btn:hover { filter: brightness(1.06); }
+  .login-btn:active { transform: scale(.99); }
+  .login-btn:disabled { opacity: .75; cursor: wait; }
+  .login-spin {
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(2,6,23,.25);
+    border-top-color: var(--slate-deep); animation: spin .7s linear infinite; display: none;
+  }
+  .login-btn.loading .login-spin { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .login-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center; border-top: 1px solid var(--line); padding-top: 14px; }
+  @media (max-width: 860px) {
+    #view-login { grid-template-columns: 1fr; }
+    .login-hero { min-height: 220px; padding: 36px 28px; }
+    .login-hero::after { display: none; }
+  }
+
+  #view-app { display: none; min-height: calc(100vh - 44px); flex-direction: column; }
+  #view-app.show { display: flex; }
+
+  .workspace {
+    flex: 1; display: flex; min-height: calc(100vh - 44px); overflow: hidden;
+  }
+
+  .deal-rail {
+    width: 52px; flex: 0 0 auto; background: var(--slate-deep); border-right: 1px solid var(--line);
+    display: flex; flex-direction: column; align-items: center; padding: 12px 0; gap: 8px;
+    position: sticky; top: 44px; height: calc(100vh - 44px); z-index: 60; overflow-y: auto;
+  }
+  .rail-brand {
+    width: 34px; height: 34px; border-radius: 8px; background: var(--sky-bg); border: 1px solid var(--card-border);
+    display: grid; place-items: center; font-size: 11px; font-weight: 700; color: var(--sky);
+    font-family: 'Noto Serif JP', serif; margin-bottom: 6px; flex: 0 0 auto;
+  }
+  .rail-btn {
+    position: relative; width: 36px; height: 36px; border-radius: 10px; border: 2px solid transparent;
+    background: var(--slate-mid); color: var(--ink); font-size: 11px; font-weight: 700;
+    display: grid; place-items: center; transition: border-color .15s, transform .15s, background .15s;
+  }
+  .rail-btn:hover { border-color: var(--sky); transform: scale(1.05); }
+  .rail-btn.active { border-color: var(--sky); background: var(--sky-bg); color: var(--sky); box-shadow: 0 0 0 1px rgba(56,189,248,.25); }
+  .rail-btn.has-logo { padding: 0; overflow: hidden; background: var(--slate); }
+  .rail-btn .rail-logo { width: 100%; height: 100%; border-radius: 8px; object-fit: cover; display: block; }
+  .rail-btn .rail-tip {
+    position: absolute; left: calc(100% + 10px); top: 50%; transform: translateY(-50%);
+    background: var(--slate); color: var(--ink); font-size: 11.5px; font-weight: 600; white-space: nowrap;
+    padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 100;
+  }
+  .rail-btn:hover .rail-tip { opacity: 1; }
+
+  .editor-main { flex: 1; min-width: 0; display: flex; flex-direction: column; background: var(--canvas); }
+
+  .canvas-toolbar {
+    flex: 0 0 auto; height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 20px;
+    border-bottom: 1px solid var(--line); background: rgba(15,23,42,.92); backdrop-filter: blur(6px);
+    position: sticky; top: 44px; z-index: 50;
+  }
+  .toolbar-deal { flex: 1; min-width: 0; }
+  .toolbar-deal h1 { font-size: 15px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .toolbar-deal p { font-size: 11px; color: var(--gray-soft); margin-top: 1px; font-family: 'IBM Plex Mono', monospace; }
+  .toolbar-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+  .btn-ai {
+    padding: 8px 14px; border-radius: 8px; border: 1px solid var(--card-border); background: var(--slate-mid);
+    color: var(--ink); font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;
+    transition: background .15s, border-color .15s, transform .1s; white-space: nowrap;
+  }
+  .btn-ai:hover { background: var(--sky-bg); border-color: var(--sky); color: var(--sky); }
+  .btn-ai:active { transform: scale(.98); }
+  .btn-ai.primary { background: var(--sky); color: var(--slate-deep); border-color: var(--sky); }
+  .btn-ai.primary:hover { filter: brightness(1.06); }
+  .btn-ai:disabled { opacity: .45; cursor: not-allowed; }
+  .btn-ai .ai-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .7; }
+  .toolbar-user { display: flex; align-items: center; gap: 8px; margin-left: 4px; }
+  .toolbar-user .avatar {
+    width: 30px; height: 30px; border-radius: 8px; background: var(--sky); color: var(--slate-deep);
+    display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  }
+  .logout-link { font-size: 10.5px; color: var(--gray-soft); padding: 4px 8px; border: 1px solid var(--line); border-radius: 6px; }
+  .logout-link:hover { color: var(--sky); border-color: var(--sky); }
+
+  .brief-canvas {
+    flex: 1; overflow: auto; padding: 28px 24px 120px;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(56,189,248,.05) 0%, transparent 40%),
+      linear-gradient(var(--canvas-grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--canvas-grid) 1px, transparent 1px);
+    background-size: auto, 32px 32px, 32px 32px;
+  }
+  .canvas-grid {
+    display: grid; grid-template-columns: minmax(240px, 1fr) minmax(260px, 1.15fr) minmax(240px, 1fr);
+    gap: 24px; align-items: start; min-height: min(680px, calc(100vh - 180px));
+  }
+  .canvas-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .col-head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+    padding-bottom: 10px; border-bottom: 1px dashed var(--line);
+  }
+  .col-head h2 { font-size: 13px; color: var(--sky); letter-spacing: .08em; }
+  .col-head span { font-size: 10px; color: var(--gray-soft); font-family: 'IBM Plex Mono', monospace; }
+  .col-body { display: flex; flex-direction: column; gap: 12px; min-height: 200px; }
+
+  .canvas-empty {
+    border: 2px dashed rgba(148,163,184,.22); border-radius: 12px; padding: 36px 20px; text-align: center;
+    color: var(--gray-soft); font-size: 12.5px; line-height: 1.85;
+  }
+  .canvas-empty svg { opacity: .35; margin-bottom: 10px; }
+
+  .c-card {
+    background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px 18px;
+    opacity: 0; transform: translateY(14px) scale(.98); transition: opacity .45s ease, transform .45s ease, box-shadow .2s;
+    position: relative;
+  }
+  .c-card.show { opacity: 1; transform: none; }
+  .c-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,.25); }
+  .c-card .cc-label {
+    font-size: 9.5px; font-weight: 700; letter-spacing: .12em; color: var(--sky); margin-bottom: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .c-card .cc-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 8px; font-family: 'Noto Serif JP', serif; }
+  .c-card .cc-body { font-size: 12px; color: var(--gray); line-height: 1.75; }
+  .c-card.customer-main { border-left: 3px solid var(--sky); }
+  .c-card.customer-main .cc-title { font-size: 17px; }
+  .customer-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .customer-logo { width: 44px; height: 44px; border-radius: 10px; object-fit: cover; flex: 0 0 auto; border: 1px solid var(--line); }
+
+  .arg-card { display: flex; gap: 10px; align-items: flex-start; }
+  .arg-card .arg-num {
+    flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%; background: var(--slate);
+    border: 1px solid var(--sky); color: var(--sky); font-size: 11px; font-weight: 700;
+    display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace;
+  }
+  .arg-card .arg-text { flex: 1; font-size: 12.5px; color: var(--ink); line-height: 1.7; padding-top: 2px; }
+  .arg-controls {
+    flex: 0 0 auto; display: flex; flex-direction: column; gap: 2px;
+  }
+  .arg-controls button {
+    width: 22px; height: 18px; border: 1px solid var(--line); border-radius: 4px; background: var(--slate);
+    color: var(--gray); font-size: 9px; line-height: 1; transition: color .15s, border-color .15s;
+  }
+  .arg-controls button:hover { color: var(--sky); border-color: var(--sky); }
+
+  .chapter-card { overflow: hidden; padding: 0; }
+  .chapter-card .ch-head {
+    padding: 12px 16px; background: rgba(56,189,248,.1); border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .chapter-card .ch-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700; color: var(--sky);
+    background: var(--slate-deep); padding: 3px 8px; border-radius: 6px;
+  }
+  .chapter-card .ch-title { font-size: 13px; font-weight: 700; color: var(--ink); font-family: 'Noto Serif JP', serif; }
+  .chapter-card .ch-body { padding: 14px 16px; font-size: 12px; color: var(--gray); line-height: 1.75; }
+
+  .gen-status {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 200;
+    background: var(--slate); border: 1px solid var(--sky); color: var(--ink); padding: 10px 18px;
+    border-radius: 999px; font-size: 12.5px; font-weight: 600; display: none; align-items: center; gap: 10px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.4);
+  }
+  .gen-status.show { display: flex; animation: statusIn .25s ease; }
+  .gen-status .status-spin {
+    width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(56,189,248,.25);
+    border-top-color: var(--sky); animation: spin .7s linear infinite;
+  }
+  @keyframes statusIn { from { opacity: 0; transform: translateX(-50%) translateY(8px); } to { opacity: 1; transform: translateX(-50%); } }
+
+  .minutes-sheet {
+    position: fixed; left: 52px; right: 0; bottom: 0; z-index: 180; max-height: 52vh;
+    background: var(--slate-mid); border-top: 2px solid var(--sky);
+    box-shadow: 0 -20px 60px rgba(0,0,0,.45); transform: translateY(100%);
+    transition: transform .35s cubic-bezier(.22,1,.36,1); display: flex; flex-direction: column;
+  }
+  .minutes-sheet.open { transform: translateY(0); }
+  .sheet-head {
+    flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 14px 20px; border-bottom: 1px solid var(--line);
+  }
+  .sheet-head h3 { font-size: 14px; color: var(--ink); }
+  .sheet-head p { font-size: 11px; color: var(--gray-soft); margin-top: 2px; }
+  .sheet-close {
+    width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--line); background: var(--slate);
+    color: var(--gray); display: grid; place-items: center;
+  }
+  .sheet-close:hover { color: var(--sky); border-color: var(--sky); }
+  .sheet-body { flex: 1; overflow: auto; padding: 16px 20px 24px; }
+  .sheet-text {
+    font-size: 12.5px; color: var(--ink); line-height: 1.9; white-space: pre-wrap; min-height: 160px;
+    background: var(--slate-deep); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px;
+  }
+  .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--sky); animation: blink .8s step-end infinite; vertical-align: text-bottom; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .sheet-foot {
+    flex: 0 0 auto; padding: 12px 20px 16px; border-top: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .sheet-note { font-size: 11px; color: var(--gray-soft); display: flex; align-items: center; gap: 6px; }
+  .btn-approve {
+    padding: 10px 18px; border: none; border-radius: 8px; background: var(--sky); color: var(--slate-deep);
+    font-weight: 700; font-size: 12.5px; transition: filter .2s;
+  }
+  .btn-approve:hover { filter: brightness(1.06); }
+  .badge-human {
+    display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px;
+    background: rgba(56,189,248,.2); color: var(--sky); font-size: 10px; font-weight: 700; margin-left: 6px;
+  }
+
+  #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
+  .toast {
+    background: var(--slate); color: #fff; padding: 11px 18px; border-radius: 8px; font-size: 12.5px;
+    border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
+  }
+  @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+
+  .komon-cta {
+    background: linear-gradient(135deg, var(--slate-deep) 0%, var(--slate) 55%, var(--slate-mid) 100%);
+    color: #fff; padding: 76px 24px 40px; text-align: center;
+  }
+  .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
+  .komon-cta .cta-label { display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: var(--sky); font-weight: 700; margin-bottom: 16px; }
+  .komon-cta h2 { font-size: 30px; margin-bottom: 16px; line-height: 1.5; font-family: 'Noto Serif JP', serif; }
+  .komon-cta h2 em { font-style: normal; color: var(--sky); }
+  .komon-cta p.lead { font-size: 14.5px; color: #94A3B8; margin-bottom: 32px; line-height: 1.9; }
+  .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn { display: inline-block; padding: 15px 34px; border-radius: 6px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s, transform .1s; }
+  .btn:hover { opacity: .87; }
+  .btn-sky { background: var(--sky); color: var(--slate-deep); }
+  .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #64748B; }
+  .komon-cta .cta-foot a { color: #CBD5E1; }
+  .komon-cta .cta-foot a:hover { color: #fff; }
+
+  @media (max-width: 960px) {
+    .canvas-grid { grid-template-columns: repeat(3, minmax(280px, 1fr)); overflow-x: auto; padding-bottom: 8px; }
+    .brief-canvas { overflow-x: auto; }
+    .toolbar-actions .btn-ai span.lbl { display: none; }
+    .minutes-sheet { left: 0; }
+  }
+  @media (max-width: 640px) {
+    .deal-rail { width: 44px; }
+    .rail-btn .rail-tip { display: none; }
+    .canvas-toolbar { padding: 0 12px; height: auto; min-height: 56px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
+    .toolbar-deal { flex: 1 1 100%; }
+    .komon-cta h2 { font-size: 23px; }
+    .komon-cta { padding: 56px 18px 32px; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> が制作した架空プロダクトのデモです。データはすべてサンプルで、実際のサービスではありません。</span>
+  <div class="frame-links">
+    <a href="works.html" class="frame-link">作品一覧</a>
+    <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+  </div>
+</div>
+
+<div id="view-login">
+  <div class="login-hero">
+    <div class="hero-kicker">BTOB SALES CANVAS</div>
+    <h2>案件テーブルではなく、<em>1枚のブリーフ</em>を編集する。</h2>
+    <p>顧客カード・論点・提案章立てをホワイトボード上に並べ、AIがキャンバスを埋めていく。商談準備の主語は「一覧」ではなく「編集」。</p>
+    <div class="sky-strip"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+  <div class="login-panel">
+    <div class="login-card">
+      <div class="login-logo"><span class="k">BRIEF</span><span class="tag-en">SALES CANVAS</span></div>
+      <p class="login-sub">商談を、1枚で勝ち切る。</p>
+      <div class="login-field">
+        <label for="loginMail">メールアドレス</label>
+        <input id="loginMail" type="text" value="demo@cloudsales.example" readonly>
+      </div>
+      <div class="login-field">
+        <label for="loginPass">パスワード</label>
+        <input id="loginPass" type="password" value="dummydummy" readonly>
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">
+        <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
+      </button>
+      <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
+    </div>
+  </div>
+</div>
+
+<div id="view-app">
+  <div class="workspace">
+    <aside class="deal-rail" id="dealRail" aria-label="案件切替"></aside>
+
+    <div class="editor-main">
+      <header class="canvas-toolbar">
+        <div class="toolbar-deal">
+          <h1 id="toolbarTitle">—</h1>
+          <p id="toolbarSub">—</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="btn-ai primary" id="btnBrief" onclick="runBriefGen()">
+            <span class="ai-dot"></span><span class="lbl">商談ブリーフ生成</span>
+          </button>
+          <button class="btn-ai" id="btnOutline" onclick="runOutlineGen()">
+            <span class="ai-dot"></span><span class="lbl">提案アウトライン</span>
+          </button>
+          <button class="btn-ai" id="btnMinutes" onclick="runMinutesGen()">
+            <span class="ai-dot"></span><span class="lbl">議事録下書き</span>
+          </button>
+          <div class="toolbar-user">
+            <div class="avatar">健</div>
+            <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="brief-canvas">
+        <div class="canvas-grid">
+          <section class="canvas-col" aria-label="顧客">
+            <div class="col-head"><h2>顧客</h2><span>CUSTOMER</span></div>
+            <div class="col-body" id="colCustomer"></div>
+          </section>
+          <section class="canvas-col" aria-label="論点">
+            <div class="col-head"><h2>論点</h2><span>ARGUMENTS</span></div>
+            <div class="col-body" id="colArguments"></div>
+          </section>
+          <section class="canvas-col" aria-label="提案章立て">
+            <div class="col-head"><h2>提案章立て</h2><span>OUTLINE</span></div>
+            <div class="col-body" id="colOutline"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gen-status" id="genStatus"><span class="status-spin"></span><span id="genStatusText">生成中…</span></div>
+
+  <div class="minutes-sheet" id="minutesSheet" aria-hidden="true">
+    <div class="sheet-head">
+      <div>
+        <h3>議事録下書き</h3>
+        <p id="sheetDealLabel">—</p>
+      </div>
+      <button class="sheet-close" onclick="closeMinutesSheet()" aria-label="閉じる">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="sheet-body">
+      <div class="sheet-text" id="minutesText"></div>
+    </div>
+    <div class="sheet-foot">
+      <span class="sheet-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        送信前に担当者が内容を確認してください
+      </span>
+      <button class="btn-approve" onclick="approveMinutes()">内容を確認して共有<span class="badge-human">人の確認</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="komon-cta">
+  <div class="cta-inner">
+    <span class="cta-label">AI KOMONSHITSU</span>
+    <h2>このようなシステムを、<em>御社専用に。</em></h2>
+    <p class="lead">「BRIEF」は本デモのために作った架空のプロダクトです。AI顧問室では、BtoB営業ワークスペースに限らず、御社の商談フローそのものを学習してブリーフ生成・提案章立て・議事録下書きを組み込んだ専用システムを構築します。</p>
+    <div class="cta-btn-row">
+      <a href="index.html?from=works-brief#contact" class="btn btn-sky">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
+    </div>
+    <div class="cta-foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+
+<script>
+var TODAY_STR = '2026-07-22';
+var loggedIn = false;
+var currentDealId = 'b-001';
+var genBusy = false;
+var genTimers = [];
+
+var canvasState = {
+  customer: false,
+  arguments: false,
+  outline: false,
+  minutes: false
+};
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function showToast(msg) {
+  var host = document.getElementById('toastHost');
+  var el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  host.appendChild(el);
+  setTimeout(function () { el.remove(); }, 2700);
+}
+function fmtDate(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  return d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate() + '日';
+}
+
+var DEALS = [
+  { id: 'b-001', company: '株式会社ネクストリンク', product: 'クラウドSaaS導入', amount: 480, status: 'proposal',
+    assigned: 'デモ 健太', nextMeeting: '2026-07-24', industry: 'IT/Web',
+    contact: '田村 翔太（情報システム部 部長）', note: '既存オンプレCRMからクラウド移行を検討。来週の初回提案に向けてブリーフ生成が必要。',
+    initials: 'ネ', logo: 'assets/brief/b-001.jpg' },
+  { id: 'b-002', company: '東都データサービス', product: 'セキュリティ監査', amount: 220, status: 'discovery',
+    assigned: '佐藤 玲奈', nextMeeting: '2026-07-25', industry: 'データセンター',
+    contact: '小林 恵（セキュリティ室）', note: 'ISO27001更新に伴う外部監査。初回ヒアリング済み、要件整理中。',
+    initials: '東', logo: 'assets/brief/b-002.jpg' },
+  { id: 'b-003', company: 'グローバル物流HD', product: '基幹クラウド移行', amount: 1200, status: 'negotiation',
+    assigned: 'デモ 健太', nextMeeting: '2026-07-23', industry: '物流',
+    contact: '中村 剛（DX推進室）', note: 'SAP周辺のクラウド移行。価格・スケジュールで最終交渉フェーズ。',
+    initials: '物', logo: 'assets/brief/b-003.jpg' },
+  { id: 'b-004', company: 'メディアクリエイト', product: 'マーケ自動化', amount: 350, status: 'proposal',
+    assigned: '田中 大輔', nextMeeting: '2026-07-26', industry: 'メディア',
+    contact: '山本 彩（マーケティング部）', note: 'MAツール導入。競合3社比較中。ROI試算が論点。',
+    initials: 'メ', logo: 'assets/brief/b-004.jpg' },
+  { id: 'b-005', company: 'フィナンシャルパートナーズ', product: 'BIダッシュボード', amount: 680, status: 'won',
+    assigned: '佐藤 玲奈', nextMeeting: '—', industry: '金融',
+    contact: '伊藤 健（経営企画部）', note: '成約済み。7月末キックオフ予定。',
+    initials: 'フィ', logo: 'assets/brief/b-005.jpg' },
+  { id: 'b-006', company: 'ヘルスケアイノベーション', product: '電子カルテ連携', amount: 890, status: 'discovery',
+    assigned: '鈴木 真由', nextMeeting: '2026-07-28', industry: 'ヘルスケア',
+    contact: '渡辺 美咲（医療情報部）', note: 'HL7 FHIR連携の要件ヒアリング段階。コンプライアンス確認が必要。',
+    initials: 'ヘ', logo: 'assets/brief/b-006.jpg' },
+  { id: 'b-007', company: 'リテールテック', product: 'POS刷新', amount: 410, status: 'lost',
+    assigned: '田中 大輔', nextMeeting: '—', industry: '小売',
+    contact: '加藤 亮（店舗運営部）', note: '競合他社に決定。価格差が主因。',
+    initials: 'リ', logo: 'assets/brief/b-007.jpg' },
+  { id: 'b-008', company: '製造ソリューションズ', product: 'IoT基盤', amount: 750, status: 'negotiation',
+    assigned: 'デモ 健太', nextMeeting: '2026-07-27', industry: '製造',
+    contact: '松本 浩二（生産技術部）', note: '工場IoT基盤構築。PoC結果を踏まえ本番提案へ。',
+    initials: '製', logo: 'assets/brief/b-008.jpg' }
+];
+
+var B001_INSIGHTS = [
+  { label: 'COMPANY', title: '会社概要', body: '従業員420名。SaaS型業務支援ツールを自社開発・提供。東京・大阪に拠点。FY2025売上58億円、営業利益率12%。' },
+  { label: 'FINANCE', title: '財務・投資', body: 'IT投資予算は年間1.2億円規模。DX推進の一環で基幹系クラウド化を2026年度計画に位置付け。CAPEX→OPEXシフト意向あり。' },
+  { label: 'IT ENV', title: 'IT環境', body: 'オンプレCRM（国産パッケージ）使用10年。AWS一部利用中。情シス3名体制。セキュリティ監査でクラウド移行リスク評価が必須条件。' },
+  { label: 'COMPETITOR', title: '競合・比較', body: 'Salesforce・HubSpot・国産SaaSの3社比較中。価格より「既存ワークフローとの親和性」と「移行工数」を重視。' }
+];
+
+var B001_ISSUES = [
+  '現行CRMのデータ移行範囲とダウンタイム許容時間の確認',
+  '情シス3名体制での運用・保守内製化 vs 委託の判断基準',
+  'AWS既存環境とのSSO・認証基盤連携要件',
+  'Salesforce比較時のTCO試算（3年・5年）の提示方法',
+  '初回提案で示すべきPoC範囲と成功指標の合意'
+];
+
+var B001_OUTLINE = [
+  { num: '01', title: 'エグゼクティブサマリー', body: 'ネクストリンク様のCRMクラウド移行における課題認識と、当社ソリューションの提供価値を1ページで要約。' },
+  { num: '02', title: '現状課題と背景', body: 'オンプレCRM老朽化・データ分散・営業プロセス可視化不足。DX推進計画との整合性。' },
+  { num: '03', title: 'ソリューション概要', body: 'クラウドSaaS本体・データ移行・SSO連携・段階的ロールアウトの全体像。' },
+  { num: '04', title: '導入効果・ROI試算', body: '工数削減・成約率向上・TCO比較（Salesforce/HubSpot/当社）。3年・5年シミュレーション。' },
+  { num: '05', title: 'スケジュール・次のステップ', body: 'PoC 4週間 → 本番移行3ヶ月。初回PoC成功指標と意思決定マイルストーン。' }
+];
+
+var B001_MINUTES_TEXT = '【商談議事録下書き】株式会社ネクストリンク\n日時：2026年7月18日（金）14:00-15:30\n参加者：田村 翔太 様（情シス部長）、デモ 健太（当社）\n\n■ 議題\n1. 現行CRM課題のヒアリング\n2. クラウド移行の要件整理\n3. 競合比較状況の確認\n\n■ 主な論点\n・データ移行：約8万レコード、ダウンタイムは週末8時間以内希望\n・認証：AWS CognitoとのSSO連携が必須\n・比較：Salesforceが第一候補だが、移行工数とライセンスコストに懸念\n\n■ 決定事項\n・7/24（木）に初回提案を実施（Teams）\n・提案書にTCO比較表とPoC計画書を同梱\n\n■ ネクストアクション\n[当社] 商談ブリーフ・提案章立てを7/22までに作成 → 健太\n[先方] 現行CRMのデータ項目一覧を共有 → 田村様\n\n※ AI生成下書き。送信前に担当者が内容を確認してください。';
+
+function findDeal(id) {
+  for (var i = 0; i < DEALS.length; i++) {
+    if (DEALS[i].id === id) return DEALS[i];
+  }
+  return null;
+}
+
+function isLoggedIn() { return loggedIn; }
+
+function handleRoute() {
+  var hash = location.hash.replace('#', '') || 'login';
+  if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
+  if (hash === 'login') { showLoginScreen(); return; }
+  showAppScreen();
+  if (hash.indexOf('deal/') === 0) {
+    selectDeal(hash.split('/')[1], false);
+    return;
+  }
+  if (hash === 'canvas' || hash === 'dashboard' || hash === 'deals') {
+    selectDeal(currentDealId, false);
+  }
+}
+
+function showLoginScreen() {
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+  closeMinutesSheet();
+}
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+  renderDealRail();
+  selectDeal(currentDealId, false);
+}
+
+function doLogin() {
+  var btn = document.getElementById('loginBtn');
+  if (btn.classList.contains('loading')) return;
+  btn.classList.add('loading');
+  btn.disabled = true;
+  setTimeout(function () {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    loggedIn = true;
+    location.hash = 'deal/b-001';
+  }, 800);
+}
+
+function doLogout() {
+  loggedIn = false;
+  clearGenTimers();
+  genBusy = false;
+  canvasState = { customer: false, arguments: false, outline: false, minutes: false };
+  showToast('ログアウトしました');
+}
+
+function dealLogoImg(d, cls) {
+  if (!d.logo) return '';
+  return '<img class="' + cls + '" src="' + escapeHtml(d.logo) + '" alt="' + escapeHtml(d.company) + '">';
+}
+function customerCardHead(d) {
+  return '<div class="customer-head">' + dealLogoImg(d, 'customer-logo') +
+    '<div class="cc-title">' + escapeHtml(d.company) + '</div></div>';
+}
+function renderDealRail() {
+  var html = '<div class="rail-brand" title="BRIEF">B</div>';
+  html += DEALS.filter(function (d) { return d.status !== 'won' && d.status !== 'lost'; }).map(function (d) {
+    return '<button class="rail-btn has-logo' + (d.id === currentDealId ? ' active' : '') + '" onclick="selectDeal(\'' + d.id + '\')" title="' + escapeHtml(d.company) + '">' +
+      dealLogoImg(d, 'rail-logo') + '<span class="rail-tip">' + escapeHtml(d.company) + '</span></button>';
+  }).join('');
+  document.getElementById('dealRail').innerHTML = html;
+}
+
+function resetCanvasState() {
+  clearGenTimers();
+  genBusy = false;
+  canvasState = { customer: false, arguments: false, outline: false, minutes: false };
+  hideGenStatus();
+  closeMinutesSheet();
+  updateToolbarButtons();
+}
+
+function selectDeal(id, pushHash) {
+  var d = findDeal(id);
+  if (!d) { id = 'b-001'; d = findDeal(id); }
+  currentDealId = id;
+  if (pushHash !== false) location.hash = 'deal/' + id;
+  resetCanvasState();
+  renderDealRail();
+  document.getElementById('toolbarTitle').textContent = d.company;
+  document.getElementById('toolbarSub').textContent = d.product + ' · ' + d.amount + '万 · 次回 ' + (d.nextMeeting === '—' ? '—' : fmtDate(d.nextMeeting));
+  renderEmptyCanvas(d);
+}
+
+function emptyPlaceholder(kind) {
+  var icons = {
+    customer: '<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>',
+    arguments: '<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+    outline: '<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h10M4 18h14"/></svg>'
+  };
+  var msgs = {
+    customer: '「商談ブリーフ生成」で<br>企業要点カードが出現します',
+    arguments: '論点カードがここに並びます<br>上下ボタンで並び替え',
+    outline: '「提案アウトライン」で<br>章立てカードが出現します'
+  };
+  return '<div class="canvas-empty">' + icons[kind] + '<p>' + msgs[kind] + '</p></div>';
+}
+
+function renderEmptyCanvas(d) {
+  document.getElementById('colCustomer').innerHTML = emptyPlaceholder('customer');
+  document.getElementById('colArguments').innerHTML = emptyPlaceholder('arguments');
+  document.getElementById('colOutline').innerHTML = emptyPlaceholder('outline');
+  if (d.id !== 'b-001') {
+    document.getElementById('colCustomer').innerHTML =
+      '<div class="c-card customer-main show">' +
+      '<div class="cc-label">CUSTOMER</div>' +
+      customerCardHead(d) +
+      '<div class="cc-body">' + escapeHtml(d.industry) + ' · ' + escapeHtml(d.contact) + '<br><br>' + escapeHtml(d.note) + '</div></div>';
+    canvasState.customer = true;
+  }
+}
+
+function updateToolbarButtons() {
+  var isDemo = currentDealId === 'b-001';
+  document.getElementById('btnBrief').disabled = genBusy || (isDemo && canvasState.customer && canvasState.arguments);
+  document.getElementById('btnOutline').disabled = genBusy || (isDemo && canvasState.outline);
+  document.getElementById('btnMinutes').disabled = genBusy || (isDemo && canvasState.minutes);
+  if (!isDemo) {
+    document.getElementById('btnBrief').disabled = genBusy;
+    document.getElementById('btnOutline').disabled = genBusy;
+    document.getElementById('btnMinutes').disabled = genBusy;
+  }
+}
+
+function showGenStatus(text) {
+  document.getElementById('genStatusText').textContent = text;
+  document.getElementById('genStatus').classList.add('show');
+}
+function hideGenStatus() {
+  document.getElementById('genStatus').classList.remove('show');
+}
+function clearGenTimers() {
+  genTimers.forEach(function (id) { clearTimeout(id); });
+  genTimers = [];
+}
+function later(fn, ms) {
+  var id = setTimeout(fn, ms);
+  genTimers.push(id);
+  return id;
+}
+
+function appendCard(containerId, html, delay) {
+  later(function () {
+    var el = document.getElementById(containerId);
+    if (!el) return;
+    if (el.querySelector('.canvas-empty')) el.innerHTML = '';
+    el.insertAdjacentHTML('beforeend', html);
+    var cards = el.querySelectorAll('.c-card:not(.show)');
+    var card = cards[cards.length - 1];
+    if (card) requestAnimationFrame(function () { card.classList.add('show'); });
+  }, delay);
+}
+
+function customerMainCard(d) {
+  return '<div class="c-card customer-main">' +
+    '<div class="cc-label">DEAL · ' + escapeHtml(d.product) + '</div>' +
+    customerCardHead(d) +
+    '<div class="cc-body"><strong>キーパーソン</strong> ' + escapeHtml(d.contact) + '<br><br><strong>前回メモ</strong><br>' + escapeHtml(d.note) + '</div></div>';
+}
+
+function insightCard(ins) {
+  return '<div class="c-card"><div class="cc-label">' + ins.label + '</div><div class="cc-title">' + escapeHtml(ins.title) + '</div><div class="cc-body">' + escapeHtml(ins.body) + '</div></div>';
+}
+
+function argumentCard(text, num, total) {
+  return '<div class="c-card arg-card" data-idx="' + num + '">' +
+    '<span class="arg-num">' + num + '</span>' +
+    '<span class="arg-text">' + escapeHtml(text) + '</span>' +
+    '<div class="arg-controls">' +
+    '<button type="button" onclick="moveArg(' + num + ',-1)" aria-label="上へ"' + (num === 1 ? ' disabled style="opacity:.3"' : '') + '>▲</button>' +
+    '<button type="button" onclick="moveArg(' + num + ',1)" aria-label="下へ"' + (num === total ? ' disabled style="opacity:.3"' : '') + '>▼</button>' +
+    '</div></div>';
+}
+
+function chapterCard(ch) {
+  return '<div class="c-card chapter-card"><div class="ch-head"><span class="ch-num">' + ch.num + '</span><span class="ch-title">' + escapeHtml(ch.title) + '</span></div><div class="ch-body">' + escapeHtml(ch.body) + '</div></div>';
+}
+
+function moveArg(idx, dir) {
+  var list = document.getElementById('colArguments');
+  var cards = Array.prototype.slice.call(list.querySelectorAll('.arg-card'));
+  var pos = -1;
+  for (var i = 0; i < cards.length; i++) {
+    if (parseInt(cards[i].dataset.idx, 10) === idx) { pos = i; break; }
+  }
+  var target = pos + dir;
+  if (pos < 0 || target < 0 || target >= cards.length) return;
+  if (dir < 0) list.insertBefore(cards[pos], cards[target]);
+  else list.insertBefore(cards[target], cards[pos]);
+  showToast('論点の並びを変更しました（見た目のみ）');
+}
+
+function runBriefGen() {
+  if (genBusy) return;
+  var d = findDeal(currentDealId);
+  if (!d) return;
+  if (d.id !== 'b-001') {
+    showToast('フルAI演出は b-001（ネクストリンク）で体験できます');
+    selectDeal('b-001');
+    return;
+  }
+  if (canvasState.customer && canvasState.arguments) {
+    showToast('ブリーフはすでに生成済みです');
+    return;
+  }
+  genBusy = true;
+  updateToolbarButtons();
+  showGenStatus('企業情報を分析中…');
+  document.getElementById('colCustomer').innerHTML = '';
+  document.getElementById('colArguments').innerHTML = '';
+  var delay = 0;
+  appendCard('colCustomer', customerMainCard(d), delay);
+  delay += 500;
+  B001_INSIGHTS.forEach(function (ins) {
+    appendCard('colCustomer', insightCard(ins), delay);
+    delay += 480;
+  });
+  later(function () {
+    showGenStatus('商談論点を整理中…');
+    canvasState.customer = true;
+  }, delay);
+  B001_ISSUES.forEach(function (issue, i) {
+    appendCard('colArguments', argumentCard(issue, i + 1, B001_ISSUES.length), delay);
+    delay += 420;
+  });
+  later(function () {
+    canvasState.arguments = true;
+    genBusy = false;
+    hideGenStatus();
+    updateToolbarButtons();
+    showToast('商談ブリーフをキャンバスに配置しました');
+    if (!canvasState.outline) runOutlineGen(true);
+  }, delay + 300);
+}
+
+function runOutlineGen(chained) {
+  if (genBusy && !chained) return;
+  var d = findDeal(currentDealId);
+  if (!d || d.id !== 'b-001') {
+    if (!chained) showToast('フルAI演出は b-001（ネクストリンク）で体験できます');
+    return;
+  }
+  if (canvasState.outline) {
+    if (!chained) showToast('提案章立てはすでに生成済みです');
+    return;
+  }
+  if (!canvasState.arguments && !chained) {
+    showToast('先に商談ブリーフを生成してください');
+    return;
+  }
+  genBusy = true;
+  updateToolbarButtons();
+  showGenStatus('提案章立てを生成中…');
+  document.getElementById('colOutline').innerHTML = '';
+  var delay = chained ? 400 : 0;
+  B001_OUTLINE.forEach(function (ch) {
+    appendCard('colOutline', chapterCard(ch), delay);
+    delay += 460;
+  });
+  later(function () {
+    canvasState.outline = true;
+    genBusy = false;
+    hideGenStatus();
+    updateToolbarButtons();
+    showToast('提案章立てをキャンバスに配置しました');
+    if (!canvasState.minutes && chained) runMinutesGen(true);
+  }, delay + 300);
+}
+
+function runMinutesGen(chained) {
+  if (genBusy && !chained) return;
+  var d = findDeal(currentDealId);
+  if (!d || d.id !== 'b-001') {
+    if (!chained) showToast('フルAI演出は b-001（ネクストリンク）で体験できます');
+    return;
+  }
+  if (canvasState.minutes) {
+    if (!chained) { openMinutesSheet(true); return; }
+    return;
+  }
+  if (!canvasState.outline && !chained) {
+    showToast('先に提案アウトラインを生成してください');
+    return;
+  }
+  genBusy = true;
+  updateToolbarButtons();
+  document.getElementById('sheetDealLabel').textContent = d.company + ' · ' + d.product;
+  openMinutesSheet(false);
+  document.getElementById('minutesText').innerHTML = '<span id="minutesTyped"></span><span class="draft-cursor" id="minutesCursor"></span>';
+  typeMinutes(B001_MINUTES_TEXT, function () {
+    canvasState.minutes = true;
+    genBusy = false;
+    updateToolbarButtons();
+    showToast('議事録下書きを生成しました');
+  });
+}
+
+function openMinutesSheet(withFullText) {
+  var sheet = document.getElementById('minutesSheet');
+  sheet.classList.add('open');
+  sheet.setAttribute('aria-hidden', 'false');
+  if (withFullText) {
+    document.getElementById('minutesText').textContent = B001_MINUTES_TEXT;
+  }
+}
+function closeMinutesSheet() {
+  var sheet = document.getElementById('minutesSheet');
+  sheet.classList.remove('open');
+  sheet.setAttribute('aria-hidden', 'true');
+}
+
+function typeMinutes(fullText, onDone) {
+  var shown = 0;
+  var tickMs = 38;
+  var charsPerTick = 2;
+  function tick() {
+    shown = Math.min(fullText.length, shown + charsPerTick);
+    var el = document.getElementById('minutesTyped');
+    if (el) el.textContent = fullText.slice(0, shown);
+    if (shown >= fullText.length) {
+      var cur = document.getElementById('minutesCursor');
+      if (cur) cur.remove();
+      if (onDone) onDone();
+      return;
+    }
+    later(tick, tickMs);
+  }
+  later(tick, tickMs);
+}
+
+function approveMinutes() {
+  showToast('議事録を確認・共有しました（デモ）');
+  closeMinutesSheet();
+}
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') loggedIn = true;
+  handleRoute();
+});
+</script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
+</body>
+</html>

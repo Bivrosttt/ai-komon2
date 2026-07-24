@@ -1,0 +1,19 @@
+{
+  "keyword": "時給 換算",
+  "slug": "hourly-wage-calculator",
+  "title": "時給換算計算機",
+  "description": "月給と月の所定労働時間から、時給に換算した金額を確認します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "monthlySalary", "label": "月給（円）", "default": 300000, "step": 1000},
+    {"id": "monthlyHours", "label": "月の所定労働時間（時間）", "default": 160, "step": 1}
+  ],
+  "result": {"label": "換算時給", "unit": "円", "formula": "monthlySalary / monthlyHours"},
+  "explanations": ["月給を月の所定労働時間で割り、比較しやすい時給の目安に換算します。", "手当、賞与、固定残業代、欠勤控除などを含めるかで結果が変わるため、用途を揃えて比較してください。"],
+  "related_tools": [
+    {"label": "1時間の人件費計算機", "url": "/tools/hourly-cost-calculator/", "description": "会社側の負担を含めた人件費を見積もります。"},
+    {"label": "残業代計算機", "url": "/tools/overtime-pay-calculator/", "description": "残業時間と割増率から残業代を確認します。"}
+  ],
+  "cta": {"label": "人件費設計を相談する", "url": "/diagnosis.html"}
+}

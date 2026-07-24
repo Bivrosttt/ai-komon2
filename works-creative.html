@@ -1,3 +1,4 @@
+<!-- 2026-07-23: C案ページ骨格適用 — 証拠→劇場→作り方→使い所→隣→CTA ／ラベル日本語化／似た90日帯／90日帯を入口から外す-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -75,6 +76,9 @@
     font-size: 11.5px; color: var(--br-choco); text-align: center; padding: 8px 16px; line-height: 1.6;
   }
   .disclaimer-top b { font-weight: 700; }
+  .proof { background:#FFFBEB; border-bottom:1px solid #FDE68A; padding:13px 0; font-size:12.5px; color:var(--ink); }
+  .proof .container { display:flex; gap:12px; flex-wrap:wrap; }
+  .proof strong { color:var(--navy); letter-spacing:.1em; font-size:11px; }
 
   /* ---------- hero ---------- */
   .hero { position: relative; padding: 56px 0 46px; overflow: hidden; }
@@ -277,6 +281,19 @@
   .reveal-diagram { display: flex; flex-direction: column; gap: 10px; padding: 22px; border: 1px solid rgba(255,255,255,.18); border-radius: 14px; background: rgba(255,255,255,.05); }
   .rd-row { display: flex; align-items: center; gap: 12px; font-size: 12.5px; color: #DCE6F5; }
   .rd-icon { flex: 0 0 auto; width: 36px; height: 36px; border-radius: 8px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); display: grid; place-items: center; font-size: 17px; }
+  .uses { padding:56px 0; background:var(--white); text-align:center; }
+  .use-chips { display:flex; flex-wrap:wrap; justify-content:center; gap:9px; margin-top:22px; }
+  .use-chip { padding:7px 15px; border:1px solid var(--line); border-radius:999px; color:var(--navy); font-size:12.5px; font-weight:700; background:var(--white); }
+  .neighbors { padding:56px 0; }
+  .neighbor-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .neighbor-card { display:block; padding:20px; border:1px solid var(--line); border-radius:10px; background:var(--white); transition:transform .2s,border-color .2s; }
+  .neighbor-card:hover { transform:translateY(-2px); border-color:var(--navy); }
+  .neighbor-card b { display:block; color:var(--navy); font-family:'Noto Serif JP',serif; margin:4px 0 6px; }
+  .neighbor-card p { color:var(--gray); font-size:12px; line-height:1.7; }
+  .cta { padding:64px 0; background:linear-gradient(135deg,var(--navy-deep),var(--navy)); color:#fff; text-align:center; }
+  .cta h2 { font-size:27px; margin-bottom:12px; }
+  .cta p { color:#C7D3E4; font-size:13.5px; margin-bottom:24px; }
+  .cta .btn-outline { color:#fff; border-color:rgba(255,255,255,.45); margin-left:8px; }
 
   footer { background: var(--navy-deep); color: #9FB0C7; font-size: 12.5px; padding: 26px 0; text-align: center; }
   footer a { text-decoration: underline; }
@@ -294,6 +311,7 @@
     .copy-grid { grid-template-columns: 1fr; }
     .reveal-grid { grid-template-columns: 1fr; }
     .reveal-diagram { order: -1; }
+    .neighbor-grid { grid-template-columns:1fr; }
   }
   @media (max-width: 480px) {
     .header-inner { height: 58px; }
@@ -319,7 +337,7 @@
 <header>
   <div class="container header-inner">
     <div class="brand">
-      <a class="back-link" href="works.html" aria-label="作品一覧へ戻る">←</a>
+      <a class="back-link" href="lab.html#craft" aria-label="実物ラボへ戻る">←</a>
       <div class="title-wrap">
         <strong>ブランドクリエイティブ一式</strong>
         <span>AI-GENERATED BRAND ASSETS SAMPLE</span>
@@ -332,12 +350,13 @@
 <div class="disclaimer-top">
   <b>このページは架空のベーカリー「小麦と栗」を題材にしたAI制作サンプルです。</b>店舗・住所・実績は実在しません。ロゴ・写真・動画・ナレーション音声はすべてAI生成です。
 </div>
+<div class="proof" role="note"><div class="container"><strong>ここが証拠</strong><span>ロゴ3案からバナー、SNS、A4チラシ、30秒広告までを、1つの架空ブランドで一貫して制作しています。</span></div></div>
 
 <section class="hero">
   <div class="hero-bg"><img src="assets/works/creative/hero-bread.jpg" alt="小麦と栗の店内に並ぶパンとダニッシュ" loading="eager"></div>
   <div class="container">
     <div class="hero-inner">
-      <span class="eyebrow">ブランディング一式（ロゴ・カラー・バナー・チラシ・SNS）｜AI生成＋コード制作</span>
+      <span class="eyebrow">02 · 劇場｜ブランディング一式（ロゴ・カラー・バナー・チラシ・SNS）｜AI生成＋コード制作</span>
       <h1>1つの商売の販促物、<em>ぜんぶ。</em></h1>
       <p>架空のベーカリー「小麦と栗」を題材に、ロゴ提案からバナー広告、A4チラシ、SNS投稿、30秒の動画広告、キャッチコピーまで———お店を開くときに必要な販促物一式を、AIとコードだけで揃えました。デザイン会社に発注せずとも、ここまで内製できることのサンプルです。</p>
       <div class="hero-tags">
@@ -666,7 +685,7 @@
   <div class="container">
     <div class="reveal-grid">
       <div>
-        <span class="eyebrow">種明かし</span>
+        <span class="eyebrow">03 · 作り方</span>
         <h2>ロゴも写真も、<em>全部AI生成</em>です。</h2>
         <p>「小麦と栗」という店は存在しません。ロゴ3案、店内・商品・店構えの写真、動画のシーン映像とナレーション、すべてAIで生成し、レイアウトと文字組みはコードで直接組んでいます。撮影も、デザイナーや動画制作会社への発注も一切していません。</p>
         <p>ここまでで、実制作にかかった時間は数時間程度です。御社の実際の商品写真・店舗写真に差し替えれば、同じ一式（ロゴ・カラー・バナー・チラシ・SNS・動画広告・コピー）がそのまま作れます。</p>
@@ -683,6 +702,28 @@
   </div>
 </section>
 
+<section class="uses">
+  <div class="container">
+    <div class="sec-head"><span class="eyebrow">04 · 使い所</span><h2>使い所</h2><p>1つのトーンを、接点ごとに崩さず増やしたい場面へ。</p></div>
+    <div class="use-chips"><span class="use-chip">新規出店・新商品</span><span class="use-chip">採用広報</span><span class="use-chip">EC・SNS広告</span><span class="use-chip">展示会・店頭販促</span><span class="use-chip">ブランド刷新</span><span class="use-chip">多言語展開</span></div>
+  </div>
+</section>
+
+<section class="neighbors">
+  <div class="container">
+    <div class="sec-head"><span class="eyebrow">05 · 隣の実物</span><h2>隣の実物</h2><p>販促一式の中で、映像の作り方も確認できます。</p></div>
+    <div class="neighbor-grid">
+      <a class="neighbor-card" href="works-video.html"><span class="eyebrow">VIDEO</span><b>AI生成動画</b><p>撮影なしでつくる実写品質の映像。</p></a>
+      <a class="neighbor-card" href="works-motion.html"><span class="eyebrow">MOTION</span><b>モーション動画</b><p>商品やコピーに動きを与える実演。</p></a>
+      <a class="neighbor-card" href="works-edit.html"><span class="eyebrow">EDIT</span><b>動画編集 Before/After</b><p>素材を字幕・音声まで仕上げる工程。</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container"><h2>御社の商売でも、販促物を一つの線でつなげます。</h2><p>題材・既存素材・届けたい相手をもとに、最初の一式から設計します。</p><a class="btn btn-gold" href="index.html?from=works-creative#contact">無料相談を予約する</a><a class="btn btn-outline" href="lab.html#craft">他の作った物を見る</a></div>
+</section>
+
 <footer>
   <div class="container">
     <p>提供：<a href="index.html">AI顧問室</a>｜中小企業のためのAI顧問サービス｜© 2026 AI顧問室</p>
@@ -690,5 +731,8 @@
   </div>
 </footer>
 
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
 </body>
 </html>

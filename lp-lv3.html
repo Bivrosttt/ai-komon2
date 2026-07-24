@@ -231,6 +231,22 @@
     .compare-box { grid-template-columns: 1fr; }
     .vs { padding: 16px 0; }
   }
+
+  /* Mobile/tablet header fit (auto-added 2026-07-18) */
+  @media (max-width: 600px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { font-size: 18px; white-space: nowrap; }
+    .logo span { display: none; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  }
+  @media (min-width: 601px) and (max-width: 1080px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { white-space: nowrap; }
+    .logo span { display: none; }
+    header nav ul { gap: 12px; }
+    header nav a { font-size: 12px; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  }
 </style>
 <!-- Google tag (gtag.js) -->
 <script src="measurement-config.js"></script>
@@ -260,7 +276,7 @@
       <a href="index.html?from=lp-lv3#contact" class="btn btn-gold">無料相談を予約する（30分）</a>
       <a href="#recipe" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">自動化レシピを見る</a>
     </div>
-    <p class="hero-note">※ 無料相談だけでも、自動化すべき業務の優先順位が明確になります。売り込みは一切しません。</p>
+    <p class="hero-note">※ 無料相談だけでも、自動化すべき業務の優先順位が明確になります。無理な勧誘はありません。相談後の判断は自由です。</p>
   </div>
 </div>
 
@@ -415,57 +431,31 @@
   <div class="container">
     <span class="section-label">PRICING</span>
     <h2 class="section-title">料金プラン</h2>
-    <p class="section-lead">自動化の実装まで、顧問が直接手を動かします。月1件のペースなのか、月3件のペースなのか——関与の深さで選べます。</p>
-    <div class="price-grid">
-      <div class="plan">
-        <div class="name">ライト</div>
-        <div class="position">AI活用の相談役</div>
-        <div class="amount">15<small>万円/月（税別）</small></div>
-        <ul>
-          <li>チャット相談（平日随時）</li>
-          <li>定例ミーティング 月1回60分</li>
-          <li>AIツール選定・活用アドバイス</li>
-          <li class="na">自動化の実装代行</li>
-          <li class="na">社員向けAI研修</li>
-        </ul>
-        <a href="index.html?from=lp-lv3#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
-      </div>
+    <p class="section-lead">自動化の実装まで顧問が直接手を動かし、必要なペースと支援範囲を個別設計します。</p>
+    <div class="price-grid" style="max-width:560px;margin:0 auto;grid-template-columns:minmax(0,1fr);">
       <div class="plan featured">
-        <div class="plan-badge">実装月1件を積み上げたい方に</div>
-        <div class="name">スタンダード</div>
-        <div class="position">自動化の伴走者</div>
-        <div class="amount">25<small>万円/月（税別）</small></div>
+        <div class="plan-badge">個別設計</div>
+        <div class="name">AI顧問プラン</div>
+        <div class="position">自動化を仕組みに変える伴走者</div>
+        <div class="amount">50<small>万円〜/月（税別）</small></div>
         <ul>
-          <li>チャット相談（平日随時）</li>
-          <li>定例ミーティング 月2回</li>
-          <li>自動化の実装 月1件込み</li>
+          <li>チャット相談・定例ミーティング</li>
+          <li>自動化の設計・実装支援</li>
           <li>AI導入ロードマップ策定・伴走</li>
-          <li>社員向けAI研修 四半期1回</li>
+          <li>エラー監視・野良自動化の棚卸しも実施</li>
+          <li>社員研修・訪問は必要に応じて設計</li>
         </ul>
         <a href="index.html?from=lp-lv3#contact" class="btn btn-navy">無料相談で詳しく聞く</a>
       </div>
-      <div class="plan">
-        <div class="name">プレミアム</div>
-        <div class="position">自動化を仕組み化する社外AI役員</div>
-        <div class="amount">50<small>万円/月（税別）</small></div>
-        <ul>
-          <li>チャット相談（優先対応）</li>
-          <li>定例ミーティング 月2回（経営会議同席可）</li>
-          <li>自動化の実装 月3件目安</li>
-          <li>エラー監視・野良自動化の棚卸しも実施</li>
-          <li>社員向けAI研修 毎月</li>
-        </ul>
-        <a href="index.html?from=lp-lv3#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
-      </div>
     </div>
-    <p class="price-note">自動化を月3件ずつ積み上げていきたい場合は、プレミアムプランが目安です（想定ペースであり、確約するものではありません）。最低契約期間は3ヶ月。実装内容が大きい場合は個別にお見積りします。</p>
+    <p class="price-note">実装ペースは診断後に個別設計します。最低契約期間は3ヶ月。大規模な実装は個別にお見積りします。</p>
   </div>
 </section>
 
 <section class="cta" id="contact">
   <div class="container">
     <h2>専用AIを、「動く」仕組みに変えませんか。</h2>
-    <p>無料相談（30分）で、御社のAIを自動化（Lv.4）に引き上げるための優先順位をお伝えします。<br>売り込みは一切しません。</p>
+    <p>無料相談（30分）で、御社のAIを自動化（Lv.4）に引き上げるための優先順位をお伝えします。<br>無理な勧誘はありません。相談後の判断は自由です。</p>
     <a href="index.html?from=lp-lv3#contact" class="btn btn-gold" style="font-size:17px; padding:18px 48px;">無料相談を予約する</a>
     <p class="cta-sub">まずは現在地を知りたい方は → <a href="diagnosis.html">1分でわかるレベル診断</a></p>
   </div>

@@ -283,6 +283,22 @@
     nav { display: none; }
     .price-grid { grid-template-columns: 1fr; }
   }
+
+  /* Mobile/tablet header fit (auto-added 2026-07-18) */
+  @media (max-width: 600px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { font-size: 18px; white-space: nowrap; }
+    .logo span { display: none; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  }
+  @media (min-width: 601px) and (max-width: 1080px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { white-space: nowrap; }
+    .logo span { display: none; }
+    header nav ul { gap: 12px; }
+    header nav a { font-size: 12px; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  }
 </style>
 <!-- Google tag (gtag.js) -->
 <script src="measurement-config.js"></script>
@@ -417,48 +433,23 @@
   <div class="container">
     <span class="section-label fade-in">PRICING</span>
     <h2 class="section-title fade-in">料金プラン</h2>
-    <p class="section-lead fade-in">関与の深さで選べる3つのプラン。最低契約期間は3ヶ月ですが、動き出すのは契約したその月からです。</p>
-    <div class="price-grid">
-      <div class="plan fade-in">
-        <div class="name">ライト</div>
-        <div class="position">AI経営の相談役</div>
-        <div class="amount">15<small>万円/月（税別）</small></div>
-        <ul>
-          <li>チャット相談（平日随時）</li>
-          <li>定例ミーティング 月1回60分</li>
-          <li>対応はオンライン完結</li>
-          <li>AIツール選定・活用アドバイス</li>
-        </ul>
-        <a href="index.html?from=lp-speed#contact" class="btn btn-outline-navy">無料相談で詳しく聞く</a>
-      </div>
+    <p class="section-lead fade-in">月50万円を基準に必要な支援範囲を設計し、契約したその月から動き出します。</p>
+    <div class="price-grid" style="max-width:560px;margin:0 auto;grid-template-columns:minmax(0,1fr);">
       <div class="plan featured fade-in">
-        <div class="plan-badge">おすすめ</div>
-        <div class="name">スタンダード</div>
-        <div class="position">AI導入の伴走者</div>
-        <div class="amount">25<small>万円/月（税別）</small></div>
+        <div class="plan-badge">個別設計</div>
+        <div class="name">AI顧問プラン</div>
+        <div class="position">契約月から動けるAI導入の伴走者</div>
+        <div class="amount">50<small>万円〜/月（税別）</small></div>
         <ul>
-          <li>チャット相談（平日随時）</li>
-          <li>定例ミーティング 月2回</li>
+          <li>チャット相談・定例ミーティング</li>
           <li>AI導入ロードマップ策定・伴走</li>
-          <li>小規模な自動化の実装 月1件</li>
-          <li>社員向けAI研修 四半期1回</li>
+          <li>業務自動化の実装支援</li>
+          <li>訪問・社員研修は必要に応じて設計</li>
         </ul>
         <a href="index.html?from=lp-speed#contact" class="btn btn-navy">無料相談で詳しく聞く</a>
       </div>
-      <div class="plan fade-in">
-        <div class="name">プレミアム</div>
-        <div class="position">社外AI役員</div>
-        <div class="amount">50<small>万円/月（税別）</small></div>
-        <ul>
-          <li>チャット相談（優先対応）</li>
-          <li>定例ミーティング 月2回（経営会議同席可）</li>
-          <li>AI経営戦略の立案・推進</li>
-          <li>業務自動化の実装 月3件目安</li>
-        </ul>
-        <a href="index.html?from=lp-speed#contact" class="btn btn-outline-navy">無料相談で詳しく聞く</a>
-      </div>
     </div>
-    <p class="price-note fade-in"><strong>最低契約期間は3ヶ月。</strong>そのあとはプランを月単位で見直し可能です。「まず小さく始めて、様子を見ながら深さを調整する」——採用ではできない、顧問だからできる速さです。</p>
+    <p class="price-note fade-in"><strong>最低契約期間は3ヶ月。</strong>支援範囲は月単位で見直せます。採用のような待ち時間なく、課題に合わせて動けるのが顧問契約の利点です。</p>
   </div>
 </section>
 
@@ -472,7 +463,7 @@
       <a href="index.html?from=lp-speed#contact" class="btn btn-gold">無料相談を予約する（30分）</a>
       <a href="diagnosis.html" class="btn btn-outline">1分でレベル診断</a>
     </div>
-    <p class="final-note fade-in">※ 売り込みは一切しません。相談だけでもお気軽にどうぞ。</p>
+    <p class="final-note fade-in">※ 無理な勧誘はありません。相談後の判断は自由です。</p>
   </div>
 </section>
 

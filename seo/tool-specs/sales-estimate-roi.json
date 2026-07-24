@@ -1,0 +1,40 @@
+{
+  "status": "ready-for-review",
+  "keyword": "営業効率化 見積もり 時間",
+  "slug": "sales-estimate-roi",
+  "title": "営業・見積もり工数シミュレーター",
+  "description": "見積件数・作成時間・人件費・削減率を入力して、営業業務の削減時間と費用対効果を試算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "monthlyQuotes", "label": "月間の見積件数", "default": 20, "step": 1},
+    {"id": "minutesPerQuote", "label": "1件の作成時間（分）", "default": 120, "step": 5},
+    {"id": "revisionsPerQuote", "label": "1件あたり修正回数", "default": 1, "step": 1},
+    {"id": "revisionMinutes", "label": "1回の修正時間（分）", "default": 15, "step": 5},
+    {"id": "hourlyRate", "label": "営業担当の時間単価（円）", "default": 3500, "step": 100},
+    {"id": "reductionRate", "label": "AI導入後の削減率（%）", "default": 50, "step": 5},
+    {"id": "setupCost", "label": "導入費用の想定（円）", "default": 300000, "step": 10000}
+  ],
+  "results": [
+    {"id": "monthly-hours", "label": "現在の月間工数", "unit": "時間", "formula": "monthlyQuotes * minutesPerQuote / 60 + monthlyQuotes * revisionsPerQuote * revisionMinutes / 60"},
+    {"id": "monthly-cost", "label": "現在の月間人件費", "unit": "円", "formula": "monthlyQuotes * minutesPerQuote * hourlyRate / 60 + monthlyQuotes * revisionsPerQuote * revisionMinutes * hourlyRate / 60"},
+    {"id": "monthly-savings", "label": "削減できる月間コストの目安", "unit": "円", "formula": "(monthlyQuotes * minutesPerQuote * hourlyRate / 60 + monthlyQuotes * revisionsPerQuote * revisionMinutes * hourlyRate / 60) * reductionRate / 100"},
+    {"id": "annual-savings", "label": "削減できる年間コストの目安", "unit": "円", "formula": "((monthlyQuotes * minutesPerQuote * hourlyRate / 60 + monthlyQuotes * revisionsPerQuote * revisionMinutes * hourlyRate / 60) * reductionRate / 100) * 12"},
+    {"id": "break-even", "label": "導入費用の回収目安", "unit": "か月", "formula": "setupCost / ((monthlyQuotes * minutesPerQuote * hourlyRate / 60 + monthlyQuotes * revisionsPerQuote * revisionMinutes * hourlyRate / 60) * reductionRate / 100)"}
+  ],
+  "explanations": [
+    "営業担当が見積書を作成・修正する時間を入力すると、AIやワークフロー改善で削減できる工数と人件費の目安を計算できます。",
+    "この結果は入力値に基づく試算です。実際の削減率、確認工数、導入費用、売上への影響は業務内容によって変わるため、導入前後の実測値で更新してください。"
+  ],
+  "faq": [
+    {"q": "売上や受注率も計算できますか？", "a": "現在は見積作成にかかる工数と人件費の試算に絞っています。受注率や粗利は別途、実績データを使って確認してください。"},
+    {"q": "削減率は何％にすればよいですか？", "a": "最初は20〜50％など複数のケースで試算し、導入後の実測値で更新するのがおすすめです。"},
+    {"q": "入力内容は保存されますか？", "a": "いいえ。入力値はブラウザ内で計算し、サーバーへ送信しません。"}
+  ],
+  "related_tools": [
+    {"label": "見積書AI 体験デモ", "url": "/demo-quote.html", "description": "営業メモから見積書を整える体験デモです。"},
+    {"label": "AI導入効果のデータ", "url": "/data.html", "description": "AI導入と業務削減に関するデータを確認します。"},
+    {"label": "AI導入リスク診断", "url": "/tools/ai-risk-check/", "description": "導入前に社内ルールと運用体制を確認します。"}
+  ],
+  "cta": {"label": "営業業務のAI導入を相談する", "url": "/demo-quote.html"}
+}

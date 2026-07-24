@@ -1,0 +1,28 @@
+{
+  "status": "ready-for-review",
+  "keyword": "タスク 優先順位 つけ方",
+  "slug": "task-priority-score",
+  "title": "タスク優先度スコア計算機",
+  "description": "緊急度・影響度・作業量を1〜5で入力して、着手順を決めるための優先度スコアを計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "urgency", "label": "緊急度（1〜5）", "default": 3, "step": 1},
+    {"id": "impact", "label": "影響度（1〜5）", "default": 3, "step": 1},
+    {"id": "effort", "label": "作業量（1〜5）", "default": 2, "step": 1}
+  ],
+  "result": {"label": "優先度スコア", "unit": "点", "formula": "urgency * impact / effort"},
+  "explanations": [
+    "タスクを感覚だけで並べず、急ぎか、影響が大きいか、どれだけ時間がかかるかを分けて考えます。",
+    "スコアは会話を始めるための目安です。締切、依存関係、担当者の状況も合わせて最終判断してください。"
+  ],
+  "faq": [
+    {"q": "何点以上なら最優先ですか？", "a": "固定の基準はありません。同じ基準で複数タスクを比較し、締切や依存関係を加味してください。"},
+    {"q": "作業量が0の場合はどうなりますか？", "a": "作業量は1以上で入力してください。0ではスコアを比較できません。"}
+  ],
+  "related_tools": [
+    {"label": "チーム稼働キャパシティ計算", "url": "/tools/project-capacity-planner/", "description": "優先タスクを処理できる稼働余力を確認します。"},
+    {"label": "文章文字数カウンター", "url": "/tools/text-counter/", "description": "依頼文やタスクのメモを短く整えます。"}
+  ],
+  "cta": {"label": "業務の整理方法を相談する", "url": "/diagnosis.html"}
+}

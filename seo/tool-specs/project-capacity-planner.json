@@ -1,0 +1,29 @@
+{
+  "status": "ready-for-review",
+  "keyword": "チーム 稼働時間 計算",
+  "slug": "project-capacity-planner",
+  "title": "チーム稼働キャパシティ計算機",
+  "description": "人数・週の稼働時間・期間・会議時間から、プロジェクトに使える残りの稼働時間を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "members", "label": "チーム人数", "default": 4, "step": 1},
+    {"id": "hoursPerWeek", "label": "1人あたり週の稼働時間", "default": 30, "step": 1},
+    {"id": "weeks", "label": "計画期間（週）", "default": 4, "step": 1},
+    {"id": "meetingHoursPerWeek", "label": "チーム全体の週次会議時間", "default": 8, "step": 1}
+  ],
+  "result": {"label": "プロジェクトに使える残り時間", "unit": "時間", "formula": "members * hoursPerWeek * weeks - meetingHoursPerWeek * weeks"},
+  "explanations": [
+    "人員数だけで計画を立てず、会議などの固定時間を引いて、実際に使える稼働量を見積もります。",
+    "割り込み、休暇、レビュー、障害対応などは別途バッファとして見込んでください。結果は約束できる納期ではありません。"
+  ],
+  "faq": [
+    {"q": "週の稼働時間は40時間でよいですか？", "a": "会議・定常業務・休暇などを引いた、対象プロジェクトへ使える時間を入力してください。"},
+    {"q": "複数プロジェクトを掛け持ちする場合は？", "a": "プロジェクトごとに配分した時間を入力し、合計が実際の稼働時間を超えないよう確認してください。"}
+  ],
+  "related_tools": [
+    {"label": "タスク優先度スコア計算機", "url": "/tools/task-priority-score/", "description": "限られた時間で先にやる仕事を整理します。"},
+    {"label": "会議コスト計算機", "url": "/tools/meeting-cost-calculator/", "description": "固定会議に使っている時間を確認します。"}
+  ],
+  "cta": {"label": "業務の進め方を相談する", "url": "/diagnosis.html"}
+}

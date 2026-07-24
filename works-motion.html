@@ -1,3 +1,4 @@
+<!-- 2026-07-23: C案ページ骨格適用 — 証拠→劇場→作り方→使い所→隣→CTA ／ラベル日本語化／似た90日帯／90日帯を入口から外す-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -425,6 +426,15 @@
     font-size: 14px;
     font-weight: 700;
   }
+  .proof { background:#FFFBEB; border-bottom:1px solid #FDE68A; padding:14px 0; font-size:13.5px; color:var(--ink); }
+  .proof .container { display:flex; gap:14px; flex-wrap:wrap; }
+  .proof strong { color:var(--navy); letter-spacing:.1em; font-size:11px; }
+  .neighbors { background:var(--white); }
+  .neighbor-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .neighbor-card { padding:20px; border:1px solid var(--line); border-radius:8px; background:var(--white); transition:transform .2s,border-color .2s; }
+  .neighbor-card:hover { transform:translateY(-2px); border-color:var(--navy); }
+  .neighbor-card b { display:block; color:var(--navy); font-family:'Noto Serif JP',serif; margin:4px 0 6px; }
+  .neighbor-card p { font-size:12.5px; color:var(--gray); line-height:1.65; }
 
   /* CTA */
   .cta {
@@ -453,12 +463,29 @@
     .time-label { min-width: 72px; font-size: 11.5px; }
     .ctrl-btn { padding: 8px 14px; font-size: 12px; }
     .s3-badges { gap: calc(14px * var(--mscale)); }
+    .neighbor-grid { grid-template-columns:1fr; }
   }
   @media (max-width: 480px) {
     .movie-titlebar .movie-tag { display: none; }
     .logo span { display: none; }
     .logo strong { font-size: 19px; }
     .header-cta { padding: 9px 16px; font-size: 13px; }
+  }
+
+  /* Mobile/tablet header fit (auto-added 2026-07-18) */
+  @media (max-width: 600px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { font-size: 18px; white-space: nowrap; }
+    .logo span { display: none; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  }
+  @media (min-width: 601px) and (max-width: 1080px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { white-space: nowrap; }
+    .logo span { display: none; }
+    header nav ul { gap: 12px; }
+    header nav a { font-size: 12px; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
   }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -471,11 +498,13 @@
   <div class="container header-inner">
     <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
     <div class="header-right">
-      <a href="works.html" class="textlink">作品一覧へ</a>
+      <a href="lab.html#craft" class="textlink">実物ラボ</a>
       <a href="index.html#contact" class="btn btn-gold header-cta">無料相談</a>
     </div>
   </div>
 </header>
+
+<div class="proof" role="note"><div class="container"><strong>ここが証拠</strong><span>23秒のモーション動画を、編集タイムラインなしでHTML/CSS/JavaScriptだけから再生・設計しています。</span></div></div>
 
 <div class="demo-hero">
   <div class="container">
@@ -496,7 +525,7 @@
 
 <section class="movie-section" id="movie">
   <div class="container">
-    <span class="section-label">SHOWCASE</span>
+    <span class="section-label">02 · 劇場</span>
     <h2 class="section-title">サンプルベーカリー 新商品紹介ムービー</h2>
     <p class="section-lead">▶を押すと約23秒のムービーが再生されます。カット割り・テキストの動き・タイミングまで、すべてコードで設計しています。</p>
 
@@ -593,7 +622,7 @@
 
 <section class="how">
   <div class="container">
-    <span class="section-label">HOW IT WORKS</span>
+    <span class="section-label">03 · 作り方</span>
     <h2 class="section-title">実際の制作では、こう活用します</h2>
 
     <div style="background:#fff; border:1px solid var(--line, #DDE4EC); border-left:4px solid #C9A227; border-radius:0 8px 8px 0; padding:24px 28px; margin-bottom:20px;">
@@ -607,12 +636,25 @@
     </div>
 
     <div class="chip-row" style="margin-top:40px;">
-      <span class="chip-heading" style="align-self:center; margin-right:6px;">コードから作れる動画コンテンツ：</span>
+      <span class="chip-heading" style="align-self:center; margin-right:6px;">04 · 使い所｜コードから作れる動画コンテンツ：</span>
       <span class="chip">商品紹介</span>
       <span class="chip">会社紹介</span>
       <span class="chip">操作マニュアル動画</span>
       <span class="chip">採用ムービー</span>
       <span class="chip">SNS広告</span>
+    </div>
+  </div>
+</section>
+
+<section class="neighbors">
+  <div class="container">
+    <span class="section-label">05 · 隣の実物</span>
+    <h2 class="section-title">隣の実物</h2>
+    <p class="section-lead">動画の前後工程も、同じブランドトーンでつなげられます。</p>
+    <div class="neighbor-grid">
+      <a class="neighbor-card" href="works-video.html"><span class="section-label">VIDEO</span><b>AI生成動画</b><p>撮影なしで素材映像をつくる実演。</p></a>
+      <a class="neighbor-card" href="works-edit.html"><span class="section-label">EDIT</span><b>動画編集 Before/After</b><p>字幕・音声・BGMまで仕上げる工程。</p></a>
+      <a class="neighbor-card" href="works-creative.html"><span class="section-label">CREATIVE</span><b>ブランドクリエイティブ一式</b><p>動画を販促物全体へ展開する。</p></a>
     </div>
   </div>
 </section>
@@ -623,7 +665,7 @@
     <p>「こんな動画を作りたい」というイメージだけで構いません。<br>まずは無料相談で、御社のご要望をお聞かせください。</p>
     <div class="cta-ctas">
       <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
-      <a href="works.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">他の作品を見る</a>
+      <a href="lab.html#craft" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">他の作った物を見る</a>
     </div>
   </div>
 </section>
@@ -944,5 +986,8 @@
 })();
 </script>
 
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
 </body>
 </html>

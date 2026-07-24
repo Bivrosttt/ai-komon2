@@ -1,0 +1,986 @@
+<!-- 2026-07-22: SAIYOブラッシュアップ — 候補者ポートレート写真をカード／シートに組み込み -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>採用管理デモ（採用カンバン・AI評価表）｜AI顧問室</title>
+<meta name="description" content="架空の採用管理クラウド「SAIYO」のフル機能デモです。4レーン看板で候補者を進め、面接メモから5軸評価表・合否メール下書きをAIが生成。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="採用管理デモ（採用カンバン・AI評価表）｜AI顧問室">
+<meta property="og:description" content="架空の採用管理クラウド「SAIYO」のフル機能デモです。カンバン看板で候補者を進め、面接メモから評価表・合否メール下書きをAIが生成します。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-saiyo.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-saiyo.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #7C3AED; --purple-deep: #6D28D9; --purple-light: #8B5CF6;
+    --lavender: #F5F3FF; --lavender-mid: #EDE9FE; --lavender-deep: #DDD6FE;
+    --pri: #7C3AED; --pri-deep: #6D28D9; --pri-bg: #F5F3FF;
+    --ink: #1F1635; --gray: #5B5478; --gray-soft: #8B85A8;
+    --line: #E4DEFF; --bg-soft: #F5F3FF; --white: #FFFFFF;
+    --teal: #0D9488; --teal-bg: #CCFBF1;
+    --amber: #B45309; --amber-bg: #FEF3C7;
+    --red: #DC2626; --red-bg: #FEE2E2;
+    --green: #059669; --green-bg: #D1FAE5;
+    --lane-docs: #F5F3FF; --lane-first: #EDE9FE; --lane-final: #E9D5FF; --lane-offer: #DDD6FE;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'M PLUS Rounded 1c', sans-serif; color: var(--ink); line-height: 1.7; background: var(--bg-soft);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { line-height: 1.4; font-weight: 800; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea, select { font-family: inherit; }
+  img, svg { max-width: 100%; }
+  ::selection { background: var(--lavender-deep); color: var(--ink); }
+
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: var(--ink); color: #C4B5FD; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 2px solid var(--purple);
+  }
+  .demo-frame-bar b { color: #DDD6FE; font-weight: 700; }
+  .demo-frame-bar .frame-links { display: flex; gap: 8px; flex: 0 0 auto; align-items: center; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 999px; white-space: nowrap; transition: background .15s;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.12); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; gap: 8px; height: 52px; }
+    .demo-frame-bar .frame-text { line-height: 1.5; }
+    .demo-frame-bar .frame-link { padding: 4px 9px; font-size: 10.5px; }
+    body { padding-top: 52px; }
+  }
+
+  #view-login {
+    min-height: calc(100vh - 44px); display: grid; grid-template-columns: 1.05fr 1fr;
+    background: var(--bg-soft);
+  }
+  #view-login.hide { display: none; }
+  .login-hero {
+    position: relative; background: linear-gradient(155deg, #1F1635 0%, #3B2563 45%, #5B21B6 100%);
+    color: #FAF5FF; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+  }
+  .login-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(124,58,237,.25) 0%, transparent 50%);
+  }
+  .login-hero::after {
+    content: '→'; position: absolute; right: 48px; bottom: 14%; font-size: 100px; font-weight: 800;
+    color: rgba(124,58,237,.15); line-height: 1;
+  }
+  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .24em; color: #C4B5FD; font-weight: 700; margin-bottom: 18px; position: relative; }
+  .login-hero h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 16em; position: relative; }
+  .login-hero h2 em { font-style: normal; color: #DDD6FE; }
+  .login-hero p { font-size: 14px; color: #A78BFA; max-width: 28em; line-height: 1.9; position: relative; }
+  .hero-dots { display: flex; gap: 8px; margin-top: 28px; position: relative; }
+  .hero-dots span { width: 10px; height: 10px; border-radius: 50%; background: var(--purple); opacity: .7; }
+  .hero-dots span:nth-child(even) { background: rgba(255,255,255,.25); opacity: 1; }
+  .login-panel {
+    display: flex; align-items: center; justify-content: center; padding: 40px 28px;
+    background: linear-gradient(180deg, #fff 0%, var(--bg-soft) 100%);
+  }
+  .login-card {
+    width: 100%; max-width: 400px; background: #fff; border-radius: 20px; padding: 40px 36px 30px;
+    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(124,58,237,.12); border-top: 4px solid var(--purple);
+  }
+  .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .login-logo .k { font-size: 28px; font-weight: 800; color: var(--purple); letter-spacing: .06em; }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .14em; }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .login-field { margin-bottom: 14px; }
+  .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
+  .login-field input {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 12px; font-size: 14px;
+    color: var(--gray-soft); background: var(--lavender); cursor: not-allowed;
+  }
+  .login-btn {
+    width: 100%; padding: 13px; border: none; border-radius: 999px; background: var(--purple); color: #fff;
+    font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-btn:hover { filter: brightness(1.06); }
+  .login-btn:active { transform: scale(.99); }
+  .login-btn:disabled { opacity: .75; cursor: wait; }
+  .login-spin {
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.35);
+    border-top-color: #fff; animation: spin .7s linear infinite; display: none;
+  }
+  .login-btn.loading .login-spin { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .login-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center; border-top: 1px solid var(--line); padding-top: 14px; }
+  @media (max-width: 860px) {
+    #view-login { grid-template-columns: 1fr; }
+    .login-hero { min-height: 220px; padding: 36px 28px; }
+    .login-hero::after { display: none; }
+  }
+
+  #view-app { display: none; min-height: calc(100vh - 44px); flex-direction: column; }
+  #view-app.show { display: flex; }
+
+  .app-top {
+    height: 52px; flex: 0 0 auto; background: #fff; border-bottom: 2px solid var(--purple);
+    display: flex; align-items: center; gap: 12px; padding: 0 16px; position: sticky; top: 44px; z-index: 80;
+    box-shadow: 0 4px 20px rgba(124,58,237,.08);
+  }
+  .top-brand { display: flex; align-items: baseline; gap: 6px; flex: 0 0 auto; }
+  .top-brand .k { font-size: 17px; font-weight: 800; color: var(--purple); letter-spacing: .06em; }
+  .top-brand .tag-en { font-size: 9px; color: var(--gray-soft); letter-spacing: .12em; }
+  .top-center { flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0; flex-wrap: wrap; }
+  .job-select-wrap { flex: 0 1 auto; min-width: 0; }
+  .job-select {
+    padding: 7px 32px 7px 12px; border-radius: 999px; border: 1px solid var(--line);
+    background: var(--lavender) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237C3AED' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;
+    font-size: 12.5px; font-weight: 700; color: var(--ink); max-width: 240px; appearance: none; cursor: pointer;
+  }
+  .kpi-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .kpi-chip {
+    font-size: 10.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px;
+    background: var(--lavender-mid); color: var(--purple-deep); border: 1px solid var(--line); white-space: nowrap;
+  }
+  .kpi-chip b { color: var(--purple); }
+  .top-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; margin-left: auto; }
+  .top-user { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--gray); }
+  .top-user .avatar {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--purple); color: #fff;
+    display: grid; place-items: center; font-size: 11px; font-weight: 800;
+  }
+  .logout-link { font-size: 11px; color: var(--gray-soft); padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; }
+  .logout-link:hover { color: var(--purple); border-color: var(--purple); }
+
+  .board-wrap { flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; background: var(--bg-soft); }
+
+  .kanban-scroll {
+    flex: 1; overflow-x: auto; overflow-y: hidden; min-height: 0;
+    -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+  }
+  .kanban {
+    display: grid; grid-template-columns: repeat(4, minmax(240px, 1fr)); gap: 0;
+    min-height: 100%; min-width: min(100%, 960px); height: 100%;
+  }
+  .lane {
+    display: flex; flex-direction: column; min-height: 0; border-right: 1px solid rgba(124,58,237,.12);
+  }
+  .lane:last-child { border-right: none; }
+  .lane[data-lane="docs"] { background: var(--lane-docs); }
+  .lane[data-lane="first"] { background: var(--lane-first); }
+  .lane[data-lane="final"] { background: var(--lane-final); }
+  .lane[data-lane="offer"] { background: var(--lane-offer); }
+  .lane-head {
+    flex: 0 0 auto; padding: 14px 14px 12px; border-bottom: 2px solid rgba(124,58,237,.15);
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .lane-head h3 { font-size: 14px; color: var(--purple-deep); font-weight: 800; }
+  .lane-count {
+    font-size: 12px; font-weight: 800; background: rgba(124,58,237,.12); color: var(--purple);
+    padding: 2px 10px; border-radius: 999px;
+  }
+  .lane-body { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 10px; }
+
+  .card {
+    background: #fff; border-radius: 16px; padding: 12px 12px 10px;
+    border: 1px solid var(--line); box-shadow: 0 4px 16px rgba(124,58,237,.08);
+    cursor: pointer; transition: transform .15s, box-shadow .15s, border-color .15s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,.14); border-color: var(--purple-light); }
+  .card.demo-star { border-color: var(--purple); box-shadow: 0 0 0 2px rgba(124,58,237,.15); }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+  .card-avatar {
+    width: 40px; height: 40px; border-radius: 50%; background: var(--lavender-mid); color: var(--purple-deep);
+    display: grid; place-items: center; font-size: 12px; font-weight: 800; flex: 0 0 auto;
+    overflow: hidden; border: 2px solid #fff; box-shadow: 0 2px 8px rgba(124,58,237,.18);
+  }
+  .card-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sheet-avatar {
+    width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex: 0 0 auto;
+    border: 3px solid var(--lavender-mid); box-shadow: 0 4px 14px rgba(124,58,237,.2);
+    background: var(--lavender-mid); display: grid; place-items: center; font-weight: 800; color: var(--purple-deep);
+  }
+  .sheet-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sheet-head-row { display: flex; align-items: center; gap: 14px; }
+  .card-main { flex: 1; min-width: 0; }
+  .card-name { font-size: 13.5px; font-weight: 800; color: var(--ink); }
+  .card-job { font-size: 11px; color: var(--gray-soft); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-meta { font-size: 11px; color: var(--gray); margin-bottom: 8px; line-height: 1.5; }
+  .card-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 4px; }
+  .card-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tag {
+    font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+    background: var(--lavender); color: var(--purple-deep);
+  }
+  .tag-memo { background: var(--teal-bg); color: var(--teal); }
+  .btn-advance {
+    font-size: 10.5px; font-weight: 800; padding: 5px 10px; border-radius: 999px;
+    border: 1px solid var(--purple); background: transparent; color: var(--purple-deep);
+    transition: background .15s, color .15s;
+  }
+  .btn-advance:hover { background: var(--purple); color: #fff; }
+
+  .sheet-overlay {
+    position: fixed; inset: 44px 0 0 0; background: rgba(31,22,53,.45); z-index: 400;
+    opacity: 0; pointer-events: none; transition: opacity .25s ease;
+  }
+  .sheet-overlay.open { opacity: 1; pointer-events: auto; }
+  .detail-sheet {
+    position: fixed; top: 44px; right: 0; bottom: 0; width: min(500px, 100vw); z-index: 410;
+    background: #fff; border-left: 3px solid var(--purple); box-shadow: -16px 0 48px rgba(124,58,237,.2);
+    transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .detail-sheet.open { transform: translateX(0); }
+  .sheet-head {
+    flex: 0 0 auto; padding: 16px 18px; background: linear-gradient(135deg, var(--purple-deep) 0%, var(--purple) 100%);
+    color: #FAF5FF; position: relative;
+  }
+  .sheet-close {
+    position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.12); color: #fff;
+    display: grid; place-items: center; font-size: 18px; line-height: 1;
+  }
+  .sheet-close:hover { background: rgba(255,255,255,.22); }
+  .sheet-head h2 { font-size: 17px; margin-bottom: 4px; padding-right: 36px; }
+  .sheet-head .sub { font-size: 12px; color: #DDD6FE; }
+  .sheet-lane {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+    font-size: 12px; font-weight: 700; color: var(--purple-deep);
+    background: rgba(255,255,255,.9); padding: 4px 12px; border-radius: 999px;
+  }
+  .sheet-body { flex: 1; overflow-y: auto; padding: 16px 18px 24px; }
+
+  .memo-box {
+    background: var(--lavender); border-radius: 14px; padding: 12px 14px; margin-bottom: 16px;
+    border: 1px solid var(--line);
+  }
+  .memo-box .memo-label { font-size: 10px; color: var(--gray-soft); font-weight: 800; margin-bottom: 6px; letter-spacing: .08em; }
+  .memo-box .memo-meta { font-size: 11px; color: var(--purple); font-weight: 700; margin-bottom: 8px; }
+  .memo-box .memo-text { font-size: 13px; color: var(--ink); line-height: 1.75; white-space: pre-wrap; }
+  .memo-empty { font-size: 12.5px; color: var(--gray-soft); text-align: center; padding: 20px 12px; }
+
+  .sheet-section { margin-bottom: 18px; }
+  .sheet-section h4 { font-size: 13px; color: var(--purple-deep); margin-bottom: 10px; }
+
+  .ai-start-box {
+    text-align: center; padding: 24px 16px; background: linear-gradient(180deg, var(--lavender) 0%, #fff 100%);
+    border-radius: 14px; border: 1px dashed var(--purple-light);
+  }
+  .ai-start-box p { font-size: 13px; color: var(--gray); margin-bottom: 14px; line-height: 1.8; }
+  .btn-ai-run {
+    padding: 12px 24px; border: none; border-radius: 999px; background: var(--purple); color: #fff;
+    font-weight: 800; font-size: 13.5px; transition: filter .15s;
+  }
+  .btn-ai-run:hover { filter: brightness(1.08); }
+  .scan-box { text-align: center; padding: 28px 16px; }
+  .scan-spinner {
+    width: 36px; height: 36px; border-radius: 50%; border: 3px solid var(--line);
+    border-top-color: var(--purple); animation: spin .8s linear infinite; margin: 0 auto 14px;
+  }
+  .scan-text { font-size: 13px; font-weight: 700; color: var(--ink); }
+
+  .eval-table { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+  .eval-table th, .eval-table td { padding: 8px 6px; text-align: left; font-size: 12px; border-bottom: 1px solid var(--line); }
+  .eval-table th { color: var(--gray-soft); font-weight: 700; font-size: 10.5px; }
+  .eval-bar-wrap { display: flex; align-items: center; gap: 8px; }
+  .eval-bar { flex: 1; height: 8px; background: var(--lavender); border-radius: 999px; overflow: hidden; }
+  .eval-bar-fill { height: 100%; background: linear-gradient(90deg, var(--purple-light), var(--purple)); border-radius: 999px; transition: width .6s ease; }
+  .eval-score { font-size: 12px; font-weight: 800; color: var(--purple); min-width: 28px; text-align: right; }
+  .eval-summary {
+    font-size: 12.5px; line-height: 1.85; color: var(--ink); background: var(--lavender); border-radius: 12px;
+    padding: 12px 14px; margin-bottom: 12px; border: 1px solid var(--line);
+  }
+  .verdict-badge {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px;
+    font-size: 12px; font-weight: 800; margin-bottom: 14px;
+  }
+  .verdict-pass { background: var(--green-bg); color: var(--green); }
+  .verdict-hold { background: var(--amber-bg); color: var(--amber); }
+
+  .radar-wrap { display: flex; justify-content: center; margin-bottom: 14px; }
+  .radar-svg { width: 180px; height: 180px; }
+
+  .mail-tabs { display: flex; gap: 0; margin-bottom: 14px; border-bottom: 2px solid var(--line); }
+  .mail-tab {
+    flex: 1; padding: 10px 8px; border: none; background: none; font-size: 12px; font-weight: 700;
+    color: var(--gray-soft); border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color .15s;
+  }
+  .mail-tab:hover { color: var(--ink); }
+  .mail-tab.active { color: var(--purple); border-bottom-color: var(--purple); }
+  .mail-tab.pass-tab.active { color: var(--green); border-bottom-color: var(--green); }
+  .mail-tab.reject-tab.active { color: var(--red); border-bottom-color: var(--red); }
+
+  .ai-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .ai-count { font-size: 12px; color: var(--gray-soft); font-weight: 700; }
+  .btn-skip { font-size: 11px; color: var(--gray-soft); background: none; border: none; padding: 4px 8px; }
+  .btn-skip:hover { color: var(--ink); }
+  .draft-box {
+    background: var(--lavender); border: 1px solid var(--line); border-radius: 14px; padding: 14px;
+    min-height: 160px; margin-bottom: 10px;
+  }
+  .draft-subject { font-size: 11px; font-weight: 800; color: var(--purple); margin-bottom: 8px; }
+  .draft-text-preview { font-size: 13px; line-height: 1.85; white-space: pre-wrap; color: var(--ink); }
+  .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--purple); animation: blink .8s step-end infinite; vertical-align: text-bottom; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .draft-note {
+    display: flex; align-items: flex-start; gap: 6px; font-size: 11px; color: var(--gray-soft); margin-bottom: 12px;
+  }
+  .btn-approve-draft {
+    width: 100%; padding: 12px; border: none; border-radius: 999px; background: var(--purple); color: #fff;
+    font-weight: 800; font-size: 13.5px; display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-approve-draft.reject { background: var(--gray); }
+  .btn-approve-draft.pass { background: var(--green); }
+  .btn-approve-draft:disabled { opacity: .6; cursor: wait; }
+  .draft-reset { text-align: center; margin-top: 10px; }
+  .draft-reset button { font-size: 11px; color: var(--gray-soft); background: none; border: none; padding: 6px; }
+  .draft-reset button:hover { color: var(--purple-deep); }
+  .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 800; }
+  .badge-human { background: var(--lavender-mid); color: var(--purple-deep); }
+  .complete-banner {
+    display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 14px;
+    background: var(--green-bg); color: var(--green); font-size: 12.5px; font-weight: 700;
+  }
+
+  #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
+  .toast {
+    background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 14px; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
+  }
+  @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+
+  .komon-cta {
+    background: linear-gradient(135deg, #1F1635 0%, #3B2563 55%, #5B21B6 100%);
+    color: #fff; padding: 76px 24px 40px; text-align: center;
+  }
+  .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
+  .komon-cta .cta-label { display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: #C4B5FD; font-weight: 700; margin-bottom: 16px; }
+  .komon-cta h2 { font-size: 30px; margin-bottom: 16px; line-height: 1.5; }
+  .komon-cta h2 em { font-style: normal; color: #DDD6FE; }
+  .komon-cta p.lead { font-size: 14.5px; color: #A78BFA; margin-bottom: 32px; line-height: 1.9; }
+  .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn { display: inline-block; padding: 15px 34px; border-radius: 999px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s; }
+  .btn:hover { opacity: .87; }
+  .btn-accent { background: var(--purple); color: #fff; }
+  .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #8B85A8; }
+  .komon-cta .cta-foot a { color: #C4B5FD; }
+  .komon-cta .cta-foot a:hover { color: #fff; }
+
+  @media (max-width: 900px) {
+    .top-center { flex: 1 1 100%; order: 3; margin-top: -4px; }
+    .app-top { flex-wrap: wrap; height: auto; padding: 10px 12px; gap: 8px; }
+    .job-select { max-width: 100%; width: 100%; }
+    .kanban { min-width: 960px; height: calc(100vh - 140px); }
+    .komon-cta h2 { font-size: 23px; }
+    .komon-cta { padding: 56px 18px 32px; }
+  }
+  @media (max-width: 480px) {
+    .detail-sheet { width: 100vw; }
+    .top-user span { display: none; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> が制作した架空プロダクトのデモです。データはすべてサンプルで、実際のサービスではありません。</span>
+  <div class="frame-links">
+    <a href="works.html" class="frame-link">作品一覧</a>
+    <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+  </div>
+</div>
+
+<div id="view-login">
+  <div class="login-hero">
+    <div class="hero-kicker">HIRING PIPELINE BOARD</div>
+    <h2>候補者は、<em>レーンで進む。</em></h2>
+    <p>書類→一次→最終→内定の4レーン看板。カードを開けば面接メモからAIが5軸評価表と合否メールを生成。一覧ではなく、流れが主語の採用デスク。</p>
+    <div class="hero-dots"><span></span><span></span><span></span><span></span></div>
+  </div>
+  <div class="login-panel">
+    <div class="login-card">
+      <div class="login-logo"><span class="k">SAIYO</span><span class="tag-en">HIRING BOARD</span></div>
+      <p class="login-sub">カードを進めて、採用を前に。</p>
+      <div class="login-field">
+        <label for="loginMail">メールアドレス</label>
+        <input id="loginMail" type="text" value="demo@corp-hire.example" readonly>
+      </div>
+      <div class="login-field">
+        <label for="loginPass">パスワード</label>
+        <input id="loginPass" type="password" value="dummydummy" readonly>
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">
+        <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
+      </button>
+      <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
+    </div>
+  </div>
+</div>
+
+<div id="view-app">
+  <header class="app-top">
+    <div class="top-brand"><span class="k">SAIYO</span><span class="tag-en">HIRING BOARD</span></div>
+    <div class="top-center">
+      <div class="job-select-wrap">
+        <select class="job-select" id="jobSelect" onchange="onJobFilterChange()">
+          <option value="all">すべての求人</option>
+        </select>
+      </div>
+      <div class="kpi-chips" id="kpiChips"></div>
+    </div>
+    <div class="top-actions">
+      <div class="top-user">
+        <div class="avatar">採</div>
+        <span>デモ 採用</span>
+      </div>
+      <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+    </div>
+  </header>
+
+  <div class="board-wrap">
+    <div class="kanban-scroll">
+      <div class="kanban" id="kanbanBoard"></div>
+    </div>
+  </div>
+</div>
+
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+<aside class="detail-sheet" id="detailSheet" aria-hidden="true">
+  <div class="sheet-head">
+    <button class="sheet-close" onclick="closeSheet()" aria-label="閉じる">×</button>
+    <div class="sheet-head-row">
+      <div class="sheet-avatar" id="sheetAvatar"></div>
+      <div style="min-width:0;flex:1;">
+        <h2 id="sheetTitle">—</h2>
+        <p class="sub" id="sheetSub">—</p>
+        <div class="sheet-lane" id="sheetLane">—</div>
+      </div>
+    </div>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+</aside>
+
+<div class="komon-cta">
+  <div class="cta-inner">
+    <span class="cta-label">AI KOMONSHITSU</span>
+    <h2>このようなシステムを、<em>御社専用に。</em></h2>
+    <p class="lead">「SAIYO」は本デモのために作った架空のプロダクトです。AI顧問室では、採用カンバンに面接メモ→評価表→合否メールのAIフローを組み込んだ採用管理システムを構築します。</p>
+    <div class="cta-btn-row">
+      <a href="index.html?from=works-saiyo#contact" class="btn btn-accent">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
+    </div>
+    <div class="cta-foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+
+<script>
+var TODAY_STR = '2026-07-22';
+var LANE_ORDER = ['docs', 'first', 'final', 'offer'];
+var LANE_LABEL = { docs: '書類', first: '一次面接', final: '最終', offer: '内定' };
+var LANE_NEXT = { docs: 'first', first: 'final', final: 'offer' };
+
+var JOBS = [
+  { id: 'job-001', title: 'フロントエンドエンジニア', dept: 'エンジニアリング' },
+  { id: 'job-002', title: 'カスタマーサクセス', dept: 'CS' },
+  { id: 'job-003', title: '採用アシスタント', dept: '人事' }
+];
+
+var CANDIDATES = [
+  { id: 'c-001', name: '田中 健太', initials: '田', photo: 'assets/saiyo/c-001.jpg', jobId: 'job-001', lane: 'first', interviewer: '山本 CTO', applied: '2026-07-10', hasMemo: true, demoAi: true },
+  { id: 'c-002', name: '佐藤 美咲', initials: '佐', photo: 'assets/saiyo/c-002.jpg', jobId: 'job-001', lane: 'docs', interviewer: '—', applied: '2026-07-19', hasMemo: false, demoAi: false },
+  { id: 'c-003', name: '鈴木 大輔', initials: '鈴', photo: 'assets/saiyo/c-003.jpg', jobId: 'job-001', lane: 'offer', interviewer: '山本 CTO', applied: '2026-06-28', hasMemo: true, demoAi: false },
+  { id: 'c-005', name: '山田 花子', initials: '山', photo: 'assets/saiyo/c-005.jpg', jobId: 'job-002', lane: 'final', interviewer: 'CS部長 伊藤', applied: '2026-07-05', hasMemo: true, demoAi: false },
+  { id: 'c-007', name: '高橋 ゆい', initials: '高', photo: 'assets/saiyo/c-007.jpg', jobId: 'job-003', lane: 'first', interviewer: '採用 デモ', applied: '2026-07-14', hasMemo: true, demoAi: false },
+  { id: 'c-008', name: '渡辺 亮', initials: '渡', photo: 'assets/saiyo/c-008.jpg', jobId: 'job-003', lane: 'docs', interviewer: '—', applied: '2026-07-20', hasMemo: false, demoAi: false },
+  { id: 'c-009', name: '小林 あかり', initials: '小', photo: 'assets/saiyo/c-009.jpg', jobId: 'job-002', lane: 'final', interviewer: 'CS部長 伊藤', applied: '2026-07-08', hasMemo: true, demoAi: false },
+  { id: 'c-010', name: '加藤 翔', initials: '加', photo: 'assets/saiyo/c-010.jpg', jobId: 'job-002', lane: 'offer', interviewer: 'CS部長 伊藤', applied: '2026-06-20', hasMemo: true, demoAi: false }
+];
+
+var INTERVIEW_MEMOS = {
+  'c-001': {
+    date: '2026-07-21', interviewer: '山本 CTO', duration: '45分',
+    memo: '【自己紹介】\n前職でReact/Next.jsを3年。デザインシステム構築経験あり。\n\n【技術面】\n・TypeScript/Reactの理解は深い。Hooks/Context/状態管理の説明が的確\n・パフォーマンス最適化（memo, lazy load）の実例を具体的に説明\n・CSS-in-EmotionとTailwind両方経験。デザイナーとの協業フローも理解\n\n【カルチャー】\n・「ユーザー視点でUI改善提案をした事例」を聞いた際、NPS改善の具体数値付きで回答\n・チーム内のコードレビュー文化を重視。前職で週次レビューを主導\n\n【懸念点】\n・バックエンド（Node/API設計）の経験は浅め。ただし学習意欲は高い\n\n【総合】\n技術力・コミュニケーションともに高水準。最終面接（ペアプロ）推奨。',
+    eval: {
+      scores: [
+        { label: '技術力', score: 4, max: 5 },
+        { label: 'コミュニケーション', score: 5, max: 5 },
+        { label: 'カルチャーフィット', score: 4, max: 5 },
+        { label: '成長意欲', score: 5, max: 5 },
+        { label: '即戦力度', score: 4, max: 5 }
+      ],
+      summary: 'React/TypeScriptの実務経験3年。デザインシステム構築・パフォーマンス最適化の具体例を提示できており、技術面は高評価。ユーザー視点の改善提案やコードレビュー文化への共感も確認。バックエンド経験は浅いが学習意欲が高く、最終面接（ペアプロ）での判断を推奨。',
+      verdict: 'pass',
+      verdictLabel: '最終面接へ進める（推奨）'
+    },
+    mailPass: {
+      subject: '【株式会社ヒューマンテック】フロントエンドエンジニア 最終面接のご案内',
+      body: '田中 健太 様\n\nお世話になっております。\n株式会社ヒューマンテック 採用担当のデモです。\n\n先日は1次面接にお越しいただき、誠にありがとうございました。\n\n慎重に選考を進めさせていただいた結果、\n最終面接（ペアプログラミング形式・60分）にお進みいただきたく、\nご連絡いたしました。\n\n【候補日時】\n・7月28日（月）14:00〜15:00\n・7月29日（火）10:00〜11:00\n・7月30日（水）16:00〜17:00\n\nご都合の良い日時を2〜3候補、ご返信ください。\n\n引き続きよろしくお願いいたします。\n\n株式会社ヒューマンテック\n採用担当 デモ'
+    },
+    mailReject: {
+      subject: '【株式会社ヒューマンテック】選考結果のご連絡',
+      body: '田中 健太 様\n\nお世話になっております。\n株式会社ヒューマンテック 採用担当のデモです。\n\nこの度は貴重なお時間をいただき、誠にありがとうございました。\n\n慎重に選考を進めさせていただきましたが、\n誠に残念ながら今回は見送らせていただく運びとなりました。\n\n今後のご活躍を心よりお祈り申し上げます。\n\n株式会社ヒューマンテック\n採用担当 デモ'
+    }
+  },
+  'c-005': {
+    date: '2026-07-18', interviewer: 'CS部長 伊藤', duration: '40分',
+    memo: '【経歴】SaaS CS 2年。オンボーディング設計経験。\n【所感】顧客対応力は高いが、データ分析（SQL）経験不足。\n最終面接でケーススタディ予定。'
+  },
+  'c-007': {
+    date: '2026-07-20', interviewer: '採用 デモ', duration: '30分',
+    memo: '【所感】人事アシスタント経験1年。日程調整・ATS操作に慣れている。\n即日稼働可能。次回：実務シミュレーション。'
+  },
+  'c-009': {
+    date: '2026-07-16', interviewer: 'CS部長 伊藤', duration: '50分',
+    memo: '【経歴】BtoB SaaS CS 3年。解約率改善プロジェクトリード経験。\n【所感】顧客課題の深掘りが的確。最終面接で役員同席予定。'
+  },
+  'c-003': {
+    date: '2026-07-15', interviewer: '山本 CTO', duration: '60分',
+    memo: '【最終面接】ペアプロ合格。チームフィットも問題なし。内定提示済み・承諾待ち。'
+  },
+  'c-010': {
+    date: '2026-07-12', interviewer: 'CS部長 伊藤', duration: '45分',
+    memo: '【最終面接】ケーススタディ高評価。内定承諾済み。入社日調整中。'
+  }
+};
+
+var loggedIn = false;
+var activeJobFilter = 'all';
+var activeCardId = null;
+var aiState = null;
+var c001Runtime = { evalDone: false, mailSent: false, mailType: 'pass' };
+var activeMailTab = 'pass';
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function showToast(msg) {
+  var host = document.getElementById('toastHost');
+  var el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  host.appendChild(el);
+  setTimeout(function () { el.remove(); }, 2700);
+}
+function findJob(id) { return JOBS.filter(function (j) { return j.id === id; })[0]; }
+function findCand(id) { return CANDIDATES.filter(function (c) { return c.id === id; })[0]; }
+function filteredCandidates() {
+  if (activeJobFilter === 'all') return CANDIDATES.slice();
+  return CANDIDATES.filter(function (c) { return c.jobId === activeJobFilter; });
+}
+
+function renderJobSelect() {
+  var sel = document.getElementById('jobSelect');
+  var html = '<option value="all">すべての求人</option>';
+  JOBS.forEach(function (j) {
+    html += '<option value="' + j.id + '"' + (activeJobFilter === j.id ? ' selected' : '') + '>' + escapeHtml(j.title) + '</option>';
+  });
+  sel.innerHTML = html;
+}
+
+function renderKpiChips() {
+  var list = filteredCandidates();
+  var offer = list.filter(function (c) { return c.lane === 'offer'; }).length;
+  var first = list.filter(function (c) { return c.lane === 'first'; }).length;
+  document.getElementById('kpiChips').innerHTML =
+    '<span class="kpi-chip">アクティブ <b>' + list.length + '</b></span>' +
+    '<span class="kpi-chip">面接中 <b>' + first + '</b></span>' +
+    '<span class="kpi-chip">内定 <b>' + offer + '</b></span>';
+}
+
+function renderKanban() {
+  var list = filteredCandidates();
+  var board = document.getElementById('kanbanBoard');
+  board.innerHTML = LANE_ORDER.map(function (lane) {
+    var cards = list.filter(function (c) { return c.lane === lane; });
+    var cardsHtml = cards.map(function (c) { return cardHtml(c, lane); }).join('');
+    return '<div class="lane" data-lane="' + lane + '">' +
+      '<div class="lane-head"><h3>' + LANE_LABEL[lane] + '</h3><span class="lane-count">' + cards.length + '</span></div>' +
+      '<div class="lane-body">' + (cardsHtml || '<p style="font-size:12px;color:var(--gray-soft);padding:8px;">カードなし</p>') + '</div></div>';
+  }).join('');
+}
+
+function avatarHtml(c, cls) {
+  if (c.photo) {
+    return '<div class="' + cls + '"><img src="' + escapeHtml(c.photo) + '" alt="' + escapeHtml(c.name) + '" loading="lazy"></div>';
+  }
+  return '<div class="' + cls + '">' + escapeHtml(c.initials) + '</div>';
+}
+
+function cardHtml(c, lane) {
+  var job = findJob(c.jobId);
+  var advanceHtml = LANE_NEXT[lane]
+    ? '<button class="btn-advance" onclick="event.stopPropagation();advanceCard(\'' + c.id + '\')">進める →</button>'
+    : '';
+  var memoTag = c.hasMemo ? '<span class="tag tag-memo">メモあり</span>' : '';
+  return '<article class="card' + (c.demoAi ? ' demo-star' : '') + '" onclick="openSheet(\'' + c.id + '\')" role="button" tabindex="0">' +
+    '<div class="card-top">' +
+    avatarHtml(c, 'card-avatar') +
+    '<div class="card-main"><div class="card-name">' + escapeHtml(c.name) + '</div>' +
+    '<div class="card-job">' + escapeHtml(job ? job.title : '—') + '</div></div></div>' +
+    '<div class="card-meta">担当: ' + escapeHtml(c.interviewer) + ' · 応募 ' + escapeHtml(c.applied.slice(5)) + '</div>' +
+    '<div class="card-foot"><div class="card-tags">' + memoTag +
+    (c.demoAi ? '<span class="tag">AIデモ</span>' : '') + '</div>' + advanceHtml + '</div></article>';
+}
+
+function renderBoard() {
+  renderKpiChips();
+  renderKanban();
+}
+
+function onJobFilterChange() {
+  activeJobFilter = document.getElementById('jobSelect').value;
+  renderBoard();
+  if (activeCardId) {
+    var c = findCand(activeCardId);
+    if (!c || (activeJobFilter !== 'all' && c.jobId !== activeJobFilter)) closeSheet();
+  }
+}
+
+function advanceCard(id) {
+  var c = findCand(id);
+  if (!c || !LANE_NEXT[c.lane]) return;
+  c.lane = LANE_NEXT[c.lane];
+  showToast(c.name + ' を「' + LANE_LABEL[c.lane] + '」へ進めました');
+  renderBoard();
+  if (activeCardId === id) {
+    document.getElementById('sheetLane').textContent = LANE_LABEL[c.lane];
+  }
+}
+
+function openSheet(id) {
+  var c = findCand(id);
+  if (!c) return;
+  activeCardId = id;
+  location.hash = 'card/' + id;
+  var job = findJob(c.jobId);
+  document.getElementById('sheetTitle').textContent = c.name;
+  document.getElementById('sheetSub').textContent = (job ? job.title : '—') + ' · ' + (job ? job.dept : '');
+  document.getElementById('sheetLane').textContent = LANE_LABEL[c.lane];
+  var av = document.getElementById('sheetAvatar');
+  if (c.photo) {
+    av.innerHTML = '<img src="' + escapeHtml(c.photo) + '" alt="' + escapeHtml(c.name) + '">';
+  } else {
+    av.textContent = c.initials;
+  }
+  renderSheetBody(c);
+  document.getElementById('sheetOverlay').classList.add('open');
+  document.getElementById('detailSheet').classList.add('open');
+  document.getElementById('detailSheet').setAttribute('aria-hidden', 'false');
+}
+
+function closeSheet() {
+  activeCardId = null;
+  if (aiState) aiState.timers.forEach(function (t) { clearTimeout(t); });
+  aiState = null;
+  document.getElementById('sheetOverlay').classList.remove('open');
+  document.getElementById('detailSheet').classList.remove('open');
+  document.getElementById('detailSheet').setAttribute('aria-hidden', 'true');
+  if (isLoggedIn() && location.hash.replace('#', '').indexOf('card/') === 0) location.hash = 'board';
+}
+
+function renderSheetBody(c) {
+  var memo = INTERVIEW_MEMOS[c.id];
+  var memoHtml = '';
+  if (memo) {
+    memoHtml = '<div class="memo-box"><div class="memo-label">面接メモ</div>' +
+      '<div class="memo-meta">' + escapeHtml(memo.date) + ' · ' + escapeHtml(memo.interviewer) + ' · ' + escapeHtml(memo.duration) + '</div>' +
+      '<div class="memo-text">' + escapeHtml(memo.memo) + '</div></div>';
+  } else {
+    memoHtml = '<div class="memo-box"><div class="memo-empty">面接メモはまだありません</div></div>';
+  }
+  document.getElementById('sheetBody').innerHTML = memoHtml + '<div id="aiPane"></div>';
+  setupAiPane(c);
+}
+
+function setupAiPane(c) {
+  var pane = document.getElementById('aiPane');
+  if (!c.demoAi) {
+    pane.innerHTML = '<div class="ai-start-box"><p>AI評価表・合否メールのフル演出は<br><b>田中 健太</b>さんのカードで体験できます。</p></div>';
+    return;
+  }
+  if (c001Runtime.mailSent) {
+    pane.innerHTML = '<div class="complete-banner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>' +
+      (c001Runtime.mailType === 'pass' ? '通過メール送信済 — 最終面接レーンへ移動' : 'お見送りメール送信済') + '</div>' +
+      '<div class="draft-reset"><button onclick="resetC001()">↺ デモをリセット</button></div>';
+    return;
+  }
+  if (c001Runtime.evalDone) {
+    renderEvalResult();
+    return;
+  }
+  pane.innerHTML = '<div class="sheet-section"><h4>AI評価・合否メール</h4>' +
+    '<div class="ai-start-box"><p>面接メモをもとに5軸評価表と<br>通過/お見送りメール下書きを生成します。</p>' +
+    '<button class="btn-ai-run" onclick="startAiEval()">AIで評価表を生成</button></div></div>';
+}
+
+function startAiEval() {
+  if (!activeCardId || activeCardId !== 'c-001') return;
+  aiState = { phase: 'scanning', timers: [], runId: {} };
+  var myRun = aiState.runId;
+  document.getElementById('aiPane').innerHTML =
+    '<div class="scan-box"><div class="scan-spinner"></div><div class="scan-text">面接メモを分析中…</div>' +
+    '<div style="font-size:12px;color:var(--gray-soft);margin-top:8px;">5軸評価・合否判断を生成</div></div>';
+  var t = setTimeout(function () {
+    if (!aiState || aiState.runId !== myRun) return;
+    c001Runtime.evalDone = true;
+    renderEvalResult();
+  }, 1600);
+  aiState.timers.push(t);
+}
+
+function renderEvalResult() {
+  var memo = INTERVIEW_MEMOS['c-001'];
+  var ev = memo.eval;
+  var radarHtml = buildRadarSvg(ev.scores);
+  var tableHtml = ev.scores.map(function (s) {
+    var pct = Math.round((s.score / s.max) * 100);
+    return '<tr><td>' + escapeHtml(s.label) + '</td><td><div class="eval-bar-wrap">' +
+      '<div class="eval-bar"><div class="eval-bar-fill" style="width:' + pct + '%"></div></div>' +
+      '<span class="eval-score">' + s.score + '/' + s.max + '</span></div></td></tr>';
+  }).join('');
+  document.getElementById('aiPane').innerHTML =
+    '<div class="sheet-section"><h4>AI評価表（5軸）</h4>' +
+    '<div class="radar-wrap">' + radarHtml + '</div>' +
+    '<table class="eval-table"><thead><tr><th>評価軸</th><th>スコア</th></tr></thead><tbody>' + tableHtml + '</tbody></table>' +
+    '<div class="eval-summary">' + escapeHtml(ev.summary) + '</div>' +
+    '<span class="verdict-badge verdict-pass">✓ ' + escapeHtml(ev.verdictLabel) + '</span></div>' +
+    '<div id="mailPaneWrap"></div>';
+  renderMailPane(findCand('c-001'));
+}
+
+function buildRadarSvg(scores) {
+  var cx = 90, cy = 90, r = 70, n = scores.length;
+  var levels = [0.2, 0.4, 0.6, 0.8, 1];
+  var grid = levels.map(function (lv) {
+    var pts = [];
+    for (var i = 0; i < n; i++) {
+      var a = (Math.PI * 2 * i / n) - Math.PI / 2;
+      pts.push((cx + r * lv * Math.cos(a)).toFixed(1) + ',' + (cy + r * lv * Math.sin(a)).toFixed(1));
+    }
+    return '<polygon points="' + pts.join(' ') + '" fill="none" stroke="#E4DEFF" stroke-width="1"/>';
+  }).join('');
+  var dataPts = [];
+  var labelPts = [];
+  for (var j = 0; j < n; j++) {
+    var ang = (Math.PI * 2 * j / n) - Math.PI / 2;
+    var val = scores[j].score / scores[j].max;
+    dataPts.push((cx + r * val * Math.cos(ang)).toFixed(1) + ',' + (cy + r * val * Math.sin(ang)).toFixed(1));
+    var lx = cx + (r + 18) * Math.cos(ang);
+    var ly = cy + (r + 18) * Math.sin(ang);
+    labelPts.push('<text x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '" text-anchor="middle" dominant-baseline="middle" font-size="9" fill="#5B5478" font-weight="700">' + escapeHtml(scores[j].label.slice(0, 4)) + '</text>');
+  }
+  return '<svg class="radar-svg" viewBox="0 0 180 180">' + grid +
+    '<polygon points="' + dataPts.join(' ') + '" fill="rgba(124,58,237,.25)" stroke="#7C3AED" stroke-width="2"/>' +
+    labelPts.join('') + '</svg>';
+}
+
+function renderMailPane(c) {
+  var wrap = document.getElementById('mailPaneWrap') || document.getElementById('aiPane');
+  if (!wrap) return;
+  var memo = INTERVIEW_MEMOS['c-001'];
+  wrap.innerHTML = (c001Runtime.evalDone ? '' : '') +
+    '<div class="sheet-section"><h4>合否メール下書き</h4>' +
+    '<div class="mail-tabs">' +
+    '<button class="mail-tab pass-tab' + (activeMailTab === 'pass' ? ' active' : '') + '" onclick="switchMailTab(\'pass\')">通過メール</button>' +
+    '<button class="mail-tab reject-tab' + (activeMailTab === 'reject' ? ' active' : '') + '" onclick="switchMailTab(\'reject\')">お見送り</button></div>' +
+    '<div id="mailDraftPane"></div></div>';
+  renderMailDraftPane();
+}
+
+function switchMailTab(tab) {
+  activeMailTab = tab;
+  document.querySelectorAll('.mail-tab').forEach(function (b) {
+    b.classList.toggle('active', (tab === 'pass' && b.classList.contains('pass-tab')) || (tab === 'reject' && b.classList.contains('reject-tab')));
+  });
+  renderMailDraftPane();
+}
+
+function renderMailDraftPane() {
+  var pane = document.getElementById('mailDraftPane');
+  if (!pane) return;
+  if (c001Runtime.mailSent) return;
+  var memo = INTERVIEW_MEMOS['c-001'];
+  var mail = activeMailTab === 'pass' ? memo.mailPass : memo.mailReject;
+  if (!aiState || aiState.phase === 'idle' || aiState.phase === 'ready') {
+    if (!aiState || aiState.phase !== 'ready') {
+      pane.innerHTML = '<div class="ai-start-box"><p>' + (activeMailTab === 'pass' ? '通過' : 'お見送り') + 'メール下書きをAIが生成します。<br>送信するとレーンが進みます。</p>' +
+        '<button class="btn-ai-run" onclick="startMailDraft()">メール下書きを生成</button></div>';
+      return;
+    }
+  }
+  if (aiState && aiState.phase === 'typing') return;
+  if (aiState && aiState.phase === 'ready') {
+    pane.innerHTML =
+      '<div class="ai-toolbar"><span class="ai-count">下書きが作成できました</span></div>' +
+      '<div class="draft-box"><div class="draft-subject">件名: ' + escapeHtml(mail.subject) + '</div>' +
+      '<textarea class="draft-text-preview" style="width:100%;min-height:180px;border:none;background:transparent;resize:vertical;" id="mailEditor">' + escapeHtml(mail.body) + '</textarea></div>' +
+      '<div class="draft-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>内容を確認のうえ送信してください。<span class="badge badge-human">人の確認</span></div>' +
+      '<button class="btn-approve-draft ' + (activeMailTab === 'pass' ? 'pass' : 'reject') + '" id="sendMailBtn" onclick="sendMail()">内容を確認して送信</button>' +
+      '<div class="draft-reset"><button onclick="resetMailDraft()">↺ やり直し</button></div>';
+  }
+}
+
+function startMailDraft() {
+  var memo = INTERVIEW_MEMOS['c-001'];
+  var mail = activeMailTab === 'pass' ? memo.mailPass : memo.mailReject;
+  var fullText = '件名: ' + mail.subject + '\n\n' + mail.body;
+  aiState = aiState || { timers: [], runId: null };
+  var myRun = {};
+  aiState.runId = myRun;
+  aiState.phase = 'typing';
+  document.getElementById('mailDraftPane').innerHTML =
+    '<div class="ai-toolbar"><span class="ai-count">メール下書きを作成中…</span>' +
+    '<button class="btn-skip" onclick="skipMailTyping()">⏩ すべて表示</button></div>' +
+    '<div class="draft-box"><div class="draft-text-preview"><span id="mailText"></span><span class="draft-cursor"></span></div></div>';
+  typeMailText('mailText', fullText, 4500, myRun, function () {
+    if (!aiState || aiState.runId !== myRun) return;
+    aiState.phase = 'ready';
+    renderMailDraftPane();
+  });
+}
+
+function typeMailText(elId, fullText, duration, myRun, onDone) {
+  var tickMs = 42;
+  var totalTicks = Math.ceil(duration / tickMs);
+  var charsPerTick = Math.max(1, Math.ceil(fullText.length / totalTicks));
+  var shown = 0;
+  function tick() {
+    if (!aiState || aiState.runId !== myRun) return;
+    shown = Math.min(fullText.length, shown + charsPerTick);
+    var el = document.getElementById(elId);
+    if (el) el.textContent = fullText.slice(0, shown);
+    if (shown >= fullText.length) { if (onDone) onDone(); return; }
+    aiState.timers.push(setTimeout(tick, tickMs));
+  }
+  aiState.timers.push(setTimeout(tick, tickMs));
+}
+
+function skipMailTyping() {
+  if (!aiState) return;
+  aiState.timers.forEach(function (id) { clearTimeout(id); });
+  aiState.timers = [];
+  aiState.runId = {};
+  aiState.phase = 'ready';
+  renderMailDraftPane();
+}
+
+function resetMailDraft() {
+  if (aiState) aiState.timers.forEach(function (t) { clearTimeout(t); });
+  aiState = { phase: 'idle', timers: [], runId: null };
+  renderMailDraftPane();
+}
+
+function sendMail() {
+  if (!aiState || aiState.phase !== 'ready') return;
+  var btn = document.getElementById('sendMailBtn');
+  if (btn) btn.disabled = true;
+  c001Runtime.mailSent = true;
+  c001Runtime.mailType = activeMailTab;
+  var c = findCand('c-001');
+  if (c && activeMailTab === 'pass' && LANE_NEXT[c.lane]) {
+    c.lane = LANE_NEXT[c.lane];
+    showToast('通過メールを送信 — 「' + LANE_LABEL[c.lane] + '」へ進みました');
+  } else {
+    showToast('お見送りメールを送信しました（デモ）');
+  }
+  renderBoard();
+  document.getElementById('sheetLane').textContent = c ? LANE_LABEL[c.lane] : '—';
+  setupAiPane(c);
+}
+
+function resetC001() {
+  if (aiState) aiState.timers.forEach(function (t) { clearTimeout(t); });
+  aiState = null;
+  c001Runtime = { evalDone: false, mailSent: false, mailType: 'pass' };
+  activeMailTab = 'pass';
+  var c = findCand('c-001');
+  if (c) c.lane = 'first';
+  renderBoard();
+  if (activeCardId === 'c-001') renderSheetBody(c);
+  showToast('田中 健太さんのデモをリセットしました');
+}
+
+function isLoggedIn() { return loggedIn; }
+
+function showLoginScreen() {
+  closeSheet();
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+}
+
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+  renderJobSelect();
+  renderBoard();
+}
+
+function handleRoute() {
+  var hash = location.hash.replace('#', '') || 'login';
+  if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
+  if (hash === 'login') { showLoginScreen(); return; }
+  showAppScreen();
+  if (hash.indexOf('card/') === 0) {
+    var id = hash.split('/')[1];
+    if (findCand(id)) openSheet(id);
+    else location.hash = 'board';
+    return;
+  }
+  if (hash !== 'board') location.hash = 'board';
+  closeSheet();
+}
+
+function doLogin() {
+  var btn = document.getElementById('loginBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+  setTimeout(function () {
+    loggedIn = true;
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    location.hash = 'board';
+    handleRoute();
+  }, 900);
+}
+
+function doLogout() {
+  loggedIn = false;
+  location.hash = 'login';
+  handleRoute();
+  showToast('ログアウトしました（デモ）');
+}
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') loggedIn = true;
+  handleRoute();
+});
+</script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!-- 2026-07-22: BtoB営業AI活用提案書デック（8枚・960×540）— 株式会社サンプルテック向け架空サンプル -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>営業AI活用 ご提案書｜株式会社サンプルテック 様</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2447;
+    --navy-deep:#071A35;
+    --navy-mid:#19376D;
+    --gold:#C9A227;
+    --gold-light:#E0C76A;
+    --gold-deep:#9A7A18;
+    --paper:#F7F9FC;
+    --paper2:#EEF2F7;
+    --ink:#1A2433;
+    --gray:#5B6B7F;
+    --gray-light:#8A99AB;
+    --line:#DDE4EC;
+    --white:#FFFFFF;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  @page{ size:254mm 142.9mm; margin:0; }
+  html,body{ font-family:'Noto Sans JP',sans-serif; color:var(--ink); background:#3A4A62; }
+  .serif{ font-family:'Noto Serif JP',serif; }
+  .slide{
+    width:960px; height:540px; page-break-after:always; position:relative;
+    overflow:hidden; background:var(--paper); margin:0 auto;
+  }
+  .slide.dark{ background:var(--navy); color:var(--paper); }
+
+  .gridtex{
+    position:absolute; inset:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(11,36,71,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11,36,71,.04) 1px, transparent 1px);
+    background-size:28px 28px;
+  }
+  .slide.dark .gridtex{
+    background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  }
+
+  .head{
+    position:relative; display:flex; align-items:flex-end; justify-content:space-between;
+    padding:36px 56px 14px; border-bottom:1px solid var(--line);
+  }
+  .slide.dark .head{ border-bottom:1px solid rgba(255,255,255,.14); }
+  .head .kicker{ font-size:10.5px; letter-spacing:.32em; color:var(--gold-deep); font-weight:700; margin-bottom:8px; }
+  .slide.dark .head .kicker{ color:var(--gold-light); }
+  .head h2{ font-size:26px; font-weight:700; color:var(--navy); letter-spacing:.02em; }
+  .slide.dark .head h2{ color:var(--white); }
+  .head .idx{ font-family:'Noto Serif JP',serif; font-size:12.5px; color:var(--gray-light); letter-spacing:.14em; padding-bottom:3px; }
+  .slide.dark .head .idx{ color:rgba(255,255,255,.45); }
+
+  .foot{
+    position:absolute; left:0; right:0; bottom:0; height:32px;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 56px; border-top:1px solid var(--line); font-size:9px; letter-spacing:.14em; color:var(--gray);
+  }
+  .slide.dark .foot{ border-top:1px solid rgba(255,255,255,.14); color:rgba(255,255,255,.42); }
+  .foot .fnum{ font-family:'Noto Serif JP',serif; }
+
+  .body{ padding:22px 56px 0; position:relative; }
+
+  /* ============ 1. COVER ============ */
+  .cover{ display:flex; background:linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 52%, var(--navy-mid) 100%); }
+  .cover .left{
+    width:560px; padding:48px 0 0 56px; display:flex; flex-direction:column; height:100%; position:relative; z-index:2;
+  }
+  .cover .right{
+    flex:1; position:relative; overflow:hidden;
+    background:
+      radial-gradient(circle at 70% 35%, rgba(201,162,39,.18) 0%, transparent 42%),
+      linear-gradient(160deg, rgba(25,55,109,.85) 0%, rgba(7,26,53,.2) 100%);
+  }
+  .cover .right::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size:32px 32px;
+    opacity:.55;
+  }
+  .cover .right .viz{
+    position:absolute; inset:36px 28px 36px 20px; border:1px solid rgba(255,255,255,.18);
+    border-radius:4px; display:flex; flex-direction:column; justify-content:center; gap:14px; padding:28px 24px;
+    background:rgba(7,26,53,.35); backdrop-filter:blur(2px);
+  }
+  .cover .viz .vrow{ display:flex; align-items:center; gap:12px; }
+  .cover .viz .vicon{
+    width:36px; height:36px; border-radius:50%; border:1px solid rgba(201,162,39,.55);
+    display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--gold-light); flex-shrink:0;
+  }
+  .cover .viz .vtext{ font-size:11px; color:#C7D3E4; line-height:1.55; }
+  .cover .viz .vtext b{ display:block; font-size:12px; color:#fff; margin-bottom:2px; font-weight:700; }
+  .cover .kicker-row{ display:flex; align-items:center; gap:10px; margin-bottom:28px; }
+  .cover .kicker-row .dot{ width:6px; height:6px; background:var(--gold); border-radius:50%; }
+  .cover .kicker-row span{ font-size:10px; letter-spacing:.34em; color:var(--gold-light); font-weight:700; }
+  .cover h1{ font-size:40px; line-height:1.38; color:#fff; font-weight:700; letter-spacing:.03em; margin-bottom:18px; }
+  .cover .sub{ font-size:12px; color:#B8C5D8; line-height:1.85; letter-spacing:.02em; margin-bottom:auto; max-width:420px; }
+  .cover .rule{ width:44px; height:2px; background:var(--gold); margin:22px 0 18px; }
+  .cover .meta{ font-size:11.5px; color:#C7D3E4; line-height:2; }
+  .cover .meta b{ font-size:16px; color:#fff; font-weight:700; letter-spacing:.02em; display:block; margin-top:4px; }
+  .cover .meta .client-note{ font-size:10px; color:#9FB0C7; margin-top:2px; }
+  .cover .brandblock{ padding-bottom:36px; }
+  .cover .brandblock .logotype{ font-family:'Noto Serif JP',serif; font-size:18px; color:#fff; letter-spacing:.1em; font-weight:700; }
+  .cover .brandblock .logotype span{ color:var(--gold-light); }
+  .cover .brandblock .logosub{ font-size:9px; letter-spacing:.22em; color:#8A99AB; margin-top:5px; }
+  .cover .disclaimer{
+    position:absolute; right:24px; bottom:14px; z-index:3; font-size:8px; letter-spacing:.02em;
+    color:rgba(255,255,255,.5); text-align:right; line-height:1.6;
+  }
+  .cover .framecorner{
+    position:absolute; z-index:3; width:24px; height:24px; border-color:rgba(201,162,39,.55);
+  }
+  .cover .fc-tl{ top:24px; left:24px; border-top:1px solid; border-left:1px solid; }
+  .cover .fc-br{ bottom:24px; right:24px; border-bottom:1px solid; border-right:1px solid; }
+
+  /* ============ 2. EXEC SUMMARY ============ */
+  .exec-lead{ font-size:12px; color:var(--gray); line-height:1.85; max-width:720px; margin-bottom:18px; }
+  .exec-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:22px; }
+  .exec-bullets{ background:var(--white); border:1px solid var(--line); padding:18px 22px; }
+  .exec-bullets h3{ font-size:11px; letter-spacing:.18em; color:var(--gold-deep); font-weight:700; margin-bottom:12px; }
+  .exec-bullets ul{ list-style:none; }
+  .exec-bullets li{
+    font-size:11.5px; color:var(--ink); line-height:1.65; padding:8px 0; border-bottom:1px dashed var(--line);
+    display:flex; gap:10px; align-items:flex-start;
+  }
+  .exec-bullets li:last-child{ border-bottom:none; }
+  .exec-bullets li .m{ color:var(--gold-deep); font-weight:700; flex-shrink:0; }
+  .exec-metrics{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .exec-metric{
+    background:var(--navy); color:#fff; padding:16px 18px; position:relative; overflow:hidden;
+  }
+  .exec-metric::after{
+    content:""; position:absolute; top:0; right:0; width:48px; height:48px;
+    background:linear-gradient(135deg, rgba(201,162,39,.25), transparent);
+  }
+  .exec-metric .num{ font-family:'Noto Serif JP',serif; font-size:28px; font-weight:700; color:var(--gold-light); line-height:1.1; }
+  .exec-metric .num small{ font-size:14px; margin-left:2px; }
+  .exec-metric .lab{ font-size:10px; color:#C7D3E4; margin-top:6px; line-height:1.5; }
+  .exec-metric.wide{ grid-column:span 2; display:flex; align-items:center; gap:18px; }
+  .exec-metric.wide .num{ font-size:32px; }
+  .exec-metric.wide .lab{ margin-top:0; flex:1; }
+
+  /* ============ 3. PROBLEMS ============ */
+  .prob-lead{ font-size:12px; color:var(--gray); line-height:1.85; max-width:680px; margin-bottom:20px; }
+  .prob-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; }
+  .prob-card{ position:relative; padding:18px 16px 16px; background:var(--white); border:1px solid var(--line); border-top:3px solid var(--gold); }
+  .prob-card .pno{ font-family:'Noto Serif JP',serif; font-size:26px; font-weight:700; color:var(--line); margin-bottom:8px; line-height:1; }
+  .prob-card h3{ font-size:14px; font-weight:700; color:var(--navy); line-height:1.55; margin-bottom:10px; min-height:64px; }
+  .prob-card p{ font-size:10.5px; color:var(--gray); line-height:1.8; }
+  .prob-card .stat{
+    margin-top:12px; padding-top:10px; border-top:1px dashed var(--line);
+    font-size:10px; color:var(--navy-mid); font-weight:700;
+  }
+  .prob-card .stat em{ font-style:normal; color:var(--gold-deep); font-family:'Noto Serif JP',serif; font-size:15px; margin-right:4px; }
+
+  /* ============ 4. PROPOSAL ============ */
+  .prop-lead{ font-size:12px; color:var(--gray); line-height:1.85; max-width:760px; margin-bottom:14px; }
+  .prop-flow{
+    display:flex; align-items:center; gap:12px; margin-bottom:16px;
+    background:var(--navy); color:#fff; padding:10px 18px;
+  }
+  .prop-flow .pf-step{ font-size:10.5px; font-weight:700; letter-spacing:.06em; }
+  .prop-flow .pf-step span{ color:var(--gold-light); }
+  .prop-flow .pf-arrow{ color:var(--gold); font-size:14px; }
+  .mod-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+  .mod-card{ border:1px solid var(--line); background:var(--white); padding:14px 12px 12px; min-height:168px; }
+  .mod-card .mno{ font-size:9px; letter-spacing:.2em; color:var(--gold-deep); font-weight:700; margin-bottom:6px; }
+  .mod-card h3{ font-size:13px; font-weight:700; color:var(--navy); line-height:1.5; margin-bottom:8px; min-height:58px; }
+  .mod-card p{ font-size:10px; color:var(--gray); line-height:1.75; }
+  .mod-card .mtag{
+    display:inline-block; margin-top:10px; font-size:8.5px; letter-spacing:.08em;
+    color:var(--navy-mid); border:1px solid var(--line); border-radius:2px; padding:2px 7px;
+  }
+  .prop-note{
+    margin-top:14px; display:flex; gap:12px; align-items:flex-start;
+    background:var(--paper2); border-left:3px solid var(--gold); padding:11px 16px;
+  }
+  .prop-note .nlabel{ font-size:9.5px; letter-spacing:.16em; color:var(--gold-deep); font-weight:700; flex-shrink:0; }
+  .prop-note p{ font-size:10.5px; color:var(--ink); line-height:1.75; }
+
+  /* ============ 5. ROADMAP ============ */
+  .road-lead{ font-size:12px; color:var(--gray); line-height:1.8; margin-bottom:20px; }
+  .road-timeline{ display:grid; grid-template-columns:repeat(3, 1fr); gap:0; border-top:2px solid var(--navy); }
+  .road-month{ padding:16px 18px 0 0; border-right:1px solid var(--line); position:relative; }
+  .road-month:last-child{ border-right:none; padding-right:0; padding-left:18px; }
+  .road-month:not(:first-child){ padding-left:18px; }
+  .road-month .mlabel{
+    display:inline-block; font-size:9.5px; letter-spacing:.2em; font-weight:700;
+    color:#fff; background:var(--navy); padding:4px 10px; margin-bottom:10px;
+  }
+  .road-month:nth-child(2) .mlabel{ background:var(--navy-mid); }
+  .road-month:nth-child(3) .mlabel{ background:var(--gold-deep); }
+  .road-month h3{ font-size:15px; font-weight:700; color:var(--navy); margin-bottom:10px; line-height:1.45; }
+  .road-month ul{ list-style:none; }
+  .road-month li{
+    font-size:10.5px; color:var(--ink); line-height:1.6; padding:5px 0 5px 14px; position:relative;
+    border-bottom:1px dashed var(--line);
+  }
+  .road-month li:last-child{ border-bottom:none; }
+  .road-month li::before{ content:""; position:absolute; left:0; top:11px; width:5px; height:5px; background:var(--gold); border-radius:50%; }
+  .road-month .mout{ margin-top:12px; font-size:9.5px; color:var(--gray); font-weight:700; letter-spacing:.04em; }
+  .road-month .mout b{ color:var(--gold-deep); font-family:'Noto Serif JP',serif; font-size:12px; }
+
+  /* ============ 6. ROI ============ */
+  .roi-lead{ font-size:12px; color:var(--gray); line-height:1.8; max-width:720px; margin-bottom:16px; }
+  table.roi{ width:100%; border-collapse:collapse; }
+  table.roi thead th{
+    text-align:left; font-size:9.5px; letter-spacing:.14em; color:var(--gold-deep); font-weight:700;
+    padding:0 12px 9px; border-bottom:2px solid var(--navy);
+  }
+  table.roi thead th.num{ text-align:right; }
+  table.roi tbody td{ font-size:11px; color:var(--ink); padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  table.roi tbody tr:last-child td{ border-bottom:2px solid var(--navy); font-weight:700; background:var(--paper2); }
+  table.roi td.item{ font-weight:700; color:var(--navy); width:200px; }
+  table.roi td.num{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  table.roi td.case-pess{ color:#8A4A4A; }
+  table.roi td.case-base{ color:var(--navy-mid); font-weight:700; }
+  table.roi td.case-opt{ color:#2D6B45; }
+  .roi-aside{
+    margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:14px;
+  }
+  .roi-box{ background:var(--navy); color:#fff; padding:14px 16px; }
+  .roi-box .rlabel{ font-size:9px; letter-spacing:.18em; color:var(--gold-light); font-weight:700; margin-bottom:6px; }
+  .roi-box p{ font-size:10px; color:#C7D3E4; line-height:1.75; }
+  .roi-box .rnum{ font-family:'Noto Serif JP',serif; font-size:22px; color:var(--gold-light); font-weight:700; margin-top:4px; }
+
+  /* ============ 7. ESTIMATE ============ */
+  .est-wrap{ display:grid; grid-template-columns:1.3fr 1fr; gap:28px; }
+  table.scope{ width:100%; border-collapse:collapse; }
+  table.scope thead th{
+    text-align:left; font-size:9.5px; letter-spacing:.14em; color:var(--gold-deep); font-weight:700;
+    padding:0 10px 9px; border-bottom:2px solid var(--navy);
+  }
+  table.scope tbody td{ font-size:11px; padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
+  table.scope td.item{ font-weight:700; color:var(--navy); width:130px; }
+  table.scope td.detail{ color:var(--gray); font-size:10.5px; line-height:1.65; }
+  .est-side{ background:var(--navy); color:#fff; padding:22px 22px; display:flex; flex-direction:column; justify-content:space-between; }
+  .est-side .label{ font-size:9.5px; letter-spacing:.22em; color:var(--gold-light); font-weight:700; margin-bottom:10px; }
+  .est-side .total{ font-family:'Noto Serif JP',serif; font-size:34px; font-weight:700; line-height:1.15; }
+  .est-side .total small{ font-size:13px; font-weight:400; margin-left:4px; color:#C7D3E4; }
+  .est-side .taxnote{ font-size:9px; color:#9FB0C7; margin-top:6px; }
+  .est-side .divider{ height:1px; background:rgba(255,255,255,.18); margin:14px 0; }
+  .est-side .note{ font-size:9.5px; color:#C7D3E4; line-height:1.8; }
+  .est-note-foot{ font-size:9px; color:var(--gray-light); margin-top:10px; }
+
+  /* ============ 8. NEXT STEPS ============ */
+  .slide.closing{ display:flex; flex-direction:column; background:var(--navy); color:var(--paper); }
+  .slide.closing .head{ flex:none; }
+  .slide.closing .foot{ position:static; flex:none; }
+  .close-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:0; flex:1; min-height:0; }
+  .close-col{ padding:24px 36px 0; }
+  .close-col.left{ border-right:1px solid rgba(255,255,255,.14); }
+  .close-tag{ font-size:9.5px; letter-spacing:.22em; color:var(--gold-light); font-weight:700; margin-bottom:12px; }
+  .close-item{ margin-bottom:16px; }
+  .close-item h4{ font-size:13px; font-weight:700; color:#fff; margin-bottom:5px; display:flex; align-items:center; gap:8px; }
+  .close-item h4::before{ content:""; width:5px; height:5px; background:var(--gold); border-radius:50%; }
+  .close-item p{ font-size:10.5px; color:#C7D3E4; line-height:1.8; }
+  .cta-box{
+    background:rgba(201,162,39,.12); border:1px solid rgba(201,162,39,.45); padding:18px 20px; margin-top:4px;
+  }
+  .cta-box .cta-title{ font-family:'Noto Serif JP',serif; font-size:16px; font-weight:700; color:var(--gold-light); margin-bottom:8px; }
+  .cta-box p{ font-size:10.5px; color:#E4EBF5; line-height:1.85; }
+  .contact-box{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16); padding:16px 20px; margin-top:6px; }
+  .contact-box .cname{ font-family:'Noto Serif JP',serif; font-size:16px; font-weight:700; color:#fff; margin-bottom:8px; }
+  .contact-box .crow{ display:flex; font-size:10.5px; color:#C7D3E4; padding:4px 0; border-top:1px solid rgba(255,255,255,.1); }
+  .contact-box .crow:first-of-type{ border-top:none; }
+  .contact-box .crow .k{ width:58px; color:var(--gold-light); letter-spacing:.06em; font-size:9.5px; flex-shrink:0; }
+  .close-brand{ margin-top:16px; }
+  .close-brand .logotype{ font-family:'Noto Serif JP',serif; font-size:16px; color:#fff; letter-spacing:.08em; font-weight:700; }
+  .close-brand .logotype span{ color:var(--gold-light); }
+  .close-brand .logosub{ font-size:8.5px; letter-spacing:.18em; color:#8A99AB; margin-top:4px; }
+</style>
+</head>
+<body>
+
+<!-- 1. 表紙 -->
+<div class="slide dark cover" id="slide-0" data-slide-label="表紙">
+  <div class="left">
+    <div class="kicker-row"><span class="dot"></span><span>BTOB SALES AI PROPOSAL</span></div>
+    <h1 class="serif">営業AI活用<br>ご提案書</h1>
+    <p class="sub">提案書作成・商談準備・CRM入力の非コア業務をAIで下ごしらえ。<br>御社の営業力はそのままに、再現性とスピードを底上げします。</p>
+    <div class="rule"></div>
+    <div class="meta">
+      ご提案先
+      <b>株式会社サンプルテック 様</b>
+      <span class="client-note">従業員42名｜IT商材卸（SaaS・ハードウェア）</span>
+    </div>
+    <div class="brandblock">
+      <div class="meta" style="margin-bottom:16px; font-size:10px; color:#9FB0C7;">発行　2026年7月【サンプル】</div>
+      <div class="logotype">AI<span>顧問</span>室（サンプル）</div>
+      <div class="logosub">AI KOMON OFFICE — SALES ENABLEMENT CONSULTING</div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="viz">
+      <div class="vrow"><div class="vicon">01</div><div class="vtext"><b>提案書ドラフト</b>商談メモから初稿を15分で</div></div>
+      <div class="vrow"><div class="vicon">02</div><div class="vtext"><b>商談ブリーフ</b>競合・価格帯・論点を自動整理</div></div>
+      <div class="vrow"><div class="vicon">03</div><div class="vtext"><b>CRM下書き</b>活動ログの入力漏れを防止</div></div>
+      <div class="vrow"><div class="vicon">04</div><div class="vtext"><b>人の確認</b>最終判断・送付は営業担当が実施</div></div>
+    </div>
+  </div>
+  <div class="framecorner fc-tl"></div>
+  <div class="framecorner fc-br"></div>
+  <div class="disclaimer">※本資料はAI制作のデザインサンプルです（架空案件）</div>
+</div>
+
+<!-- 2. エグゼクティブサマリー -->
+<div class="slide" id="slide-1" data-slide-label="サマリー">
+  <div class="gridtex"></div>
+  <div class="head">
+    <div>
+      <div class="kicker">01 — EXECUTIVE SUMMARY</div>
+      <h2 class="serif">エグゼクティブサマリー</h2>
+    </div>
+    <div class="idx">SUMMARY / 01–07</div>
+  </div>
+  <div class="body">
+    <p class="exec-lead">御社営業12名の非コア工数をAIで下支えし、提案スピードと情報の再現性を同時に高める90日プログラムをご提案します。導入は小さく始め、現場の確認フローを残したまま拡張します。</p>
+    <div class="exec-grid">
+      <div class="exec-bullets">
+        <h3>本提案の要点</h3>
+        <ul>
+          <li><span class="m">●</span><span><b>提案書初稿の作成時間を約40%短縮</b>——商談メモと過去提案からAIが下書き、担当者が最終調整。</span></li>
+          <li><span class="m">●</span><span><b>商談準備のばらつきをテンプレ化</b>——案件タイプ別ブリーフで、新人・ベテランの準備粒度を揃える。</span></li>
+          <li><span class="m">●</span><span><b>CRM入力漏れを週次で可視化</b>——活動ログの下書き自動生成で、管理工数と入力負担を同時に軽減。</span></li>
+        </ul>
+      </div>
+      <div class="exec-metrics">
+        <div class="exec-metric"><div class="num">40<small>%</small></div><div class="lab">提案書初稿<br>作成時間の削減目標</div></div>
+        <div class="exec-metric"><div class="num">68<small>h</small></div><div class="lab">月間削減工数<br>（標準ケース）</div></div>
+        <div class="exec-metric wide"><div class="num">90<small>日</small></div><div class="lab">試行（Month1）→ 全社展開（Month2）→ KPI定着（Month3）の3フェーズで運用定着まで伴走</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AI KOMON — 営業AI活用ご提案（サンプルテック様）</span><span class="fnum">02 / 08</span></div>
+</div>
+
+<!-- 3. 現状課題 -->
+<div class="slide" id="slide-2" data-slide-label="現状課題">
+  <div class="gridtex"></div>
+  <div class="head">
+    <div>
+      <div class="kicker">02 — CURRENT ISSUES</div>
+      <h2 class="serif">現状課題</h2>
+    </div>
+    <div class="idx">ISSUE / 02–07</div>
+  </div>
+  <div class="body">
+    <p class="prob-lead">ヒアリングおよび活動ログ分析より、営業生産性を押し下げている論点は主に次の3点に集約されます。いずれも「人の判断力」ではなく「下準備・入力作業」に時間が集中しています。</p>
+    <div class="prob-grid">
+      <div class="prob-card">
+        <div class="pno serif">01</div>
+        <h3>提案書作成の<br>工数過多</h3>
+        <p>案件ごとにゼロから構成し直しており、過去提案の再利用が進みません。修正ラウンドも多く、提出まで平均4.2営業日かかっています。</p>
+        <div class="stat"><em>18h</em>/月・1人あたり（平均）</div>
+      </div>
+      <div class="prob-card">
+        <div class="pno serif">02</div>
+        <h3>商談準備の<br>ばらつき</h3>
+        <p>競合比較・価格レンジ・導入事例の整理粒度が担当者依存。新人は準備不足、ベテランは属人化したメモに依存する状態です。</p>
+        <div class="stat"><em>±2.1倍</em>準備時間の最大差</div>
+      </div>
+      <div class="prob-card">
+        <div class="pno serif">03</div>
+        <h3>CRM入力の<br>遅延・漏れ</h3>
+        <p>商談後の活動記録が後回しになり、週次報告の精度が下がっています。マネージャーの催促・確認にも月12時間程度を要しています。</p>
+        <div class="stat"><em>23%</em>入力遅延案件比率</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AI KOMON — 営業AI活用ご提案（サンプルテック様）</span><span class="fnum">03 / 08</span></div>
+</div>
+
+<!-- 4. ご提案概要 -->
+<div class="slide" id="slide-3" data-slide-label="提案概要">
+  <div class="gridtex"></div>
+  <div class="head">
+    <div>
+      <div class="kicker">03 — PROPOSAL OVERVIEW</div>
+      <h2 class="serif">ご提案概要</h2>
+    </div>
+    <div class="idx">PLAN / 03–07</div>
+  </div>
+  <div class="body">
+    <p class="prop-lead">AIは「送付可能な成果物」ではなく「確認可能な下書き」までを生成。最終判断・社外送付・CRM確定は必ず営業担当が行う運用設計とします。</p>
+    <div class="prop-flow">
+      <div class="pf-step"><span>INPUT</span> 商談メモ / CRM / 過去提案</div>
+      <div class="pf-arrow">→</div>
+      <div class="pf-step"><span>AI</span> 下ごしらえ・ドラフト生成</div>
+      <div class="pf-arrow">→</div>
+      <div class="pf-step"><span>HUMAN</span> 確認・修正・送付判断</div>
+    </div>
+    <div class="mod-grid">
+      <div class="mod-card">
+        <div class="mno">MODULE 01</div>
+        <h3>提案書<br>ドラフト生成</h3>
+        <p>商談要点・製品構成・価格帯から16:9提案書の初稿を生成。御社テンプレに合わせて章立てを固定。</p>
+        <span class="mtag">PowerPoint不使用</span>
+      </div>
+      <div class="mod-card">
+        <div class="mno">MODULE 02</div>
+        <h3>商談<br>ブリーフ</h3>
+        <p>競合・想定Q&A・参考事例を1枚に集約。商談前日の準備時間を30分以内に標準化。</p>
+        <span class="mtag">属人化解消</span>
+      </div>
+      <div class="mod-card">
+        <div class="mno">MODULE 03</div>
+        <h3>CRM活動<br>下書き</h3>
+        <p>商談後メモから活動ログ・次回TODOを自動下書き。入力漏れアラートを週次で通知。</p>
+        <span class="mtag">Salesforce連携想定</span>
+      </div>
+      <div class="mod-card">
+        <div class="mno">MODULE 04</div>
+        <h3>ナレッジ<br>検索</h3>
+        <p>過去提案・FAQ・価格表から関連資料を即時検索。新人オンボーディング期間の短縮にも寄与。</p>
+        <span class="mtag">社内ドキュメント</span>
+      </div>
+    </div>
+    <div class="prop-note">
+      <div class="nlabel">GOVERNANCE</div>
+      <p>機密区分・送付権限・ログ保管ルールをMonth1で策定。AI出力には「要確認」ラベルを付与し、自動送信は行いません。</p>
+    </div>
+  </div>
+  <div class="foot"><span>AI KOMON — 営業AI活用ご提案（サンプルテック様）</span><span class="fnum">04 / 08</span></div>
+</div>
+
+<!-- 5. 90日ロードマップ -->
+<div class="slide" id="slide-4" data-slide-label="90日計画">
+  <div class="gridtex"></div>
+  <div class="head">
+    <div>
+      <div class="kicker">04 — 90-DAY ROADMAP</div>
+      <h2 class="serif">90日ロードマップ</h2>
+    </div>
+    <div class="idx">ROADMAP / 04–07</div>
+  </div>
+  <div class="body">
+    <p class="road-lead">全社一斉導入ではなく、パイロットチーム（4名）から開始し、成功パターンを横展開する段階的アプローチを採用します。</p>
+    <div class="road-timeline">
+      <div class="road-month">
+        <div class="mlabel">MONTH 1</div>
+        <h3 class="serif">現状把握<br>＆ Quick Win</h3>
+        <ul>
+          <li>商談フロー・テンプレ・CRM項目の棚卸し</li>
+          <li>提案書ドラフト生成のパイロット（2案件）</li>
+          <li>セキュリティ・権限ルールの合意</li>
+          <li>パイロットチーム4名の操作研修（半日）</li>
+        </ul>
+        <div class="mout">アウトプット：<b>初稿40%短縮</b>の実測値</div>
+      </div>
+      <div class="road-month">
+        <div class="mlabel">MONTH 2</div>
+        <h3 class="serif">全社展開<br>＆ テンプレ整備</h3>
+        <ul>
+          <li>営業12名へModule 01–03を展開</li>
+          <li>案件タイプ別テンプレ5種を整備</li>
+          <li>CRM下書き連携の運用定着支援</li>
+          <li>週次30分の改善ミーティング</li>
+        </ul>
+        <div class="mout">アウトプット：<b>準備時間のばらつき50%縮小</b></div>
+      </div>
+      <div class="road-month">
+        <div class="mlabel">MONTH 3</div>
+        <h3 class="serif">定着<br>＆ KPI計測</h3>
+        <ul>
+          <li>Module 04（ナレッジ検索）の追加</li>
+          <li>ROIダッシュボードの月次レビュー</li>
+          <li>マネージャー向け運用ガイド整備</li>
+          <li>次期拡張（マーケ連携）の優先度整理</li>
+        </ul>
+        <div class="mout">アウトプット：<b>月68h削減</b>の標準値達成</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AI KOMON — 営業AI活用ご提案（サンプルテック様）</span><span class="fnum">05 / 08</span></div>
+</div>
+
+<!-- 6. ROI試算 -->
+<div class="slide" id="slide-5" data-slide-label="ROI試算">
+  <div class="gridtex"></div>
+  <div class="head">
+    <div>
+      <div class="kicker">05 — ROI ANALYSIS</div>
+      <h2 class="serif">ROI試算</h2>
+    </div>
+    <div class="idx">ROI / 05–07</div>
+  </div>
+  <div class="body">
+    <p class="roi-lead">営業12名・平均時給4,200円（社内換算）を前提に、削減工数の金額換算を3ケースで試算。投資回収は標準ケースで約5.2ヶ月を見込みます。</p>
+    <table class="roi">
+      <thead>
+        <tr>
+          <th>削減項目</th>
+          <th class="num case-pess">悲観</th>
+          <th class="num case-base">標準</th>
+          <th class="num case-opt">楽観</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="item">提案書作成（月間削減時間）</td>
+          <td class="num case-pess">32 h</td>
+          <td class="num case-base">52 h</td>
+          <td class="num case-opt">72 h</td>
+        </tr>
+        <tr>
+          <td class="item">商談準備（月間削減時間）</td>
+          <td class="num case-pess">18 h</td>
+          <td class="num case-base">28 h</td>
+          <td class="num case-opt">40 h</td>
+        </tr>
+        <tr>
+          <td class="item">CRM入力・管理（月間削減時間）</td>
+          <td class="num case-pess">12 h</td>
+          <td class="num case-base">18 h</td>
+          <td class="num case-opt">26 h</td>
+        </tr>
+        <tr>
+          <td class="item">月間削減工数 合計</td>
+          <td class="num case-pess">62 h</td>
+          <td class="num case-base">98 h</td>
+          <td class="num case-opt">138 h</td>
+        </tr>
+        <tr>
+          <td class="item">月間削減効果（円）</td>
+          <td class="num case-pess">¥260,400</td>
+          <td class="num case-base">¥411,600</td>
+          <td class="num case-opt">¥579,600</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="roi-aside">
+      <div class="roi-box">
+        <div class="rlabel">PAYBACK（標準）</div>
+        <div class="rnum">約 5.2 ヶ月</div>
+        <p>月額50万円の伴走費用に対し、標準ケースの削減効果411,600円/月＋商談増の間接効果を加味。</p>
+      </div>
+      <div class="roi-box">
+        <div class="rlabel">NOTE</div>
+        <p>上記は時間削減のみの試算。成約率向上・新人立ち上がり短縮などの定性効果は含みません。試算前提はMonth3の定点観測で更新します。</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AI KOMON — 営業AI活用ご提案（サンプルテック様）</span><span class="fnum">06 / 08</span></div>
+</div>
+
+<!-- 7. お見積り -->
+<div class="slide" id="slide-6" data-slide-label="お見積り">
+  <div class="gridtex"></div>
+  <div class="head">
+    <div>
+      <div class="kicker">06 — ESTIMATE</div>
+      <h2 class="serif">お見積り</h2>
+    </div>
+    <div class="idx">COST / 06–07</div>
+  </div>
+  <div class="body">
+    <div class="est-wrap">
+      <div>
+        <table class="scope">
+          <thead><tr><th>提供範囲</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><td class="item">伴走支援</td><td class="detail">90日間の導入設計・週次MTG・運用改善（AI顧問1名＋営業DX支援1名）</td></tr>
+            <tr><td class="item">テンプレ整備</td><td class="detail">提案書・商談ブリーフ・CRM下書きの案件タイプ別テンプレ5種</td></tr>
+            <tr><td class="item">AI環境構築</td><td class="detail">御社ドキュメントを用いたRAG検索・権限分離の初期設定</td></tr>
+            <tr><td class="item">研修</td><td class="detail">パイロット研修（半日）＋全社展開研修（半日）＋マネージャー向け30分</td></tr>
+            <tr><td class="item">ガバナンス</td><td class="detail">送付フロー・ログ保管・機密区分ルールの文書化</td></tr>
+            <tr><td class="item">保守（任意）</td><td class="detail">Month4以降：テンプレ更新・プロンプト改善（月次）</td></tr>
+          </tbody>
+        </table>
+        <p class="est-note-foot">※ LLM API利用料・CRM連携カスタム開発は別途見積。本表は伴走支援パッケージのサンプルです。</p>
+      </div>
+      <div class="est-side">
+        <div>
+          <div class="label">MONTHLY FEE</div>
+          <div class="total serif">¥500,000<small>〜 / 月（税別）</small></div>
+          <div class="taxnote">90日プログラム：3ヶ月 × 50万円 ＝ 150万円（税別）〜</div>
+        </div>
+        <div>
+          <div class="divider"></div>
+          <p class="note">Minimum 3ヶ月からの伴走契約を想定。Phase1のみのスポット支援（80万円/税別）も選択可能です。正式見積は無料診断後に御社フローへ合わせて提出します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AI KOMON — 営業AI活用ご提案（サンプルテック様）</span><span class="fnum">07 / 08</span></div>
+</div>
+
+<!-- 8. 次のステップ -->
+<div class="slide dark closing" id="slide-7" data-slide-label="次のステップ">
+  <div class="head">
+    <div>
+      <div class="kicker">07 — NEXT STEPS</div>
+      <h2 class="serif" style="color:#fff;">次のステップ</h2>
+    </div>
+    <div class="idx">CLOSING / 07–07</div>
+  </div>
+  <div class="close-wrap">
+    <div class="close-col left">
+      <div class="close-tag">RECOMMENDED FLOW</div>
+      <div class="close-item">
+        <h4>Step 1｜無料診断（60分）</h4>
+        <p>商談フロー・テンプレ・CRMの現状をヒアリング。削減可能工数の概算と、90日計画のたたき台をその場で共有します。</p>
+      </div>
+      <div class="close-item">
+        <h4>Step 2｜パイロット設計（1週間）</h4>
+        <p>対象案件2件・パイロットメンバー4名を選定。セキュリティ要件とテンプレ初版を確定します。</p>
+      </div>
+      <div class="close-item">
+        <h4>Step 3｜90日伴走の開始</h4>
+        <p>Month1のQuick Winから着手。週次で進捗・ROIを可視化し、御社の承認フローに合わせて拡張します。</p>
+      </div>
+      <div class="cta-box">
+        <div class="cta-title">無料診断のご予約</div>
+        <p>本資料は架空サンプルですが、同品質の提案書・ロードマップ・ROI試算を御社向けに約2時間で制作可能です。まずは60分の無料診断からお気軽にご連絡ください。</p>
+      </div>
+    </div>
+    <div class="close-col">
+      <div class="close-tag">CONTACT</div>
+      <div class="contact-box">
+        <div class="cname">AI顧問室（サンプル）</div>
+        <div class="crow"><div class="k">Email</div><div>【サンプル】contact@ai-komon.example</div></div>
+        <div class="crow"><div class="k">TEL</div><div>【サンプル】03-0000-0000</div></div>
+        <div class="crow"><div class="k">Web</div><div>【サンプル】https://ai-komon.example</div></div>
+        <div class="crow"><div class="k">担当</div><div>【サンプル】営業AI支援　如月</div></div>
+      </div>
+      <div class="close-item" style="margin-top:18px;">
+        <h4>ご検討いただきたい点</h4>
+        <p>・パイロットに回せる直近案件（2件）<br>・CRM（Salesforce等）の連携範囲<br>・社内セキュリティ・情報区分ポリシー<br>・提案書テンプレ（現行PPT/PDF）の共有可否</p>
+      </div>
+      <div class="close-brand">
+        <div class="logotype">AI<span>顧問</span>室（サンプル）</div>
+        <div class="logosub">AI KOMON OFFICE — SALES ENABLEMENT</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>AI KOMON — 営業AI活用ご提案（サンプルテック様）</span><span class="fnum">08 / 08</span></div>
+</div>
+
+</body>
+</html>

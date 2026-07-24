@@ -1,0 +1,22 @@
+{
+  "keyword": "納期 バッファ 計算",
+  "slug": "deadline-buffer-calculator",
+  "title": "納期バッファ計算機",
+  "description": "基準日数と不確実性の割合から、無理のない計画日数とバッファを計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "baseDays", "label": "基準の作業日数", "default": 10, "step": 1},
+    {"id": "bufferRate", "label": "バッファ率（%）", "default": 20, "step": 5}
+  ],
+  "results": [
+    {"id": "buffer-days", "label": "見込むバッファ", "unit": "日", "formula": "baseDays * bufferRate / 100"},
+    {"id": "recommended-days", "label": "計画に置く日数", "unit": "日", "formula": "baseDays * (1 + bufferRate / 100)"}
+  ],
+  "explanations": ["作業そのものの日数と、不確実性に備えるバッファを分けて計画します。", "休日、承認待ち、外部依存、仕様変更がある場合は、割合だけでなく個別の待ち時間も加えてください。"],
+  "related_tools": [
+    {"label": "チーム稼働キャパシティ計算機", "url": "/tools/project-capacity-planner/", "description": "期間中に使える稼働時間を確認します。"},
+    {"label": "タスク時間計算機", "url": "/tools/task-time-calculator/", "description": "タスク件数から必要時間を見積もります。"}
+  ],
+  "cta": {"label": "業務計画を相談する", "url": "/diagnosis.html"}
+}

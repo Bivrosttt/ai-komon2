@@ -1,0 +1,338 @@
+<!-- 2026-07-22: 無料ツール一覧をカテゴリ別カードUIにリデザイン。記事リストは削除 -->
+<!doctype html>
+<html lang="ja">
+<head>
+  <script>
+    if (location.hostname.endsWith('github.io')) {
+      var canonicalPath = location.pathname.replace(/^\/ai-komon2(?=\/|$)/, '') || '/';
+      location.replace('https://ai-komon.bivrost.co.jp' + canonicalPath + location.search + location.hash);
+    }
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B2447">
+  <title>無料業務改善ツール集｜AI顧問室</title>
+  <meta name="description" content="議事録、見積・請求書、AI導入診断、会議コスト、損益分岐点など。登録不要・ブラウザ内完結の無料ツール9本。">
+  <link rel="canonical" href="https://ai-komon.bivrost.co.jp/tools/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="無料業務改善ツール集｜AI顧問室">
+  <meta property="og:description" content="登録不要・ブラウザ内完結。業務整理からAI導入判断、経営試算まで9本。">
+  <meta property="og:site_name" content="AI顧問室">
+  <meta property="og:url" content="https://ai-komon.bivrost.co.jp/tools/">
+  <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D; --blue: #2D6CB5;
+      --gold: #C9A227; --ink: #1A2433; --gray: #5B6B7F; --line: #DDE4EC;
+      --bg-soft: #F4F7FA; --white: #FFF; --sans: 'Noto Sans JP', sans-serif; --serif: 'Noto Serif JP', serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); color: var(--ink); line-height: 1.75; background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    .shell { width: min(1080px, calc(100% - 48px)); margin: 0 auto; }
+
+    header.site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px);
+    }
+    .head { height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .logo strong { font-family: var(--serif); font-size: 20px; color: var(--navy); }
+    .logo span { font-size: 10px; color: var(--gray); letter-spacing: .12em; margin-left: 8px; }
+    .nav { display: flex; align-items: center; gap: 18px; font-size: 13px; font-weight: 700; }
+    .nav a:hover { color: var(--blue); }
+    .nav-cta { background: var(--gold); color: var(--navy-deep); padding: 9px 16px; border-radius: 999px; }
+
+    .hero {
+      padding: 56px 0 40px;
+      background: linear-gradient(135deg, var(--navy-deep), var(--navy) 70%, var(--navy-light));
+      color: #fff;
+    }
+    .hero-badge {
+      display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .14em;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .hero h1 { font-family: var(--serif); font-size: clamp(28px, 4.5vw, 42px); line-height: 1.35; margin-bottom: 12px; }
+    .hero p { color: #C7D3E4; max-width: 560px; font-size: 15px; }
+    .trust-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .trust-chip {
+      font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 999px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); color: #E4EBF5;
+    }
+
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 8px; padding: 24px 0 8px;
+      position: sticky; top: 68px; z-index: 40; background: rgba(255,255,255,.94);
+      backdrop-filter: blur(8px); border-bottom: 1px solid transparent;
+    }
+    .filter-bar.is-stuck { border-bottom-color: var(--line); padding-bottom: 16px; }
+    .filter-btn {
+      border: 1px solid var(--line); background: var(--white); color: var(--ink);
+      padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 700; cursor: pointer;
+      transition: .15s;
+    }
+    .filter-btn:hover { border-color: var(--navy); }
+    .filter-btn.is-active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+    .category { padding: 32px 0 8px; }
+    .category-head { margin-bottom: 16px; }
+    .category-head .cat-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--gold); margin-bottom: 6px;
+    }
+    .category-head h2 { font-family: var(--serif); font-size: 22px; color: var(--navy); }
+    .category-head p { font-size: 13px; color: var(--gray); margin-top: 4px; }
+
+    .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+    .tool-card {
+      display: flex; flex-direction: column; gap: 10px;
+      padding: 22px 20px; border: 1px solid var(--line); border-radius: 12px;
+      background: var(--white); transition: border-color .2s, box-shadow .2s, transform .15s;
+      min-height: 168px;
+    }
+    a.tool-card:hover {
+      border-color: var(--navy); box-shadow: 0 8px 24px rgba(11,36,71,.08); transform: translateY(-2px);
+    }
+    .tool-card.is-hidden { display: none; }
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .card-type { font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--blue); }
+    .card-time { font-size: 10px; font-weight: 700; color: var(--gray); white-space: nowrap; }
+    .tool-card h3 { font-size: 17px; color: var(--navy); line-height: 1.45; }
+    .tool-card p { font-size: 13px; color: var(--gray); flex: 1; }
+    .card-foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 8px; }
+    .card-go { font-size: 13px; font-weight: 700; color: var(--gold); }
+    .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: var(--bg-soft); color: var(--navy); }
+
+    .cta-band {
+      margin: 48px 0 56px; padding: 32px 28px; border-radius: 14px;
+      background: var(--bg-soft); border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .cta-band h2 { font-family: var(--serif); font-size: 20px; color: var(--navy); margin-bottom: 6px; }
+    .cta-band p { font-size: 13px; color: var(--gray); max-width: 480px; }
+    .btn-gold {
+      display: inline-flex; align-items: center; padding: 14px 24px; border-radius: 8px;
+      background: var(--gold); color: var(--navy-deep); font-weight: 700; font-size: 14px;
+      box-shadow: 0 8px 20px rgba(201,162,39,.25);
+    }
+    .btn-gold:hover { opacity: .92; }
+
+    footer { padding: 24px 0 48px; border-top: 1px solid var(--line); font-size: 12px; color: var(--gray); }
+    footer a { text-decoration: underline; margin-right: 14px; }
+
+    @media (max-width: 720px) {
+      .shell { width: calc(100% - 32px); }
+      .nav a:not(.nav-cta) { display: none; }
+      .filter-bar { top: 60px; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 12px; }
+      .filter-btn { flex: 0 0 auto; }
+      .tool-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "AI顧問室 無料業務改善ツール集",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"議事録テンプレート","url":"https://ai-komon.bivrost.co.jp/tools/gijiroku-template/"},
+      {"@type":"ListItem","position":2,"name":"見積書かんたん作成","url":"https://ai-komon.bivrost.co.jp/tools/quote-maker/"},
+      {"@type":"ListItem","position":3,"name":"請求書かんたん作成","url":"https://ai-komon.bivrost.co.jp/tools/invoice-maker/"},
+      {"@type":"ListItem","position":4,"name":"AI導入リスク診断","url":"https://ai-komon.bivrost.co.jp/tools/ai-risk-check/"},
+      {"@type":"ListItem","position":5,"name":"AI導入回収期間","url":"https://ai-komon.bivrost.co.jp/tools/ai-payback-calculator/"},
+      {"@type":"ListItem","position":6,"name":"営業・見積工数シミュ","url":"https://ai-komon.bivrost.co.jp/tools/sales-estimate-roi/"},
+      {"@type":"ListItem","position":7,"name":"会議コスト計算","url":"https://ai-komon.bivrost.co.jp/tools/meeting-cost-calculator/"},
+      {"@type":"ListItem","position":8,"name":"損益分岐点計算","url":"https://ai-komon.bivrost.co.jp/tools/break-even-calculator/"},
+      {"@type":"ListItem","position":9,"name":"粗利シミュレーター","url":"https://ai-komon.bivrost.co.jp/tools/gross-profit-simulator/"}
+    ]
+  }
+  </script>
+  <script src="../analytics-config.js"></script>
+  <script src="../analytics.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell head">
+      <a class="logo" href="../"><strong>AI顧問室</strong><span>FREE TOOLS</span></a>
+      <nav class="nav">
+        <a href="../demos.html">構築デモ</a>
+        <a href="../index.html#contact" class="nav-cta">無料相談</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="shell">
+      <span class="hero-badge">FREE TOOLS × 9</span>
+      <h1>登録不要。今すぐ試せる<br>無料業務ツール。</h1>
+      <p>議事録づくりからAI導入の判断、経営数字の試算まで。すべてブラウザ内で完結します。</p>
+      <div class="trust-row">
+        <span class="trust-chip">登録不要</span>
+        <span class="trust-chip">データ送信なし</span>
+        <span class="trust-chip">約1〜3分で完了</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="shell">
+    <div class="filter-bar" id="filterBar" role="tablist" aria-label="カテゴリフィルタ">
+      <button type="button" class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">すべて（9）</button>
+      <button type="button" class="filter-btn" data-filter="work" role="tab" aria-selected="false">業務を整える（3）</button>
+      <button type="button" class="filter-btn" data-filter="ai" role="tab" aria-selected="false">AI導入の判断（3）</button>
+      <button type="button" class="filter-btn" data-filter="finance" role="tab" aria-selected="false">経営の数字（3）</button>
+    </div>
+
+    <section class="category" data-category="work">
+      <div class="category-head">
+        <div class="cat-label">WORK</div>
+        <h2>業務を整える</h2>
+        <p>会議・見積・請求の「型」を、その場で作る。</p>
+      </div>
+      <div class="tool-grid">
+        <a class="tool-card" href="./gijiroku-template/" data-cat="work">
+          <div class="card-top"><span class="card-type">TEMPLATE</span><span class="card-time">約2分</span></div>
+          <h3>議事録テンプレート</h3>
+          <p>決定事項・ToDo・保留を入力するだけ。Markdownでコピー・保存。</p>
+          <div class="card-foot">
+            <div class="card-tags"><span class="tag">会議</span><span class="tag">ToDo</span></div>
+            <span class="card-go">使う →</span>
+          </div>
+        </a>
+        <a class="tool-card" href="./quote-maker/" data-cat="work">
+          <div class="card-top"><span class="card-type">DOCUMENT</span><span class="card-time">約3分</span></div>
+          <h3>見積書かんたん作成</h3>
+          <p>品目・単価を入れて見積書の下書きを生成。印刷・PDF化も可。</p>
+          <div class="card-foot">
+            <div class="card-tags"><span class="tag">営業</span><span class="tag">PDF</span></div>
+            <span class="card-go">使う →</span>
+          </div>
+        </a>
+        <a class="tool-card" href="./invoice-maker/" data-cat="work">
+          <div class="card-top"><span class="card-type">DOCUMENT</span><span class="card-time">約3分</span></div>
+          <h3>請求書かんたん作成</h3>
+          <p>請求先・品目・振込先を入力して、請求書ドラフトを作成。</p>
+          <div class="card-foot">
+            <div class="card-tags"><span class="tag">経理</span><span class="tag">PDF</span></div>
+            <span class="card-go">使う →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="category" data-category="ai">
+      <div class="category-head">
+        <div class="cat-label">AI DECISION</div>
+        <h2>AI導入の判断</h2>
+        <p>入れる前に、リスク・工数・回収期間を数字で見る。</p>
+      </div>
+      <div class="tool-grid">
+        <a class="tool-card" href="./ai-risk-check/" data-cat="ai">
+          <div class="card-top"><span class="card-type">CHECKLIST</span><span class="card-time">約3分</span></div>
+          <h3>AI導入リスク診断</h3>
+          <p>15項目チェックで準備度を可視化。未整備の論点を優先順位付きで表示。</p>
+          <div class="card-foot">
+            <div class="card-tags"><span class="tag">社内ルール</span><span class="tag">情報管理</span></div>
+            <span class="card-go">診断する →</span>
+          </div>
+        </a>
+        <a class="tool-card" href="./ai-payback-calculator/" data-cat="ai">
+          <div class="card-top"><span class="card-type">ROI</span><span class="card-time">約2分</span></div>
+          <h3>AI導入回収期間</h3>
+          <p>削減時間×人件費と導入費用から、何ヶ月で元が取れるか試算。</p>
+          <div class="card-foot">
+            <div class="card-tags"><span class="tag">投資判断</span></div>
+            <span class="card-go">試算する →</span>
+          </div>
+        </a>
+        <a class="tool-card" href="./sales-estimate-roi/" data-cat="ai">
+          <div class="card-top"><span class="card-type">ROI</span><span class="card-time">約2分</span></div>
+          <h3>営業・見積工数シミュ</h3>
+          <p>見積作成にかかる時間と件数から、AI化の削減効果を試算。</p>
+          <div class="card-foot">
+            <div class="card-tags"><span class="tag">営業</span><span class="tag">見積</span></div>
+            <span class="card-go">試算する →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="category" data-category="finance">
+      <div class="category-head">
+        <div class="cat-label">FINANCE</div>
+        <h2>経営の数字</h2>
+        <p>会議コスト・損益分岐・粗利を、経営者目線で素早く確認。</p>
+      </div>
+      <div class="tool-grid">
+        <a class="tool-card" href="./meeting-cost-calculator/" data-cat="finance">
+          <div class="card-top"><span class="card-type">CALCULATOR</span><span class="card-time">約1分</span></div>
+          <h3>会議コスト計算</h3>
+          <p>参加者×時給×時間で、1回の会議にいくらかかっているか可視化。</p>
+          <div class="card-foot">
+            <div class="card-tags"><span class="tag">会議改革</span></div>
+            <span class="card-go">計算する →</span>
+          </div>
+        </a>
+        <a class="tool-card" href="./break-even-calculator/" data-cat="finance">
+          <div class="card-top"><span class="card-type">CALCULATOR</span><span class="card-time">約1分</span></div>
+          <h3>損益分岐点計算</h3>
+          <p>固定費・変動費・単価から、黒字化に必要な売上高を算出。</p>
+          <div class="card-foot">
+            <div class="card-tags"><span class="tag">経営</span></div>
+            <span class="card-go">計算する →</span>
+          </div>
+        </a>
+        <a class="tool-card" href="./gross-profit-simulator/" data-cat="finance">
+          <div class="card-top"><span class="card-type">CALCULATOR</span><span class="card-time">約1分</span></div>
+          <h3>粗利シミュレーター</h3>
+          <p>売上・原価・経費を動かして、粗利率と営業利益の変化を確認。</p>
+          <div class="card-foot">
+            <div class="card-tags"><span class="tag">粗利</span><span class="tag">値下げ判断</span></div>
+            <span class="card-go">試算する →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <div class="cta-band">
+      <div>
+        <h2>ツールで見えた課題を、御社の仕組みに。</h2>
+        <p>試算やテンプレートは出発点です。業務フローに合わせたAI導入・自動化は無料診断から。</p>
+      </div>
+      <a class="btn-gold" href="../index.html#contact">無料AI活用診断（30分）</a>
+    </div>
+  </main>
+
+  <footer class="shell">
+    <a href="../">AI顧問室トップ</a>
+    <a href="../privacy.html">プライバシーポリシー</a>
+    <a href="../demos.html">構築デモ40本</a>
+  </footer>
+
+  <script>
+  (function () {
+    var bar = document.getElementById('filterBar');
+    var btns = bar.querySelectorAll('.filter-btn');
+    var sections = document.querySelectorAll('.category');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var f = btn.getAttribute('data-filter');
+        btns.forEach(function (b) {
+          b.classList.toggle('is-active', b === btn);
+          b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+        });
+        sections.forEach(function (sec) {
+          var cat = sec.getAttribute('data-category');
+          sec.style.display = (f === 'all' || f === cat) ? '' : 'none';
+        });
+      });
+    });
+    window.addEventListener('scroll', function () {
+      bar.classList.toggle('is-stuck', window.scrollY > 280);
+    }, { passive: true });
+  })();
+  </script>
+</body>
+</html>

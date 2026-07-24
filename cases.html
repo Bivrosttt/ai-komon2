@@ -1,0 +1,492 @@
+<!-- 2026-07-23: 90日Theaterは質が揃うまでlab非掲載。直リンク用に残置。ナビはlabへ -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>導入ストーリー｜AI顧問室</title>
+<meta name="description" content="従業員10〜50名の中小企業におけるAI活用の変化を、匿名化したストーリーで紹介。90日で何が変わるかのイメージを掴めます。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="導入ストーリー｜AI顧問室">
+<meta property="og:description" content="似た規模・似た課題の会社が、AI顧問と90日でどう変わるか。匿名化した事例ストーリー。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/cases.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #071A35; --navy-light: #19376D; --blue: #2D6CB5;
+    --gold: #C9A227; --ink: #1A2433; --gray: #5B6B7F; --line: #DDE4EC;
+    --bg-soft: #F4F7FA; --white: #FFF;
+    --red-soft: #FEE2E2; --green-soft: #DCFCE7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.9; background: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
+  a { text-decoration: none; color: inherit; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 80px 0; }
+  .section-label { display: block; font-size: 13px; letter-spacing: .2em; color: var(--gold); font-weight: 700; margin-bottom: 12px; }
+  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 16px; }
+  .section-lead { color: var(--gray); max-width: 680px; margin-bottom: 40px; }
+  .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-weight: 700; font-size: 15px; transition: opacity .2s; }
+  .btn:hover { opacity: .85; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .logo strong { font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--navy); }
+  .back { font-size: 13px; color: var(--blue); font-weight: 600; }
+  .hero { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); padding: 88px 0 72px; }
+  .hero h1 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 14px; }
+  .hero p { color: #c7d3e4; max-width: 680px; font-size: 15px; }
+  .disclaimer { background: var(--bg-soft); border-left: 4px solid var(--gold); padding: 16px 20px; font-size: 13px; color: var(--gray); margin-bottom: 40px; }
+
+  /* Case Theater */
+  .theater-wrap { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--white); box-shadow: 0 8px 32px rgba(11,36,71,.06); }
+  .case-tabs { display: flex; background: var(--navy-deep); overflow-x: auto; }
+  .case-tab { flex: 1; min-width: 140px; padding: 16px 18px; border: none; background: transparent; color: #8fa3be; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; border-bottom: 3px solid transparent; transition: color .2s, border-color .2s, background .2s; white-space: nowrap; }
+  .case-tab:hover { color: #c7d3e4; }
+  .case-tab.active { color: var(--white); border-bottom-color: var(--gold); background: rgba(201,162,39,.08); }
+  .case-tab .tab-no { display: block; font-size: 10px; letter-spacing: .12em; color: var(--gold); margin-bottom: 2px; }
+  .theater-head { background: var(--navy); color: var(--white); padding: 22px 28px; }
+  .theater-head .case-meta { font-size: 11px; letter-spacing: .1em; color: var(--gold); font-weight: 700; margin-bottom: 6px; }
+  .theater-head h2 { font-size: 20px; margin-bottom: 4px; }
+  .theater-head p { font-size: 13px; color: #c7d3e4; }
+  .theater-stage { display: grid; grid-template-columns: 1fr 280px 1fr; gap: 0; min-height: 380px; }
+  .pane { padding: 20px; display: flex; flex-direction: column; }
+  .pane-before { background: #FEF2F2; border-right: 1px solid var(--line); }
+  .pane-after { background: #F0FDF4; border-left: 1px solid var(--line); }
+  .pane-label { font-size: 10px; font-weight: 800; letter-spacing: .14em; margin-bottom: 10px; }
+  .pane-before .pane-label { color: #B91C1C; }
+  .pane-after .pane-label { color: #15803D; }
+  .mock { flex: 1; border-radius: 8px; border: 1px solid var(--line); background: var(--white); padding: 14px; font-size: 11px; line-height: 1.55; overflow: hidden; position: relative; transition: opacity .35s; }
+  .mock-title { font-weight: 700; font-size: 12px; color: var(--navy); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+  .mock-row { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; opacity: 1; transition: opacity .35s, transform .35s; }
+  .mock-row.dim { opacity: .35; }
+  .mock-row.hide { opacity: 0; transform: translateY(4px); height: 0; margin: 0; overflow: hidden; }
+  .mock-row.show { opacity: 1; transform: translateY(0); }
+  .mock-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .mock-dot.red { background: #EF4444; }
+  .mock-dot.amber { background: #F59E0B; }
+  .mock-dot.green { background: #22C55E; }
+  .mock-dot.blue { background: var(--blue); }
+  .mock-bubble { flex: 1; background: var(--bg-soft); border-radius: 6px; padding: 6px 10px; border: 1px solid var(--line); }
+  .mock-bubble.alert { background: var(--red-soft); border-color: #FECACA; }
+  .mock-bubble.ok { background: var(--green-soft); border-color: #BBF7D0; }
+  .mock-bubble.ai { background: #EFF6FF; border-color: #BFDBFE; }
+  .mock-cell { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-bottom: 8px; }
+  .mock-cell span { background: var(--bg-soft); border: 1px solid var(--line); padding: 4px; text-align: center; font-size: 9px; border-radius: 2px; }
+  .mock-cell span.err { background: #FEE2E2; color: #B91C1C; }
+  .mock-cell span.ok { background: #DCFCE7; color: #15803D; }
+  .mock-badge { display: inline-block; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 999px; margin-left: 4px; }
+  .mock-badge.late { background: #FEE2E2; color: #B91C1C; }
+  .mock-badge.done { background: #DCFCE7; color: #15803D; }
+  .mock-badge.ai { background: #DBEAFE; color: #1D4ED8; }
+  .mock-stack { position: absolute; bottom: 10px; right: 10px; font-size: 9px; color: var(--gray); background: rgba(255,255,255,.9); padding: 4px 8px; border-radius: 4px; border: 1px solid var(--line); }
+
+  .scrubber-col { background: var(--bg-soft); padding: 20px 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+  .day-display { text-align: center; }
+  .day-num { font-family: 'Noto Serif JP', serif; font-size: 42px; font-weight: 700; color: var(--navy); line-height: 1; }
+  .day-num span { font-size: 16px; color: var(--gray); font-family: 'Noto Sans JP', sans-serif; font-weight: 500; }
+  .day-change { font-size: 12px; font-weight: 700; color: var(--navy); margin-top: 8px; line-height: 1.5; min-height: 2.8em; }
+  .day-change-sub { font-size: 11px; color: var(--gray); font-weight: 500; margin-top: 4px; line-height: 1.6; }
+  .scrub-track { width: 100%; position: relative; padding: 8px 0; }
+  .scrub-input { width: 100%; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 999px; background: linear-gradient(to right, var(--gold) 0%, var(--gold) var(--pct, 0%), var(--line) var(--pct, 0%)); outline: none; cursor: pointer; }
+  .scrub-input::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--navy); border: 3px solid var(--gold); cursor: grab; box-shadow: 0 2px 8px rgba(11,36,71,.25); }
+  .scrub-input::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--navy); border: 3px solid var(--gold); cursor: grab; }
+  .scrub-marks { display: flex; justify-content: space-between; width: 100%; margin-top: 6px; }
+  .scrub-mark { font-size: 10px; font-weight: 700; color: var(--gray); cursor: pointer; padding: 2px 4px; border-radius: 4px; transition: color .2s, background .2s; }
+  .scrub-mark.active { color: var(--navy); background: rgba(201,162,39,.15); }
+  .scrub-hint { font-size: 10px; color: var(--gray); text-align: center; }
+
+  .theater-foot { padding: 20px 28px 24px; border-top: 1px solid var(--line); background: var(--white); }
+  .result-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+  .result { text-align: center; background: var(--bg-soft); border-radius: 6px; padding: 14px 10px; border: 1px solid var(--line); transition: transform .3s; }
+  .result b { display: block; font-family: 'Noto Serif JP', serif; font-size: 20px; color: var(--navy); transition: color .3s; }
+  .result small { font-size: 10.5px; color: var(--gray); }
+  .result.lit { transform: scale(1.02); border-color: var(--gold); }
+  .result.lit b { color: var(--gold); }
+  .case-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .case-links a { font-size: 12px; font-weight: 700; color: var(--blue); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; background: var(--white); transition: border-color .2s, background .2s; }
+  .case-links a:hover { border-color: var(--navy); background: var(--bg-soft); }
+  .case-links a.primary { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .case-links a.craft { border-color: var(--gold); color: var(--navy); background: #FFFBEB; }
+  .evidence-cap {
+    width: 100%; font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--gray);
+    margin: 4px 0 2px;
+  }
+
+  .cta { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--white); text-align: center; }
+  .cta h2 { font-size: 28px; margin-bottom: 12px; }
+  .cta p { color: #c7d3e4; margin-bottom: 24px; }
+  footer { background: var(--navy-deep); color: #9fb0c7; font-size: 13px; padding: 32px 0; text-align: center; }
+  footer a { text-decoration: underline; }
+
+  @media (max-width: 900px) {
+    .theater-stage { grid-template-columns: 1fr; grid-template-rows: auto auto auto; min-height: auto; }
+    .pane-before { border-right: none; border-bottom: 1px solid var(--line); }
+    .pane-after { border-left: none; border-top: 1px solid var(--line); }
+    .scrubber-col { border-left: none; border-right: none; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); order: -1; }
+    .mock { min-height: 200px; }
+    section { padding: 56px 0; }
+    .section-title { font-size: 26px; }
+    .result-row { grid-template-columns: 1fr; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong></a>
+    <nav style="display:flex;gap:18px;align-items:center;">
+      <a href="lab.html" class="back">実物ラボ</a>
+      <a href="index.html" class="back">公式サイト</a>
+      <a href="index.html?from=cases#contact" class="btn btn-gold" style="padding:9px 22px;font-size:13px;">無料相談</a>
+    </nav>
+  </div>
+</header>
+<div class="hero">
+  <div class="container">
+    <span class="section-label">CASE THEATER</span>
+    <h1>似た会社の、90日の変化。</h1>
+    <p>スライダーを動かすと、業務のBefore/Afterが目の前で変わります。ここにあるのは匿名化したストーリーです。固有名詞や数値の一部は説明のために調整しています。</p>
+  </div>
+</div>
+<section>
+  <div class="container">
+    <div class="disclaimer">※すべて架空・匿名化したサンプルストーリーです。実在の顧客事例ではありません。効果や削減時間を保証するものではありません。<br><br>本物の事例は <a href="monitor.html" style="color:var(--blue);font-weight:700;">モニター企業募集</a> 完了後にここへ差し替え予定です。</div>
+
+    <div class="theater-wrap" id="case-theater">
+      <div class="case-tabs" role="tablist">
+        <button class="case-tab active" role="tab" data-case="manufacturing" aria-selected="true"><span class="tab-no">CASE 01</span>製造業</button>
+        <button class="case-tab" role="tab" data-case="realestate"><span class="tab-no">CASE 02</span>不動産</button>
+        <button class="case-tab" role="tab" data-case="sales"><span class="tab-no">CASE 03</span>BtoB営業</button>
+      </div>
+      <div class="theater-head" id="theater-head"></div>
+      <div class="theater-stage">
+        <div class="pane pane-before">
+          <div class="pane-label">BEFORE — 導入前</div>
+          <div class="mock" id="mock-before" aria-live="polite"></div>
+        </div>
+        <div class="scrubber-col">
+          <div class="day-display">
+            <div class="day-num"><span>DAY </span><span id="day-val">0</span></div>
+            <div class="day-change" id="day-change"></div>
+            <div class="day-change-sub" id="day-change-sub"></div>
+          </div>
+          <div class="scrub-track">
+            <input type="range" class="scrub-input" id="day-scrub" min="0" max="90" step="1" value="0" aria-label="導入からの経過日数">
+            <div class="scrub-marks">
+              <span class="scrub-mark active" data-day="0">0</span>
+              <span class="scrub-mark" data-day="30">30</span>
+              <span class="scrub-mark" data-day="60">60</span>
+              <span class="scrub-mark" data-day="90">90</span>
+            </div>
+          </div>
+          <p class="scrub-hint">← ドラッグして変化を見る</p>
+        </div>
+        <div class="pane pane-after">
+          <div class="pane-label">AFTER — 変化後</div>
+          <div class="mock" id="mock-after" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="theater-foot">
+        <div class="result-row" id="result-row"></div>
+        <div class="case-links" id="case-links"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta">
+  <div class="container">
+    <h2>御社に近いストーリーは、どれですか？</h2>
+    <p>30分の無料相談で、最初の90日を一緒に整理します。</p>
+    <a href="index.html?from=cases#contact" class="btn btn-gold">無料AI活用診断を予約</a>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <p>運営：Bivrost Inc.｜© 2026 AI顧問室</p>
+    <p><a href="index.html">公式サイト</a> · <a href="for/kensetsu.html">業種入口</a> · <a href="privacy.html">プライバシー</a></p>
+  </div>
+</footer>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+<script>
+(function(){
+  var CASES = {
+    manufacturing: {
+      meta: { no: 'CASE 01｜製造業', title: '従業員32名・部品加工メーカー', desc: '課題：日報と報告書が終業後に残る。現場監督が事務所に引き戻されていた。' },
+      milestones: [
+        { day: 0, title: '出発点', change: '終業後2時間が報告書づくり', sub: '現場と事務所の往復。写真はLINEに散らばり、Excelは手入力。' },
+        { day: 30, title: '棚卸し完了', change: '日報・写真・見積下準備を洗い出し', sub: '3業務のうち日報から着手。現場3名が試用開始。' },
+        { day: 60, title: '試作が回る', change: '現場写真→報告書AIを実案件で検証', sub: '御社書式の試作品。監督3名が現場で使い始める。' },
+        { day: 90, title: '手順が固定', change: 'AI下書き→監督確認→提出が標準', sub: '週6時間削減の目安。次は見積下準備へ横展開。' }
+      ],
+      before: function(d){ return mockMfgBefore(); },
+      after: function(d){
+        if (d < 15) return mockMfgAfterEarly();
+        if (d < 45) return mockMfgAfterMid();
+        if (d < 75) return mockMfgAfterLate();
+        return mockMfgAfterDone();
+      },
+      metrics: [
+        { val: '週6時間', label: '報告書作成の目安削減（社内試算）', litAt: 60 },
+        { val: '3名', label: '最初に定着した現場監督', litAt: 30 },
+        { val: '1本', label: '次に横展開する業務（見積下準備）', litAt: 90 }
+      ],
+      links: [
+        { href: 'works-genba.html', label: 'GENBA現場OS', primary: true },
+        { href: 'demo-photo-report.html', label: '現場写真→報告書' },
+        { href: 'works-3d.html', label: '成果物：間取り→3D', craft: true },
+        { href: 'works-paint.html', label: '成果物：外壁パース', craft: true },
+        { href: 'for/kensetsu.html', label: '建設向け入口' }
+      ]
+    },
+    realestate: {
+      meta: { no: 'CASE 02｜不動産', title: '従業員18名・地域密着の不動産会社', desc: '課題：反響返信が遅い。夜間・休日の問い合わせを取りこぼしていた。' },
+      milestones: [
+        { day: 0, title: '出発点', change: '一次返信まで平均数時間', sub: 'ポータル反響がメールに溜まり、夜間は放置。' },
+        { day: 30, title: 'ボトルネック特定', change: '反響→一次返信→内見の流れを可視化', sub: '「誰が・いつ・何を返すか」が曖昧だった。' },
+        { day: 60, title: '下書きが届く', change: '問い合わせ返信AI＋確認者を固定', sub: 'テンプレと確認フロー。平均18分まで短縮。' },
+        { day: 90, title: '追客まで回る', change: 'Day3/7/14フォロー案を週次生成', sub: '24h体制。追客再開2件（社内報告）。' }
+      ],
+      before: function(d){ return mockReBefore(); },
+      after: function(d){
+        if (d < 15) return mockReAfterEarly();
+        if (d < 45) return mockReAfterMid();
+        if (d < 75) return mockReAfterLate();
+        return mockReAfterDone();
+      },
+      metrics: [
+        { val: '平均18分', label: '一次返信までの時間（導入前は数時間）', litAt: 60 },
+        { val: '24h', label: '夜間反響にも下書きが用意される体制', litAt: 60 },
+        { val: '2件', label: '追客再開につながった案件（社内報告）', litAt: 90 }
+      ],
+      links: [
+        { href: 'works-hankyo.html', label: 'HANKYO反響CRM', primary: true },
+        { href: 'demo-inquiry.html', label: '問い合わせ返信デモ' },
+        { href: 'works-video.html', label: '成果物：物件プロモ映像', craft: true },
+        { href: 'demo-staging.html', label: '成果物：ステージング', craft: true },
+        { href: 'for/fudosan.html', label: '不動産向け入口' }
+      ]
+    },
+    sales: {
+      meta: { no: 'CASE 03｜BtoB営業', title: '従業員45名・IT商材の営業組織', desc: '課題：提案書づくりに時間がかかり、エース営業の工数が足りない。' },
+      milestones: [
+        { day: 0, title: '出発点', change: '提案初稿に丸1日', sub: '商談準備・議事録・提案がバラバラ。CRM入力も後回し。' },
+        { day: 30, title: '工程を計測', change: '商談準備・議事録・提案初稿を分解', sub: 'ボトルネックは提案初稿。ここから着手。' },
+        { day: 60, title: 'テンプレが効く', change: '見積書AI＋資料スライドAIを試作', sub: 'トップ営業2名が実案件で検証。約40%短縮（体感）。' },
+        { day: 90, title: 'チーム標準化', change: '商談後メモ→要点→CRM入力案', sub: '8名がテンプレ利用開始。次は商談前リサーチ。' }
+      ],
+      before: function(d){ return mockSalesBefore(); },
+      after: function(d){
+        if (d < 15) return mockSalesAfterEarly();
+        if (d < 45) return mockSalesAfterMid();
+        if (d < 75) return mockSalesAfterLate();
+        return mockSalesAfterDone();
+      },
+      metrics: [
+        { val: '約40%', label: '提案初稿までの時間短縮（体感）', litAt: 60 },
+        { val: '8名', label: 'テンプレ利用を開始した営業', litAt: 90 },
+        { val: '1工程', label: '次に整備する工程（商談前リサーチ）', litAt: 90 }
+      ],
+      links: [
+        { href: 'works-brief.html', label: 'BRIEF営業WS', primary: true },
+        { href: 'works-btob-proposal.html', label: '成果物：提案キャンバス', craft: true },
+        { href: 'works-sales-mail.html', label: '成果物：追客壁', craft: true },
+        { href: 'works-slides.html', label: '成果物：提案スライド', craft: true },
+        { href: 'for/sales.html', label: '営業向け入口' }
+      ]
+    }
+  };
+
+  function mockMfgBefore(){
+    return '<div class="mock-title">現場LINE + 日報Excel<span class="mock-badge late">未提出 3件</span></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">監督A「写真送った。報告書は帰宅後で…」</div></div>' +
+      '<div class="mock-row"><div class="mock-dot amber"></div><div class="mock-bubble">現場B「Excelまた手入力。同じ項目3回目」</div></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">事務「昨日の分まだ。客先提出が遅れる」</div></div>' +
+      '<div class="mock-cell"><span class="err">写真</span><span class="err">—</span><span class="err">—</span><span class="err">未</span><span>日付</span><span>手入力</span><span class="err">?</span><span class="err">?</span><span>工程</span><span class="err">空</span><span class="err">空</span><span class="err">空</span></div>' +
+      '<div class="mock-stack">終業後 +2h</div>';
+  }
+  function mockMfgAfterEarly(){
+    return '<div class="mock-title">業務棚卸しシート<span class="mock-badge">Day 30</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble">①日報 ②写真整理 ③見積下準備 — 優先度付け</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">日報から着手。試用メンバー3名決定</div></div>' +
+      '<div class="mock-row dim"><div class="mock-dot amber"></div><div class="mock-bubble">報告書AI — 次フェーズ</div></div>' +
+      '<div class="mock-cell"><span class="ok">日報</span><span>着手</span><span class="ok">✓</span><span>—</span></div>';
+  }
+  function mockMfgAfterMid(){
+    return '<div class="mock-title">現場写真→報告書AI<span class="mock-badge ai">試作稼働</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">写真3枚アップ → 御社書式で下書き生成</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">AI「工程A完了。是正事項：配管支持」</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">監督確認待ち — 提出前チェック</div></div>' +
+      '<div class="mock-cell"><span class="ok">写真</span><span class="ok">AI</span><span class="ok">確認</span><span>提出</span></div>';
+  }
+  function mockMfgAfterLate(){
+    return mockMfgAfterMid().replace('試作稼働','3名定着');
+  }
+  function mockMfgAfterDone(){
+    return '<div class="mock-title">現場報告フロー<span class="mock-badge done">標準手順</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">①写真アップ → ②AI下書き → ③監督確認 → ④提出</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">週6時間削減（社内試算）。研修1回で全現場展開</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">次：見積下準備へ横展開予定</div></div>' +
+      '<div class="mock-cell"><span class="ok">✓</span><span class="ok">✓</span><span class="ok">✓</span><span class="ok">✓</span></div>' +
+      '<div class="mock-stack" style="color:#15803D;font-weight:700;">終業後 0h</div>';
+  }
+
+  function mockReBefore(){
+    return '<div class="mock-title">反響受信箱<span class="mock-badge late">未返信 7件</span></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">SUUMO 22:14「内見希望」<span class="mock-badge late">18h経過</span></div></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">HOMES 昨日「資料請求」<span class="mock-badge late">未対応</span></div></div>' +
+      '<div class="mock-row"><div class="mock-dot amber"></div><div class="mock-bubble">担当者不在 — 誰が返すか不明</div></div>' +
+      '<div class="mock-stack">平均 数時間</div>';
+  }
+  function mockReAfterEarly(){
+    return '<div class="mock-title">反響フロー可視化<span class="mock-badge">Day 30</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble">反響 → 一次返信 → 内見調整 の3段階を整理</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot amber"></div><div class="mock-bubble">ボトルネック：一次返信の担当とSLAが未定</div></div>' +
+      '<div class="mock-row dim"><div class="mock-dot green"></div><div class="mock-bubble ok">追客シナリオ — 次フェーズ</div></div>';
+  }
+  function mockReAfterMid(){
+    return '<div class="mock-title">問い合わせ返信AI<span class="mock-badge ai">下書き生成</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">SUUMO 22:14 → AI下書き「内見候補3枠」</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">確認者：田中 → 送信（平均18分）</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">夜間反響も朝イチで下書き済み</div></div>' +
+      '<div class="mock-stack" style="color:#15803D;">SLA 18分</div>';
+  }
+  function mockReAfterLate(){ return mockReAfterMid(); }
+  function mockReAfterDone(){
+    return '<div class="mock-title">反響CRM + 追客<span class="mock-badge done">24h体制</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">一次返信：平均18分。全反響に下書き</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">Day3/7/14 フォロー案を週次生成</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">追客再開 2件（社内報告）</div></div>' +
+      '<div class="mock-cell"><span class="ok">反響</span><span class="ok">返信</span><span class="ok">追客</span><span class="ok">内見</span></div>';
+  }
+
+  function mockSalesBefore(){
+    return '<div class="mock-title">提案書づくり<span class="mock-badge late">初稿 8h</span></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">エース営業「提案3件同時。今日中に無理」</div></div>' +
+      '<div class="mock-row"><div class="mock-dot amber"></div><div class="mock-bubble">PowerPoint白紙。前回資料をコピペ…</div></div>' +
+      '<div class="mock-row"><div class="mock-dot red"></div><div class="mock-bubble alert">CRM入力未完了 — 商談メモが散在</div></div>' +
+      '<div class="mock-stack">提案初稿 丸1日</div>';
+  }
+  function mockSalesAfterEarly(){
+    return '<div class="mock-title">営業工程マップ<span class="mock-badge">Day 30</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble">商談準備 / 議事録 / 提案初稿 — 時間計測</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot amber"></div><div class="mock-bubble">ボトルネック確定：提案初稿から着手</div></div>' +
+      '<div class="mock-row dim"><div class="mock-dot green"></div><div class="mock-bubble ok">テンプレ試作 — 次フェーズ</div></div>';
+  }
+  function mockSalesAfterMid(){
+    return '<div class="mock-title">提案キャンバス + AI<span class="mock-badge ai">試作稼働</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">商談メモ → 論点カード → 章立て自動</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">見積書AI + スライド8枚を生成</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">トップ2名検証 — 約40%短縮（体感）</div></div>';
+  }
+  function mockSalesAfterLate(){ return mockSalesAfterMid().replace('試作稼働','2名定着'); }
+  function mockSalesAfterDone(){
+    return '<div class="mock-title">営業ワークスペース<span class="mock-badge done">8名利用</span></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">商談後メモ → 要点抽出 → CRM入力案</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot green"></div><div class="mock-bubble ok">提案初稿：約40%短縮。テンプレ標準化</div></div>' +
+      '<div class="mock-row show"><div class="mock-dot blue"></div><div class="mock-bubble ai">次：商談前リサーチ工程を整備</div></div>' +
+      '<div class="mock-cell"><span class="ok">準備</span><span class="ok">提案</span><span class="ok">CRM</span><span class="ok">追客</span></div>';
+  }
+
+  var currentCase = 'manufacturing';
+  var dayVal = 0;
+  var scrub = document.getElementById('day-scrub');
+  var dayDisplay = document.getElementById('day-val');
+  var dayChange = document.getElementById('day-change');
+  var dayChangeSub = document.getElementById('day-change-sub');
+  var mockBefore = document.getElementById('mock-before');
+  var mockAfter = document.getElementById('mock-after');
+  var theaterHead = document.getElementById('theater-head');
+  var resultRow = document.getElementById('result-row');
+  var caseLinks = document.getElementById('case-links');
+  var marks = document.querySelectorAll('.scrub-mark');
+  var tabs = document.querySelectorAll('.case-tab');
+
+  function nearestMilestone(c, day){
+    var ms = c.milestones;
+    var best = ms[0];
+    for (var i = 0; i < ms.length; i++){
+      if (day >= ms[i].day) best = ms[i];
+    }
+    return best;
+  }
+
+  function render(){
+    var c = CASES[currentCase];
+    var m = nearestMilestone(c, dayVal);
+    theaterHead.innerHTML = '<div class="case-meta">' + c.meta.no + '</div><h2>' + c.meta.title + '</h2><p>' + c.meta.desc + '</p>';
+    mockBefore.innerHTML = c.before(dayVal);
+    mockAfter.innerHTML = c.after(dayVal);
+    dayDisplay.textContent = dayVal;
+    dayChange.textContent = m.change;
+    dayChangeSub.textContent = m.sub;
+    scrub.value = dayVal;
+    scrub.style.setProperty('--pct', (dayVal / 90 * 100) + '%');
+    marks.forEach(function(el){
+      var d = parseInt(el.dataset.day, 10);
+      el.classList.toggle('active', Math.abs(dayVal - d) <= 15 || (dayVal === 0 && d === 0) || (dayVal >= 75 && d === 90));
+    });
+    resultRow.innerHTML = c.metrics.map(function(r){
+      return '<div class="result' + (dayVal >= r.litAt ? ' lit' : '') + '"><b>' + r.val + '</b><small>' + r.label + '</small></div>';
+    }).join('');
+    var desk = c.links.filter(function(l){ return !l.craft; });
+    var craft = c.links.filter(function(l){ return l.craft; });
+    function linkHtml(l){
+      var cls = l.primary ? 'primary' : (l.craft ? 'craft' : '');
+      return '<a href="' + l.href + '"' + (cls ? ' class="' + cls + '"' : '') + '>' + l.label + '</a>';
+    }
+    caseLinks.innerHTML =
+      desk.map(linkHtml).join('') +
+      (craft.length ? '<div class="evidence-cap">この変化の成果物サンプル</div>' + craft.map(linkHtml).join('') : '');
+  }
+
+  scrub.addEventListener('input', function(){
+    dayVal = parseInt(scrub.value, 10);
+    render();
+  });
+  marks.forEach(function(el){
+    el.addEventListener('click', function(){
+      dayVal = parseInt(el.dataset.day, 10);
+      render();
+    });
+  });
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      currentCase = tab.dataset.case;
+      dayVal = 0;
+      tabs.forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      if (location.hash !== '#case-' + currentCase) history.replaceState(null, '', '#case-' + currentCase);
+      render();
+    });
+  });
+
+  var hash = location.hash.replace('#case-','');
+  if (CASES[hash]) {
+    currentCase = hash;
+    tabs.forEach(function(t){
+      var on = t.dataset.case === hash;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "keyword": "単価 計算",
+  "slug": "unit-price-calculator",
+  "title": "単価計算機",
+  "description": "合計金額と数量を入力して、1個あたり・1時間あたりの単価を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "totalAmount", "label": "合計金額（円）", "default": 100000, "step": 1000},
+    {"id": "quantity", "label": "数量", "default": 10, "step": 1}
+  ],
+  "result": {"label": "1単位あたりの単価", "unit": "円", "formula": "totalAmount / quantity"},
+  "explanations": ["見積、外注、広告、作業時間など、合計額を単位あたりに分解して比較できます。", "数量が0の場合は計算できません。実際の原価や税の扱いは別途確認してください。"],
+  "related_tools": [
+    {"label": "1時間の人件費計算機", "url": "/tools/hourly-cost-calculator/", "description": "時間単価を人件費から計算します。"},
+    {"label": "見積利益率計算機", "url": "/tools/quote-margin-calculator/", "description": "単価と利益率から見積価格を確認します。"}
+  ],
+  "cta": {"label": "原価・見積設計を相談する", "url": "/demo-quote.html"}
+}

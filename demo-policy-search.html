@@ -1,0 +1,394 @@
+<!-- 2026-07-22: 軽デモをKITEI同型（条文リーダー＋付箋）に揃え -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>稟議・規程検索AI 体験デモ（条文リーダー）｜AI顧問室</title>
+<meta name="description" content="就業規則・出張規程を条文リーダーで表示し、Askチップでハイライト＋付箋回答。稟議下書きまで体験できるKITEI同型の軽量デモです。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="稟議・規程検索AI 体験デモ（条文リーダー）｜AI顧問室">
+<meta property="og:description" content="条文リーダー＋付箋Askで規程検索。のぞみ新幹線・有給などの質問に出典付き回答するKITEI同型デモ。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/demo-policy-search.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo: #1E3A5F; --indigo-deep: #152A45; --indigo-soft: #2D5280;
+    --paper: #FBF8F0; --paper-line: #E8DFCF; --ivory: #F7F1E5;
+    --sticky: #FEF08A; --sticky-line: #EAB308;
+    --ink: #1C1917; --gray: #57534E; --gray-soft: #78716C;
+    --line: #D6CFC0; --highlight: rgba(254,240,138,.55);
+    --navy: #0B2447; --gold: #C9A227; --white: #FFFFFF;
+    --green: #15803D; --green-bg: #DCFCE7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.75; background: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.45; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; border: none; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 88px 0; }
+
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .logo { display: flex; align-items: baseline; gap: 8px; }
+  .logo strong { font-family: 'Noto Serif JP', serif; font-size: 22px; color: var(--navy); }
+  .logo span { font-size: 11px; color: var(--gray-soft); letter-spacing: .1em; }
+  .header-links { display: flex; align-items: center; gap: 20px; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 6px; font-weight: 700; font-size: 14px; transition: filter .15s; }
+  .btn:hover { filter: brightness(1.05); }
+  .btn-indigo { background: var(--indigo); color: #fff; }
+  .btn-indigo:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-gold { background: var(--gold); color: var(--navy); }
+  .btn-outline { border: 1.5px solid var(--indigo); color: var(--indigo); background: transparent; }
+
+  .demo-hero {
+    background: linear-gradient(135deg, var(--indigo-deep) 0%, var(--indigo) 55%, var(--indigo-soft) 100%);
+    color: #F5F0E8; padding: 72px 0 56px;
+  }
+  .hero-label { display: inline-block; border: 1px solid rgba(251,248,240,.4); border-radius: 999px; font-size: 12px; padding: 5px 16px; letter-spacing: .12em; margin-bottom: 20px; color: var(--paper); }
+  .demo-hero h1 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 16px; }
+  .demo-hero h1 em { font-style: normal; color: var(--sticky); }
+  .demo-hero .sub { font-size: 15px; color: #C4B8A8; max-width: 640px; }
+
+  .note-banner { background: var(--ivory); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding: 16px 24px; }
+  .note-box { display: flex; gap: 10px; font-size: 13px; color: var(--gray); max-width: 900px; }
+  .note-box strong { color: var(--ink); }
+
+  .demo-section { background: var(--ivory); }
+  .section-label { display: block; font-size: 12px; letter-spacing: .2em; color: var(--indigo); font-weight: 700; margin-bottom: 10px; }
+  .section-title { font-size: 28px; color: var(--navy); margin-bottom: 16px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 40px; font-size: 15px; }
+
+  .ask-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+  .ask-chip {
+    padding: 10px 16px; border-radius: 999px; border: 1.5px solid var(--line);
+    background: var(--paper); font-size: 13px; font-weight: 600; transition: all .15s;
+  }
+  .ask-chip:hover { border-color: var(--indigo); }
+  .ask-chip.active { background: var(--indigo); color: #fff; border-color: var(--indigo); }
+
+  .demo-core {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 0;
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+    background: var(--paper); box-shadow: 0 16px 40px rgba(30,58,95,.1); min-height: 440px;
+  }
+
+  .statute-wrap { padding: 16px; border-right: 1px solid var(--line); background: var(--ivory); display: flex; flex-direction: column; }
+  .statute-toolbar { font-size: 11px; color: var(--gray-soft); margin-bottom: 10px; display: flex; justify-content: space-between; }
+  .statute-scroll {
+    flex: 1; background: var(--paper); border: 1px solid var(--paper-line); border-radius: 6px;
+    padding: 18px 16px; max-height: 360px; overflow-y: auto; scroll-behavior: smooth;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.6);
+  }
+  .statute-title { font-family: 'Noto Serif JP', serif; font-size: 15px; text-align: center; margin-bottom: 14px; letter-spacing: .06em; }
+  .article { font-size: 12px; color: var(--gray); padding: 10px 8px; border-left: 3px solid transparent; border-radius: 4px; margin-bottom: 6px; transition: background .3s, border-color .3s; }
+  .article .a-no { font-weight: 700; color: var(--ink); font-size: 11.5px; margin-bottom: 3px; }
+  .article.highlight { border-left-color: var(--sticky-line); background: var(--highlight); color: var(--ink); }
+
+  .sticky-panel { padding: 16px; background: var(--paper); display: flex; flex-direction: column; position: relative; }
+  .sticky-panel h4 { font-size: 11px; letter-spacing: .14em; color: var(--indigo); margin-bottom: 12px; }
+  .sticky-note {
+    background: var(--sticky); border: 1px solid var(--sticky-line); border-radius: 2px;
+    padding: 14px 16px; min-height: 160px; font-size: 13px; line-height: 1.75;
+    box-shadow: 2px 3px 8px rgba(0,0,0,.08); transform: rotate(-0.5deg); flex: 1;
+    white-space: pre-wrap;
+  }
+  .sticky-note .cite { display: block; margin-top: 10px; font-size: 11px; font-weight: 700; color: var(--indigo); }
+  .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--indigo); vertical-align: text-bottom; animation: blink .8s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .ringi-box { margin-top: 12px; display: none; }
+  .ringi-box.show { display: block; animation: fadein .4s ease; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .ringi-preview {
+    border: 1px dashed var(--indigo); border-radius: 6px; padding: 10px 12px;
+    font-size: 11.5px; line-height: 1.65; background: rgba(30,58,95,.04); min-height: 72px; white-space: pre-wrap;
+  }
+  .ringi-actions { margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .ringi-note { font-size: 10.5px; color: var(--gray-soft); }
+
+  .saas-link { margin-top: 20px; text-align: center; }
+  .saas-link a { font-size: 13px; font-weight: 700; color: var(--indigo); border-bottom: 1px solid rgba(30,58,95,.35); padding-bottom: 2px; }
+
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .f-step { background: var(--ivory); border-radius: 8px; padding: 24px; border-top: 3px solid var(--indigo); }
+  .f-step .no { width: 28px; height: 28px; border-radius: 50%; background: var(--indigo); color: #fff; font-size: 13px; font-weight: 700; display: grid; place-items: center; margin-bottom: 12px; }
+  .f-step h3 { font-size: 16px; margin-bottom: 8px; color: var(--navy); }
+  .f-step p { font-size: 13.5px; color: var(--gray); line-height: 1.75; }
+
+  .cta { background: var(--navy); color: #fff; text-align: center; }
+  .cta h2 { font-size: 26px; margin-bottom: 14px; }
+  .cta p { color: #C7D3E4; margin-bottom: 28px; font-size: 15px; }
+  .cta-ctas { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+  footer { background: #071A35; color: #8FA3BC; padding: 32px 0; font-size: 13px; }
+  footer .logo strong { color: #fff; font-size: 18px; }
+
+  @media (max-width: 820px) {
+    .demo-core { grid-template-columns: 1fr; }
+    .statute-wrap { border-right: none; border-bottom: 1px solid var(--line); }
+  }
+  @media (max-width: 600px) { .logo span { display: none; } section { padding: 64px 0; } }
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+    <div class="header-links">
+      <a href="demos.html">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold" style="padding:10px 20px;font-size:13px;">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<div class="demo-hero">
+  <div class="container">
+    <span class="hero-label">体験デモ · KITEI同型</span>
+    <h1>規程は<em>紙面</em>で読む。付箋で答える。</h1>
+    <p class="sub">就業規則・出張規程を条文リーダーで表示。Askチップを押すと該当条項がハイライトされ、付箋に出典付き回答が現れます。必要なら稟議下書きも。</p>
+  </div>
+</div>
+
+<div class="note-banner">
+  <div class="container note-box">
+    <span>※</span>
+    <p><strong>規程条文・社名はすべて架空のサンプルです。</strong>実際の規程解釈の最終判断は総務・法務にお任せください。本デモは検索体験の再現です。</p>
+  </div>
+</div>
+
+<section class="demo-section" id="demo">
+  <div class="container">
+    <div class="ask-row" id="askRow">
+      <button type="button" class="ask-chip" data-id="shinkansen">のぞみ新幹線は使える？</button>
+      <button type="button" class="ask-chip" data-id="yukyu">有給の申請方法</button>
+      <button type="button" class="ask-chip" data-id="ringi">10万円超の稟議</button>
+    </div>
+
+    <div class="demo-core">
+      <div class="statute-wrap">
+        <div class="statute-toolbar">
+          <span id="docLabel">就業規則 · 出張規程</span>
+          <span>条文リーダー</span>
+        </div>
+        <div class="statute-scroll" id="statuteScroll">
+          <div class="statute-title" id="statuteTitle">就業規則（抜粋）</div>
+          <div id="articleList"></div>
+        </div>
+      </div>
+      <aside class="sticky-panel">
+        <h4>ASK · 付箋回答</h4>
+        <div class="sticky-note" id="stickyNote">左のAskチップを選ぶと、該当条文がハイライトされ回答が付箋に現れます…</div>
+        <div class="ringi-box" id="ringiBox">
+          <div class="ringi-preview" id="ringiPreview"></div>
+          <div class="ringi-actions">
+            <button type="button" class="btn btn-indigo" id="btnRingi" style="padding:8px 18px;font-size:12px;">稟議下書き生成</button>
+            <span class="ringi-note">稟議規程に沿った下書きを自動生成（デモ）</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="saas-link">
+      <a href="works-kitei.html">→ SaaS級でログイン操作（KITEI フルデモ）</a>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <span class="section-label">HOW IT WORKS</span>
+    <h2 class="section-title">これを御社仕様にするには</h2>
+    <p class="section-lead">KITEI 同型の条文リーダー＋付箋Ask体験です。御社の就業規則・稟議規程・社内ルールを横断検索し、出典付きで回答します。</p>
+    <div class="flow-grid">
+      <div class="f-step"><div class="no">1</div><h3>規程PDFを取り込み</h3><p>就業規則・出張規程・稟議規程などを条文単位で構造化し、リーダー表示します。</p></div>
+      <div class="f-step"><div class="no">2</div><h3>自然文でAsk</h3><p>「のぞみ使える？」「有給いつ申請？」など、口語の質問で該当条項をハイライト。</p></div>
+      <div class="f-step"><div class="no">3</div><h3>稟議下書きまで</h3><p>出張・購買など、規程に沿った稟議書の下書きをワンクリックで生成します。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>御社の規程検索で試したい方へ</h2>
+    <p>「総務に同じ質問が何度も来る」という段階で構いません。<br>まずは無料相談で、社内規程の管理状況をお聞かせください。</p>
+    <div class="cta-ctas">
+      <a href="index.html#contact" class="btn btn-gold">無料相談を予約する</a>
+      <a href="works-kitei.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.45);color:#fff;">KITEI フルデモを見る</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="logo"><strong>AI顧問室</strong></div>
+    <p>提供：AI顧問室｜© 2026 AI顧問室 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var DOCS = {
+    shinkansen: {
+      title: '出張旅費規程（抜粋）',
+      label: '出張旅費規程',
+      articles: [
+        { id: 'a1', no: '第1条（目的）', text: '本規程は、社員の出張に関する旅費の支給基準を定める。' },
+        { id: 'a2', no: '第4条（交通機関）', text: '鉄道は原則として在来線特急または普通列車を利用する。新幹線を利用する場合は、所定の座席クラスに限る。', highlight: true },
+        { id: 'a3', no: '第4条第2項（新幹線）', text: '「のぞみ」「みずほ」「さくら」等の最速列車は、役員または部長の事前承認がある場合に限り利用できる。', highlight: true },
+        { id: 'a4', no: '第6条（宿泊）', text: '宿泊費は出張先の地域区分に応じた上限額を超えないものとする。' }
+      ],
+      answer: '「のぞみ」「みずほ」等の最速列車は、部長以上の事前承認が必要です。\n在来線特急が原則。急ぎの場合は稟議を出してください。',
+      cite: '出典: 出張旅費規程 第4条第2項',
+      ringi: '【出張稟議（下書き）】\n件名: 東京→大阪出張 · のぞみ利用\n理由: 顧客打合せの時間制約のため最速列車が必要\n承認: 部長 → 総務確認\n規程根拠: 出張旅費規程 第4条第2項',
+      showRingi: true
+    },
+    yukyu: {
+      title: '就業規則（抜粋）',
+      label: '就業規則',
+      articles: [
+        { id: 'b1', no: '第10条（勤務時間）', text: '所定労働時間は1日8時間、週40時間とする。' },
+        { id: 'b2', no: '第12条（年次有給休暇）', text: '入社6ヶ月経過後、法定日数の年次有給休暇を付与する。', highlight: true },
+        { id: 'b3', no: '第12条第2項（取得方法）', text: '年次有給休暇を取得する場合は、原則として取得希望日の3営業日前までに、所定の申請フォームにより上長の承認を得なければならない。', highlight: true },
+        { id: 'b4', no: '第13条（ sick leave）', text: '病気等でやむを得ず欠勤する場合は、当日中に上長へ連絡する。' }
+      ],
+      answer: '有給は取得希望日の3営業日前までに、申請フォームで上長承認が必要です。\n入社6ヶ月経過後に付与されます。',
+      cite: '出典: 就業規則 第12条第2項',
+      ringi: '',
+      showRingi: false
+    },
+    ringi: {
+      title: '稟議規程（抜粋）',
+      label: '稟議規程',
+      articles: [
+        { id: 'c1', no: '第2条（稟議の区分）', text: '稟議は金額・内容に応じて、一般稟議・特別稟議に区分する。' },
+        { id: 'c2', no: '別表1（承認権限）', text: '10万円超50万円以下の支出は、部長承認のうえ、役員の確認を要する。', highlight: true },
+        { id: 'c3', no: '別表1（50万円超）', text: '50万円超の支出は、取締役会の承認を要する。', highlight: true },
+        { id: 'c4', no: '第5条（添付書類）', text: '見積書・契約書写し等、稟議内容に応じた添付書類を添付すること。' }
+      ],
+      answer: '10万円超50万円以下は、部長承認＋役員確認の2段階です。\n50万円超は取締役会承認が必要。見積書等の添付を忘れずに。',
+      cite: '出典: 稟議規程 別表1',
+      ringi: '【購買稟議（下書き）】\n件名: 業務用ソフトウェア購入（280,000円）\n承認ルート: 部長 → 役員確認\n添付: 見積書（添付欄参照）\n規程根拠: 稟議規程 別表1',
+      showRingi: true
+    }
+  };
+
+  var articleList = document.getElementById('articleList');
+  var statuteTitle = document.getElementById('statuteTitle');
+  var docLabel = document.getElementById('docLabel');
+  var stickyNote = document.getElementById('stickyNote');
+  var ringiBox = document.getElementById('ringiBox');
+  var ringiPreview = document.getElementById('ringiPreview');
+  var btnRingi = document.getElementById('btnRingi');
+  var statuteScroll = document.getElementById('statuteScroll');
+  var typingTimer = null;
+  var currentId = null;
+
+  function renderArticles(doc) {
+    statuteTitle.textContent = doc.title;
+    docLabel.textContent = doc.label;
+    articleList.innerHTML = doc.articles.map(function (a) {
+      return '<div class="article" id="' + a.id + '"><div class="a-no">' + a.no + '</div>' + a.text + '</div>';
+    }).join('');
+  }
+
+  function highlightArticles(doc) {
+    doc.articles.forEach(function (a) {
+      var el = document.getElementById(a.id);
+      if (el) {
+        el.classList.toggle('highlight', !!a.highlight);
+        if (a.highlight) setTimeout(function () { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);
+      }
+    });
+  }
+
+  function typeSticky(text, cite, cb) {
+    if (typingTimer) clearTimeout(typingTimer);
+    stickyNote.innerHTML = '';
+    var pos = 0;
+    var cursor = document.createElement('span');
+    cursor.className = 'draft-cursor';
+    function step() {
+      stickyNote.textContent = text.slice(0, pos);
+      stickyNote.appendChild(cursor);
+      if (pos < text.length) {
+        pos++;
+        typingTimer = setTimeout(step, 14);
+      } else {
+        cursor.remove();
+        var citeEl = document.createElement('span');
+        citeEl.className = 'cite';
+        citeEl.textContent = cite;
+        stickyNote.appendChild(citeEl);
+        if (cb) cb();
+      }
+    }
+    step();
+  }
+
+  function typeRingi(text) {
+    ringiPreview.textContent = '';
+    btnRingi.disabled = true;
+    var pos = 0;
+    function step() {
+      ringiPreview.textContent = text.slice(0, pos);
+      if (pos < text.length) {
+        pos++;
+        setTimeout(step, 10);
+      } else {
+        btnRingi.textContent = '下書き完了';
+      }
+    }
+    step();
+  }
+
+  function selectAsk(id) {
+    currentId = id;
+    var doc = DOCS[id];
+    document.querySelectorAll('.ask-chip').forEach(function (c) {
+      c.classList.toggle('active', c.getAttribute('data-id') === id);
+    });
+    renderArticles(doc);
+    ringiBox.classList.remove('show');
+    ringiPreview.textContent = '';
+    btnRingi.disabled = false;
+    btnRingi.textContent = '稟議下書き生成';
+    setTimeout(function () {
+      highlightArticles(doc);
+      typeSticky(doc.answer, doc.cite, function () {
+        if (doc.showRingi) ringiBox.classList.add('show');
+      });
+    }, 200);
+  }
+
+  document.getElementById('askRow').addEventListener('click', function (e) {
+    var chip = e.target.closest('.ask-chip');
+    if (!chip) return;
+    selectAsk(chip.getAttribute('data-id'));
+  });
+
+  btnRingi.addEventListener('click', function () {
+    if (!currentId || btnRingi.disabled) return;
+    var doc = DOCS[currentId];
+    if (doc.ringi) typeRingi(doc.ringi);
+  });
+
+  selectAsk('shinkansen');
+})();
+</script>
+</body>
+</html>

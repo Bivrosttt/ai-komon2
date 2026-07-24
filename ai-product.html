@@ -241,6 +241,25 @@
     .compare-box { grid-template-columns: 1fr; }
     .vs { padding: 16px 0; }
   }
+
+  /* Mobile/tablet header fit (auto-added 2026-07-18) */
+  @media (max-width: 600px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { font-size: 18px; white-space: nowrap; }
+    .logo span { display: none; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  }
+  @media (min-width: 601px) and (max-width: 1080px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { white-space: nowrap; }
+    .logo span { display: none; }
+    header nav ul { gap: 12px; }
+    header nav a { font-size: 12px; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  }
+  @media (max-width: 1080px) {
+    .header-actions .btn-outline { display: none; }
+  }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
@@ -273,8 +292,9 @@
     <h1>AIを、<em>御社の商品</em>にする。</h1>
     <p class="sub">「AIで業務を効率化する」——その先があります。効率化で終わらせず、AIを組み込んだ新しい売り物で、選ばれる会社になる。御社の既存サービスにAIを組み込み、競合と違う商品として売り出すところまで、顧問が伴走します。</p>
     <div class="hero-ctas">
-      <a href="index.html#contact" class="btn btn-gold">無料相談を予約する（30分）</a>
-      <a href="works.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">作品ショーケースを見る</a>
+      <a href="for/product.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">攻めAI入口ページ →</a>
+      <a href="index.html?from=ai-product#contact" class="btn btn-gold">無料相談を予約する（30分）</a>
+      <a href="demo-ai-portal.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5);color:#fff;">AI診断ポータルデモ</a>
     </div>
     <p class="hero-note">※ まずは壁打ちだけでも構いません。御社の強み×AIで何が売り物になりそうか、無料相談でお話しします。</p>
     <div class="hero-stats">
@@ -486,7 +506,7 @@
     <div class="relation-box">
       <h3>単発でも、顧問契約と組み合わせても。</h3>
       <p>本商品は単発でご依頼いただけます。まず商品企画とPoCだけを試し、手応えを見てから次を考えていただいて構いません。</p>
-      <p>AI顧問契約（月15万円〜）と組み合わせれば、企画→PoC構築→商品化→運用定着までを一気通貫で伴走できます。すでに顧問契約中のお客様は、商品開発フェーズだけを追加でご依頼いただくことも可能です。</p>
+      <p>AI顧問契約（月50万円〜）と組み合わせれば、企画→PoC構築→商品化→運用定着までを一気通貫で伴走できます。すでに顧問契約中のお客様は、商品開発フェーズだけを追加でご依頼いただくことも可能です。</p>
       <a href="index.html#pricing">▶ AI顧問の料金プランを見る</a>
     </div>
   </div>
@@ -495,7 +515,7 @@
 <section class="cta" id="contact">
   <div class="container">
     <h2>御社の商品×AIで、何ができるか。</h2>
-    <p>無料相談（30分）で、御社の強みとAIを掛け合わせたら何が売り物になりそうか、壁打ちからどうぞ。<br>売り込みは一切しません。</p>
+    <p>無料相談（30分）で、御社の強みとAIを掛け合わせたら何が売り物になりそうか、壁打ちからどうぞ。<br>無理な勧誘はありません。相談後の判断は自由です。</p>
     <a href="index.html#contact" class="btn btn-gold" style="font-size:17px; padding:18px 48px;">無料相談を予約する</a>
   </div>
 </section>

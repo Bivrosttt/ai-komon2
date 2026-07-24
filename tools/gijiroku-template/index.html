@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>議事録テンプレート・ToDo整理ツール | AI顧問室</title>
+  <meta name="description" content="会議名・決定事項・担当者・期限を入力して、すぐ使える議事録をMarkdownで作成できる無料ツールです。">
+  <link rel="canonical" href="https://ai-komon.bivrost.co.jp/tools/gijiroku-template/">
+  <meta property="og:title" content="議事録テンプレート・ToDo整理ツール | AI顧問室">
+  <meta property="og:description" content="会議名・決定事項・担当者・期限を入力して、すぐ使える議事録をMarkdownで作成できる無料ツールです。">
+  <meta property="og:site_name" content="AI顧問室">
+  <meta property="og:url" content="https://ai-komon.bivrost.co.jp/tools/gijiroku-template/">
+  <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <script src="../../analytics-config.js"></script>
+  <script src="../../analytics.js"></script>
+  <style>
+    :root { color-scheme: light; --ink:#15243a; --muted:#68778a; --line:#d9e1ea; --brand:#1769aa; --soft:#f5f8fb; }
+    * { box-sizing:border-box; } body { margin:0; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif; color:var(--ink); line-height:1.7; background:#fff; }
+    a { color:inherit; } a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible { outline:2px solid var(--brand); outline-offset:3px; }
+    .site-header { border-bottom:1px solid var(--line); } .site-header-inner { display:flex; align-items:center; justify-content:space-between; min-height:62px; } .site-header a { text-decoration:none; } .wordmark { font-family:Georgia,"Noto Serif JP",serif; font-size:1rem; font-weight:700; } .back-link { color:var(--muted); font-size:.78rem; }
+    main { width:min(960px,calc(100% - 32px)); margin:auto; } header { padding:52px 0 26px; } .eyebrow { margin:0 0 12px; color:var(--brand); font-size:.72rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; } h1 { max-width:760px; margin:0 0 8px; font-size:clamp(2rem,5vw,3.5rem); line-height:1.18; letter-spacing:-.05em; } h2 { margin:38px 0 10px; font-size:1.35rem; letter-spacing:-.03em; } .lead { max-width:720px; margin:0; color:var(--muted); font-size:1rem; } .tool-section { border-top:1px solid var(--line); padding-top:22px; }
+    .tool-card { padding:22px; border:1px solid var(--line); border-radius:8px; background:var(--soft); } .field { display:grid; gap:5px; margin:12px 0; font-weight:700; font-size:.9rem; } input,textarea { width:100%; border:1px solid #b8c7d5; border-radius:5px; padding:10px; background:#fff; font:inherit; } button,.cta { display:inline-block; border:0; border-radius:5px; padding:9px 15px; background:var(--brand); color:#fff; font:inherit; font-size:.85rem; font-weight:700; cursor:pointer; text-decoration:none; } .button-secondary { background:#fff; color:var(--brand); border:1px solid var(--brand); } output { display:block; margin-top:14px; font-size:1.1rem; font-weight:800; } .counter-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:14px; } .counter-grid output { margin:0; padding:10px; border:1px solid var(--line); border-radius:5px; background:#fff; font-size:.95rem; } .two-col { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; } .tool-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; } .result-pre { white-space:pre-wrap; overflow:auto; background:#fff; border:1px solid var(--line); border-radius:5px; padding:14px; min-height:120px; } fieldset { border:0; border-top:1px solid var(--line); margin:16px 0; padding:14px 0 0; } legend { font-weight:800; padding:0 6px 0 0; } .check-item { display:flex; gap:9px; align-items:flex-start; padding:8px 0; font-weight:500; font-size:.9rem; } .check-item input { width:auto; margin-top:6px; } .score-card { margin-top:16px; padding:15px; border-top:1px solid var(--line); background:#fff; } .score-number { display:block; font-size:1.8rem; font-weight:800; color:var(--brand); } .score-card li { margin:5px 0; } .muted { color:var(--muted); } .related-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0 22px; border-top:1px solid var(--line); } .related { display:grid; gap:2px; padding:13px 0; border-bottom:1px solid var(--line); color:inherit; text-decoration:none; } .related:hover { color:var(--brand); } .related span { color:var(--muted); font-size:.85rem; } details { border-bottom:1px solid var(--line); padding:12px 0; } summary { cursor:pointer; font-weight:700; font-size:.9rem; } .cta-wrap { margin:38px 0; padding-top:20px; border-top:1px solid var(--line); } .cta-wrap h2 { margin-top:0; } .cta-wrap p { color:var(--muted); } footer { margin-top:48px; padding:18px 0 36px; color:var(--muted); border-top:1px solid var(--line); font-size:.82rem; } @media (max-width:680px) { main { width:calc(100% - 24px); } .site-header-inner { min-height:56px; } header { padding:38px 0 20px; } h1 { font-size:clamp(2rem,10vw,2.8rem); } h2 { margin-top:30px; } .two-col,.counter-grid { grid-template-columns:1fr; } .tool-card { padding:16px; } .tool-actions { flex-direction:column; align-items:stretch; } button,.cta { width:100%; text-align:center; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="site-header"><div class="site-header-inner"><a class="wordmark" href="/">AI顧問室</a><a class="back-link" href="/tools/">無料ツール一覧へ</a></div></div>
+  <header><p class="eyebrow">AI KOMON / FREE TOOL</p><h1>議事録テンプレート・ToDo整理ツール</h1><p class="lead">会議名・決定事項・担当者・期限を入力して、すぐ使える議事録をMarkdownで作成できる無料ツールです。</p></header>
+  <section class="tool-section" aria-labelledby="tool-heading"><h2 id="tool-heading">使う</h2><div class="tool-card"><form id="tool-form"><div class="two-col">
+<label class="field"><span>会議名</span><input id="mt-title" type="text" placeholder="例：営業定例会"></label>
+<label class="field"><span>開催日</span><input id="mt-date" type="date"></label>
+</div><label class="field"><span>参加者</span><input id="mt-attendees" type="text" placeholder="例：田中、佐藤、鈴木"></label>
+<label class="field"><span>議題</span><textarea id="mt-agenda" rows="3" placeholder="話し合ったテーマを1行ずつ"></textarea></label>
+<label class="field"><span>決定事項</span><textarea id="mt-decisions" rows="4" placeholder="決まったことを1行ずつ"></textarea></label>
+<label class="field"><span>保留・確認事項</span><textarea id="mt-pending" rows="3" placeholder="確認が必要なことを1行ずつ"></textarea></label>
+<label class="field"><span>ToDo（担当者・期限も入力可）</span><textarea id="mt-todos" rows="4" placeholder="例：田中｜見積を確認｜6/20"></textarea></label>
+<div class="tool-actions"><button type="submit">議事録を生成</button><button type="button" id="mt-copy" class="button-secondary">コピー</button><button type="button" id="mt-download" class="button-secondary">Markdown保存</button></div></form>
+<pre id="mt-output" class="result-pre" aria-live="polite">ここに議事録が表示されます</pre></div></section>
+  <section aria-labelledby="about-heading"><h2 id="about-heading">このツールについて</h2><p>会議のあとに残したい情報を入力するだけで、議題・決定事項・保留事項・ToDoが整理された議事録を作れます。社内会議、顧客との打合せ、プロジェクト定例会に使えます。</p><p class="muted">ファイルのアップロードや外部送信は行わず、入力内容はこのブラウザ内でMarkdownに整形します。作成後は社内の保管ルールに合わせて保存してください。</p></section>
+  <section aria-labelledby="faq-heading"><h2 id="faq-heading">注意点とFAQ</h2><details><summary>WordやExcelのファイルを直接作れますか？</summary><p>現在はMarkdownとして保存できます。WordやGoogleドキュメントに貼り付けて整形できます。</p></details><details><summary>録音データから自動で議事録を作れますか？</summary><p>このツールは入力フォーム型のテンプレートです。録音からの自動整理は既存の議事録AI体験デモをご覧ください。</p></details><details><summary>入力内容はサーバーに送信されますか？</summary><p>いいえ。入力内容はブラウザ内でMarkdownに整形し、サーバーへ送信しません。</p></details></section>
+  <section aria-labelledby="related-heading"><h2 id="related-heading">関連する無料ツール</h2><div class="related-grid"><a class="related" href="/tools/ai-risk-check/"><strong>AI導入リスク診断</strong><span>AIを業務に組み込む前の確認項目を整理します。</span></a><a class="related" href="/demo-minutes.html"><strong>議事録AI 体験デモ</strong><span>文字起こしから決定事項やToDoを整理するデモです。</span></a><a class="related" href="/tools/sales-estimate-roi/"><strong>営業・見積もり工数シミュレーター</strong><span>見積作成にかかる時間と削減効果を試算します。</span></a></div></section>
+  <section class="cta-wrap"><h2>業務に合わせて整える</h2><p>入力内容はブラウザ内で処理します。個別の業務設計や導入相談はこちら。</p><a class="cta" href="/demo-minutes.html">議事録AIの体験デモを見る</a></section>
+  <footer><a href="/">AI顧問室</a> / <a href="/privacy.html">プライバシーポリシー</a></footer>
+</main>
+<script>
+const runtime = {"type": "minutes-template"};
+document.getElementById('mt-copy').addEventListener('click', async () => { const text = window.__minutesMarkdown || document.getElementById('mt-output').textContent; try { await navigator.clipboard.writeText(text); document.getElementById('mt-copy').textContent = 'コピーしました'; } catch { document.getElementById('mt-copy').textContent = '選択してコピーしてください'; } });
+document.getElementById('mt-download').addEventListener('click', () => { const text = window.__minutesMarkdown || document.getElementById('mt-output').textContent; const blob = new Blob([text], {type: 'text/markdown;charset=utf-8'}); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = 'gijiroku.md'; link.click(); URL.revokeObjectURL(link.href); });
+const form = document.getElementById('tool-form');
+if (form) form.addEventListener('submit', event => { event.preventDefault(); try { const value = id => document.getElementById(id).value.trim();
+const lines = text => text.split(/\n+/).map(item => item.trim()).filter(Boolean);
+const bullets = text => lines(text).map(item => `- ${item}`).join('\n') || '- （なし）';
+const todoLines = lines(value('mt-todos')).map((item, index) => `${index + 1}. ${item}`).join('\n') || '1. （なし）';
+const markdown = `# ${value('mt-title') || '議事録'}\n\n- 開催日: ${value('mt-date') || '未入力'}\n- 参加者: ${value('mt-attendees') || '未入力'}\n\n## 議題\n${bullets(value('mt-agenda'))}\n\n## 決定事項\n${bullets(value('mt-decisions'))}\n\n## 保留・確認事項\n${bullets(value('mt-pending'))}\n\n## ToDo\n${todoLines}\n`;
+document.getElementById('mt-output').textContent = markdown;
+window.__minutesMarkdown = markdown; } catch (error) { const target = document.getElementById('tool-result') || document.getElementById('risk-result') || document.getElementById('mt-output'); if (target) target.textContent = '入力値を確認してください'; } });
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!-- 2026-07-22: LP約束1:1デモ（demo-safety-patrol.html） -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安全パトロールAI 体験デモ｜AI顧問室</title>
+<meta name="description" content="現場写真から安全指摘の下書きと是正指示案を作成。">
+<meta property="og:title" content="安全パトロールAI 体験デモ｜AI顧問室">
+<meta property="og:description" content="現場写真から安全指摘の下書きと是正指示案を作成。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/demo-safety-patrol.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0B2447; --navy-deep:#071A35; --blue:#2D6CB5; --gold:#C9A227; --ink:#1A2433; --gray:#5B6B7F; --line:#DDE4EC; --bg:#F4F7FA; --white:#FFF; --ok:#2F7A4F; --warn:#B45309; }
+  *{margin:0;padding:0;box-sizing:border-box} body{font-family:'Noto Sans JP',sans-serif;color:var(--ink);line-height:1.85;background:var(--white)}
+  h1,h2{font-family:'Noto Serif JP',serif;line-height:1.45} a{text-decoration:none;color:inherit}
+  .container{max-width:960px;margin:0 auto;padding:0 24px}
+  header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+  .logo{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;color:var(--navy)}
+  .back{font-size:13px;color:var(--blue);font-weight:600}
+  .hero{background:linear-gradient(135deg,var(--navy-deep),var(--navy));color:#fff;padding:72px 0 56px}
+  .tag{display:inline-block;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:5px 14px;font-size:12px;color:#dce6f5;margin-bottom:16px}
+  .hero h1{font-size:clamp(26px,4vw,36px);margin-bottom:12px}.hero h1 em{font-style:normal;color:var(--gold)}
+  .hero p{color:#c7d3e4;max-width:640px;font-size:15px}
+  .note{background:var(--bg);border-bottom:1px solid var(--line);padding:14px 0;font-size:13px;color:var(--gray)}
+  .panel{margin:40px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--white)}
+  .panel-head{background:var(--navy);color:#fff;padding:16px 20px;font-size:14px;font-weight:700}
+  .panel-body{padding:22px 20px}
+  .row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .chip{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;cursor:pointer;background:#fff}
+  .chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .out{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:16px;min-height:120px;font-size:14px;white-space:pre-wrap}
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+  .stat{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:12px;text-align:center}
+  .stat b{display:block;font-family:'Noto Serif JP',serif;font-size:22px;color:var(--navy)}
+  .stat small{font-size:11px;color:var(--gray)}
+  .btn{display:inline-block;padding:12px 26px;border-radius:4px;font-weight:700;font-size:14px;border:none;cursor:pointer;font-family:inherit}
+  .btn-gold{background:var(--gold);color:var(--navy-deep)} .btn-navy{background:var(--navy);color:#fff}
+  .cta{text-align:center;padding:56px 0;background:var(--bg);border-top:1px solid var(--line)}
+  footer{background:var(--navy-deep);color:#9fb0c7;font-size:13px;padding:28px 0;text-align:center}
+  footer a{text-decoration:underline}
+  @media(max-width:720px){.stat-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="container header-inner"><a href="index.html" class="logo">AI顧問室</a><div style="display:flex;gap:16px;align-items:center"><a href="demos.html" class="back">← デモ一覧</a><a href="index.html?from=demo-safety-patrol#contact" class="btn btn-gold" style="padding:9px 20px;font-size:13px">無料相談</a></div></div></header>
+<div class="hero"><div class="container"><span class="tag">EXPERIENCE DEMO</span><h1>安全確認を、<em>記録</em>まで。</h1><p>パトロール写真とメモから、指摘事項・是正期限・共有文案の下書きを作成。判断は有資格者が行います。</p></div></div>
+<div class="note"><div class="container">※サンプルデータの体験デモです。実際は御社の書式・ルールに合わせて構築します。</div></div>
+<main class="container">
+  <div class="panel"><div class="panel-head">安全パトロール記録（サンプル）</div><div class="panel-body">
+    <div class="row" id="chips"><button type="button" class="chip active" data-i="0">足場・手すり</button><button type="button" class="chip" data-i="1">ヘルメット着用</button><button type="button" class="chip" data-i="2">資材置場</button></div>
+    <div class="out" id="out"></div>
+    <div class="stat-grid"><div class="stat"><b>5分</b><small>記録作成</small></div><div class="stat"><b>共有</b><small>現場全員</small></div><div class="stat"><b>人</b><small>最終判断</small></div></div>
+  </div></div>
+</main>
+<section class="cta"><div class="container"><h2>御社仕様で構築する</h2><p style="color:var(--gray);margin:10px 0 20px">デモは入口です。本番は御社の業務フローに合わせて設計・定着まで伴走します。</p><a href="index.html?from=demo-safety-patrol#contact" class="btn btn-navy">無料相談を予約 →</a></div></section>
+<footer><div class="container"><a href="index.html">AI顧問室</a> · <a href="demos.html">デモ一覧</a> · <a href="privacy.html">プライバシー</a></div></footer>
+<script>
+const outputs = [
+    '指摘: 足場手すりの欠落\n是正期限: 本日中\n文案: 該当箇所を停止し、手すり補修後に再開',
+    '指摘: ヘルメット未着用 2名\n是正: 即時指導・再発防止周知',
+    '指摘: 資材の通路占有\n是正: 搬入経路を確保'
+];
+const out = document.getElementById('out');
+const chips = document.querySelectorAll('.chip');
+function show(i){ out.textContent = outputs[i]; chips.forEach((c,j)=>c.classList.toggle('active', j===i)); }
+chips.forEach(c=>c.addEventListener('click',()=>show(Number(c.dataset.i))));
+show(0);
+</script>
+</body>
+</html>

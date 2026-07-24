@@ -27,6 +27,7 @@ def rows(files, note_map=None):
 
 
 LP_NOTES = {  # 訴求軸メモ（?from= はファイル名と同じ）
+    "lp-ai-diagnosis.html": "広告専用・AI活用診断",
     "lp-cost.html": "コスト訴求", "lp-fear.html": "危機感", "lp-story.html": "ストーリー",
     "lp-simple.html": "シンプル", "lp-demo-first.html": "デモ先出し", "lp-anti.html": "アンチコンサル",
     "lp-speed.html": "スピード", "lp-boss.html": "経営者目線", "lp-hojokin.html": "補助金",

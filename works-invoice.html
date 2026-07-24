@@ -1,0 +1,980 @@
+<!-- 2026-07-22: SOROBAN帳票グリッド＋請求書スキャン画像（assets/invoice）をプレビューに接続 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>請求書経理クラウド構築デモ（帳票グリッド・AI仕訳）｜AI顧問室</title>
+<meta name="description" content="架空の請求書経理クラウド「SOROBAN」のフル機能デモです。Excel風グリッドで請求書を並べ、AIがOCR読取→科目・税額をセルに順次入力、仕訳確定で行が緑になる帳票ワークフローを体験できます。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="請求書経理クラウド構築デモ（帳票グリッド・AI仕訳）｜AI顧問室">
+<meta property="og:description" content="架空の請求書経理クラウド「SOROBAN」のフル機能デモ。スプレッドシート上で仕訳を確定する帳票ワークフローを体験できます。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-invoice.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-invoice.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ledger: #0F766E; --ledger-deep: #115E59; --ledger-light: #14B8A6;
+    --ledger-bg: #ECFDF5; --ledger-bg2: #D1FAE5; --ledger-grid: rgba(15,118,110,.12);
+    --ink: #134E4A; --gray: #52706B; --gray-soft: #7A948F;
+    --line: #A7F3D0; --line-dark: #6EE7B7; --white: #FFFFFF;
+    --amber: #B45309; --amber-bg: #FEF3C7;
+    --red: #DC2626; --red-bg: #FEE2E2;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --gold: #C9A227;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.65;
+    background: var(--ledger-bg); -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { line-height: 1.35; font-weight: 700; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea { font-family: inherit; }
+  img, svg { max-width: 100%; }
+  ::selection { background: var(--ledger-bg2); color: var(--ink); }
+  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: #042F2E; color: #99F6E4; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 2px solid var(--ledger);
+  }
+  .demo-frame-bar b { color: #5EEAD4; font-weight: 700; }
+  .demo-frame-bar .frame-links { display: flex; gap: 8px; flex: 0 0 auto; align-items: center; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 4px; white-space: nowrap; transition: background .15s;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.12); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; gap: 8px; height: 52px; }
+    .demo-frame-bar .frame-text { line-height: 1.5; }
+    .demo-frame-bar .frame-link { padding: 4px 9px; font-size: 10.5px; }
+    body { padding-top: 52px; }
+  }
+
+  #view-login {
+    min-height: calc(100vh - 44px); display: grid; grid-template-columns: 1.05fr 1fr;
+    background: var(--ledger-bg);
+  }
+  #view-login.hide { display: none; }
+  .login-hero {
+    position: relative; background: linear-gradient(155deg, #042F2E 0%, #0F766E 50%, #115E59 100%);
+    color: #F0FDFA; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+  }
+  .login-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .login-hero::after {
+    content: '▦'; position: absolute; right: 48px; bottom: 12%; font-size: 96px; font-weight: 700;
+    color: rgba(255,255,255,.08); line-height: 1; font-family: var(--mono);
+  }
+  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .24em; color: #5EEAD4; font-weight: 700; margin-bottom: 18px; position: relative; }
+  .login-hero h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 16em; position: relative; }
+  .login-hero h2 em { font-style: normal; color: #99F6E4; }
+  .login-hero p { font-size: 14px; color: #94D4CC; max-width: 28em; line-height: 1.9; position: relative; }
+  .grid-strip { display: flex; gap: 0; margin-top: 28px; position: relative; }
+  .grid-strip span { flex: 1; height: 3px; background: rgba(255,255,255,.25); }
+  .grid-strip span:nth-child(odd) { background: #5EEAD4; opacity: .8; }
+  .login-panel {
+    display: flex; align-items: center; justify-content: center; padding: 40px 28px;
+    background: linear-gradient(180deg, #fff 0%, var(--ledger-bg) 100%);
+  }
+  .login-card {
+    width: 100%; max-width: 400px; background: #fff; border-radius: 4px; padding: 40px 36px 30px;
+    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(15,118,110,.12); border-top: 4px solid var(--ledger);
+  }
+  .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .login-logo .k { font-size: 26px; font-weight: 700; color: var(--ledger); letter-spacing: .08em; font-family: var(--mono); }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .14em; font-family: var(--mono); }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .login-field { margin-bottom: 14px; }
+  .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
+  .login-field input {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 4px; font-size: 14px;
+    color: var(--gray-soft); background: var(--ledger-bg); cursor: not-allowed;
+  }
+  .login-btn {
+    width: 100%; padding: 13px; border: none; border-radius: 4px; background: var(--ledger); color: #fff;
+    font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-btn:hover { filter: brightness(1.06); }
+  .login-btn:active { transform: scale(.99); }
+  .login-btn:disabled { opacity: .75; cursor: wait; }
+  .login-spin {
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.35);
+    border-top-color: #fff; animation: spin .7s linear infinite; display: none;
+  }
+  .login-btn.loading .login-spin { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .login-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center; border-top: 1px solid var(--line); padding-top: 14px; }
+  @media (max-width: 860px) {
+    #view-login { grid-template-columns: 1fr; }
+    .login-hero { min-height: 220px; padding: 36px 28px; }
+    .login-hero::after { display: none; }
+  }
+
+  #view-app { display: none; min-height: calc(100vh - 44px); flex-direction: column; }
+  #view-app.show { display: flex; }
+
+  .app-shell { flex: 1; display: flex; min-height: 0; overflow: hidden; }
+
+  .icon-rail {
+    flex: 0 0 44px; background: var(--ledger-deep); display: flex; flex-direction: column;
+    align-items: center; padding: 10px 0; gap: 8px; border-right: 1px solid rgba(255,255,255,.1);
+  }
+  .rail-btn {
+    width: 32px; height: 32px; border: none; border-radius: 6px; background: transparent;
+    color: #99F6E4; display: grid; place-items: center; font-size: 15px; transition: background .15s;
+  }
+  .rail-btn.active, .rail-btn:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+  .app-main { flex: 1; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+
+  .app-top {
+    height: 46px; flex: 0 0 auto; background: #fff; border-bottom: 2px solid var(--ledger);
+    display: flex; align-items: center; gap: 12px; padding: 0 14px; position: sticky; top: 44px; z-index: 80;
+  }
+  .top-brand { display: flex; align-items: baseline; gap: 6px; flex: 0 0 auto; }
+  .top-brand .k { font-size: 16px; font-weight: 700; color: var(--ledger); letter-spacing: .06em; font-family: var(--mono); }
+  .top-brand .tag-en { font-size: 9px; color: var(--gray-soft); letter-spacing: .1em; font-family: var(--mono); }
+  .formula-bar {
+    flex: 1; display: flex; align-items: center; gap: 8px; min-width: 0;
+    background: var(--ledger-bg); border: 1px solid var(--line); border-radius: 4px; padding: 0 10px; height: 30px;
+  }
+  .formula-bar .fx { font-size: 11px; font-weight: 700; color: var(--ledger); font-family: var(--mono); flex: 0 0 auto; }
+  .formula-bar .fx-val { font-size: 12px; color: var(--gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--mono); }
+  .top-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; }
+  .top-user { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--gray); }
+  .top-user .avatar {
+    width: 28px; height: 28px; border-radius: 4px; background: var(--ledger); color: #fff;
+    display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  }
+  .logout-link { font-size: 11px; color: var(--gray-soft); padding: 4px 8px; border: 1px solid var(--line); border-radius: 4px; }
+  .logout-link:hover { color: var(--ledger); border-color: var(--ledger); }
+
+  .sheet-toolbar {
+    flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 8px 14px;
+    background: #fff; border-bottom: 1px solid var(--line); flex-wrap: wrap;
+  }
+  .sheet-tab {
+    font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 4px 4px 0 0;
+    background: var(--ledger-bg); color: var(--ledger); border: 1px solid var(--line); border-bottom: none;
+  }
+  .toolbar-stats { font-size: 11px; color: var(--gray); font-family: var(--mono); }
+  .toolbar-stats b { color: var(--ledger); }
+  .toolbar-actions { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn-sm {
+    font-size: 11.5px; font-weight: 700; padding: 6px 12px; border-radius: 4px; border: 1px solid var(--line);
+    background: #fff; color: var(--ink); transition: background .15s, border-color .15s;
+  }
+  .btn-sm:hover { border-color: var(--ledger); color: var(--ledger); }
+  .btn-sm.primary { background: var(--ledger); color: #fff; border-color: var(--ledger); }
+  .btn-sm.primary:hover { filter: brightness(1.05); }
+  .btn-sm:disabled { opacity: .5; cursor: not-allowed; }
+
+  .split-wrap { flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+  .split-wrap.has-detail .grid-section { flex: 0 0 48%; min-height: 180px; }
+  .split-wrap.has-detail .detail-section { flex: 1; min-height: 200px; border-top: 3px solid var(--ledger); }
+
+  .grid-section { flex: 1; min-height: 0; overflow: auto; -webkit-overflow-scrolling: touch; background: #fff; }
+  .grid-scroll { min-width: 720px; }
+
+  .ledger-grid { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .ledger-grid thead th {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--ledger-bg); color: var(--ledger-deep); font-weight: 700;
+    border: 1px solid var(--line); padding: 8px 10px; text-align: left; white-space: nowrap;
+    font-size: 11px; letter-spacing: .04em;
+  }
+  .ledger-grid thead th.col-num { text-align: right; }
+  .ledger-grid tbody td {
+    border: 1px solid var(--ledger-grid); padding: 7px 10px; vertical-align: middle;
+    background: #fff; transition: background .2s;
+  }
+  .ledger-grid tbody tr { cursor: pointer; transition: background .15s; }
+  .ledger-grid tbody tr:hover td { background: #F0FDFA; }
+  .ledger-grid tbody tr.selected td { background: #CCFBF1; box-shadow: inset 0 0 0 2px var(--ledger-light); }
+  .ledger-grid tbody tr.confirmed td { background: var(--ledger-bg); }
+  .ledger-grid tbody tr.confirmed td:first-child::before {
+    content: '✓'; color: var(--ledger); font-weight: 700; margin-right: 4px;
+  }
+  .ledger-grid tbody tr.demo-star td:first-child::after {
+    content: '★'; color: var(--amber); margin-left: 4px; font-size: 10px;
+  }
+  .cell-vendor { font-weight: 600; max-width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cell-yen { text-align: right; font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .cell-account, .cell-tax { font-family: var(--mono); font-size: 12px; min-width: 100px; }
+  .cell-account.empty, .cell-tax.empty { color: var(--gray-soft); font-style: italic; }
+  .cell-account.filling, .cell-tax.filling { color: var(--ledger); background: #F0FDFA !important; }
+  .cell-account.filled, .cell-tax.filled { color: var(--ink); font-weight: 600; }
+  .cell-due { font-family: var(--mono); font-size: 12px; white-space: nowrap; }
+  .cell-conf {
+    text-align: center; font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 999px;
+    display: inline-block; min-width: 52px;
+  }
+  .cell-conf.pending { background: var(--amber-bg); color: var(--amber); }
+  .cell-conf.ai { background: #DBEAFE; color: #1D4ED8; animation: pulseConf 1.2s ease infinite; }
+  .cell-conf.done { background: var(--ledger-bg2); color: var(--ledger-deep); }
+  @keyframes pulseConf { 0%,100% { opacity: 1; } 50% { opacity: .65; } }
+  .row-num {
+    width: 36px; text-align: center; color: var(--gray-soft); font-family: var(--mono); font-size: 11px;
+    background: var(--ledger-bg) !important; border-right: 1px solid var(--line) !important;
+  }
+
+  .detail-section { display: none; flex-direction: column; min-height: 0; background: var(--ledger-bg); overflow: hidden; }
+  .split-wrap.has-detail .detail-section { display: flex; }
+  .detail-head {
+    flex: 0 0 auto; display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+    background: #fff; border-bottom: 1px solid var(--line); flex-wrap: wrap;
+  }
+  .detail-head h3 { font-size: 14px; color: var(--ledger-deep); }
+  .detail-head .sub { font-size: 11.5px; color: var(--gray); font-family: var(--mono); }
+  .detail-head .actions { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+  .detail-body { flex: 1; display: grid; grid-template-columns: 1fr 1.1fr; min-height: 0; overflow: hidden; }
+  @media (max-width: 900px) {
+    .detail-body { grid-template-columns: 1fr; overflow-y: auto; }
+    .split-wrap.has-detail .grid-section { flex: 0 0 42%; }
+  }
+
+  .preview-pane { padding: 14px; overflow-y: auto; border-right: 1px solid var(--line); background: #fff; }
+  .preview-pane h4 { font-size: 11px; letter-spacing: .1em; color: var(--gray); margin-bottom: 10px; }
+  .invoice-doc {
+    background: #fff; border: 1px solid #D1D5DB; border-radius: 2px; padding: 20px 18px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06); font-size: 12px; position: relative;
+  }
+  .invoice-doc.scanning { animation: docScan 1.4s ease; }
+  @keyframes docScan {
+    0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,.06); }
+    50% { box-shadow: 0 0 0 3px rgba(15,118,110,.35), 0 8px 24px rgba(15,118,110,.15); }
+  }
+  .scan-line {
+    position: absolute; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--ledger-light), transparent);
+    opacity: 0; pointer-events: none;
+  }
+  .invoice-doc.scanning .scan-line { opacity: 1; animation: scanMove 1.4s ease; }
+  @keyframes scanMove { 0% { top: 0; } 100% { top: 100%; } }
+  .inv-title { font-size: 18px; font-weight: 700; text-align: center; margin-bottom: 14px; letter-spacing: .2em; }
+  .inv-meta { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 14px; font-size: 11px; color: var(--gray); }
+  .inv-meta b { color: var(--ink); display: block; font-size: 12px; margin-top: 2px; }
+  .inv-lines { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 11.5px; }
+  .inv-lines th, .inv-lines td { border: 1px solid #E5E7EB; padding: 5px 8px; }
+  .inv-lines th { background: #F9FAFB; font-weight: 600; }
+  .inv-lines .r { text-align: right; font-family: var(--mono); }
+  .hl {
+    background: rgba(254,240,138,.55); border-radius: 2px; padding: 0 2px;
+    transition: background .3s;
+  }
+  .hl.active { background: rgba(15,118,110,.25); outline: 1px solid var(--ledger); }
+  .inv-total { text-align: right; font-family: var(--mono); font-weight: 700; font-size: 14px; margin-top: 10px; padding-top: 8px; border-top: 2px solid var(--ink); }
+  .scan-img {
+    display: block; width: 100%; max-width: 100%; border: 1px solid #D1D5DB; border-radius: 2px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.08); margin-bottom: 12px;
+  }
+  .invoice-doc.scan-doc { padding: 14px; }
+  .ocr-readout { border-top: 1px dashed var(--line); padding-top: 10px; }
+  .ocr-readout-label { font-size: 10px; letter-spacing: .12em; color: var(--gray); margin-bottom: 8px; font-weight: 700; }
+  .ocr-lines { margin: 0; font-size: 11px; }
+
+  .journal-pane { padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+  .journal-pane h4 { font-size: 11px; letter-spacing: .1em; color: var(--gray); }
+  .ai-status {
+    font-size: 11.5px; color: var(--ledger); font-weight: 600; padding: 8px 12px;
+    background: #fff; border: 1px dashed var(--ledger-light); border-radius: 4px;
+    display: none;
+  }
+  .ai-status.show { display: block; }
+  .journal-table { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .journal-table th {
+    background: var(--ledger-bg); color: var(--ledger-deep); font-size: 10.5px;
+    padding: 7px 8px; text-align: left; border-bottom: 1px solid var(--line);
+  }
+  .journal-table td { padding: 7px 8px; border-bottom: 1px solid var(--ledger-grid); font-family: var(--mono); font-size: 11.5px; }
+  .journal-table tr:last-child td { border-bottom: none; }
+  .journal-table .yen { text-align: right; font-weight: 600; }
+  .journal-table tr.pending td { color: var(--gray-soft); font-style: italic; }
+  .journal-table tr.filled td { color: var(--ink); font-style: normal; }
+  .journal-table tr.filling td { background: #F0FDFA; color: var(--ledger); }
+
+  .ai-start-box {
+    background: #fff; border: 1px dashed var(--ledger-light); border-radius: 6px; padding: 20px 16px; text-align: center;
+  }
+  .ai-start-box p { font-size: 12.5px; color: var(--gray); margin-bottom: 14px; line-height: 1.7; }
+  .btn-ai-run {
+    padding: 10px 20px; border: none; border-radius: 4px; background: var(--ledger); color: #fff;
+    font-weight: 700; font-size: 13px; transition: filter .15s;
+  }
+  .btn-ai-run:hover { filter: brightness(1.06); }
+  .btn-approve {
+    padding: 10px 18px; border: none; border-radius: 4px; background: var(--ledger-deep); color: #fff;
+    font-weight: 700; font-size: 12.5px;
+  }
+  .btn-approve:hover { filter: brightness(1.08); }
+  .btn-approve:disabled { opacity: .5; cursor: not-allowed; }
+  .badge-human {
+    font-size: 9px; background: var(--amber-bg); color: var(--amber); padding: 2px 6px;
+    border-radius: 3px; margin-left: 6px; font-weight: 700;
+  }
+  .complete-banner {
+    background: var(--ledger-bg2); border: 1px solid var(--line-dark); border-radius: 4px;
+    padding: 12px 14px; font-size: 12.5px; color: var(--ledger-deep); font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .draft-reset { margin-top: 8px; }
+  .draft-reset button {
+    font-size: 11px; color: var(--gray-soft); background: none; border: none; text-decoration: underline;
+  }
+
+  #toastHost { position: fixed; bottom: 24px; right: 24px; z-index: 999; pointer-events: none; }
+  .toast {
+    background: var(--ledger-deep); color: #fff; padding: 12px 18px; border-radius: 6px;
+    font-size: 13px; font-weight: 600; box-shadow: 0 8px 24px rgba(4,47,46,.35); margin-top: 8px;
+    animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
+  }
+  @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+
+  .komon-cta {
+    background: linear-gradient(135deg, #042F2E 0%, var(--ledger) 55%, var(--ledger-deep) 100%);
+    color: #fff; padding: 76px 24px 40px; text-align: center;
+  }
+  .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
+  .komon-cta .cta-label { display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: #5EEAD4; font-weight: 700; margin-bottom: 16px; }
+  .komon-cta h2 { font-size: 30px; margin-bottom: 16px; line-height: 1.5; }
+  .komon-cta h2 em { font-style: normal; color: #99F6E4; }
+  .komon-cta p.lead { font-size: 14.5px; color: #94D4CC; margin-bottom: 32px; line-height: 1.9; }
+  .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn { display: inline-block; padding: 15px 34px; border-radius: 4px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s; }
+  .btn:hover { opacity: .87; }
+  .btn-gold { background: var(--gold); color: #042F2E; }
+  .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #6EE7B7; }
+  .komon-cta .cta-foot a { color: #CCFBF1; }
+  .komon-cta .cta-foot a:hover { color: #fff; }
+  @media (max-width: 640px) {
+    .komon-cta h2 { font-size: 23px; }
+    .komon-cta { padding: 56px 18px 32px; }
+    .formula-bar { display: none; }
+    .top-user span { display: none; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> が制作した架空プロダクトのデモです。データはすべてサンプルで、実際のサービスではありません。</span>
+  <div class="frame-links">
+    <a href="works.html" class="frame-link">作品一覧</a>
+    <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+  </div>
+</div>
+
+<div id="view-login">
+  <div class="login-hero">
+    <div class="hero-kicker">AI INVOICE CLOUD</div>
+    <h2>仕訳は、<em>セルで確定する。</em></h2>
+    <p>受領箱ではなく帳票グリッドがホーム。請求書を行として並べ、AIが科目・税額をセルに順次入力。OCRハイライトと仕訳明細を見ながら、スプレッドシート感覚で経理を進めます。</p>
+    <div class="grid-strip"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+  <div class="login-panel">
+    <div class="login-card">
+      <div class="login-logo"><span class="k">SOROBAN</span><span class="tag-en">AI INVOICE CLOUD</span></div>
+      <p class="login-sub">帳票グリッドで、仕訳を確定する。</p>
+      <div class="login-field">
+        <label for="loginMail">メールアドレス</label>
+        <input id="loginMail" type="text" value="keiri@sample-kogyo.example" readonly>
+      </div>
+      <div class="login-field">
+        <label for="loginPass">パスワード</label>
+        <input id="loginPass" type="password" value="dummydummy" readonly>
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">
+        <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
+      </button>
+      <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
+    </div>
+  </div>
+</div>
+
+<div id="view-app">
+  <div class="app-shell">
+    <nav class="icon-rail" aria-label="クイックアイコン">
+      <button class="rail-btn active" title="仕訳シート" aria-label="仕訳シート">▦</button>
+      <button class="rail-btn" title="設定（デモ）" aria-label="設定">⚙</button>
+      <button class="rail-btn" title="ヘルプ（デモ）" aria-label="ヘルプ">?</button>
+    </nav>
+    <div class="app-main">
+      <header class="app-top">
+        <div class="top-brand"><span class="k">SOROBAN</span><span class="tag-en">LEDGER SHEET</span></div>
+        <div class="formula-bar">
+          <span class="fx">fx</span>
+          <span class="fx-val" id="formulaVal">=未処理請求 COUNT(A:A) — 2026年7月分</span>
+        </div>
+        <div class="top-actions">
+          <div class="top-user">
+            <div class="avatar">経</div>
+            <span>デモ 経理</span>
+          </div>
+          <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+        </div>
+      </header>
+
+      <div class="sheet-toolbar">
+        <span class="sheet-tab">2026年7月 請求仕訳</span>
+        <span class="toolbar-stats" id="toolbarStats">未確定 <b>—</b> 件 / 全 <b>—</b> 件</span>
+        <div class="toolbar-actions">
+          <button class="btn-sm" id="bulkAiBtn" onclick="startBulkAi()" disabled>AI一括仕訳（未選択）</button>
+          <button class="btn-sm primary" id="bulkConfirmBtn" onclick="bulkConfirm()" disabled>一括確定</button>
+        </div>
+      </div>
+
+      <div class="split-wrap" id="splitWrap">
+        <section class="grid-section" aria-label="請求仕訳グリッド">
+          <div class="grid-scroll">
+            <table class="ledger-grid" id="ledgerGrid">
+              <thead>
+                <tr>
+                  <th class="row-num">#</th>
+                  <th>発行元</th>
+                  <th class="col-num">金額</th>
+                  <th>科目</th>
+                  <th>税</th>
+                  <th>支払期限</th>
+                  <th>確信度</th>
+                </tr>
+              </thead>
+              <tbody id="gridBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="detail-section" id="detailSection" aria-label="請求プレビューと仕訳明細">
+          <div class="detail-head">
+            <div>
+              <h3 id="detailTitle">—</h3>
+              <p class="sub" id="detailSub">行を選択してください</p>
+            </div>
+            <div class="actions" id="detailActions"></div>
+          </div>
+          <div class="detail-body">
+            <div class="preview-pane">
+              <h4>請求書プレビュー</h4>
+              <div id="previewHost"></div>
+            </div>
+            <div class="journal-pane">
+              <h4>仕訳明細</h4>
+              <div class="ai-status" id="aiStatus"></div>
+              <div id="journalHost"></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="komon-cta">
+  <div class="cta-inner">
+    <span class="cta-label">AI KOMONSHITSU</span>
+    <h2>このようなシステムを、<em>御社専用に。</em></h2>
+    <p class="lead">「ソロバン」は本デモのために作った架空のプロダクトです。AI顧問室では、請求書処理に限らず、御社の経理フローを学習してOCR読取・自動仕訳・承認ワークフローを組み込んだ専用システムを構築します。</p>
+    <div class="cta-btn-row">
+      <a href="index.html?from=works-invoice#contact" class="btn btn-gold">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
+    </div>
+    <div class="cta-foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+
+<script>
+var INVOICES = [
+  { id: 'inv-001', vendor: '株式会社オフィスワン', amount: 187000, due: '2026-08-25', invoiceNo: 'OW-2026-0718',
+    scan: 'assets/invoice/inv-001.jpg', account: '消耗品費ほか', tax: '課税10%', confidence: 96, demo: true,
+    lines: [
+      { desc: 'コピー用紙 A4 5箱', qty: 5, unit: 3200, amount: 16000, debit: '消耗品費', credit: '未払金' },
+      { desc: 'トナーカートリッジ（黒×2）', qty: 2, unit: 18500, amount: 37000, debit: '消耗品費', credit: '未払金' },
+      { desc: 'デスクチェア 3脚', qty: 3, unit: 28000, amount: 84000, debit: '備品', credit: '未払金' },
+      { desc: 'ファイルボックス・事務小物', qty: 1, unit: 50000, amount: 50000, debit: '消耗品費', credit: '未払金' }
+    ] },
+  { id: 'inv-002', vendor: 'アマゾンジャパン合同会社', amount: 42800, due: '2026-08-10', invoiceNo: 'JP-8849201',
+    scan: 'assets/invoice/inv-002.jpg', account: '通信費', tax: '課税10%', confidence: 94,
+    lines: [{ desc: 'AWS利用料（7月分）', qty: 1, unit: 42800, amount: 42800, debit: '通信費', credit: '未払金' }] },
+  { id: 'inv-003', vendor: '東京電力エナジーパートナー', amount: 89240, due: '2026-08-05', invoiceNo: 'TEPCO-260718',
+    scan: 'assets/invoice/inv-003.jpg', account: '水道光熱費', tax: '課税10%', confidence: 99,
+    lines: [{ desc: '電気料金（本社7月分）', qty: 1, unit: 89240, amount: 89240, debit: '水道光熱費', credit: '未払金' }] },
+  { id: 'inv-004', vendor: '株式会社サイバーエージェント', amount: 330000, due: '2026-08-31', invoiceNo: 'CA-AD-7721',
+    scan: 'assets/invoice/inv-004.jpg', account: '広告宣伝費', tax: '課税10%', confidence: 88,
+    lines: [{ desc: 'Web広告配信（7月）', qty: 1, unit: 330000, amount: 330000, debit: '広告宣伝費', credit: '未払金' }] },
+  { id: 'inv-005', vendor: '日本マイクロソフト株式会社', amount: 156400, due: '2026-08-15', invoiceNo: 'MS-INV-44821',
+    scan: 'assets/invoice/inv-005.jpg', account: '通信費', tax: '課税10%', confidence: 97,
+    lines: [{ desc: 'Microsoft 365 Business（50ID）', qty: 1, unit: 156400, amount: 156400, debit: '通信費', credit: '未払金' }] },
+  { id: 'inv-006', vendor: '株式会社リクルート', amount: 88000, due: '2026-08-20', invoiceNo: 'RC-20260712',
+    scan: 'assets/invoice/inv-006.jpg', account: '採用教育費', tax: '課税10%', confidence: 91,
+    lines: [{ desc: '求人広告掲載（エンジニア）', qty: 1, unit: 88000, amount: 88000, debit: '採用教育費', credit: '未払金' }] },
+  { id: 'inv-007', vendor: '佐川急便株式会社', amount: 24680, due: '2026-08-08', invoiceNo: 'SG-778812',
+    scan: 'assets/invoice/inv-007.jpg', account: '荷造運賃', tax: '課税10%', confidence: 93,
+    lines: [{ desc: '宅配便・チャーター（7月）', qty: 1, unit: 24680, amount: 24680, debit: '荷造運賃', credit: '未払金' }] },
+  { id: 'inv-008', vendor: 'スターバックスコーヒージャパン', amount: 8640, due: '2026-08-12', invoiceNo: 'SB-66021',
+    scan: 'assets/invoice/inv-008.jpg', account: '接待交際費', tax: '課税8%', confidence: 85,
+    lines: [{ desc: '会議用ケータリング', qty: 1, unit: 8640, amount: 8640, debit: '接待交際費', credit: '未払金' }] },
+  { id: 'inv-009', vendor: '株式会社ベネッセコーポレーション', amount: 59400, due: '2026-08-28', invoiceNo: 'BN-TR-9021',
+    scan: 'assets/invoice/inv-009.jpg', account: '研修費', tax: '非課税', confidence: 90,
+    lines: [{ desc: 'eラーニング年間ライセンス', qty: 1, unit: 59400, amount: 59400, debit: '研修費', credit: '未払金' }] },
+  { id: 'inv-010', vendor: '株式会社KDDI', amount: 198000, due: '2026-08-18', invoiceNo: 'KDDI-260701',
+    scan: 'assets/invoice/inv-010.jpg', account: '通信費', tax: '課税10%', confidence: 98,
+    lines: [{ desc: '光回線・固定電話（7月）', qty: 1, unit: 198000, amount: 198000, debit: '通信費', credit: '未払金' }] },
+  { id: 'inv-011', vendor: '三井不動産リアルティ', amount: 412500, due: '2026-08-01', invoiceNo: 'MF-RENT-0726',
+    scan: 'assets/invoice/inv-011.jpg', account: '地代家賃', tax: '非課税', confidence: 99,
+    lines: [{ desc: '本社オフィス賃料（7月）', qty: 1, unit: 412500, amount: 412500, debit: '地代家賃', credit: '未払金' }] },
+  { id: 'inv-012', vendor: '株式会社NTTドコモ', amount: 67200, due: '2026-08-22', invoiceNo: 'DOCOMO-77821',
+    scan: 'assets/invoice/inv-012.jpg', account: '通信費', tax: '課税10%', confidence: 96,
+    lines: [{ desc: '法人モバイル（20回線）', qty: 1, unit: 67200, amount: 67200, debit: '通信費', credit: '未払金' }] }
+];
+
+var loggedIn = false;
+var activeId = null;
+var aiState = null;
+var inv001Runtime = { aiDone: false, confirmed: false, cellAccount: '', cellTax: '' };
+
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function showToast(msg) {
+  var host = document.getElementById('toastHost');
+  var el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  host.appendChild(el);
+  setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 2800);
+}
+
+function formatYen(n) {
+  return '¥' + Number(n).toLocaleString('ja-JP');
+}
+
+function findInv(id) {
+  for (var i = 0; i < INVOICES.length; i++) if (INVOICES[i].id === id) return INVOICES[i];
+  return null;
+}
+
+function getRowState(inv) {
+  if (inv.id === 'inv-001') {
+    if (inv001Runtime.confirmed) return 'confirmed';
+    if (inv001Runtime.aiDone) return 'ai-ready';
+    return 'pending';
+  }
+  return inv.confirmed ? 'confirmed' : 'prefilled';
+}
+
+function renderGrid() {
+  var tbody = document.getElementById('gridBody');
+  var pending = 0;
+  var html = '';
+  INVOICES.forEach(function (inv, idx) {
+    var st = getRowState(inv);
+    if (st !== 'confirmed') pending++;
+    var cls = st === 'confirmed' ? 'confirmed' : '';
+    if (inv.id === activeId) cls += ' selected';
+    if (inv.demo) cls += ' demo-star';
+    var account = inv.id === 'inv-001' ? (inv001Runtime.cellAccount || '') : inv.account;
+    var tax = inv.id === 'inv-001' ? (inv001Runtime.cellTax || '') : inv.tax;
+    var accountCls = 'cell-account' + (account ? ' filled' : ' empty');
+    var taxCls = 'cell-tax' + (tax ? ' filled' : ' empty');
+    var confLabel = st === 'confirmed' ? '確定' : (st === 'ai-ready' ? '確認待' : (inv.id === 'inv-001' ? '未処理' : 'AI済'));
+    var confCls = st === 'confirmed' ? 'done' : (st === 'ai-ready' ? 'ai' : 'pending');
+    html += '<tr class="' + cls.trim() + '" data-id="' + inv.id + '" onclick="selectRow(\'' + inv.id + '\')">' +
+      '<td class="row-num">' + (idx + 1) + '</td>' +
+      '<td class="cell-vendor">' + escapeHtml(inv.vendor) + '</td>' +
+      '<td class="cell-yen">' + formatYen(inv.amount) + '</td>' +
+      '<td class="' + accountCls + '" id="cell-acc-' + inv.id + '">' + escapeHtml(account || '—') + '</td>' +
+      '<td class="' + taxCls + '" id="cell-tax-' + inv.id + '">' + escapeHtml(tax || '—') + '</td>' +
+      '<td class="cell-due">' + escapeHtml(inv.due) + '</td>' +
+      '<td><span class="cell-conf ' + confCls + '">' + confLabel + '</span></td></tr>';
+  });
+  tbody.innerHTML = html;
+  document.getElementById('toolbarStats').innerHTML =
+    '未確定 <b>' + pending + '</b> 件 / 全 <b>' + INVOICES.length + '</b> 件';
+  document.getElementById('formulaVal').textContent =
+    '=未処理請求 ' + pending + '件 — SUM(金額) ' + formatYen(sumPending());
+  updateBulkButtons();
+}
+
+function sumPending() {
+  var t = 0;
+  INVOICES.forEach(function (inv) { if (getRowState(inv) !== 'confirmed') t += inv.amount; });
+  return t;
+}
+
+function updateBulkButtons() {
+  var aiBtn = document.getElementById('bulkAiBtn');
+  var confBtn = document.getElementById('bulkConfirmBtn');
+  var ready = INVOICES.filter(function (inv) {
+    var st = getRowState(inv);
+    return st === 'ai-ready' || (st === 'prefilled' && inv.id !== 'inv-001');
+  }).length;
+  if (activeId) {
+    aiBtn.disabled = false;
+    aiBtn.textContent = activeId === 'inv-001' && !inv001Runtime.aiDone ? 'AI仕訳を実行' : '選択行を表示中';
+  } else {
+    aiBtn.disabled = true;
+    aiBtn.textContent = 'AI一括仕訳（未選択）';
+  }
+  confBtn.disabled = ready === 0;
+  confBtn.textContent = ready > 0 ? '一括確定（' + ready + '件）' : '一括確定';
+}
+
+function selectRow(id) {
+  activeId = id;
+  location.hash = 'sheet/' + id;
+  document.getElementById('splitWrap').classList.add('has-detail');
+  renderGrid();
+  renderDetail(id);
+}
+
+function closeDetail() {
+  activeId = null;
+  if (aiState) { aiState.timers.forEach(function (t) { clearTimeout(t); }); aiState = null; }
+  document.getElementById('splitWrap').classList.remove('has-detail');
+  location.hash = 'sheet';
+  renderGrid();
+}
+
+function renderDetail(id) {
+  var inv = findInv(id);
+  if (!inv) return;
+  document.getElementById('detailTitle').textContent = inv.vendor;
+  document.getElementById('detailSub').textContent = inv.invoiceNo + ' · ' + formatYen(inv.amount) + ' · 支払 ' + inv.due;
+  renderPreview(inv);
+  renderJournalPane(inv);
+  renderDetailActions(inv);
+  updateBulkButtons();
+}
+
+function renderPreview(inv) {
+  var linesHtml = inv.lines.map(function (ln, i) {
+    return '<tr><td>' + (i + 1) + '</td><td><span class="hl" id="hl-' + i + '">' + escapeHtml(ln.desc) + '</span></td>' +
+      '<td class="r">' + ln.qty + '</td><td class="r mono">' + ln.unit.toLocaleString('ja-JP') + '</td>' +
+      '<td class="r mono">' + ln.amount.toLocaleString('ja-JP') + '</td></tr>';
+  }).join('');
+  if (inv.scan) {
+    document.getElementById('previewHost').innerHTML =
+      '<div class="invoice-doc scan-doc" id="invoiceDoc"><div class="scan-line"></div>' +
+      '<img class="scan-img" src="' + escapeHtml(inv.scan) + '" alt="' + escapeHtml(inv.vendor) + ' 請求書スキャン">' +
+      '<div class="ocr-readout"><div class="ocr-readout-label">OCR抽出（デモ）</div>' +
+      '<table class="inv-lines ocr-lines"><thead><tr><th>#</th><th>品目</th><th>数量</th><th>単価</th><th>金額</th></tr></thead><tbody>' +
+      linesHtml + '</tbody></table>' +
+      '<div class="inv-total">合計（税込） ' + formatYen(inv.amount) + '</div></div></div>';
+    return;
+  }
+  document.getElementById('previewHost').innerHTML =
+    '<div class="invoice-doc" id="invoiceDoc"><div class="scan-line"></div>' +
+    '<div class="inv-title">請 求 書</div>' +
+    '<div class="inv-meta"><div>請求番号<b>' + escapeHtml(inv.invoiceNo) + '</b></div>' +
+    '<div>発行元<b>' + escapeHtml(inv.vendor) + '</b></div>' +
+    '<div>支払期限<b>' + escapeHtml(inv.due) + '</b></div></div>' +
+    '<table class="inv-lines"><thead><tr><th>#</th><th>品目</th><th>数量</th><th>単価</th><th>金額</th></tr></thead><tbody>' +
+    linesHtml + '</tbody></table>' +
+    '<div class="inv-total">合計（税込） ' + formatYen(inv.amount) + '</div></div>';
+}
+
+function renderJournalPane(inv) {
+  var host = document.getElementById('journalHost');
+  var status = document.getElementById('aiStatus');
+  status.classList.remove('show');
+  status.textContent = '';
+
+  if (inv.id === 'inv-001') {
+    if (inv001Runtime.confirmed) {
+      host.innerHTML = buildJournalTable(inv, true) +
+        '<div class="complete-banner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>仕訳を確定しました。グリッド行が緑になりました。</div>' +
+        '<div class="draft-reset"><button onclick="resetInv001()">↺ デモをリセット</button></div>';
+      return;
+    }
+    if (inv001Runtime.aiDone) {
+      host.innerHTML = buildJournalTable(inv, true) +
+        '<button class="btn-approve" onclick="confirmInv001()">仕訳を確定する<span class="badge-human">人の確認</span></button>' +
+        '<div class="draft-reset"><button onclick="resetInv001()">↺ やり直し</button></div>';
+      return;
+    }
+    host.innerHTML = '<div class="ai-start-box"><p>請求書をOCR読取し、<br>科目・税区分と仕訳明細をセルに順次入力します。<br>（★行がデモ用の多明細請求書）</p>' +
+      '<button class="btn-ai-run" onclick="startAiJournal()">AI仕訳を開始</button></div>';
+    return;
+  }
+
+  host.innerHTML = buildJournalTable(inv, true) +
+    '<div class="complete-banner" style="opacity:.85;">AI仕訳済 — 一括確定で行を緑にできます</div>';
+}
+
+function buildJournalTable(inv, filled) {
+  var rows = inv.lines.map(function (ln, i) {
+    var cls = filled ? 'filled' : 'pending';
+    return '<tr class="' + cls + '" id="jrow-' + i + '"><td>' + escapeHtml(ln.debit) + '</td><td>' + escapeHtml(ln.credit) + '</td>' +
+      '<td class="yen">' + (filled ? ln.amount.toLocaleString('ja-JP') : '—') + '</td></tr>';
+  }).join('');
+  return '<table class="journal-table"><thead><tr><th>借方科目</th><th>貸方科目</th><th>金額</th></tr></thead><tbody>' + rows + '</tbody></table>';
+}
+
+function renderDetailActions(inv) {
+  var el = document.getElementById('detailActions');
+  if (inv.id === 'inv-001' && !inv001Runtime.aiDone && !inv001Runtime.confirmed) {
+    el.innerHTML = '<button class="btn-sm primary" onclick="startAiJournal()">AI仕訳</button><button class="btn-sm" onclick="closeDetail()">閉じる</button>';
+  } else if (getRowState(inv) === 'confirmed') {
+    el.innerHTML = '<button class="btn-sm" onclick="closeDetail()">閉じる</button>';
+  } else {
+    el.innerHTML = '<button class="btn-sm primary" onclick="confirmSingle(\'' + inv.id + '\')">この行を確定</button><button class="btn-sm" onclick="closeDetail()">閉じる</button>';
+  }
+}
+
+function renderDetailActionsOnly(id) {
+  var inv = findInv(id);
+  if (inv) renderDetailActions(inv);
+}
+
+function startBulkAi() {
+  if (activeId === 'inv-001' && !inv001Runtime.aiDone) startAiJournal();
+  else if (activeId) showToast('選択中: ' + findInv(activeId).vendor);
+}
+
+function startAiJournal() {
+  if (activeId !== 'inv-001' || inv001Runtime.aiDone) return;
+  if (aiState) aiState.timers.forEach(function (t) { clearTimeout(t); });
+  aiState = { timers: [], runId: {} };
+  var myRun = aiState.runId;
+  var inv = findInv('inv-001');
+  var status = document.getElementById('aiStatus');
+  status.classList.add('show');
+  status.textContent = 'OCR読取中… 請求書の品目をスキャンしています';
+
+  var doc = document.getElementById('invoiceDoc');
+  if (doc) doc.classList.add('scanning');
+
+  document.getElementById('journalHost').innerHTML = buildJournalTable(inv, false);
+
+  aiState.timers.push(setTimeout(function () {
+    if (!aiState || aiState.runId !== myRun) return;
+    status.textContent = '科目セルに入力中…';
+    highlightLine(0);
+    typeCell('cell-acc-inv-001', inv.account, 900, myRun, function () {
+      inv001Runtime.cellAccount = inv.account;
+      status.textContent = '税区分セルに入力中…';
+      typeCell('cell-tax-inv-001', inv.tax, 600, myRun, function () {
+        inv001Runtime.cellTax = inv.tax;
+        status.textContent = '仕訳明細を生成中…';
+        fillJournalLines(inv, myRun, function () {
+          if (!aiState || aiState.runId !== myRun) return;
+          inv001Runtime.aiDone = true;
+          if (doc) doc.classList.remove('scanning');
+          status.textContent = 'AI仕訳完了 — 内容を確認して確定してください';
+          renderGrid();
+          renderJournalPane(inv);
+          renderDetailActions(inv);
+          updateBulkButtons();
+          showToast('AIが科目・税区分・仕訳明細を入力しました');
+        });
+      });
+    });
+  }, 1400));
+}
+
+function highlightLine(idx) {
+  document.querySelectorAll('.hl').forEach(function (el, i) {
+    el.classList.toggle('active', i === idx);
+  });
+}
+
+function typeCell(cellId, fullText, duration, myRun, onDone) {
+  var cell = document.getElementById(cellId);
+  if (!cell) { if (onDone) onDone(); return; }
+  cell.classList.add('filling');
+  cell.classList.remove('empty');
+  cell.textContent = '';
+  var tickMs = 45;
+  var totalTicks = Math.ceil(duration / tickMs);
+  var charsPerTick = Math.max(1, Math.ceil(fullText.length / totalTicks));
+  var shown = 0;
+  function tick() {
+    if (!aiState || aiState.runId !== myRun) return;
+    shown = Math.min(fullText.length, shown + charsPerTick);
+    cell.textContent = fullText.slice(0, shown);
+    if (shown >= fullText.length) {
+      cell.classList.remove('filling');
+      cell.classList.add('filled');
+      if (onDone) onDone();
+      return;
+    }
+    aiState.timers.push(setTimeout(tick, tickMs));
+  }
+  aiState.timers.push(setTimeout(tick, tickMs));
+}
+
+function fillJournalLines(inv, myRun, onDone) {
+  var i = 0;
+  function next() {
+    if (!aiState || aiState.runId !== myRun) return;
+    if (i >= inv.lines.length) { if (onDone) onDone(); return; }
+    highlightLine(i);
+    var row = document.getElementById('jrow-' + i);
+    if (row) {
+      row.classList.remove('pending');
+      row.classList.add('filling');
+      var amt = inv.lines[i].amount;
+      typeJournalAmount(row, amt, 500, myRun, function () {
+        row.classList.remove('filling');
+        row.classList.add('filled');
+        i++;
+        aiState.timers.push(setTimeout(next, 280));
+      });
+    } else { i++; next(); }
+  }
+  next();
+}
+
+function typeJournalAmount(row, amount, duration, myRun, onDone) {
+  var cell = row.querySelector('.yen');
+  if (!cell) { if (onDone) onDone(); return; }
+  var fullText = amount.toLocaleString('ja-JP');
+  var tickMs = 40;
+  var totalTicks = Math.ceil(duration / tickMs);
+  var charsPerTick = Math.max(1, Math.ceil(fullText.length / totalTicks));
+  var shown = 0;
+  function tick() {
+    if (!aiState || aiState.runId !== myRun) return;
+    shown = Math.min(fullText.length, shown + charsPerTick);
+    cell.textContent = fullText.slice(0, shown);
+    if (shown >= fullText.length) { if (onDone) onDone(); return; }
+    aiState.timers.push(setTimeout(tick, tickMs));
+  }
+  aiState.timers.push(setTimeout(tick, tickMs));
+}
+
+function confirmInv001() {
+  inv001Runtime.confirmed = true;
+  showToast('仕訳を確定しました — 行が緑になりました');
+  renderGrid();
+  renderDetail('inv-001');
+}
+
+function confirmSingle(id) {
+  var inv = findInv(id);
+  if (!inv || id === 'inv-001') return;
+  inv.confirmed = true;
+  showToast(inv.vendor + ' の仕訳を確定しました');
+  renderGrid();
+  renderDetail(id);
+}
+
+function bulkConfirm() {
+  var n = 0;
+  INVOICES.forEach(function (inv) {
+    var st = getRowState(inv);
+    if (st === 'ai-ready') {
+      if (inv.id === 'inv-001') inv001Runtime.confirmed = true;
+      n++;
+    } else if (st === 'prefilled' && inv.id !== 'inv-001') {
+      inv.confirmed = true;
+      n++;
+    }
+  });
+  showToast(n + '件の仕訳を一括確定しました');
+  renderGrid();
+  if (activeId) renderDetail(activeId);
+}
+
+function resetInv001() {
+  if (aiState) aiState.timers.forEach(function (t) { clearTimeout(t); });
+  aiState = null;
+  inv001Runtime = { aiDone: false, confirmed: false, cellAccount: '', cellTax: '' };
+  renderGrid();
+  renderDetail('inv-001');
+  showToast('inv-001 デモをリセットしました');
+}
+
+function isLoggedIn() { return loggedIn; }
+
+function showLoginScreen() {
+  activeId = null;
+  if (aiState) { aiState.timers.forEach(function (t) { clearTimeout(t); }); aiState = null; }
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+  document.getElementById('splitWrap').classList.remove('has-detail');
+}
+
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+  renderGrid();
+}
+
+function handleRoute() {
+  var hash = location.hash.replace('#', '') || 'login';
+  if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
+  if (hash === 'login') { showLoginScreen(); return; }
+  showAppScreen();
+  if (hash.indexOf('sheet/') === 0) {
+    var id = hash.split('/')[1];
+    if (findInv(id)) selectRow(id);
+    else { location.hash = 'sheet'; closeDetail(); }
+    return;
+  }
+  if (hash === 'sheet') { closeDetail(); return; }
+  location.hash = 'sheet';
+}
+
+function doLogin() {
+  var btn = document.getElementById('loginBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+  setTimeout(function () {
+    loggedIn = true;
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    location.hash = 'sheet';
+    handleRoute();
+  }, 900);
+}
+
+function doLogout() {
+  loggedIn = false;
+  location.hash = 'login';
+  handleRoute();
+  showToast('ログアウトしました（デモ）');
+}
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') loggedIn = true;
+  handleRoute();
+});
+</script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
+</body>
+</html>

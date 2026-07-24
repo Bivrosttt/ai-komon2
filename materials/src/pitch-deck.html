@@ -99,8 +99,8 @@
 
   /* founder profile */
   .profile-wrap { display: flex; gap: 32px; margin-top: 14px; }
-  .profile-card { flex: 0 0 210px; }
-  .profile-card .p-name { font-family: 'Noto Serif JP', serif; font-size: 23px; color: #fff; margin-bottom: 4px; }
+  .profile-card { flex: 0 0 250px; }
+  .profile-card .p-name { font-family: 'Noto Serif JP', serif; font-size: 21.5px; color: #fff; margin-bottom: 4px; white-space: nowrap; }
   .profile-card .p-role { font-size: 10.5px; color: var(--gold); font-weight: 700; margin-bottom: 18px; line-height: 1.6; }
   .profile-card .p-meta { font-size: 10.5px; color: #C7D3E4; line-height: 2; }
   .milestones { flex: 1; display: flex; flex-direction: column; gap: 9px; }
@@ -193,7 +193,7 @@
       <div class="ba"><div class="b">若手が録音を聞き直して半日がかり</div><div class="arrow">→</div><div class="a">録音から議事録・決定事項・宿題まで自動作成</div></div>
     </div>
   </div>
-  <p class="note">※ 無料相談では、御社の業務に当てはめた活用イメージをその場でお示しします。</p>
+  <p class="note">※ 無料のAI活用診断では、御社の業務に当てはめた活用イメージをその場でお示しします。</p>
   <div class="footer-brand">AI顧問室</div><div class="pagenum">5</div>
 </div>
 
@@ -247,11 +247,11 @@
 <div class="slide">
   <span class="label">FLOW</span>
   <h2 class="s-title">ご相談から、最初の90日まで</h2>
-  <p class="s-lead">まず無料相談（30分）から。相談だけでも「何から始めるべきか」を持ち帰っていただけます。売り込みは一切しません。</p>
+  <p class="s-lead">まず無料AI活用診断（30分）から。診断だけでも「何から始めるべきか」を持ち帰っていただけます。無理な勧誘はありません。診断後の判断は自由です。</p>
   <div class="steps">
-    <div class="step"><div class="no">1</div><h3>無料相談（30分）</h3><p>課題とAI活用の可能性をヒアリング。方向性をその場で整理</p></div>
+    <div class="step"><div class="no">1</div><h3>無料AI活用診断（30分）</h3><p>課題とAI活用の可能性をヒアリング。方向性をその場で整理</p></div>
     <div class="step"><div class="no">2</div><h3>現状診断</h3><p>業務を簡易診断し、活用余地と優先順位をご報告</p></div>
-    <div class="step"><div class="no">3</div><h3>プラン提案</h3><p>御社に合ったプランと初月の動き方をご提案</p></div>
+    <div class="step"><div class="no">3</div><h3>支援内容の設計</h3><p>御社に合った支援範囲と初月の動き方をご提案</p></div>
     <div class="step"><div class="no">4</div><h3>顧問スタート</h3><p>チャット開設。その日から相談できる体制に</p></div>
   </div>
   <h3 style="font-size:15px; color:var(--navy); margin:22px 0 10px;">契約後、最初の90日でやること</h3>
@@ -267,44 +267,21 @@
 <div class="slide">
   <span class="label">PRICING</span>
   <h2 class="s-title">料金プラン</h2>
-  <p class="s-lead">AI人材の採用（年600万円〜+採用コスト）と比べてください。月15万円から、明日から、経営が分かるAIの専門家を。</p>
-  <div class="grid3">
-    <div class="plan">
-      <div class="pname">ライト</div><div class="ppos">AI経営の相談役</div>
-      <div class="pprice">15<small>万円/月（税別）</small></div>
-      <ul>
-        <li>チャット相談（平日随時）</li>
-        <li>定例ミーティング 月1回</li>
-        <li>オンライン完結</li>
-        <li class="na">実装代行</li>
-        <li class="na">社員研修</li>
-      </ul>
-    </div>
+  <p class="s-lead">AI人材の採用（年600万円〜+採用コスト）と比べてください。月50万円から、契約月から、経営が分かるAIの専門家を。</p>
+  <div class="grid3" style="grid-template-columns:minmax(0,1fr);max-width:620px;margin:0 auto;">
     <div class="plan feat">
-      <div class="pbadge">いちばん選ばれています</div>
-      <div class="pname">スタンダード</div><div class="ppos">AI導入の伴走者</div>
-      <div class="pprice">25<small>万円/月（税別）</small></div>
+      <div class="pbadge">個別設計</div>
+      <div class="pname">AI顧問プラン</div><div class="ppos">経営と現場をつなぐAI導入の伴走者</div>
+      <div class="pprice">50<small>万円〜/月（税別）</small></div>
       <ul>
-        <li>チャット相談（平日随時）</li>
-        <li>定例 月2回（訪問月1回可）</li>
+        <li>チャット相談・定例ミーティング</li>
         <li>ロードマップ策定・伴走</li>
-        <li>自動化の実装 月1件</li>
-        <li>社員研修 四半期1回</li>
-      </ul>
-    </div>
-    <div class="plan">
-      <div class="pname">プレミアム</div><div class="ppos">社外AI役員</div>
-      <div class="pprice">50<small>万円/月（税別）</small></div>
-      <ul>
-        <li>チャット相談（優先対応）</li>
-        <li>定例 月2回（経営会議同席可）</li>
-        <li>訪問対応（回数制限なし）</li>
-        <li>自動化の実装 月3件目安</li>
-        <li>社員研修 毎月・対面可</li>
+        <li>業務自動化の実装支援</li>
+        <li>訪問・社員研修は必要に応じて設計</li>
       </ul>
     </div>
   </div>
-  <p class="note">最低契約期間3ヶ月・プラン変更可。デジタル化・AI導入補助金（旧IT導入補助金）・人材開発支援助成金など、使える制度のご提案も行います。</p>
+  <p class="note">最低契約期間3ヶ月・支援範囲は月単位で見直し可。デジタル化・AI導入補助金（旧IT導入補助金）・人材開発支援助成金など、使える制度のご提案も行います。</p>
   <div class="footer-brand">AI顧問室</div><div class="pagenum">9</div>
 </div>
 
@@ -331,15 +308,15 @@
   <div class="footer-brand">AI顧問室</div><div class="pagenum">10</div>
 </div>
 
-<!-- 11. 代表プロフィール -->
+<!-- 11. 支援責任者プロフィール -->
 <div class="slide dark">
-  <span class="label">FOUNDER</span>
-  <h2 class="s-title" style="color:#fff;">運営者について</h2>
+  <span class="label">SUPPORT LEAD</span>
+  <h2 class="s-title" style="color:#fff;">支援責任者について</h2>
   <p class="s-lead" style="color:#C7D3E4;">御社に必要なのは「AIに詳しい人」ではなく、経営の数字を作ってきた人間だと考えています。</p>
   <div class="profile-wrap">
     <div class="profile-card">
-      <div class="p-name">佐藤 啓英</div>
-      <div class="p-role">株式会社Bivrost CEO<br>AI顧問室 主宰</div>
+      <div class="p-name">AI顧問室 相談責任者</div>
+      <div class="p-role">株式会社Bivrost<br>AI導入支援</div>
       <div class="p-meta">AI歴：GPT-3のAPI公開時期から約4年<br>現在：日本・タイ・ベトナムで不動産・リゾート・飲食など複数事業を経営</div>
     </div>
     <div class="milestones">
@@ -362,9 +339,9 @@
   <p class="s-lead">「まず小さく試したい」方向けの入口もご用意しています。</p>
   <div class="grid2">
     <div class="card" style="border-top-color: var(--gold);">
-      <div class="who">まずは相談から</div>
-      <h3>無料相談（30分）</h3>
-      <p>課題とAI活用の可能性をヒアリングし、御社の現在地と次にやるべきことをその場で整理します。売り込みは一切しません。</p>
+      <div class="who">まずは診断から</div>
+      <h3>無料AI活用診断（30分）</h3>
+      <p>課題とAI活用の可能性をヒアリングし、御社の現在地と次にやるべきことをその場で整理します。無理な勧誘はありません。診断後の判断は自由です。</p>
       <p style="margin-top:10px; font-weight:700; color:var(--navy); font-size:11.5px;">https://ai-komon.bivrost.co.jp/</p>
     </div>
     <div class="card" style="border-top-color: var(--gold);">
@@ -381,14 +358,14 @@
 <div class="slide dark cover">
   <span class="label">CONTACT</span>
   <h2 style="font-size:34px; margin-bottom:14px;">まずは30分、話してみませんか。</h2>
-  <p style="font-size:13px; color:#C7D3E4; margin-bottom:28px;">無料相談だけでも「自社が何から始めるべきか」が明確になります。<br>オンライン対応・全国どこからでも。ご紹介の方はその旨お伝えください。</p>
+  <p style="font-size:13px; color:#C7D3E4; margin-bottom:28px;">無料のAI活用診断だけでも「自社が何から始めるべきか」が明確になります。<br>オンライン対応・全国どこからでも。ご紹介の方はその旨お伝えください。</p>
   <div class="urlbox">
     <div class="u-label">公式サイト</div>
     <div class="u-url">https://ai-komon.bivrost.co.jp/</div>
     <div class="u-label">お問い合わせ</div>
-    <div class="u-url">【メールアドレス／電話番号】</div>
+    <div class="u-url">koki.otsuka@bivrost.co.jp</div>
   </div>
-  <p style="font-size:10px; color:#9FB0C7; margin-top:24px;">AI顧問室｜運営：【会社名】</p>
+  <p style="font-size:10px; color:#9FB0C7; margin-top:24px;">AI顧問室｜運営：株式会社Bivrost</p>
 </div>
 
 </body>

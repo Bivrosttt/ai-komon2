@@ -1,0 +1,31 @@
+{
+  "status": "ready-for-review",
+  "keyword": "見積 利益率 計算",
+  "slug": "quote-margin-calculator",
+  "title": "見積利益率計算機",
+  "description": "原価・目標利益率・値引率から、目標利益を確保するための見積価格を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "cost", "label": "原価（円）", "default": 100000, "step": 1000},
+    {"id": "targetMargin", "label": "目標利益率（%）", "default": 30, "step": 1},
+    {"id": "discountRate", "label": "想定値引率（%）", "default": 10, "step": 1}
+  ],
+  "results": [
+    {"id": "minimum-price", "label": "値引き前の提示価格目安", "unit": "円", "formula": "cost / (1 - targetMargin / 100)"},
+    {"id": "list-price", "label": "値引き後に目標利益を残す提示価格", "unit": "円", "formula": "cost / (1 - targetMargin / 100) / (1 - discountRate / 100)"}
+  ],
+  "explanations": [
+    "原価に利益率を足すのではなく、売価に対する利益率から必要な提示価格を逆算します。",
+    "値引き以外の追加作業、送料、外注費、税の扱いは会社ごとに異なるため、最終見積では自社ルールを確認してください。"
+  ],
+  "faq": [
+    {"q": "利益率と粗利率は同じですか？", "a": "このツールでは売価に対する粗利率として計算しています。社内で使う定義と一致するか確認してください。"},
+    {"q": "消費税は含まれますか？", "a": "含まれていません。税抜・税込の扱いは自社の見積ルールに合わせてください。"}
+  ],
+  "related_tools": [
+    {"label": "営業・見積もり工数シミュレーター", "url": "/tools/sales-estimate-roi/", "description": "見積作成にかかる時間と費用を試算します。"},
+    {"label": "1時間の人件費計算機", "url": "/tools/hourly-cost-calculator/", "description": "原価計算に使う時間単価を整理します。"}
+  ],
+  "cta": {"label": "見積業務の改善を相談する", "url": "/demo-quote.html"}
+}

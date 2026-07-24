@@ -1,0 +1,988 @@
+<!-- 2026-07-22: KAWASU契約紙面レビュー＋契約スキャン画像（assets/contract）と捺印印影を接続 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>電子契約クラウド構築デモ（AI条項レビュー・朱印）｜AI顧問室</title>
+<meta name="description" content="架空の電子契約・契約管理クラウド「KAWASU」のフル機能デモです。契約紙面を読みながらAIが条項リスクを赤入れし、修正文案を提案。承認して朱印捺印まで体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="電子契約クラウド構築デモ（AI条項レビュー・朱印）｜AI顧問室">
+<meta property="og:description" content="架空の電子契約・契約管理クラウド「KAWASU」のフル機能デモです。契約紙面を読みながらAIが条項リスクを赤入れし、修正文案を提案。承認して朱印捺印まで体験できます。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-contract.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-contract.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #F7F1E5; --paper: #FBF8F0; --paper-line: #E8DFCF;
+    --seal: #C23A2B; --seal-soft: rgba(194,58,43,.12); --seal-glow: rgba(194,58,43,.35);
+    --ink: #1C1917; --gray: #57534E; --gray-soft: #78716C;
+    --line: #D6CFC0; --bg-soft: #EDE8DC; --white: #FFFFFF;
+    --high: #B91C1C; --high-bg: #FEE2E2;
+    --med: #C2410C; --med-bg: #FFEDD5;
+    --low: #A16207; --low-bg: #FEF9C3;
+    --green: #15803D; --green-bg: #DCFCE7;
+    --scan: rgba(194,58,43,.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--bg-soft);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { line-height: 1.4; font-weight: 700; }
+  .serif { font-family: 'Noto Serif JP', serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  input, select { font-family: inherit; }
+  img, svg { max-width: 100%; }
+  ::selection { background: var(--seal-soft); color: var(--ink); }
+
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: #0C0A09; color: #D6D3D1; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 2px solid var(--seal);
+  }
+  .demo-frame-bar b { color: #FCA5A5; font-weight: 700; }
+  .demo-frame-bar .frame-links { display: flex; gap: 8px; flex: 0 0 auto; align-items: center; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 4px; white-space: nowrap; transition: background .15s;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.12); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; gap: 8px; height: 52px; }
+    .demo-frame-bar .frame-text { line-height: 1.5; }
+    .demo-frame-bar .frame-link { padding: 4px 9px; font-size: 10.5px; }
+    body { padding-top: 52px; }
+  }
+
+  #view-login {
+    min-height: calc(100vh - 44px); display: grid; grid-template-columns: 1.05fr 1fr;
+    background: var(--ivory);
+  }
+  #view-login.hide { display: none; }
+  .login-hero {
+    position: relative; background: linear-gradient(155deg, #0C0A09 0%, #1C1917 42%, #292524 100%);
+    color: #FAFAF9; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+  }
+  .login-hero::before {
+    content: ''; position: absolute; width: 200px; height: 200px; right: 52px; top: 16%;
+    border: 3px solid rgba(194,58,43,.45); border-radius: 8px; transform: rotate(-8deg);
+    box-shadow: inset 0 0 40px rgba(194,58,43,.08);
+  }
+  .login-hero::after {
+    content: '印'; position: absolute; right: 98px; top: calc(16% + 52px);
+    font-family: 'Noto Serif JP', serif; font-size: 68px; font-weight: 700;
+    color: rgba(194,58,43,.55); transform: rotate(-8deg); letter-spacing: .12em;
+  }
+  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .24em; color: #FCA5A5; font-weight: 700; margin-bottom: 18px; position: relative; }
+  .login-hero h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 16em; position: relative; font-family: 'Noto Serif JP', serif; }
+  .login-hero h2 em { font-style: normal; color: #FCA5A5; }
+  .login-hero p { font-size: 14px; color: #A8A29E; max-width: 28em; line-height: 1.9; position: relative; }
+  .seal-strip { display: flex; gap: 0; margin-top: 28px; position: relative; }
+  .seal-strip span { flex: 1; height: 3px; background: var(--seal); opacity: .65; }
+  .seal-strip span:nth-child(even) { background: rgba(255,255,255,.12); opacity: 1; }
+  .login-panel {
+    display: flex; align-items: center; justify-content: center; padding: 40px 28px;
+    background: linear-gradient(180deg, var(--paper) 0%, var(--ivory) 100%);
+  }
+  .login-card {
+    width: 100%; max-width: 400px; background: #fff; border-radius: 8px; padding: 40px 36px 30px;
+    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(28,25,23,.1); border-top: 4px solid var(--seal);
+  }
+  .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .login-logo .k { font-size: 28px; font-weight: 700; color: var(--ink); letter-spacing: .06em; font-family: 'Noto Serif JP', serif; }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .14em; font-family: 'IBM Plex Mono', monospace; }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .login-field { margin-bottom: 14px; }
+  .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
+  .login-field input {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 6px; font-size: 14px;
+    color: var(--gray-soft); background: var(--bg-soft); cursor: not-allowed;
+  }
+  .login-btn {
+    width: 100%; padding: 13px; border: none; border-radius: 6px; background: var(--seal); color: #fff;
+    font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-btn:hover { filter: brightness(1.06); }
+  .login-btn:active { transform: scale(.99); }
+  .login-btn:disabled { opacity: .75; cursor: wait; }
+  .login-spin {
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.25);
+    border-top-color: #fff; animation: spin .7s linear infinite; display: none;
+  }
+  .login-btn.loading .login-spin { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .login-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center; border-top: 1px solid var(--line); padding-top: 14px; }
+  @media (max-width: 860px) {
+    #view-login { grid-template-columns: 1fr; }
+    .login-hero { min-height: 220px; padding: 36px 28px; }
+    .login-hero::before, .login-hero::after { display: none; }
+  }
+
+  #view-app { display: none; min-height: calc(100vh - 44px); flex-direction: column; }
+  #view-app.show { display: flex; }
+
+  .app-top {
+    height: 48px; flex: 0 0 auto; background: rgba(12,10,9,.97); border-bottom: 1px solid rgba(255,255,255,.08);
+    display: flex; align-items: center; gap: 12px; padding: 0 16px; position: sticky; top: 44px; z-index: 80;
+  }
+  .top-brand { display: flex; align-items: baseline; gap: 6px; flex: 0 0 auto; }
+  .top-brand .k { font-size: 16px; font-weight: 700; color: #FAFAF9; letter-spacing: .08em; font-family: 'Noto Serif JP', serif; }
+  .top-brand .tag-en { font-size: 9px; color: #78716C; letter-spacing: .12em; font-family: 'IBM Plex Mono', monospace; }
+  .top-center { flex: 1; text-align: center; font-size: 11.5px; color: #A8A29E; font-family: 'IBM Plex Mono', monospace; }
+  .top-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; }
+  .top-user { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #D6D3D1; }
+  .top-user .avatar {
+    width: 28px; height: 28px; border-radius: 6px; background: var(--seal); color: #fff;
+    display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  }
+  .logout-link { font-size: 11px; color: #78716C; padding: 4px 8px; border: 1px solid #44403C; border-radius: 4px; }
+  .logout-link:hover { color: #FCA5A5; border-color: var(--seal); }
+
+  .review-bar {
+    flex: 0 0 auto; background: var(--paper); border-bottom: 1px solid var(--line);
+    padding: 12px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    position: sticky; top: 92px; z-index: 70; box-shadow: 0 4px 16px rgba(28,25,23,.05);
+  }
+  .review-bar label { font-size: 11px; font-weight: 700; color: var(--gray); letter-spacing: .08em; }
+  .contract-select {
+    flex: 1; min-width: 200px; max-width: 420px; padding: 9px 12px; border: 1px solid var(--line);
+    border-radius: 6px; font-size: 13.5px; background: #fff; color: var(--ink);
+  }
+  .status-strip { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; flex: 1; justify-content: flex-end; }
+  .status-chip {
+    font-size: 11px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line);
+    background: #fff; color: var(--gray); font-weight: 600;
+  }
+  .status-chip.active { border-color: var(--seal); background: var(--seal-soft); color: var(--seal); }
+  .status-chip.done { border-color: var(--green); background: var(--green-bg); color: var(--green); }
+  .risk-summary { font-size: 11px; color: var(--gray-soft); font-family: 'IBM Plex Mono', monospace; }
+
+  .review-main {
+    flex: 1; display: grid; grid-template-columns: 1fr 360px; gap: 0; min-height: 0; align-items: start;
+  }
+  .paper-col { padding: 24px 20px 40px; overflow-y: auto; min-height: calc(100vh - 44px - 48px - 56px); }
+  .contract-paper {
+    max-width: 720px; margin: 0 auto; background: var(--ivory); border: 1px solid var(--paper-line);
+    box-shadow: 0 8px 32px rgba(28,25,23,.08), inset 0 1px 0 rgba(255,255,255,.6);
+    padding: 48px 52px 64px; position: relative; font-size: 15px; line-height: 2;
+  }
+  .contract-paper.scanning::after {
+    content: ''; position: absolute; left: 0; right: 0; height: 3px; top: 0;
+    background: linear-gradient(90deg, transparent, var(--seal), transparent);
+    animation: scanLine 1.8s ease-in-out infinite; pointer-events: none;
+  }
+  .paper-scan-banner {
+    margin: -48px -52px 28px; border-bottom: 1px solid var(--paper-line);
+    max-height: 240px; overflow: hidden; background: #fff;
+  }
+  .paper-scan-banner img {
+    display: block; width: 100%; max-width: 100%; object-fit: cover; object-position: top center;
+    opacity: 0.94; box-shadow: inset 0 -1px 0 rgba(28,25,23,.06);
+  }
+  .paper-body { position: relative; z-index: 1; }
+  @keyframes scanLine {
+    0% { top: 0; opacity: .3; }
+    50% { opacity: 1; }
+    100% { top: calc(100% - 3px); opacity: .3; }
+  }
+  .paper-title { text-align: center; margin-bottom: 8px; font-size: 22px; letter-spacing: .08em; }
+  .paper-meta { text-align: center; font-size: 12px; color: var(--gray-soft); margin-bottom: 36px; padding-bottom: 20px; border-bottom: 1px solid var(--paper-line); }
+  .clause-block {
+    margin-bottom: 28px; padding: 12px 14px; border-radius: 4px; border-left: 3px solid transparent;
+    transition: background .25s, border-color .25s, box-shadow .25s;
+  }
+  .clause-block.scan-target { background: var(--scan); }
+  .clause-block.has-risk { border-left-color: var(--seal); background: rgba(194,58,43,.04); }
+  .clause-block.risk-active { box-shadow: 0 0 0 2px var(--seal-soft); background: rgba(194,58,43,.07); }
+  .clause-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+  .clause-num { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .risk-badge {
+    flex: 0 0 auto; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+    letter-spacing: .06em; opacity: 0; transform: scale(.9); transition: opacity .3s, transform .3s;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .risk-badge.show { opacity: 1; transform: scale(1); }
+  .risk-badge.high { background: var(--high-bg); color: var(--high); }
+  .risk-badge.med { background: var(--med-bg); color: var(--med); }
+  .risk-badge.low { background: var(--low-bg); color: var(--low); }
+  .clause-text { font-size: 14.5px; color: var(--ink); }
+  .clause-text mark {
+    background: linear-gradient(transparent 60%, rgba(194,58,43,.25) 60%);
+    padding: 0 2px;
+  }
+  .redline-panel {
+    background: #fff; border-left: 1px solid var(--line); min-height: calc(100vh - 44px - 48px - 56px);
+    display: flex; flex-direction: column; position: sticky; top: calc(44px + 48px + 56px);
+    max-height: calc(100vh - 44px - 48px - 56px);
+  }
+  .panel-head {
+    padding: 18px 18px 14px; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, #fff 0%, var(--ivory) 100%);
+  }
+  .panel-head h3 { font-size: 13px; letter-spacing: .12em; color: var(--seal); margin-bottom: 4px; }
+  .panel-head p { font-size: 11.5px; color: var(--gray-soft); }
+  .panel-body { flex: 1; overflow-y: auto; padding: 14px 14px 8px; }
+  .panel-placeholder {
+    text-align: center; padding: 40px 16px; color: var(--gray-soft); font-size: 13px;
+  }
+  .panel-placeholder .scan-icon { font-size: 28px; margin-bottom: 12px; opacity: .5; animation: pulse 1.2s ease infinite; }
+  @keyframes pulse { 0%,100% { opacity: .35; } 50% { opacity: .8; } }
+  .risk-card {
+    border: 1px solid var(--line); border-radius: 8px; padding: 14px; margin-bottom: 10px;
+    background: #fff; cursor: pointer; transition: border-color .15s, box-shadow .15s;
+    opacity: 0; transform: translateY(8px);
+  }
+  .risk-card.show { opacity: 1; transform: none; transition: opacity .35s ease, transform .35s ease, border-color .15s; }
+  .risk-card.active { border-color: var(--seal); box-shadow: 0 4px 16px rgba(194,58,43,.12); }
+  .risk-card-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .risk-level {
+    font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: .04em;
+  }
+  .risk-level.high { background: var(--high-bg); color: var(--high); }
+  .risk-level.med { background: var(--med-bg); color: var(--med); }
+  .risk-level.low { background: var(--low-bg); color: var(--low); }
+  .risk-clause-ref { font-size: 11px; color: var(--gray-soft); flex: 1; }
+  .risk-rationale { font-size: 12.5px; color: var(--gray); margin-bottom: 10px; line-height: 1.65; }
+  .rewrite-box {
+    background: var(--ivory); border: 1px dashed var(--line); border-radius: 6px; padding: 10px 12px;
+    font-size: 12px; color: var(--ink); line-height: 1.7; min-height: 48px; font-family: 'Noto Serif JP', serif;
+  }
+  .rewrite-box.typing { border-style: solid; border-color: var(--seal); }
+  .rewrite-label { font-size: 10px; font-weight: 700; color: var(--seal); letter-spacing: .1em; margin-bottom: 6px; }
+  .rewrite-cursor { display: inline-block; width: 2px; height: 1em; background: var(--seal); vertical-align: text-bottom; animation: blink .8s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .panel-foot {
+    padding: 14px 18px 18px; border-top: 1px solid var(--line); background: var(--ivory);
+  }
+  .btn-seal {
+    width: 100%; padding: 14px; border: none; border-radius: 8px; background: var(--seal); color: #fff;
+    font-weight: 700; font-size: 14.5px; transition: filter .15s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-seal:hover:not(:disabled) { filter: brightness(1.06); }
+  .btn-seal:active:not(:disabled) { transform: scale(.99); }
+  .btn-seal:disabled { opacity: .45; cursor: not-allowed; background: var(--gray-soft); }
+  .btn-seal.sealed { background: var(--green); cursor: default; }
+  .panel-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 10px; text-align: center; }
+
+  .hanko-overlay {
+    position: absolute; right: 48px; bottom: 48px; width: 96px; height: 96px;
+    display: grid; place-items: center; opacity: 0;
+    transform: scale(2.2) rotate(-12deg); pointer-events: none;
+    background: transparent; border: none; box-shadow: none;
+  }
+  .hanko-overlay img {
+    display: block; width: 100%; height: 100%; object-fit: contain;
+    filter: drop-shadow(0 2px 6px rgba(194,58,43,.35));
+  }
+  .hanko-overlay.stamp {
+    animation: hankoStamp .55s cubic-bezier(.2,.9,.3,1) forwards;
+  }
+  @keyframes hankoStamp {
+    0% { opacity: 0; transform: scale(2.4) rotate(-18deg); }
+    55% { opacity: 1; transform: scale(.92) rotate(-6deg); }
+    75% { transform: scale(1.04) rotate(-8deg); }
+    100% { opacity: .94; transform: scale(1) rotate(-8deg); }
+  }
+  .sealed-banner {
+    display: none; text-align: center; margin-top: 24px; padding: 12px; background: var(--green-bg);
+    border: 1px solid rgba(21,128,61,.25); border-radius: 6px; font-size: 13px; color: var(--green); font-weight: 700;
+  }
+  .sealed-banner.show { display: block; }
+
+  #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
+  .toast {
+    background: var(--ink); color: #FAFAF9; padding: 11px 16px; border-radius: 8px; font-size: 13px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.2); border-left: 3px solid var(--seal);
+    animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
+  }
+  @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+
+  .komon-cta {
+    background: linear-gradient(160deg, #0C0A09 0%, #1C1917 100%); color: #FAFAF9;
+    padding: 72px 24px 48px; border-top: 3px solid var(--seal);
+  }
+  .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
+  .komon-cta .cta-label { display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: #FCA5A5; font-weight: 700; margin-bottom: 16px; }
+  .komon-cta h2 { font-size: 30px; margin-bottom: 16px; line-height: 1.5; font-family: 'Noto Serif JP', serif; }
+  .komon-cta h2 em { font-style: normal; color: #FCA5A5; }
+  .komon-cta p.lead { font-size: 14.5px; color: #A8A29E; margin-bottom: 32px; line-height: 1.9; }
+  .cta-btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 24px; border-radius: 6px; font-weight: 700; font-size: 14px; transition: filter .15s; }
+  .btn-gold { background: var(--seal); color: #fff; }
+  .btn-gold:hover { filter: brightness(1.08); }
+  .btn-outline-cta { border: 1px solid rgba(255,255,255,.35); color: #FAFAF9; }
+  .btn-outline-cta:hover { background: rgba(255,255,255,.08); }
+  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #78716C; }
+  .komon-cta .cta-foot a { color: #D6D3D1; }
+  .komon-cta .cta-foot a:hover { color: #fff; }
+
+  @media (max-width: 960px) {
+    .review-main { grid-template-columns: 1fr; }
+    .redline-panel {
+      position: relative; top: 0; max-height: none; min-height: auto;
+      border-left: none; border-top: 1px solid var(--line);
+    }
+    .paper-col { min-height: auto; padding-bottom: 16px; }
+    .contract-paper { padding: 32px 24px 48px; }
+    .paper-scan-banner { margin: -32px -24px 20px; max-height: 180px; }
+    .hanko-overlay { right: 24px; bottom: 32px; width: 80px; height: 80px; }
+  }
+  @media (max-width: 640px) {
+    .review-bar { top: calc(52px + 48px); }
+    .app-top { top: 52px; }
+    .komon-cta h2 { font-size: 23px; }
+    .komon-cta { padding: 56px 18px 32px; }
+    .status-strip { justify-content: flex-start; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> が制作した架空プロダクトのデモです。データはすべてサンプルで、実際のサービスではありません。</span>
+  <div class="frame-links">
+    <a href="works.html" class="frame-link">作品一覧</a>
+    <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+  </div>
+</div>
+
+<div id="view-login">
+  <div class="login-hero">
+    <div class="hero-kicker">AI CONTRACT CLOUD</div>
+    <h2>契約は、<em>紙面で読む。</em>リスクを潰して捺印する。</h2>
+    <p>NDA・業務委託・SaaS利用契約を象牙紙ビューアで読み、AIが条項ごとにリスクを赤入れ。修正文案を提案し、承認して朱印を押せば締結完了。一覧テーブルではなく、契約紙面が主語のレビューデスク。</p>
+    <div class="seal-strip"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+  <div class="login-panel">
+    <div class="login-card">
+      <div class="login-logo"><span class="k">KAWASU</span><span class="tag-en">AI CONTRACT CLOUD</span></div>
+      <p class="login-sub">条項を読み、リスクを赤入れし、朱印で締結。</p>
+      <div class="login-field">
+        <label for="loginMail">メールアドレス</label>
+        <input id="loginMail" type="text" value="legal@sample-corp.example" readonly>
+      </div>
+      <div class="login-field">
+        <label for="loginPass">パスワード</label>
+        <input id="loginPass" type="password" value="dummydummy" readonly>
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">
+        <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
+      </button>
+      <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
+    </div>
+  </div>
+</div>
+
+<div id="view-app">
+  <header class="app-top">
+    <div class="top-brand"><span class="k">KAWASU</span><span class="tag-en">AI CONTRACT CLOUD</span></div>
+    <div class="top-center" id="topDate">2026-07-22 JST</div>
+    <div class="top-actions">
+      <div class="top-user">
+        <div class="avatar">法</div>
+        <span>デモ 法務</span>
+      </div>
+      <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+    </div>
+  </header>
+
+  <div class="review-bar">
+    <label for="contractSelect">契約書</label>
+    <select class="contract-select" id="contractSelect" onchange="switchContract(this.value)"></select>
+    <div class="status-strip">
+      <span class="status-chip" id="chipScan">① 条項スキャン</span>
+      <span class="status-chip" id="chipRedline">② 赤入れ確認</span>
+      <span class="status-chip" id="chipSeal">③ 朱印捺印</span>
+      <span class="risk-summary" id="riskSummary"></span>
+    </div>
+  </div>
+
+  <div class="review-main">
+    <div class="paper-col">
+      <article class="contract-paper serif" id="contractPaper">
+        <div id="paperContent"></div>
+        <div class="hanko-overlay" id="hankoOverlay"><img src="assets/contract/seal-hanko.jpg" alt="承認印"></div>
+        <div class="sealed-banner" id="sealedBanner">✓ 電子捺印完了 — 契約書は締結済みです</div>
+      </article>
+    </div>
+    <aside class="redline-panel" aria-label="AI赤入れパネル">
+      <div class="panel-head">
+        <h3>AI REDLINE</h3>
+        <p>条項リスクの根拠と修正文案</p>
+      </div>
+      <div class="panel-body" id="panelBody">
+        <div class="panel-placeholder" id="panelPlaceholder">
+          <div class="scan-icon">📄</div>
+          契約書を開くと条項スキャンが始まります…
+        </div>
+      </div>
+      <div class="panel-foot">
+        <button class="btn-seal" id="btnSeal" disabled onclick="performSeal()">承認して捺印</button>
+        <p class="panel-note">すべての修正文案を確認後、捺印できます</p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="komon-cta">
+  <div class="cta-inner">
+    <span class="cta-label">AI KOMONSHITSU</span>
+    <h2>このようなシステムを、<em>御社専用に。</em></h2>
+    <p class="lead">「KAWASU」は本デモのために作った架空のプロダクトです。AI顧問室では、NDA・業務委託・SaaS契約など御社のひな形を学習し、条項リスクの赤入れ・修正文案提案・電子捺印フローまで組み込んだ専用の契約レビューシステムを構築します。</p>
+    <div class="cta-btn-row">
+      <a href="index.html?from=works-contract#contact" class="btn btn-gold">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
+    </div>
+    <div class="cta-foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+
+<script>
+var CONTRACTS = {
+  nda: {
+    id: 'nda',
+    scan: 'assets/contract/nda.jpg',
+    title: '秘密保持契約書（相互）',
+    counterparty: '株式会社テックベンダー',
+    meta: '契約番号：KWS-2026-0142｜起案：法務部｜有効期間：3年',
+    status: 'review',
+    clauses: [
+      { id: 'nda-1', num: '第1条（目的）', text: '本契約は、甲及び乙が相互に開示する技術情報・営業情報その他の秘密情報の取扱いを定めることを目的とする。' },
+      { id: 'nda-2', num: '第2条（秘密情報の定義）', text: '「秘密情報」とは、開示者が書面又は口頭により秘密である旨を明示した情報の一切をいう。口頭開示の場合も、開示後30日以内に書面で特定すれば秘密情報に該当する。' },
+      { id: 'nda-3', num: '第3条（利用目的の制限）', text: '受領者は、秘密情報を本件協議の目的以外に利用してはならない。目的外利用が判明した場合、開示者は直ちに損害賠償を請求できる。' },
+      { id: 'nda-4', num: '第4条（損害賠償）', text: '受領者は、本契約違反により開示者に生じた損害について、<mark>上限なく一切の損害</mark>（間接損害・逸失利益・弁護士費用を含む）を賠償する。' },
+      { id: 'nda-5', num: '第5条（知的財産権）', text: '秘密情報に基づき受領者が作成した成果物・改良・派生物の<mark>知的財産権はすべて開示者に帰属</mark>し、受領者は著作者人格権を行使しない。' },
+      { id: 'nda-6', num: '第6条（契約期間）', text: '本契約の有効期間は締結日から3年間とする。期間満了の<strong>30日前までに書面で解約通知がない限り同一条件で自動更新</strong>され、更新後も同様とする。' },
+      { id: 'nda-7', num: '第7条（返還・削除）', text: '契約終了後、受領者は秘密情報の原本及び複製物を返還又は破棄し、電子データは復元不可能な方法で削除する。' },
+      { id: 'nda-8', num: '第8条（準拠法・管轄）', text: '本契約は日本法に準拠し、東京地方裁判所を第一審の専属的合意管轄裁判所とする。' }
+    ],
+    risks: [
+      {
+        clauseId: 'nda-4', level: 'high',
+        label: '無制限損害賠償',
+        rationale: '「上限なく一切の損害」は逸失利益・弁護士費用まで含むため、NDA違反1件で想定外の巨額請求リスクがあります。相互NDAでは双方に適用される点も要注意。',
+        rewrite: '受領者は、故意又は重過失による本契約違反により開示者に直接生じた通常かつ現実の損害について、年間契約金額又は500万円のいずれか高い方を上限として賠償する。間接損害・逸失利益は除外する。'
+      },
+      {
+        clauseId: 'nda-5', level: 'high',
+        label: 'IP全面帰属',
+        rationale: '秘密情報を「参考にした」だけで成果物のIPが相手方に帰属する条項は、自社開発品との混同リスクが高いです。著作者人格権不行使も創作性のある成果物では問題になり得ます。',
+        rewrite: '秘密情報そのものの権利は開示者に留保する。受領者が独自に開発した成果物の知的財産権は受領者に帰属し、開示者へのライセンスは本件協議の目的に必要な範囲に限定する。'
+      },
+      {
+        clauseId: 'nda-6', level: 'med',
+        label: '自動更新',
+        rationale: '30日前通知がないと自動更新は、担当者交代時の更新漏れ・解約忘れで意図せず長期拘束される典型パターンです。',
+        rewrite: '本契約の有効期間は締結日から1年間とし、期間満了をもって終了する。更新を希望する場合は、満了60日前までに双方が書面で合意する。'
+      },
+      {
+        clauseId: 'nda-2', level: 'low',
+        label: '口頭秘密の範囲',
+        rationale: '口頭開示後30日以内の書面特定は実務上漏れやすく、後から秘密扱いを争われる余地があります。受領側としては書面化義務の明確化が望ましい。',
+        rewrite: '口頭で開示された情報は、開示後10営業日以内に開示者が書面（電子メールを含む）で特定した場合に限り秘密情報とする。'
+      }
+    ]
+  },
+  vendor: {
+    id: 'vendor',
+    scan: 'assets/contract/vendor.jpg',
+    title: '業務委託基本契約書',
+    counterparty: '合同会社デジタルワークス',
+    meta: '契約番号：KWS-2026-0089｜起案：調達部｜更新：2026-04-01',
+    status: 'review',
+    clauses: [
+      { id: 'vnd-1', num: '第1条（目的）', text: '甲は乙に対し、別紙作業範囲に定める業務を委託し、乙はこれを受託する。' },
+      { id: 'vnd-2', num: '第2条（委託料）', text: '委託料は月額880,000円（税別）。乙の都合による遅延・未達の場合も甲は全額支払う。' },
+      { id: 'vnd-3', num: '第3条（再委託）', text: '乙は甲の事前承諾なく第三者へ再委託できない。ただし乙の関連会社への再委託は書面承諾を要しない。' },
+      { id: 'vnd-4', num: '第4条（成果物）', text: '本業務により生じた成果物の著作権その他一切の権利は<mark>甲に独占的に帰属</mark>し、乙は著作者人格権を行使しない。' },
+      { id: 'vnd-5', num: '第5条（損害賠償）', text: '乙は本契約違反又は不法行為により甲に生じた損害について、<mark>委託料の10倍を上限</mark>として賠償する。甲の故意・重過失による損害は乙の賠償責任から除外しない。' },
+      { id: 'vnd-6', num: '第6条（契約期間）', text: '本契約は締結日から2年間有効とし、期間満了後は自動的に1年間更新される。' }
+    ],
+    risks: [
+      {
+        clauseId: 'vnd-4', level: 'high',
+        label: '成果物IP独占帰属',
+        rationale: '業務委託で成果物IPがすべて発注者に帰属すると、受託者の汎用ノウハウ・再利用可能モジュールまで渡す解釈になり得ます。',
+        rewrite: '本業務の成果物の著作権は甲に帰属する。ただし乙が本契約以前から保有する汎用技術・ツール及び本件と無関係に開発したモジュールは乙に留保する。'
+      },
+      {
+        clauseId: 'vnd-5', level: 'med',
+        label: '賠償上限10倍',
+        rationale: '委託料10倍上限は一見上限があるが、年間委託料約1,056万円×10＝約1億円規模。甲の重過失除外なしも受託側リスク。',
+        rewrite: '乙の賠償責任は当該月の委託料相当額を上限とする。甲の故意又は重過失により生じた損害については、乙は賠償責任を負わない。'
+      },
+      {
+        clauseId: 'vnd-2', level: 'low',
+        label: '遅延時も全額支払',
+        rationale: '乙都合の未達でも全額支払は発注側に不利。検収・成果物確認との整合も確認が必要。',
+        rewrite: '委託料は月次検収合格後、翌月末日までに支払う。乙の都合による未達期間は日割り減額又は再作業完了まで支払を留保できる。'
+      }
+    ]
+  },
+  saas: {
+    id: 'saas',
+    scan: 'assets/contract/saas.jpg',
+    title: 'SaaS利用契約書',
+    counterparty: 'クラウドサービス株式会社',
+    meta: '契約番号：KWS-2026-0201｜プラン：Business｜50 ID',
+    status: 'review',
+    clauses: [
+      { id: 'saa-1', num: '第1条（サービス内容）', text: '甲は乙に対し、別紙記載のクラウド型業務支援サービスを提供する。' },
+      { id: 'saa-2', num: '第2条（利用料）', text: '月額利用料は1 IDあたり3,800円。最低50 ID契約。料金改定は甲の裁量で30日前通知により可能。' },
+      { id: 'saa-3', num: '第3条（データ取扱い）', text: '乙が入力したデータのバックアップは甲の任意。甲はサービス改善のためデータを<mark>匿名化なく解析</mark>に利用できる。' },
+      { id: 'saa-4', num: '第4条（解約）', text: '乙は30日前通知で解約できる。解約後も残存データの返却義務はなく、甲は90日経過後に削除できる。' }
+    ],
+    risks: [
+      {
+        clauseId: 'saa-3', level: 'high',
+        label: 'データ無匿名解析',
+        rationale: '匿名化なしの解析利用は個人情報・機密情報の二次利用リスク。GDPR/個人情報保護法の観点でも要修正。',
+        rewrite: '甲は乙のデータを、個人を特定できないよう匿名化又は仮名化した上でのみ、サービス品質向上の統計分析に利用できる。'
+      },
+      {
+        clauseId: 'saa-4', level: 'med',
+        label: 'データ返却なし',
+        rationale: '解約後のデータ返却義務がないと、乗り換え時に業務データを回収できません。',
+        rewrite: '解約時、乙の請求により30日以内に標準形式（CSV/JSON）でデータを返却する。返却完了後90日以内に甲は当該データを削除する。'
+      }
+    ]
+  },
+  lease: {
+    id: 'lease',
+    scan: 'assets/contract/lease.jpg',
+    title: 'オフィス賃貸借契約書（概要）',
+    counterparty: 'サンプルビル管理株式会社',
+    meta: '契約番号：KWS-2025-0312｜区画：5F-A｜面積：120㎡',
+    status: 'sealed',
+    clauses: [
+      { id: 'ls-1', num: '第1条（目的物件）', text: '甲は乙に対し、東京都千代田区○○1-2-3 5階A区画を賃貸し、乙はこれを受け入れる。' },
+      { id: 'ls-2', num: '第2条（賃料）', text: '月額賃料1,980,000円（共益費込）。2年ごとにCPI連動で改定可能。' },
+      { id: 'ls-3', num: '第3条（期間）', text: '賃貸借期間は2025年7月1日から2028年6月30日まで。' }
+    ],
+    risks: []
+  },
+  msa: {
+    id: 'msa',
+    scan: 'assets/contract/msa.jpg',
+    title: '取引基本契約書（売買）',
+    counterparty: '株式会社サプライチェーン',
+    meta: '契約番号：KWS-2026-0055｜部門：調達部',
+    status: 'review',
+    clauses: [
+      { id: 'msa-1', num: '第1条（適用）', text: '本契約は甲と乙の間の個別契約に共通して適用される。' },
+      { id: 'msa-2', num: '第2条（支払条件）', text: '乙は甲に対し、検収月締め翌月末払いとする。' },
+      { id: 'msa-3', num: '第3条（反社排除）', text: '双方は反社会的勢力に該当せず、将来にわたっても該当しないことを表明保証する。' }
+    ],
+    risks: [
+      {
+        clauseId: 'msa-2', level: 'low',
+        label: '支払サイト確認',
+        rationale: '翌月末払いは標準的だが、資金繰りポリシー（60日以内）との整合を確認推奨。',
+        rewrite: '支払条件は検収月締め45日以内とし、電子請求書による支払を原則とする。'
+      }
+    ]
+  }
+};
+
+var loggedIn = false;
+var activeContractId = 'nda';
+var reviewState = { phase: 'idle', timers: [], runId: null, sealed: false, typingDone: 0 };
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function showToast(msg) {
+  var host = document.getElementById('toastHost');
+  var el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  host.appendChild(el);
+  setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 2800);
+}
+
+function clearReviewTimers() {
+  reviewState.timers.forEach(function (t) { clearTimeout(t); });
+  reviewState.timers = [];
+}
+
+function renderContractSelect() {
+  var sel = document.getElementById('contractSelect');
+  sel.innerHTML = Object.keys(CONTRACTS).map(function (id) {
+    var c = CONTRACTS[id];
+    var label = c.title + ' — ' + c.counterparty;
+    return '<option value="' + id + '"' + (id === activeContractId ? ' selected' : '') + '>' + escapeHtml(label) + '</option>';
+  }).join('');
+}
+
+function renderPaper(contract, options) {
+  options = options || {};
+  var scanBanner = contract.scan
+    ? '<div class="paper-scan-banner"><img src="' + escapeHtml(contract.scan) + '" alt="' + escapeHtml(contract.title) + ' スキャン"></div>'
+    : '';
+  var html = scanBanner + '<div class="paper-body">';
+  html += '<h1 class="paper-title">' + escapeHtml(contract.title) + '</h1>';
+  html += '<div class="paper-meta">' + escapeHtml(contract.meta) + '<br>相手方：' + escapeHtml(contract.counterparty) + '</div>';
+  contract.clauses.forEach(function (cl) {
+    var risk = contract.risks.find(function (r) { return r.clauseId === cl.id; });
+    var badge = risk
+      ? '<span class="risk-badge ' + risk.level + '" id="badge-' + cl.id + '">' + risk.level.toUpperCase() + '</span>'
+      : '';
+    html += '<section class="clause-block" id="clause-' + cl.id + '" data-clause="' + cl.id + '">';
+    html += '<div class="clause-head"><span class="clause-num">' + escapeHtml(cl.num) + '</span>' + badge + '</div>';
+    html += '<div class="clause-text">' + cl.text + '</div></section>';
+  });
+  html += '</div>';
+  document.getElementById('paperContent').innerHTML = html;
+  document.getElementById('contractPaper').classList.toggle('has-scan', !!contract.scan);
+  document.getElementById('hankoOverlay').classList.remove('stamp');
+  document.getElementById('sealedBanner').classList.remove('show');
+  if (options.sealed || contract.status === 'sealed') {
+    document.getElementById('hankoOverlay').classList.add('stamp');
+    document.getElementById('sealedBanner').classList.add('show');
+  }
+}
+
+function updateStatusChips(phase) {
+  var chips = { scan: document.getElementById('chipScan'), redline: document.getElementById('chipRedline'), seal: document.getElementById('chipSeal') };
+  Object.keys(chips).forEach(function (k) { chips[k].classList.remove('active', 'done'); });
+  if (phase === 'scan') chips.scan.classList.add('active');
+  if (phase === 'redline') { chips.scan.classList.add('done'); chips.redline.classList.add('active'); }
+  if (phase === 'typing' || phase === 'ready') { chips.scan.classList.add('done'); chips.redline.classList.add('done'); }
+  if (phase === 'sealed') { chips.scan.classList.add('done'); chips.redline.classList.add('done'); chips.seal.classList.add('done'); }
+  if (phase === 'ready') chips.seal.classList.add('active');
+}
+
+function updateRiskSummary(contract) {
+  var high = contract.risks.filter(function (r) { return r.level === 'high'; }).length;
+  var med = contract.risks.filter(function (r) { return r.level === 'med'; }).length;
+  var low = contract.risks.filter(function (r) { return r.level === 'low'; }).length;
+  document.getElementById('riskSummary').textContent = contract.risks.length
+    ? 'H:' + high + ' M:' + med + ' L:' + low
+    : 'リスク検出なし';
+}
+
+function resetPanelPlaceholder() {
+  document.getElementById('panelBody').innerHTML =
+    '<div class="panel-placeholder" id="panelPlaceholder"><div class="scan-icon">📄</div>契約書を開くと条項スキャンが始まります…</div>';
+}
+
+function runReviewFlow(contractId, skipAnimation) {
+  clearReviewTimers();
+  reviewState = { phase: 'scan', timers: [], runId: {}, sealed: false, typingDone: 0 };
+  var contract = CONTRACTS[contractId];
+  if (!contract) return;
+  var myRun = reviewState.runId;
+  var paper = document.getElementById('contractPaper');
+  var btnSeal = document.getElementById('btnSeal');
+
+  btnSeal.disabled = true;
+  btnSeal.classList.remove('sealed');
+  btnSeal.textContent = '承認して捺印';
+  updateRiskSummary(contract);
+  updateStatusChips('scan');
+
+  if (contract.status === 'sealed' || (location.hash.indexOf('/sealed') > -1)) {
+    reviewState.sealed = true;
+    reviewState.phase = 'sealed';
+    renderPaper(contract, { sealed: true });
+    renderRiskPanelStatic(contract);
+    btnSeal.disabled = true;
+    btnSeal.classList.add('sealed');
+    btnSeal.textContent = '捺印済み';
+    updateStatusChips('sealed');
+    return;
+  }
+
+  renderPaper(contract);
+  resetPanelPlaceholder();
+  paper.classList.add('scanning');
+
+  if (skipAnimation && contract.risks.length === 0) {
+    paper.classList.remove('scanning');
+    reviewState.phase = 'ready';
+    document.getElementById('panelBody').innerHTML = '<p class="panel-placeholder">AIスキャン完了 — 重大リスクは検出されませんでした。</p>';
+    btnSeal.disabled = false;
+    updateStatusChips('ready');
+    return;
+  }
+
+  if (skipAnimation) {
+    finishScanInstant(contract, myRun);
+    return;
+  }
+
+  var delay = 400;
+  contract.clauses.forEach(function (cl, i) {
+    reviewState.timers.push(setTimeout(function () {
+      if (reviewState.runId !== myRun) return;
+      var el = document.getElementById('clause-' + cl.id);
+      if (el) el.classList.add('scan-target');
+      reviewState.timers.push(setTimeout(function () {
+        if (reviewState.runId !== myRun) return;
+        if (el) el.classList.remove('scan-target');
+      }, 500));
+    }, delay + i * 280));
+  });
+
+  reviewState.timers.push(setTimeout(function () {
+    if (reviewState.runId !== myRun) return;
+    paper.classList.remove('scanning');
+    showRiskAnnotations(contract, myRun);
+  }, delay + contract.clauses.length * 280 + 600));
+}
+
+function showRiskAnnotations(contract, myRun) {
+  reviewState.phase = 'redline';
+  updateStatusChips('redline');
+  showToast('条項スキャン完了 — ' + contract.risks.length + '件のリスクを検出');
+
+  if (!contract.risks.length) {
+    document.getElementById('panelBody').innerHTML = '<p class="panel-placeholder">重大リスクは検出されませんでした。捺印に進めます。</p>';
+    reviewState.phase = 'ready';
+    document.getElementById('btnSeal').disabled = false;
+    updateStatusChips('ready');
+    return;
+  }
+
+  contract.risks.forEach(function (r) {
+    var clEl = document.getElementById('clause-' + r.clauseId);
+    if (clEl) clEl.classList.add('has-risk');
+    var badge = document.getElementById('badge-' + r.clauseId);
+    if (badge) badge.classList.add('show');
+  });
+
+  var panelHtml = '';
+  contract.risks.forEach(function (r, idx) {
+    panelHtml += '<div class="risk-card" id="risk-' + idx + '" data-idx="' + idx + '" onclick="focusRisk(' + idx + ')">';
+    panelHtml += '<div class="risk-card-head"><span class="risk-level ' + r.level + '">' + r.level.toUpperCase() + '</span>';
+    panelHtml += '<span class="risk-clause-ref">' + escapeHtml(r.label) + '</span></div>';
+    panelHtml += '<div class="risk-rationale">' + escapeHtml(r.rationale) + '</div>';
+    panelHtml += '<div class="rewrite-label">修正文案</div>';
+    panelHtml += '<div class="rewrite-box" id="rewrite-' + idx + '"></div></div>';
+  });
+  document.getElementById('panelBody').innerHTML = panelHtml;
+
+  contract.risks.forEach(function (_, idx) {
+    reviewState.timers.push(setTimeout(function () {
+      if (reviewState.runId !== myRun) return;
+      var card = document.getElementById('risk-' + idx);
+      if (card) card.classList.add('show');
+    }, idx * 180));
+  });
+
+  reviewState.timers.push(setTimeout(function () {
+    if (reviewState.runId !== myRun) return;
+    typeRewrites(contract, myRun, 0);
+  }, contract.risks.length * 180 + 400));
+}
+
+function typeRewrites(contract, myRun, idx) {
+  if (reviewState.runId !== myRun) return;
+  if (idx >= contract.risks.length) {
+    reviewState.phase = 'ready';
+    document.getElementById('btnSeal').disabled = false;
+    updateStatusChips('ready');
+    showToast('修正文案の生成が完了しました');
+    return;
+  }
+  reviewState.phase = 'typing';
+  var risk = contract.risks[idx];
+  var box = document.getElementById('rewrite-' + idx);
+  var card = document.getElementById('risk-' + idx);
+  if (card) card.classList.add('active');
+  focusRisk(idx);
+  if (box) box.classList.add('typing');
+  var full = risk.rewrite;
+  var shown = 0;
+  var tickMs = 28;
+  function tick() {
+    if (reviewState.runId !== myRun) return;
+    shown = Math.min(full.length, shown + 2);
+    box.innerHTML = escapeHtml(full.slice(0, shown)) + (shown < full.length ? '<span class="rewrite-cursor"></span>' : '');
+    if (shown >= full.length) {
+      box.classList.remove('typing');
+      box.textContent = full;
+      reviewState.typingDone++;
+      reviewState.timers.push(setTimeout(function () { typeRewrites(contract, myRun, idx + 1); }, 350));
+      return;
+    }
+    reviewState.timers.push(setTimeout(tick, tickMs));
+  }
+  reviewState.timers.push(setTimeout(tick, tickMs));
+}
+
+function finishScanInstant(contract, myRun) {
+  var paper = document.getElementById('contractPaper');
+  paper.classList.remove('scanning');
+  showRiskAnnotations(contract, myRun);
+  contract.risks.forEach(function (r, idx) {
+    var box = document.getElementById('rewrite-' + idx);
+    if (box) box.textContent = r.rewrite;
+    var card = document.getElementById('risk-' + idx);
+    if (card) { card.classList.add('show'); card.classList.add('active'); }
+  });
+}
+
+function renderRiskPanelStatic(contract) {
+  if (!contract.risks.length) {
+    document.getElementById('panelBody').innerHTML = '<p class="panel-placeholder">リスク注釈なし（締結済み）</p>';
+    return;
+  }
+  var panelHtml = '';
+  contract.risks.forEach(function (r, idx) {
+    panelHtml += '<div class="risk-card show" id="risk-' + idx + '">';
+    panelHtml += '<div class="risk-card-head"><span class="risk-level ' + r.level + '">' + r.level.toUpperCase() + '</span>';
+    panelHtml += '<span class="risk-clause-ref">' + escapeHtml(r.label) + '</span></div>';
+    panelHtml += '<div class="risk-rationale">' + escapeHtml(r.rationale) + '</div>';
+    panelHtml += '<div class="rewrite-label">修正文案（承認済み）</div>';
+    panelHtml += '<div class="rewrite-box">' + escapeHtml(r.rewrite) + '</div></div>';
+  });
+  document.getElementById('panelBody').innerHTML = panelHtml;
+  contract.risks.forEach(function (r) {
+    var clEl = document.getElementById('clause-' + r.clauseId);
+    if (clEl) clEl.classList.add('has-risk');
+    var badge = document.getElementById('badge-' + r.clauseId);
+    if (badge) badge.classList.add('show');
+  });
+}
+
+function focusRisk(idx) {
+  var contract = CONTRACTS[activeContractId];
+  if (!contract || !contract.risks[idx]) return;
+  document.querySelectorAll('.risk-card').forEach(function (c) { c.classList.remove('active'); });
+  document.querySelectorAll('.clause-block').forEach(function (c) { c.classList.remove('risk-active'); });
+  var card = document.getElementById('risk-' + idx);
+  if (card) card.classList.add('active');
+  var clauseId = contract.risks[idx].clauseId;
+  var clEl = document.getElementById('clause-' + clauseId);
+  if (clEl) {
+    clEl.classList.add('risk-active');
+    clEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function performSeal() {
+  if (reviewState.sealed || reviewState.phase !== 'ready') return;
+  var btn = document.getElementById('btnSeal');
+  btn.disabled = true;
+  reviewState.phase = 'sealing';
+  showToast('朱印を押しています…');
+  var hanko = document.getElementById('hankoOverlay');
+  reviewState.timers.push(setTimeout(function () {
+    hanko.classList.add('stamp');
+    document.getElementById('sealedBanner').classList.add('show');
+    reviewState.sealed = true;
+    reviewState.phase = 'sealed';
+    btn.classList.add('sealed');
+    btn.textContent = '捺印済み';
+    updateStatusChips('sealed');
+    location.hash = 'review/' + activeContractId + '/sealed';
+    showToast('契約書の電子捺印が完了しました');
+  }, 400));
+}
+
+function switchContract(id) {
+  if (!CONTRACTS[id]) return;
+  activeContractId = id;
+  var sealed = CONTRACTS[id].status === 'sealed';
+  location.hash = sealed ? 'review/' + id + '/sealed' : 'review/' + id;
+}
+
+function isLoggedIn() { return loggedIn; }
+
+function showLoginScreen() {
+  clearReviewTimers();
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+}
+
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+  renderContractSelect();
+}
+
+function handleRoute() {
+  var hash = location.hash.replace('#', '') || 'login';
+  if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
+  if (hash === 'login') { showLoginScreen(); return; }
+  showAppScreen();
+
+  if (hash.indexOf('review/') === 0) {
+    var parts = hash.split('/');
+    var cid = parts[1];
+    var isSealed = parts[2] === 'sealed';
+    if (CONTRACTS[cid]) {
+      activeContractId = cid;
+      renderContractSelect();
+      document.getElementById('contractSelect').value = cid;
+      runReviewFlow(cid, isSealed);
+    } else {
+      location.hash = 'review/nda';
+    }
+    return;
+  }
+  if (hash !== 'review') {
+    location.hash = 'review/nda';
+  }
+}
+
+function doLogin() {
+  var btn = document.getElementById('loginBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+  setTimeout(function () {
+    loggedIn = true;
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    location.hash = 'review/nda';
+    handleRoute();
+    showToast('KAWASU AI Contract Cloud にログインしました');
+  }, 900);
+}
+
+function doLogout() {
+  clearReviewTimers();
+  loggedIn = false;
+  location.hash = 'login';
+  handleRoute();
+  showToast('ログアウトしました（デモ）');
+}
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') loggedIn = true;
+  document.getElementById('topDate').textContent = '2026-07-22 JST';
+  handleRoute();
+});
+</script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
+</body>
+</html>

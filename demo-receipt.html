@@ -1,316 +1,149 @@
+<!-- 2026-07-22: 軽デモをSOROBAN同型（帳票グリッド＋セル入力）に揃え -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>レシート仕訳AI 体験デモ｜AI顧問室</title>
-<meta name="description" content="レシート3枚をAIに読み取らせると、その場で仕訳・CSV出力までできる体験デモです。勘定科目と軽減税率の判定根拠も確認できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<title>レシート仕訳AI 体験デモ（帳票グリッド）｜AI顧問室</title>
+<meta name="description" content="Excel風の帳票グリッドでレシート3件を並べ、AI仕訳で科目・税区分をセル入力、確定で行が緑になるSOROBAN同型の軽量デモです。">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI顧問室">
-<meta property="og:title" content="レシート仕訳AI 体験デモ｜AI顧問室">
-<meta property="og:description" content="レシート3枚をAIに読み取らせると、その場で仕訳・CSV出力までできる体験デモです。勘定科目と軽減税率の判定根拠も確認できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:title" content="レシート仕訳AI 体験デモ（帳票グリッド）｜AI顧問室">
+<meta property="og:description" content="帳票グリッド上でAIが科目・税区分をセル入力し、仕訳確定で行が緑になるSOROBAN同型デモ。">
 <meta property="og:url" content="https://ai-komon.bivrost.co.jp/demo-receipt.html">
 <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #0B2447;
-    --navy-deep: #071A35;
-    --navy-light: #19376D;
-    --blue: #2D6CB5;
-    --gold: #C9A227;
-    --ink: #1A2433;
-    --gray: #5B6B7F;
-    --line: #DDE4EC;
-    --bg-soft: #F4F7FA;
-    --white: #FFFFFF;
-    --red: #B0432F;
+    --ledger: #0F766E; --ledger-deep: #115E59; --ledger-light: #14B8A6;
+    --ledger-bg: #ECFDF5; --ledger-bg2: #D1FAE5; --ledger-grid: rgba(15,118,110,.12);
+    --ink: #134E4A; --gray: #52706B; --gray-soft: #7A948F;
+    --line: #A7F3D0; --white: #FFFFFF;
+    --amber: #B45309; --amber-bg: #FEF3C7;
+    --navy: #0B2447; --gold: #C9A227;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Noto Sans JP', sans-serif;
-    color: var(--ink);
-    line-height: 1.9;
-    background: var(--white);
-  }
-  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.5; }
-  img { max-width: 100%; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.75; background: var(--white); }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.45; }
   a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; border: none; }
+  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
   .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 96px 0; }
+  section { padding: 88px 0; }
 
-  .section-label {
-    display: block;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
-  .section-title { font-size: 34px; color: var(--navy); margin-bottom: 20px; }
-  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 56px; }
-
-  /* Header */
-  header {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(255,255,255,0.96);
-    border-bottom: 1px solid var(--line);
-  }
-  .header-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 68px; gap: 16px;
-  }
+  header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,.96); border-bottom: 1px solid var(--line); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
   .logo { display: flex; align-items: baseline; gap: 8px; }
-  .logo strong {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 22px; color: var(--navy); letter-spacing: 0.04em;
-  }
-  .logo span { font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
-  .header-right { display: flex; align-items: center; gap: 20px; }
-  .header-right a.textlink { font-size: 14px; color: var(--navy); font-weight: 500; white-space: nowrap; }
-  .header-right a.textlink:hover { color: var(--blue); }
-  .btn {
-    display: inline-block;
-    padding: 14px 32px;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 15px;
-    transition: opacity .2s, transform .1s;
-    border: none;
-    cursor: pointer;
-    font-family: 'Noto Sans JP', sans-serif;
-  }
-  .btn:hover { opacity: 0.85; }
-  .btn:active { transform: scale(0.98); }
-  .btn-gold { background: var(--gold); color: var(--navy-deep); }
-  .btn-navy { background: var(--navy); color: var(--white); }
-  .btn-outline { border: 1.5px solid var(--navy); color: var(--navy); background: transparent; }
-  .header-cta { padding: 10px 24px; font-size: 14px; white-space: nowrap; }
+  .logo strong { font-family: 'Noto Serif JP', serif; font-size: 22px; color: var(--navy); }
+  .logo span { font-size: 11px; color: var(--gray-soft); letter-spacing: .1em; }
+  .header-links { display: flex; align-items: center; gap: 20px; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 4px; font-weight: 700; font-size: 14px; transition: filter .15s; }
+  .btn:hover { filter: brightness(1.05); }
+  .btn-ledger { background: var(--ledger); color: #fff; }
+  .btn-ledger:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-gold { background: var(--gold); color: var(--navy); }
+  .btn-outline { border: 1.5px solid var(--ledger); color: var(--ledger); background: transparent; }
 
-  /* Title / hero */
   .demo-hero {
-    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
-    color: var(--white);
-    padding: 80px 0 64px;
+    background: linear-gradient(135deg, #042F2E 0%, var(--ledger) 55%, var(--ledger-deep) 100%);
+    color: #F0FDFA; padding: 72px 0 56px;
   }
-  .hero-label {
-    display: inline-block;
-    border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 999px;
-    font-size: 13px;
-    padding: 6px 18px;
-    letter-spacing: 0.08em;
-    margin-bottom: 24px;
-    color: #DCE6F5;
-  }
-  .demo-hero h1 { font-size: 40px; margin-bottom: 20px; }
-  .demo-hero h1 em { font-style: normal; color: var(--gold); }
-  .demo-hero p.sub { font-size: 16px; color: #C7D3E4; max-width: 640px; }
+  .hero-label { display: inline-block; border: 1px solid rgba(94,234,212,.45); border-radius: 999px; font-size: 12px; padding: 5px 16px; letter-spacing: .12em; margin-bottom: 20px; color: #5EEAD4; }
+  .demo-hero h1 { font-size: clamp(28px, 4vw, 38px); margin-bottom: 16px; }
+  .demo-hero h1 em { font-style: normal; color: #99F6E4; }
+  .demo-hero .sub { font-size: 15px; color: #94D4CC; max-width: 640px; }
 
-  /* Note banner */
-  .note-banner { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
-  .note-banner .container { padding-top: 18px; padding-bottom: 18px; }
-  .note-box {
-    display: flex; gap: 12px; align-items: flex-start;
-    border-left: 4px solid var(--gold); background: var(--white);
-    border-radius: 4px; padding: 14px 20px; font-size: 13.5px; color: var(--gray);
-    max-width: 900px;
-  }
-  .note-box .mark { color: var(--gold); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .note-banner { background: var(--ledger-bg); border-bottom: 1px solid var(--line); }
+  .note-banner .container { padding: 16px 24px; }
+  .note-box { display: flex; gap: 10px; font-size: 13px; color: var(--gray); max-width: 900px; }
   .note-box strong { color: var(--ink); }
 
-  /* Demo section */
-  .demo-section { background: var(--white); }
-  #demo { scroll-margin-top: 84px; }
-  .demo-step-label {
-    font-size: 13px; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 10px;
-  }
-  .demo-question {
-    font-family: 'Noto Serif JP', serif; font-size: 24px; color: var(--navy); margin-bottom: 32px;
-  }
+  .demo-section { background: var(--ledger-bg); }
+  .section-label { display: block; font-size: 12px; letter-spacing: .2em; color: var(--ledger); font-weight: 700; margin-bottom: 10px; }
+  .section-title { font-size: 28px; color: var(--navy); margin-bottom: 16px; }
+  .section-lead { color: var(--gray); max-width: 640px; margin-bottom: 40px; font-size: 15px; }
 
-  /* Receipts */
-  .receipt-grid {
-    display: flex; flex-wrap: wrap; gap: 32px; justify-content: center;
-    margin-bottom: 40px; padding: 12px 0 24px;
+  .demo-core {
+    border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+    background: #fff; box-shadow: 0 16px 40px rgba(15,118,110,.1);
   }
-  .receipt {
-    width: 240px;
-    background: #FFFEF9;
-    box-shadow: 0 10px 26px rgba(11,36,71,0.14);
-    padding: 20px 18px 26px;
-    font-family: 'Courier New', 'SFMono-Regular', Consolas, monospace;
-    font-size: 11.5px;
-    color: #2A2A2A;
-    line-height: 1.55;
-    position: relative;
+  .core-toolbar {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    padding: 12px 16px; background: var(--ledger-deep); color: #CCFBF1; font-size: 12px;
   }
-  .receipt::after {
-    content: "";
-    position: absolute; left: 0; right: 0; bottom: -9px; height: 16px;
-    background:
-      linear-gradient(135deg, transparent 50%, #FFFEF9 50%) 0 0/12px 16px repeat-x,
-      linear-gradient(-135deg, transparent 50%, #FFFEF9 50%) 0 0/12px 16px repeat-x;
-    filter: drop-shadow(0 4px 3px rgba(11,36,71,0.10));
-  }
-  .receipt:nth-child(1) { transform: rotate(-1.4deg); }
-  .receipt:nth-child(2) { transform: rotate(0.8deg); margin-top: 10px; }
-  .receipt:nth-child(3) { transform: rotate(-0.6deg); }
-  .r-shop { text-align: center; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 4px; }
-  .r-addr { text-align: center; font-size: 10px; color: #555; margin-bottom: 10px; }
-  .r-line { border-top: 1px dashed #999; margin: 8px 0; }
-  .r-datetime { font-size: 10.5px; color: #444; margin-bottom: 2px; }
-  .r-items { margin: 6px 0; }
-  .r-item { display: flex; justify-content: space-between; gap: 6px; margin-bottom: 3px; }
-  .r-item .rn { flex: 1; }
-  .r-item .rp { white-space: nowrap; }
-  .r-sub, .r-total, .r-pay { display: flex; justify-content: space-between; margin-bottom: 3px; }
-  .r-total { font-size: 13px; font-weight: 700; margin: 6px 0; }
-  .r-taxnote { font-size: 10px; color: #666; margin-bottom: 2px; }
-  .r-barcode {
-    height: 30px; margin: 12px 0 8px;
-    background: repeating-linear-gradient(90deg, #222 0, #222 1px, transparent 1px, transparent 3px, #222 3px, #222 4px, transparent 4px, transparent 7px);
-  }
-  .r-thanks { text-align: center; font-size: 10px; color: #666; }
+  .core-toolbar .brand { font-family: var(--mono); font-weight: 700; letter-spacing: .08em; font-size: 13px; }
+  .core-body { display: grid; grid-template-columns: 1fr 220px; min-height: 320px; }
 
-  .demo-cta-row { text-align: center; margin-bottom: 8px; }
-  #readBtn { font-size: 16px; padding: 16px 44px; }
-  .demo-cta-hint { font-size: 12.5px; color: var(--gray); margin-top: 12px; }
+  .grid-wrap { overflow-x: auto; padding: 0; }
+  .ledger-grid { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 640px; }
+  .ledger-grid thead th {
+    background: var(--ledger-bg2); border: 1px solid var(--ledger-grid); padding: 8px 10px;
+    text-align: left; font-size: 11px; letter-spacing: .06em; color: var(--ledger-deep); white-space: nowrap;
+  }
+  .ledger-grid thead th.num { text-align: right; }
+  .ledger-grid tbody td {
+    border: 1px solid var(--ledger-grid); padding: 8px 10px; vertical-align: middle;
+  }
+  .ledger-grid tbody tr { transition: background .25s; cursor: pointer; }
+  .ledger-grid tbody tr:hover td { background: #F0FDFA; }
+  .ledger-grid tbody tr.selected td { background: #CCFBF1; box-shadow: inset 0 0 0 2px var(--ledger-light); }
+  .ledger-grid tbody tr.confirmed td { background: var(--ledger-bg); }
+  .ledger-grid tbody tr.confirmed td:first-child::before { content: '✓ '; color: var(--ledger); font-weight: 700; }
+  .cell-yen { text-align: right; font-family: var(--mono); font-weight: 600; }
+  .cell-account, .cell-tax { font-family: var(--mono); font-size: 12px; min-width: 88px; }
+  .cell-account.empty, .cell-tax.empty { color: var(--gray-soft); font-style: italic; }
+  .cell-account.filling, .cell-tax.filling { color: var(--ledger); background: #F0FDFA !important; animation: pulse 1s ease infinite; }
+  .cell-account.filled, .cell-tax.filled { color: var(--ink); font-weight: 600; }
+  .cell-conf { font-size: 11px; font-weight: 700; text-align: center; border-radius: 4px; padding: 4px 8px; white-space: nowrap; }
+  .cell-conf.pending { background: var(--amber-bg); color: var(--amber); }
+  .cell-conf.ai { background: #DBEAFE; color: #1D4ED8; }
+  .cell-conf.done { background: var(--ledger-bg2); color: var(--ledger-deep); }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .65; } }
 
-  /* Result area */
-  .demo-result { margin-top: 56px; display: none; scroll-margin-top: 84px; }
-  .demo-result.active { display: block; animation: fadein .3s ease; }
-  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .receipt-pane {
+    border-left: 1px solid var(--line); background: #FAFAFA; padding: 12px;
+    display: flex; flex-direction: column;
+  }
+  .receipt-pane h4 { font-size: 10px; letter-spacing: .12em; color: var(--gray-soft); margin-bottom: 8px; font-family: 'Noto Sans JP', sans-serif; }
+  .receipt-mini {
+    flex: 1; background: #fff; border: 1px dashed #ccc; border-radius: 4px; padding: 10px;
+    font-size: 10px; line-height: 1.55; color: #333; font-family: var(--mono);
+  }
+  .receipt-mini .shop { font-weight: 700; text-align: center; margin-bottom: 4px; }
+  .receipt-mini .line { border-top: 1px dashed #bbb; margin: 6px 0; }
+  .receipt-mini .total { font-weight: 700; display: flex; justify-content: space-between; margin-top: 4px; }
 
-  /* Loading */
-  .loading-box {
-    border: 1px dashed var(--line); border-radius: 6px; padding: 48px 24px;
-    text-align: center; color: var(--gray); font-size: 15px; background: var(--white);
-  }
-  .dots { display: inline-flex; gap: 6px; margin-left: 8px; vertical-align: middle; }
-  .dots span {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
-    animation: bounce 1.1s infinite ease-in-out;
-  }
-  .dots span:nth-child(2) { animation-delay: .15s; }
-  .dots span:nth-child(3) { animation-delay: .3s; }
-  @keyframes bounce { 0%, 80%, 100% { opacity: .25; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1.1); } }
+  .core-foot { padding: 14px 16px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; background: var(--ledger-bg); }
+  .core-foot p { font-size: 12px; color: var(--gray); }
+  .saas-link { margin-top: 20px; text-align: center; }
+  .saas-link a { font-size: 13px; font-weight: 700; color: var(--ledger-deep); border-bottom: 1px solid rgba(15,118,110,.35); padding-bottom: 2px; }
 
-  .result-grid { display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: start; }
-  .result-grid > div { min-width: 0; }
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+  .f-step { background: var(--ledger-bg); border-radius: 8px; padding: 24px; border-top: 3px solid var(--ledger); }
+  .f-step .no { width: 28px; height: 28px; border-radius: 50%; background: var(--ledger); color: #fff; font-size: 13px; font-weight: 700; display: grid; place-items: center; margin-bottom: 12px; }
+  .f-step h3 { font-size: 16px; margin-bottom: 8px; color: var(--navy); }
+  .f-step p { font-size: 13.5px; color: var(--gray); line-height: 1.75; }
 
-  /* Journal table */
-  .journal-window {
-    border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--white);
-    box-shadow: 0 10px 30px rgba(11,36,71,0.08); display: none;
-  }
-  .journal-window.active { display: block; }
-  .journal-titlebar {
-    background: var(--navy); color: var(--white); padding: 12px 20px;
-    display: flex; align-items: center; gap: 10px; font-size: 13px;
-  }
-  .journal-titlebar .dot3 { display: flex; gap: 5px; }
-  .journal-titlebar .dot3 span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); }
-  .journal-titlebar .label { margin-left: auto; color: #C7D3E4; letter-spacing: 0.05em; }
-  .journal-skip-hint { font-size: 11.5px; color: var(--gray); text-align: right; padding: 10px 20px 0; cursor: pointer; }
-  .table-scroll { overflow-x: auto; padding: 20px 20px 6px; }
-  table.journal-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 560px; }
-  table.journal-table th {
-    text-align: left; font-size: 11.5px; color: var(--gray); font-weight: 700;
-    border-bottom: 2px solid var(--line); padding: 0 10px 10px; white-space: nowrap;
-  }
-  table.journal-table td { padding: 12px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-  table.journal-table td.num { text-align: right; font-weight: 700; color: var(--navy); }
-  .j-row { opacity: 0; transform: translateY(6px); transition: opacity .35s ease, transform .35s ease; }
-  .j-row.show { opacity: 1; transform: translateY(0); }
-  .journal-total {
-    display: flex; justify-content: flex-end; align-items: baseline; gap: 10px;
-    padding: 16px 20px 20px; border-top: 1px solid var(--line);
-    font-size: 14px; color: var(--gray);
-  }
-  .journal-total strong { font-size: 22px; color: var(--navy); font-family: 'Noto Serif JP', serif; }
+  .cta { background: var(--navy); color: #fff; text-align: center; }
+  .cta h2 { font-size: 26px; margin-bottom: 14px; }
+  .cta p { color: #C7D3E4; margin-bottom: 28px; font-size: 15px; }
+  .cta-ctas { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
 
-  .human-note {
-    border-left: 4px solid var(--gold); background: #FBF6E8; border-radius: 4px;
-    padding: 16px 20px; font-size: 13.5px; color: var(--ink); margin-top: 20px; line-height: 1.8;
-  }
-  .human-note strong { color: var(--navy-deep); }
-  .advisor-note { font-size: 12px; color: var(--gray); margin-top: 12px; }
+  footer { background: #071A35; color: #8FA3BC; padding: 32px 0; font-size: 13px; }
+  footer .logo strong { color: #fff; font-size: 18px; }
 
-  .csv-row { margin-top: 20px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .csv-hint { font-size: 12px; color: var(--gray); }
-
-  /* Info panel */
-  .info-panel {
-    border: 1px solid var(--line); border-radius: 8px; background: var(--bg-soft);
-    padding: 24px; opacity: 0; transform: translateY(8px); transition: opacity .4s ease, transform .4s ease;
+  @media (max-width: 720px) {
+    .core-body { grid-template-columns: 1fr; }
+    .receipt-pane { border-left: none; border-top: 1px solid var(--line); min-height: 140px; }
   }
-  .info-panel.show { opacity: 1; transform: translateY(0); }
-  .info-panel h4 {
-    font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 700; color: var(--navy);
-    letter-spacing: 0.05em; margin-bottom: 18px; display: flex; align-items: center; gap: 6px;
-  }
-  .info-panel h4::before { content: "◆"; color: var(--gold); font-size: 11px; }
-  .info-list { list-style: none; }
-  .info-list li {
-    font-size: 13px; color: var(--ink); line-height: 1.75; margin-bottom: 14px;
-    padding-left: 14px; position: relative;
-  }
-  .info-list li:last-child { margin-bottom: 0; }
-  .info-list li::before { content: "・"; position: absolute; left: -2px; color: var(--gold); }
-  .info-list b { color: var(--navy); }
-
-  .reselect-row { text-align: center; margin-top: 32px; }
-  .reselect-row button { font-size: 13.5px; color: var(--gray); text-decoration: underline; cursor: pointer; background: none; border: none; font-family: inherit; padding: 12px 16px; }
-  .reselect-row button:hover { color: var(--navy); }
-
-  @media (max-width: 900px) {
-    .result-grid { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 560px) {
-    .receipt { width: 100%; max-width: 280px; }
-  }
-
-  /* How it works */
-  .how { background: var(--bg-soft); }
-  .flow-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-  .f-step { border: 1px solid var(--line); border-radius: 6px; padding: 28px 24px; background: var(--white); }
-  .f-step .no { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 22px; font-weight: 700; margin-bottom: 8px; }
-  .f-step h3 { font-size: 17px; color: var(--navy); margin-bottom: 8px; }
-  .f-step p { font-size: 13px; color: var(--gray); }
-  .how-note { text-align: center; margin-top: 40px; font-size: 14px; color: var(--gray); }
-  .how-note strong { color: var(--navy); }
-
-  /* CTA */
-  .cta {
-    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
-    color: var(--white); text-align: center;
-  }
-  .cta h2 { font-size: 32px; margin-bottom: 20px; }
-  .cta p { color: #C7D3E4; margin-bottom: 40px; }
-  .cta-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-  footer {
-    background: var(--navy-deep); color: #9FB0C7; font-size: 13px;
-    padding: 40px 0; text-align: center;
-  }
-  footer .logo strong { color: var(--white); font-size: 18px; }
-  footer .logo { justify-content: center; margin-bottom: 12px; }
-
-  @media (max-width: 820px) {
-    section { padding: 64px 0; }
-    .demo-hero h1 { font-size: 28px; }
-    .section-title { font-size: 26px; }
-    .demo-hero { padding: 56px 0 44px; }
-    .header-right a.textlink { display: none; }
-  }
+  @media (max-width: 600px) { .logo span { display: none; } section { padding: 64px 0; } }
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
@@ -321,208 +154,86 @@
 <header>
   <div class="container header-inner">
     <a href="index.html" class="logo"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
-    <div class="header-right">
-      <a href="demos.html" class="textlink">デモ一覧へ</a>
-      <a href="index.html#contact" class="btn btn-gold header-cta">無料相談を予約</a>
+    <div class="header-links">
+      <a href="demos.html">デモ一覧へ</a>
+      <a href="index.html#contact" class="btn btn-gold" style="padding:10px 20px;font-size:13px;">無料相談</a>
     </div>
   </div>
 </header>
 
 <div class="demo-hero">
   <div class="container">
-    <span class="hero-label">体験デモ｜レシート仕訳AI</span>
-    <h1>レシートの山が、<br><em>その場で帳簿になる。</em></h1>
-    <p class="sub">飲み会の領収書、タクシー代、ホームセンターでの買い物——。散らかったレシートをAIが読み取り、店名・日付・金額から勘定科目と税区分を判定して仕訳の下書きを作成します。会計ソフトに取り込めるCSVも、その場で出力できます。</p>
+    <span class="hero-label">体験デモ · SOROBAN同型</span>
+    <h1>帳票グリッドで<em>セルに仕訳が入る。</em></h1>
+    <p class="sub">レシート3件をExcel風グリッドに並べ、「AI仕訳」で科目・税区分が順番にセル入力され、確定すると行が緑になる帳票ワークフローを体験できます。</p>
   </div>
 </div>
 
 <div class="note-banner">
-  <div class="container">
-    <div class="note-box">
-      <span class="mark">※</span>
-      <span><strong>このページはサンプルデータによる体験デモです。</strong>表示されるレシート・仕訳内容は事前に用意したものです。実際は御社のレシート・領収書の運用ルール（勘定科目の体系）に合わせて構築します。</span>
-    </div>
+  <div class="container note-box">
+    <span>※</span>
+    <p><strong>店名・金額はすべて架空のサンプルデータです。</strong>実際の会計ソフト連携は行わず、デモ演出でセル入力を再現しています。</p>
   </div>
 </div>
 
 <section class="demo-section" id="demo">
   <div class="container">
-    <span class="section-label">TRY IT</span>
-    <div class="demo-step-label">STEP 1</div>
-    <h2 class="demo-question">この3枚のレシートを、AIに読み取らせてみましょう</h2>
-
-    <div class="receipt-grid">
-      <div class="receipt">
-        <div class="r-shop">炭火居酒屋 灯り<br>神田店</div>
-        <div class="r-addr">東京都千代田区神田○-○-○<br>TEL 03-XXXX-XXXX</div>
-        <div class="r-line"></div>
-        <div class="r-datetime">2026/07/08 19:42<br>No.0184　レジ01　担当:田中</div>
-        <div class="r-line"></div>
-        <div class="r-items">
-          <div class="r-item"><span class="rn">飲み放題付き宴会コース×4</span><span class="rp">¥16,000</span></div>
-          <div class="r-item"><span class="rn">お造り三点盛り</span><span class="rp">¥3,200</span></div>
-          <div class="r-item"><span class="rn">焼き鳥盛り合わせ</span><span class="rp">¥2,800</span></div>
-          <div class="r-item"><span class="rn">特製つくね×2</span><span class="rp">¥1,800</span></div>
-          <div class="r-item"><span class="rn">お通し×4</span><span class="rp">¥1,600</span></div>
-          <div class="r-item"><span class="rn">生ビール×4</span><span class="rp">¥2,720</span></div>
-          <div class="r-item"><span class="rn">ハイボール×3</span><span class="rp">¥1,800</span></div>
-          <div class="r-item"><span class="rn">烏龍茶×3</span><span class="rp">¥1,500</span></div>
-          <div class="r-item"><span class="rn">デザート盛り合わせ</span><span class="rp">¥1,580</span></div>
-        </div>
-        <div class="r-line"></div>
-        <div class="r-sub"><span>小計</span><span>¥30,000</span></div>
-        <div class="r-taxnote">10%対象　¥33,000（内消費税　¥3,000）</div>
-        <div class="r-total"><span>合計</span><span>¥33,000</span></div>
-        <div class="r-pay"><span>クレジットカード</span><span>¥33,000</span></div>
-        <div class="r-line"></div>
-        <div class="r-barcode"></div>
-        <div class="r-thanks">またのご来店お待ちしております</div>
+    <div class="demo-core">
+      <div class="core-toolbar">
+        <span class="brand">SOROBAN · 仕訳帳（ライト）</span>
+        <span>2026年7月分 · 未処理 3件</span>
       </div>
-
-      <div class="receipt">
-        <div class="r-shop">みどり交通タクシー</div>
-        <div class="r-addr">領収書　登録番号 T1234567890123</div>
-        <div class="r-line"></div>
-        <div class="r-datetime">2026/07/09 21:15<br>車両No.582　乗務員:佐々木</div>
-        <div class="r-line"></div>
-        <div class="r-items">
-          <div class="r-item"><span class="rn">運賃</span><span class="rp">¥2,800</span></div>
-          <div class="r-item"><span class="rn">深夜早朝割増（22:00〜）</span><span class="rp">¥280</span></div>
+      <div class="core-body">
+        <div class="grid-wrap">
+          <table class="ledger-grid">
+            <thead>
+              <tr>
+                <th>日付</th><th>取引先</th><th class="num">金額</th>
+                <th>勘定科目</th><th>税区分</th><th>状態</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="gridBody"></tbody>
+          </table>
         </div>
-        <div class="r-line"></div>
-        <div class="r-sub"><span>小計</span><span>¥2,800</span></div>
-        <div class="r-taxnote">10%対象　¥3,080（内消費税　¥280）</div>
-        <div class="r-total"><span>合計</span><span>¥3,080</span></div>
-        <div class="r-pay"><span>現金</span><span>¥3,080</span></div>
-        <div class="r-line"></div>
-        <div class="r-barcode"></div>
-        <div class="r-thanks">ご乗車ありがとうございました</div>
+        <aside class="receipt-pane">
+          <h4>RECEIPT PREVIEW</h4>
+          <div class="receipt-mini" id="receiptPreview">行を選ぶとレシート概要が表示されます</div>
+        </aside>
       </div>
-
-      <div class="receipt">
-        <div class="r-shop">ホームセンターカワダ</div>
-        <div class="r-addr">神田店　登録番号 T9876543210987</div>
-        <div class="r-line"></div>
-        <div class="r-datetime">2026/07/10 14:03<br>レジ03　担当:カワダ</div>
-        <div class="r-line"></div>
-        <div class="r-items">
-          <div class="r-item"><span class="rn">剪定バサミ</span><span class="rp">¥1,780</span></div>
-          <div class="r-item"><span class="rn">軍手（3双組）</span><span class="rp">¥580</span></div>
-          <div class="r-item"><span class="rn">45Lゴミ袋 10枚入</span><span class="rp">¥940</span></div>
-          <div class="r-item"><span class="rn">＊緑茶ペットボトル 500ml（お持帰り）</span><span class="rp">¥162</span></div>
+      <div class="core-foot">
+        <p id="footHint">「AI仕訳」で未処理行の科目・税区分を自動入力します</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button type="button" class="btn btn-ledger" id="btnAi">AI仕訳</button>
+          <button type="button" class="btn btn-outline" id="btnConfirm" disabled>仕訳確定</button>
         </div>
-        <div class="r-line"></div>
-        <div class="r-sub"><span>小計（税抜）</span><span>¥3,150</span></div>
-        <div class="r-taxnote">10%対象　¥3,300（内消費税　¥300）</div>
-        <div class="r-taxnote">8%対象＊　¥162（内消費税　¥12）</div>
-        <div class="r-total"><span>合計</span><span>¥3,462</span></div>
-        <div class="r-pay"><span>現金</span><span>¥3,462</span></div>
-        <div class="r-line"></div>
-        <div class="r-barcode"></div>
-        <div class="r-thanks">＊は軽減税率対象商品です</div>
       </div>
     </div>
-
-    <div class="demo-cta-row">
-      <button type="button" class="btn btn-navy" id="readBtn">この3枚をAIで読み取る →</button>
-      <p class="demo-cta-hint">クリックすると、AIによる仕訳の下書き作成が始まります</p>
-    </div>
-
-    <div class="demo-result" id="demoResult">
-      <div class="demo-step-label" style="margin-top:8px;">STEP 2</div>
-      <h2 class="demo-question" id="resultTitle" style="font-size:20px;">AIが作成した仕訳</h2>
-
-      <div id="loadingBox" class="loading-box">
-        AIがレシートを読み取っています<span class="dots"><span></span><span></span><span></span></span>
-      </div>
-
-      <div class="result-grid" id="resultGrid" style="display:none;">
-        <div>
-          <div class="journal-window active" id="journalWindow">
-            <div class="journal-titlebar">
-              <span class="dot3"><span></span><span></span><span></span></span>
-              <span>仕訳帳（下書き）</span>
-              <span class="label">AI作成</span>
-            </div>
-            <div class="journal-skip-hint" id="skipHint">クリックで全件をすぐ表示</div>
-            <div class="table-scroll">
-              <table class="journal-table">
-                <thead>
-                  <tr>
-                    <th>日付</th><th>店名</th><th>摘要</th><th>勘定科目</th><th>税区分</th><th style="text-align:right;">金額（税込）</th>
-                  </tr>
-                </thead>
-                <tbody id="journalBody"></tbody>
-              </table>
-            </div>
-            <div class="journal-total">
-              <span>合計</span>
-              <strong id="journalTotal">¥0</strong>
-            </div>
-          </div>
-
-          <div class="human-note">
-            <strong>人の確認ポイント：</strong>仕訳の最終確認・承認は経理担当者／顧問税理士が行います。AIは下書きまでを担当します。
-          </div>
-          <p class="advisor-note">※勘定科目・税区分の設定は顧問税理士の監修のもと運用することを推奨します。</p>
-
-          <div class="csv-row">
-            <button type="button" class="btn btn-outline" id="csvBtn">CSVをダウンロード</button>
-            <span class="csv-hint">freee・弥生会計などに取り込める列構成のサンプルCSVです</span>
-          </div>
-        </div>
-
-        <div class="info-panel" id="infoPanel">
-          <h4>AIが読み取った情報</h4>
-          <ul class="info-list">
-            <li><b>店名の認識：</b>3件を自動認識（炭火居酒屋 灯り 神田店／みどり交通タクシー／ホームセンターカワダ）</li>
-            <li><b>日付・金額：</b>レシートに印字された日時・合計金額をそのまま取得し、税区分ごとの内訳と一致することを検算</li>
-            <li><b>軽減税率の判定根拠：</b>ホームセンターカワダの「緑茶ペットボトル（お持ち帰り）」は飲食料品のテイクアウトのため軽減税率8%と判定。居酒屋の店内飲食やタクシー運賃は標準税率10%として判定</li>
-            <li><b>勘定科目の推定：</b>飲食店＝接待交際費、タクシー＝旅費交通費、消耗品＝消耗品費と、店舗の業種・購入品目から推定</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="reselect-row">
-        <button type="button" id="reselectLink">もう一度レシートを読み取る</button>
-      </div>
+    <div class="saas-link">
+      <a href="works-invoice.html">→ SaaS級でログイン操作（SOROBAN フルデモ）</a>
     </div>
   </div>
 </section>
 
-<section class="how" id="how">
+<section id="how">
   <div class="container">
-    <span class="section-label">HOW TO CUSTOMIZE</span>
+    <span class="section-label">HOW IT WORKS</span>
     <h2 class="section-title">これを御社仕様にするには</h2>
-    <p class="section-lead">今ご覧いただいたのはサンプルですが、実際の導入では御社の勘定科目の体系・仕訳ルールをもとに、御社専用のAIを段階的に育てていきます。</p>
+    <p class="section-lead">SOROBAN 同型の帳票グリッド体験です。御社の勘定科目体系と仕訳ルールを学習し、会計ソフトへの取り込みまで接続します。</p>
     <div class="flow-grid">
-      <div class="f-step">
-        <div class="no">1</div>
-        <h3>御社の勘定科目・仕訳ルールを学習</h3>
-        <p>過去の仕訳データや、勘定科目の使い分けルール（交際費と会議費の線引きなど）をAIに学習させます。</p>
-      </div>
-      <div class="f-step">
-        <div class="no">2</div>
-        <h3>会計ソフト・スマホ撮影に接続</h3>
-        <p>freee・弥生会計など普段お使いの会計ソフトへの取り込み形式に合わせ、スマホで撮影したレシートから起票できる状態にします。</p>
-      </div>
-      <div class="f-step">
-        <div class="no">3</div>
-        <h3>人が最終確認して記帳</h3>
-        <p>まずはAIが仕訳の下書きを作り、経理担当者や顧問税理士が確認して記帳する運用からスタート。慣れてきたパターンから段階的に自動化の範囲を広げていきます。</p>
-      </div>
+      <div class="f-step"><div class="no">1</div><h3>勘定科目・仕訳ルールを学習</h3><p>過去仕訳と科目の使い分けルールをAIに読み込ませ、御社専用の判定モデルを育てます。</p></div>
+      <div class="f-step"><div class="no">2</div><h3>帳票をグリッドに並べる</h3><p>レシート・請求書をOCRで読み取り、スプレッドシート上で科目・税区分をセル入力します。</p></div>
+      <div class="f-step"><div class="no">3</div><h3>人が確認して確定</h3><p>確定した行は緑表示。freee・弥生など普段の会計ソフト形式でエクスポートできます。</p></div>
     </div>
-    <p class="how-note">いきなり全自動化はしません。<strong>「人の確認」を挟みながら、御社が安心できるペースで自動化の範囲を広げる</strong>のがAI顧問室のやり方です。</p>
   </div>
 </section>
 
 <section class="cta" id="contact">
   <div class="container">
     <h2>御社の経理業務で試したい方へ</h2>
-    <p>「うちの勘定科目・仕訳ルールでもできそうか知りたい」という段階で構いません。<br>まずは無料相談で、御社の経理業務の現状をお聞かせください。</p>
+    <p>「うちの勘定科目でもグリッド仕訳できるか知りたい」という段階で構いません。<br>まずは無料相談で、経理業務の現状をお聞かせください。</p>
     <div class="cta-ctas">
-      <a href="index.html#contact" class="btn btn-gold" style="font-size:16px; padding:16px 40px;">無料相談を予約する</a>
-      <a href="diagnosis.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.5); color:#fff; font-size:16px; padding:16px 40px;">1分でレベル診断を受ける</a>
+      <a href="index.html#contact" class="btn btn-gold">無料相談を予約する</a>
+      <a href="works-invoice.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.45);color:#fff;">SOROBAN フルデモを見る</a>
     </div>
   </div>
 </section>
@@ -536,146 +247,96 @@
 
 <script>
 (function () {
-  // 単一の情報源：レシート面に印字された金額と完全一致させる仕訳データ
-  var ENTRIES = [
-    { date: "2026/07/08", shop: "炭火居酒屋 灯り 神田店", memo: "得意先接待（宴会）", account: "接待交際費", taxCat: "課仕入10%", amount: 33000 },
-    { date: "2026/07/09", shop: "みどり交通タクシー", memo: "得意先訪問後の移動", account: "旅費交通費", taxCat: "課仕入10%", amount: 3080 },
-    { date: "2026/07/10", shop: "ホームセンターカワダ", memo: "作業用消耗品（軍手・ゴミ袋等）", account: "消耗品費", taxCat: "課仕入10%", amount: 3300 },
-    { date: "2026/07/10", shop: "ホームセンターカワダ", memo: "休憩用飲料（お持ち帰り）", account: "消耗品費", taxCat: "軽減8%", amount: 162 }
+  var ROWS = [
+    { id: 0, date: '07/08', vendor: '炭火居酒屋 灯り', amount: 33000, account: '接待交際費', tax: '課10%', conf: 'pending',
+      receipt: '<div class="shop">炭火居酒屋 灯り 神田店</div><div>2026/07/08 19:42</div><div class="line"></div><div>宴会コース ×10</div><div class="total"><span>合計</span><span>¥33,000</span></div>' },
+    { id: 1, date: '07/09', vendor: 'みどり交通タクシー', amount: 3080, account: '旅費交通費', tax: '課10%', conf: 'pending',
+      receipt: '<div class="shop">みどり交通</div><div>2026/07/09 21:15</div><div class="line"></div><div>運賃+深夜割増</div><div class="total"><span>合計</span><span>¥3,080</span></div>' },
+    { id: 2, date: '07/10', vendor: 'ホームセンターカワダ', amount: 3462, account: '消耗品費', tax: '課10%+軽8%', conf: 'pending',
+      receipt: '<div class="shop">HCカワダ 神田店</div><div>2026/07/10 14:03</div><div class="line"></div><div>軍手・ゴミ袋等</div><div>＊緑茶PB 軽8%</div><div class="total"><span>合計</span><span>¥3,462</span></div>' }
   ];
 
-  var readBtn = document.getElementById("readBtn");
-  var demoResult = document.getElementById("demoResult");
-  var loadingBox = document.getElementById("loadingBox");
-  var resultGrid = document.getElementById("resultGrid");
-  var journalBody = document.getElementById("journalBody");
-  var journalTotal = document.getElementById("journalTotal");
-  var infoPanel = document.getElementById("infoPanel");
-  var skipHint = document.getElementById("skipHint");
-  var csvBtn = document.getElementById("csvBtn");
-  var reselectLink = document.getElementById("reselectLink");
+  var gridBody = document.getElementById('gridBody');
+  var preview = document.getElementById('receiptPreview');
+  var btnAi = document.getElementById('btnAi');
+  var btnConfirm = document.getElementById('btnConfirm');
+  var footHint = document.getElementById('footHint');
+  var selectedId = 0;
+  var aiRunning = false;
+  var aiDone = false;
+  var timers = [];
 
-  var revealTimer = null;
-  var revealing = false;
-  var revealIndex = 0;
+  function yen(n) { return '¥' + n.toLocaleString('ja-JP'); }
 
-  function escapeHtml(str) {
-    return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  function renderGrid() {
+    gridBody.innerHTML = ROWS.map(function (r) {
+      var accCls = r.conf === 'done' ? 'filled' : (r.conf === 'ai' ? 'filled' : 'empty');
+      var taxCls = accCls;
+      var accTxt = r.conf === 'pending' && !aiDone ? '—' : r.account;
+      var taxTxt = r.conf === 'pending' && !aiDone ? '—' : r.tax;
+      if (r._fillingAcc) { accCls = 'filling'; accTxt = r.account; }
+      if (r._fillingTax) { taxCls = 'filling'; taxTxt = r.tax; }
+      var confLabel = r.conf === 'done' ? '確定' : (r.conf === 'ai' ? 'AI入力済' : '未処理');
+      var confCls = r.conf;
+      return '<tr data-id="' + r.id + '" class="' + (r.id === selectedId ? 'selected' : '') + (r.conf === 'done' ? ' confirmed' : '') + '">' +
+        '<td class="mono">' + r.date + '</td><td>' + r.vendor + '</td><td class="cell-yen">' + yen(r.amount) + '</td>' +
+        '<td class="cell-account ' + accCls + '">' + accTxt + '</td>' +
+        '<td class="cell-tax ' + taxCls + '">' + taxTxt + '</td>' +
+        '<td><span class="cell-conf ' + confCls + '">' + confLabel + '</span></td>' +
+        '<td></td></tr>';
+    }).join('');
+    var row = ROWS[selectedId];
+    preview.innerHTML = row ? row.receipt : '—';
   }
 
-  function formatYen(n) {
-    return "¥" + n.toLocaleString("ja-JP");
-  }
+  gridBody.addEventListener('click', function (e) {
+    var tr = e.target.closest('tr');
+    if (!tr) return;
+    selectedId = parseInt(tr.getAttribute('data-id'), 10);
+    renderGrid();
+  });
 
-  function buildRows() {
-    journalBody.innerHTML = "";
-    ENTRIES.forEach(function (e) {
-      var tr = document.createElement("tr");
-      tr.className = "j-row";
-      tr.innerHTML =
-        "<td>" + e.date + "</td>" +
-        "<td>" + escapeHtml(e.shop) + "</td>" +
-        "<td>" + escapeHtml(e.memo) + "</td>" +
-        "<td>" + escapeHtml(e.account) + "</td>" +
-        "<td>" + e.taxCat + "</td>" +
-        "<td class=\"num\">" + formatYen(e.amount) + "</td>";
-      journalBody.appendChild(tr);
+  btnAi.addEventListener('click', function () {
+    if (aiRunning || aiDone) return;
+    aiRunning = true;
+    btnAi.disabled = true;
+    footHint.textContent = 'AIが科目・税区分をセルに入力しています…';
+    var delay = 0;
+    ROWS.forEach(function (r, idx) {
+      timers.push(setTimeout(function () {
+        r._fillingAcc = true;
+        renderGrid();
+        timers.push(setTimeout(function () {
+          r._fillingAcc = false;
+          r._fillingTax = true;
+          renderGrid();
+          timers.push(setTimeout(function () {
+            r._fillingTax = false;
+            r.conf = 'ai';
+            renderGrid();
+            if (idx === ROWS.length - 1) {
+              aiRunning = false;
+              aiDone = true;
+              btnConfirm.disabled = false;
+              footHint.textContent = '内容を確認して「仕訳確定」を押してください';
+            }
+          }, 450));
+        }, 500));
+      }, delay));
+      delay += 1100;
     });
-  }
-
-  function computeTotal() {
-    return ENTRIES.reduce(function (sum, e) { return sum + e.amount; }, 0);
-  }
-
-  function revealNext() {
-    if (!revealing) return;
-    var rows = journalBody.querySelectorAll(".j-row");
-    if (revealIndex >= rows.length) {
-      finishReveal();
-      return;
-    }
-    rows[revealIndex].classList.add("show");
-    revealIndex++;
-    revealTimer = setTimeout(revealNext, 380);
-  }
-
-  function finishReveal() {
-    revealing = false;
-    if (revealTimer) { clearTimeout(revealTimer); revealTimer = null; }
-    var rows = journalBody.querySelectorAll(".j-row");
-    for (var i = 0; i < rows.length; i++) rows[i].classList.add("show");
-    journalTotal.textContent = formatYen(computeTotal());
-    infoPanel.classList.remove("show");
-    setTimeout(function () { infoPanel.classList.add("show"); }, 50);
-    skipHint.style.display = "none";
-  }
-
-  function skipReveal() {
-    if (revealing) finishReveal();
-  }
-
-  skipHint.addEventListener("click", skipReveal);
-  document.getElementById("journalWindow").addEventListener("click", function (e) {
-    if (e.target === skipHint) return;
-    skipReveal();
   });
 
-  function startProcessing() {
-    demoResult.classList.add("active");
-    resultGrid.style.display = "none";
-    loadingBox.style.display = "block";
-    infoPanel.classList.remove("show");
-    journalTotal.textContent = "¥0";
-    buildRows();
-    skipHint.style.display = "block";
-
-    setTimeout(function () {
-      loadingBox.style.display = "none";
-      resultGrid.style.display = "grid";
-      revealIndex = 0;
-      revealing = true;
-      revealNext();
-      demoResult.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 1500);
-  }
-
-  readBtn.addEventListener("click", function () {
-    readBtn.disabled = true;
-    startProcessing();
-    setTimeout(function () { readBtn.disabled = false; }, 1600);
+  btnConfirm.addEventListener('click', function () {
+    if (!aiDone) return;
+    ROWS.forEach(function (r) { r.conf = 'done'; });
+    btnConfirm.disabled = true;
+    footHint.textContent = '✓ 3件すべて仕訳確定 — 行が緑になりました';
+    renderGrid();
   });
 
-  reselectLink.addEventListener("click", function () {
-    if (revealing) { revealing = false; if (revealTimer) clearTimeout(revealTimer); }
-    demoResult.classList.remove("active");
-    resultGrid.style.display = "none";
-    infoPanel.classList.remove("show");
-    document.getElementById("demo").scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-
-  csvBtn.addEventListener("click", function () {
-    var header = ["取引日", "勘定科目", "税区分", "金額", "摘要", "取引先", "支払方法"];
-    var rows = [header.join(",")];
-    ENTRIES.forEach(function (e) {
-      var payMethod = e.shop === "炭火居酒屋 灯り 神田店" ? "クレジットカード" : "現金";
-      var cols = [e.date, e.account, e.taxCat, e.amount, e.memo, e.shop, payMethod];
-      rows.push(cols.map(function (v) {
-        return "\"" + String(v).replace(/"/g, "\"\"") + "\"";
-      }).join(","));
-    });
-    var csv = "﻿" + rows.join("\r\n");
-    var blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    a.download = "receipt_journal_sample.csv";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
-  });
+  renderGrid();
 })();
 </script>
-
 </body>
 </html>

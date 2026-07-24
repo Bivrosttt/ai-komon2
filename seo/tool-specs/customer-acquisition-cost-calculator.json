@@ -1,0 +1,24 @@
+{
+  "keyword": "顧客獲得単価 計算",
+  "slug": "customer-acquisition-cost-calculator",
+  "title": "顧客獲得単価計算機",
+  "description": "マーケティング費用と営業費用、新規顧客数から、顧客獲得単価を分解して計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "marketingCost", "label": "マーケティング費用（円）", "default": 200000, "step": 10000},
+    {"id": "salesCost", "label": "営業費用（円）", "default": 100000, "step": 10000},
+    {"id": "newCustomers", "label": "新規顧客数（人）", "default": 20, "step": 1}
+  ],
+  "results": [
+    {"id": "blended-cac", "label": "顧客獲得単価（合算）", "unit": "円／人", "formula": "(marketingCost + salesCost) / newCustomers"},
+    {"id": "marketing-cac", "label": "マーケティング分の単価", "unit": "円／人", "formula": "marketingCost / newCustomers"},
+    {"id": "sales-cac", "label": "営業分の単価", "unit": "円／人", "formula": "salesCost / newCustomers"}
+  ],
+  "explanations": ["マーケティング費用と営業費用を分けて入力し、合算のCACと内訳を比較します。", "期間・チャネル・成果地点を揃え、制作費や人件費をどこまで含めるかを決めてから施策間で比較してください。"],
+  "related_tools": [
+    {"label": "営業成約率計算機", "url": "/tools/sales-conversion-calculator/", "description": "商談から受注に進む割合を確認します。"},
+    {"label": "粗利率計算機", "url": "/tools/gross-margin-calculator/", "description": "売上に対して残る粗利の割合を確認します。"}
+  ],
+  "cta": {"label": "集客の採算を相談する", "url": "/diagnosis.html"}
+}

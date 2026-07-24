@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ | AI顧問室</title>
+  <meta name="description" content="中小企業のAI導入の進め方を30日ロードマップで解説。対象業務、確認者、効果測定、社内ルール、失敗時の戻し方まで実務順に整理します。">
+  <link rel="canonical" href="https://ai-komon.bivrost.co.jp/articles/ai-introduction-roadmap/"><meta property="og:type" content="article"><meta property="og:site_name" content="AI顧問室"><meta property="og:title" content="中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ | AI顧問室"><meta property="og:description" content="AI導入を小さく試して、効果測定と社内ルールにつなげる30日ロードマップです。"><meta property="og:url" content="https://ai-komon.bivrost.co.jp/articles/ai-introduction-roadmap/"><meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png"><meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ","description":"AI導入を小さく試して、効果測定と社内ルールにつなげる30日ロードマップです。","image":"https://ai-komon.bivrost.co.jp/assets/ogp.png","datePublished":"2026-07-12","dateModified":"2026-07-13","author":{"@type":"Organization","name":"AI顧問室"},"publisher":{"@type":"Organization","name":"AI顧問室"},"mainEntityOfPage":"https://ai-komon.bivrost.co.jp/articles/ai-introduction-roadmap/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"AI導入は何から始めるべきですか？","acceptedAnswer":{"@type":"Answer","text":"全社導入ではなく、入力と出力が決まっていて、人が確認できる業務を1つ選びます。現状の時間、回数、ミスを測ってから30日間試すと判断しやすくなります。"}},{"@type":"Question","name":"AI導入の効果はどう測定しますか？","acceptedAnswer":{"@type":"Answer","text":"削減時間だけでなく、再作業、確認時間、品質、利用率を導入前後で比べます。期待値ではなく、同じ業務を同じ条件で複数回測ることが重要です。"}}]}</script>
+  <link rel="stylesheet" href="../../assets/articles/article.css?v=20260713-responsive"></head>
+<body><main><nav class="breadcrumb" aria-label="パンくず"><a href="/">AI顧問室</a> / <a href="/articles/business-efficiency-ideas/">業務効率化のアイデア</a> / AI導入の進め方</nav><article>
+  <p class="eyebrow">AI IMPLEMENTATION / 30-DAY ROADMAP</p><h1>中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ</h1><p class="dek">AI導入は、ツールを契約した日から始まるわけではありません。対象業務、確認者、測定方法を決め、小さな試行で自社に合う使い方を見つけるプロセスです。</p><p class="meta">公開日: 2026年7月12日　更新日: 2026年7月13日　|　AI顧問室 編集部</p>
+  <div class="hero-visual"><span class="hero-kicker">AI KOMONSHITSU / IMPLEMENTATION GUIDE</span><span class="hero-title">30日で「使えるか」を確かめてから、広げる。</span><div class="hero-badges"><span>選ぶ</span><span>試す</span><span>測る</span><span>定着</span></div></div>
+  <div class="answer"><strong>先に結論：</strong>中小企業のAI導入は、1週目に対象業務を決め、2週目に安全な条件で試し、3週目に時間と品質を測り、4週目にルールと次の範囲を決めます。全社展開や高額な開発は、試行結果が出てから判断します。</div>
+  <div class="key-points"><strong>この記事の要点</strong><ul><li>導入の初手はツール選びではなく、対象業務・確認者・測定方法の決定です。</li><li>最初の30日は、使えるかを判断する試行期間。全社展開の完了を目指しません。</li><li>安全性・再現性・測定結果の3つがそろった範囲だけ、次の部署や業務へ広げます。</li></ul></div>
+  <figure><img src="../../assets/articles/diagrams/ai-introduction-roadmap-diagram.png" alt="対象業務の選定、小さな試行、効果測定、定着と拡張を4段階で進めるロードマップ図解" width="1672" height="941" loading="lazy"><figcaption>AI導入は、対象を選び、試し、測り、再現できてから広げる。</figcaption></figure>
+  <div class="toc"><strong>この記事の目次</strong><ol><li><a href="#before">導入前に決める3つ</a></li><li><a href="#roadmap">30日ロードマップ</a></li><li><a href="#measure">効果測定の方法</a></li><li><a href="#expand">定着・拡張の条件</a></li><li><a href="#example">最初に選ぶ業務の例</a></li><li><a href="#failure">失敗時に戻る設計</a></li></ol></div>
+  <h2 id="before">AI導入前に「対象・責任者・測定」を決める</h2><p>AI導入が止まる原因は、ツールの性能だけではありません。何に使うか、誰が確認するか、成功をどう測るかが曖昧なまま始めると、便利さの感想だけが残ります。中小企業基盤整備機構の2026年3月調査でも、AI導入の阻害要因として高コスト46.9％、社内ノウハウ不足42.0％が挙げられています。最初に次の3つを一枚に書きます。</p><div class="steps"><div class="step"><b>01 / 対象</b><h3>1つの業務</h3><p>定型で、入力と出力が確認できる業務を選ぶ。</p></div><div class="step"><b>02 / 責任</b><h3>1人の確認者</h3><p>公開・送信・登録前に見る担当者を置く。</p></div><div class="step"><b>03 / 指標</b><h3>導入前の数字</h3><p>時間、回数、ミス、再作業を測る。</p></div></div><p>候補を探すときは<a href="/articles/business-efficiency-ideas/">業務効率化のアイデア</a>の3条件も使えます。最初から複雑な判断業務を選ばないことが、導入のスピードを上げます。</p>
+  <h2 id="roadmap">中小企業向け30日ロードマップ</h2><div class="table-scroll"><table><thead><tr><th>期間</th><th>やること</th><th>成果物</th></tr></thead><tbody><tr><th>1〜7日</th><td>業務の棚卸し、目的、対象データ、確認者を決める</td><td>試行シート・リスク確認</td></tr><tr><th>8〜14日</th><td>安全なサンプルで試し、出力と修正を記録する</td><td>手順の初稿・事例</td></tr><tr><th>15〜21日</th><td>現行方法と比較し、時間・品質・再作業を測る</td><td>効果測定表</td></tr><tr><th>22〜30日</th><td>利用ルール、対象範囲、次の改善を決める</td><td>運用ルール・継続判断</td></tr></tbody></table></div><p>この順番なら、試行中に見つかった誤回答や入力禁止情報を、<a href="/articles/generative-ai-internal-rules/">社内利用ルール</a>へ反映できます。</p>
+  <h2 id="measure">効果は「時間」だけでなく品質と確認負担で測る</h2><p>AI導入の効果は、作成時間が短くなったかだけで判断しません。出力を確認・修正する時間、差し戻し、顧客への誤送信、利用者が手順を守れたかも含めます。現行方法とAI補助後で、同じ形式の仕事を比較してください。</p><ol><li>1件あたりの作業時間</li><li>確認・修正にかかった時間</li><li>差し戻しや再作業の回数</li><li>担当者が使い続けられた割合</li><li>入力禁止情報や例外が発生した回数</li></ol><p>金額換算や回収期間まで見たい場合は、<a href="/articles/ai-roi/">AI導入の費用対効果</a>で計算方法を分けて確認します。</p>
+  <h2 id="expand">定着・拡張は「再現できるか」で判断する</h2><p>試行がうまくいっても、担当者の経験だけで成立しているなら、全社展開には早すぎます。入力例、プロンプトや手順、確認項目、困ったときの連絡先を残し、別の人でも同じ品質で使えるかを確認します。</p><p>拡張するときは、似た業務を1つずつ追加します。部署を一度に増やすのではなく、同じ確認ルールが使える範囲から始めると、教育と監査の負担を抑えられます。</p>
+  <h2 id="example">最初のテーマは「確認しやすい定型業務」から選ぶ</h2>
+  <p>最初の試行には、入力と出力が比較的決まっていて、担当者が結果を確認できる業務が向きます。文章の下書き、問い合わせの分類、議事録の整理、社内FAQの検索などは、現行方法とAI補助後を比べやすいテーマです。顧客との最終交渉や採用判断のように、人の判断が中心の業務は、補助範囲を小さく切ります。</p>
+  <div class="table-scroll"><table><thead><tr><th>候補</th><th>最初に任せる範囲</th><th>人が確定する範囲</th></tr></thead><tbody><tr><th>議事録</th><td>文字起こしの整理、決定事項の候補抽出</td><td>発言者、決定内容、期限、担当者</td></tr><tr><th>問い合わせ</th><td>質問の分類、FAQ候補の提示</td><td>回答の正しさ、個別事情、返信送信</td></tr><tr><th>提案書</th><td>構成案、過去資料の整理、下書き</td><td>価格、契約条件、顧客向け表現</td></tr></tbody></table></div>
+  <p>この切り分けを先に決めると、「AIに任せるか、任せないか」という二択ではなく、工程ごとの確認責任を設計できます。</p>
+  <h2 id="failure">失敗したときに戻れる設計を先に置く</h2>
+  <p>AI導入の試行では、誤回答や確認工数の増加が起こります。失敗を隠して継続するのではなく、停止条件と戻し方を決めておくことが重要です。たとえば、誤送信につながる出力、入力禁止情報の混入、現行より確認時間が長い状態が続いた場合は、対象を狭めて手順を修正します。</p>
+  <ol><li><strong>止める：</strong>自動送信・自動登録を解除し、人の承認を必須にする。</li><li><strong>分ける：</strong>入力、指示、出力、確認のどこで問題が起きたか記録する。</li><li><strong>戻す：</strong>現行手順へ戻し、修正版を少数のサンプルで再試行する。</li><li><strong>残す：</strong>失敗例と修正理由を手順書・社内ルールへ反映する。</li></ol>
+  <p>試行を止めることは導入失敗ではありません。原因を特定し、同じ条件で再測定できる状態へ戻せれば、次の判断に使えるデータになります。</p>
+  <h2 id="sheet">30日試行で残すべき記録</h2>
+  <p>試行の成果物は、成功談ではなく、次の人が再現できる作業シートです。対象業務、入力できる情報、使った手順、確認項目、修正例、現行方法との時間差、例外時の戻し先を一枚にまとめます。</p>
+  <div class="table-scroll"><table><thead><tr><th>週</th><th>残す記録</th><th>判断に使う問い</th></tr></thead><tbody><tr><th>1週目</th><td>対象業務と現状工数</td><td>本当に繰り返しが多いか</td></tr><tr><th>2週目</th><td>入力例と誤り・修正例</td><td>誰が確認すれば安全か</td></tr><tr><th>3週目</th><td>時間、品質、差し戻し</td><td>現行方法より良くなったか</td></tr><tr><th>4週目</th><td>ルールと再現手順</td><td>別の担当者でも使えるか</td></tr></tbody></table></div>
+  <h2 id="gate">全社展開前に3つのゲートを通す</h2>
+  <p>全社展開は、効果が出たという感想だけで決めません。安全性、再現性、経済性を順に確認します。どれか一つでも未確認なら、対象を広げず、試行範囲の修正へ戻します。</p>
+  <p><a href="/articles/ai-introduction-risk/">AI導入のリスク</a>で入力・権限・停止条件を確認し、<a href="/articles/ai-roi/">費用対効果</a>で実測値を更新してから、次の部署や業務へ進めます。</p>
+  <h2 id="owner">30日試行の役割を先に割り当てる</h2>
+  <p>小さな試行でも、業務責任者、利用者、確認者、情報管理の相談先を分けます。1人が全部を持つと、便利さと安全性の判断が混ざり、問題が起きたときに止めにくくなります。</p>
+  <div class="table-scroll"><table><thead><tr><th>役割</th><th>担当すること</th><th>残すもの</th></tr></thead><tbody><tr><th>業務責任者</th><td>対象業務と成功条件を決める</td><td>業務シート</td></tr><tr><th>利用者</th><td>現行とAI補助を比べる</td><td>修正例・例外</td></tr><tr><th>確認者</th><td>公開・送信・登録を承認する</td><td>チェック結果</td></tr><tr><th>相談先</th><td>情報・契約・事故を確認する</td><td>ルール改訂</td></tr></tbody></table></div>
+  <h2 id="continue">継続・停止・再設計の条件を決める</h2>
+  <p>試行の最後に、続ける条件だけでなく、停止や再設計の条件も決めます。確認時間が削減時間を上回る、入力禁止情報が混ざる、利用者が手順を守れない場合は、対象を広げずに業務やルールを見直します。</p>
+  <p>AI導入は一度の成功で完了しません。<a href="/articles/generative-ai-internal-rules/">社内利用ルール</a>と<a href="/articles/ai-introduction-risk/">リスク確認</a>を更新し、次の試行へ学びを渡せることが、30日ロードマップの成果です。</p>
+  <div class="sources"><strong>導入設計の参考資料</strong><ul><li><a href="https://www.smrj.go.jp/research_case/questionnaire/fbrion0000002pjw-att/202603_AI_report.pdf" rel="noopener">中小企業基盤整備機構「中小企業のAI等の利活用に係る実態調査」</a>（2026年3月公表・2026年7月13日確認）</li><li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/" rel="noopener">経済産業省 AI事業者ガイドライン検討会</a></li><li><a href="https://www.ipa.go.jp/digital/ai/transformation.html" rel="noopener">IPA AIの利活用、AIによるDXの推進</a></li></ul></div>
+  <h2 id="weekly">週次レビューで試行を修正する</h2>
+  <p>30日間を最後に一度だけ評価すると、どの週で詰まったか分かりません。毎週、作業時間、修正、例外、利用者の困りごとを確認し、翌週の手順へ反映します。</p>
+  <ul><li>第1週は対象と入力範囲</li><li>第2週は出力と修正箇所</li><li>第3週は時間と品質</li><li>第4週は再現性と継続条件</li></ul>
+  <p>試行の途中で課題が見つかることは失敗ではありません。原因が入力、手順、確認者、ツールのどこにあるかを分け、同じ条件で再度測れる状態に戻すことが大切です。</p>
+  <div class="tool-cta service-cta"><h2>AI導入の相談はサービスから</h2><p>AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。</p><a class="button" href="../../#service">AI顧問室のサービスを見る</a></div>
+  <h2>よくある質問</h2><details><summary>AI導入に専門部署は必要ですか？</summary><p>最初の試行に大きな専門部署は必須ではありません。ただし、業務責任者、情報管理の相談先、出力確認者は必要です。外部支援を使う場合も、社内の最終責任者を置きます。</p></details><details><summary>30日で導入完了できますか？</summary><p>30日で全社展開するのではなく、使えるかを判断する試行を完了させる想定です。業務・契約・データの確認に時間がかかる場合は、期間を延ばして安全性を優先します。</p></details><details><summary>AI導入の対象業務はどう選びますか？</summary><p>繰り返しが多く、入力と出力が比較的決まっていて、人が結果を確認できる業務から選びます。顧客への最終回答や採用判断など、責任判断が重い業務は、分類や下書きなど補助工程に限定します。</p></details><details><summary>効果が出ないときはどうしますか？</summary><p>導入を続ける前に、入力、指示、出力、確認のどこで時間や品質が悪化したかを分けます。現行手順へ戻れる状態を保ち、対象範囲を狭めて再測定します。停止条件を決めておくと、感覚で継続せずに済みます。</p></details>
+  <h2>次に読む・使う</h2><div class="related"><a href="/articles/ai-introduction-risk/"><strong>AI導入のリスク</strong><span>入力・出力・権限を先に確認</span></a><a href="/articles/ai-roi/"><strong>AI導入の費用対効果</strong><span>削減時間を金額に換算</span></a><a href="/diagnosis.html"><strong>AI活用レベル診断</strong><span>導入前の現在地を確認</span></a></div>
+  </article><footer><a href="/">AI顧問室</a> / <a href="/tools/">無料ツール</a> / <a href="/privacy.html">プライバシーポリシー</a></footer>
+</main></body></html>

@@ -1,0 +1,20 @@
+{
+  "keyword": "作業時間 計算",
+  "slug": "task-time-calculator",
+  "title": "タスク時間計算機",
+  "description": "タスク数・1件あたりの作業時間・やり直し率から、必要な総作業時間を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "taskCount", "label": "タスク件数", "default": 30, "step": 1},
+    {"id": "minutesPerTask", "label": "1件の作業時間（分）", "default": 20, "step": 1},
+    {"id": "reworkRate", "label": "やり直し率（%）", "default": 10, "step": 1}
+  ],
+  "result": {"label": "必要な総作業時間", "unit": "時間", "formula": "taskCount * minutesPerTask / 60 * (1 + reworkRate / 100)"},
+  "explanations": ["件数だけでなく、1件あたりの時間とやり直しを含めて、作業量を見積もります。", "最初は実測値を取り、平均時間とやり直し率を更新すると計画の精度が上がります。"],
+  "related_tools": [
+    {"label": "チーム稼働キャパシティ計算機", "url": "/tools/project-capacity-planner/", "description": "チームで使える残り時間を確認します。"},
+    {"label": "タスク優先度スコア計算機", "url": "/tools/task-priority-score/", "description": "限られた時間で先にやるタスクを整理します。"}
+  ],
+  "cta": {"label": "業務時間の削減を相談する", "url": "/diagnosis.html"}
+}

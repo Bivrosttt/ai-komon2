@@ -1,0 +1,689 @@
+<!-- 2026-07-23: C案補強 — 証拠帯・使い所・隣の実物・lab導線を追加（本体UI維持）／追客メールをDayレーン壁の道具に作り直し ／ラベル日本語化／似た90日帯／90日帯を入口から外す-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>追客タイムライン壁（BtoB営業メール）｜AI顧問室</title>
+<meta name="description" content="クラウド在庫管理SaaS「StockPilot」の追客メールを、Day3/7/14のタイムライン壁で組み立てるデモ。商談メモからAIパーソナライズ文を生成し、Before/Afterを比較。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="追客タイムライン壁（BtoB営業メール）｜AI顧問室">
+<meta property="og:description" content="商談メモ起点でDay3/7/14の追客文を生成。タイムライン壁で送信状態を進めるインタラクティブデモ。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-sales-mail.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-sales-mail.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #061528; --navy-mid: #15325C;
+    --gold: #C9A227; --gold-soft: rgba(201,162,39,.14); --gold-line: rgba(201,162,39,.35);
+    --teal: #0E7490; --teal-soft: rgba(14,116,144,.18); --teal-line: rgba(45,212,191,.35);
+    --ink: #F8FAFC; --gray: #94A3B8; --gray-soft: #64748B;
+    --line: rgba(148,163,184,.18); --card: #132743; --card-border: rgba(14,116,144,.25);
+    --highlight: rgba(251,191,36,.22); --highlight-border: #E8C547;
+    --sent: #34D399; --draft: #FBBF24;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7;
+    background: var(--navy-deep); -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Noto Serif JP', serif; line-height: 1.45; font-weight: 700; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  input, textarea { font-family: inherit; }
+  ::selection { background: var(--gold-soft); color: var(--ink); }
+
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: var(--navy-deep); color: #CBD5E1; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 2px solid var(--teal);
+  }
+  .demo-frame-bar b { color: #5EEAD4; font-weight: 700; }
+  .demo-frame-bar .frame-links { display: flex; gap: 8px; flex: 0 0 auto; align-items: center; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 4px; white-space: nowrap;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.1); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
+
+  .app-shell { min-height: calc(100vh - 44px); display: flex; flex-direction: column; }
+
+  .app-top {
+    flex: 0 0 auto; background: rgba(6,21,40,.96); border-bottom: 2px solid var(--gold);
+    padding: 12px 20px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    position: sticky; top: 44px; z-index: 80;
+  }
+  .brand .k { font-size: 17px; color: var(--gold); letter-spacing: .06em; }
+  .brand .tag { font-size: 9px; color: var(--gray-soft); letter-spacing: .14em; font-family: 'IBM Plex Mono', monospace; display: block; }
+  .top-meta { flex: 1; font-size: 12px; color: var(--gray); min-width: 180px; }
+  .top-meta strong { color: var(--ink); }
+
+  .memo-panel {
+    margin: 16px 16px 0; background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 10px; overflow: hidden;
+  }
+  .memo-head {
+    padding: 12px 16px; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    background: rgba(6,21,40,.55);
+  }
+  .memo-head h2 { font-size: 14px; color: #5EEAD4; }
+  .memo-head span { font-size: 10px; color: var(--gray-soft); letter-spacing: .1em; font-family: 'IBM Plex Mono', monospace; }
+  .memo-body { padding: 14px 16px 16px; }
+  .memo-area {
+    width: 100%; min-height: 88px; resize: vertical; background: var(--navy-deep);
+    border: 1px solid var(--line); border-radius: 6px; color: var(--ink); font-size: 13px;
+    line-height: 1.8; padding: 12px;
+  }
+  .memo-area:focus { outline: 2px solid var(--teal-line); border-color: var(--teal); }
+  .memo-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .memo-chip {
+    font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
+    background: var(--teal-soft); border: 1px solid var(--teal-line); color: #99F6E4;
+  }
+
+  .timeline-wall {
+    flex: 1; padding: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    align-items: start;
+  }
+  .lane {
+    background: var(--card); border: 1px solid var(--card-border); border-radius: 10px;
+    min-height: 320px; display: flex; flex-direction: column; overflow: hidden;
+  }
+  .lane-head {
+    padding: 12px 14px; border-bottom: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(14,116,144,.15), transparent);
+  }
+  .lane-head .day { font-size: 22px; font-weight: 700; color: var(--gold); font-family: 'IBM Plex Mono', monospace; }
+  .lane-head .role { font-size: 11.5px; color: var(--gray); margin-top: 2px; }
+  .lane-body { padding: 12px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+
+  .mail-card {
+    background: var(--navy-deep); border: 1px solid var(--line); border-radius: 8px;
+    padding: 12px; cursor: pointer; transition: border-color .15s, box-shadow .15s;
+    position: relative;
+  }
+  .mail-card:hover { border-color: var(--teal-line); }
+  .mail-card.expanded-focus { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold-line); }
+  .mail-card.sent { border-left: 3px solid var(--sent); opacity: .85; }
+  .mail-card .status {
+    position: absolute; top: 10px; right: 10px; font-size: 9px; font-weight: 700;
+    padding: 2px 7px; border-radius: 999px; letter-spacing: .04em;
+  }
+  .mail-card .status.draft { background: rgba(251,191,36,.15); color: var(--draft); border: 1px solid rgba(251,191,36,.35); }
+  .mail-card .status.ready { background: var(--teal-soft); color: #5EEAD4; border: 1px solid var(--teal-line); }
+  .mail-card .status.sent { background: rgba(52,211,153,.12); color: var(--sent); border: 1px solid rgba(52,211,153,.35); }
+  .mail-card .subject { font-size: 12.5px; font-weight: 700; color: var(--ink); margin-bottom: 6px; padding-right: 52px; line-height: 1.45; }
+  .mail-card .preview { font-size: 11px; color: var(--gray); line-height: 1.6; max-height: 3.2em; overflow: hidden; }
+  .mail-card .preview .hl { background: var(--highlight); border-bottom: 1px solid var(--highlight-border); padding: 0 1px; border-radius: 2px; color: var(--ink); }
+
+  .card-actions { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  .btn-sm {
+    font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 5px; min-height: 36px;
+    border: 1px solid var(--line); background: rgba(255,255,255,.04); color: var(--ink);
+  }
+  .btn-sm:hover { border-color: var(--teal-line); }
+  .btn-sm.primary { background: var(--teal); color: #fff; border-color: var(--teal); }
+  .btn-sm.gold { background: var(--gold); color: var(--navy-deep); border-color: var(--gold); }
+  .btn-sm:disabled { opacity: .45; cursor: not-allowed; }
+
+  .toggle-row { display: flex; gap: 4px; margin-top: 8px; }
+  .toggle-btn {
+    flex: 1; font-size: 10px; font-weight: 700; padding: 5px; border-radius: 4px;
+    border: 1px solid var(--line); color: var(--gray); text-align: center;
+  }
+  .toggle-btn.active-before { background: rgba(148,163,184,.12); color: var(--gray); border-color: var(--line); }
+  .toggle-btn.active-after { background: var(--gold-soft); color: var(--gold); border-color: var(--gold-line); }
+
+  .lane-progress {
+    margin-top: auto; padding-top: 10px; font-size: 10px; color: var(--gray-soft);
+    border-top: 1px dashed var(--line); font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .editor-sheet {
+    position: fixed; inset: 0; z-index: 950; background: rgba(6,21,40,.72);
+    display: flex; align-items: flex-end; justify-content: center; padding: 16px;
+    opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s;
+  }
+  .editor-sheet.open { opacity: 1; visibility: visible; }
+  .editor-panel {
+    width: 100%; max-width: 640px; max-height: 85vh; background: var(--card);
+    border: 1px solid var(--gold-line); border-radius: 12px 12px 8px 8px;
+    display: flex; flex-direction: column; transform: translateY(24px);
+    transition: transform .25s;
+  }
+  .editor-sheet.open .editor-panel { transform: none; }
+  .editor-head {
+    padding: 14px 18px; border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+  }
+  .editor-head h3 { font-size: 15px; color: var(--gold); }
+  .editor-head p { font-size: 11px; color: var(--gray); margin-top: 4px; }
+  .editor-close {
+    width: 36px; height: 36px; border-radius: 6px; border: 1px solid var(--line);
+    display: grid; place-items: center; flex-shrink: 0;
+  }
+  .editor-body { padding: 16px 18px; overflow-y: auto; flex: 1; }
+  .editor-subject {
+    width: 100%; padding: 10px 12px; border-radius: 6px; border: 1px solid var(--line);
+    background: var(--navy-deep); color: var(--ink); font-size: 13px; font-weight: 700; margin-bottom: 12px;
+  }
+  .editor-text {
+    width: 100%; min-height: 220px; resize: vertical; padding: 12px; border-radius: 6px;
+    border: 1px solid var(--line); background: var(--navy-deep); color: var(--ink);
+    font-size: 13px; line-height: 1.9;
+  }
+  .editor-foot {
+    padding: 12px 18px 16px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+  }
+  .editor-note { font-size: 10.5px; color: var(--gray-soft); }
+  .hl { background: var(--highlight); border-bottom: 1px solid var(--highlight-border); padding: 0 2px; border-radius: 2px; }
+
+  .komon-cta {
+    background: linear-gradient(155deg, var(--navy-deep), var(--navy)); text-align: center;
+    padding: 56px 24px 40px; border-top: 1px solid var(--line);
+  }
+  .komon-cta .cta-label { font-size: 10px; letter-spacing: .22em; color: var(--gold); font-weight: 700; }
+  .komon-cta h2 { font-size: clamp(22px, 4vw, 28px); margin: 12px 0; color: var(--ink); }
+  .komon-cta h2 em { font-style: normal; color: #5EEAD4; }
+  .komon-cta p { font-size: 14px; color: var(--gray); max-width: 520px; margin: 0 auto 24px; }
+  .komon-cta .btn {
+    display: inline-block; padding: 14px 36px; border-radius: 6px; background: var(--gold);
+    color: var(--navy-deep); font-weight: 700; font-size: 15px;
+  }
+  .komon-cta .foot { margin-top: 20px; font-size: 12px; color: var(--gray-soft); }
+
+  .proof-band, .context-band { max-width: 1120px; margin: 0 auto; }
+  .proof-band { padding: 14px 16px; background: var(--navy); border-bottom: 1px solid var(--teal-line); color: var(--gray); font-size: 12.5px; }
+  .proof-band strong { color: #5EEAD4; margin-right: 8px; }
+  .context-band { padding: 32px 16px; background: var(--navy-deep); }
+  .context-kicker { color: #5EEAD4; font: 700 10px 'IBM Plex Mono', monospace; letter-spacing: .16em; }
+  .fit-chips, .neighbor-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .fit-chip { border: 1px solid var(--teal-line); border-radius: 999px; color: #99F6E4; padding: 4px 10px; font-size: 11px; }
+  .neighbor-grid { margin-top: 12px; }
+  .neighbor-card { flex: 1 1 190px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 7px; background: var(--card); }
+  .neighbor-card:hover { border-color: #5EEAD4; }
+  .neighbor-card b { display: block; color: var(--ink); font-size: 13px; }
+  .neighbor-card span { color: var(--gray); font-size: 11px; }
+  .cta-lab { display: inline-block; margin-top: 12px; color: #5EEAD4; font-size: 12px; text-decoration: underline; }
+
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: var(--card); border: 1px solid var(--teal-line); color: var(--ink);
+    padding: 10px 18px; border-radius: 8px; font-size: 13px; z-index: 960;
+    transition: transform .3s; pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 900px) {
+    .timeline-wall { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; height: 52px; flex-wrap: wrap; padding: 6px 12px; }
+    body { padding-top: 52px; }
+    .app-top { top: 52px; }
+    .editor-sheet { padding: 0; align-items: stretch; }
+    .editor-panel { max-height: 100vh; border-radius: 0; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> のサンプル成果物デモです。架空SaaS「StockPilot」×見込み客「ミライ物流」の追客タイムラインです。</span>
+  <div class="frame-links">
+    <a href="lab.html#craft" class="frame-link">実物ラボ</a>
+    <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+  </div>
+</div>
+
+<div class="proof-band"><strong>ここが証拠</strong>商談メモを起点に、Day3・7・14の追客を生成・比較・送信まで進められる営業運用の実物です。</div>
+
+<div class="app-shell">
+  <header class="app-top">
+    <div class="brand">
+      <div class="k">FOLLOW-UP WALL</div>
+      <span class="tag">DAY3 · DAY7 · DAY14</span>
+    </div>
+    <div class="top-meta">
+      <strong>株式会社ミライ物流</strong> 物流管理部 佐藤 健太 様<br>
+      商材：StockPilot（クラウド在庫管理SaaS）｜デモ日：7/5
+    </div>
+  </header>
+
+  <section class="memo-panel" aria-label="商談メモ">
+    <div class="memo-head">
+      <h2>商談メモ</h2>
+      <span>DEAL MEMO · EDITABLE</span>
+    </div>
+    <div class="memo-body">
+      <textarea class="memo-area" id="dealMemo" aria-label="商談メモ">7/5 オンラインデモ（佐藤様・物流管理部3名）
+・川崎・名古屋・福岡の3拠点、在庫はExcel分散管理
+・拠点間移動が見えにくい／月末棚卸に丸2日
+・既存WMS LogiTrack、API連携タイミングが論点
+・基幹オーダーワンとの連携も確認したい
+・比較検討中（A社・B社含む）</textarea>
+      <div class="memo-chips">
+        <span class="memo-chip">3拠点</span>
+        <span class="memo-chip">棚卸2日</span>
+        <span class="memo-chip">LogiTrack</span>
+        <span class="memo-chip">比較検討中</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="timeline-wall" id="timelineWall">
+    <div class="lane" data-day="day3">
+      <div class="lane-head">
+        <div class="day">Day 3</div>
+        <div class="role">デモのお礼 ＋ 論点の再確認</div>
+      </div>
+      <div class="lane-body">
+        <article class="mail-card" id="card-day3" data-day="day3">
+          <span class="status draft" id="status-day3">未生成</span>
+          <div class="subject" id="subj-day3">Re: StockPilot ご提案の件</div>
+          <div class="preview" id="prev-day3">テンプレ文を選択して「生成」を押してください。</div>
+          <div class="toggle-row" id="toggle-day3" hidden>
+            <span class="toggle-btn active-before" data-side="before">Before</span>
+            <span class="toggle-btn" data-side="after">After</span>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-sm primary" data-gen="day3">生成</button>
+            <button type="button" class="btn-sm" data-open="day3" disabled>編集</button>
+            <button type="button" class="btn-sm gold" data-send="day3" disabled>送信（デモ）</button>
+          </div>
+        </article>
+        <div class="lane-progress" id="prog-day3">状態：待機中</div>
+      </div>
+    </div>
+
+    <div class="lane" data-day="day7">
+      <div class="lane-head">
+        <div class="day">Day 7</div>
+        <div class="role">障壁整理 ＋ 同業事例</div>
+      </div>
+      <div class="lane-body">
+        <article class="mail-card" id="card-day7" data-day="day7">
+          <span class="status draft" id="status-day7">ロック</span>
+          <div class="subject" id="subj-day7">—</div>
+          <div class="preview" id="prev-day7">Day3送信後に解放されます。</div>
+          <div class="toggle-row" id="toggle-day7" hidden>
+            <span class="toggle-btn active-before" data-side="before">Before</span>
+            <span class="toggle-btn" data-side="after">After</span>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-sm primary" data-gen="day7" disabled>生成</button>
+            <button type="button" class="btn-sm" data-open="day7" disabled>編集</button>
+            <button type="button" class="btn-sm gold" data-send="day7" disabled>送信（デモ）</button>
+          </div>
+        </article>
+        <div class="lane-progress" id="prog-day7">状態：Day3待ち</div>
+      </div>
+    </div>
+
+    <div class="lane" data-day="day14">
+      <div class="lane-head">
+        <div class="day">Day 14</div>
+        <div class="role">具体オファー ＋ 期限付きCTA</div>
+      </div>
+      <div class="lane-body">
+        <article class="mail-card" id="card-day14" data-day="day14">
+          <span class="status draft" id="status-day14">ロック</span>
+          <div class="subject" id="subj-day14">—</div>
+          <div class="preview" id="prev-day14">Day7送信後に解放されます。</div>
+          <div class="toggle-row" id="toggle-day14" hidden>
+            <span class="toggle-btn active-before" data-side="before">Before</span>
+            <span class="toggle-btn" data-side="after">After</span>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn-sm primary" data-gen="day14" disabled>生成</button>
+            <button type="button" class="btn-sm" data-open="day14" disabled>編集</button>
+            <button type="button" class="btn-sm gold" data-send="day14" disabled>送信（デモ）</button>
+          </div>
+        </article>
+        <div class="lane-progress" id="prog-day14">状態：Day7待ち</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="context-band" aria-label="追客メールの使い所と関連成果物">
+  <div class="context-kicker">使い所</div>
+  <div class="fit-chips">
+    <span class="fit-chip">商談後フォロー</span><span class="fit-chip">営業育成</span><span class="fit-chip">CRM定着</span><span class="fit-chip">失注掘り起こし</span>
+  </div>
+  <div class="context-kicker" style="margin-top:24px;">隣の実物</div>
+  <div class="neighbor-grid">
+    <a class="neighbor-card" href="works-btob-proposal.html"><b>BtoB提案書キャンバス</b><span>商談の論点を提案構成へ変える実物</span></a>
+    <a class="neighbor-card" href="works-slides.html"><b>スライド制作</b><span>伝える資料を組み立てる実物</span></a>
+    <a class="neighbor-card" href="works-ai-service.html"><b>既存サービス + AI</b><span>リード体験を育てる実物</span></a>
+  </div>
+</section>
+
+<div class="editor-sheet" id="editorSheet" aria-hidden="true">
+  <div class="editor-panel" role="dialog" aria-labelledby="editorTitle">
+    <div class="editor-head">
+      <div>
+        <h3 id="editorTitle">メール編集</h3>
+        <p id="editorMeta">—</p>
+      </div>
+      <button type="button" class="editor-close" id="editorClose" aria-label="閉じる">✕</button>
+    </div>
+    <div class="editor-body">
+      <input type="text" class="editor-subject" id="editorSubject" aria-label="件名">
+      <textarea class="editor-text" id="editorBody" aria-label="本文"></textarea>
+    </div>
+    <div class="editor-foot">
+      <span class="editor-note">※ 送信前に担当者が事実関係を確認してください</span>
+      <button type="button" class="btn-sm gold" id="editorSave">下書きを反映</button>
+    </div>
+  </div>
+</div>
+
+<div class="komon-cta">
+  <span class="cta-label">AI KOMONSHITSU</span>
+  <h2>追客メールも、<em>タイムラインで進める。</em></h2>
+  <p>商談メモからDay3/7/14の下書きを生成。無料相談で御社の追客フロー設計をお話しします。</p>
+  <a href="index.html?from=works-sales-mail#contact" class="btn">同じ品質を相談する →</a>
+  <br><a href="lab.html#craft" class="cta-lab">実物ラボで他の成果物を見る →</a>
+  <p class="foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</p>
+</div>
+
+<div class="toast" id="toast" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var EMAILS = {
+    day3: {
+      role: 'Day3 — デモのお礼',
+      before: {
+        subject: 'Re: StockPilot（クラウド在庫管理SaaS）ご提案の件',
+        preview: '先日はお時間をいただき、ありがとうございました。StockPilotのご提案について、進捗いかがでしょうか。',
+        body: '株式会社ミライ物流\n物流管理部　佐藤 健太 様\n\nいつもお世話になっております。\n株式会社ネクストリンクスの田中です。\n\n先日はお時間をいただき、ありがとうございました。\n\nStockPilotのご提案について、進捗いかがでしょうか。ご検討のほど、何卒よろしくお願いいたします。\n\nご不明点等ございましたら、お気軽にお問い合わせください。\n\n株式会社ネクストリンクス\n営業部　田中 美咲'
+      },
+      after: {
+        subject: 'Re: 7/5デモのお礼｜3拠点在庫の可視化について',
+        preview: '7月5日のオンラインデモでは<span class="hl">川崎・名古屋・福岡の3拠点</span>の在庫状況を…',
+        body: '株式会社ミライ物流\n物流管理部　佐藤 健太 様\n\nいつもお世話になっております。\n株式会社ネクストリンクスの田中です。\n\n7月5日（金）のオンラインデモでは貴重なお時間をいただき、誠にありがとうございました。当日は川崎・名古屋・福岡の3拠点それぞれの在庫状況をリアルタイムで一覧できる画面をご覧いただき、「拠点間の在庫移動が見えにくい」というお話が印象に残っております。\n\nデモ後、社内でご確認いただく際に「既存の基幹システム（オーダーワン）との連携タイミング」が論点になりそうでしたので、補足資料としてAPI連携の概略図（PDF 2ページ）を添付いたします。\n\nもしよろしければ、来週7/15（火）11:00〜30分、物流管理部の皆様向けにQ&Aセッションを設定させていただけないでしょうか。\n\n株式会社ネクストリンクス\n営業部　田中 美咲',
+        bodyHtml: '株式会社ミライ物流\n物流管理部　佐藤 健太 様\n\nいつもお世話になっております。\n株式会社ネクストリンクスの田中です。\n\n<span class="hl">7月5日（金）のオンラインデモ</span>では貴重なお時間をいただき、誠にありがとうございました。当日は<span class="hl">川崎・名古屋・福岡の3拠点</span>それぞれの在庫状況をリアルタイムで一覧できる画面をご覧いただき、<span class="hl">「拠点間の在庫移動が見えにくい」</span>というお話が印象に残っております。\n\nデモ後、社内でご確認いただく際に<span class="hl">「既存の基幹システム（オーダーワン）との連携タイミング」</span>が論点になりそうでしたので、補足資料として<span class="hl">API連携の概略図（PDF 2ページ）</span>を添付いたします。\n\nもしよろしければ、<span class="hl">来週7/15（火）11:00〜30分</span>、物流管理部の皆様向けにQ&Aセッションを設定させていただけないでしょうか。\n\n株式会社ネクストリンクス\n営業部　田中 美咲'
+      }
+    },
+    day7: {
+      role: 'Day7 — 障壁整理',
+      before: {
+        subject: 'Re: StockPilot ご提案の件（フォロー）',
+        preview: '先日お送りした資料はご確認いただけましたでしょうか。ご検討状況をお聞かせください。',
+        body: '株式会社ミライ物流\n佐藤 健太 様\n\nいつもお世話になっております。ネクストリンクスの田中です。\n\n先日お送りした資料はご確認いただけましたでしょうか。\n\nご検討状況をお聞かせいただけますと幸いです。何卒よろしくお願いいたします。\n\n田中 美咲'
+      },
+      after: {
+        subject: 'Re: 月末棚卸2日→半日への短縮イメージ（同業事例）',
+        preview: '佐藤様より<span class="hl">「月末の全拠点棚卸に丸2日」</span>とお伺いしました…',
+        body: '株式会社ミライ物流\n物流管理部　佐藤 健太 様\n\nいつもお世話になっております。\n株式会社ネクストリンクスの田中です。\n\n先日お送りしたAPI連携資料は、ご確認いただけましたでしょうか。\n\nデモの際、佐藤様より「月末の全拠点棚卸に丸2日かかり、Excelの突合でミスが月1〜2件出る」とお伺いしました。比較検討中とのことでしたので、同規模の3PL（従業員120名・拠点4）がStockPilot導入後棚卸時間を2日→0.5日に短縮した事例概要を共有します。\n\n御社の場合、まず川崎拠点のみPoC（4週間）から始める案も可能です。既存WMS（LogiTrack）との共存をご懸念とのことでしたが、PoC期間中はCSV連携のみで運用できます。\n\n田中 美咲',
+        bodyHtml: '株式会社ミライ物流\n物流管理部　佐藤 健太 様\n\nいつもお世話になっております。\n株式会社ネクストリンクスの田中です。\n\n先日お送りしたAPI連携資料は、ご確認いただけましたでしょうか。\n\nデモの際、佐藤様より<span class="hl">「月末の全拠点棚卸に丸2日かかり、Excelの突合でミスが月1〜2件出る」</span>とお伺いしました。比較検討中とのことでしたので、<span class="hl">同規模の3PL（従業員120名・拠点4）</span>がStockPilot導入後<span class="hl">棚卸時間を2日→0.5日</span>に短縮した事例概要を共有します。\n\n御社の場合、<span class="hl">まず川崎拠点のみPoC（4週間）</span>から始める案も可能です。<span class="hl">既存WMS（LogiTrack）との共存</span>をご懸念とのことでしたが、PoC期間中はCSV連携のみで運用できます。\n\n田中 美咲'
+      }
+    },
+    day14: {
+      role: 'Day14 — 具体オファー',
+      before: {
+        subject: 'Re: StockPilot ご提案の件',
+        preview: 'ご多忙のところ恐縮ですが、ご検討状況いかがでしょうか。引き続きよろしくお願いいたします。',
+        body: '株式会社ミライ物流\n佐藤 健太 様\n\nいつもお世話になっております。ネクストリンクスの田中です。\n\nご多忙のところ恐縮ですが、ご検討状況いかがでしょうか。\n\n引き続きどうぞよろしくお願いいたします。\n\n田中 美咲'
+      },
+      after: {
+        subject: 'Re: 川崎拠点PoCのご提案（2週間無償・導入支援付き）',
+        preview: '<span class="hl">川崎拠点限定・2週間の無償PoC</span>をご提案させてください…',
+        body: '株式会社ミライ物流\n物流管理部　佐藤 健太 様\n\nいつもお世話になっております。\n株式会社ネクストリンクスの田中です。\n\n8月の繁忙期前に在庫可視化の効果を数字で確認できるよう、今回川崎拠点限定・2週間の無償PoCをご提案させてください。\n\n【PoC概要】\n・期間：8/4（月）〜8/15（金）\n・対象：川崎DCのSKU約800点\n・支援：導入支援エンジニア1名が週2回オンライン伴走\n\n7/5のデモでお話しいただいた「拠点間移動の可視化」と「月末棚卸の短縮」を、実データで検証できます。\n\nご意向を7/25（金）17:00までにお聞かせいただけますと幸いです。\n\n田中 美咲',
+        bodyHtml: '株式会社ミライ物流\n物流管理部　佐藤 健太 様\n\nいつもお世話になっております。\n株式会社ネクストリンクスの田中です。\n\n<span class="hl">8月の繁忙期前</span>に在庫可視化の効果を数字で確認できるよう、今回<span class="hl">川崎拠点限定・2週間の無償PoC</span>をご提案させてください。\n\n【PoC概要】\n・期間：8/4（月）〜8/15（金）\n・対象：<span class="hl">川崎DCのSKU約800点</span>\n・支援：<span class="hl">導入支援エンジニア1名が週2回オンライン伴走</span>\n\n7/5のデモでお話しいただいた<span class="hl">「拠点間移動の可視化」と「月末棚卸の短縮」</span>を、実データで検証できます。\n\nご意向を<span class="hl">7/25（金）17:00</span>までにお聞かせいただけますと幸いです。\n\n田中 美咲'
+      }
+    }
+  };
+
+  var state = {
+    day3: { generated: false, sent: false, side: 'before', customSubject: '', customBody: '' },
+    day7: { generated: false, sent: false, side: 'before', customSubject: '', customBody: '', unlocked: false },
+    day14: { generated: false, sent: false, side: 'before', customSubject: '', customBody: '', unlocked: false }
+  };
+
+  var activeDay = null;
+  var toastEl = document.getElementById('toast');
+  var editorSheet = document.getElementById('editorSheet');
+  var timers = [];
+
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    setTimeout(function () { toastEl.classList.remove('show'); }, 2600);
+  }
+
+  function stripHtml(s) { return s.replace(/<[^>]+>/g, ''); }
+
+  function getContent(day, side) {
+    var e = EMAILS[day][side];
+    if (state[day].customBody && side === 'after' && state[day].generated) {
+      return {
+        subject: state[day].customSubject || e.subject,
+        preview: state[day].customBody.slice(0, 80) + '…',
+        body: state[day].customBody
+      };
+    }
+    return e;
+  }
+
+  function updateCard(day) {
+    var st = state[day];
+    var card = document.getElementById('card-' + day);
+    var status = document.getElementById('status-' + day);
+    var subj = document.getElementById('subj-' + day);
+    var prev = document.getElementById('prev-' + day);
+    var toggle = document.getElementById('toggle-' + day);
+    var prog = document.getElementById('prog-' + day);
+    var side = st.generated ? st.side : 'before';
+    var content = st.generated ? getContent(day, side) : EMAILS[day].before;
+
+    if (st.sent) {
+      status.textContent = '送信済';
+      status.className = 'status sent';
+      card.classList.add('sent');
+      prog.textContent = '状態：送信完了 ✓';
+    } else if (st.generated) {
+      status.textContent = '下書き';
+      status.className = 'status ready';
+      card.classList.remove('sent');
+      prog.textContent = '状態：確認待ち → 送信（デモ）で進行';
+    } else if (day === 'day3') {
+      status.textContent = '未生成';
+      status.className = 'status draft';
+      prog.textContent = '状態：待機中';
+    } else if (!st.unlocked) {
+      status.textContent = 'ロック';
+      status.className = 'status draft';
+      prog.textContent = '状態：' + (day === 'day7' ? 'Day3待ち' : 'Day7待ち');
+    }
+
+    subj.textContent = content.subject;
+    if (st.generated && side === 'after') {
+      prev.innerHTML = EMAILS[day].after.preview;
+    } else {
+      prev.textContent = stripHtml(content.preview || content.body.slice(0, 90) + '…');
+    }
+
+    if (toggle) {
+      toggle.hidden = !st.generated;
+      var btns = toggle.querySelectorAll('.toggle-btn');
+      btns.forEach(function (b) {
+        b.classList.remove('active-before', 'active-after');
+        if (b.getAttribute('data-side') === side) {
+          b.classList.add(side === 'before' ? 'active-before' : 'active-after');
+        }
+      });
+    }
+
+    document.querySelector('[data-gen="' + day + '"]').disabled = !st.unlocked && day !== 'day3' || st.sent;
+    document.querySelector('[data-open="' + day + '"]').disabled = !st.generated || st.sent;
+    document.querySelector('[data-send="' + day + '"]').disabled = !st.generated || st.sent;
+  }
+
+  function typeText(el, html, done) {
+    el.innerHTML = '';
+    var plain = stripHtml(html);
+    var i = 0;
+    function tick() {
+      if (i < plain.length) {
+        el.textContent += plain.charAt(i);
+        i++;
+        timers.push(setTimeout(tick, 12 + Math.random() * 14));
+      } else {
+        el.innerHTML = html;
+        done();
+      }
+    }
+    tick();
+  }
+
+  function generate(day) {
+    var st = state[day];
+    if (st.generated || st.sent) return;
+    var btn = document.querySelector('[data-gen="' + day + '"]');
+    btn.disabled = true;
+    btn.textContent = '生成中…';
+    showToast('商談メモを読み込んでいます…');
+
+    timers.push(setTimeout(function () {
+      var prev = document.getElementById('prev-' + day);
+      var subj = document.getElementById('subj-' + day);
+      subj.textContent = '';
+      typeText(prev, EMAILS[day].after.preview, function () {
+        st.generated = true;
+        st.side = 'after';
+        st.customSubject = EMAILS[day].after.subject;
+        st.customBody = EMAILS[day].after.body;
+        subj.textContent = EMAILS[day].after.subject;
+        btn.textContent = '生成';
+        updateCard(day);
+        showToast(day.toUpperCase() + ' のパーソナライズ文を生成しました');
+      });
+    }, 500));
+  }
+
+  function sendDemo(day) {
+    var st = state[day];
+    if (!st.generated || st.sent) return;
+    st.sent = true;
+    updateCard(day);
+    showToast(day.toUpperCase() + ' を送信（デモ）しました');
+
+    if (day === 'day3') {
+      state.day7.unlocked = true;
+      document.getElementById('prev-day7').textContent = '「生成」でメモ起点の追客文を作成';
+      document.getElementById('subj-day7').textContent = EMAILS.day7.before.subject;
+      updateCard('day7');
+    }
+    if (day === 'day7') {
+      state.day14.unlocked = true;
+      document.getElementById('prev-day14').textContent = '「生成」でメモ起点の追客文を作成';
+      document.getElementById('subj-day14').textContent = EMAILS.day14.before.subject;
+      updateCard('day14');
+    }
+  }
+
+  function openEditor(day) {
+    if (!state[day].generated) return;
+    activeDay = day;
+    var st = state[day];
+    document.getElementById('editorTitle').textContent = EMAILS[day].role;
+    document.getElementById('editorMeta').textContent = 'After版 — 黄色箇所は商談メモ起点の差し込み';
+    document.getElementById('editorSubject').value = st.customSubject || EMAILS[day].after.subject;
+    document.getElementById('editorBody').value = st.customBody || EMAILS[day].after.body;
+    editorSheet.classList.add('open');
+    editorSheet.setAttribute('aria-hidden', 'false');
+    document.getElementById('card-' + day).classList.add('expanded-focus');
+  }
+
+  function closeEditor() {
+    editorSheet.classList.remove('open');
+    editorSheet.setAttribute('aria-hidden', 'true');
+    if (activeDay) document.getElementById('card-' + activeDay).classList.remove('expanded-focus');
+    activeDay = null;
+  }
+
+  document.querySelectorAll('[data-gen]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      generate(btn.getAttribute('data-gen'));
+    });
+  });
+
+  document.querySelectorAll('[data-send]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      sendDemo(btn.getAttribute('data-send'));
+    });
+  });
+
+  document.querySelectorAll('[data-open]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      openEditor(btn.getAttribute('data-open'));
+    });
+  });
+
+  ['day3', 'day7', 'day14'].forEach(function (day) {
+    var card = document.getElementById('card-' + day);
+    card.addEventListener('click', function () {
+      if (state[day].generated && !state[day].sent) openEditor(day);
+    });
+    var toggle = document.getElementById('toggle-' + day);
+    if (toggle) {
+      toggle.querySelectorAll('.toggle-btn').forEach(function (tb) {
+        tb.addEventListener('click', function (e) {
+          e.stopPropagation();
+          if (!state[day].generated) return;
+          state[day].side = tb.getAttribute('data-side');
+          updateCard(day);
+        });
+      });
+    }
+  });
+
+  document.getElementById('editorClose').addEventListener('click', closeEditor);
+  editorSheet.addEventListener('click', function (e) {
+    if (e.target === editorSheet) closeEditor();
+  });
+
+  document.getElementById('editorSave').addEventListener('click', function () {
+    if (!activeDay) return;
+    state[activeDay].customSubject = document.getElementById('editorSubject').value;
+    state[activeDay].customBody = document.getElementById('editorBody').value;
+    updateCard(activeDay);
+    closeEditor();
+    showToast('下書きを反映しました');
+  });
+
+  state.day3.unlocked = true;
+  updateCard('day3');
+  updateCard('day7');
+  updateCard('day14');
+})();
+</script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+</body>
+</html>

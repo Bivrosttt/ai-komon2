@@ -1,0 +1,41 @@
+{
+  "brand": "AI顧問室",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "locale": "ja-JP",
+  "timezone": "Asia/Tokyo",
+  "daily_candidate_limit": 10,
+  "research": {
+    "google_suggest": true,
+    "bing_suggest": true,
+    "youtube_suggest": true,
+    "rakkokeyword_api": "optional",
+    "request_delay_seconds": 0.35
+  },
+  "service_ctas": [
+    {
+      "label": "AI導入診断を受ける",
+      "url": "/diagnosis.html",
+      "fit_terms": ["AI", "導入", "診断", "業務改善"]
+    },
+    {
+      "label": "AI導入の費用対効果を見る",
+      "url": "/lp-roi.html",
+      "fit_terms": ["ROI", "費用対効果", "削減", "コスト", "効果"]
+    },
+    {
+      "label": "AI顧問室の活用事例を見る",
+      "url": "/demos.html",
+      "fit_terms": ["事例", "自動化", "議事録", "採用", "営業"]
+    },
+    {
+      "label": "AI顧問室に相談する",
+      "url": "/#contact",
+      "fit_terms": ["相談", "顧問", "外注", "代行"]
+    }
+  ],
+  "paths": {
+    "run_dir": "seo/data/runs",
+    "gsc_csv": "seo/data/gsc/latest.csv",
+    "manual_sources_dir": "seo/data/manual"
+  }
+}

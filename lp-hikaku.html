@@ -224,6 +224,22 @@
   .cta-sub a:hover{ color:#fff; border-color:#fff; }
 
   footer{ padding:26px 0; text-align:center; font-size:11.5px; color:var(--gray-soft); }
+
+  /* Mobile/tablet header fit (auto-added 2026-07-18) */
+  @media (max-width: 600px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { font-size: 18px; white-space: nowrap; }
+    .logo span { display: none; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  }
+  @media (min-width: 601px) and (max-width: 1080px) {
+    .logo { flex-wrap: nowrap; }
+    .logo strong { white-space: nowrap; }
+    .logo span { display: none; }
+    header nav ul { gap: 12px; }
+    header nav a { font-size: 12px; }
+    .header-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
+  }
 </style>
 <!-- Google tag (gtag.js) -->
 <script src="measurement-config.js"></script>
@@ -285,7 +301,7 @@
             <td>0円〜数千円（ツール利用料程度）</td>
             <td>数千円〜数万円（利用人数による）</td>
             <td>想定50万円前後（年収÷12＋社会保険料）</td>
-            <td class="hi">15万円〜（3プランから選択）</td>
+            <td class="hi">50万円〜（支援範囲は個別設計）</td>
           </tr>
           <tr>
             <td>立ち上がり</td>
@@ -306,7 +322,7 @@
             <td>いつでも中断可能</td>
             <td>契約形態次第（年間契約は縛りあり）</td>
             <td>雇用契約の解除は容易ではない</td>
-            <td class="hi">契約は月単位。プラン変更・解約が容易（最低契約期間3ヶ月）</td>
+            <td class="hi">最低3ヶ月後は月単位。支援範囲の見直し・解約が可能</td>
           </tr>
         </tbody>
       </table>
@@ -403,8 +419,8 @@
     <div class="combo">
       <div>
         <h3>顧問と一緒に学んで、いずれ卒業する</h3>
-        <p>相談しながら実践することで、独学より早く、専任採用よりも低コストで進められます。担当者に知見が蓄積されていけば、社内でまかなえる体制に近づきます。</p>
-        <p>その段階まで来たら、プランを縮小したり、契約を終了しても構いません。私たちは「契約を続けさせること」より「社内が自走できること」を優先しています。</p>
+        <p>相談しながら実践することで、独学より早く、専任採用を待たずに進められます。担当者に知見が蓄積されていけば、社内でまかなえる体制に近づきます。</p>
+        <p>その段階まで来たら、支援範囲を見直したり、契約を終了しても構いません。私たちは「契約を続けさせること」より「社内が自走できること」を優先しています。</p>
       </div>
       <div class="combo-visual">
         <div class="combo-chip"><strong>A</strong>自分で学ぶ</div>
@@ -418,30 +434,18 @@
 <section id="pricing">
   <div class="container">
     <span class="eyebrow">PRICING</span>
-    <h2 class="section-title">Dを選ぶ場合の料金プラン</h2>
-    <p class="lead">関与の深さで選べる3つのプラン。すべて月額・税別、最低契約期間3ヶ月です。</p>
-    <div class="price-grid">
-      <div class="plan">
-        <div class="pname">LIGHT</div>
-        <div class="pamount">15<small>万円/月</small></div>
-        <div class="ppos">AI経営の相談役</div>
-        <a href="index.html?from=lp-hikaku#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
-      </div>
+    <h2 class="section-title">Dを選ぶ場合の料金</h2>
+    <p class="lead">月50万円を基準に、相談・実装・研修・定着の範囲を個別設計します。</p>
+    <div class="price-grid" style="max-width:560px;margin:0 auto;grid-template-columns:minmax(0,1fr);">
       <div class="plan featured">
-        <div class="plan-badge">おすすめ</div>
-        <div class="pname">STANDARD</div>
-        <div class="pamount">25<small>万円/月</small></div>
-        <div class="ppos">AI導入の伴走者</div>
+        <div class="plan-badge">個別設計</div>
+        <div class="pname">AI ADVISORY</div>
+        <div class="pamount">50<small>万円〜/月</small></div>
+        <div class="ppos">経営と現場をつなぐAI導入の伴走者</div>
         <a href="index.html?from=lp-hikaku#contact" class="btn btn-navy">無料相談で詳しく聞く</a>
       </div>
-      <div class="plan">
-        <div class="pname">PREMIUM</div>
-        <div class="pamount">50<small>万円/月</small></div>
-        <div class="ppos">社外AI役員</div>
-        <a href="index.html?from=lp-hikaku#contact" class="btn btn-outline">無料相談で詳しく聞く</a>
-      </div>
     </div>
-    <p class="price-note">最低契約期間は3ヶ月。プランは途中で見直せます。デジタル化・AI導入補助金など、活用できる補助金・助成金のご提案も行っています。</p>
+    <p class="price-note">最低契約期間は3ヶ月。支援範囲は月単位で見直せます。デジタル化・AI導入補助金など、活用できる補助金・助成金のご提案も行っています。</p>
   </div>
 </section>
 

@@ -1,0 +1,19 @@
+{
+  "keyword": "稼働率 計算",
+  "slug": "utilization-rate-calculator",
+  "title": "稼働率計算機",
+  "description": "稼働可能時間と実稼働時間から、チームや設備の稼働率を計算します。",
+  "base_url": "https://ai-komon.bivrost.co.jp",
+  "tool_type": "calculator",
+  "fields": [
+    {"id": "availableHours", "label": "稼働可能時間（時間）", "default": 160, "step": 1},
+    {"id": "workedHours", "label": "実稼働時間（時間）", "default": 128, "step": 1}
+  ],
+  "result": {"label": "稼働率", "unit": "%", "formula": "workedHours / availableHours * 100"},
+  "explanations": ["稼働可能な時間に対して、実際に作業した時間がどの程度かを割合で確認します。", "対象期間と、会議・待機・移動を稼働に含めるかを揃えると、チーム改善に使いやすくなります。"],
+  "related_tools": [
+    {"label": "チーム稼働キャパシティ計算機", "url": "/tools/project-capacity-planner/", "description": "人数と稼働時間からチームのキャパシティを確認します。"},
+    {"label": "タスク時間計算機", "url": "/tools/task-time-calculator/", "description": "定型タスクに必要な時間を積み上げます。"}
+  ],
+  "cta": {"label": "業務の稼働を相談する", "url": "/diagnosis.html"}
+}

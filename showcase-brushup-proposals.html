@@ -1,0 +1,458 @@
+<!-- 2026-07-23: SaaS以外のショーケース／実績を骨格から磨く提案ボード（本番非改変） -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ショーケース／実績 骨格ブラッシュアップ提案</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --deep: #071A35; --ink: #162033; --muted: #5A6A7E;
+    --line: #D5DEE8; --soft: #EEF3F8; --white: #fff; --gold: #C9A227; --blue: #2D6CB5;
+    --ok: #15803D; --warn: #B45309; --bad: #B91C1C;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans JP', sans-serif; color: var(--ink); background: #E7EDF5; }
+  h1,h2,h3,h4 { font-family: 'Shippori Mincho', serif; font-weight: 700; line-height: 1.35; }
+  button, a { font-family: inherit; }
+  code { font-size: .92em; color: #C9A227; }
+
+  .shell { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; }
+  .rail {
+    background: var(--deep); color: #D7E0EC; padding: 20px 16px 28px;
+    position: sticky; top: 0; height: 100vh; overflow: auto;
+  }
+  .rail .k { font-size: 10px; letter-spacing: .18em; color: var(--gold); font-weight: 700; }
+  .rail h1 { color: #fff; font-size: 20px; margin: 8px 0 10px; }
+  .rail .lead { font-size: 12px; line-height: 1.7; color: #9FB0C7; margin-bottom: 14px; }
+  .rail a.back { color: #9EC0EA; font-size: 12px; font-weight: 600; text-decoration: none; }
+  .scope {
+    margin: 14px 0; padding: 12px; border-radius: 8px; background: rgba(201,162,39,.12);
+    border: 1px solid rgba(201,162,39,.35); font-size: 11.5px; line-height: 1.65; color: #F3E6B8;
+  }
+  .scope b { color: #fff; }
+  .clist { display: flex; flex-direction: column; gap: 7px; margin: 14px 0; }
+  .cbtn {
+    text-align: left; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04);
+    color: #E8EEF5; border-radius: 8px; padding: 11px; cursor: pointer;
+  }
+  .cbtn:hover { background: rgba(255,255,255,.08); }
+  .cbtn.active { background: rgba(201,162,39,.16); border-color: var(--gold); }
+  .cbtn .id { font-size: 10px; letter-spacing: .12em; color: var(--gold); font-weight: 700; }
+  .cbtn .name { display: block; font-size: 13.5px; font-weight: 700; color: #fff; margin: 3px 0 2px; }
+  .cbtn .blurb { font-size: 11px; line-height: 1.5; color: #9FB0C7; }
+
+  .pick { margin-top: 10px; padding: 12px; border-radius: 8px; background: rgba(0,0,0,.25); border: 1px solid rgba(255,255,255,.1); }
+  .pick label { font-size: 10px; letter-spacing: .1em; color: var(--gold); font-weight: 700; }
+  .pick select, .pick textarea {
+    width: 100%; margin-top: 7px; border-radius: 6px; border: 1px solid rgba(255,255,255,.18);
+    background: rgba(255,255,255,.06); color: #fff; padding: 9px; font: inherit; font-size: 12px;
+  }
+  .pick textarea { min-height: 72px; resize: vertical; }
+  .pick .acts { display: flex; gap: 7px; margin-top: 9px; }
+  .pick .acts button { flex: 1; border: none; border-radius: 6px; padding: 9px; font-weight: 700; font-size: 12px; cursor: pointer; }
+  .bgold { background: var(--gold); color: var(--deep); }
+  .bghost { background: transparent; color: #D7E0EC; border: 1px solid rgba(255,255,255,.25) !important; }
+
+  .stage { padding: 18px 20px 36px; }
+  .stage h2 { font-size: 24px; color: var(--navy); }
+  .stage .desc { font-size: 13.5px; color: var(--muted); margin: 8px 0 12px; max-width: 780px; line-height: 1.7; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .tag { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--soft); border: 1px solid var(--line); color: var(--navy); }
+  .tag.pro { background: #ECFDF3; color: var(--ok); border-color: #BBF7D0; }
+  .tag.con { background: #FFF7ED; color: var(--warn); border-color: #FED7AA; }
+
+  .panel {
+    background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px;
+    box-shadow: 0 10px 30px rgba(7,26,53,.06); margin-bottom: 14px;
+  }
+  .panel h3 { font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+  .panel p, .panel li { font-size: 13px; color: var(--muted); line-height: 1.7; }
+  .panel ul { padding-left: 18px; margin-top: 6px; }
+  .inv {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; margin-top: 10px;
+  }
+  .inv a {
+    display: block; border: 1px solid var(--line); border-radius: 7px; padding: 10px; background: var(--soft);
+    text-decoration: none; color: inherit;
+  }
+  .inv a:hover { border-color: var(--navy); }
+  .inv .t { font-size: 12.5px; font-weight: 700; color: var(--navy); }
+  .inv .s { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+  .inv .q { font-size: 10px; font-weight: 700; margin-top: 6px; }
+  .q.a { color: var(--ok); } .q.b { color: var(--warn); } .q.c { color: var(--bad); }
+
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .col { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #fff; }
+  .col .lab {
+    font-size: 11px; font-weight: 700; letter-spacing: .1em; padding: 8px 12px; border-bottom: 1px solid var(--line);
+  }
+  .col .lab.now { background: #FEF2F2; color: var(--bad); }
+  .col .lab.next { background: #ECFDF3; color: var(--ok); }
+  .mock { padding: 12px; min-height: 280px; background: #FAFBFD; }
+  .mock .bar { height: 28px; background: #fff; border: 1px solid var(--line); border-radius: 4px; margin-bottom: 8px; display:flex; align-items:center; padding:0 8px; font-size:10px; color:var(--muted); font-weight:700; }
+  .mock .hero-mini { background: linear-gradient(135deg,#071A35,#19376D); color:#fff; border-radius:6px; padding:14px; margin-bottom:8px; }
+  .mock .hero-mini .k { font-size:9px; color:var(--gold); letter-spacing:.12em; font-weight:700; }
+  .mock .hero-mini h5 { font-size:15px; margin:4px 0; }
+  .mock .hero-mini p { font-size:10.5px; color:#B8C7DA; line-height:1.5; }
+  .mock .block { border:1px solid var(--line); border-radius:6px; background:#fff; padding:10px; margin-bottom:8px; }
+  .mock .block h5 { font-size:12px; color:var(--navy); margin-bottom:4px; }
+  .mock .line { height:7px; background:#E2E8F0; border-radius:4px; margin-bottom:6px; }
+  .mock .line.w70 { width:70%; } .mock .line.gold { background:#E8D48A; }
+  .mock .vid { aspect-ratio:16/9; background:#111; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#9FB0C7; font-size:11px; font-weight:700; margin-bottom:8px; }
+  .mock .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+  .mock .chip { display:inline-block; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:999px; background:var(--soft); border:1px solid var(--line); color:var(--navy); margin-right:4px; }
+  .mock .stage3 { display:grid; grid-template-columns:1.2fr .8fr; gap:8px; }
+  .mock .proof { border-left:3px solid var(--gold); padding:8px 10px; background:#FFFBEB; border-radius:0 6px 6px 0; font-size:10.5px; color:var(--ink); margin-bottom:8px; }
+  .mock .ba { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+  .mock .ba > div { border-radius:6px; padding:8px; font-size:10px; min-height:70px; }
+  .mock .ba .b { background:#FEF2F2; color:#7F1D1D; }
+  .mock .ba .a { background:#ECFDF3; color:#14532D; }
+  .mock .scrub { height:6px; background:#E2E8F0; border-radius:99px; position:relative; margin:10px 0; }
+  .mock .scrub i { position:absolute; left:55%; top:-5px; width:16px; height:16px; border-radius:50%; background:var(--gold); border:2px solid #fff; }
+  .mock .cta { background:var(--navy); color:#fff; text-align:center; border-radius:5px; padding:8px; font-size:11px; font-weight:700; }
+
+  .family { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+  .fam {
+    border:1px solid var(--line); border-radius:10px; padding:14px; background:linear-gradient(180deg,#fff,#F8FAFC);
+  }
+  .fam .k { font-size:10px; letter-spacing:.14em; color:var(--gold); font-weight:700; }
+  .fam h4 { font-size:16px; color:var(--navy); margin:4px 0 6px; }
+  .fam p { font-size:12px; color:var(--muted); line-height:1.6; margin-bottom:8px; }
+  .fam .items { font-size:11.5px; color:var(--ink); line-height:1.7; }
+
+  .handoff { background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px; }
+  .handoff h3 { font-size:15px; color:var(--navy); margin-bottom:6px; }
+  .handoff p { font-size:12.5px; color:var(--muted); margin-bottom:8px; }
+  .handoff pre { background:var(--navy); color:#D7E0EC; border-radius:8px; padding:12px; font-size:12px; white-space:pre-wrap; line-height:1.55; }
+
+  @media (max-width: 960px) {
+    .shell { grid-template-columns: 1fr; }
+    .rail { position: relative; height: auto; }
+    .compare, .family, .mock .stage3, .mock .ba, .mock .grid2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="rail">
+    <div class="k">SHOWCASE / CASES ONLY</div>
+    <h1>SaaS以外を<br>骨格から磨く</h1>
+    <p class="lead">前回の「主語図鑑」は取り違え。ここでは <b style="color:#fff">SaaSデスク10本以外</b> のショーケースと実績（Case Theater）だけを扱う。</p>
+    <a class="back" href="lab.html#craft">← いまの craft 棚</a> ·
+    <a class="back" href="cases.html">cases</a>
+
+    <div class="scope">
+      <b>対象</b><br>
+      道具・文書・映像/クリエイティブ・空間シミュ・Case Theater<br>
+      <b>対象外</b><br>
+      KAWASU〜TATERU の深SaaS 10本
+    </div>
+
+    <div class="clist" id="clist"></div>
+
+    <div class="pick">
+      <label>推し案</label>
+      <select id="pick"></select>
+      <label style="display:block;margin-top:10px;">コメント</label>
+      <textarea id="note" placeholder="例：薄いvideo/slidesから先に骨格テンプレ当てたい。casesは成果物と結びたい。"></textarea>
+      <div class="acts">
+        <button type="button" class="bgold" id="save">この案で決定</button>
+        <button type="button" class="bghost" id="copy">JSONコピー</button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="stage">
+    <h2 id="title">—</h2>
+    <p class="desc" id="desc">—</p>
+    <div class="tags" id="tags"></div>
+    <div id="body"></div>
+    <div class="handoff">
+      <h3>Handoff</h3>
+      <p>選んだ案のJSONを返せば、その骨格でショーケース／実績の実装に入る。</p>
+      <pre id="json">{}</pre>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  var CONCEPTS = [
+    {
+      id: '0-inventory',
+      name: 'いま何があるか（棚卸し）',
+      blurb: 'SaaS以外の対象一覧と品質。まずここを見て共有する。',
+      title: '0. 対象インベントリ',
+      desc: '深SaaS以外で「ショーケース／実績」として触れるもの。品質はバラバラで、入口もカード一枚に潰れている。',
+      tags: [{t:'調査',c:''},{t:'これが対象',c:'pro'}],
+      render: renderInventory
+    },
+    {
+      id: 'A-problem',
+      name: 'なぜ弱く見えるか',
+      blurb: '中身より骨格が揃ってない問題を、Beforeで見せる。',
+      title: 'A. 現状の骨格問題',
+      desc: '映像もシミュも社内報も、入口では同じカード。ページごとに「証拠→触る→作り方」の順番がバラバラ。',
+      tags: [{t:'診断',c:''},{t:'骨格未統一',c:'con'}],
+      render: renderProblem
+    },
+    {
+      id: 'B-families',
+      name: '4ファミリー骨格',
+      blurb: '道具／文書／映像／空間で骨格を分ける。',
+      title: 'B. 成果物を4骨格に分ける',
+      desc: 'SaaSの「主語」ではなく、成果物の種類ごとにページ骨格を統一して磨く。',
+      tags: [{t:'推し候補',c:'pro'},{t:'分類が先',c:'pro'}],
+      render: renderFamilies
+    },
+    {
+      id: 'C-template',
+      name: '1ページ共通テンプレ',
+      blurb: '薄いvideo等に当てる「証拠→劇場→作り方→次」',
+      title: 'C. 共通ページ骨格（薄いものから）',
+      desc: '作品ページを全部この順番に揃える。特に video / slides のような薄いページから効果が出る。',
+      tags: [{t:'推し候補',c:'pro'},{t:'即効',c:'pro'}],
+      render: renderTemplate
+    },
+    {
+      id: 'D-cases-link',
+      name: '実績×成果物の接続',
+      blurb: 'Case Theaterの変化に、作った物を証拠としてぶら下げる。',
+      title: 'D. 実績骨格の強化',
+      desc: 'cases はすでに強い。弱いのは「スクラブのあと成果物に飛べない／成果物側に実績文脈がない」こと。',
+      tags: [{t:'cases強化',c:'pro'}],
+      render: renderCases
+    },
+    {
+      id: 'E-studio',
+      name: 'Studio入口（craft棚）',
+      blurb: 'labのcraftをアトリエ型に。ファミリー別の大きな見本。',
+      title: 'E. craft棚をStudioに',
+      desc: 'カードグリッドをやめ、4ファミリーの見本を大きく出す入口にする（SaaS desksは触らない）。',
+      tags: [{t:'入口だけ',c:'pro'},{t:'lab#craft改修',c:''}],
+      render: renderStudio
+    }
+  ];
+
+  var state = {
+    active: localStorage.getItem('showcaseBrushActive') || '0-inventory',
+    pick: localStorage.getItem('showcaseBrushPick') || 'C-template',
+    note: localStorage.getItem('showcaseBrushNote') || ''
+  };
+
+  var SHOW = [
+    { t:'3列提案キャンバス', f:'works-btob-proposal.html', fam:'道具', q:'A', s:'BRIEF同型・操作できる' },
+    { t:'Dayレーン追客壁', f:'works-sales-mail.html', fam:'道具', q:'A', s:'Day3/7/14生成' },
+    { t:'既存サービス+AI', f:'works-ai-service.html', fam:'文書/PoC', q:'A', s:'Before/After厚め' },
+    { t:'社内報＋規程改定', f:'works-internal-news.html', fam:'文書/PoC', q:'A', s:'マガジン調' },
+    { t:'ブランド一式', f:'works-creative.html', fam:'映像/クリエ', q:'B', s:'一式はあるが入口カード化' },
+    { t:'モーション', f:'works-motion.html', fam:'映像/クリエ', q:'B', s:'再生中心' },
+    { t:'動画編集B/A', f:'works-edit.html', fam:'映像/クリエ', q:'B', s:'' },
+    { t:'操作マニュアル', f:'works-presenter.html', fam:'映像/クリエ', q:'B', s:'' },
+    { t:'提案スライド', f:'works-slides.html', fam:'映像/クリエ', q:'C', s:'殻94行・薄い' },
+    { t:'住宅プロモ動画', f:'works-video.html', fam:'映像/クリエ', q:'C', s:'171行・再生+説明' },
+    { t:'間取り→3D', f:'works-3d.html', fam:'空間', q:'B', s:'' },
+    { t:'Gaussian Splat', f:'works-splat.html', fam:'空間', q:'B', s:'' },
+    { t:'キッチンパース', f:'works-kitchen.html', fam:'空間', q:'B', s:'カラーシミュ' },
+    { t:'外壁塗装パース', f:'works-paint.html', fam:'空間', q:'B', s:'カラーシミュ' },
+    { t:'Case Theater', f:'cases.html', fam:'実績', q:'A', s:'90日スクラブ・架空注意' }
+  ];
+
+  function byId(id){ return CONCEPTS.find(function(c){ return c.id === id; }) || CONCEPTS[0]; }
+
+  function renderInventory(){
+    var html = '<div class="panel"><h3>対象 ' + SHOW.length + '（SaaSデスク10本は除外）</h3><p>リンクで現行を確認できる。q=品質感（A厚い / B動くが骨格弱い / C薄い）。</p><div class="inv">';
+    SHOW.forEach(function(x){
+      html += '<a href="' + x.f + '" target="_blank" rel="noopener"><div class="t">' + x.t + '</div><div class="s">' + x.fam + ' · ' + x.f + (x.s ? ' · ' + x.s : '') + '</div><div class="q ' + x.q.toLowerCase() + '">品質 ' + x.q + '</div></a>';
+    });
+    html += '</div></div>';
+    html += '<div class="panel"><h3>一言でいうと</h3><ul>' +
+      '<li><b>道具・文書A</b>はすでに骨格がある（キャンバス／追客壁／B/A／社内報）。</li>' +
+      '<li><b>映像・空間B</b>は中身はあるが「ギャラリーページ」骨格が多く、説得の順番が弱い。</li>' +
+      '<li><b>video / slides のC</b>は明らかに薄い。ここを骨格テンプレで先に上げると差が出る。</li>' +
+      '<li><b>cases</b>は強い。成果物との相互リンクが弱いだけ。</li>' +
+      '</ul></div>';
+    return html;
+  }
+
+  function renderProblem(){
+    return '<div class="compare">' +
+      '<div class="col"><div class="lab now">NOW · 入口もページもフラット</div><div class="mock">' +
+      '<div class="bar">lab #craft · 同じカード</div>' +
+      '<div class="grid2">' +
+      '<div class="block"><div class="line gold"></div><h5>動画</h5><div class="line"></div><div class="line w70"></div></div>' +
+      '<div class="block"><div class="line gold"></div><h5>3D</h5><div class="line"></div><div class="line w70"></div></div>' +
+      '<div class="block"><div class="line gold"></div><h5>社内報</h5><div class="line"></div><div class="line w70"></div></div>' +
+      '<div class="block"><div class="line gold"></div><h5>キッチン</h5><div class="line"></div><div class="line w70"></div></div>' +
+      '</div>' +
+      '<p style="font-size:11px;color:var(--muted);margin-top:8px;">種類が違うのに、同じカード骨格。差が消える。</p>' +
+      '</div></div>' +
+      '<div class="col"><div class="lab next">NEED · 種類ごとに骨格が違う</div><div class="mock">' +
+      '<div class="block"><span class="chip">道具</span><h5>操作キャンバスが全面</h5><div class="line gold"></div><div class="line"></div></div>' +
+      '<div class="block"><span class="chip">映像</span><h5>暗幕シアター→プロンプト証拠</h5><div class="vid">▶ THEATER</div></div>' +
+      '<div class="block"><span class="chip">空間</span><h5>Before写真｜Afterシミュ</h5><div class="ba"><div class="b">空室/現状</div><div class="a">色替え後</div></div></div>' +
+      '<div class="block"><span class="chip">実績</span><h5>90日スクラブ＋成果物リンク</h5><div class="scrub"><i></i></div></div>' +
+      '</div></div></div>' +
+      '<div class="panel" style="margin-top:14px"><h3>弱いポイント（具体）</h3><ul>' +
+      '<li><code>works-video.html</code> … 再生＋説明で終わり。比較・用途・次の成果物がない。</li>' +
+      '<li><code>works-slides.html</code> … プレイヤー殻が薄い。</li>' +
+      '<li>空間系 … シミュは面白いが「提案の現場でどう使うか」がページ骨格にない。</li>' +
+      '<li><code>cases.html</code> … スクラブ後のリンクはあるが、成果物側から実績文脈で戻れない。</li>' +
+      '</ul></div>';
+  }
+
+  function renderFamilies(){
+    return '<div class="family">' +
+      '<div class="fam"><div class="k">01 · TOOL</div><h4>道具</h4><p>触って成果が出るUI。SaaSではなく「営業の道具」。</p><div class="items">btob-proposal<br>sales-mail<br><br><b>骨格:</b> メモ入力 → 生成 → 編集 → 成果物フリップ</div></div>' +
+      '<div class="fam"><div class="k">02 · DOC / POC</div><h4>文書・PoC</h4><p>読んで・めくって納得する成果物。</p><div class="items">ai-service<br>internal-news<br><br><b>骨格:</b> Before静的 → After操作 → 範囲・注意 → CTA</div></div>' +
+      '<div class="fam"><div class="k">03 · MEDIA</div><h4>映像・クリエイティブ</h4><p>見ることが主語。制作の証拠を同じ強さで出す。</p><div class="items">video / motion / edit<br>creative / slides / presenter<br><br><b>骨格:</b> 暗幕劇場 → プロンプト/素材証拠 → 用途チップ → 関連一式</div></div>' +
+      '<div class="fam"><div class="k">04 · SPACE</div><h4>空間シミュ</h4><p>提案現場の「見せる道具」。</p><div class="items">3d / splat<br>kitchen / paint<br><br><b>骨格:</b> 現状写真 → 操作シミュ → 提案トーク例 → 関連デモ</div></div>' +
+      '</div>' +
+      '<div class="panel" style="margin-top:14px"><h3>この案でやること</h3><p>ファミリーごとにページ骨格（セクション順・必須ブロック）を固定し、薄いCから当て直す。SaaS desks は触らない。</p></div>';
+  }
+
+  function renderTemplate(){
+    return '<div class="panel"><h3>当てる共通順番（全ファミリー共通の骨）</h3><ol style="padding-left:18px;font-size:13px;color:var(--muted);line-height:1.8">' +
+      '<li><b>証拠フック</b> … 何がすごいか1行＋本物感（写真/動画/操作）</li>' +
+      '<li><b>劇場</b> … その成果物の主体験（再生/シミュ/キャンバス）</li>' +
+      '<li><b>作り方の透明性</b> … プロンプト・工程・Before素材</li>' +
+      '<li><b>使い所</b> … 業種・シーンチップ</li>' +
+      '<li><b>隣の実物</b> … 同ファミリー or 関連SaaS（任意）</li>' +
+      '<li><b>CTA</b></li>' +
+      '</ol></div>' +
+      '<div class="compare">' +
+      '<div class="col"><div class="lab now">NOW · works-video</div><div class="mock">' +
+      '<div class="hero-mini"><div class="k">WORKS</div><h5>AI生成動画</h5><p>説明文…</p></div>' +
+      '<div class="vid">▶ 再生</div>' +
+      '<div class="block"><h5>ポイント3つ</h5><div class="line"></div><div class="line w70"></div></div>' +
+      '<div class="cta">無料相談</div>' +
+      '</div></div>' +
+      '<div class="col"><div class="lab next">NEXT · 同じvideoに骨格を当てた版</div><div class="mock">' +
+      '<div class="proof">撮影なし・15秒・実写品質 — プロンプトのみ</div>' +
+      '<div class="vid">▶ 暗幕シアター（自動再生風）</div>' +
+      '<div class="block"><h5>プロンプト全文（開閉）</h5><div class="line gold"></div><div class="line"></div></div>' +
+      '<div class="block"><h5>使い所</h5><span class="chip">不動産</span><span class="chip">建築</span><span class="chip">SNS広告</span></div>' +
+      '<div class="block"><h5>隣の実物</h5><div class="line"></div><div class="line w70"></div><p style="font-size:10px;margin-top:4px">motion / edit / creative</p></div>' +
+      '<div class="cta">同じクオリティで御社向けに</div>' +
+      '</div></div></div>' +
+      '<div class="panel" style="margin-top:14px"><h3>先に当てる優先順</h3><p>1) video 2) slides 3) kitchen/paint（空間テンプレ）4) creative（一式ナビ強化）5) 残りB</p></div>';
+  }
+
+  function renderCases(){
+    return '<div class="compare">' +
+      '<div class="col"><div class="lab now">NOW · cases</div><div class="mock">' +
+      '<div class="bar">CASE THEATER</div>' +
+      '<div class="ba"><div class="b">BEFORE mock</div><div class="a">AFTER mock</div></div>' +
+      '<div class="scrub"><i></i></div>' +
+      '<div class="block"><h5>リンク</h5><span class="chip">GENBA</span><span class="chip">demo</span><span class="chip">業種</span></div>' +
+      '<p style="font-size:11px;color:var(--muted)">成果物（報告書サンプル/社内報等）への導線が薄い</p>' +
+      '</div></div>' +
+      '<div class="col"><div class="lab next">NEXT · 実績に成果物を証拠添付</div><div class="mock">' +
+      '<div class="bar">CASE THEATER + EVIDENCE</div>' +
+      '<div class="ba"><div class="b">BEFORE</div><div class="a">AFTER Day60</div></div>' +
+      '<div class="scrub"><i></i></div>' +
+      '<div class="proof">この変化の「成果物サンプル」</div>' +
+      '<div class="stage3">' +
+      '<div class="block"><h5>触るデスク</h5><span class="chip">GENBA</span></div>' +
+      '<div class="block"><h5>成果物</h5><span class="chip">写真→報告</span><div class="line" style="margin-top:6px"></div></div>' +
+      '</div>' +
+      '<div class="block"><h5>逆方向</h5><p style="font-size:10.5px">works側にも「この成果物が効く90日」ミニケース帯</p></div>' +
+      '</div></div></div>' +
+      '<div class="panel" style="margin-top:14px"><h3>実装イメージ</h3><ul>' +
+      '<li>cases の links に craft/demo を必須化（デスクだけにしない）</li>' +
+      '<li>各ショーケース下部に「似た90日」ミニモジュール（該当ケースへ）</li>' +
+      '<li>disclaimer（架空）は維持。モニター実績が入ったら差し替え枠を明示</li>' +
+      '</ul></div>';
+  }
+
+  function renderStudio(){
+    return '<div class="panel"><h3>lab の craft だけを Studio に</h3><p>desks/shots/stories は現状維持。craft タブの中身だけファミリー見本型にする。</p></div>' +
+      '<div class="mock" style="border:1px solid var(--line);border-radius:12px;background:#fff;padding:16px">' +
+      '<div class="bar">lab.html #craft · STUDIO</div>' +
+      '<div class="hero-mini"><div class="k">CRAFT STUDIO</div><h5>作った物を、種類の骨格で見る</h5><p>道具・文書・映像・空間 — 同じカードにしない</p></div>' +
+      '<div class="family">' +
+      '<div class="fam"><div class="k">TOOL</div><h4>道具</h4><div class="items">大きな見本1 + もう1本</div></div>' +
+      '<div class="fam"><div class="k">MEDIA</div><h4>映像</h4><div class="items">video を大きく + 関連</div></div>' +
+      '<div class="fam"><div class="k">SPACE</div><h4>空間</h4><div class="items">kitchen 見本 + 3d</div></div>' +
+      '<div class="fam"><div class="k">DOC</div><h4>文書</h4><div class="items">社内報 / AIサービス</div></div>' +
+      '</div></div>' +
+      '<div class="panel" style="margin-top:14px"><h3>注意</h3><p>これは入口の話。ページ中身の骨格磨き（案C）とセットじゃないと、また綺麗な棚で終わる。</p></div>';
+  }
+
+  var clist = document.getElementById('clist');
+  var pick = document.getElementById('pick');
+  var note = document.getElementById('note');
+  note.value = state.note;
+
+  clist.innerHTML = CONCEPTS.map(function(c){
+    return '<button type="button" class="cbtn" data-id="' + c.id + '"><span class="id">' + c.id.split('-')[0].toUpperCase() + '</span><span class="name">' + c.name + '</span><span class="blurb">' + c.blurb + '</span></button>';
+  }).join('');
+  pick.innerHTML = CONCEPTS.map(function(c){ return '<option value="' + c.id + '">' + c.name + '</option>'; }).join('');
+
+  function updateJson(){
+    var payload = {
+      target: 'showcase-and-cases',
+      scope: 'non-saas-only',
+      chosenConceptId: state.pick,
+      chosenConceptName: byId(state.pick).name,
+      previewedConceptId: state.active,
+      note: state.note || '',
+      excludes: 'SaaS desks 10 (KAWASU..TATERU)',
+      next: '選ばれた骨格でショーケース/実績を実装'
+    };
+    document.getElementById('json').textContent = JSON.stringify(payload, null, 2);
+  }
+
+  function render(){
+    var c = byId(state.active);
+    document.getElementById('title').textContent = c.title;
+    document.getElementById('desc').textContent = c.desc;
+    document.getElementById('tags').innerHTML = c.tags.map(function(t){ return '<span class="tag ' + t.c + '">' + t.t + '</span>'; }).join('');
+    document.getElementById('body').innerHTML = c.render();
+    clist.querySelectorAll('.cbtn').forEach(function(b){ b.classList.toggle('active', b.dataset.id === state.active); });
+    pick.value = state.pick;
+    updateJson();
+  }
+
+  clist.addEventListener('click', function(e){
+    var b = e.target.closest('[data-id]');
+    if (!b) return;
+    state.active = b.dataset.id;
+    localStorage.setItem('showcaseBrushActive', state.active);
+    render();
+  });
+  document.getElementById('save').addEventListener('click', function(){
+    state.pick = pick.value;
+    state.note = note.value.trim();
+    localStorage.setItem('showcaseBrushPick', state.pick);
+    localStorage.setItem('showcaseBrushNote', state.note);
+    state.active = state.pick;
+    localStorage.setItem('showcaseBrushActive', state.active);
+    render();
+    alert('保存した。下のJSONを返してくれれば実装に入る。');
+  });
+  document.getElementById('copy').addEventListener('click', function(){
+    state.pick = pick.value; state.note = note.value.trim(); updateJson();
+    var text = document.getElementById('json').textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function(){ alert('コピーした'); });
+    else {
+      var pre = document.getElementById('json');
+      var r = document.createRange(); r.selectNodeContents(pre);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      alert('選択したので Cmd+C');
+    }
+  });
+  pick.addEventListener('change', function(){ state.pick = pick.value; updateJson(); });
+  note.addEventListener('input', function(){ state.note = note.value; updateJson(); });
+
+  render();
+})();
+</script>
+</body>
+</html>

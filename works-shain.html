@@ -1,0 +1,863 @@
+<!-- 2026-07-22: SHAIN Wiki記事サムネ（kb-001〜006）をリスト・記事ヒーローに表示 ／ demo枠に作品一覧＋トップ2導線 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社内Wikiデモ（Ask検索・出典ハイライト・ナレッジ追加）｜AI顧問室</title>
+<meta name="description" content="架空の社内Wiki「SHAIN」のフル機能デモです。Askバーで質問すると該当記事が開き、段落ハイライトと回答カード、ナレッジ追加まで体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="社内Wikiデモ（Ask検索・出典ハイライト・ナレッジ追加）｜AI顧問室">
+<meta property="og:description" content="架空の社内Wiki「SHAIN」のフル機能デモです。Askバーで質問すると該当記事が開き、段落ハイライトと回答カード、ナレッジ追加まで体験できます。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-shain.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-shain.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #059669; --green-deep: #047857; --green-light: #10B981;
+    --mint: #ECFDF5; --mint-mid: #D1FAE5; --mint-deep: #A7F3D0;
+    --ink: #064E3B; --gray: #3D6B5C; --gray-soft: #6B8F82;
+    --line: #BBF7D0; --bg: #ECFDF5; --white: #FFFFFF;
+    --hl: #FDE68A; --hl-glow: rgba(253,230,138,.45);
+    --amber: #B45309; --amber-bg: #FEF3C7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { line-height: 1.45; font-weight: 700; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea { font-family: inherit; }
+  img, svg { max-width: 100%; }
+  ::selection { background: var(--mint-deep); color: var(--ink); }
+
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: var(--ink); color: #A7F3D0; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 2px solid var(--green);
+  }
+  .demo-frame-bar b { color: #ECFDF5; font-weight: 700; }
+  .demo-frame-bar .frame-links { display: flex; gap: 8px; flex: 0 0 auto; align-items: center; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 999px; white-space: nowrap; transition: background .15s;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.12); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; gap: 8px; height: 52px; }
+    .demo-frame-bar .frame-text { line-height: 1.5; }
+    .demo-frame-bar .frame-link { padding: 4px 9px; font-size: 10.5px; }
+    body { padding-top: 52px; }
+  }
+
+  #view-login {
+    min-height: calc(100vh - 44px); display: grid; grid-template-columns: 1.05fr 1fr;
+    background: var(--bg);
+  }
+  #view-login.hide { display: none; }
+  .login-hero {
+    position: relative; background: linear-gradient(155deg, #064E3B 0%, #047857 50%, #059669 100%);
+    color: #ECFDF5; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+  }
+  .login-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 85% 15%, rgba(255,255,255,.12) 0%, transparent 45%);
+  }
+  .login-hero::after {
+    content: 'W'; position: absolute; right: 52px; bottom: 12%; font-size: 120px; font-weight: 700;
+    color: rgba(255,255,255,.08); line-height: 1;
+  }
+  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .22em; color: #A7F3D0; font-weight: 700; margin-bottom: 18px; position: relative; }
+  .login-hero h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 16em; position: relative; }
+  .login-hero h2 em { font-style: normal; color: #D1FAE5; }
+  .login-hero p { font-size: 14px; color: #6EE7B7; max-width: 28em; line-height: 1.9; position: relative; }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; position: relative; }
+  .hero-tags span {
+    padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+    font-size: 11.5px; color: #D1FAE5;
+  }
+  .login-panel {
+    display: flex; align-items: center; justify-content: center; padding: 40px 28px;
+    background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+  }
+  .login-card {
+    width: 100%; max-width: 400px; background: #fff; border-radius: 16px; padding: 40px 36px 30px;
+    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(5,150,105,.1); border-top: 4px solid var(--green);
+  }
+  .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .login-logo .k { font-size: 28px; font-weight: 700; color: var(--green); letter-spacing: .04em; }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .14em; }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .login-field { margin-bottom: 14px; }
+  .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
+  .login-field input {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px; font-size: 14px;
+    color: var(--gray-soft); background: var(--mint); cursor: not-allowed;
+  }
+  .login-btn {
+    width: 100%; padding: 13px; border: none; border-radius: 10px; background: var(--green); color: #fff;
+    font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-btn:hover { filter: brightness(1.06); }
+  .login-btn:active { transform: scale(.99); }
+  .login-btn:disabled { opacity: .75; cursor: wait; }
+  .login-spin {
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(255,255,255,.35);
+    border-top-color: #fff; animation: spin .7s linear infinite; display: none;
+  }
+  .login-btn.loading .login-spin { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .login-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center; border-top: 1px solid var(--line); padding-top: 14px; }
+  @media (max-width: 860px) {
+    #view-login { grid-template-columns: 1fr; }
+    .login-hero { min-height: 220px; padding: 36px 28px; }
+    .login-hero::after { display: none; }
+  }
+
+  #view-app { display: none; min-height: calc(100vh - 44px); flex-direction: column; }
+  #view-app.show { display: flex; }
+
+  .app-top {
+    height: 52px; flex: 0 0 auto; background: #fff; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 12px; padding: 0 20px; position: sticky; top: 44px; z-index: 80;
+  }
+  .top-brand { display: flex; align-items: baseline; gap: 6px; flex: 0 0 auto; }
+  .top-brand .k { font-size: 17px; font-weight: 700; color: var(--green); letter-spacing: .06em; }
+  .top-brand .tag-en { font-size: 9px; color: var(--gray-soft); letter-spacing: .12em; }
+  .top-spacer { flex: 1; }
+  .top-user { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--gray); }
+  .top-user .avatar {
+    width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: #fff;
+    display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  }
+  .logout-link { font-size: 11px; color: var(--gray-soft); padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; }
+  .logout-link:hover { color: var(--green-deep); border-color: var(--green); }
+
+  .ask-zone {
+    flex: 0 0 auto; background: linear-gradient(180deg, #fff 0%, var(--mint) 100%);
+    border-bottom: 2px solid var(--green-light); padding: 28px 24px 22px;
+  }
+  .ask-inner { max-width: 920px; margin: 0 auto; }
+  .ask-label { font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--green-deep); margin-bottom: 10px; }
+  .ask-row { display: flex; gap: 10px; align-items: stretch; }
+  .ask-input-wrap { flex: 1; position: relative; }
+  .ask-input-wrap svg {
+    position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--gray-soft); pointer-events: none;
+  }
+  .ask-input {
+    width: 100%; padding: 18px 18px 18px 50px; border: 2px solid var(--line); border-radius: 14px;
+    font-size: 16px; background: #fff; color: var(--ink); transition: border-color .2s, box-shadow .2s;
+  }
+  .ask-input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 4px rgba(5,150,105,.12); }
+  .ask-input::placeholder { color: var(--gray-soft); }
+  .ask-submit {
+    flex: 0 0 auto; padding: 0 28px; border: none; border-radius: 14px; background: var(--green); color: #fff;
+    font-weight: 700; font-size: 15px; transition: filter .15s, transform .1s; white-space: nowrap;
+  }
+  .ask-submit:hover { filter: brightness(1.06); }
+  .ask-submit:active { transform: scale(.98); }
+  .ask-submit:disabled { opacity: .65; cursor: wait; }
+  .ask-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .ask-chip {
+    padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: #fff;
+    font-size: 12.5px; color: var(--gray); font-weight: 500; transition: all .15s;
+  }
+  .ask-chip:hover { border-color: var(--green); color: var(--green-deep); background: var(--mint); }
+  .ask-status {
+    margin-top: 12px; font-size: 12.5px; color: var(--green-deep); font-weight: 600; min-height: 20px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .ask-status .mini-spin {
+    width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--line);
+    border-top-color: var(--green); animation: spin .7s linear infinite; flex: 0 0 auto;
+  }
+
+  .wiki-shell { flex: 1; display: flex; min-height: 0; overflow: hidden; }
+  .wiki-list {
+    width: 300px; flex: 0 0 auto; background: #fff; border-right: 1px solid var(--line);
+    display: flex; flex-direction: column; min-height: 0; overflow: hidden;
+  }
+  .wiki-list-head {
+    flex: 0 0 auto; padding: 16px 18px 12px; border-bottom: 1px solid var(--line); background: var(--mint);
+  }
+  .wiki-list-head h2 { font-size: 13px; color: var(--green-deep); letter-spacing: .08em; }
+  .wiki-list-head p { font-size: 11px; color: var(--gray-soft); margin-top: 4px; }
+  .wiki-filter { padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  .wiki-filter input {
+    width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; font-size: 12.5px; background: var(--mint);
+  }
+  .wiki-items { flex: 1; overflow-y: auto; padding: 8px; }
+  .wiki-item {
+    display: flex; align-items: flex-start; gap: 12px; width: 100%; text-align: left; padding: 12px 14px; border: 1px solid transparent;
+    border-radius: 10px; background: none; margin-bottom: 4px; transition: background .12s, border-color .12s;
+  }
+  .wiki-item .wi-body { flex: 1; min-width: 0; }
+  .wi-thumb {
+    width: 52px; height: 52px; border-radius: 10px; object-fit: cover; flex: 0 0 auto;
+    border: 1px solid var(--line); background: var(--mint);
+  }
+  .wiki-item:hover { background: var(--mint); border-color: var(--line); }
+  .wiki-item.active { background: var(--mint-mid); border-color: var(--green-light); }
+  .wiki-item .wi-cat { font-size: 10px; font-weight: 700; color: var(--green-deep); letter-spacing: .06em; margin-bottom: 4px; }
+  .wiki-item .wi-title { font-size: 13.5px; font-weight: 700; color: var(--ink); line-height: 1.45; }
+  .wiki-item .wi-meta { font-size: 10.5px; color: var(--gray-soft); margin-top: 6px; }
+  .wiki-item .wi-badge {
+    display: inline-block; margin-top: 6px; font-size: 9.5px; font-weight: 700; padding: 2px 7px;
+    border-radius: 999px; background: var(--amber-bg); color: var(--amber);
+  }
+
+  .article-viewer {
+    flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0; background: var(--bg);
+    position: relative;
+  }
+  .article-empty {
+    flex: 1; display: grid; place-items: center; padding: 40px 24px; text-align: center; color: var(--gray-soft);
+  }
+  .article-empty h3 { font-size: 18px; color: var(--gray); margin-bottom: 10px; }
+  .article-empty p { font-size: 13px; line-height: 1.85; max-width: 28em; }
+  .article-scroll { flex: 1; overflow-y: auto; padding: 28px 32px 48px; }
+  .article-doc {
+    max-width: 720px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 16px;
+    padding: 32px 36px 40px; box-shadow: 0 8px 32px rgba(5,150,105,.06); position: relative;
+  }
+  .article-doc .ad-cat { font-size: 11px; font-weight: 700; color: var(--green-deep); letter-spacing: .08em; margin-bottom: 10px; }
+  .article-doc h1 { font-size: clamp(22px, 3vw, 28px); margin-bottom: 8px; line-height: 1.4; }
+  .article-doc .ad-meta { font-size: 11.5px; color: var(--gray-soft); margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+  .ad-hero {
+    width: 100%; max-height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 20px;
+    border: 1px solid var(--line); display: block;
+  }
+  .article-doc .ad-body { font-size: 14.5px; line-height: 1.9; color: var(--ink); }
+  .article-doc .ad-body h3 { font-size: 15px; margin: 28px 0 10px; color: var(--green-deep); }
+  .article-doc .ad-body p { margin-bottom: 14px; border-radius: 6px; padding: 2px 4px; transition: background .4s, box-shadow .4s; }
+  .article-doc .ad-body p.hl {
+    background: var(--hl); box-shadow: 0 0 0 3px var(--hl-glow); animation: hlPulse 1.2s ease-in-out 2;
+  }
+  @keyframes hlPulse {
+    0%, 100% { box-shadow: 0 0 0 3px var(--hl-glow); }
+    50% { box-shadow: 0 0 0 8px rgba(253,230,138,.25); }
+  }
+  .article-doc .ad-body ul { margin: 0 0 14px 1.2em; }
+  .article-doc .ad-body li { margin-bottom: 6px; }
+
+  .answer-overlay {
+    position: absolute; right: 24px; bottom: 24px; width: min(380px, calc(100% - 48px)); z-index: 30;
+    background: #fff; border: 2px solid var(--green); border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(5,150,105,.18); opacity: 0; transform: translateY(16px);
+    pointer-events: none; transition: opacity .35s ease, transform .35s ease;
+  }
+  .answer-overlay.show { opacity: 1; transform: none; pointer-events: auto; }
+  .answer-overlay-head {
+    padding: 14px 16px; background: var(--green); color: #fff; border-radius: 14px 14px 0 0;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  }
+  .answer-overlay-head h4 { font-size: 13px; font-weight: 700; }
+  .answer-overlay-head .ai-tag {
+    font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: rgba(255,255,255,.2);
+  }
+  .answer-overlay-body { padding: 16px 18px 18px; max-height: 280px; overflow-y: auto; }
+  .answer-text { font-size: 13px; line-height: 1.85; color: var(--ink); white-space: pre-wrap; }
+  .answer-cursor { display: inline-block; width: 2px; height: 1em; background: var(--green); animation: blink .8s step-end infinite; vertical-align: text-bottom; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .answer-source { margin-top: 12px; font-size: 11px; color: var(--gray-soft); padding-top: 10px; border-top: 1px dashed var(--line); }
+  .answer-actions { padding: 0 18px 16px; }
+  .btn-add-kb {
+    width: 100%; padding: 12px; border: none; border-radius: 10px; background: var(--green); color: #fff;
+    font-weight: 700; font-size: 13px; transition: filter .15s;
+  }
+  .btn-add-kb:hover { filter: brightness(1.06); }
+  .btn-add-kb:disabled { opacity: .6; cursor: default; }
+  .kb-done {
+    margin-top: 10px; padding: 10px 12px; border-radius: 10px; background: var(--mint-mid); color: var(--green-deep);
+    font-size: 12px; font-weight: 700; text-align: center; display: none;
+  }
+  .kb-done.show { display: block; animation: fadeIn .3s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
+  .toast {
+    background: var(--ink); color: #fff; padding: 11px 18px; border-radius: 12px; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
+  }
+  @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+
+  .komon-cta {
+    background: linear-gradient(135deg, #064E3B 0%, #047857 55%, #059669 100%);
+    color: #fff; padding: 76px 24px 40px; text-align: center;
+  }
+  .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
+  .komon-cta .cta-label { display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: #A7F3D0; font-weight: 700; margin-bottom: 16px; }
+  .komon-cta h2 { font-size: 30px; margin-bottom: 16px; line-height: 1.5; }
+  .komon-cta h2 em { font-style: normal; color: #D1FAE5; }
+  .komon-cta p.lead { font-size: 14.5px; color: #6EE7B7; margin-bottom: 32px; line-height: 1.9; }
+  .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn { display: inline-block; padding: 15px 34px; border-radius: 10px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s; }
+  .btn:hover { opacity: .87; }
+  .btn-accent { background: #fff; color: var(--green-deep); }
+  .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #6EE7B7; }
+  .komon-cta .cta-foot a { color: #A7F3D0; }
+  .komon-cta .cta-foot a:hover { color: #fff; }
+
+  @media (max-width: 900px) {
+    .wiki-shell { flex-direction: column; overflow: visible; }
+    .wiki-list { width: 100%; max-height: 240px; border-right: none; border-bottom: 1px solid var(--line); }
+    .article-viewer { min-height: 480px; }
+    .answer-overlay { right: 16px; bottom: 16px; width: calc(100% - 32px); }
+    .ask-row { flex-direction: column; }
+    .ask-submit { padding: 14px; }
+    .article-scroll { padding: 20px 16px 40px; }
+    .article-doc { padding: 24px 20px 32px; }
+    .komon-cta h2 { font-size: 23px; }
+    .komon-cta { padding: 56px 18px 32px; }
+  }
+  @media (max-width: 480px) {
+    .ask-zone { padding: 20px 14px 16px; }
+    .app-top { padding: 0 12px; }
+    .top-user span { display: none; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> が制作した架空プロダクトのデモです。データはすべてサンプルで、実際のサービスではありません。</span>
+  <div class="frame-links">
+    <a href="works.html" class="frame-link">作品一覧</a>
+    <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+  </div>
+</div>
+
+<div id="view-login">
+  <div class="login-hero">
+    <div class="hero-kicker">INTERNAL WIKI</div>
+    <h2>記事を開いて、<em>答えが光る。</em></h2>
+    <p>社内WikiにAskするだけ。該当記事が自動で開き、根拠段落がハイライトされ、回答カードが記事上に現れます。解決した内容はそのままナレッジに追加。</p>
+    <div class="hero-tags"><span>休暇</span><span>経費</span><span>リモート</span><span>PC</span><span>入館</span><span>備品</span></div>
+  </div>
+  <div class="login-panel">
+    <div class="login-card">
+      <div class="login-logo"><span class="k">SHAIN</span><span class="tag-en">INTERNAL WIKI</span></div>
+      <p class="login-sub">Askして、記事から答えを見つける。</p>
+      <div class="login-field">
+        <label for="loginMail">メールアドレス</label>
+        <input id="loginMail" type="text" value="demo@growthtech.example" readonly>
+      </div>
+      <div class="login-field">
+        <label for="loginPass">パスワード</label>
+        <input id="loginPass" type="password" value="dummydummy" readonly>
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">
+        <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
+      </button>
+      <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
+    </div>
+  </div>
+</div>
+
+<div id="view-app">
+  <header class="app-top">
+    <div class="top-brand"><span class="k">SHAIN</span><span class="tag-en">INTERNAL WIKI</span></div>
+    <div class="top-spacer"></div>
+    <div class="top-user">
+      <div class="avatar">花</div>
+      <span>デモ 花子</span>
+    </div>
+    <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+  </header>
+
+  <section class="ask-zone" aria-label="Askバー">
+    <div class="ask-inner">
+      <div class="ask-label">ASK — 社内Wikiに質問</div>
+      <div class="ask-row">
+        <div class="ask-input-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+          <input class="ask-input" id="askInput" type="text" placeholder="例：有給はいつから使える？" onkeydown="if(event.key==='Enter')submitAsk()">
+        </div>
+        <button class="ask-submit" id="askSubmitBtn" onclick="submitAsk()">Ask</button>
+      </div>
+      <div class="ask-chips" id="askChips"></div>
+      <div class="ask-status" id="askStatus"></div>
+    </div>
+  </section>
+
+  <div class="wiki-shell">
+    <aside class="wiki-list" aria-label="ナレッジ記事リスト">
+      <div class="wiki-list-head">
+        <h2>ナレッジ記事</h2>
+        <p id="wikiCountLabel">6本のWiki記事</p>
+      </div>
+      <div class="wiki-filter">
+        <input type="text" id="wikiFilterInput" placeholder="記事を検索…" oninput="renderWikiList()">
+      </div>
+      <div class="wiki-items" id="wikiItems"></div>
+    </aside>
+
+    <main class="article-viewer" id="articleViewer">
+      <div class="article-empty" id="articleEmpty">
+        <div>
+          <h3>記事を選ぶか、Askしてください</h3>
+          <p>左のWikiリストから記事を開くか、上のAskバーで質問すると該当記事が自動で開き、回答がハイライト表示されます。</p>
+        </div>
+      </div>
+      <div class="article-scroll" id="articleScroll" style="display:none;">
+        <article class="article-doc" id="articleDoc"></article>
+      </div>
+      <div class="answer-overlay" id="answerOverlay" aria-live="polite">
+        <div class="answer-overlay-head">
+          <h4>AI回答</h4>
+          <span class="ai-tag">出典付き</span>
+        </div>
+        <div class="answer-overlay-body">
+          <div class="answer-text" id="answerText"></div>
+          <div class="answer-source" id="answerSource"></div>
+        </div>
+        <div class="answer-actions">
+          <button class="btn-add-kb" id="btnAddKb" onclick="addToKnowledge()">この回答をナレッジに追加</button>
+          <div class="kb-done" id="kbDone">✓ ナレッジ記事に追加しました（デモ）</div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="komon-cta">
+  <div class="cta-inner">
+    <span class="cta-label">AI KOMONSHITSU</span>
+    <h2>このようなシステムを、<em>御社専用に。</em></h2>
+    <p class="lead">「SHAIN」は本デモのために作った架空のプロダクトです。AI顧問室では、社内Wiki＋Ask検索・出典ハイライト・ナレッジ自動追加を組み込んだ社内ヘルプセンターを構築します。</p>
+    <div class="cta-btn-row">
+      <a href="index.html?from=works-shain#contact" class="btn btn-accent">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
+    </div>
+    <div class="cta-foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+
+<script>
+var ARTICLES = [
+  {
+    id: 'kb-001', category: '休暇', title: '有給休暇の取得・申請手順', updated: '2026-06-01', views: 342,
+    thumb: 'assets/shain/kb-001.jpg',
+    body: [
+      { id: 'p1', html: '年次有給休暇は、就業規則に基づき入社6か月後かつ所定労働日の8割以上出勤した時点で10日付与されます。付与日は入社日から起算し、7月入社の場合は翌年1月頃が目安です。' },
+      { id: 'p2', html: '申請はWorkdayの「休暇申請」から行います。取得希望日の<strong>3営業日前まで</strong>に上長承認を得てください。半日単位（AM/PM）での取得も可能です。' },
+      { id: 'p3', html: '入社直後でどうしても休暇が必要な場合は、人事・総務へ個別相談ください。欠勤調整や特別休暇の適用可否を確認します。' },
+      { id: 'p4', html: '有給残日数はWorkdayダッシュボードで確認できます。計画的付与（5日以上の一括取得推奨）については就業規則第25条を参照してください。' }
+    ]
+  },
+  {
+    id: 'kb-002', category: '経費', title: '経費精算ルールと期限', updated: '2026-05-15', views: 218,
+    thumb: 'assets/shain/kb-002.jpg',
+    body: [
+      { id: 'p1', html: '経費精算は<strong>月末締め・翌月5営業日まで</strong>に申請してください。例：7月分は8月5営業日（8/7）が最終期限です。' },
+      { id: 'p2', html: '領収書は原本をPDFスキャンし、Freee経費にアップロードします。1万円以上は但し書きに社名・用途を明記した領収書が必要です。' },
+      { id: 'p3', html: '交通費はICカード履歴または経路検索画面のスクショで代替可能。タクシー利用は事前承認（上長メール）が必要です。' },
+      { id: 'p4', html: '宿泊費上限は国内1泊15,000円（税込）。超過分は自己負担となります。海外出張は別途「海外出張規程」を参照。' }
+    ]
+  },
+  {
+    id: 'kb-003', category: '勤務', title: 'リモートワーク申請とセキュリティ', updated: '2026-06-10', views: 274,
+    thumb: 'assets/shain/kb-003.jpg',
+    body: [
+      { id: 'p1', html: '週2日までのリモートワークは、社内ポータル「勤怠・リモート」から申請できます。申請は<strong>毎週月曜9:00まで</strong>に提出し、上長承認後に有効になります。' },
+      { id: 'p2', html: 'リモート勤務中はVPN接続を必須とし、社用PCの画面ロック（離席時5分以内）を徹底してください。' },
+      { id: 'p3', html: '機密情報の印刷・USB持ち出し・私物PCでの業務データ閲覧は禁止です。違反時は就業規則第42条に基づき措置します。' },
+      { id: 'p4', html: 'フルリモート（週3日以上）は部門長＋人事承認が必要。育児・介護等の理由は別フォーム「特別リモート申請」を使用。' }
+    ]
+  },
+  {
+    id: 'kb-004', category: 'PC', title: '社用PCセットアップ', updated: '2026-07-01', views: 189,
+    thumb: 'assets/shain/kb-004.jpg',
+    body: [
+      { id: 'p1', html: 'MacBook配布後、初回起動時にMDM（Jamf）登録を完了してください。Wi-Fi接続後、自動で必須アプリがインストールされます。' },
+      { id: 'p2', html: '必須アプリ：VPN（GlobalProtect）、Slack、Google Chrome、1Password、Zoom。Windows端末はMicrosoft 365＋Defenderが自動導入されます。' },
+      { id: 'p3', html: 'FileVault（Mac）/ BitLocker（Win）の有効化はMDMで強制されています。自己解除は情シスへ申請が必要です。' },
+      { id: 'p4', html: 'セットアップで不明点がある場合は #it-help Slackチャンネルへ。初回ログイン後24時間以内の完了を推奨します。' }
+    ]
+  },
+  {
+    id: 'kb-005', category: '入館', title: 'オフィス入館', updated: '2026-04-20', views: 156,
+    thumb: 'assets/shain/kb-005.jpg',
+    body: [
+      { id: 'p1', html: '入館証（セキュリティカード）は入社手続き完了後、総務ポータル「入館証申請」から発行します。通常3営業日で受取可能です。' },
+      { id: 'p2', html: '初回入館時は1F受付で顔写真付き身分証を提示し、カードをアクティベートしてください。' },
+      { id: 'p3', html: '来客対応は事前に「来客登録」を行い、1Fゲスト用QRを発行します。社員同伴が原則です。' },
+      { id: 'p4', html: '退館時は18:30以降もカードで解錠可能。最終退館者は照明・窓の施錠を確認し、Slack #office-close に報告。' }
+    ]
+  },
+  {
+    id: 'kb-006', category: '備品', title: '名刺・備品発注', updated: '2026-03-08', views: 98,
+    thumb: 'assets/shain/kb-006.jpg',
+    body: [
+      { id: 'p1', html: '名刺は総務ポータル「名刺発注」から申請。デザインテンプレートは最新版（v3）を使用してください。' },
+      { id: 'p2', html: '通常<strong>5営業日</strong>で納品。急ぎは備考欄に希望日を記載（最短3営業日、追加料金なし）。' },
+      { id: 'p3', html: '備品（文具・モニター等）はNotion在庫表からリクエスト。10000円超は部門予算コード入力が必要です。' },
+      { id: 'p4', html: '退職・異動時の名刺残量は総務へ返却。個人での廃棄・再利用は禁止です。' }
+    ]
+  }
+];
+
+var ASK_MAP = [
+  {
+    keys: ['有給', '休暇', 'いつから', '申請'],
+    chip: '有給はいつから使える？',
+    articleId: 'kb-001', highlightId: 'p1',
+    answer: '有給休暇は、入社6か月後かつ所定労働日の8割以上出勤した時点で10日付与されます。\n\n7月入社の場合、付与は2027年1月頃が目安です。申請はWorkday「休暇申請」から、取得希望日の3営業日前までに上長承認をお願いしています。\n\n入社直後で休みが必要な場合は、人事・総務へ個別相談ください。',
+    source: '出典：有給休暇の取得・申請手順 — 第1段落',
+    kbTitle: '入社直後の有給休暇Q&A'
+  },
+  {
+    keys: ['経費', '精算', '期限', '締め'],
+    chip: '経費精算の期限は？',
+    articleId: 'kb-002', highlightId: 'p1',
+    answer: '経費精算は月末締め・翌月5営業日までが申請期限です。\n\n例：7月分の経費は8月5営業日（8/7）までにFreee経費へ提出してください。領収書はPDFでアップロードし、1万円以上は社名・用途の但し書きが必要です。',
+    source: '出典：経費精算ルールと期限 — 第1段落',
+    kbTitle: '経費精算期限の早見表'
+  },
+  {
+    keys: ['リモート', '在宅', '申請', 'テレワーク'],
+    chip: 'リモート申請どうやる？',
+    articleId: 'kb-003', highlightId: 'p1',
+    answer: '週2日までのリモートワークは、社内ポータル「勤怠・リモート」から申請できます。\n\n毎週月曜9:00までに提出し、上長承認後に有効になります。勤務中はVPN接続と画面ロック（離席5分以内）が必須です。',
+    source: '出典：リモートワーク申請とセキュリティ — 第1段落',
+    kbTitle: 'リモート申請の手順（週次）'
+  }
+];
+
+var loggedIn = false;
+var activeArticleId = null;
+var askState = null;
+var kbAddedKeys = {};
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function showToast(msg) {
+  var host = document.getElementById('toastHost');
+  var el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  host.appendChild(el);
+  setTimeout(function () { el.remove(); }, 2700);
+}
+function findArticle(id) {
+  return ARTICLES.filter(function (a) { return a.id === id; })[0];
+}
+function fmtDate(s) {
+  var d = new Date(s + 'T00:00:00');
+  return d.getFullYear() + '/' + (d.getMonth() + 1) + '/' + d.getDate();
+}
+
+function matchAskQuery(q) {
+  var text = (q || '').trim().toLowerCase();
+  if (!text) return null;
+  var best = null;
+  var bestScore = 0;
+  ASK_MAP.forEach(function (m) {
+    var score = 0;
+    m.keys.forEach(function (k) {
+      if (text.indexOf(k.toLowerCase()) >= 0) score += 2;
+    });
+    if (m.chip.toLowerCase().indexOf(text) >= 0 || text.indexOf(m.chip.replace(/[？?]/g, '').toLowerCase()) >= 0) score += 3;
+    if (score > bestScore) { bestScore = score; best = m; }
+  });
+  return bestScore > 0 ? best : ASK_MAP[0];
+}
+
+function renderAskChips() {
+  document.getElementById('askChips').innerHTML = ASK_MAP.map(function (m, i) {
+    return '<button type="button" class="ask-chip" onclick="askChipByIndex(' + i + ')">' + escapeHtml(m.chip) + '</button>';
+  }).join('');
+}
+
+function renderWikiList() {
+  var q = (document.getElementById('wikiFilterInput').value || '').trim().toLowerCase();
+  var list = ARTICLES.filter(function (a) {
+    if (!q) return true;
+    return a.title.toLowerCase().indexOf(q) >= 0 || a.category.toLowerCase().indexOf(q) >= 0;
+  });
+  document.getElementById('wikiCountLabel').textContent = ARTICLES.length + '本のWiki記事';
+  document.getElementById('wikiItems').innerHTML = list.map(function (a) {
+    var added = kbAddedKeys[a.id];
+    return '<button type="button" class="wiki-item' + (activeArticleId === a.id ? ' active' : '') + '" onclick="openArticle(\'' + a.id + '\')">' +
+      (a.thumb ? '<img class="wi-thumb" src="' + escapeHtml(a.thumb) + '" alt="">' : '') +
+      '<div class="wi-body">' +
+      '<div class="wi-cat">' + escapeHtml(a.category) + '</div>' +
+      '<div class="wi-title">' + escapeHtml(a.title) + '</div>' +
+      '<div class="wi-meta">更新 ' + fmtDate(a.updated) + ' · PV ' + a.views + '</div>' +
+      (added ? '<span class="wi-badge">AI追加済</span>' : '') +
+      '</div></button>';
+  }).join('') || '<p style="padding:12px;font-size:12px;color:var(--gray-soft);">該当記事なし</p>';
+}
+
+function openArticle(id, opts) {
+  opts = opts || {};
+  var art = findArticle(id);
+  if (!art) return;
+  activeArticleId = id;
+  if (!opts.silentHash) location.hash = 'article/' + id;
+
+  document.getElementById('articleEmpty').style.display = 'none';
+  document.getElementById('articleScroll').style.display = 'block';
+
+  var bodyHtml = art.body.map(function (p) {
+    return '<p data-para="' + p.id + '" id="para-' + p.id + '">' + p.html + '</p>';
+  }).join('');
+  var h3Blocks = '';
+  if (art.id === 'kb-001') h3Blocks = '<h3>付与条件</h3>';
+  if (art.id === 'kb-002') h3Blocks = '<h3>申請期限</h3>';
+  if (art.id === 'kb-003') h3Blocks = '<h3>申請方法</h3>';
+
+  document.getElementById('articleDoc').innerHTML =
+    '<div class="ad-cat">' + escapeHtml(art.category) + '</div>' +
+    '<h1>' + escapeHtml(art.title) + '</h1>' +
+    '<div class="ad-meta">最終更新 ' + fmtDate(art.updated) + ' · PV ' + art.views + '</div>' +
+    (art.thumb ? '<img class="ad-hero" src="' + escapeHtml(art.thumb) + '" alt="' + escapeHtml(art.title) + '">' : '') +
+    '<div class="ad-body">' + h3Blocks + bodyHtml + '</div>';
+
+  renderWikiList();
+
+  if (opts.highlightId) {
+    setTimeout(function () { highlightParagraph(opts.highlightId); }, opts.delayHighlight || 200);
+  } else {
+    clearHighlights();
+  }
+}
+
+function highlightParagraph(paraId) {
+  clearHighlights();
+  var el = document.getElementById('para-' + paraId);
+  if (el) {
+    el.classList.add('hl');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+function clearHighlights() {
+  document.querySelectorAll('.ad-body p.hl').forEach(function (p) { p.classList.remove('hl'); });
+}
+
+function hideAnswerOverlay() {
+  document.getElementById('answerOverlay').classList.remove('show');
+  document.getElementById('answerText').textContent = '';
+  document.getElementById('answerSource').textContent = '';
+  document.getElementById('btnAddKb').disabled = false;
+  document.getElementById('btnAddKb').style.display = 'block';
+  document.getElementById('kbDone').classList.remove('show');
+}
+
+function setAskStatus(html) {
+  document.getElementById('askStatus').innerHTML = html;
+}
+
+function askChipByIndex(i) {
+  var m = ASK_MAP[i];
+  if (!m) return;
+  document.getElementById('askInput').value = m.chip;
+  submitAsk();
+}
+
+function submitAsk() {
+  if (askState && askState.busy) return;
+  var q = document.getElementById('askInput').value.trim();
+  if (!q) { showToast('質問を入力してください'); return; }
+
+  var match = matchAskQuery(q);
+  if (!match) { showToast('該当する記事が見つかりませんでした'); return; }
+
+  if (askState && askState.timers) askState.timers.forEach(function (t) { clearTimeout(t); });
+  askState = { busy: true, timers: [], match: match, runId: {} };
+  var myRun = askState.runId;
+
+  document.getElementById('askSubmitBtn').disabled = true;
+  hideAnswerOverlay();
+  setAskStatus('<span class="mini-spin"></span>社内Wikiを検索中…');
+
+  var t1 = setTimeout(function () {
+    if (!askState || askState.runId !== myRun) return;
+    setAskStatus('<span class="mini-spin"></span>「' + escapeHtml(findArticle(match.articleId).title) + '」を開いています…');
+    openArticle(match.articleId, { silentHash: true, highlightId: null });
+    location.hash = 'ask/' + encodeURIComponent(match.chip.replace(/[？?]/g, ''));
+  }, 700);
+  askState.timers.push(t1);
+
+  var t2 = setTimeout(function () {
+    if (!askState || askState.runId !== myRun) return;
+    setAskStatus('<span class="mini-spin"></span>該当段落をハイライト…');
+    highlightParagraph(match.highlightId);
+  }, 1400);
+  askState.timers.push(t2);
+
+  var t3 = setTimeout(function () {
+    if (!askState || askState.runId !== myRun) return;
+    setAskStatus('回答を生成しました — 記事上のカードを確認');
+    showAnswerOverlay(match);
+    askState.busy = false;
+    document.getElementById('askSubmitBtn').disabled = false;
+  }, 2200);
+  askState.timers.push(t3);
+}
+
+function showAnswerOverlay(match) {
+  var overlay = document.getElementById('answerOverlay');
+  var textEl = document.getElementById('answerText');
+  var srcEl = document.getElementById('answerSource');
+  overlay.classList.add('show');
+  srcEl.textContent = match.source;
+  textEl.innerHTML = '';
+  var full = match.answer;
+  var shown = 0;
+  function tick() {
+    shown = Math.min(full.length, shown + 2);
+    if (shown >= full.length) {
+      textEl.textContent = full;
+      return;
+    }
+    textEl.textContent = full.slice(0, shown);
+    askState.timers.push(setTimeout(tick, 24));
+  }
+  tick();
+}
+
+function addToKnowledge() {
+  if (!askState || !askState.match) return;
+  var m = askState.match;
+  var key = m.articleId + '-' + m.highlightId;
+  if (kbAddedKeys[key]) return;
+
+  kbAddedKeys[key] = true;
+  ARTICLES.unshift({
+    id: 'kb-new-' + Date.now(),
+    category: findArticle(m.articleId).category,
+    title: m.kbTitle,
+    updated: '2026-07-22',
+    views: 0,
+    body: [{ id: 'p1', html: m.answer.replace(/\n/g, '<br>') }]
+  });
+
+  document.getElementById('btnAddKb').disabled = true;
+  document.getElementById('btnAddKb').style.display = 'none';
+  document.getElementById('kbDone').classList.add('show');
+  renderWikiList();
+  showToast('「' + m.kbTitle + '」をナレッジに追加しました');
+  setAskStatus('✓ ナレッジ追加完了 — Wikiリスト先頭に反映');
+}
+
+function isLoggedIn() { return loggedIn; }
+
+function showLoginScreen() {
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+  if (askState && askState.timers) askState.timers.forEach(function (t) { clearTimeout(t); });
+  askState = null;
+  hideAnswerOverlay();
+}
+
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+  renderAskChips();
+  renderWikiList();
+}
+
+function handleRoute() {
+  var hash = location.hash.replace('#', '') || 'login';
+  if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
+  if (hash === 'login') { showLoginScreen(); return; }
+
+  showAppScreen();
+
+  if (hash.indexOf('article/') === 0) {
+    var id = hash.split('/')[1];
+    if (findArticle(id)) {
+      openArticle(id, { silentHash: true });
+      hideAnswerOverlay();
+      setAskStatus('');
+    } else {
+      location.hash = 'wiki';
+    }
+    return;
+  }
+
+  if (hash.indexOf('ask/') === 0) {
+    var chipKey = decodeURIComponent(hash.split('/').slice(1).join('/'));
+    var match = ASK_MAP.filter(function (m) {
+      return m.chip.replace(/[？?]/g, '') === chipKey || m.chip.indexOf(chipKey) >= 0;
+    })[0];
+    if (match && askState && askState.match === match) return;
+    if (match) {
+      document.getElementById('askInput').value = match.chip;
+      if (!askState || !askState.busy) submitAsk();
+    }
+    return;
+  }
+
+  if (hash === 'wiki') {
+    activeArticleId = null;
+    document.getElementById('articleEmpty').style.display = 'grid';
+    document.getElementById('articleScroll').style.display = 'none';
+    hideAnswerOverlay();
+    setAskStatus('');
+    renderWikiList();
+    return;
+  }
+
+  location.hash = 'wiki';
+}
+
+function doLogin() {
+  var btn = document.getElementById('loginBtn');
+  if (btn.classList.contains('loading')) return;
+  btn.classList.add('loading');
+  btn.disabled = true;
+  setTimeout(function () {
+    loggedIn = true;
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    location.hash = 'wiki';
+    handleRoute();
+  }, 900);
+}
+
+function doLogout() {
+  loggedIn = false;
+  location.hash = 'login';
+  handleRoute();
+  showToast('ログアウトしました（デモ）');
+}
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') loggedIn = true;
+  handleRoute();
+});
+</script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
+</body>
+</html>

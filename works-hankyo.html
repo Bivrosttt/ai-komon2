@@ -1,0 +1,1065 @@
+<!-- 2026-07-22: HANKYOをSLA壁＋カードレーン骨格に作り直し ／ demo枠に作品一覧＋トップ2導線 ／ 物件サムネ＋シートヒーロー写真 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script>(function(){var h=location.hostname;if(h==='rakansens.github.io'||h==='bivrosttt.github.io'){location.replace('https://ai-komon.bivrost.co.jp'+location.pathname.replace(/^\/ai-komon2/,'')+location.search+location.hash);}})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>反響CRM構築デモ（SLA追客・AI返信）｜AI顧問室</title>
+<meta name="description" content="架空の不動産反響CRM「ハンキョウ」のフル機能デモです。SLAカウントダウン壁・カンバンレーン・AI一次返信下書き・Day3/7/14追客シーケンスまで体験できます。中小企業向けAI顧問サービス「AI顧問室」が提供。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI顧問室">
+<meta property="og:title" content="反響CRM構築デモ（SLA追客・AI返信）｜AI顧問室">
+<meta property="og:description" content="架空の不動産反響CRM「ハンキョウ」のフル機能デモです。SLAカウントダウン壁・カンバンレーン・AI一次返信下書き・Day3/7/14追客シーケンスまで体験できます。">
+<meta property="og:url" content="https://ai-komon.bivrost.co.jp/works-hankyo.html">
+<meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ai-komon.bivrost.co.jp/works-hankyo.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B2447; --navy-deep: #061528; --navy-light: #15325C;
+    --gold: #C9A227; --gold-deep: #A8861A; --gold-bg: #F5EFD6;
+    --pri: #C9A227; --pri-deep: #8B6914;
+    --ink: #0B2447; --gray: #475569; --gray-soft: #64748B;
+    --line: #CBD5E1; --bg-soft: #EEF3F9; --white: #FFFFFF;
+    --teal: #0E7490; --teal-bg: #CFFAFE;
+    --red: #EF4444; --red-bg: #FEE2E2; --red-glow: rgba(239,68,68,.35);
+    --green: #059669; --green-bg: #D1FAE5;
+    --lane-unreplied: #1E3A5F; --lane-following: #1A3352; --lane-confirmed: #152A45;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif; color: var(--ink); line-height: 1.7; background: var(--navy-deep);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { line-height: 1.4; font-weight: 700; }
+  .serif { font-family: 'Noto Serif JP', serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; cursor: pointer; }
+  input, textarea { font-family: inherit; }
+  img, svg { max-width: 100%; }
+  ::selection { background: #F5EFD6; color: var(--ink); }
+
+  .demo-frame-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: 44px;
+    background: var(--navy-deep); color: #CBD5E1; display: flex; align-items: center;
+    justify-content: center; gap: 14px; padding: 0 16px; font-size: 12.5px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .demo-frame-bar b { color: var(--gold); font-weight: 700; }
+  .demo-frame-bar .frame-links { display: flex; gap: 8px; flex: 0 0 auto; align-items: center; }
+  .demo-frame-bar .frame-link {
+    flex: 0 0 auto; color: #fff; font-weight: 700; border: 1px solid rgba(255,255,255,.35);
+    padding: 5px 12px; border-radius: 4px; white-space: nowrap; transition: background .15s;
+  }
+  .demo-frame-bar .frame-link:hover { background: rgba(255,255,255,.12); }
+  .demo-frame-bar .frame-text { max-width: 720px; text-align: center; }
+  body { padding-top: 44px; }
+  @media (max-width: 640px) {
+    .demo-frame-bar { font-size: 10.5px; gap: 8px; height: 52px; }
+    .demo-frame-bar .frame-text { line-height: 1.5; }
+    .demo-frame-bar .frame-link { padding: 4px 9px; font-size: 10.5px; }
+    body { padding-top: 52px; }
+  }
+
+  #view-login {
+    min-height: calc(100vh - 44px); display: grid; grid-template-columns: 1.05fr 1fr;
+    background: var(--bg-soft);
+  }
+  #view-login.hide { display: none; }
+  .login-hero {
+    position: relative; background: linear-gradient(155deg, #061528 0%, #0B2447 45%, #15325C 100%);
+    color: #F8FAFC; padding: 56px 48px; display: flex; flex-direction: column; justify-content: center; overflow: hidden;
+  }
+  .login-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(201,162,39,.12) 0%, transparent 50%);
+  }
+  .login-hero::after {
+    content: '⏱'; position: absolute; right: 56px; bottom: 18%; font-size: 100px; font-weight: 700;
+    color: rgba(201,162,39,.12); line-height: 1;
+  }
+  .login-hero .hero-kicker { font-size: 11px; letter-spacing: .24em; color: var(--gold); font-weight: 700; margin-bottom: 18px; position: relative; }
+  .login-hero h2 { font-size: clamp(26px, 3vw, 36px); line-height: 1.45; margin-bottom: 16px; max-width: 16em; position: relative; }
+  .login-hero h2 em { font-style: normal; color: var(--gold); }
+  .login-hero p { font-size: 14px; color: #94A3B8; max-width: 28em; line-height: 1.9; position: relative; }
+  .gold-strip { display: flex; gap: 0; margin-top: 28px; position: relative; }
+  .gold-strip span { flex: 1; height: 4px; background: var(--gold); opacity: .7; }
+  .gold-strip span:nth-child(even) { background: rgba(255,255,255,.15); opacity: 1; }
+  .login-panel {
+    display: flex; align-items: center; justify-content: center; padding: 40px 28px;
+    background: linear-gradient(180deg, #fff 0%, var(--bg-soft) 100%);
+  }
+  .login-card {
+    width: 100%; max-width: 400px; background: #fff; border-radius: 8px; padding: 40px 36px 30px;
+    border: 1px solid var(--line); box-shadow: 0 18px 48px rgba(11,36,71,.1); border-top: 4px solid var(--gold);
+  }
+  .login-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .login-logo .k { font-size: 28px; font-weight: 700; color: var(--navy); letter-spacing: .06em; }
+  .login-logo .tag-en { font-size: 10px; color: var(--gray-soft); letter-spacing: .14em; font-family: 'IBM Plex Mono', monospace; }
+  .login-sub { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .login-field { margin-bottom: 14px; }
+  .login-field label { display: block; font-size: 11.5px; color: var(--gray); margin-bottom: 6px; font-weight: 700; }
+  .login-field input {
+    width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 6px; font-size: 14px;
+    color: var(--gray-soft); background: var(--bg-soft); cursor: not-allowed;
+  }
+  .login-btn {
+    width: 100%; padding: 13px; border: none; border-radius: 6px; background: var(--gold); color: var(--navy-deep);
+    font-weight: 700; font-size: 14.5px; margin-top: 8px; transition: filter .2s, transform .1s;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .login-btn:hover { filter: brightness(1.06); }
+  .login-btn:active { transform: scale(.99); }
+  .login-btn:disabled { opacity: .75; cursor: wait; }
+  .login-spin {
+    width: 15px; height: 15px; border-radius: 50%; border: 2px solid rgba(6,21,40,.25);
+    border-top-color: var(--navy-deep); animation: spin .7s linear infinite; display: none;
+  }
+  .login-btn.loading .login-spin { display: inline-block; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .login-note { font-size: 10.5px; color: var(--gray-soft); margin-top: 20px; text-align: center; border-top: 1px solid var(--line); padding-top: 14px; }
+  @media (max-width: 860px) {
+    #view-login { grid-template-columns: 1fr; }
+    .login-hero { min-height: 220px; padding: 36px 28px; }
+    .login-hero::after { display: none; }
+  }
+
+  #view-app { display: none; min-height: calc(100vh - 44px); flex-direction: column; }
+  #view-app.show { display: flex; }
+
+  .app-top {
+    height: 48px; flex: 0 0 auto; background: rgba(6,21,40,.96); border-bottom: 2px solid var(--gold);
+    display: flex; align-items: center; gap: 12px; padding: 0 16px; position: sticky; top: 44px; z-index: 80;
+  }
+  .top-brand { display: flex; align-items: baseline; gap: 6px; flex: 0 0 auto; }
+  .top-brand .k { font-size: 16px; font-weight: 700; color: var(--gold); letter-spacing: .08em; }
+  .top-brand .tag-en { font-size: 9px; color: #64748B; letter-spacing: .12em; font-family: 'IBM Plex Mono', monospace; }
+  .top-center { flex: 1; text-align: center; font-size: 11.5px; color: #94A3B8; font-family: 'IBM Plex Mono', monospace; }
+  .top-actions { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; }
+  .top-user { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #CBD5E1; }
+  .top-user .avatar {
+    width: 28px; height: 28px; border-radius: 6px; background: var(--gold); color: var(--navy-deep);
+    display: grid; place-items: center; font-size: 11px; font-weight: 700;
+  }
+  .logout-link { font-size: 11px; color: #64748B; padding: 4px 8px; border: 1px solid #334155; border-radius: 4px; }
+  .logout-link:hover { color: var(--gold); border-color: var(--gold); }
+
+  .board-wrap { flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+
+  .sla-wall {
+    flex: 0 0 auto; background: linear-gradient(180deg, #0B2447 0%, #061528 100%);
+    border-bottom: 3px solid var(--gold); padding: 20px 20px 16px;
+  }
+  .sla-wall-head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .sla-wall-head h2 { font-size: 13px; color: #94A3B8; letter-spacing: .12em; font-weight: 600; }
+  .sla-wall-head .sla-policy { font-size: 11px; color: var(--gold); font-family: 'IBM Plex Mono', monospace; }
+  .sla-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .sla-tile {
+    background: rgba(15,23,42,.7); border: 2px solid rgba(201,162,39,.25); border-radius: 10px;
+    padding: 16px 18px; cursor: pointer; transition: border-color .2s, transform .15s, box-shadow .2s;
+    position: relative; overflow: hidden;
+  }
+  .sla-tile::before {
+    content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(239,68,68,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sla-tile:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .sla-tile.critical { border-color: var(--red); animation: slaPulse 1.4s ease-in-out infinite; }
+  .sla-tile.critical .sla-digits { color: var(--red); text-shadow: 0 0 24px var(--red-glow); }
+  @keyframes slaPulse {
+    0%, 100% { box-shadow: 0 0 0 0 var(--red-glow); }
+    50% { box-shadow: 0 0 28px 4px var(--red-glow); }
+  }
+  .sla-tile.empty {
+    border-style: dashed; border-color: rgba(100,116,139,.35); cursor: default; opacity: .55;
+    animation: none;
+  }
+  .sla-tile.empty:hover { transform: none; border-color: rgba(100,116,139,.35); }
+  .sla-tile .sla-label { font-size: 10px; color: #64748B; letter-spacing: .08em; margin-bottom: 6px; }
+  .sla-tile .sla-digits {
+    font-family: 'IBM Plex Mono', monospace; font-size: clamp(36px, 5vw, 56px); font-weight: 700;
+    color: var(--gold); line-height: 1; letter-spacing: .04em;
+  }
+  .sla-tile .sla-meta { font-size: 11.5px; color: #CBD5E1; margin-top: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sla-tile .sla-type { font-size: 10px; color: #64748B; margin-top: 4px; }
+  .sla-tile-thumb {
+    position: absolute; top: 12px; right: 12px; width: 44px; height: 44px;
+    object-fit: cover; border-radius: 6px; border: 1px solid rgba(201,162,39,.35);
+  }
+
+  .prop-chips {
+    flex: 0 0 auto; display: flex; gap: 8px; padding: 10px 16px; overflow-x: auto;
+    background: rgba(11,36,71,.6); border-bottom: 1px solid rgba(201,162,39,.2);
+    scrollbar-width: thin;
+  }
+  .prop-chip {
+    flex: 0 0 auto; font-size: 10.5px; color: #CBD5E1; background: rgba(255,255,255,.06);
+    border: 1px solid rgba(201,162,39,.2); border-radius: 999px; padding: 5px 12px; white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .prop-chip-thumb {
+    width: 22px; height: 22px; object-fit: cover; border-radius: 999px; flex: 0 0 auto;
+  }
+  .prop-chip b { color: var(--gold); font-weight: 600; }
+
+  .kanban {
+    flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; min-height: 0; overflow: hidden;
+  }
+  .lane {
+    display: flex; flex-direction: column; min-height: 0; border-right: 1px solid rgba(201,162,39,.15);
+    background: var(--lane-unreplied);
+  }
+  .lane:last-child { border-right: none; }
+  .lane[data-lane="following"] { background: var(--lane-following); }
+  .lane[data-lane="confirmed"] { background: var(--lane-confirmed); }
+  .lane-head {
+    flex: 0 0 auto; padding: 12px 14px; border-bottom: 2px solid rgba(201,162,39,.25);
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .lane-head h3 { font-size: 14px; color: #F8FAFC; font-weight: 700; }
+  .lane-count {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 700;
+    background: rgba(201,162,39,.15); color: var(--gold); padding: 2px 9px; border-radius: 999px;
+  }
+  .lane-body { flex: 1; overflow-y: auto; padding: 10px; display: flex; flex-direction: column; gap: 10px; }
+
+  .card {
+    background: rgba(255,255,255,.97); border-radius: 8px; padding: 10px 12px 10px 10px;
+    border-left: 4px solid var(--gold); box-shadow: 0 4px 16px rgba(0,0,0,.18);
+    cursor: pointer; transition: transform .15s, box-shadow .15s;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .card-thumb {
+    width: 52px; height: 52px; object-fit: cover; border-radius: 6px; flex: 0 0 auto;
+  }
+  .card-main { flex: 1; min-width: 0; }
+  .card:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,.22); }
+  .card.urgent { border-left-color: var(--red); }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+  .card-name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+  .card-timer {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600;
+    color: var(--red); background: var(--red-bg); padding: 2px 7px; border-radius: 4px; flex: 0 0 auto;
+  }
+  .card-prop { font-size: 11.5px; color: var(--gray); margin-bottom: 6px; line-height: 1.5; }
+  .card-foot { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 8px; }
+  .card-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+  .tag {
+    font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px;
+    background: var(--bg-soft); color: var(--gray-soft);
+  }
+  .tag-channel { background: var(--gold-bg); color: var(--pri-deep); }
+  .btn-advance {
+    font-size: 10.5px; font-weight: 700; padding: 5px 10px; border-radius: 5px;
+    border: 1px solid var(--gold); background: transparent; color: var(--pri-deep);
+    transition: background .15s, color .15s;
+  }
+  .btn-advance:hover { background: var(--gold); color: var(--navy-deep); }
+
+  .sheet-overlay {
+    position: fixed; inset: 44px 0 0 0; background: rgba(6,21,40,.55); z-index: 400;
+    opacity: 0; pointer-events: none; transition: opacity .25s ease;
+  }
+  .sheet-overlay.open { opacity: 1; pointer-events: auto; }
+  .detail-sheet {
+    position: fixed; top: 44px; right: 0; bottom: 0; width: min(480px, 100vw); z-index: 410;
+    background: #fff; border-left: 3px solid var(--gold); box-shadow: -16px 0 48px rgba(0,0,0,.35);
+    transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .detail-sheet.open { transform: translateX(0); }
+  .sheet-head {
+    flex: 0 0 auto; padding: 0 0 16px; background: var(--navy-deep); color: #F8FAFC;
+    border-bottom: 2px solid var(--gold); position: relative;
+  }
+  .sheet-hero {
+    display: block; width: 100%; height: 148px; object-fit: cover;
+  }
+  .sheet-head-inner { padding: 14px 18px 0; position: relative; }
+  .sheet-close {
+    position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 6px;
+    border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: #fff;
+    display: grid; place-items: center; font-size: 18px; line-height: 1;
+  }
+  .sheet-close:hover { background: rgba(255,255,255,.16); }
+  .sheet-head h2 { font-size: 17px; margin-bottom: 4px; padding-right: 36px; }
+  .sheet-head .sub { font-size: 12px; color: #94A3B8; }
+  .sheet-sla {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--gold);
+    background: rgba(201,162,39,.12); padding: 4px 10px; border-radius: 6px;
+  }
+  .sheet-body { flex: 1; overflow-y: auto; padding: 16px 18px 24px; }
+  .msg-box {
+    background: var(--bg-soft); border-radius: 8px; padding: 12px 14px; margin-bottom: 16px;
+    border: 1px solid var(--line);
+  }
+  .msg-box .msg-label { font-size: 10px; color: var(--gray-soft); font-weight: 700; margin-bottom: 6px; letter-spacing: .06em; }
+  .msg-box .msg-text { font-size: 13px; color: var(--ink); line-height: 1.75; white-space: pre-wrap; }
+
+  .sheet-tabs { display: flex; gap: 0; margin-bottom: 14px; border-bottom: 2px solid var(--line); }
+  .sheet-tab {
+    flex: 1; padding: 10px 8px; border: none; background: none; font-size: 12px; font-weight: 600;
+    color: var(--gray-soft); border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color .15s;
+  }
+  .sheet-tab:hover { color: var(--ink); }
+  .sheet-tab.active { color: var(--navy); border-bottom-color: var(--gold); }
+  .sheet-tab.done { color: var(--green); }
+  .sheet-tab .tab-day { display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; margin-bottom: 2px; }
+
+  .ai-start-box {
+    text-align: center; padding: 28px 16px; background: linear-gradient(180deg, var(--gold-bg) 0%, #fff 100%);
+    border-radius: 8px; border: 1px dashed var(--gold);
+  }
+  .ai-start-box p { font-size: 13px; color: var(--gray); margin-bottom: 16px; line-height: 1.8; }
+  .btn-ai-run {
+    padding: 12px 24px; border: none; border-radius: 6px; background: var(--navy); color: var(--gold);
+    font-weight: 700; font-size: 13.5px; transition: filter .15s;
+  }
+  .btn-ai-run:hover { filter: brightness(1.15); }
+  .scan-box { text-align: center; padding: 32px 16px; }
+  .scan-spinner {
+    width: 36px; height: 36px; border-radius: 50%; border: 3px solid var(--line);
+    border-top-color: var(--gold); animation: spin .8s linear infinite; margin: 0 auto 14px;
+  }
+  .scan-text { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .ai-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .ai-count { font-size: 12px; color: var(--gray-soft); font-weight: 600; }
+  .btn-skip { font-size: 11px; color: var(--gray-soft); background: none; border: none; padding: 4px 8px; }
+  .btn-skip:hover { color: var(--ink); }
+  .draft-box {
+    background: var(--bg-soft); border: 1px solid var(--line); border-radius: 8px; padding: 14px;
+    min-height: 180px; margin-bottom: 10px;
+  }
+  .draft-text-preview { font-size: 13px; line-height: 1.85; white-space: pre-wrap; color: var(--ink); }
+  .draft-cursor { display: inline-block; width: 2px; height: 1em; background: var(--gold); animation: blink .8s step-end infinite; vertical-align: text-bottom; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .draft-note {
+    display: flex; align-items: flex-start; gap: 6px; font-size: 11px; color: var(--gray-soft); margin-bottom: 12px;
+  }
+  .draft-cta { margin-bottom: 10px; }
+  .btn-approve-draft {
+    width: 100%; padding: 12px; border: none; border-radius: 6px; background: var(--gold); color: var(--navy-deep);
+    font-weight: 700; font-size: 13.5px; display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-approve-draft:disabled { opacity: .6; cursor: wait; }
+  .draft-reset { text-align: center; }
+  .draft-reset button { font-size: 11px; color: var(--gray-soft); background: none; border: none; padding: 6px; }
+  .draft-reset button:hover { color: var(--ink); }
+  .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+  .badge-human { background: var(--gold); color: var(--navy-deep); }
+  .complete-banner {
+    display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 8px;
+    background: var(--green-bg); color: var(--green); font-size: 12.5px; font-weight: 600;
+  }
+
+  #toastHost { position: fixed; bottom: 20px; right: 20px; z-index: 950; display: flex; flex-direction: column; gap: 8px; }
+  .toast {
+    background: var(--navy); color: #fff; padding: 11px 18px; border-radius: 8px; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    animation: toastIn .25s ease, toastOut .25s ease 2.4s forwards;
+  }
+  @keyframes toastIn { from { opacity:0; transform: translateY(8px);} to {opacity:1; transform:none;} }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+
+  .komon-cta {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-light) 100%);
+    color: #fff; padding: 76px 24px 40px; text-align: center;
+  }
+  .komon-cta .cta-inner { max-width: 720px; margin: 0 auto; }
+  .komon-cta .cta-label { display: inline-block; font-size: 12.5px; letter-spacing: .18em; color: var(--gold); font-weight: 700; margin-bottom: 16px; }
+  .komon-cta h2 { font-size: 30px; margin-bottom: 16px; line-height: 1.5; }
+  .komon-cta h2 em { font-style: normal; color: var(--gold); }
+  .komon-cta p.lead { font-size: 14.5px; color: #94A3B8; margin-bottom: 32px; line-height: 1.9; }
+  .cta-btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn { display: inline-block; padding: 15px 34px; border-radius: 6px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s; }
+  .btn:hover { opacity: .87; }
+  .btn-gold { background: var(--gold); color: var(--navy-deep); }
+  .btn-outline-cta { border: 1.5px solid rgba(255,255,255,.5); color: #fff; background: transparent; }
+  .komon-cta .cta-foot { border-top: 1px solid rgba(255,255,255,.14); padding-top: 22px; font-size: 11.5px; color: #64748B; }
+  .komon-cta .cta-foot a { color: #CBD5E1; }
+  .komon-cta .cta-foot a:hover { color: #fff; }
+
+  @media (max-width: 900px) {
+    .sla-tiles { grid-template-columns: 1fr; }
+    .sla-tile .sla-digits { font-size: 42px; }
+    .kanban { grid-template-columns: 1fr; overflow-y: auto; }
+    .lane { border-right: none; border-bottom: 1px solid rgba(201,162,39,.15); min-height: 200px; }
+    .lane-body { max-height: 280px; }
+    .top-center { display: none; }
+    .komon-cta h2 { font-size: 23px; }
+    .komon-cta { padding: 56px 18px 32px; }
+  }
+  @media (max-width: 480px) {
+    .sla-wall { padding: 14px 12px; }
+    .detail-sheet { width: 100vw; }
+    .app-top { padding: 0 10px; }
+  }
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RSS02GXVRJ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RSS02GXVRJ');</script>
+</head>
+<body>
+
+<div class="demo-frame-bar">
+  <span class="frame-text">これは <b>AI顧問室</b> が制作した架空プロダクトのデモです。データはすべてサンプルで、実際のサービスではありません。</span>
+  <div class="frame-links">
+    <a href="works.html" class="frame-link">作品一覧</a>
+    <a href="index.html" class="frame-link">AI顧問室トップへ</a>
+  </div>
+</div>
+
+<div id="view-login">
+  <div class="login-hero">
+    <div class="hero-kicker">REAL ESTATE INQUIRY CRM</div>
+    <h2>反響は、<em>秒で減る。</em>カードで進める。</h2>
+    <p>SLAカウントダウン壁で危険な未返信を可視化。3レーン看板で反響を前に進め、AIが一次返信とDay3/7/14追客を生成。一覧ではなく、時間が主語の反響デスク。</p>
+    <div class="gold-strip"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+  <div class="login-panel">
+    <div class="login-card">
+      <div class="login-logo"><span class="k">HANKYO</span><span class="tag-en">INQUIRY CRM</span></div>
+      <p class="login-sub">秒が減る前に、返す。</p>
+      <div class="login-field">
+        <label for="loginMail">メールアドレス</label>
+        <input id="loginMail" type="text" value="demo@minato-estate.example" readonly>
+      </div>
+      <div class="login-field">
+        <label for="loginPass">パスワード</label>
+        <input id="loginPass" type="password" value="dummydummy" readonly>
+      </div>
+      <button class="login-btn" id="loginBtn" onclick="doLogin()">
+        <span class="login-spin"></span><span class="login-btn-label">デモアカウントでログイン</span>
+      </button>
+      <p class="login-note">※架空プロダクトのデモ画面です。実際の認証・データ送信は行われません。</p>
+    </div>
+  </div>
+</div>
+
+<div id="view-app">
+  <header class="app-top">
+    <div class="top-brand"><span class="k">HANKYO</span><span class="tag-en">SLA BOARD</span></div>
+    <div class="top-center" id="topClock">2026-07-18 09:42 JST</div>
+    <div class="top-actions">
+      <div class="top-user">
+        <div class="avatar">美</div>
+        <span>デモ 美咲</span>
+      </div>
+      <a href="#login" class="logout-link" onclick="doLogout()">ログアウト</a>
+    </div>
+  </header>
+
+  <div class="board-wrap">
+    <section class="sla-wall" aria-label="SLAカウントダウン壁">
+      <div class="sla-wall-head">
+        <h2>SLA COUNTDOWN WALL</h2>
+        <span class="sla-policy">初回返信 SLA 60分 / 査定 120分</span>
+      </div>
+      <div class="sla-tiles" id="slaTiles"></div>
+    </section>
+
+    <div class="prop-chips" id="propChips"></div>
+
+    <div class="kanban" id="kanbanBoard"></div>
+  </div>
+</div>
+
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+<aside class="detail-sheet" id="detailSheet" aria-hidden="true">
+  <div class="sheet-head">
+    <img id="sheetHero" class="sheet-hero" alt="" hidden>
+    <div class="sheet-head-inner">
+      <button class="sheet-close" onclick="closeSheet()" aria-label="閉じる">×</button>
+      <h2 id="sheetTitle">—</h2>
+      <p class="sub" id="sheetSub">—</p>
+      <div class="sheet-sla mono" id="sheetSla">SLA —</div>
+    </div>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+</aside>
+
+<div class="komon-cta">
+  <div class="cta-inner">
+    <span class="cta-label">AI KOMONSHITSU</span>
+    <h2>このようなシステムを、<em>御社専用に。</em></h2>
+    <p class="lead">「ハンキョウ」は本デモのために作った架空のプロダクトです。AI顧問室では、反響CRMに限らず、御社の営業フローそのものを学習してSLA管理・AI返信・追客シーケンスを組み込んだ専用システムを構築します。</p>
+    <div class="cta-btn-row">
+      <a href="index.html?from=works-hankyo#contact" class="btn btn-gold">無料相談を予約する</a>
+      <a href="diagnosis.html" class="btn btn-outline-cta">AI活用レベル診断を受ける</a>
+    </div>
+    <div class="cta-foot">提供: <a href="index.html">AI顧問室</a>｜© 2026</div>
+  </div>
+</div>
+
+<div id="toastHost"></div>
+
+<script>
+var TODAY_STR = '2026-07-18';
+var TYPE_LABEL = { viewing: '内見', appraisal: '査定', rental: '賃貸' };
+var LANE_ORDER = ['unreplied', 'following', 'confirmed'];
+var LANE_LABEL = { unreplied: '未返信', following: '追客中', confirmed: '内見確定' };
+var LANE_NEXT = { unreplied: 'following', following: 'confirmed' };
+
+var INQUIRIES = [
+  { id: 'h-001', customer: '山田 花子', email: 'yamada.h@example.com', phone: '090-1234-5678',
+    type: 'viewing', property: '港区麻布台タワーレジデンス 302', photo: 'assets/hankyo/prop-azabudai.jpg', channel: 'SUUMO', assigned: '佐藤 誠',
+    received: '2026-07-18T09:42:00', lane: 'unreplied', slaSeconds: 38 * 60,
+    message: 'こんにちは。港区麻布台タワーレジデンス302号室の内見を希望しています。今週末（7/19または7/20）の午前中で空きはありますか？駐車場の利用可否も教えてください。',
+    budget: '購入検討（1.2億前後）', moveIn: '2026年10月希望' },
+  { id: 'h-002', customer: '鈴木 一郎', email: 'suzuki.i@example.com', phone: '080-9876-5432',
+    type: 'appraisal', property: '世田谷区桜丘 戸建（築15年）', photo: 'assets/hankyo/prop-sakuragaoka.jpg', channel: '自社サイト', assigned: '田中 健',
+    received: '2026-07-18T08:15:00', lane: 'unreplied', slaSeconds: 12 * 60,
+    message: '世田谷区桜丘の戸建（築15年・土地80㎡）の売却査定をお願いしたいです。近隣相場と売却スケジュールの目安を知りたいです。',
+    budget: '—', moveIn: '—' },
+  { id: 'h-008', customer: '加藤 真理', email: 'kato.m@example.com', phone: '080-7777-3333',
+    type: 'rental', property: '港区六本木ヒルズレジデンス 3201', photo: 'assets/hankyo/prop-roppongi.jpg', channel: 'SUUMO', assigned: '田中 健',
+    received: '2026-07-15T09:30:00', lane: 'unreplied', slaSeconds: -45 * 60,
+    message: '六本木ヒルズレジデンス3201号室の賃貸について。法人契約は可能か、敷金・礼金の条件を教えてください。至急確認希望です。',
+    budget: '家賃35万前後', moveIn: '2026年8月15日' },
+  { id: 'h-004', customer: '伊藤 直樹', email: 'ito.n@example.com', phone: '090-3333-7777',
+    type: 'viewing', property: '横浜みなとみらいタワー 4502', photo: 'assets/hankyo/prop-minatomirai.jpg', channel: 'athome', assigned: '鈴木 美咲',
+    received: '2026-07-17T11:20:00', lane: 'following',
+    message: '横浜みなとみらいタワー4502号室の内見希望です。眺望と管理費について詳しく知りたいです。平日夜間（19時以降）も対応可能でしょうか。',
+    budget: '購入検討（9,500万前後）', moveIn: '2026年12月' },
+  { id: 'h-005', customer: '渡辺 さくら', email: 'watanabe.s@example.com', phone: '080-2222-8888',
+    type: 'rental', property: '渋谷スカイレジデンス 801', photo: 'assets/hankyo/prop-shibuya.jpg', channel: 'SUUMO', assigned: '田中 健',
+    received: '2026-07-16T14:05:00', lane: 'following',
+    message: '渋谷スカイレジデンス801号室の賃貸。2人入居予定で、駅徒歩5分以内が条件です。内見可能日を3候補いただけますか。',
+    budget: '家賃22万前後', moveIn: '2026年9月' },
+  { id: 'h-003', customer: '高橋 美穂', email: 'takahashi.m@example.com', phone: '070-5555-1234',
+    type: 'rental', property: '品川シーサイドマンション 1205', photo: 'assets/hankyo/prop-shinagawa.jpg', channel: 'HOME\'S', assigned: '佐藤 誠',
+    received: '2026-07-17T16:30:00', lane: 'following',
+    message: '品川シーサイドマンション1205号室の賃貸について問い合わせです。ペット（小型犬）可か、初期費用の概算を教えてください。',
+    budget: '家賃18万前後', moveIn: '2026年8月1日' },
+  { id: 'h-007', customer: '小林 拓也', email: 'kobayashi.t@example.com', phone: '070-4444-9999',
+    type: 'viewing', property: '目黒区中目黒 デザイナーズ 203', photo: 'assets/hankyo/prop-meguro.jpg', channel: 'HOME\'S', assigned: '鈴木 美咲',
+    received: '2026-07-15T17:45:00', lane: 'confirmed',
+    message: '中目黒のデザイナーズマンション203号室、内見希望です。リモートワーク用の書斎スペースがあるか確認したいです。',
+    budget: '購入検討（8,800万）', moveIn: '2026年11月' },
+  { id: 'h-009', customer: '松本 健太', email: 'matsumoto.k@example.com', phone: '090-8888-2222',
+    type: 'viewing', property: '鎌倉材木座 海側戸建', photo: 'assets/hankyo/prop-kamakura.jpg', channel: 'athome', assigned: '佐藤 誠',
+    received: '2026-07-14T13:10:00', lane: 'confirmed',
+    message: '鎌倉材木座の海側戸建の内見希望です。第二希望として湘南エリアも検討中。ローン事前審査済みです。',
+    budget: '購入（1.5億前後）', moveIn: '2027年3月' },
+  { id: 'h-006', customer: '中村 恵', email: 'nakamura.e@example.com', phone: '090-6666-1111',
+    type: 'appraisal', property: '港区赤坂 分譲マンション 1502', photo: 'assets/hankyo/prop-akasaka.jpg', channel: '自社サイト', assigned: '佐藤 誠',
+    received: '2026-07-16T10:00:00', lane: 'confirmed',
+    message: '赤坂の分譲マンション（築8年・70㎡）の売却査定を依頼したいです。リノベ済みで、同フロアの成約事例があれば共有ください。',
+    budget: '—', moveIn: '—' }
+];
+
+var PROPERTIES = [
+  { name: '麻布台302', full: '港区麻布台タワーレジデンス 302', memo: '角部屋・駐車場1台可', photo: 'assets/hankyo/prop-azabudai.jpg' },
+  { name: '品川1205', full: '品川シーサイドマンション 1205', memo: 'ペット相談可', photo: 'assets/hankyo/prop-shinagawa.jpg' },
+  { name: '桜丘戸建', full: '世田谷区桜丘 戸建', memo: '査定アポ調整中', photo: 'assets/hankyo/prop-sakuragaoka.jpg' },
+  { name: 'みなとみらい4502', full: '横浜みなとみらいタワー 4502', memo: '夜間内見可', photo: 'assets/hankyo/prop-minatomirai.jpg' },
+  { name: '六本木3201', full: '六本木ヒルズレジデンス 3201', memo: 'SLA超過—至急', photo: 'assets/hankyo/prop-roppongi.jpg' }
+];
+
+var H001_REPLY_TEXT = '山田 花子 様\n\nお問い合わせいただきありがとうございます。\n港区エステート株式会社の佐藤でございます。\n\n港区麻布台タワーレジデンス302号室の内見について、下記日程でご案内可能です。\n\n■ 内見候補\n・7月19日（土）10:00〜11:00\n・7月20日（日）10:30〜11:30\n\n駐車場は1台まで無料でご利用いただけます（要事前予約）。\n\nご都合の良い日時をお知らせください。\n何卒よろしくお願いいたします。\n\n港区エステート株式会社\n佐藤 誠';
+
+var FOLLOW_UP_TEXTS = {
+  day3: '山田 花子 様\n\n先日は港区麻布台タワーレジデンス302号室の内見についてお問い合わせいただき、ありがとうございました。\n\n内見日程のご確認はいかがでしょうか。7/19（土）・7/20（日）の午前中でしたら、引き続きご案内可能です。\n\nご不明点や追加でご覧になりたい物件がございましたら、お気軽にご連絡ください。\n\n佐藤 誠',
+  day7: '山田 花子 様\n\nお世話になっております。港区エステートの佐藤です。\n\n麻布台エリアでは、同価格帯で「南向き角部屋」「駅徒歩5分以内」の物件が2件、新たに内見可能になりました。\n\nご購入時期（10月ご入居）に合わせたローンシミュレーションも無料で承ります。\n\n内見や資料請求をご希望の際は、本メールへご返信ください。\n\n佐藤 誠',
+  day14: '山田 花子 様\n\nご検討状況はいかがでしょうか。\n\n麻布台タワーレジデンス302号室は、同フロアの成約事例と比較しても好条件の物件です。今週末であれば、再度内見のご案内が可能です。\n\n「他社と比較中」「時期を見てから」など、率直なご状況をお聞かせいただければ、無理のない追客に切り替えます。\n\n引き続きよろしくお願いいたします。\n\n佐藤 誠'
+};
+
+var loggedIn = false;
+var tickInterval = null;
+var activeCardId = null;
+var replyState = null;
+var followState = null;
+var h001Runtime = { replySent: false, followSent: {} };
+var activeSheetTab = 'reply';
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function showToast(msg) {
+  var host = document.getElementById('toastHost');
+  var el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  host.appendChild(el);
+  setTimeout(function () { el.remove(); }, 2700);
+}
+function findInquiry(id) {
+  return INQUIRIES.filter(function (q) { return q.id === id; })[0];
+}
+function formatSla(seconds) {
+  var abs = Math.abs(seconds);
+  var m = Math.floor(abs / 60);
+  var s = abs % 60;
+  var digits = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  return seconds < 0 ? '-' + digits : digits;
+}
+function getSlaCandidates() {
+  return INQUIRIES.filter(function (q) {
+    return q.lane === 'unreplied' && typeof q.slaSeconds === 'number';
+  }).sort(function (a, b) { return a.slaSeconds - b.slaSeconds; });
+}
+
+function renderSlaWall() {
+  var candidates = getSlaCandidates();
+  var tiles = document.getElementById('slaTiles');
+  var html = '';
+  for (var i = 0; i < 3; i++) {
+    var q = candidates[i];
+    if (q) {
+      var critical = q.slaSeconds <= 15 * 60;
+      html += '<div class="sla-tile' + (critical ? ' critical' : '') + '" onclick="openSheet(\'' + q.id + '\')" role="button" tabindex="0">' +
+        (q.photo ? '<img class="sla-tile-thumb" src="' + q.photo + '" alt="" loading="lazy">' : '') +
+        '<div class="sla-label">SLA REMAINING</div>' +
+        '<div class="sla-digits mono" data-sla-id="' + q.id + '">' + formatSla(q.slaSeconds) + '</div>' +
+        '<div class="sla-meta">' + escapeHtml(q.customer) + ' — ' + escapeHtml(q.property) + '</div>' +
+        '<div class="sla-type">' + TYPE_LABEL[q.type] + ' · ' + escapeHtml(q.channel) + '</div></div>';
+    } else {
+      html += '<div class="sla-tile empty"><div class="sla-label">ALL CLEAR</div><div class="sla-digits mono">—:—</div><div class="sla-meta">未返信のSLA危険なし</div></div>';
+    }
+  }
+  tiles.innerHTML = html;
+}
+
+function renderPropChips() {
+  document.getElementById('propChips').innerHTML = PROPERTIES.map(function (p) {
+    return '<span class="prop-chip">' +
+      (p.photo ? '<img class="prop-chip-thumb" src="' + p.photo + '" alt="" loading="lazy">' : '') +
+      '<b>' + escapeHtml(p.name) + '</b> ' + escapeHtml(p.memo) + '</span>';
+  }).join('');
+}
+
+function renderKanban() {
+  var board = document.getElementById('kanbanBoard');
+  board.innerHTML = LANE_ORDER.map(function (lane) {
+    var cards = INQUIRIES.filter(function (q) { return q.lane === lane; });
+    var cardsHtml = cards.map(function (q) { return cardHtml(q, lane); }).join('');
+    return '<div class="lane" data-lane="' + lane + '">' +
+      '<div class="lane-head"><h3>' + LANE_LABEL[lane] + '</h3><span class="lane-count">' + cards.length + '</span></div>' +
+      '<div class="lane-body">' + (cardsHtml || '<p style="font-size:12px;color:#64748B;padding:8px;">カードなし</p>') + '</div></div>';
+  }).join('');
+}
+
+function cardHtml(q, lane) {
+  var urgent = lane === 'unreplied' && typeof q.slaSeconds === 'number' && q.slaSeconds <= 15 * 60;
+  var timerHtml = (lane === 'unreplied' && typeof q.slaSeconds === 'number')
+    ? '<span class="card-timer mono" data-card-sla="' + q.id + '">' + formatSla(q.slaSeconds) + '</span>' : '';
+  var advanceHtml = LANE_NEXT[lane]
+    ? '<button class="btn-advance" onclick="event.stopPropagation();advanceCard(\'' + q.id + '\')">進める →</button>'
+    : '';
+  return '<article class="card' + (urgent ? ' urgent' : '') + '" onclick="openSheet(\'' + q.id + '\')" role="button" tabindex="0">' +
+    (q.photo ? '<img class="card-thumb" src="' + q.photo + '" alt="" loading="lazy">' : '') +
+    '<div class="card-main">' +
+    '<div class="card-top"><span class="card-name">' + escapeHtml(q.customer) + '</span>' + timerHtml + '</div>' +
+    '<div class="card-prop">' + escapeHtml(q.property) + '</div>' +
+    '<div class="card-foot"><div class="card-tags">' +
+    '<span class="tag">' + TYPE_LABEL[q.type] + '</span>' +
+    '<span class="tag tag-channel">' + escapeHtml(q.channel) + '</span></div>' + advanceHtml + '</div></div></article>';
+}
+
+function renderBoard() {
+  renderSlaWall();
+  renderKanban();
+}
+
+function tickSla() {
+  INQUIRIES.forEach(function (q) {
+    if (q.lane === 'unreplied' && typeof q.slaSeconds === 'number') q.slaSeconds -= 1;
+  });
+  document.querySelectorAll('[data-sla-id]').forEach(function (el) {
+    var q = findInquiry(el.getAttribute('data-sla-id'));
+    if (q) el.textContent = formatSla(q.slaSeconds);
+  });
+  document.querySelectorAll('[data-card-sla]').forEach(function (el) {
+    var q = findInquiry(el.getAttribute('data-card-sla'));
+    if (q) el.textContent = formatSla(q.slaSeconds);
+  });
+  if (activeCardId) {
+    var active = findInquiry(activeCardId);
+    var sheetSla = document.getElementById('sheetSla');
+    if (active && sheetSla && active.lane === 'unreplied' && typeof active.slaSeconds === 'number') {
+      sheetSla.textContent = 'SLA ' + formatSla(active.slaSeconds);
+    }
+  }
+}
+
+function startTick() {
+  if (tickInterval) clearInterval(tickInterval);
+  tickInterval = setInterval(tickSla, 1000);
+}
+
+function advanceCard(id) {
+  var q = findInquiry(id);
+  if (!q || !LANE_NEXT[q.lane]) return;
+  q.lane = LANE_NEXT[q.lane];
+  if (q.lane !== 'unreplied') delete q.slaSeconds;
+  showToast(q.customer + ' を「' + LANE_LABEL[q.lane] + '」へ進めました');
+  renderBoard();
+  if (activeCardId === id) openSheet(id);
+}
+
+function openSheet(id) {
+  var q = findInquiry(id);
+  if (!q) return;
+  activeCardId = id;
+  location.hash = 'card/' + id;
+  var hero = document.getElementById('sheetHero');
+  if (q.photo) {
+    hero.src = q.photo;
+    hero.alt = q.property;
+    hero.hidden = false;
+  } else {
+    hero.hidden = true;
+    hero.removeAttribute('src');
+  }
+  document.getElementById('sheetTitle').textContent = q.customer;
+  document.getElementById('sheetSub').textContent = q.property + ' · ' + TYPE_LABEL[q.type] + ' · ' + q.channel;
+  var slaEl = document.getElementById('sheetSla');
+  if (q.lane === 'unreplied' && typeof q.slaSeconds === 'number') {
+    slaEl.textContent = 'SLA ' + formatSla(q.slaSeconds);
+    slaEl.style.display = 'inline-flex';
+  } else {
+    slaEl.style.display = 'none';
+  }
+  renderSheetBody(q);
+  document.getElementById('sheetOverlay').classList.add('open');
+  document.getElementById('detailSheet').classList.add('open');
+  document.getElementById('detailSheet').setAttribute('aria-hidden', 'false');
+}
+
+function closeSheet() {
+  activeCardId = null;
+  if (replyState) replyState.timers.forEach(function (t) { clearTimeout(t); });
+  if (followState) followState.timers.forEach(function (t) { clearTimeout(t); });
+  replyState = null;
+  followState = null;
+  document.getElementById('sheetOverlay').classList.remove('open');
+  document.getElementById('detailSheet').classList.remove('open');
+  document.getElementById('detailSheet').setAttribute('aria-hidden', 'true');
+  if (isLoggedIn() && location.hash.replace('#', '').indexOf('card/') === 0) location.hash = 'board';
+}
+
+function renderSheetBody(q) {
+  var isH001 = q.id === 'h-001';
+  activeSheetTab = isH001 && h001Runtime.replySent ? 'day3' : 'reply';
+  var tabsHtml = buildSheetTabs(isH001);
+  var contentHtml = '';
+  if (activeSheetTab === 'reply') {
+    contentHtml = '<div class="msg-box"><div class="msg-label">反響メッセージ</div><div class="msg-text">' + escapeHtml(q.message) + '</div></div>' +
+      '<div id="replyPane"></div>';
+  } else {
+    contentHtml = '<div id="followPane"></div>';
+  }
+  document.getElementById('sheetBody').innerHTML = tabsHtml + contentHtml;
+  if (activeSheetTab === 'reply') setupReplyPane(q);
+  else setupFollowPane();
+}
+
+function buildSheetTabs(isH001) {
+  var tabs = [{ key: 'reply', label: '一次返信', sub: 'AI下書き' }];
+  if (isH001) {
+    tabs.push({ key: 'day3', label: 'Day 3', sub: '内見リマインド' });
+    tabs.push({ key: 'day7', label: 'Day 7', sub: '類似物件' });
+    tabs.push({ key: 'day14', label: 'Day 14', sub: '最終フォロー' });
+  }
+  return '<div class="sheet-tabs">' + tabs.map(function (t) {
+    var cls = 'sheet-tab';
+    if (activeSheetTab === t.key) cls += ' active';
+    if (isH001 && t.key !== 'reply' && h001Runtime.followSent[t.key]) cls += ' done';
+    if (t.key !== 'reply' && !h001Runtime.replySent) cls += ' locked';
+    return '<button class="' + cls + '" onclick="switchSheetTab(\'' + t.key + '\')"><span class="tab-day">' + t.label + '</span>' + t.sub + '</button>';
+  }).join('') + '</div>';
+}
+
+function switchSheetTab(key) {
+  if (key !== 'reply' && !h001Runtime.replySent) {
+    showToast('先に一次返信を送信してください');
+    return;
+  }
+  activeSheetTab = key;
+  var q = findInquiry(activeCardId);
+  if (!q) return;
+  if (key === 'reply') {
+    document.getElementById('sheetBody').innerHTML = buildSheetTabs(q.id === 'h-001') +
+      '<div class="msg-box"><div class="msg-label">反響メッセージ</div><div class="msg-text">' + escapeHtml(q.message) + '</div></div>' +
+      '<div id="replyPane"></div>';
+    setupReplyPane(q);
+  } else {
+    followState = { phase: h001Runtime.followSent[key] ? 'sent' : 'idle', timers: [], runId: null, activeDay: key };
+    document.getElementById('sheetBody').innerHTML = buildSheetTabs(true) + '<div id="followPane"></div>';
+    renderFollowPane();
+  }
+}
+
+function setupReplyPane(q) {
+  if (q.id !== 'h-001') {
+    document.getElementById('replyPane').innerHTML =
+      '<div class="ai-start-box"><p>この反響はデモ用サンプルです。<br>AI一次返信のフル演出は「山田 花子」様のカードで体験できます。</p></div>';
+    return;
+  }
+  replyState = { phase: h001Runtime.replySent ? 'sent' : 'idle', timers: [], runId: null };
+  if (h001Runtime.replySent) {
+    document.getElementById('replyPane').innerHTML =
+      '<div class="complete-banner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>一次返信送信済 — 追客タブでDay3/7/14を確認</div>' +
+      '<div class="draft-reset" style="margin-top:12px;"><button onclick="resetH001()">↺ リセット</button></div>';
+    return;
+  }
+  document.getElementById('replyPane').innerHTML =
+    '<div class="ai-start-box"><p>反響内容を分析し、一次返信下書きをAIが生成します。<br>送信するとレーンが「追客中」へ移動し、SLA壁から消えます。</p>' +
+    '<button class="btn-ai-run" onclick="startAiReply()">今すぐ一次返信を生成</button></div>';
+}
+
+function startAiReply() {
+  if (!replyState || replyState.phase !== 'idle') return;
+  var myRun = {};
+  replyState.runId = myRun;
+  replyState.phase = 'scanning';
+  document.getElementById('replyPane').innerHTML =
+    '<div class="scan-box"><div class="scan-spinner"></div><div class="scan-text">反響内容を分析中…</div>' +
+    '<div style="font-size:12px;color:var(--gray-soft);margin-top:8px;">物件情報・空き日程・駐車場条件を照合</div></div>';
+  var t = setTimeout(function () {
+    if (!replyState || replyState.runId !== myRun) return;
+    replyState.phase = 'typing';
+    document.getElementById('replyPane').innerHTML =
+      '<div class="ai-toolbar"><span class="ai-count">一次返信下書きを作成中…</span>' +
+      '<button class="btn-skip" onclick="skipReplyTyping()">⏩ すべて表示</button></div>' +
+      '<div class="draft-box"><div class="draft-text-preview"><span id="replyText"></span><span class="draft-cursor" id="replyCursor"></span></div></div>' +
+      '<div class="draft-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>生成後、担当者が確認してから送信してください。</div>';
+    typeText('replyText', H001_REPLY_TEXT, 5000, myRun, function () {
+      if (!replyState || replyState.runId !== myRun) return;
+      finishReplyReady(myRun);
+    });
+  }, 1400);
+  replyState.timers.push(t);
+}
+
+function typeText(elId, fullText, duration, myRun, onDone) {
+  var tickMs = 42;
+  var totalTicks = Math.ceil(duration / tickMs);
+  var charsPerTick = Math.max(1, Math.ceil(fullText.length / totalTicks));
+  var shown = 0;
+  function tick() {
+    if (!replyState || replyState.runId !== myRun) return;
+    shown = Math.min(fullText.length, shown + charsPerTick);
+    var el = document.getElementById(elId);
+    if (el) el.textContent = fullText.slice(0, shown);
+    if (shown >= fullText.length) { if (onDone) onDone(); return; }
+    replyState.timers.push(setTimeout(tick, tickMs));
+  }
+  replyState.timers.push(setTimeout(tick, tickMs));
+}
+
+function finishReplyReady(myRun) {
+  if (!replyState || replyState.runId !== myRun) return;
+  replyState.phase = 'ready';
+  document.getElementById('replyPane').innerHTML =
+    '<div class="ai-toolbar"><span class="ai-count">一次返信下書きが作成できました</span></div>' +
+    '<div class="draft-box"><textarea class="draft-text-preview" style="width:100%;min-height:200px;border:none;background:transparent;resize:vertical;" id="replyEditor">' + escapeHtml(H001_REPLY_TEXT) + '</textarea></div>' +
+    '<div class="draft-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>内容を確認のうえ、送信してください。</div>' +
+    '<div class="draft-cta"><button class="btn-approve-draft" id="sendReplyBtn" onclick="sendReply()">内容を確認して送信<span class="badge badge-human">人の確認</span></button></div>' +
+    '<div class="draft-reset"><button onclick="resetH001()">↺ リセット</button></div>';
+}
+
+function skipReplyTyping() {
+  if (!replyState) return;
+  replyState.timers.forEach(function (id) { clearTimeout(id); });
+  replyState.timers = [];
+  replyState.runId = {};
+  finishReplyReady({});
+}
+
+function sendReply() {
+  if (!replyState || replyState.phase !== 'ready') return;
+  var btn = document.getElementById('sendReplyBtn');
+  if (btn) btn.disabled = true;
+  replyState.phase = 'sent';
+  h001Runtime.replySent = true;
+  var q = findInquiry('h-001');
+  if (q) { q.lane = 'following'; delete q.slaSeconds; }
+  showToast('一次返信を送信しました（SLA達成）');
+  renderBoard();
+  document.getElementById('replyPane').innerHTML =
+    '<div class="complete-banner"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>一次返信を送信しました。Day3/7/14タブで追客を確認できます。</div>' +
+    '<div class="draft-reset" style="margin-top:12px;"><button onclick="resetH001()">↺ リセット</button></div>';
+  document.getElementById('sheetSla').style.display = 'none';
+  document.getElementById('sheetBody').innerHTML = buildSheetTabs(true) +
+    '<div class="msg-box"><div class="msg-label">反響メッセージ</div><div class="msg-text">' + escapeHtml(q.message) + '</div></div>' +
+    '<div class="complete-banner" style="margin-top:12px;">追客タブ（Day3/7/14）に切り替えてください ↑</div>';
+}
+
+function setupFollowPane() {
+  followState = { phase: 'idle', timers: [], runId: null, activeDay: activeSheetTab };
+  renderFollowPane();
+}
+
+function renderFollowPane() {
+  if (!followState) return;
+  var day = followState.activeDay;
+  if (h001Runtime.followSent[day]) {
+    document.getElementById('followPane').innerHTML =
+      '<div class="complete-banner" style="margin-bottom:14px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 13 4 4L19 7"/></svg>' + day.toUpperCase() + ' 追客メール送信済</div>' +
+      '<div class="draft-box"><div class="draft-text-preview">' + escapeHtml(FOLLOW_UP_TEXTS[day]) + '</div></div>' +
+      '<div class="draft-reset"><button onclick="resetFollowDay(\'' + day + '\')">↺ この追客をリセット</button></div>';
+    return;
+  }
+  document.getElementById('followPane').innerHTML =
+    '<div class="ai-start-box"><p>' + day.toUpperCase().replace('DAY', 'Day ') + ' の追客メール下書きをAIが生成します。</p>' +
+    '<button class="btn-ai-run" onclick="startFollowDraft(\'' + day + '\')">AIで追客下書きを生成</button></div>';
+}
+
+function startFollowDraft(day) {
+  if (!followState) return;
+  var myRun = {};
+  followState.runId = myRun;
+  followState.phase = 'typing';
+  followState.activeDay = day;
+  var text = FOLLOW_UP_TEXTS[day];
+  document.getElementById('followPane').innerHTML =
+    '<div class="ai-toolbar"><span class="ai-count">' + day.toUpperCase() + ' 追客下書きを作成中…</span>' +
+    '<button class="btn-skip" onclick="skipFollowTyping()">⏩ すべて表示</button></div>' +
+    '<div class="draft-box"><div class="draft-text-preview"><span id="followText"></span><span class="draft-cursor"></span></div></div>';
+  typeTextFollow('followText', text, 4000, myRun, function () {
+    if (!followState || followState.runId !== myRun) return;
+    finishFollowReady(day, myRun);
+  });
+}
+
+function typeTextFollow(elId, fullText, duration, myRun, onDone) {
+  var tickMs = 42;
+  var totalTicks = Math.ceil(duration / tickMs);
+  var charsPerTick = Math.max(1, Math.ceil(fullText.length / totalTicks));
+  var shown = 0;
+  function tick() {
+    if (!followState || followState.runId !== myRun) return;
+    shown = Math.min(fullText.length, shown + charsPerTick);
+    var el = document.getElementById(elId);
+    if (el) el.textContent = fullText.slice(0, shown);
+    if (shown >= fullText.length) { if (onDone) onDone(); return; }
+    followState.timers.push(setTimeout(tick, tickMs));
+  }
+  followState.timers.push(setTimeout(tick, tickMs));
+}
+
+function finishFollowReady(day, myRun) {
+  if (!followState || followState.runId !== myRun) return;
+  followState.phase = 'ready';
+  var text = FOLLOW_UP_TEXTS[day];
+  document.getElementById('followPane').innerHTML =
+    '<div class="ai-toolbar"><span class="ai-count">' + day.toUpperCase() + ' 追客下書きが作成できました</span></div>' +
+    '<div class="draft-box"><textarea class="draft-text-preview" style="width:100%;min-height:180px;border:none;background:transparent;resize:vertical;">' + escapeHtml(text) + '</textarea></div>' +
+    '<div class="draft-cta"><button class="btn-approve-draft" onclick="sendFollow(\'' + day + '\')">内容を確認して送信予約<span class="badge badge-human">人の確認</span></button></div>' +
+    '<div class="draft-reset"><button onclick="renderFollowPane()">↺ やり直し</button></div>';
+}
+
+function skipFollowTyping() {
+  if (!followState) return;
+  followState.timers.forEach(function (id) { clearTimeout(id); });
+  followState.timers = [];
+  var day = followState.activeDay;
+  followState.runId = {};
+  finishFollowReady(day, {});
+}
+
+function sendFollow(day) {
+  h001Runtime.followSent[day] = true;
+  showToast(day.toUpperCase() + ' 追客メールを送信予約しました');
+  document.getElementById('sheetBody').innerHTML = buildSheetTabs(true) + '<div id="followPane"></div>';
+  followState = { phase: 'sent', timers: [], runId: null, activeDay: day };
+  renderFollowPane();
+}
+
+function resetFollowDay(day) {
+  h001Runtime.followSent[day] = false;
+  document.getElementById('sheetBody').innerHTML = buildSheetTabs(true) + '<div id="followPane"></div>';
+  followState = { phase: 'idle', timers: [], runId: null, activeDay: day };
+  renderFollowPane();
+  showToast(day.toUpperCase() + ' 追客をリセットしました');
+}
+
+function resetH001() {
+  if (replyState) replyState.timers.forEach(function (t) { clearTimeout(t); });
+  if (followState) followState.timers.forEach(function (t) { clearTimeout(t); });
+  h001Runtime = { replySent: false, followSent: {} };
+  var q = findInquiry('h-001');
+  if (q) { q.lane = 'unreplied'; q.slaSeconds = 38 * 60; }
+  renderBoard();
+  activeSheetTab = 'reply';
+  if (activeCardId === 'h-001') openSheet('h-001');
+  showToast('反響の状態を生成前にリセットしました');
+}
+
+function isLoggedIn() { return loggedIn; }
+
+function showLoginScreen() {
+  closeSheet();
+  document.getElementById('view-login').classList.remove('hide');
+  document.getElementById('view-app').classList.remove('show');
+  if (tickInterval) { clearInterval(tickInterval); tickInterval = null; }
+}
+
+function showAppScreen() {
+  document.getElementById('view-login').classList.add('hide');
+  document.getElementById('view-app').classList.add('show');
+  renderPropChips();
+  renderBoard();
+  startTick();
+}
+
+function handleRoute() {
+  var hash = location.hash.replace('#', '') || 'login';
+  if (!isLoggedIn() && hash !== 'login') { location.hash = 'login'; return; }
+  if (hash === 'login') { showLoginScreen(); return; }
+  showAppScreen();
+  if (hash.indexOf('card/') === 0) {
+    var id = hash.split('/')[1];
+    if (findInquiry(id)) openSheet(id);
+    else location.hash = 'board';
+    return;
+  }
+  if (hash !== 'board') location.hash = 'board';
+  closeSheet();
+}
+
+function doLogin() {
+  var btn = document.getElementById('loginBtn');
+  btn.classList.add('loading');
+  btn.disabled = true;
+  setTimeout(function () {
+    loggedIn = true;
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    location.hash = 'board';
+    handleRoute();
+  }, 900);
+}
+
+function doLogout() {
+  loggedIn = false;
+  location.hash = 'login';
+  handleRoute();
+  showToast('ログアウトしました（デモ）');
+}
+
+window.addEventListener('hashchange', handleRoute);
+window.addEventListener('DOMContentLoaded', function () {
+  var initialHash = location.hash.replace('#', '');
+  if (initialHash && initialHash !== 'login') loggedIn = true;
+  handleRoute();
+});
+</script>
+<script src="analytics-config.js"></script>
+<script src="analytics.js"></script>
+<script src="ga4-events.js"></script>
+<script src="meta-pixel-config.js"></script>
+<script src="meta-pixel.js"></script>
+</body>
+</html>
