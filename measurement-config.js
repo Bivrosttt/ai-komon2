@@ -4,6 +4,6 @@ window.AI_KOMON_MEASUREMENT_CONFIG = {
   measurementId: 'G-RSS02GXVRJ',
   metaDatasetId: '1255260657664956',
   // Apps Script Web Appを公開したら、このURLを設定する。
-  eventEndpoint: '',
+  eventEndpoint: 'https://script.google.com/macros/s/AKfycby7gBDk6cEGzOt9Yax6JsZiTUa-ATW2VWkEZjeErlsR-QEzH8rEMVd1EIUmwowQ8P3mNQ/exec',
   eventToken: 'bef35216fda793ba42af2a753f681c98'
 };
