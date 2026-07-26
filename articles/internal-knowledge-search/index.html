@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐ | AI顧問室</title>
+  <meta name="description" content="社内ナレッジ検索に生成AIを使う方法を解説。FAQ・規程・手順書を整理し、根拠表示、人の確認、更新責任まで含めて小さく始める設計を紹介します。">
+  <link rel="canonical" href="https://ai-komon.bivrost.co.jp/articles/internal-knowledge-search/"><meta property="og:type" content="article"><meta property="og:site_name" content="AI顧問室"><meta property="og:title" content="社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐ | AI顧問室"><meta property="og:description" content="社内ナレッジ検索に生成AIを使う方法を、資料整理、根拠表示、人の確認、更新の流れで解説します。"><meta property="og:url" content="https://ai-komon.bivrost.co.jp/articles/internal-knowledge-search/"><meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png"><meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐ","description":"社内ナレッジ検索に生成AIを使う方法を、資料整理、根拠表示、人の確認、更新の流れで解説します。","image":"https://ai-komon.bivrost.co.jp/assets/ogp.png","datePublished":"2026-07-26","dateModified":"2026-07-26","author":{"@type":"Organization","name":"AI顧問室"},"publisher":{"@type":"Organization","name":"AI顧問室"},"mainEntityOfPage":"https://ai-komon.bivrost.co.jp/articles/internal-knowledge-search/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI顧問室","item":"https://ai-komon.bivrost.co.jp/"},{"@type":"ListItem","position":2,"name":"社内FAQの作り方","item":"https://ai-komon.bivrost.co.jp/articles/internal-faq-howto/"},{"@type":"ListItem","position":3,"name":"社内ナレッジ検索に生成AIを使う方法","item":"https://ai-komon.bivrost.co.jp/articles/internal-knowledge-search/"}]}</script>
+  <link rel="stylesheet" href="../../assets/articles/article.css?v=20260726-seo">
+</head><body><main><nav class="breadcrumb" aria-label="パンくず"><a href="/">AI顧問室</a> / <a href="/articles/internal-faq-howto/">社内FAQの作り方</a> / 社内ナレッジ検索に生成AIを使う方法</nav><article>
+  <p class="eyebrow">KNOWLEDGE / INTERNAL SEARCH</p><h1>社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐ</h1><p class="dek">社内ナレッジ検索は、AIに答えを作らせるだけでは定着しません。質問、根拠資料、回答候補、人の確認、更新の5段階をつなぐと、現場が迷ったときに戻れる検索基盤になります。</p><p class="meta">公開日: 2026年7月26日　|　AI顧問室 編集部</p>
+  <figure><img src="../../assets/articles/diagrams/internal-knowledge-search-diagram.png" alt="社内ナレッジ検索を質問、根拠資料、回答案、人の確認、更新の5段階で示した図解" width="1600" height="900"><figcaption>社内ナレッジ検索は、回答を出して終わりではなく、根拠と更新責任へ戻る循環として設計する。</figcaption></figure>
+  <div class="answer"><strong>先に結論：</strong>生成AIを社内検索に使うときは、まず資料の版・責任者・公開範囲を整え、回答候補に根拠を添え、人が確認してから業務へ戻します。答えが見つからない質問も、FAQや手順書を更新する材料として記録します。</div>
+  <div class="key-points"><strong>この記事の要点</strong><ul><li>AI検索の品質はモデルより、根拠資料の整理に左右される。</li><li>回答には出典・更新日・確認者を表示する。</li><li>質問ログをFAQ更新へ戻すと、検索基盤が育つ。</li></ul></div>
+  <div class="toc"><strong>この記事の目次</strong><ol><li><a href="#difference">社内検索とチャットの違い</a></li><li><a href="#source">根拠資料を整える方法</a></li><li><a href="#answer">回答に確認工程を入れる</a></li><li><a href="#update">質問ログを更新へ戻す</a></li><li><a href="#start">小さく始める手順</a></li></ol></div>
+
+  <h2 id="difference">社内ナレッジ検索は、答えより根拠を返す</h2>
+  <p>IPA「テキスト生成AIの導入・運用ガイドライン」は、組織で生成AIを運用する際に、導入、運用、リスク管理を分けて検討する構成です。社内検索でも、回答文の自然さより、どの資料を根拠にしたかを追えることが重要になります。</p>
+  <p>一般的なチャットは会話の続きを作ることが得意ですが、社内ナレッジ検索では「社内の最新版は何か」「誰が確認したか」「自分に見せてよい情報か」が問われます。検索結果に根拠のない断定が混ざると、便利さより確認の負担が増えます。</p>
+  <!-- [UNIQUE INSIGHT] -->
+  <p class="note"><strong>独自の見方：</strong>社内検索のKPIは、回答数だけでは足りません。「根拠へ到達できた質問の割合」「人が訂正した回答」「資料の更新につながった質問」を記録すると、検索の改善点が見えるようになります。</p>
+
+  <h2 id="source">根拠資料は、タイトルより版と責任者をそろえる</h2>
+  <p>検索対象へ資料を追加する前に、資料の種類、適用範囲、更新日、責任者、公開範囲を整理します。古い手順書と新しい手順書が同じ名前で保存されていると、AIがどちらを使うべきか判断できません。まずは対象業務を1つに絞ります。</p>
+  <div class="table-scroll"><table><thead><tr><th>項目</th><th>登録する内容</th><th>未整理のときのリスク</th></tr></thead><tbody><tr><th>資料名</th><td>業務名・手順名・質問カテゴリ</td><td>似た資料を混同する</td></tr><tr><th>版・更新日</th><td>適用開始日、廃止日、改訂者</td><td>古い手順を返す</td></tr><tr><th>根拠</th><td>規程、契約、公式手順、決定記録</td><td>回答を検証できない</td></tr><tr><th>権限</th><td>部署、役割、閲覧範囲</td><td>見せてはいけない情報を返す</td></tr></tbody></table></div>
+  <p>根拠は、長い資料をそのまま渡すだけでなく、見出しと短い要約を付けて検索しやすくします。要約が原文の代わりになるわけではありません。回答には根拠資料へのリンクや資料名を添え、重要な判断は原文へ戻れるようにします。</p>
+  <p>経済産業省の「AI事業者ガイドライン（第1.2版）」は、AIの出力について精度やリスク要因を確認して利用する考え方を示しています。社内検索も、資料の信頼性と出力の確認を別の工程として設計します。</p>
+
+  <h2 id="answer">回答には、出典・不確実性・確認者を残す</h2>
+  <p>AIが回答を返したら、送信や業務処理の前に、根拠資料と照合します。回答が短くても、適用範囲や例外が抜けている可能性があります。特に人事、契約、顧客対応、個人情報に関わる質問は、回答候補をそのまま最終判断に使いません。</p>
+  <div class="steps"><div class="step"><b>出典</b><h3>どの資料か</h3><p>資料名、見出し、更新日を表示する。</p></div><div class="step"><b>不明</b><h3>答えられるか</h3><p>根拠がなければ「不明」と返す。</p></div><div class="step"><b>確認</b><h3>誰が見るか</h3><p>業務責任者が例外と適用範囲を見る。</p></div></div>
+  <p>個人情報保護委員会は、生成AIサービスの利用規約やプライバシーポリシーを確認し、入力する情報の内容を踏まえて利用を判断するよう注意喚起しています。検索基盤へ資料を登録する前に、個人情報・機密情報・権限の扱いを決めます。</p>
+
+  <h2 id="update">答えられない質問を、FAQの更新に使う</h2>
+  <p>検索で答えられなかった質問を失敗として捨てると、同じ問い合わせが繰り返されます。質問文、担当部署、必要だった根拠、回答を確定した人、FAQへ反映した日を記録します。質問ログは、資料の不足と現場の言葉の両方を教えてくれます。</p>
+  <!-- [PERSONAL EXPERIENCE] -->
+  <p class="note"><strong>実務での観察：</strong>手順書の正式名称ではなく、現場が実際に入力した質問から検索語を増やすと、使われるFAQへ近づきます。質問ログをそのまま公開せず、個人名や案件情報を除いて改善用データにします。</p>
+  <p>更新の責任者がいない資料は、検索対象から外すか、回答に「確認が必要」と表示します。検索の便利さを優先して、古い資料を自動的に最新版として扱わないことが安全な運用につながります。</p>
+
+  <h2 id="start">最初は1業務・20問から試す</h2>
+  <p>社内全体の文書を一度に検索対象へ入れるのではなく、問い合わせが多く、根拠資料が比較的そろっている業務を1つ選びます。質問を20問ほど集め、回答の正確さ、根拠へ戻れるか、確認時間、答えられない質問を記録します。</p>
+  <ol><li>対象業務と利用者を決める。</li><li>資料の版、責任者、権限を一覧にする。</li><li>代表質問で回答と出典の表示を試す。</li><li>人の確認と停止条件を決める。</li><li>質問ログをFAQと手順書の更新へ戻す。</li></ol>
+  <p>詳しいFAQの作り方は<a href="/articles/internal-faq-howto/">社内FAQの作り方</a>で、入力情報や権限の確認は<a href="/articles/generative-ai-internal-rules/">生成AIの社内利用ルール</a>で整理しています。検索を導入する前に、資料の所有者と更新日を決めることが先です。</p>
+
+  <div class="tool-cta service-cta"><h2>AI導入の相談はサービスから</h2><p>AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。</p><a class="button" href="../../#service">AI顧問室のサービスを見る</a></div>
+  <h2>よくある質問</h2><details><summary>社内資料を全部AIへ登録すれば便利になりますか？</summary><p>資料が多いほど便利になるとは限りません。版、責任者、権限、更新日が整理されていない資料は、古い回答や誤った回答を返す原因になります。まずは1業務に絞ります。</p></details><details><summary>AIの回答に出典を付ける必要はありますか？</summary><p>社内の判断に使うなら、出典へ戻れる状態が必要です。資料名、見出し、更新日、リンクを表示し、重要な判断は担当者が原文と照合します。</p></details><details><summary>答えられない質問はどう扱いますか？</summary><p>質問、必要な資料、確定した回答者を記録し、FAQや手順書の更新候補にします。答えがない状態で推測させず、「確認が必要」と返す設計を残します。</p></details>
+  <h2>次に読む・使う</h2><div class="related"><a href="/articles/internal-faq-howto/"><strong>社内FAQの作り方</strong><span>質問と根拠を更新する</span></a><a href="/articles/generative-ai-internal-rules/"><strong>生成AIの社内利用ルール</strong><span>入力と権限を分類する</span></a><a href="/articles/ai-introduction-risk/"><strong>AI導入のリスク</strong><span>出力・契約・運用を確認する</span></a></div>
+  <div class="sources"><strong>出典・確認日</strong><ul><li><a href="https://www.ipa.go.jp/jinzai/ics/core_human_resource/final_project/2024/generative-ai-guideline.html">IPA「テキスト生成AIの導入・運用ガイドライン」</a>、2026年7月26日確認。</li><li><a href="https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/20260331_report.html">経済産業省「AI事業者ガイドライン（第1.2版）」</a>、2026年7月26日確認。</li><li><a href="https://www.ppc.go.jp/news/careful_information/230602_AI_utilize_alert/">個人情報保護委員会「生成AIサービスの利用に関する注意喚起等について」</a>、2026年7月26日確認。</li></ul></div>
+</article><footer>AI顧問室｜業務に合わせたAI活用と定着を支援します。</footer></main></body></html>
