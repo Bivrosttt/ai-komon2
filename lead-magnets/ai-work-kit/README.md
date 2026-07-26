@@ -7,6 +7,15 @@
 - `/lead-magnets/ai-work-kit/`: 10個のプレゼントを束ねるハブ
 - `/lead-magnets/ai-work-kit/prompts/`: 説明とプロンプトを検索・絞り込みできる100選ライブラリ
 
+## 広告クリエイティブ
+
+- `creative.html`: 日本語の見出し・10個の特典内容・CTAを正確に重ねるための制作元HTML
+- `../../assets/meta-ads-creatives/current/lead-magnet-10-gifts/00-background.png`: 画像生成したAI仕事道具箱の背景
+- `../../assets/meta-ads-creatives/current/lead-magnet-10-gifts/01-ai-work-kit-4x5.png`: Metaフィード向け4:5クリエイティブ
+- `../../assets/meta-ads-creatives/current/lead-magnet-10-gifts/02-ai-work-kit-square.png`: LINE・正方形配置向けクリエイティブ
+
+訴求の主見出しは「AI活用の10大特典プレゼント」。画像上には10個すべての内容を短く掲載し、詳細説明と実際に使えるページはAI仕事道具箱とプロンプト100選に集約しています。
+
 ## 10個のプレゼント
 
 1. 実務で使えるパターン別プロンプト集100選
