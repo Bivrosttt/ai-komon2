@@ -1,9 +1,8 @@
 (function () {
   'use strict';
 
-  if (typeof window.gtag !== 'function') return;
-
   function track(name, params) {
+    if (typeof window.gtag !== 'function') return;
     try { window.gtag('event', name, params || {}); } catch (e) {}
   }
 
@@ -21,6 +20,43 @@
   }
 
   window.aiKomonGaTrack = track;
+
+  // measurement.js is the canonical handler on migrated pages. Keep this
+  // listener as a fallback for legacy pages that still load ga4-events.js and
+  // meta-pixel.js without measurement.js.
+  document.addEventListener('click', function (event) {
+    if (typeof window.aiKomonMeasure === 'function') return;
+
+    var target = event.target && event.target.closest
+      ? event.target.closest('a, button')
+      : null;
+    if (!target) return;
+    if (event.__aiKomonLegacyGaClickTracked) return;
+    event.__aiKomonLegacyGaClickTracked = true;
+
+    var href = target.getAttribute('href') || '';
+    var label = textOf(target);
+    var common = {
+      page: window.location.pathname,
+      label: label,
+      lead_from: leadFrom()
+    };
+    var isTimerex = href.indexOf('timerex.net') !== -1;
+    var isCta = href.indexOf('#contact') !== -1 || /相談|予約/.test(label);
+
+    if (isTimerex) {
+      track('timerex_click', common);
+      return;
+    }
+
+    if (/diagnosis\.html/i.test(href)) {
+      track('diagnosis_cta_click', common);
+    }
+
+    if (isCta) {
+      track('cta_click', Object.assign({ destination: href || 'button' }, common));
+    }
+  }, true);
 
   if (/\/diagnosis\.html$/.test(window.location.pathname)) {
     var started = false;

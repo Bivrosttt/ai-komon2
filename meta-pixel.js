@@ -36,13 +36,12 @@
     var params = new URLSearchParams(window.location.search);
     keys.forEach(function (key) {
       var queryValue = params.get(key);
-      var value = queryValue;
       var storedValue = '';
       try { storedValue = sessionStorage.getItem('ak_' + key) || ''; } catch (e) {}
       if (queryValue && (key === 'from' || !storedValue)) {
         try { sessionStorage.setItem('ak_' + key, queryValue); } catch (e) {}
       }
-      value = queryValue || storedValue;
+      var value = key === 'from' ? queryValue || storedValue : storedValue || queryValue;
       if (value) result[key] = value;
     });
     if (result.fbclid && !result.utm_source) result.utm_source = 'meta';
@@ -69,6 +68,33 @@
       window.fbq('trackCustom', eventName, eventParams(params));
     }
   };
+
+  // Keep click tracking for legacy pages that have Meta Pixel but do not yet
+  // load measurement.js. ga4-events.js may also be present; use a Meta-only
+  // event marker so each fallback channel can record its own conversion once.
+  document.addEventListener('click', function (event) {
+    if (typeof window.aiKomonMeasure === 'function' || event.__aiKomonLegacyMetaClickTracked) return;
+    var target = event.target && event.target.closest
+      ? event.target.closest('a,button')
+      : null;
+    if (!target) return;
+    event.__aiKomonLegacyMetaClickTracked = true;
+
+    var href = target.getAttribute('href') || '';
+    var text = (target.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100);
+    var params = {
+      content_name: window.location.pathname,
+      button_text: text
+    };
+    if (href.indexOf('timerex.net') !== -1) {
+      window.aiKomonTrack('Schedule', params);
+      return;
+    }
+    if (href.indexOf('#contact') !== -1 || href.indexOf('index.html') !== -1 ||
+        /無料相談|相談する|予約する|申し込む|診断/.test(text)) {
+      window.aiKomonTrackCustom('CTA_Click', params);
+    }
+  }, true);
 
   window.fbq('track', 'ViewContent', eventParams({
     content_name: window.location.pathname,

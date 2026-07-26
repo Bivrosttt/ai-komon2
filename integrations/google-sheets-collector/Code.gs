@@ -15,6 +15,11 @@ const RAW_EVENTS_HEADERS = [
   'attribution_status', 'page', 'url', 'referrer', 'variant',
   'value', 'level', 'environment'
 ];
+const LEGACY_RAW_EVENTS_HEADERS = [
+  'event_time', 'event_name', 'event_id', 'session_id',
+  'utm_content', 'utm_source', 'utm_medium', 'utm_campaign',
+  'fbclid', 'page', 'variant', 'value', 'level', 'environment'
+];
 
 function doGet() {
   return ContentService
@@ -85,8 +90,39 @@ function ensureHeaders(sheet) {
   if (!headerRow) headerRow = 3;
   const currentHeaders = sheet.getRange(headerRow, 1, 1, RAW_EVENTS_HEADERS.length).getValues()[0].map(String);
   const matches = RAW_EVENTS_HEADERS.every((header, index) => currentHeaders[index] === header);
-  if (!matches) {
-    sheet.getRange(headerRow, 1, 1, RAW_EVENTS_HEADERS.length).setValues([RAW_EVENTS_HEADERS]);
+  if (matches) return;
+
+  // The first collector version used a 14-column schema. Map historical
+  // values by header name before expanding the header so fbclid/page/etc.
+  // cannot be relabeled under the newly inserted columns.
+  const isLegacy = LEGACY_RAW_EVENTS_HEADERS.every((header, index) => currentHeaders[index] === header);
+  if (isLegacy) {
+    migrateRowsToCanonicalSchema(sheet, headerRow, LEGACY_RAW_EVENTS_HEADERS);
+    return;
+  }
+
+  // Never silently relabel an unknown layout. A manual migration is safer
+  // than appending new events into a schema we cannot identify.
+  throw new Error('Unsupported Raw Events schema; migrate existing headers before collecting new events.');
+}
+
+function migrateRowsToCanonicalSchema(sheet, headerRow, sourceHeaders) {
+  const lastRow = sheet.getLastRow();
+  const rowCount = Math.max(lastRow - headerRow, 0);
+  const sourceIndexes = {};
+  sourceHeaders.forEach((header, index) => { sourceIndexes[header] = index; });
+  const migratedRows = rowCount > 0
+    ? sheet.getRange(headerRow + 1, 1, rowCount, sourceHeaders.length).getValues().map(row => {
+        return RAW_EVENTS_HEADERS.map(header => {
+          const index = sourceIndexes[header];
+          return index == null ? '' : row[index];
+        });
+      })
+    : [];
+
+  sheet.getRange(headerRow, 1, 1, RAW_EVENTS_HEADERS.length).setValues([RAW_EVENTS_HEADERS]);
+  if (migratedRows.length > 0) {
+    sheet.getRange(headerRow + 1, 1, migratedRows.length, RAW_EVENTS_HEADERS.length).setValues(migratedRows);
   }
 }
 

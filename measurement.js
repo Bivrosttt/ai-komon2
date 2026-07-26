@@ -41,7 +41,7 @@
     attributionKeys.forEach(function (key) {
       var queryValue = getQueryValue(params, key);
       var storedValue = getStored('ak_' + key);
-      var value = queryValue || storedValue;
+      var value = key === 'from' ? queryValue || storedValue : storedValue || queryValue;
 
       // UTM / click identifiers are first-touch values. This prevents an
       // internal link or a later page from replacing the original ad source.

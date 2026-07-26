@@ -156,7 +156,7 @@ Apps Script側では次を検証します。
 | `level` | 診断レベル等 |
 | `environment` | `production` |
 
-現在は`utm_term`、`utm_id`、`gclid`、`from`、`url`、`referrer`、`attribution_status`も`Raw Events`へ保存します。既存シートはタイトル行が1行目、列見出しが3行目のため、Apps Scriptは見出し行を自動検出して拡張します。`fbclid`しか無い流入は、`utm_source=meta`と`utm_medium=paid_social`だけを推定し、キャンペーン名・クリエイティブ名は捏造しません。`attribution_status`は`explicit`、`inferred_meta`、`direct_or_unknown`のいずれかです。
+現在は`utm_term`、`utm_id`、`gclid`、`from`、`url`、`referrer`、`attribution_status`も`Raw Events`へ保存します。既存シートはタイトル行が1行目、列見出しが3行目のため、Apps Scriptは見出し行を自動検出して拡張します。旧14列スキーマを検出した場合は、既存行を列名ベースで21列へ移行してからヘッダーを書き換えるため、`fbclid`や`page`の位置がずれません。未知のスキーマは黙って上書きせずエラーにして、手動確認を要求します。`fbclid`しか無い流入は、`utm_source=meta`と`utm_medium=paid_social`だけを推定し、キャンペーン名・クリエイティブ名は捏造しません。`attribution_status`は`explicit`、`inferred_meta`、`direct_or_unknown`のいずれかです。
 
 ## GA4で分かること
 
@@ -213,7 +213,9 @@ GA4 APIでは欠損したMetaのUTMを復元できないため、Meta Ads Manage
 utm_source=meta&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_content={{ad.name}}
 ```
 
-LP側では、到着時に明示されたUTMをfirst-touchとして`sessionStorage`へ保存し、内部LPリンクとTimerex予約リンクへ未設定のパラメータを引き継ぐ。`fbclid`だけの流入はMeta由来と推定してsource/mediumを補うが、creative単位の分析にはMeta側の`utm_content`設定が必須です。
+LP側では、到着時に明示されたUTMをfirst-touchとして`sessionStorage`へ保存し、内部LPリンクとTimerex予約リンクへ未設定のパラメータを引き継ぐ。保存済み値がある場合は、`from`以外のキーで後着URLの値を採用しない。`from`だけはLP間の現在の引き渡しを優先する。`fbclid`だけの流入はMeta由来と推定してsource/mediumを補うが、creative単位の分析にはMeta側の`utm_content`設定が必須です。
+
+旧LPには`ga4-events.js`や`meta-pixel.js`だけを読み込むページが残っています。これらには、`measurement.js`が存在しない場合だけ動くGA4・Metaのフォールバッククリック計測を残しています。`measurement.js`が読み込まれているページでは、フォールバックを停止して中央の計測処理だけを使うため、二重送信しません。
 
 ## TimeRex予約と流入経路の結び付け
 
