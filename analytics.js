@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  var config = window.AI_KOMON_MEASUREMENT_CONFIG || {};
+  var productionHosts = config.productionHosts || ['ai-komon.bivrost.co.jp', 'www.ai-komon.bivrost.co.jp'];
+  if (productionHosts.indexOf(window.location.hostname) === -1) return;
+
   var measurementId = window.AI_KOMON_GA_MEASUREMENT_ID;
   if (!measurementId || !/^G-[A-Z0-9]+$/.test(measurementId)) return;
 
