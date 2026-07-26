@@ -19,6 +19,7 @@
 - `../../assets/meta-ads-creatives/current/lead-magnet-10-gifts/03-ai-work-kit-book-launch.png`: テキスト・10商品モックアップ・CTAまで画像生成だけで完結したブックローンチ型の本命クリエイティブ
 - `../../assets/meta-ads-creatives/current/lead-magnet-10-gifts/04-ai-work-kit-three-guides.png`: 相談後に届く3つの実務教材を、テキスト込みで1発生成した教材カバー
 - `../../assets/meta-ads-creatives/current/lead-magnet-10-gifts/05-free-advisor-session-4x5.png`: 「無料顧問1回分」を主見出しにした4:5広告クリエイティブ。文字も画像生成時に描画
+- `../../assets/meta-ads-creatives/current/lead-magnet-10-gifts/06-free-advisor-plus-10-gifts-4x5.png`: 「無料顧問1回分」と「AI活用10大特典プレゼント」を組み合わせた4:5広告クリエイティブ。文字も画像生成時に描画
 
 本命クリエイティブの主見出しは「AI活用 10大特典」。画像生成時に、見出し・10個の特典名・各商品の説明・CTAまで直接描画しています。詳細説明と実際に使えるページはAI仕事道具箱とプロンプト100選に集約しています。
 
