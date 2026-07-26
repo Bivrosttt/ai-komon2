@@ -12,7 +12,6 @@
     'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term',
     'utm_id', 'fbclid', 'gclid', 'from'
   ];
-
   function uuid() {
     if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
     return 'ak-' + Date.now() + '-' + Math.random().toString(36).slice(2);
@@ -32,18 +31,75 @@
     return id;
   }
 
+  function getQueryValue(params, key) {
+    return params.get(key) || '';
+  }
+
   function getAttribution() {
     var result = {};
     var params = new URLSearchParams(window.location.search);
     attributionKeys.forEach(function (key) {
-      var value = params.get(key) || getStored('ak_' + key);
-      if (params.get(key)) {
-        setStored('ak_' + key, params.get(key));
-        if (key === 'from') setStored('ai_komon_from', params.get(key));
+      var queryValue = getQueryValue(params, key);
+      var storedValue = getStored('ak_' + key);
+      var value = queryValue || storedValue;
+
+      // UTM / click identifiers are first-touch values. This prevents an
+      // internal link or a later page from replacing the original ad source.
+      // `from` is intentionally allowed to follow the current LP handoff.
+      if (queryValue && (key === 'from' || !storedValue)) {
+        setStored('ak_' + key, queryValue);
+        if (key === 'from') setStored('ai_komon_from', queryValue);
       }
-      if (value) result[key] = value;
+      if (value) {
+        result[key] = value;
+      }
     });
+
+    // A fbclid is a reliable signal that the click came through Meta, but it
+    // does not contain campaign or creative information. Fill only the
+    // source/medium that can be inferred; never invent campaign/content.
+    if (result.fbclid && !result.utm_source) {
+      result.utm_source = 'meta';
+      setStored('ak_utm_source', 'meta');
+    }
+    if (result.fbclid && !result.utm_medium) {
+      result.utm_medium = 'paid_social';
+      setStored('ak_utm_medium', 'paid_social');
+    }
+    result.attribution_status = result.utm_campaign || result.utm_content ? 'explicit' :
+      (result.fbclid ? 'inferred_meta' : 'direct_or_unknown');
+
     return result;
+  }
+
+  function decorateUrl(rawHref) {
+    if (!rawHref || rawHref.indexOf('mailto:') === 0 || rawHref.indexOf('tel:') === 0 ||
+        rawHref.indexOf('javascript:') === 0) return null;
+    var url;
+    try { url = new URL(rawHref, window.location.href); } catch (e) { return null; }
+    var isInternal = url.hostname === window.location.hostname ||
+      url.hostname === 'ai-komon.bivrost.co.jp' || url.hostname === 'www.ai-komon.bivrost.co.jp';
+    var isTimerex = url.hostname === 'timerex.net' || url.hostname.endsWith('.timerex.net');
+    if (!isInternal && !isTimerex) return null;
+
+    var attribution = getAttribution();
+    attributionKeys.forEach(function (key) {
+      if (attribution[key] && !url.searchParams.has(key)) {
+        url.searchParams.set(key, attribution[key]);
+      }
+    });
+    if (isTimerex && !url.searchParams.has('ak_session_id')) {
+      url.searchParams.set('ak_session_id', getSessionId());
+    }
+    return url.toString();
+  }
+
+  function decorateLinks() {
+    var links = document.querySelectorAll('a[href]');
+    Array.prototype.forEach.call(links, function (link) {
+      var decorated = decorateUrl(link.getAttribute('href'));
+      if (decorated) link.setAttribute('href', decorated);
+    });
   }
 
   function toCollector(eventName, params) {
@@ -144,4 +200,49 @@
   }
 
   window.aiKomonMeasure('PageView', {});
+  window.aiKomonMeasure('ViewContent', {
+    content_name: window.location.pathname,
+    content_type: 'website'
+  });
+
+  // Keep attribution on every internal handoff, including the external
+  // booking link. This also repairs links injected after initial page load.
+  decorateLinks();
+  if (window.MutationObserver) {
+    new MutationObserver(decorateLinks).observe(document.documentElement, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  // Centralized CTA tracking makes GA4/Sheets work even when the Meta Pixel
+  // script is blocked by a browser extension or consent setting.
+  document.addEventListener('click', function (event) {
+    var target = event.target.closest ? event.target.closest('a,button') : null;
+    if (!target) return;
+    var href = target.getAttribute('href') || '';
+    var text = (target.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100);
+    var isTimerex = false;
+    try {
+      var targetUrl = new URL(href, window.location.href);
+      isTimerex = targetUrl.hostname === 'timerex.net' || targetUrl.hostname.endsWith('.timerex.net');
+    } catch (e) {}
+
+    var params = {
+      content_name: window.location.pathname,
+      button_text: text,
+      destination_url: href
+    };
+    if (isTimerex) {
+      if (typeof window.aiKomonTrack === 'function') window.aiKomonTrack('Schedule', params);
+      else window.aiKomonMeasure('Schedule', params);
+      return;
+    }
+
+    if (href.indexOf('#contact') !== -1 || href.indexOf('index.html') !== -1 ||
+        /無料相談|相談する|予約する|申し込む|診断/.test(text)) {
+      if (typeof window.aiKomonTrackCustom === 'function') window.aiKomonTrackCustom('CTA_Click', params);
+      else window.aiKomonMeasure('CTA_Click', params);
+    }
+  }, true);
 })();

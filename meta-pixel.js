@@ -1,8 +1,8 @@
 (function () {
   'use strict';
 
-  var measurementConfig = window.AI_KOMON_MEASUREMENT_CONFIG || {};
-  var productionHosts = measurementConfig.productionHosts || ['ai-komon.bivrost.co.jp', 'www.ai-komon.bivrost.co.jp'];
+  var config = window.AI_KOMON_MEASUREMENT_CONFIG || {};
+  var productionHosts = config.productionHosts || ['ai-komon.bivrost.co.jp', 'www.ai-komon.bivrost.co.jp'];
   if (productionHosts.indexOf(window.location.hostname) === -1) return;
 
   var pixelId = window.AI_KOMON_META_PIXEL_ID;
@@ -35,16 +35,20 @@
     var keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'fbclid', 'gclid', 'from'];
     var params = new URLSearchParams(window.location.search);
     keys.forEach(function (key) {
-      var value = params.get(key);
-      if (value) {
-        try {
-          sessionStorage.setItem('ak_' + key, value);
-          if (key === 'from') sessionStorage.setItem('ai_komon_from', value);
-        } catch (e) {}
+      var queryValue = params.get(key);
+      var value = queryValue;
+      var storedValue = '';
+      try { storedValue = sessionStorage.getItem('ak_' + key) || ''; } catch (e) {}
+      if (queryValue && (key === 'from' || !storedValue)) {
+        try { sessionStorage.setItem('ak_' + key, queryValue); } catch (e) {}
       }
-      try { value = value || sessionStorage.getItem('ak_' + key); } catch (e) {}
+      value = queryValue || storedValue;
       if (value) result[key] = value;
     });
+    if (result.fbclid && !result.utm_source) result.utm_source = 'meta';
+    if (result.fbclid && !result.utm_medium) result.utm_medium = 'paid_social';
+    result.attribution_status = result.utm_campaign || result.utm_content ? 'explicit' :
+      (result.fbclid ? 'inferred_meta' : 'direct_or_unknown');
     return result;
   }
 
@@ -55,11 +59,15 @@
   }
 
   window.aiKomonTrack = function (eventName, params) {
-    if (typeof window.fbq === 'function') window.fbq('track', eventName, eventParams(params));
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', eventName, eventParams(params));
+    }
   };
 
   window.aiKomonTrackCustom = function (eventName, params) {
-    if (typeof window.fbq === 'function') window.fbq('trackCustom', eventName, eventParams(params));
+    if (typeof window.fbq === 'function') {
+      window.fbq('trackCustom', eventName, eventParams(params));
+    }
   };
 
   window.fbq('track', 'ViewContent', eventParams({
@@ -67,21 +75,4 @@
     content_type: 'website'
   }));
 
-  document.addEventListener('click', function (event) {
-    var target = event.target.closest ? event.target.closest('a,button') : null;
-    if (!target) return;
-    var href = target.getAttribute('href') || '';
-    var text = (target.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100);
-    if (href.indexOf('timerex.net') !== -1) {
-      window.aiKomonTrack('Schedule', { content_name: window.location.pathname });
-      return;
-    }
-    if (href.indexOf('#contact') !== -1 || href.indexOf('index.html') !== -1 ||
-        /無料相談|相談する|予約する|申し込む|診断/.test(text)) {
-      window.aiKomonTrackCustom('CTA_Click', {
-        content_name: window.location.pathname,
-        button_text: text
-      });
-    }
-  });
 })();
