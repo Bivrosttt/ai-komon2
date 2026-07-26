@@ -6,6 +6,9 @@
 
 - `/lead-magnets/ai-work-kit/`: 相談後送付する10個の特典を紹介する案内ハブ
 - `/lead-magnets/ai-work-kit/prompts/`: 相談後に送付するプロンプト100選の案内ページ
+- `/lead-magnets/ai-work-kit/agent-implementation-guide/`: AIエージェント導入ガイドのプレビュー
+- `/lead-magnets/ai-work-kit/state-of-ai-report/`: 中小企業のAI活用レポートのプレビュー
+- `/lead-magnets/ai-work-kit/ai-presentation-guide/`: AIスライド実務ガイドのプレビュー
 
 ## 広告クリエイティブ
 
@@ -14,8 +17,11 @@
 - `../../assets/meta-ads-creatives/current/lead-magnet-10-gifts/01-ai-work-kit-4x5.png`: Metaフィード向け4:5クリエイティブ
 - `../../assets/meta-ads-creatives/current/lead-magnet-10-gifts/02-ai-work-kit-square.png`: LINE・正方形配置向けクリエイティブ
 - `../../assets/meta-ads-creatives/current/lead-magnet-10-gifts/03-ai-work-kit-book-launch.png`: テキスト・10商品モックアップ・CTAまで画像生成だけで完結したブックローンチ型の本命クリエイティブ
+- `../../assets/meta-ads-creatives/current/lead-magnet-10-gifts/04-ai-work-kit-three-guides.png`: 相談後に届く3つの実務教材を、テキスト込みで1発生成した教材カバー
 
 本命クリエイティブの主見出しは「AI活用 10大特典」。画像生成時に、見出し・10個の特典名・各商品の説明・CTAまで直接描画しています。詳細説明と実際に使えるページはAI仕事道具箱とプロンプト100選に集約しています。
+
+追加した3教材は、海外のAIコンサル企業に多い診断・成熟度・ロードマップ型の構成と、AIスライド関連サービスの実務フローを参考にしたAI顧問室オリジナルです。公開ページは本編のプレビューとして扱い、相談後に業務内容に合わせて送付します。
 
 ## 10個のプレゼント
 
