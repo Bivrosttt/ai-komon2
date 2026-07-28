@@ -10,12 +10,11 @@
 - `/lead-magnets/ai-work-kit/state-of-ai-report/`: 中小企業のAI活用レポートのプレビュー
 - `/lead-magnets/ai-work-kit/ai-presentation-guide/`: AIスライド実務ガイドのプレビュー
 
-## 今回の正式版教材
+## 今回の整理
 
-- `../../materials/ai-komon-prompt-100-field-guide.pptx`: 100件を1件1枚で整理した編集用PowerPoint
-- `../../materials/ai-komon-prompt-100-field-guide.pdf`: 100件を配布用に書き出したPDF
-- `../../materials/ai-komon-presentation-quality-playbook.pptx`: 構成、根拠、図解、AI指示、レビュー、出力確認をまとめた32枚のPowerPoint
-- `../../materials/ai-komon-presentation-quality-playbook.pdf`: 上記の配布用PDF
+- プロンプト100選は、検索・絞り込み・コピーができるWeb版を本体として運用する。
+- AIスライド教材は、既存の `ai-presentation-guide/` プレビューを入口にし、面談後の送付内容に合わせて管理する。
+- `../../materials/ai-komon-ai-presentation-playbook-v2.pptx`: 調査したClaude Code / Codex系の制作フローを使った14枚の編集可能PPTX試作。
 
 ## 広告クリエイティブ
 
