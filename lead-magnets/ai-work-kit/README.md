@@ -10,6 +10,13 @@
 - `/lead-magnets/ai-work-kit/state-of-ai-report/`: 中小企業のAI活用レポートのプレビュー
 - `/lead-magnets/ai-work-kit/ai-presentation-guide/`: AIスライド実務ガイドのプレビュー
 
+## 今回の正式版教材
+
+- `../../materials/ai-komon-prompt-100-field-guide.pptx`: 100件を1件1枚で整理した編集用PowerPoint
+- `../../materials/ai-komon-prompt-100-field-guide.pdf`: 100件を配布用に書き出したPDF
+- `../../materials/ai-komon-presentation-quality-playbook.pptx`: 構成、根拠、図解、AI指示、レビュー、出力確認をまとめた32枚のPowerPoint
+- `../../materials/ai-komon-presentation-quality-playbook.pdf`: 上記の配布用PDF
+
 ## 広告クリエイティブ
 
 - `creative.html`: 旧版のレイアウト検証用。配信用の本命は、後加工なしで完成させた `03-ai-work-kit-book-launch.png`
