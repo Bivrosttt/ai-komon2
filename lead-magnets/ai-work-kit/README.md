@@ -15,6 +15,7 @@
 - プロンプト100選は、検索・絞り込み・コピーができるWeb版を本体として運用する。
 - AIスライド教材は、既存の `ai-presentation-guide/` プレビューを入口にし、面談後の送付内容に合わせて管理する。
 - `../../materials/ai-komon-ai-presentation-playbook-v2.pptx`: 調査したClaude Code / Codex系の制作フローを使った12枚のLP型・編集可能PPTX試作。
+- `../../materials/ai-komon-ai-presentation-masterclass.pptx`: 海外のPowerPoint制作スキルを再調査し、構成・1枚の主張・視覚化・QA・実務プロンプトまでを22枚で体系化した編集可能PPTX教材。
 
 ## 広告クリエイティブ
 
