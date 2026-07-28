@@ -16,7 +16,6 @@
 - AIスライド教材は、既存の `ai-presentation-guide/` プレビューを入口にし、面談後の送付内容に合わせて管理する。
 - `../../materials/ai-komon-ai-presentation-playbook-v2.pptx`: 調査したClaude Code / Codex系の制作フローを使った12枚のLP型・編集可能PPTX試作。
 - `../../materials/ai-komon-ai-presentation-masterclass.pptx`: 海外のPowerPoint制作スキルを再調査し、構成・1枚の主張・視覚化・QA・実務プロンプトまでを22枚で体系化した編集可能PPTX教材。
-- `../../materials/ai-komon-ai-presentation-image-edition.pptx`: 全16ページを日本語テキスト・図解込みで画像生成し、後から文字を重ねずに構成した画像完結版PPTX。
 
 ## 広告クリエイティブ
 
