@@ -584,20 +584,16 @@
   }
 
   .prompt-preview-grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 14px;
-    margin-right: -14px;
-    padding-right: 14px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
   }
 
   .prompt-preview-grid figure,
   .prompt-preview-grid figure:last-child {
-    flex: 0 0 86%;
-    width: auto;
+    width: 100%;
     margin: 0;
-    scroll-snap-align: start;
+    grid-column: auto;
   }
 
   .qa-list {

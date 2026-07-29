@@ -14,8 +14,10 @@
 
 - プロンプト100選は、検索・絞り込み・コピーができるWeb版を本体として運用する。
 - AIスライド教材は、既存の `ai-presentation-guide/` プレビューを入口にし、面談後の送付内容に合わせて管理する。
-- `../../materials/ai-komon-ai-presentation-playbook-v2.pptx`: 調査したClaude Code / Codex系の制作フローを使った12枚のLP型・編集可能PPTX試作。
-- `../../materials/ai-komon-ai-presentation-masterclass.pptx`: 海外のPowerPoint制作スキルを再調査し、構成・1枚の主張・視覚化・QA・実務プロンプトまでを22枚で体系化した編集可能PPTX教材。
+- `../../materials/ai-komon-ai-presentation-masterclass.pptx`: 正本。海外のPowerPoint制作スキルを再調査し、構成・1枚の主張・視覚化・QA・実務プロンプトまでを28枚で体系化した編集可能PPTX教材。
+- `../../materials/ai-komon-ai-presentation-masterclass.pdf`: 正本PPTXから生成した配布用PDF。
+- `node scripts/sync_ai_presentation_guide.mjs`（リポジトリルートから実行）: 正本PDFからHTMLの代表プレビュー12枚を同期し、PPTX/PDFのハッシュをマニフェストに記録する。
+- `ai-presentation-guide/presentation-guide-manifest.json`: HTMLの各プレビューがどの正本スライドから生成されたかを記録する。
 
 ## 広告クリエイティブ
 

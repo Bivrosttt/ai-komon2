@@ -1,0 +1,82 @@
+{
+  "source": "../../../../materials/ai-komon-ai-presentation-masterclass.pptx",
+  "sourceSha256": "5c3812f20295fbc83df1268294c6742caaf4cbf50df0fda850e75c9df7da2f93",
+  "pdf": "../../../../materials/ai-komon-ai-presentation-masterclass.pdf",
+  "pdfSha256": "ceed11f18bafe5d6fe77ff0a2a99c045b74300f4bea47bd94eac4af23d80ad26",
+  "slideCount": 28,
+  "previewPolicy": "HTMLはPowerPointから書き出した正本PDFの代表12枚を表示する。",
+  "previews": [
+    {
+      "sourceSlide": 1,
+      "file": "slide-01-cover.png",
+      "role": "cover",
+      "alt": "AIで良質なプレゼンをつくる実務教材の表紙"
+    },
+    {
+      "sourceSlide": 3,
+      "file": "slide-03-problem.png",
+      "role": "problem",
+      "alt": "資料は完成しているのに会議の判断が進まない問題を示すスライド"
+    },
+    {
+      "sourceSlide": 8,
+      "file": "slide-05-decision.png",
+      "role": "decision",
+      "alt": "プレゼンはページ制作ではなく意思決定の設計だと説明するスライド"
+    },
+    {
+      "sourceSlide": 9,
+      "file": "slide-06-model.png",
+      "role": "model",
+      "alt": "理解、比較、納得、行動の順に相手が動くことを示すスライド"
+    },
+    {
+      "sourceSlide": 14,
+      "file": "slide-08-story.png",
+      "role": "story",
+      "alt": "現状、問題、転換、根拠、行動の順で物語に圧力を作るスライド"
+    },
+    {
+      "sourceSlide": 19,
+      "file": "slide-11-visual.png",
+      "role": "visual",
+      "alt": "主張に合わせて選ぶ5つの見せ方を紹介するスライド"
+    },
+    {
+      "sourceSlide": 21,
+      "file": "slide-15-workflow.png",
+      "role": "workflow",
+      "alt": "背景画像の上に前景モックを置いて文字の居場所を作るスライド"
+    },
+    {
+      "sourceSlide": 10,
+      "file": "slide-16-prompt-brief.png",
+      "role": "prompt-brief",
+      "alt": "読者、決定、根拠、次の行動を固定するBriefのスライド"
+    },
+    {
+      "sourceSlide": 12,
+      "file": "slide-17-prompt-story.png",
+      "role": "prompt-story",
+      "alt": "タイトルだけで資料の流れを設計するGhost Deckのスライド"
+    },
+    {
+      "sourceSlide": 18,
+      "file": "slide-18-prompt-spec.png",
+      "role": "prompt-spec",
+      "alt": "各ページの主張、根拠、見せ方、出典を固定するSlide Specのスライド"
+    },
+    {
+      "sourceSlide": 26,
+      "file": "slide-20-qa.png",
+      "role": "qa",
+      "alt": "物語、焦点、収まり、根拠、読みやすさを確認するスライド"
+    },
+    {
+      "sourceSlide": 28,
+      "file": "slide-22-cta.png",
+      "role": "cta",
+      "alt": "自社資料で試し迷う工程だけ無料顧問を使う案内スライド"
+    }
+  ]
+}
