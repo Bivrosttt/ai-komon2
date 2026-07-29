@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+  <title>2問でわかる、御社のAI活用の現在地｜AI顧問室</title>
+  <meta name="description" content="御社のAI活用の現在地を2問で整理。結果をもとに30分の無料相談へ。">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="stylesheet" href="assets/lp-keiei-1-1-patterns/patterns.css?v=20260729-mobile2">
+</head>
+<body class="p2">
+  <div class="mini-bar"><a class="brand" href="#top"><img src="assets/lp-keiei-1-1/ai-komon-logo.png" alt="AI顧問室"><span>AI顧問室<small>経営者のためのAI顧問</small></span></a><a class="mini-book" href="https://timerex.net/s/koki.otsuka_bfac/4b686119" target="_blank" rel="noopener">相談を予約</a></div>
+  <main id="top">
+    <section class="p2-hero" data-hero><div class="wrap"><div style="text-align:center" class="js-reveal"><span class="p2-badge">10秒で完了 / 結果相談30分無料</span><h1>御社のAI活用、<br><strong>今レベルいくつ？</strong></h1><p>2問で現在地と、最初に見直すべき仕事がわかります。</p></div><div class="p2-hero-art"><img src="assets/lp-keiei-1-1/hero-owner-advisor.png" alt="経営者とAI顧問の相談風景"><span aria-hidden="true"></span></div></div></section>
+    <section class="p2-quiz-wrap"><div class="wrap"><div class="p2-quiz js-reveal" id="quiz"><div class="p2-progress"><span id="progress"></span></div><div class="p2-question"><small id="questionLabel">Q1 / 2</small><h2 id="questionText">現在、AIを使っているのはどこですか？</h2></div><div class="p2-options" id="options"><button class="p2-option" type="button" data-answer="個人">社長・一部の人だけ</button><button class="p2-option" type="button" data-answer="部署">特定の部署で試している</button><button class="p2-option" type="button" data-answer="全社">会社の複数業務で使っている</button></div><div class="p2-result" id="result"><h2>御社は「次の一手を絞る」段階です。</h2><p>AIを増やす前に、成果が出やすく社員が使い続けやすい業務を一つに決めると、導入が前に進みます。</p><a class="btn btn-orange" href="https://timerex.net/s/koki.otsuka_bfac/4b686119" target="_blank" rel="noopener">結果をもとに30分相談する</a></div></div></div></section>
+    <section class="p2-proof"><div class="wrap"><h2 class="section-title js-reveal" style="text-align:center">診断のあとに、<br><em>決めることは一つだけ。</em></h2><div class="grid-3"><article class="card js-reveal"><span class="number">01</span><h3>使う業務</h3><p>売上・粗利・時間に効く、最初の対象を絞ります。</p></article><article class="card js-reveal"><span class="number">02</span><h3>使う人</h3><p>社長だけでなく、現場が再現できる形にします。</p></article><article class="card js-reveal"><span class="number">03</span><h3>試す期間</h3><p>大きく導入する前に、小さく成果を確かめます。</p></article></div></div></section>
+    <section class="p2-close" id="contact"><div class="narrow js-reveal"><h2 class="section-title">診断結果を、<br><em>経営の次の一手へ。</em></h2><p class="lead" style="margin-inline:auto">30分の無料相談で、御社に合わせて整理します。</p><a class="btn btn-orange" href="https://timerex.net/s/koki.otsuka_bfac/4b686119" target="_blank" rel="noopener">30分の無料相談を予約</a></div></section>
+  </main>
+  <footer style="background:#bf3a31;color:#ffe8e1;padding:24px 0 80px"><div class="wrap" style="display:flex;justify-content:space-between;gap:15px;font-size:11px"><span>AI顧問室 / Bivrost Inc.</span><span>相談後の契約は不要です</span></div></footer>
+  <div class="sticky-cta"><a href="https://timerex.net/s/koki.otsuka_bfac/4b686119" target="_blank" rel="noopener">30分の無料相談を予約する</a></div>
+  <script src="analytics-config.js"></script><script src="measurement-config.js"></script><script src="meta-pixel-config.js"></script><script src="meta-pixel.js"></script><script src="measurement.js"></script><script src="ga4-events.js"></script><script src="assets/lp-keiei-1-1-patterns/patterns.js"></script>
+  <script>
+  (function(){var step=0,answers=[];var questions=[{label:'Q1 / 2',text:'現在、AIを使っているのはどこですか？',options:['社長・一部の人だけ','特定の部署で試している','会社の複数業務で使っている']},{label:'Q2 / 2',text:'いちばん変えたいのは何ですか？',options:['作業時間を減らしたい','社員が使える状態にしたい','何から始めるか決めたい']}];var label=document.getElementById('questionLabel'),text=document.getElementById('questionText'),options=document.getElementById('options'),progress=document.getElementById('progress'),result=document.getElementById('result');function render(){var q=questions[step];label.textContent=q.label;text.textContent=q.text;progress.style.width=((step+1)/2*100)+'%';options.innerHTML='';q.options.forEach(function(option){var b=document.createElement('button');b.type='button';b.className='p2-option';b.textContent=option;b.addEventListener('click',function(){answers.push(option);if(typeof window.aiKomonMeasure==='function')window.aiKomonMeasure(step===0?'DiagnosisStart':'QuizAnswer',{question:step+1,answer:option});if(step===0){step=1;render()}else{options.style.display='none';document.querySelector('.p2-question').style.display='none';progress.style.width='100%';result.classList.add('is-visible');if(typeof window.aiKomonMeasure==='function')window.aiKomonMeasure('DiagnosisComplete',{answers:answers.join(' / ')})}});options.appendChild(b)})}render()}());
+  </script>
+</body>
+</html>

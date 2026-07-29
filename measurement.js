@@ -215,6 +215,68 @@
     });
   }
 
+  // Engagement signals for LP analysis. These are intentionally emitted only
+  // once per session/page threshold so they remain useful for creative tests.
+  function initBehaviorTracking() {
+    var depthThresholds = [25, 50, 75, 90];
+    var sentDepths = {};
+    var ticking = false;
+    var scheduleFrame = window.requestAnimationFrame || function (callback) {
+      return window.setTimeout(callback, 16);
+    };
+
+    function sendDepth() {
+      ticking = false;
+      var scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      var percent = Math.round((window.scrollY / scrollable) * 100);
+      depthThresholds.forEach(function (threshold) {
+        if (percent < threshold || sentDepths[threshold]) return;
+        sentDepths[threshold] = true;
+        window.aiKomonMeasure('scroll_depth', {
+          value: String(threshold),
+          depth_percent: threshold
+        });
+      });
+    }
+
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      scheduleFrame(sendDepth);
+    }, { passive: true });
+
+    if (window.IntersectionObserver) {
+      var seenSections = {};
+      var sections = document.querySelectorAll('[data-analytics-section]');
+      var sectionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          var name = entry.target.getAttribute('data-analytics-section');
+          if (!name || seenSections[name]) return;
+          seenSections[name] = true;
+          window.aiKomonMeasure('section_view', {
+            value: name,
+            section_name: name
+          });
+          sectionObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0.35 });
+      Array.prototype.forEach.call(sections, function (section) { sectionObserver.observe(section); });
+    }
+
+    window.setTimeout(function () {
+      if (document.visibilityState !== 'hidden') {
+        window.aiKomonMeasure('engagement_10s', {
+          value: '10',
+          engagement_seconds: 10
+        });
+      }
+    }, 10000);
+  }
+
+  initBehaviorTracking();
+
   // Centralized CTA tracking makes GA4/Sheets work even when the Meta Pixel
   // script is blocked by a browser extension or consent setting.
   document.addEventListener('click', function (event) {

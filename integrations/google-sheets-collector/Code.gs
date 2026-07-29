@@ -6,7 +6,8 @@ const TOKEN = 'bef35216fda793ba42af2a753f681c98';
 const ALLOWED_HOST = 'ai-komon.bivrost.co.jp';
 const ALLOWED_EVENTS = new Set([
   'page_view', 'view_content', 'cta_click', 'diagnosis_start',
-  'diagnosis_complete', 'timerex_click', 'lead'
+  'diagnosis_complete', 'timerex_click', 'lead', 'scroll_depth',
+  'section_view', 'engagement_10s'
 ]);
 const RAW_EVENTS_HEADERS = [
   'event_time', 'event_name', 'event_id', 'session_id',

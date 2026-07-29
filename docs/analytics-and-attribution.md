@@ -1,6 +1,6 @@
 # AI顧問室｜計測・広告分析の運用ドキュメント
 
-最終確認日: 2026-07-26
+最終確認日: 2026-07-29
 
 この文書は、AI顧問室のLP計測、Google Analytics 4、Meta Pixel、Google SheetsのイベントDB、Meta広告の日次レポートを後継者が引き継ぐための運用メモです。
 
@@ -31,6 +31,45 @@ flowchart LR
   G --> L[Dashboard / Experiment / Leads]
   I -. 現在は自動書込なし .-> M[Google Sheets Ad Daily]
 ```
+
+## LP追加・更新チェックリスト
+
+新しい広告LPを追加するときは、公開前にこの順番で確認する。ローカルの`file://`や`localhost`では本番イベントを送信しないため、タグが読み込めても実データ送信の確認にはならない。
+
+### 実装
+
+- [ ] `analytics-config.js`、`measurement-config.js`、`meta-pixel-config.js`を読み込む
+- [ ] `meta-pixel.js`、`measurement.js`、`ga4-events.js`を読み込む
+- [ ] `measurement.js`を必ず含める。`ga4-events.js`と`meta-pixel.js`だけの新規LPは作らない
+- [ ] CTA、診断CTA、TimeRex予約リンクが`<a>`または`<button>`として存在する
+- [ ] TimeRexリンクは既存の予約URLを使い、計測側がUTMと`ak_session_id`を引き継げる状態にする
+- [ ] LPの主要区画に`data-analytics-section`を付ける（例: `hero`、`services`、`process`、`final_cta`）
+- [ ] 広告用LPのメッセージ、CTA、計測用の`utm_content`命名が一致している
+
+### 流入・イベント
+
+- [ ] Meta広告のURLパラメータに`utm_source`、`utm_medium`、`utm_campaign`、`utm_content`を設定する
+- [ ] `utm_content`はMeta広告名または固定のクリエイティブIDと一対一で対応させる
+- [ ] `fbclid`だけの流入はMeta推定になり、キャンペーン名・クリエイティブ名は復元できないことを確認する
+- [ ] 初回ページ表示、コンテンツ表示、CTAクリック、TimeRexクリックが送信対象になっている
+- [ ] スクロール25/50/75/90%、区画表示、10秒エンゲージが送信対象になっている
+- [ ] 診断LPなら診断開始・診断完了と結果レベルが送信対象になっている
+
+### 公開前テスト
+
+- [ ] 本番ホストにテストURL（UTM付き）を開く
+- [ ] GA4リアルタイムまたはDebugViewで`page_view`、`view_content`、`cta_click`、`timerex_click`を確認する
+- [ ] GA4で`scroll_depth`、`section_view`、`engagement_10s`を確認する
+- [ ] Meta Events Managerのテストイベントで`PageView`、`ViewContent`、`CTA_Click`、`Schedule`を確認する
+- [ ] Google Sheets `Raw Events`に同じ`session_id`、UTM、ページ、イベント時刻が保存されることを確認する
+- [ ] CTAを複数回押したとき、意図しない二重イベントが発生していないことを確認する
+- [ ] 実予約完了はTimeRex側のWebhookまたは予約シートで別途確認する（予約ボタンクリックだけでは予約完了ではない）
+
+### 今回の`pattern-04`の適用状況
+
+基礎タグは既に設定済みだったため、今回のLPには追加で主要区画の識別子を設定した。共通計測へスクロール到達率、区画表示、10秒エンゲージを追加したため、今後この3つの指標は`measurement.js`を読み込むLPで自動計測される。なお、Sheets側の受信許可リストを更新した`Code.gs`はリポジトリ上で更新済みだが、Webアプリへ反映するまでは新3イベントはSheetsに保存されない。
+
+現時点で残る未自動化項目は、GA4日次同期トリガーの運用確認、Meta広告実績の`Ad Daily`自動取込、TimeRex予約完了Webhook、ヒートマップ製品の導入である。これらはLP内のタグ追加だけでは完了しない。
 
 ## 重要な識別子と設定場所
 
@@ -115,6 +154,9 @@ GitHub設定画面:
 | `diagnosis_complete` | 診断完了。診断レベルやスコアを付与 |
 | `timerex_click` | Timerexの予約リンククリック |
 | `lead` | 相談導線へ到達したリードイベント |
+| `scroll_depth` | ページの25/50/75/90%到達。`value`に到達率を保存 |
+| `section_view` | `data-analytics-section`を付けた区画の表示 |
+| `engagement_10s` | ページを10秒以上見ている簡易エンゲージイベント |
 
 送信には `navigator.sendBeacon` を優先し、利用できない場合は `fetch` を使います。ブラウザ側では送信完了を待たないため、通信遮断や離脱時に欠損する可能性があります。
 
@@ -198,7 +240,7 @@ Apps Scriptの現行プロジェクト:
 - [Google Analytics Data APIを有効化](https://console.cloud.google.com/apis/library/analyticsdata.googleapis.com)
 - [計測スプレッドシート](https://docs.google.com/spreadsheets/d/1LuibxdWft_uc8ACHQX1toXxN2_aJgsCJKYa1ro_maCA/edit)
 
-Apps Scriptへ反映する手順（現行プロジェクトでは反映・承認・Webアプリ再デプロイ済み）:
+Apps Scriptへ反映する手順（既存イベントは反映済み。新しい計測イベントを追加したときは、必ずWebアプリを再デプロイする）:
 
 1. `Code.gs`をローカルの最新版へ置き換える。
 2. プロジェクトの設定で`appsscript.json`を表示し、同ファイルのOAuthスコープを反映する。
