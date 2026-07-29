@@ -16,6 +16,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
       - name: Check changed-file whitespace
         shell: bash
         run: |
@@ -27,6 +31,11 @@ jobs:
 
       - name: Compile SEO scripts
         run: python3 -m py_compile seo/scripts/*.py
+
+      - name: Test analytics setup guard
+        run: |
+          node --test tests/analytics-setup.test.mjs
+          node scripts/check_analytics_setup.mjs
 
       - name: Audit pages and internal links
         run: |

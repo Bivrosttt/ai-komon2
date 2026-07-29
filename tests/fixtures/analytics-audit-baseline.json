@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "note": "既存LPの既知問題のみ。新しい問題はCIで失敗させる。",
+  "knownIssues": {
+    "diagnosis.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-ai-diagnosis.html": [
+      "missing-script:analytics-config.js",
+      "missing-script:measurement-config.js",
+      "missing-script:measurement.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-anti.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-boss.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-chatgpt.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-cost.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-demo-first.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-fear.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-fudosan.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-genba.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-hikaku.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-hitode.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-hojokin.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-jiso.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-kantan.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-komon-backoffice.html": [
+      "missing-script:analytics-config.js",
+      "missing-script:measurement-config.js",
+      "missing-script:measurement.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-komon-kensetsu.html": [
+      "missing-script:analytics-config.js",
+      "missing-script:measurement-config.js",
+      "missing-script:measurement.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-komon-sales.html": [
+      "missing-script:analytics-config.js",
+      "missing-script:measurement-config.js",
+      "missing-script:measurement.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-komon.html": [
+      "missing-script:measurement-config.js",
+      "missing-script:measurement.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-level.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-list.html": [
+      "missing-script:analytics-config.js",
+      "missing-script:ga4-events.js",
+      "missing-script:measurement-config.js",
+      "missing-script:measurement.js",
+      "missing-script:meta-pixel-config.js",
+      "missing-script:meta-pixel.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-lv2.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-lv3.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-lv4.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-official-v2.html": [
+      "missing-script:measurement-config.js",
+      "missing-script:measurement.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-question.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-risk.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-roi.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-simple.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-speed.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-story.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-time.html": [
+      "missing-script:analytics-config.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-visual.html": [
+      "missing-script:analytics-config.js",
+      "missing-script:ga4-events.js",
+      "missing-script:measurement-config.js",
+      "missing-script:measurement.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ],
+    "lp-zukai.html": [
+      "missing-script:analytics-config.js",
+      "missing-script:ga4-events.js",
+      "missing-script:measurement-config.js",
+      "missing-script:measurement.js",
+      "missing-section:final_cta",
+      "missing-section:hero"
+    ]
+  }
+}

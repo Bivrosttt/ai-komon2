@@ -60,6 +60,8 @@ flowchart LR
 
 ### 公開前テスト
 
+- [ ] `node --test tests/analytics-setup.test.mjs`を実行する
+- [ ] `node scripts/check_analytics_setup.mjs`を実行し、`Analytics audit passed`を確認する
 - [ ] 本番ホストにテストURL（UTM付き）を開く
 - [ ] GA4リアルタイムまたはDebugViewで`page_view`、`view_content`、`cta_click`、`timerex_click`を確認する
 - [ ] GA4で`scroll_depth`、`section_view`、`engagement_10s`を確認する
@@ -69,6 +71,57 @@ flowchart LR
 - [ ] 入力欄、個人情報、予約情報がClarityでマスクされていることを確認する
 - [ ] CTAを複数回押したとき、意図しない二重イベントが発生していないことを確認する
 - [ ] 実予約完了はTimeRex側のWebhookまたは予約シートで別途確認する（予約ボタンクリックだけでは予約完了ではない）
+
+## アナリティクス設定漏れの自動テスト
+
+新しい広告LPを追加したとき、計測タグや区画識別子の設定漏れをPull RequestのCIで検出します。ローカルではリポジトリ直下から次を実行します。
+
+```bash
+node --test tests/analytics-setup.test.mjs
+node scripts/check_analytics_setup.mjs
+```
+
+実装:
+
+- リポジトリ監査: [scripts/check_analytics_setup.mjs](../scripts/check_analytics_setup.mjs)
+- 監査ロジックの単体テスト: [tests/analytics-setup.test.mjs](../tests/analytics-setup.test.mjs)
+- 既知問題のベースライン: [tests/fixtures/analytics-audit-baseline.json](../tests/fixtures/analytics-audit-baseline.json)
+- CI: [.github/workflows/site-check.yml](../.github/workflows/site-check.yml)
+
+### 自動検査する内容
+
+- ルート直下の`lp-*.html`、`diagnosis.html`、`lp/`配下の新規HTML（`lp/archive/`は除外）
+- `analytics-config.js`
+- `measurement-config.js`
+- `meta-pixel-config.js`
+- `meta-pixel.js`
+- `measurement.js`
+- `ga4-events.js`
+- 上記6ファイルの重複と読み込み順
+- `<title>`とmeta description
+- `data-analytics-section="hero"`と`data-analytics-section="final_cta"`
+- 同名`data-analytics-section`の重複
+- TimeRexリンクが`<a>`であり、`target="_blank"`と`rel="noopener"`を持つこと
+- `measurement-config.js`にGA4、Meta、Clarity、Apps Scriptの設定キーが残っていること
+- `measurement.js`に主要イベントが残っていること
+- `privacy.html`にGA4、Meta Pixel、Clarityの利用記載があること
+- このマニュアルにテスト手順とbaseline運用が残っていること
+
+### 既存LPのbaseline運用
+
+過去LPには、中央計測へ移行する前のタグ構成や区画識別子なしのページが残っています。これらを一括変更して配信中LPを壊さないため、現在の既知問題だけを`analytics-audit-baseline.json`へ固定します。
+
+- baselineに記録済みの同じ問題はCIを失敗させない
+- 既存LPでも新しい設定漏れ・重複・順序違反が増えたらCIを失敗させる
+- 新規LPにはbaselineがないため、1項目でも漏れるとCIを失敗させる
+- 既知問題を修正すると「解消済み」と表示される。確認後、baselineから該当項目を削除する
+- CIを通すためだけに新しい問題をbaselineへ追加しない。意図的な例外は理由をPull Requestへ記載してレビューする
+
+現在の監査結果を確認するだけなら、次でbaseline候補を標準出力へ表示できます。自動でファイルを書き換えないため、差分を必ず人が確認します。
+
+```bash
+node scripts/check_analytics_setup.mjs --print-baseline
+```
 
 ### 今回の`pattern-04`の適用状況
 
