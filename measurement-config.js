@@ -5,7 +5,7 @@ window.AI_KOMON_MEASUREMENT_CONFIG = {
   metaDatasetId: '1255260657664956',
   // Microsoft Clarityでプロジェクトを作成し、Project IDだけを設定する。
   // 空文字の間はClarityを読み込まない。
-  clarityProjectId: '',
+  clarityProjectId: 'xtugdav9vz',
   // 同意UIを追加するまではCookieを使わない計測として開始する。
   clarityConsentMode: 'cookieless',
   // Apps Script Web Appを公開したら、このURLを設定する。
