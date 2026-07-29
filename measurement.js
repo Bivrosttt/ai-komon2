@@ -154,6 +154,11 @@
     try { window.gtag('event', eventName, payload); } catch (e) {}
   }
 
+  function toClarity(eventName) {
+    if (!config.clarityProjectId || typeof window.clarity !== 'function') return;
+    try { window.clarity('event', eventName); } catch (e) {}
+  }
+
   function normalizeEventName(name) {
     return {
       PageView: 'page_view',
@@ -170,6 +175,7 @@
     var normalized = normalizeEventName(eventName);
     toGa4(normalized, params || {});
     toCollector(normalized, params || {});
+    toClarity(normalized);
   };
 
   function wrap(name) {
@@ -198,6 +204,61 @@
     window.gtag('js', new Date());
     window.gtag('config', config.measurementId, { anonymize_ip: true });
   }
+
+  function initClarity() {
+    var projectId = String(config.clarityProjectId || '').trim();
+    if (!projectId || typeof document === 'undefined') return;
+
+    window.clarity = window.clarity || function () {
+      (window.clarity.q = window.clarity.q || []).push(arguments);
+    };
+
+    // Cookie同意UIを実装するまでは、Clarity Consent API V2へdeniedを
+    // 明示し、ヒートマップをCookieレスで開始する。
+    if (config.clarityConsentMode === 'cookieless') {
+      window.clarity('consentv2', {
+        ad_Storage: 'denied',
+        analytics_Storage: 'denied'
+      });
+    }
+
+    var clarityScript = document.createElement('script');
+    clarityScript.async = true;
+    clarityScript.src = 'https://www.clarity.ms/tag/' + encodeURIComponent(projectId);
+    document.head.appendChild(clarityScript);
+
+    // 個人情報や広告クリックIDは送らず、既存の匿名セッションIDと
+    // UTMだけをカスタムタグにして、Sheets / GA4との突合に使う。
+    var attribution = getAttribution();
+    var clarityTags = {
+      ak_session_id: getSessionId(),
+      page: window.location.pathname,
+      utm_source: attribution.utm_source || '',
+      utm_medium: attribution.utm_medium || '',
+      utm_campaign: attribution.utm_campaign || '',
+      utm_content: attribution.utm_content || '',
+      utm_term: attribution.utm_term || '',
+      utm_id: attribution.utm_id || '',
+      from: attribution.from || '',
+      attribution_status: attribution.attribution_status || ''
+    };
+    Object.keys(clarityTags).forEach(function (key) {
+      if (!clarityTags[key]) return;
+      try { window.clarity('set', key, String(clarityTags[key]).slice(0, 255)); } catch (e) {}
+    });
+  }
+
+  // 将来Cookie同意UIを追加したとき、この関数からClarityだけの
+  // analytics_storageを更新できる。広告用Cookieは常にdeniedとする。
+  window.aiKomonSetClarityConsent = function (granted) {
+    if (typeof window.clarity !== 'function') return;
+    window.clarity('consentv2', {
+      ad_Storage: 'denied',
+      analytics_Storage: granted ? 'granted' : 'denied'
+    });
+  };
+
+  initClarity();
 
   window.aiKomonMeasure('PageView', {});
   window.aiKomonMeasure('ViewContent', {

@@ -2,17 +2,18 @@
 
 最終確認日: 2026-07-29
 
-この文書は、AI顧問室のLP計測、Google Analytics 4、Meta Pixel、Google SheetsのイベントDB、Meta広告の日次レポートを後継者が引き継ぐための運用メモです。
+この文書は、AI顧問室のLP計測、Google Analytics 4、Meta Pixel、Microsoft Clarity、Google SheetsのイベントDB、Meta広告の日次レポートを後継者が引き継ぐための運用メモです。
 
 ## 先に結論
 
-現在のデータは、1つのDBに統合されているわけではありません。用途ごとに次の4系統へ分かれています。
+現在のデータは、1つのDBに統合されているわけではありません。用途ごとに次の5系統へ分かれています。
 
 | 系統 | 主な保存先 | 役割 | 現在の状態 |
 | --- | --- | --- | --- |
 | LPイベント | Google Sheets `Raw Events` | UTM、流入、ページ、CTA、診断、予約クリック | 自動保存 |
 | アクセス解析 | Google Analytics 4 | ページ・イベント・ユーザー行動の集計 | LPから送信 |
 | 広告イベント | Meta Events Manager / Dataset | Meta広告の最適化・イベント計測 | Pixelから送信 |
+| 画面行動 | Microsoft Clarity | ヒートマップ、スクロール、セッション録画 | Project ID設定後に送信 |
 | 広告実績 | Meta Ads API → Discord | 消化、表示、クリック、広告別実績 | GitHub Actionsで日次通知 |
 
 Google Sheetsには、ブラウザから送ったLPイベントが`Raw Events`へ入ります。GA4の集計データはApps Scriptの`syncGa4Report`で`GA4 Daily`へ取り込めます。Meta Ads APIの広告実績はDiscordレポーターが取得しますが、`Ad Daily`への自動書込はまだ別ジョブです。
@@ -24,6 +25,7 @@ flowchart LR
   B --> D[meta-pixel.js]
   C --> E[GA4]
   C --> F[Apps Script Web App]
+  C --> N[Microsoft Clarity]
   F --> G[Google Sheets Raw Events]
   D --> H[Meta Events Manager / Dataset]
   I[Meta Ads API] --> J[GitHub Actions]
@@ -41,6 +43,7 @@ flowchart LR
 - [ ] `analytics-config.js`、`measurement-config.js`、`meta-pixel-config.js`を読み込む
 - [ ] `meta-pixel.js`、`measurement.js`、`ga4-events.js`を読み込む
 - [ ] `measurement.js`を必ず含める。`ga4-events.js`と`meta-pixel.js`だけの新規LPは作らない
+- [ ] `measurement-config.js`の`clarityProjectId`が現行Clarityプロジェクトと一致する
 - [ ] CTA、診断CTA、TimeRex予約リンクが`<a>`または`<button>`として存在する
 - [ ] TimeRexリンクは既存の予約URLを使い、計測側がUTMと`ak_session_id`を引き継げる状態にする
 - [ ] LPの主要区画に`data-analytics-section`を付ける（例: `hero`、`services`、`process`、`final_cta`）
@@ -62,6 +65,8 @@ flowchart LR
 - [ ] GA4で`scroll_depth`、`section_view`、`engagement_10s`を確認する
 - [ ] Meta Events Managerのテストイベントで`PageView`、`ViewContent`、`CTA_Click`、`Schedule`を確認する
 - [ ] Google Sheets `Raw Events`に同じ`session_id`、UTM、ページ、イベント時刻が保存されることを確認する
+- [ ] Clarityで対象URLの録画、クリックマップ、スクロールマップ、UTMカスタムタグを確認する
+- [ ] 入力欄、個人情報、予約情報がClarityでマスクされていることを確認する
 - [ ] CTAを複数回押したとき、意図しない二重イベントが発生していないことを確認する
 - [ ] 実予約完了はTimeRex側のWebhookまたは予約シートで別途確認する（予約ボタンクリックだけでは予約完了ではない）
 
@@ -69,7 +74,7 @@ flowchart LR
 
 基礎タグは既に設定済みだったため、今回のLPには追加で主要区画の識別子を設定した。共通計測へスクロール到達率、区画表示、10秒エンゲージを追加したため、今後この3つの指標は`measurement.js`を読み込むLPで自動計測される。なお、Sheets側の受信許可リストを更新した`Code.gs`はリポジトリ上で更新済みだが、Webアプリへ反映するまでは新3イベントはSheetsに保存されない。
 
-現時点で残る未自動化項目は、GA4日次同期トリガーの運用確認、Meta広告実績の`Ad Daily`自動取込、TimeRex予約完了Webhook、ヒートマップ製品の導入である。これらはLP内のタグ追加だけでは完了しない。
+現時点で残る未自動化項目は、GA4日次同期トリガーの運用確認、Meta広告実績の`Ad Daily`自動取込、TimeRex予約完了Webhook、Clarity Project IDの設定である。Clarityの読み込み・匿名セッションID・UTMカスタムタグ・カスタムイベント送信は実装済みで、Project IDが空の間だけ無効になる。
 
 ## 重要な識別子と設定場所
 
@@ -83,6 +88,7 @@ flowchart LR
 - ブラウザイベント処理: [measurement.js](../measurement.js)
 - Meta Pixel処理: [meta-pixel.js](../meta-pixel.js)
 - Meta ID設定: [meta-pixel-config.js](../meta-pixel-config.js)
+- Clarity Project ID設定: [measurement-config.js](../measurement-config.js) の `clarityProjectId`
 - Apps Script受信処理: [integrations/google-sheets-collector/Code.gs](../integrations/google-sheets-collector/Code.gs)
 
 ### Google Sheets
@@ -259,6 +265,57 @@ LP側では、到着時に明示されたUTMをfirst-touchとして`sessionStora
 
 旧LPには`ga4-events.js`や`meta-pixel.js`だけを読み込むページが残っています。これらには、`measurement.js`が存在しない場合だけ動くGA4・Metaのフォールバッククリック計測を残しています。`measurement.js`が読み込まれているページでは、フォールバックを停止して中央の計測処理だけを使うため、二重送信しません。
 
+## Microsoft Clarityで分かること
+
+Clarityは、GA4やMeta Pixelでは確認しづらい「ページ上のどこを押したか」「どこまでスクロールしたか」「どのような順番で操作したか」を、ヒートマップとセッション録画で確認する補完ツールです。無料で利用でき、クリック、スクロール、エリア、コンバージョン、注視の各ヒートマップを提供します。
+
+- [Microsoft Clarity](https://clarity.microsoft.com/)
+- [公式: Clarityについて](https://learn.microsoft.com/en-us/clarity/setup-and-installation/about-clarity)
+- [公式: ヒートマップ概要](https://learn.microsoft.com/en-us/clarity/heatmaps/heatmaps-overview)
+- [公式: セッション録画](https://learn.microsoft.com/en-us/clarity/session-recordings/recordings-overview)
+- [公式: GA連携](https://learn.microsoft.com/en-us/clarity/ga-integration/)
+- [公式: Consent Mode](https://learn.microsoft.com/en-us/clarity/setup-and-installation/consent-mode)
+
+### 初回導入
+
+1. [Clarity](https://clarity.microsoft.com/)へ、AI顧問室を管理するMicrosoftまたはGoogleアカウントでログインする。
+2. プロジェクト名を`AI顧問室`、サイトURLを`https://ai-komon.bivrost.co.jp`としてプロジェクトを作成する。
+3. Clarityの設定画面またはタグURLからProject IDを取得する。
+4. [measurement-config.js](../measurement-config.js)の`clarityProjectId`へProject IDだけを設定する。
+5. Clarity側のConsent Modeを有効にし、既定状態をCookieなしにする。現在のコードは`clarityConsentMode: 'cookieless'`でConsent API V2へ`denied`を送る。
+6. 本番へ公開後、Clarityの設定画面でタグ検出を確認する。
+7. 必要に応じてClarityの設定からGA4を連携する。ClarityとGA4の画面を往復して行動を確認しやすくなる。
+
+Project IDが空文字の間、`measurement.js`はClarityの外部スクリプトを一切読み込みません。`file://`、`localhost`、プレビュー環境も既存の本番ホスト制限で送信対象外です。
+
+### 自動で送る項目
+
+Clarityへ個人名、メールアドレス、電話番号、予約内容、`fbclid`、`gclid`は送りません。次だけをカスタムタグとして送ります。
+
+- `ak_session_id`: Google Sheets `Raw Events`と照合する匿名セッションID
+- `page`: LPのpathname
+- `utm_source` / `utm_medium` / `utm_campaign` / `utm_content` / `utm_term` / `utm_id`
+- `from`
+- `attribution_status`
+
+`measurement.js`経由のイベントはClarityのカスタムイベントにも送ります。主な対象は`page_view`、`view_content`、`cta_click`、`timerex_click`、`diagnosis_start`、`diagnosis_complete`、`scroll_depth`、`section_view`、`engagement_10s`です。
+
+### LP改善での見方
+
+1. ページURLとデバイスを絞る。広告LPは最初にモバイルを確認する。
+2. `utm_campaign`と`utm_content`で広告・クリエイティブを絞る。
+3. スクロールマップでファーストビュー直後、実績、料金、FAQ、最終CTAまでの到達差を見る。
+4. クリックマップでCTA以外の誤クリック、押されないCTA、リンクに見える非リンクを探す。
+5. セッション録画で、急速な往復、連打、フォーム離脱、表示崩れを確認する。
+6. `ak_session_id`が必要な場合だけ、ClarityのカスタムタグとSheetsの`session_id`をローカルで照合する。
+7. 録画だけで仮説を断定せず、GA4・Sheetsのイベント率とMetaの広告実績を同期間で確認する。
+
+### プライバシーと同意
+
+Clarityは入力値などを既定でマスクしますが、公開後に実際の録画を見てマスク漏れがないか確認します。個人情報を表示する要素には`data-clarity-mask="true"`を追加します。Cookie同意UIを将来追加した場合は、同意・撤回時に`window.aiKomonSetClarityConsent(true/false)`を呼びます。広告用ストレージはこの関数でも常に`denied`です。
+
+録画は通常30日保持され、お気に入りは最長9か月保持できます。必要な事例だけをお気に入りにし、個人情報を含む可能性がある録画をむやみに長期保存しません。
+
 ## TimeRex予約と流入経路の結び付け
 
 TimeRexのGoogle Sheets連携は、予約完了やキャンセルの予定情報をシートへ反映するためのものです。この連携だけでは広告のUTMと予約行が自動結合されるとは限りません。
@@ -362,6 +419,7 @@ ExperimentのPageView・CTA・診断完了・予約クリック
 - Meta Ads APIによる広告アカウント、広告セット、広告別の消化・表示・クリック・LPV等
 - DiscordへのMeta広告日次通知
 - `Raw Events`を基準にした簡易ABテスト比較
+- Clarity Project ID設定後のクリック・スクロールヒートマップ、セッション録画、UTM別の画面行動分析
 
 ### まだ自動化されていない
 
@@ -370,6 +428,7 @@ ExperimentのPageView・CTA・診断完了・予約クリック
 - Timerexの実予約・実面談・契約情報の自動取込
 - ブラウザイベントとMeta広告の実績を完全な1行単位で自動統合
 - ユーザー単位の個人特定。現在は匿名の`session_id`中心で、個人名・メールアドレスはLP計測に送っていません
+- Clarityプロジェクトのアカウント作成とProject ID設定
 
 ## 障害時の確認手順
 
@@ -397,6 +456,16 @@ ExperimentのPageView・CTA・診断完了・予約クリック
 4. `PageView`、`ViewContent`、`CTA_Click`等の到着を確認
 5. Pixelが別IDへ差し替わっていないか確認
 
+### Clarityに入らない
+
+1. `measurement-config.js`の`clarityProjectId`が空でないか確認
+2. ClarityのプロジェクトURLが`https://ai-komon.bivrost.co.jp`か確認
+3. 本番ホストで操作しているか確認
+4. ブラウザのNetworkで`www.clarity.ms/tag/{Project ID}`を確認
+5. Clarityの設定画面でタグ検出を再実行
+6. 広告ブロッカー、Consent Mode、ブラウザの送信制限を確認
+7. 入力欄や個人情報が録画に露出していないか確認
+
 ### Discord広告レポートに入らない
 
 1. [GitHub Actions](https://github.com/onion-salad/meta-discord-reporter/actions)の最新実行を確認
@@ -407,7 +476,7 @@ ExperimentのPageView・CTA・診断完了・予約クリック
 
 ## 引き継ぎ時の注意
 
-- `measurement-config.js`、Apps Script、Meta Events Manager、GA4、Meta Ads Reporterは別々に変更されます。1か所の変更だけで全体が更新される構成ではありません。
+- `measurement-config.js`、Apps Script、Meta Events Manager、GA4、Clarity、Meta Ads Reporterは別々に変更されます。1か所の変更だけで全体が更新される構成ではありません。
 - Google Sheetsの列を変更したら、Apps Scriptの`appendRow`、Dashboardの数式、Experimentの`COUNTIFS`を同時に確認します。
 - Meta広告の名前を変える場合は、URLの`utm_content`やExperimentの対応行も確認します。
 - Apps Scriptのトークン、Metaアクセストークン、Discord Bot Tokenは文書やチャットへ貼らないでください。

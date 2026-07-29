@@ -3,6 +3,11 @@ window.AI_KOMON_MEASUREMENT_CONFIG = {
   productionHosts: ['ai-komon.bivrost.co.jp', 'www.ai-komon.bivrost.co.jp'],
   measurementId: 'G-RSS02GXVRJ',
   metaDatasetId: '1255260657664956',
+  // Microsoft Clarityでプロジェクトを作成し、Project IDだけを設定する。
+  // 空文字の間はClarityを読み込まない。
+  clarityProjectId: '',
+  // 同意UIを追加するまではCookieを使わない計測として開始する。
+  clarityConsentMode: 'cookieless',
   // Apps Script Web Appを公開したら、このURLを設定する。
   eventEndpoint: 'https://script.google.com/macros/s/AKfycby7gBDk6cEGzOt9Yax6JsZiTUa-ATW2VWkEZjeErlsR-QEzH8rEMVd1EIUmwowQ8P3mNQ/exec',
   eventToken: 'bef35216fda793ba42af2a753f681c98'
