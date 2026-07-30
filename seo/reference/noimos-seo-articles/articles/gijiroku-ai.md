@@ -4,8 +4,8 @@ source_html: articles/gijiroku-ai/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/gijiroku-ai/
 dateModified: 2026-07-12
 schema_types: [Article, BreadcrumbList, FAQPage]
-japanese_chars: 2411
-reference_generated_at: 2026-07-30T13:56:22.490948+00:00
+japanese_chars: 2395
+reference_generated_at: 2026-07-30T14:00:58.229445+00:00
 ---
 
 # 議事録をAIで効率化する方法｜自動作成の確認ポイント | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:56:22.490948+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/gijiroku-ai/index.html`](../../../../articles/gijiroku-ai/index.html)
-- source SHA-256: `0bb7e7ba8226ae938d490944f89ed3ee1188183798375f0f5fa964592eae8907`
+- source SHA-256: `3ced8769411f48992590b726134f9b173645f67985e4b7da1d35797250d2a408`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2411`
+- 日本語文字数（article本文）: `2395`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `1` / details FAQ: `3`
 - internal links: `5` / external links: `4`
@@ -38,10 +38,10 @@ reference_generated_at: 2026-07-30T13:56:22.490948+00:00
 - H2: AIの議事録で人が確認すべき項目は？
 - H2: 議事録AIの情報管理で何を確認する？
 - H2: 議事録AIを無料で試す手順は？
-- H2: AI導入の相談はサービスから
 - H2: よくある質問
 - H2: まとめ
 - H2: 参考にした公式情報
+- H2: 無料でコンサル1回分をプレゼント
 - H3: 文字起こし
 - H3: 人が確認
 - H3: 共有・更新
@@ -56,7 +56,7 @@ reference_generated_at: 2026-07-30T13:56:22.490948+00:00
 | class | element count | purpose/sample |
 | --- | ---: | --- |
 | `answer` | `div`×1 | 先に結論： 議事録AIは「文字起こし → 要約 → 決定事項抽出 → 人の確認 → 共有」の5段階で使うと、速さと正確さを両立しやすくなります。まずは 無料の議事録テンプレート で残す項目を決め、次に 議事録AI体験デモ で自動整理の範囲を確認するのがおすすめです。 |
-| `button` | `a`×1 | AI顧問室のサービスを見る |
+| `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 議事録AIは、会議の文字起こしや要約を速くする道具です。ただし、AIの出力をそのまま正式記録にするのではなく、人が決定事項とToDoを確認する工程まで設計して初めて、業務で安全に使えます。 |
 | `eyebrow` | `p`×1 | AI MEETING MINUTES / PRACTICAL GUIDE |
 | `hero` | `img`×1 | (textなし / visual-only) |
@@ -64,13 +64,13 @@ reference_generated_at: 2026-07-30T13:56:22.490948+00:00
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `pipeline-note` | `div`×1 | 実務のコツ： 5段階のうち「人の確認」を省略しないこと。確認者と共有先を決めておくと、AIの誤変換がそのまま社内標準になるのを防げます。 |
 | `related` | `div`×1 | 議事録の書き方 決定事項とToDoが残る基本の型 AI導入リスク診断 入力・保存・権限の確認項目 議事録AI体験デモ 文字起こしから整理する例 |
-| `service-cta` | `div`×1 | AI導入の相談はサービスから AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。 AI顧問室のサービスを見る |
+| `service-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
 | `sources` | `section`×1 | 参考にした公式情報 IPA「AIの利活用、AIによるDXの推進」 （2025年6月16日更新、2026年7月12日閲覧） 経済産業省「AI事業者ガイドライン検討会」 （2026年3月31日更新、2026年7月12日閲覧） IPA「テキスト生成AIの導入・運用ガイドライン」 （2024年7月31日更新、2026年7月12日閲覧） Microsoft Learn「Data, privacy, and security for intelli |
 | `step` | `div`×3 | 01 / TRANSCRIBE 文字起こし 音声から候補を作る。 |
 | `steps` | `div`×1 | 01 / TRANSCRIBE 文字起こし 音声から候補を作る。 02 / CHECK 人が確認 固有名詞と決定事項を確定する。 03 / SHARE 共有・更新 正式記録へ戻し、次の行動を残す。 |
 | `table-scroll` | `div`×1 | 工程 AIに任せること 人が確認すること 1. 文字起こし 音声をテキストに変換 話者名、専門用語、数字 2. 要約 話題ごとの短い整理 重要な条件や反対意見の抜け 3. 決定事項抽出 結論らしい文を候補化 本当に合意した内容か 4. 人の確認 確認用の見出しや一覧を作る 担当者、期限、保留事項 5. 共有 指定フォーマットへ整形 権限、宛先、保存期間 |
 | `toc` | `div`×1 | この記事の目次 議事録AIで任せられる作業 品質管理の5段階 人が確認すべき項目 情報管理と導入前の確認 小さく試す手順 |
-| `tool-cta` | `div`×1 | AI導入の相談はサービスから AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。 AI顧問室のサービスを見る |
+| `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
 
 ### Inline CSS（原文）
 
@@ -293,12 +293,6 @@ AI議事録は、一度の生成で完成させるより、処理を5段階に�
 4. 誤変換の種類を3回分だけメモする
 5. 改善後のルールと共有先を決める
 
-## AI導入の相談はサービスから
-
-AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。
-
-[AI顧問室のサービスを見る](../../#service)
-
 ## よくある質問
 
 議事録AIは完全自動で使えますか？
@@ -325,6 +319,12 @@ AIに任せる業務の選定から、実装、社内ルール、現場への定
 2. [経済産業省「AI事業者ガイドライン検討会」](https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/)（2026年3月31日更新、2026年7月12日閲覧）
 3. [IPA「テキスト生成AIの導入・運用ガイドライン」](https://www.ipa.go.jp/jinzai/ics/core_human_resource/final_project/2024/generative-ai-guideline.html)（2024年7月31日更新、2026年7月12日閲覧）
 4. [Microsoft Learn「Data, privacy, and security for intelligent recap in Teams Premium」](https://learn.microsoft.com/en-us/microsoftteams/privacy/intelligent-recap)（2026年7月12日閲覧）
+
+## 無料でコンサル1回分をプレゼント
+
+対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。
+
+[無料でコンサル1回分を受け取る](../../#service)
 
 ## 参照用リンク一覧
 
