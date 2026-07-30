@@ -1,0 +1,14 @@
+{
+  "mode": "ai_only",
+  "status": "ai_approved",
+  "pipeline": "Noimos AI Quality Pipeline",
+  "reviewed_at": "2026-07-30T18:00:00+09:00",
+  "checks": {
+    "claim_evidence": true,
+    "brand_alignment": true,
+    "specificity": true,
+    "risk_screen": true,
+    "render_qa": true
+  },
+  "notes": "Automated evidence, brand, specificity, risk, and rendered-output checks passed."
+}

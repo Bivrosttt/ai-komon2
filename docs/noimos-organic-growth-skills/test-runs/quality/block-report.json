@@ -1,0 +1,77 @@
+{
+  "tool": "noimos-content-quality-gate",
+  "generated_at": "2026-07-30T03:00:51.080681+00:00",
+  "status": "BLOCK",
+  "blockers": [
+    {
+      "code": "untagged_numeric_claim",
+      "detail": [
+        {
+          "line": 3,
+          "text": "AIは革新的で画期的なゲームチェンジャーです。様々な業務を効果的に活用でき、導入すれば100%成功します。"
+        }
+      ]
+    },
+    {
+      "code": "generic_phrase_density",
+      "detail": {
+        "重要です": 1,
+        "様々な": 1,
+        "革新的": 1,
+        "画期的": 1,
+        "ゲームチェンジャー": 1,
+        "今こそ": 1,
+        "ビジネスを変革": 1,
+        "効果的に活用": 1
+      }
+    },
+    {
+      "code": "placeholders",
+      "detail": [
+        "\\bTODO\\b"
+      ]
+    },
+    {
+      "code": "audience_not_explicit",
+      "detail": [
+        "中小企業の経営者"
+      ]
+    },
+    {
+      "code": "approved_cta_missing",
+      "detail": [
+        "無料相談"
+      ]
+    },
+    {
+      "code": "insufficient_specificity",
+      "detail": 1
+    },
+    {
+      "code": "human_approval_missing",
+      "detail": {
+        "status": "draft",
+        "reviewer": "",
+        "reviewed_at": ""
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "code": "unused_claim_records",
+      "detail": [
+        "sme-ai-01"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "registered_claims_used": 0,
+      "claim_records": 1,
+      "numeric_claim_lines": 1,
+      "human_approval": false
+    }
+  ],
+  "reviewer": "",
+  "publication_performed": false
+}

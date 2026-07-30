@@ -1,0 +1,68 @@
+{
+  "posts": [
+    {
+      "platform": "linkedin",
+      "creator": "Creator A",
+      "url": "https://example.com/post-a",
+      "published_at": "2026-07-27",
+      "followers": 4200,
+      "views": 80000,
+      "likes": 2400,
+      "comments": 130,
+      "shares": 210,
+      "posts_count": 44,
+      "account_age_days": 700,
+      "hook": "広告費ゼロでARRを伸ばした具体策",
+      "format": "milestone_playbook",
+      "product_fit": 5
+    },
+    {
+      "platform": "linkedin",
+      "creator": "Creator B",
+      "url": "https://example.com/post-b",
+      "published_at": "2026-07-25",
+      "followers": 900,
+      "views": 31000,
+      "likes": 900,
+      "comments": 95,
+      "shares": 80,
+      "posts_count": 4,
+      "account_age_days": 10,
+      "hook": "最初の2回は失敗。それでも伸びた3つの理由",
+      "format": "milestone_playbook",
+      "product_fit": 5
+    },
+    {
+      "platform": "x",
+      "creator": "Creator C",
+      "url": "https://example.com/post-c",
+      "published_at": "2026-07-24",
+      "followers": 12000,
+      "views": 110000,
+      "likes": 3100,
+      "comments": 160,
+      "shares": 420,
+      "posts_count": 800,
+      "account_age_days": 1500,
+      "hook": "ゼロからなら、この順番でやり直す",
+      "format": "milestone_playbook",
+      "product_fit": 4
+    },
+    {
+      "platform": "instagram",
+      "creator": "Creator D",
+      "url": "https://example.com/post-d",
+      "published_at": "2026-06-15",
+      "followers": 90000,
+      "views": 12000,
+      "likes": 90,
+      "comments": 4,
+      "shares": 3,
+      "posts_count": 3000,
+      "account_age_days": 1800,
+      "hook": "AIの最新ニュースまとめ",
+      "format": "generic_news_roundup",
+      "product_fit": 2
+    }
+  ]
+}

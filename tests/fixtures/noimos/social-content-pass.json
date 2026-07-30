@@ -1,0 +1,18 @@
+{
+  "assets": [
+    {
+      "id": "x-01",
+      "platform": "x",
+      "audience": "中小企業の経営者",
+      "problem": "AI記事を作っても問い合わせにつながらない",
+      "outcome": "比較・購入意図から逆算した運用順を理解する",
+      "hook": "記事を増やす前に、止めるべきことがある。",
+      "content": "記事を増やす前に、止めるべきことがある。\n\n中小企業の経営者が先に見るべきは投稿本数ではなく、①比較・購入意図 ②CTA ③計測です。\n\nAI顧問室で実際に使う9段階のチェック順を公開します。\n\n無料相談で自社の詰まりを確認する",
+      "proof": "9段階の手順と検証チェックを本文で提示",
+      "claim_ids": ["process-01"],
+      "cta": "無料相談で自社の詰まりを確認する",
+      "reference_mechanics": ["contrarian hook", "numbered process", "single CTA"],
+      "originality_delta": ["中小企業の意思決定に限定", "公開前品質ゲートを追加"]
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "tool": "noimos-social-trend-mining",
+  "generated_at": "2026-07-30T03:00:50.977867+00:00",
+  "as_of": "2026-07-30",
+  "patterns": [
+    {
+      "format": "milestone_playbook",
+      "score": 84.5,
+      "confidence": "high",
+      "independent_creators": 3,
+      "platforms": [
+        "linkedin",
+        "x"
+      ],
+      "recent_posts": 3,
+      "posts": [
+        {
+          "platform": "linkedin",
+          "creator": "Creator B",
+          "url": "https://example.com/post-b",
+          "published_at": "2026-07-25",
+          "followers": 900,
+          "views": 31000,
+          "likes": 900,
+          "comments": 95,
+          "shares": 80,
+          "posts_count": 4,
+          "account_age_days": 10,
+          "hook": "最初の2回は失敗。それでも伸びた3つの理由",
+          "format": "milestone_playbook",
+          "product_fit": 5,
+          "age_days": 5,
+          "post_score": 88.4,
+          "evidence_completeness": 1.0,
+          "metrics_observed": true
+        },
+        {
+          "platform": "linkedin",
+          "creator": "Creator A",
+          "url": "https://example.com/post-a",
+          "published_at": "2026-07-27",
+          "followers": 4200,
+          "views": 80000,
+          "likes": 2400,
+          "comments": 130,
+          "shares": 210,
+          "posts_count": 44,
+          "account_age_days": 700,
+          "hook": "広告費ゼロでARRを伸ばした具体策",
+          "format": "milestone_playbook",
+          "product_fit": 5,
+          "age_days": 3,
+          "post_score": 76.6,
+          "evidence_completeness": 1.0,
+          "metrics_observed": true
+        },
+        {
+          "platform": "x",
+          "creator": "Creator C",
+          "url": "https://example.com/post-c",
+          "published_at": "2026-07-24",
+          "followers": 12000,
+          "views": 110000,
+          "likes": 3100,
+          "comments": 160,
+          "shares": 420,
+          "posts_count": 800,
+          "account_age_days": 1500,
+          "hook": "ゼロからなら、この順番でやり直す",
+          "format": "milestone_playbook",
+          "product_fit": 4,
+          "age_days": 6,
+          "post_score": 73.0,
+          "evidence_completeness": 1.0,
+          "metrics_observed": true
+        }
+      ]
+    },
+    {
+      "format": "generic_news_roundup",
+      "score": 21.2,
+      "confidence": "low",
+      "independent_creators": 1,
+      "platforms": [
+        "instagram"
+      ],
+      "recent_posts": 0,
+      "posts": [
+        {
+          "platform": "instagram",
+          "creator": "Creator D",
+          "url": "https://example.com/post-d",
+          "published_at": "2026-06-15",
+          "followers": 90000,
+          "views": 12000,
+          "likes": 90,
+          "comments": 4,
+          "shares": 3,
+          "posts_count": 3000,
+          "account_age_days": 1800,
+          "hook": "AIの最新ニュースまとめ",
+          "format": "generic_news_roundup",
+          "product_fit": 2,
+          "age_days": 45,
+          "post_score": 28.3,
+          "evidence_completeness": 1.0,
+          "metrics_observed": true
+        }
+      ]
+    }
+  ],
+  "rule": "A high score is a test priority, not a guarantee of virality."
+}

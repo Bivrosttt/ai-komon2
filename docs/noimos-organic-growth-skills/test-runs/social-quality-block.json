@@ -1,0 +1,38 @@
+{
+  "tool": "noimos-content-quality-gate",
+  "generated_at": "2026-07-30T03:12:51.360434+00:00",
+  "status": "BLOCK",
+  "blockers": [
+    {
+      "code": "claim_record_invalid",
+      "detail": [
+        {
+          "id": "noimos-arr-01",
+          "missing": [
+            "source_url"
+          ],
+          "verified": false
+        }
+      ]
+    },
+    {
+      "code": "human_approval_missing",
+      "detail": {
+        "status": "draft",
+        "reviewer": "",
+        "reviewed_at": ""
+      }
+    }
+  ],
+  "warnings": [],
+  "evidence": [
+    {
+      "registered_claims_used": 1,
+      "claim_records": 1,
+      "numeric_claim_lines": 1,
+      "human_approval": false
+    }
+  ],
+  "reviewer": "",
+  "publication_performed": false
+}
