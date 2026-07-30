@@ -51,8 +51,10 @@ the deterministic quality gate and render checks are all recorded as true.
   next action, visible FAQ, sources, and update date.
 - [ ] Add 3-8 contextual internal links and 2-5 authoritative external links.
 - [ ] Keep one focused CTA after value delivery.
-- [ ] Add a real article-specific diagram with `img`, descriptive `alt`, and
-  `figcaption`. Visually verify all image labels.
+- [ ] Add an article-specific visual cover with `img`, descriptive `alt`, and
+  `figcaption`. A detailed diagram is optional; for comparison or guide pages,
+  a code-generated SVG/CSS thumbnail is sufficient when it communicates the
+  topic without fabricated data.
 - [ ] Include Article and Breadcrumb JSON-LD that matches visible content.
 - [ ] Treat FAQ as reader content; never promise a rich result.
 
@@ -78,6 +80,8 @@ the deterministic quality gate and render checks are all recorded as true.
 - [ ] 派生する参照Markdown、インベントリ、画像ハッシュを再生成し、HTMLとの差分を同期する。
 - [ ] 公開後28日を目安にGSCの表示回数・クリック数・CTR・平均掲載順位、記事CTAクリック、相談CVをURL単位で比較する。
 - [ ] 効果が出ない記事は、検索意図・SERP・競合の変化を個別に再調査する。全記事を一括で再改変しない。
+- [ ] 比較記事では、タイトルで対象・比較意図・更新年を明示し、評価軸、候補ごとの同じ項目、比較表、選び方、FAQを揃える。
+- [ ] 1180px以上では左に目次、中央に本文、右に短いCTAを配置し、モバイルでは1カラムへ戻す。
 
 ### 6. Delivery gates
 

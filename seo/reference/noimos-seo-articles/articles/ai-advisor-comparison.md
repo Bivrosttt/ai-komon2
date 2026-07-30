@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-advisor-comparison/
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
 japanese_chars: 4352
-reference_generated_at: 2026-07-30T11:55:14.776651+00:00
+reference_generated_at: 2026-07-30T12:36:50.987512+00:00
 ---
 
 # AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T11:55:14.776651+00:00
 - published: `2026-07-30`
 - modified: `2026-07-30`
 - source HTML: [`articles/ai-advisor-comparison/index.html`](../../../../articles/ai-advisor-comparison/index.html)
-- source SHA-256: `a2eda643667d1d01d536083a5bff690829f9e955d66186b0edd89e8c9490155f`
+- source SHA-256: `3a246d5242c21905a0b5cc91323658824a795b1546c268a3f0b580fb5edee543`
 
 ## ページ構造と計測用シグナル
 
@@ -87,7 +87,7 @@ reference_generated_at: 2026-07-30T11:55:14.776651+00:00
     figure{margin:34px 0}figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:14px;display:block}figcaption{font-size:13px;color:var(--muted);margin-top:10px}
     table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}th,td{padding:13px 12px;border:1px solid var(--line);vertical-align:top;text-align:left}th{background:var(--navy);color:#fff}tbody tr:nth-child(even){background:var(--soft)}
     ol,ul{padding-left:1.45em}li{margin-bottom:8px}article>ol{padding:22px 22px 22px 48px;background:var(--soft);border-radius:12px}
-    .service-cta{margin:54px 0 24px;padding:30px;background:var(--navy);color:#fff;border-radius:16px;text-align:center}.service-cta h2{color:#fff;border:0;margin:0 0 12px;padding:0}.service-cta a{display:inline-block;margin-top:8px;padding:12px 22px;background:var(--gold);color:var(--navy);font-weight:800;text-decoration:none;border-radius:8px}
+    .service-cta{margin:54px 0 24px;padding:30px;background:var(--navy);color:#fff;border-radius:16px;text-align:center}.service-cta h2{color:#fff;border:0;margin:0 0 12px;padding:0}.service-cta a{display:inline-block;margin-top:8px;padding:12px 22px;background:var(--gold);color:#fff;font-weight:800;text-decoration:none;border-radius:8px}
     footer{border-top:1px solid var(--line);padding:30px 24px;text-align:center;color:var(--muted);font-size:13px}
     @media(max-width:640px){main{padding:28px 18px 70px}.bar{padding:14px 18px}.bar span{display:none}table{display:block;width:100%;max-width:100%;overflow-x:auto;white-space:nowrap}.table-scroll{width:100%;max-width:100%;overflow-x:auto}.table-scroll table{display:table;width:max-content;min-width:650px;overflow:visible}blockquote{padding:18px}.service-cta{padding:24px 18px}}
 ```

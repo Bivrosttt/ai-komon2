@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/internal-ai-training/
 dateModified: 2026-07-13
 schema_types: [Article]
 japanese_chars: 2408
-reference_generated_at: 2026-07-30T11:55:18.244105+00:00
+reference_generated_at: 2026-07-30T12:36:54.235348+00:00
 ---
 
 # 社内研修をAIで効率化する方法｜教材作成から定着までの設計 | AI顧問室

@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-07-30T11:55:19.339331+00:00",
+  "generated_at": "2026-07-30T12:36:54.857848+00:00",
   "source_root": "/Users/koki/Desktop/ai-komon2",
   "scope": "articles/*/index.html",
-  "article_count": 27,
-  "image_count": 29,
+  "article_count": 28,
+  "image_count": 30,
   "articles": [
     {
       "slug": "ai-advisor-comparison",
       "source_html": "articles/ai-advisor-comparison/index.html",
-      "source_sha256": "a2eda643667d1d01d536083a5bff690829f9e955d66186b0edd89e8c9490155f",
+      "source_sha256": "3a246d5242c21905a0b5cc91323658824a795b1546c268a3f0b580fb5edee543",
       "title": "AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方 | AI顧問室",
       "description": "中小企業がAI顧問を比較するときに確認すべき対象業務、実装範囲、人の承認、総費用、定着支援を、比較表と質問集で具体的に解説します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-advisor-comparison/",
@@ -125,7 +125,7 @@
     {
       "slug": "ai-advisor-cost",
       "source_html": "articles/ai-advisor-cost/index.html",
-      "source_sha256": "948927d7fe9445084ccbffdabc033545ddc9ecd8481e26b84ef2cc40186ac384",
+      "source_sha256": "3c74949e20a28c954a7adb60f3d1fc30b6fdad89d380b64289a8f4cbafec2fd7",
       "title": "AI顧問の費用はいくら？月額だけで決めない総額の見方 | AI顧問室",
       "description": "AI顧問の費用を初期・月額・従量・追加作業・社内工数に分解。公開料金の読み方、総額計算、契約前の質問を中小企業向けに解説します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-advisor-cost/",
@@ -699,6 +699,80 @@
       ],
       "linked_stylesheets": [
         "../../assets/articles/article.css?v=20260713-responsive"
+      ],
+      "inline_css_selectors": []
+    },
+    {
+      "slug": "ai-marketing-tools-comparison",
+      "source_html": "articles/ai-marketing-tools-comparison/index.html",
+      "source_sha256": "ff6c9852e88a076bbb5be8db16b3dbae311216d3c292519b07effe1701b0805e",
+      "title": "AIマーケティングツール比較｜中小企業向け5タイプの選び方 | AI顧問室",
+      "description": "AIマーケティングツールを、オールインワン、CRM連携、SEO/GEO、ブランド運用、業務自動化の5タイプで比較。中小企業が料金だけで選ばず、業務と成果物で判断する方法を解説します。",
+      "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-marketing-tools-comparison/",
+      "datePublished": "2026-07-30",
+      "dateModified": "2026-07-30",
+      "schema_types": [
+        "Article",
+        "BreadcrumbList",
+        "FAQPage"
+      ],
+      "japanese_chars": 2569,
+      "headings": {
+        "h1": [
+          "AIマーケティングツール比較｜中小企業向け5タイプの選び方"
+        ],
+        "h2": [
+          "AIマーケティングツールは「工程」で比較する",
+          "AIマーケティングツールの5タイプ",
+          "選定基準は機能数より5つの運用条件",
+          "AIマーケティングツール比較表",
+          "30日で比較する手順",
+          "AI顧問室が向くケース",
+          "AIマーケティングの比較を相談する",
+          "よくある質問",
+          "次に読む・使う"
+        ],
+        "h3": [
+          "自律性",
+          "データ連携",
+          "承認と停止"
+        ]
+      },
+      "tables": 3,
+      "details": 4,
+      "images": [
+        {
+          "src": "ai-marketing-tools-comparison-thumbnail.svg",
+          "local": true,
+          "copied_to": "../media/ai-marketing-tools-comparison/ai-marketing-tools-comparison-thumbnail.svg",
+          "alt": "AIマーケティングツールを調査、作成、実行、改善の4工程で比較するサムネイル",
+          "caption": "複雑な図解ではなく、4工程を示すシンプルなサムネイルで比較の視点を共有します。",
+          "dimensions": "unknown",
+          "sha256": "a9414fe031f00957fe41f29f7773391766c7b39f47f6e0b9e8d2890bff43a8ea"
+        }
+      ],
+      "internal_link_count": 4,
+      "external_link_count": 4,
+      "classes": [
+        "answer",
+        "article-thumb",
+        "button",
+        "dek",
+        "eyebrow",
+        "key-points",
+        "meta",
+        "note",
+        "related",
+        "service-cta",
+        "sources",
+        "step",
+        "steps",
+        "table-scroll",
+        "toc",
+        "tool-cta"
+      ],
+      "linked_stylesheets": [
+        "../../assets/articles/article.css?v=20260730-comparison"
       ],
       "inline_css_selectors": []
     },

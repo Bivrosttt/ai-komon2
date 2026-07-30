@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-agent-business/
 dateModified: 2026-07-13
 schema_types: [Article]
 japanese_chars: 2481
-reference_generated_at: 2026-07-30T11:55:15.076942+00:00
+reference_generated_at: 2026-07-30T12:36:51.121403+00:00
 ---
 
 # AIエージェントとは？中小企業の業務で任せる範囲と導入手順 | AI顧問室

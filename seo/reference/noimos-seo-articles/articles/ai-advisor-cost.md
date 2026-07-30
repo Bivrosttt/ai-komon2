@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-advisor-cost/
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
 japanese_chars: 3067
-reference_generated_at: 2026-07-30T11:55:15.029775+00:00
+reference_generated_at: 2026-07-30T12:36:51.039356+00:00
 ---
 
 # AI顧問の費用はいくら？月額だけで決めない総額の見方 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T11:55:15.029775+00:00
 - published: `2026-07-30`
 - modified: `2026-07-30`
 - source HTML: [`articles/ai-advisor-cost/index.html`](../../../../articles/ai-advisor-cost/index.html)
-- source SHA-256: `948927d7fe9445084ccbffdabc033545ddc9ecd8481e26b84ef2cc40186ac384`
+- source SHA-256: `3c74949e20a28c954a7adb60f3d1fc30b6fdad89d380b64289a8f4cbafec2fd7`
 
 ## ページ構造と計測用シグナル
 
@@ -82,7 +82,7 @@ reference_generated_at: 2026-07-30T11:55:15.029775+00:00
     .answer{margin:30px 0;padding:22px 24px;background:var(--soft);border-left:5px solid var(--gold);border-radius:0 12px 12px 0}.answer strong{color:var(--navy)}
     figure{margin:34px 0}figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:14px;display:block}figcaption{font-size:13px;color:var(--muted);margin-top:10px}
     table{width:100%;border-collapse:collapse;margin:24px 0;font-size:14px}th,td{padding:13px 12px;border:1px solid var(--line);vertical-align:top;text-align:left}th{background:var(--navy);color:#fff}tbody tr:nth-child(even){background:var(--soft)}
-    ol,ul{padding-left:1.45em}li{margin-bottom:8px}.source-list{font-size:14px}.service-cta{margin:54px 0 24px;padding:30px;background:var(--navy);color:#fff;border-radius:16px;text-align:center}.service-cta h2{color:#fff;border:0;margin:0 0 12px;padding:0}.service-cta a{display:inline-block;margin-top:8px;padding:12px 22px;background:var(--gold);color:var(--navy);font-weight:800;text-decoration:none;border-radius:8px}
+    ol,ul{padding-left:1.45em}li{margin-bottom:8px}.source-list{font-size:14px}.service-cta{margin:54px 0 24px;padding:30px;background:var(--navy);color:#fff;border-radius:16px;text-align:center}.service-cta h2{color:#fff;border:0;margin:0 0 12px;padding:0}.service-cta a{display:inline-block;margin-top:8px;padding:12px 22px;background:var(--gold);color:#fff;font-weight:800;text-decoration:none;border-radius:8px}
     footer{border-top:1px solid var(--line);padding:30px 24px;text-align:center;color:var(--muted);font-size:13px}@media(max-width:640px){main{padding:28px 18px 70px}.bar{padding:14px 18px}.bar span{display:none}table{display:block;width:100%;max-width:100%;overflow-x:auto;white-space:nowrap}.table-scroll{width:100%;max-width:100%;overflow-x:auto}.table-scroll table{display:table;width:max-content;min-width:650px;overflow:visible}.answer{padding:18px}.service-cta{padding:24px 18px}}
 ```
 

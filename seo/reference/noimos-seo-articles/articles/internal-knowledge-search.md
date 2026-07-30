@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/internal-knowledge-search/
 dateModified: 2026-07-26
 schema_types: [Article, BreadcrumbList]
 japanese_chars: 2357
-reference_generated_at: 2026-07-30T11:55:18.693411+00:00
+reference_generated_at: 2026-07-30T12:36:54.339761+00:00
 ---
 
 # 社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐ | AI顧問室

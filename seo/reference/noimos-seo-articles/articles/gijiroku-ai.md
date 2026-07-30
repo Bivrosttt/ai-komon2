@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/gijiroku-ai/
 dateModified: 2026-07-12
 schema_types: [Article, BreadcrumbList, FAQPage]
 japanese_chars: 2420
-reference_generated_at: 2026-07-30T11:55:17.643578+00:00
+reference_generated_at: 2026-07-30T12:36:53.956191+00:00
 ---
 
 # 議事録をAIで効率化する方法｜自動作成の確認ポイント | AI顧問室
