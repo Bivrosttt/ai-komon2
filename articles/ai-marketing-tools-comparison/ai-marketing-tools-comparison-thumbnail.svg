@@ -3,9 +3,12 @@
   <desc id="desc">A gradient background with a friendly white icon</desc>
   <defs>
     <linearGradient id="bg-ai-marketing-tools-comparison" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5630ba"/><stop offset="1" stop-color="#9b65df"/></linearGradient>
-    <linearGradient id="icon-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#eee6ff"/></linearGradient>
-  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#052341" flood-opacity=".18"/></filter></defs>
+    <linearGradient id="icon-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".34" stop-color="#fff"/><stop offset="1" stop-color="#c5a9f5"/></linearGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .055"/></feComponentTransfer></filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#052341" flood-opacity=".18"/></filter>
+  </defs>
   <rect width="1600" height="900" rx="48" fill="url(#bg-ai-marketing-tools-comparison)"/>
-  <path d="M-160 760 620 0h190L30 900h-190ZM500 900 1430 0h230L730 900H500Z" fill="#fff" opacity=".13"/>
-  <g filter="url(#shadow)"><g fill="url(#icon-fill)"><path d="m800 210 30 150 150 30-150 30-30 150-30-150-150-30 150-30 30-150Z"/><path d="m1060 470 18 88 88 18-88 18-18 88-18-88-88-18 88-18 18-88Z"/><circle cx="570" cy="560" r="30"/><circle cx="1030" cy="250" r="20"/></g></g>
+  <path d="M-180 800 650 0h190L10 900h-190ZM420 900 1370 0h220L650 900H420ZM1050 900 1600 360v230l-320 310Z" fill="#fff" opacity=".13"/><path d="M-180 820 650 20h120L-40 900h-140ZM480 900 1400 20h130L620 900Z" fill="#fff" opacity=".06"/>
+  <rect width="1600" height="900" rx="48" filter="url(#grain)" opacity=".42"/>
+  <g filter="url(#shadow)"><path d="M640 610c-80 0-145-65-145-145s65-145 145-145c24-104 117-180 228-180 121 0 220 88 232 203 78 7 140 72 140 151 0 84-68 152-152 152H640Z" fill="url(#icon-fill)"/></g>
 </svg>

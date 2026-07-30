@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-roadmap/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 3275
-reference_generated_at: 2026-07-30T13:28:52.446663+00:00
+reference_generated_at: 2026-07-30T13:37:47.266322+00:00
 ---
 
 # 中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ | AI顧問室

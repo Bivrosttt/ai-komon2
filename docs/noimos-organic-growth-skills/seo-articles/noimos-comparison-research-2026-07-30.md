@@ -76,3 +76,5 @@ python3 scripts/generate_article_thumbnail.py \
 ```
 
 利用可能なアイコンは `globe / cloud / bars / sparkles / bot / heart / megaphone`、背景は `diagonal / arcs / waves / rays / blobs`。slugをseedにすることで、記事ごとに背景形状を変えながら再現可能なサムネイルを生成できる。
+
+今回の比較記事は、参照したAI CMO画像に寄せて `cloud + purple + diagonal` で生成し、アイコン上部を白、下部を淡い紫へ落とすグラデーションにした。

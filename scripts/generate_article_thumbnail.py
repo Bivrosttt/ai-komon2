@@ -22,12 +22,12 @@ from pathlib import Path
 WIDTH, HEIGHT = 1600, 900
 
 PALETTES = {
-    "ocean": ("#2eabc3", "#69c4cf", "#d8fbf4"),
-    "teal": ("#063f43", "#167f78", "#d5f3e7"),
-    "blue": ("#273db2", "#304fd0", "#e1e5ff"),
-    "purple": ("#5630ba", "#9b65df", "#eee6ff"),
-    "navy": ("#09264b", "#2167a4", "#d7f1f3"),
-    "coral": ("#9c3e52", "#e28478", "#fff0dc"),
+    "ocean": ("#2eabc3", "#69c4cf", "#b8eef0"),
+    "teal": ("#063f43", "#167f78", "#a8e7d2"),
+    "blue": ("#273db2", "#304fd0", "#aabaff"),
+    "purple": ("#5630ba", "#9b65df", "#c5a9f5"),
+    "navy": ("#09264b", "#2167a4", "#a8e1e7"),
+    "coral": ("#9c3e52", "#e28478", "#ffd0ae"),
 }
 
 
@@ -42,7 +42,7 @@ def stable_number(seed: str, maximum: int) -> int:
 def background(shape: str, seed: str) -> str:
     shift = stable_number(seed, 140)
     if shape == "diagonal":
-        return f'''<path d="M-160 760 620 0h190L30 900h-190ZM500 900 1430 0h230L730 900H500Z" fill="#fff" opacity=".13"/>'''
+        return f'''<path d="M-180 800 650 0h190L10 900h-190ZM420 900 1370 0h220L650 900H420ZM1050 900 1600 360v230l-320 310Z" fill="#fff" opacity=".13"/><path d="M-180 820 650 20h120L-40 900h-140ZM480 900 1400 20h130L620 900Z" fill="#fff" opacity=".06"/>'''
     if shape == "arcs":
         return f'''<circle cx="{260 + shift}" cy="-40" r="720" fill="none" stroke="#fff" stroke-width="140" opacity=".09"/><circle cx="{1110 - shift // 2}" cy="980" r="720" fill="none" stroke="#fff" stroke-width="120" opacity=".1"/>'''
     if shape == "waves":
@@ -59,7 +59,7 @@ def icon(icon_name: str) -> str:
     if icon_name == "globe":
         return f'''<g {stroke}><circle cx="800" cy="450" r="190"/><path d="M610 450h380M800 260c-88 90-88 290 0 380M800 260c88 90 88 290 0 380M670 330c80 45 180 45 260 0M670 570c80-45 180-45 260 0"/></g>'''
     if icon_name == "cloud":
-        return '''<path d="M650 570h290c110 0 170-65 170-135 0-78-65-136-146-136-18-77-85-129-166-129-91 0-164 67-173 153-80 12-139 78-139 158 0 104 79 189 164 189Z" fill="url(#icon-fill)"/>'''
+        return '''<path d="M640 610c-80 0-145-65-145-145s65-145 145-145c24-104 117-180 228-180 121 0 220 88 232 203 78 7 140 72 140 151 0 84-68 152-152 152H640Z" fill="url(#icon-fill)"/>'''
     if icon_name == "bars":
         return '''<g fill="url(#icon-fill)"><rect x="620" y="510" width="76" height="170" rx="38"/><rect x="762" y="410" width="76" height="270" rx="38"/><rect x="904" y="300" width="76" height="380" rx="38"/></g>'''
     if icon_name == "sparkles":
@@ -83,16 +83,16 @@ def render(output: Path, icon_name: str, palette_name: str, shape: str, seed: st
   <desc id="desc">{desc}</desc>
   <defs>
     <linearGradient id="bg-{ident}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="{start}"/><stop offset="1" stop-color="{end}"/></linearGradient>
-    <linearGradient id="icon-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="{icon_light}"/></linearGradient>
+    <linearGradient id="icon-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".34" stop-color="#fff"/><stop offset="1" stop-color="{icon_light}"/></linearGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .055"/></feComponentTransfer></filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#052341" flood-opacity=".18"/></filter>
   </defs>
   <rect width="{WIDTH}" height="{HEIGHT}" rx="48" fill="url(#bg-{ident})"/>
   {background(shape, seed)}
+  <rect width="{WIDTH}" height="{HEIGHT}" rx="48" filter="url(#grain)" opacity=".42"/>
   <g filter="url(#shadow)">{icon(icon_name)}</g>
 </svg>
 '''
-    # Keep the shadow definition compact and optional-looking; browsers ignore
-    # a missing filter, so add it after the main markup for stable SVG output.
-    svg = svg.replace('</defs>', '<filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#052341" flood-opacity=".18"/></filter></defs>')
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(svg, encoding="utf-8")
 

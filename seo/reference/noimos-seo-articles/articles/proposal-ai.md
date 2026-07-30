@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/proposal-ai/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 2183
-reference_generated_at: 2026-07-30T13:28:53.001600+00:00
+reference_generated_at: 2026-07-30T13:37:48.468946+00:00
 ---
 
 # 提案書をAIで作成する方法｜営業の下書きと確認を分ける | AI顧問室

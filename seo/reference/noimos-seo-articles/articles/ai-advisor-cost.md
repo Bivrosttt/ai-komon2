@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-advisor-cost/
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
 japanese_chars: 3067
-reference_generated_at: 2026-07-30T13:28:52.305118+00:00
+reference_generated_at: 2026-07-30T13:37:47.044828+00:00
 ---
 
 # AI顧問の費用はいくら？月額だけで決めない総額の見方 | AI顧問室
