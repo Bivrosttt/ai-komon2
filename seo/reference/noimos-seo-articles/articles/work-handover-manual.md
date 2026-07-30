@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/work-handover-manual/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 2075
-reference_generated_at: 2026-07-30T12:36:54.856077+00:00
+reference_generated_at: 2026-07-30T13:24:52.472821+00:00
 ---
 
 # 業務引き継ぎの方法｜後任が迷わないマニュアルの作り方 | AI顧問室

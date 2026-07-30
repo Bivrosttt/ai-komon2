@@ -1,6 +1,6 @@
 # Noimos SEO記事リファレンス
 
-> 生成日: 2026-07-30T12:36:54.857848+00:00
+> 生成日: 2026-07-30T13:24:52.490683+00:00
 
 このディレクトリは、`articles/`配下の自社SEO記事を、Noimosの執筆・装飾・図解・計測設計を再利用するために整理した参照コーパスです。本文は可読Markdown、画像はローカルコピー、CSSとJSON-LDは原文または参照先を保持しています。
 
@@ -23,7 +23,7 @@
 | 6 | [`ai-introduction-benefits`](articles/ai-introduction-benefits.md) | AI導入のメリット｜中小企業が先に得るべき効果と見極め方 \| AI顧問室 | 2410 | 12 | 3 | 1 | Article, FAQPage |
 | 7 | [`ai-introduction-risk`](articles/ai-introduction-risk.md) | AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点 \| AI顧問室 | 2607 | 11 | 2 | 1 | Article, FAQPage |
 | 8 | [`ai-introduction-roadmap`](articles/ai-introduction-roadmap.md) | 中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ \| AI顧問室 | 3275 | 12 | 4 | 1 | Article, FAQPage |
-| 9 | [`ai-marketing-tools-comparison`](articles/ai-marketing-tools-comparison.md) | AIマーケティングツール比較｜中小企業向け5タイプの選び方 \| AI顧問室 | 2569 | 9 | 3 | 1 | Article, BreadcrumbList, FAQPage |
+| 9 | [`ai-marketing-tools-comparison`](articles/ai-marketing-tools-comparison.md) | AIマーケティングツール比較｜中小企業向け5タイプの選び方 \| AI顧問室 | 2557 | 9 | 3 | 1 | Article, BreadcrumbList, FAQPage |
 | 10 | [`ai-recruiting-efficiency`](articles/ai-recruiting-efficiency.md) | 採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方 \| AI顧問室 | 2463 | 12 | 3 | 1 | Article, FAQPage |
 | 11 | [`ai-roi`](articles/ai-roi.md) | AI導入の費用対効果｜削減時間・人件費・回収期間の試算方法 \| AI顧問室 | 2414 | 12 | 3 | 1 | Article, FAQPage |
 | 12 | [`business-efficiency-ideas`](articles/business-efficiency-ideas.md) | 業務効率化のアイデア｜中小企業が最初に見直す定型業務10選 \| AI顧問室 | 2430 | 11 | 2 | 1 | Article, FAQPage |

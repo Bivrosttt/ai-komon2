@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-risk/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2607
-reference_generated_at: 2026-07-30T12:36:52.122380+00:00
+reference_generated_at: 2026-07-30T13:24:51.434667+00:00
 ---
 
 # AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点 | AI顧問室

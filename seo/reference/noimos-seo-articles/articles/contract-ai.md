@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/contract-ai/
 dateModified: 2026-07-13
 schema_types: [Article]
 japanese_chars: 2377
-reference_generated_at: 2026-07-30T12:36:53.588288+00:00
+reference_generated_at: 2026-07-30T13:24:51.869228+00:00
 ---
 
 # 契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進める | AI顧問室

@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/sales-efficiency/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2352
-reference_generated_at: 2026-07-30T12:36:54.723545+00:00
+reference_generated_at: 2026-07-30T13:24:52.415913+00:00
 ---
 
 # 営業効率化の方法｜見積・提案・追客のどこからAI化するか | AI顧問室

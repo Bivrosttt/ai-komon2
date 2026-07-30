@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/customer-support-ai/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 2202
-reference_generated_at: 2026-07-30T12:36:53.639317+00:00
+reference_generated_at: 2026-07-30T13:24:51.900788+00:00
 ---
 
 # カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化する | AI顧問室

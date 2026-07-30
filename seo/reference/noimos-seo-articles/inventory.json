@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30T12:36:54.857848+00:00",
+  "generated_at": "2026-07-30T13:24:52.490683+00:00",
   "source_root": "/Users/koki/Desktop/ai-komon2",
   "scope": "articles/*/index.html",
   "article_count": 28,
@@ -705,7 +705,7 @@
     {
       "slug": "ai-marketing-tools-comparison",
       "source_html": "articles/ai-marketing-tools-comparison/index.html",
-      "source_sha256": "ff6c9852e88a076bbb5be8db16b3dbae311216d3c292519b07effe1701b0805e",
+      "source_sha256": "33404e39ca6d4f9d796145c5c0bcc026705ddd49d8a70ff28906734209a7fde4",
       "title": "AIマーケティングツール比較｜中小企業向け5タイプの選び方 | AI顧問室",
       "description": "AIマーケティングツールを、オールインワン、CRM連携、SEO/GEO、ブランド運用、業務自動化の5タイプで比較。中小企業が料金だけで選ばず、業務と成果物で判断する方法を解説します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-marketing-tools-comparison/",
@@ -716,7 +716,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "japanese_chars": 2569,
+      "japanese_chars": 2557,
       "headings": {
         "h1": [
           "AIマーケティングツール比較｜中小企業向け5タイプの選び方"
@@ -745,10 +745,10 @@
           "src": "ai-marketing-tools-comparison-thumbnail.svg",
           "local": true,
           "copied_to": "../media/ai-marketing-tools-comparison/ai-marketing-tools-comparison-thumbnail.svg",
-          "alt": "AIマーケティングツールを調査、作成、実行、改善の4工程で比較するサムネイル",
-          "caption": "複雑な図解ではなく、4工程を示すシンプルなサムネイルで比較の視点を共有します。",
+          "alt": "AIマーケティングツール比較の記事サムネイル",
+          "caption": "AIマーケティングツール比較",
           "dimensions": "unknown",
-          "sha256": "a9414fe031f00957fe41f29f7773391766c7b39f47f6e0b9e8d2890bff43a8ea"
+          "sha256": "ef4b3a10de9d3a155bb18fc464ec020ee997a1a3e2aa5ad19dd06e6bb2a4282f"
         }
       ],
       "internal_link_count": 4,
@@ -769,7 +769,8 @@
         "steps",
         "table-scroll",
         "toc",
-        "tool-cta"
+        "tool-cta",
+        "visually-hidden"
       ],
       "linked_stylesheets": [
         "../../assets/articles/article.css?v=20260730-comparison"

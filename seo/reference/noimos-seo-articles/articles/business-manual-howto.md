@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/business-manual-howto/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 2115
-reference_generated_at: 2026-07-30T12:36:53.520269+00:00
+reference_generated_at: 2026-07-30T13:24:51.815785+00:00
 ---
 
 # 業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にする | AI顧問室

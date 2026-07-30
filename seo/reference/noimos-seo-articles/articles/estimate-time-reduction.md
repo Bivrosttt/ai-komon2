@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/estimate-time-reduction/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2270
-reference_generated_at: 2026-07-30T12:36:53.722733+00:00
+reference_generated_at: 2026-07-30T13:24:51.933880+00:00
 ---
 
 # 見積書作成の時間を減らす方法｜工数を測ってから自動化する | AI顧問室

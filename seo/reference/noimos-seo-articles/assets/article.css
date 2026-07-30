@@ -5,6 +5,7 @@ body { margin:0; color:var(--ink); background:#fff; font-family:system-ui,-apple
 main { width:min(980px,calc(100% - 32px)); margin:auto; }
 a { color:var(--brand); }
 img { display:block; max-width:100%; height:auto; }
+.visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 figure { margin:34px 0; }
 figure img { width:100%; border-radius:16px; }
 .breadcrumb { display:flex; flex-wrap:wrap; gap:.15rem .35rem; padding-top:24px; color:var(--muted); font-size:.88rem; }

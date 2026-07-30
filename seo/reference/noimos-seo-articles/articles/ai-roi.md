@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-roi/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2414
-reference_generated_at: 2026-07-30T12:36:53.308751+00:00
+reference_generated_at: 2026-07-30T13:24:51.751495+00:00
 ---
 
 # AI導入の費用対効果｜削減時間・人件費・回収期間の試算方法 | AI顧問室

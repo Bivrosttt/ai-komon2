@@ -1,28 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
   <title id="title">AIマーケティングツール比較</title>
-  <desc id="desc">AIマーケティングの調査、作成、配信、分析を比較するサムネイル</desc>
+  <desc id="desc">AIマーケティングツール比較の記事サムネイル</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#082448"/><stop offset=".58" stop-color="#1769aa"/><stop offset="1" stop-color="#5fb7b2"/></linearGradient>
-    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".98"/><stop offset="1" stop-color="#dff5f1" stop-opacity=".9"/></linearGradient>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#082448"/>
+      <stop offset="0.55" stop-color="#1769aa"/>
+      <stop offset="1" stop-color="#5fb7b2"/>
+    </linearGradient>
   </defs>
-  <rect width="1600" height="900" rx="48" fill="url(#bg)"/>
-  <path d="M-80 670 620 0h170L90 900H-80ZM530 900 1460 0h220L760 900H530Z" fill="#fff" opacity=".08"/>
-  <text x="100" y="142" fill="#bfe7e1" font-family="Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="8">AI MARKETING / COMPARISON GUIDE</text>
-  <text x="100" y="246" fill="#fff" font-family="Arial, sans-serif" font-size="76" font-weight="800">Compare the system,</text>
-  <text x="100" y="334" fill="#fff" font-family="Arial, sans-serif" font-size="76" font-weight="800">not just the tool.</text>
-  <g transform="translate(100 470)">
-    <rect width="1400" height="260" rx="30" fill="#06203e" opacity=".72"/>
-    <g transform="translate(54 56)">
-      <rect width="250" height="130" rx="20" fill="url(#card)"/><text x="32" y="58" fill="#082448" font-family="Arial, sans-serif" font-size="30" font-weight="700">Research</text><text x="32" y="96" fill="#1769aa" font-family="Arial, sans-serif" font-size="22">競合・需要</text>
-    </g>
-    <g transform="translate(370 56)">
-      <rect width="250" height="130" rx="20" fill="url(#card)"/><text x="32" y="58" fill="#082448" font-family="Arial, sans-serif" font-size="30" font-weight="700">Create</text><text x="32" y="96" fill="#1769aa" font-family="Arial, sans-serif" font-size="22">SEO・GEO</text>
-    </g>
-    <g transform="translate(686 56)">
-      <rect width="250" height="130" rx="20" fill="url(#card)"/><text x="32" y="58" fill="#082448" font-family="Arial, sans-serif" font-size="30" font-weight="700">Execute</text><text x="32" y="96" fill="#1769aa" font-family="Arial, sans-serif" font-size="22">SNS・CRM</text>
-    </g>
-    <g transform="translate(1002 56)">
-      <rect width="250" height="130" rx="20" fill="url(#card)"/><text x="32" y="58" fill="#082448" font-family="Arial, sans-serif" font-size="30" font-weight="700">Improve</text><text x="32" y="96" fill="#1769aa" font-family="Arial, sans-serif" font-size="22">計測・更新</text>
-    </g>
-  </g>
+  <rect width="1600" height="900" rx="48" fill="url(#background)"/>
+  <path d="M-120 720 610 0h180L60 900h-180ZM500 900 1420 0h240L740 900H500Z" fill="#fff" opacity=".12"/>
 </svg>

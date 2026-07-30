@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-benefits/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2410
-reference_generated_at: 2026-07-30T12:36:51.559947+00:00
+reference_generated_at: 2026-07-30T13:24:51.402301+00:00
 ---
 
 # AI導入のメリット｜中小企業が先に得るべき効果と見極め方 | AI顧問室

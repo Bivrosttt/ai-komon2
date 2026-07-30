@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/invoice-efficiency/
 dateModified: 2026-07-13
 schema_types: [Article]
 japanese_chars: 2415
-reference_generated_at: 2026-07-30T12:36:54.515208+00:00
+reference_generated_at: 2026-07-30T13:24:52.333869+00:00
 ---
 
 # 請求書作成を効率化する方法｜作成・確認・送付・記録をつなげる | AI顧問室

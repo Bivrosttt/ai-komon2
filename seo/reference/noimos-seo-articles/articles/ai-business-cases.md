@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-business-cases/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2399
-reference_generated_at: 2026-07-30T12:36:51.185376+00:00
+reference_generated_at: 2026-07-30T13:24:51.352111+00:00
 ---
 
 # AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むか | AI顧問室
