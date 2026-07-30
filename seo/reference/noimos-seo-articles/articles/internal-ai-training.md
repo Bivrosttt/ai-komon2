@@ -4,8 +4,8 @@ source_html: articles/internal-ai-training/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/internal-ai-training/
 dateModified: 2026-07-13
 schema_types: [Article]
-japanese_chars: 2408
-reference_generated_at: 2026-07-30T13:49:40.642483+00:00
+japanese_chars: 2394
+reference_generated_at: 2026-07-30T13:56:22.622416+00:00
 ---
 
 # 社内研修をAIで効率化する方法｜教材作成から定着までの設計 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.642483+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/internal-ai-training/index.html`](../../../../articles/internal-ai-training/index.html)
-- source SHA-256: `a48be6aa11fd2763ec6b6382c2ed62de68667b72b74043ae1ebf8387a5de87a1`
+- source SHA-256: `6f3729c0d57f68443cd5cb0421bea88271ddc21e2d82fedee37850ee2502d1c4`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2408`
+- 日本語文字数（article本文）: `2394`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `3` / details FAQ: `3`
 - internal links: `5` / external links: `3`
@@ -82,14 +82,14 @@ reference_generated_at: 2026-07-30T13:49:40.642483+00:00
 
 ## 図解・画像
 
-### 社内研修を課題設定、教材下書き、演習、理解度確認、更新の5段階で改善する循環図解
+### 社内研修をAIで効率化する方法｜教材作成から定着までの設計のシンプルな記事サムネイル
 
-![社内研修を課題設定、教材下書き、演習、理解度確認、更新の5段階で改善する循環図解](../media/internal-ai-training/internal-ai-training-diagram.png)
+![社内研修をAIで効率化する方法｜教材作成から定着までの設計のシンプルな記事サムネイル](../media/internal-ai-training/internal-ai-training-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/internal-ai-training-diagram.png`
-- dimensions: `1672×941`
-- caption: 研修後に現場で出た質問を次の教材へ戻すと、学習と業務改善がつながる。
-- sha256: `66a31c1161e51e217e304f89a58f7e7f122986a3a21ebf49be4564d393642d91`
+- source: `internal-ai-training-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `e8808307ed1301d43940cac4ae75a5aa61119d239b25a6383577b547ced4cc76`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -132,9 +132,9 @@ AI KOMONSHITSU / INTERNAL TRAINING研修を、受講イベントから業務改�
 
 **先に結論：**社内研修へのAI活用は、教材の下書き、受講者別の演習問題、質問の分類、理解度確認、教材の更新に分けると効果を測りやすくなります。AIに研修設計を丸投げせず、自社の業務基準と人が確認すべき判断を教材へ入れてください。
 
-![社内研修を課題設定、教材下書き、演習、理解度確認、更新の5段階で改善する循環図解](../media/internal-ai-training/internal-ai-training-diagram.png)
+![社内研修をAIで効率化する方法｜教材作成から定着までの設計のシンプルな記事サムネイル](../media/internal-ai-training/internal-ai-training-thumbnail.svg)
 
-研修後に現場で出た質問を次の教材へ戻すと、学習と業務改善がつながる。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の要点**
 

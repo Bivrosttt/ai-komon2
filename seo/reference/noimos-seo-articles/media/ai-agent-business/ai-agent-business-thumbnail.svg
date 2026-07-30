@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">ai-agent-business article thumbnail</title>
+  <desc id="desc">A gradient background with a friendly white icon</desc>
+  <defs>
+    <linearGradient id="bg-ai-agent-business" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9c3e52"/><stop offset="1" stop-color="#e28478"/></linearGradient>
+    <linearGradient id="icon-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".34" stop-color="#fff"/><stop offset="1" stop-color="#ffd0ae"/></linearGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .055"/></feComponentTransfer></filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#052341" flood-opacity=".18"/></filter>
+  </defs>
+  <rect width="1600" height="900" rx="48" fill="url(#bg-ai-agent-business)"/>
+  <path d="M-60 160C270-40 520-40 820 150s550 210 850-30v230c-300 240-570 210-900 20S270 210-60 430Z" fill="#fff" opacity=".1"/><path d="M-80 590c310-230 580-210 900-20s570 220 860-30v210c-300 230-570 210-900 30S230 590-80 800Z" fill="#fff" opacity=".08"/>
+  <rect width="1600" height="900" rx="48" filter="url(#grain)" opacity=".42"/>
+  <g filter="url(#shadow)"><path d="M640 610c-80 0-145-65-145-145s65-145 145-145c24-104 117-180 228-180 121 0 220 88 232 203 78 7 140 72 140 151 0 84-68 152-152 152H640Z" fill="url(#icon-fill)"/></g>
+</svg>

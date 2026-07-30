@@ -4,8 +4,8 @@ source_html: articles/gijiroku-ai/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/gijiroku-ai/
 dateModified: 2026-07-12
 schema_types: [Article, BreadcrumbList, FAQPage]
-japanese_chars: 2420
-reference_generated_at: 2026-07-30T13:49:40.591404+00:00
+japanese_chars: 2411
+reference_generated_at: 2026-07-30T13:56:22.490948+00:00
 ---
 
 # 議事録をAIで効率化する方法｜自動作成の確認ポイント | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.591404+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/gijiroku-ai/index.html`](../../../../articles/gijiroku-ai/index.html)
-- source SHA-256: `9b96f32a4ea3094fd4920649a8bac6675fe331ecaf7898dad9730312faef11be`
+- source SHA-256: `0bb7e7ba8226ae938d490944f89ed3ee1188183798375f0f5fa964592eae8907`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2420`
+- 日本語文字数（article本文）: `2411`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `1` / details FAQ: `3`
 - internal links: `5` / external links: `4`
@@ -101,17 +101,17 @@ reference_generated_at: 2026-07-30T13:49:40.591404+00:00
 
 - source: `../../assets/articles/gijiroku-ai/gijiroku-ai-hero.webp`
 - dimensions: `1672×941`
-- caption: AIに下書きを任せても、決定事項を確定する工程は人が持ちます。
+- caption: 記事テーマを示すシンプルなカバー画像。
 - sha256: `2b5a429febd806a11818b81b3e86e1b7609ed354baa7e846c02582d909f6ddaa`
 
-### AI議事録を文字起こしから共有まで5段階で確認する図解
+### 議事録をAIで効率化する方法｜自動作成の確認ポイントのシンプルな記事サムネイル
 
-![AI議事録を文字起こしから共有まで5段階で確認する図解](../media/gijiroku-ai/gijiroku-ai-pipeline.webp)
+![議事録をAIで効率化する方法｜自動作成の確認ポイントのシンプルな記事サムネイル](../media/gijiroku-ai/gijiroku-ai-thumbnail.svg)
 
-- source: `../../assets/articles/gijiroku-ai/gijiroku-ai-pipeline.webp`
-- dimensions: `1672×941`
-- caption: AIに下書きを任せても、決定事項を確定する工程は人が持ちます。
-- sha256: `407d27d9b9fa2d265beabeac752e712b30638837e4fb434a48ebb3e6a6e3f318`
+- source: `gijiroku-ai-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `38f2a141cdd5d398568b7a61daee494c30a6f62a719d4c4b995c1a3d9e9b4c08`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -232,9 +232,9 @@ AI MEETING MINUTES / PRACTICAL GUIDE
 
 AI議事録は、一度の生成で完成させるより、処理を5段階に分ける方が確認漏れを見つけやすくなります。2026年3月31日時点で経済産業省の検討会ページにはAI事業者ガイドライン第1.2版が掲載されており、AIを使う側もリスクを認識して対策を行う考え方が示されています。
 
-![AI議事録を文字起こしから共有まで5段階で確認する図解](../media/gijiroku-ai/gijiroku-ai-pipeline.webp)
+![議事録をAIで効率化する方法｜自動作成の確認ポイントのシンプルな記事サムネイル](../media/gijiroku-ai/gijiroku-ai-thumbnail.svg)
 
-AIに下書きを任せても、決定事項を確定する工程は人が持ちます。
+記事テーマを示すシンプルなカバー画像。
 
 **01 / TRANSCRIBE**
 

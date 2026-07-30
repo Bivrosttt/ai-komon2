@@ -4,8 +4,8 @@ source_html: articles/business-manual-howto/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/business-manual-howto/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2115
-reference_generated_at: 2026-07-30T13:49:40.439800+00:00
+japanese_chars: 2099
+reference_generated_at: 2026-07-30T13:56:22.208000+00:00
 ---
 
 # 業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にする | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.439800+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/business-manual-howto/index.html`](../../../../articles/business-manual-howto/index.html)
-- source SHA-256: `5ba15385fe5d8d0542d4c6931de85133b6eb18bfd2fc959f329d7744bfe59a44`
+- source SHA-256: `ec28ac84b7dd245e5d9485964e05b7fa6aa6fdf57853638db8fa098774731439`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2115`
+- 日本語文字数（article本文）: `2099`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `5` / external links: `2`
@@ -81,14 +81,14 @@ reference_generated_at: 2026-07-30T13:49:40.439800+00:00
 
 ## 図解・画像
 
-### 担当者の暗黙知を業務マニュアルへ整理し、後任者が確認しながら実行する作成フローの図解
+### 業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にするのシンプルな記事サムネイル
 
-![担当者の暗黙知を業務マニュアルへ整理し、後任者が確認しながら実行する作成フローの図解](../media/business-manual-howto/business-manual-howto-diagram.png)
+![業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にするのシンプルな記事サムネイル](../media/business-manual-howto/business-manual-howto-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/business-manual-howto-diagram.png`
-- dimensions: `1672×941`
-- caption: 業務マニュアルは、担当者の経験を手順・判断基準・例外へ分解して共有する。
-- sha256: `a62000c1b53c58dd6067108eb686ae83521c8423e7e4577a00eda6152f7cb78f`
+- source: `business-manual-howto-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `6a2bbd985811e4b7267bcda1a74db310d6169e0a55b613b7a2332a577d0da48b`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -167,9 +167,9 @@ AI KOMONSHITSU / MANUAL DESIGN暗黙知を、次の人が使える手順へ。
 - 担当者の暗黙知を、後任が実行して確認できる単位へ分解する
 - 更新担当と見直しのトリガーを決め、古い手順を残さない
 
-![担当者の暗黙知を業務マニュアルへ整理し、後任者が確認しながら実行する作成フローの図解](../media/business-manual-howto/business-manual-howto-diagram.png)
+![業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にするのシンプルな記事サムネイル](../media/business-manual-howto/business-manual-howto-thumbnail.svg)
 
-業務マニュアルは、担当者の経験を手順・判断基準・例外へ分解して共有する。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

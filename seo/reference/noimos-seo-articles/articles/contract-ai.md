@@ -4,8 +4,8 @@ source_html: articles/contract-ai/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/contract-ai/
 dateModified: 2026-07-13
 schema_types: [Article]
-japanese_chars: 2377
-reference_generated_at: 2026-07-30T13:49:40.488173+00:00
+japanese_chars: 2357
+reference_generated_at: 2026-07-30T13:56:22.273852+00:00
 ---
 
 # 契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進める | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.488173+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/contract-ai/index.html`](../../../../articles/contract-ai/index.html)
-- source SHA-256: `dd6d8afd5ac2e263b5f6b572ca3ae68ec3f38a219574ca62e828e4474a4a5ecc`
+- source SHA-256: `4d6335f124556004044f41d30ad99df466bb1b3e4d1e030499ea3bb5dfc5ad41`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2377`
+- 日本語文字数（article本文）: `2357`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `1` / details FAQ: `3`
 - internal links: `4` / external links: `3`
@@ -82,14 +82,14 @@ reference_generated_at: 2026-07-30T13:49:40.488173+00:00
 
 ## 図解・画像
 
-### 契約書業務を契約条件整理、下書き作成、人の確認、台帳と更新の4段階に分けた図解
+### 契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進めるのシンプルな記事サムネイル
 
-![契約書業務を契約条件整理、下書き作成、人の確認、台帳と更新の4段階に分けた図解](../media/contract-ai/contract-ai-diagram.png)
+![契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進めるのシンプルな記事サムネイル](../media/contract-ai/contract-ai-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/contract-ai-diagram.png`
-- dimensions: `1672×941`
-- caption: 契約書AIは作成を丸投げするのではなく、条件整理と下書きを補助し、最終判断を人に戻す。
-- sha256: `13e5fd5c0277a318eabae2ba5087992b5d29b9ece2cc35d8e0ae6c99c2714df0`
+- source: `contract-ai-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `a21bcd1fe51d5bd91ffa5bed6444a5b86da94e7293c39e29c350de1c1b1d75ad`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -132,9 +132,9 @@ AI KOMONSHITSU / CONTRACT OPERATIONS契約書を、作成・確認・管理に�
 
 **先に結論：**契約書AIの安全な使い方は、①契約条件の整理、②下書きや比較表の作成、③人による条項・権限・相手先条件の確認、④契約台帳と更新日の管理に分けることです。AIの出力をそのまま締結文書にせず、確認者と承認記録を残してください。
 
-![契約書業務を契約条件整理、下書き作成、人の確認、台帳と更新の4段階に分けた図解](../media/contract-ai/contract-ai-diagram.png)
+![契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進めるのシンプルな記事サムネイル](../media/contract-ai/contract-ai-thumbnail.svg)
 
-契約書AIは作成を丸投げするのではなく、条件整理と下書きを補助し、最終判断を人に戻す。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の要点**
 

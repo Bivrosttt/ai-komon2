@@ -4,8 +4,8 @@ source_html: articles/invoice-efficiency/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/invoice-efficiency/
 dateModified: 2026-07-13
 schema_types: [Article]
-japanese_chars: 2415
-reference_generated_at: 2026-07-30T13:49:40.716157+00:00
+japanese_chars: 2401
+reference_generated_at: 2026-07-30T13:56:22.892410+00:00
 ---
 
 # 請求書作成を効率化する方法｜作成・確認・送付・記録をつなげる | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.716157+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/invoice-efficiency/index.html`](../../../../articles/invoice-efficiency/index.html)
-- source SHA-256: `dbc580ff8b34030d0260e6e518b4620574b9e0be75258b20cc9f89381875e468`
+- source SHA-256: `b65d66c344995667aff6a661577245692f8c836519d6d19b1db8de29fcaa6ef1`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2415`
+- 日本語文字数（article本文）: `2401`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `5` / external links: `3`
@@ -82,14 +82,14 @@ reference_generated_at: 2026-07-30T13:49:40.716157+00:00
 
 ## 図解・画像
 
-### 請求書業務を取引データ、請求書作成、承認確認、送付記録の4段階に分けた効率化フロー図解
+### 請求書作成を効率化する方法｜作成・確認・送付・記録をつなげるのシンプルな記事サムネイル
 
-![請求書業務を取引データ、請求書作成、承認確認、送付記録の4段階に分けた効率化フロー図解](../media/invoice-efficiency/invoice-efficiency-diagram.png)
+![請求書作成を効率化する方法｜作成・確認・送付・記録をつなげるのシンプルな記事サムネイル](../media/invoice-efficiency/invoice-efficiency-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/invoice-efficiency-diagram.png`
-- dimensions: `1672×941`
-- caption: 請求書の効率化は、作成単体ではなく確認・送付・記録までの流れで測る。
-- sha256: `8fd5d451be1ee748a5d7893fd17f2acc923059a7aab60efb9a9fce6e60a50b2a`
+- source: `invoice-efficiency-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `1d685dc791798de2bffe0a10d0f75fb4c30f8c2b9d9eb95a214719217d33125d`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -132,9 +132,9 @@ AI KOMONSHITSU / INVOICE OPERATIONS発行だけでなく、確認と記録まで
 
 **先に結論：**請求書作成は、①取引データを一か所に集める、②請求書を作る、③金額・宛先・税区分を確認する、④送付と入金状況を記録する、の4段階で見直します。AIや自動化は転記・定型文・台帳更新の補助に使い、金額と送付先の最終確認は人が行います。
 
-![請求書業務を取引データ、請求書作成、承認確認、送付記録の4段階に分けた効率化フロー図解](../media/invoice-efficiency/invoice-efficiency-diagram.png)
+![請求書作成を効率化する方法｜作成・確認・送付・記録をつなげるのシンプルな記事サムネイル](../media/invoice-efficiency/invoice-efficiency-thumbnail.svg)
 
-請求書の効率化は、作成単体ではなく確認・送付・記録までの流れで測る。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の要点**
 

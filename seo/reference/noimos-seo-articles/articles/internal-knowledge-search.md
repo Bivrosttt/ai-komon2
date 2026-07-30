@@ -4,8 +4,8 @@ source_html: articles/internal-knowledge-search/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/internal-knowledge-search/
 dateModified: 2026-07-26
 schema_types: [Article, BreadcrumbList]
-japanese_chars: 2357
-reference_generated_at: 2026-07-30T13:49:40.688702+00:00
+japanese_chars: 2334
+reference_generated_at: 2026-07-30T13:56:22.855453+00:00
 ---
 
 # 社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐ | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.688702+00:00
 - published: `2026-07-26`
 - modified: `2026-07-26`
 - source HTML: [`articles/internal-knowledge-search/index.html`](../../../../articles/internal-knowledge-search/index.html)
-- source SHA-256: `759939e8b6e63104aab4a5abe984e0f91d01236768b43c439399e8c3f2eec5a9`
+- source SHA-256: `d50c0a099b9a2515fbf387b881fd6615f0bc491947f30b75a20d13b4a7305737`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2357`
+- 日本語文字数（article本文）: `2334`
 - H1: `1` / H2: `8` / H3: `3`
 - table: `1` / details FAQ: `3`
 - internal links: `4` / external links: `3`
@@ -77,14 +77,14 @@ reference_generated_at: 2026-07-30T13:49:40.688702+00:00
 
 ## 図解・画像
 
-### 社内ナレッジ検索を質問、根拠資料、回答案、人の確認、更新の5段階で示した図解
+### 社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐのシンプルな記事サムネイル
 
-![社内ナレッジ検索を質問、根拠資料、回答案、人の確認、更新の5段階で示した図解](../media/internal-knowledge-search/internal-knowledge-search-diagram.png)
+![社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐのシンプルな記事サムネイル](../media/internal-knowledge-search/internal-knowledge-search-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/internal-knowledge-search-diagram.png`
-- dimensions: `1600×900`
-- caption: 社内ナレッジ検索は、回答を出して終わりではなく、根拠と更新責任へ戻る循環として設計する。
-- sha256: `b6f8910e181dec8eb8763123dc08a4675818f4cc1b3f6d66bda8be8aa52153b4`
+- source: `internal-knowledge-search-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `cee112c0ca2b64636d71819e7eea0d90c8b0ff76e0ed8542054f83d39e65af04`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -145,9 +145,9 @@ KNOWLEDGE / INTERNAL SEARCH
 
 公開日: 2026年7月26日　|　AI顧問室 編集部
 
-![社内ナレッジ検索を質問、根拠資料、回答案、人の確認、更新の5段階で示した図解](../media/internal-knowledge-search/internal-knowledge-search-diagram.png)
+![社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐのシンプルな記事サムネイル](../media/internal-knowledge-search/internal-knowledge-search-thumbnail.svg)
 
-社内ナレッジ検索は、回答を出して終わりではなく、根拠と更新責任へ戻る循環として設計する。
+記事テーマを示すシンプルなカバー画像。
 
 **先に結論：**生成AIを社内検索に使うときは、まず資料の版・責任者・公開範囲を整え、回答候補に根拠を添え、人が確認してから業務へ戻します。答えが見つからない質問も、FAQや手順書を更新する材料として記録します。
 

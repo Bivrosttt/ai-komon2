@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import json
 import re
 import sys
@@ -91,6 +92,39 @@ def replace_jsonld_image(html: str, url: str) -> str:
     return '<script type="application/ld+json">'.join(chunks)
 
 
+def replace_visible_cover(page_html: str, slug: str) -> str:
+    """Use the generated SVG as the first visible article cover.
+
+    Existing detailed diagrams remain available as source assets, but the
+    article opening now follows the Noimos pattern: one simple, article-
+    specific cover image with a descriptive caption.
+    """
+    figure_match = re.search(r'<figure\b[^>]*>.*?</figure>', page_html, flags=re.IGNORECASE | re.DOTALL)
+    if not figure_match or not re.search(r'<img\b', figure_match.group(0), flags=re.IGNORECASE):
+        return page_html
+    h1_match = re.search(r'<h1\b[^>]*>(.*?)</h1>', page_html, flags=re.IGNORECASE | re.DOTALL)
+    title = re.sub(r'<[^>]+>', '', h1_match.group(1)).strip() if h1_match else slug.replace('-', ' ')
+    alt = html.escape(f'{title}のシンプルな記事サムネイル', quote=True)
+    caption = html.escape('記事テーマを示すシンプルなカバー画像。')
+    new_img = (
+        f'<img src="{slug}-thumbnail.svg" alt="{alt}" width="1600" height="900" '
+        'loading="eager" fetchpriority="high">'
+    )
+    figure = figure_match.group(0)
+    figure = re.sub(r'<img\b[^>]*>', new_img, figure, count=1, flags=re.IGNORECASE)
+    if re.search(r'<figcaption\b[^>]*>.*?</figcaption>', figure, flags=re.IGNORECASE | re.DOTALL):
+        figure = re.sub(
+            r'<figcaption\b[^>]*>.*?</figcaption>',
+            f'<figcaption>{caption}</figcaption>',
+            figure,
+            count=1,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+    else:
+        figure = figure.replace('</figure>', f'<figcaption>{caption}</figcaption></figure>', 1)
+    return page_html[: figure_match.start()] + figure + page_html[figure_match.end() :]
+
+
 def refresh_page(page: Path, root: Path) -> dict[str, str | bool]:
     slug = page.parent.name
     article_url = f"https://ai-komon.bivrost.co.jp/articles/{slug}/{slug}-thumbnail.svg"
@@ -106,9 +140,18 @@ def refresh_page(page: Path, root: Path) -> dict[str, str | bool]:
     after = ensure_meta(after, 'property="og:image"', article_url, 'property="og:url"')
     after = ensure_meta(after, 'name="twitter:image"', article_url, 'name="twitter:card"')
     after = replace_jsonld_image(after, article_url)
+    after = replace_visible_cover(after, slug)
     if after != before:
         page.write_text(after, encoding="utf-8")
-    return {"slug": slug, "thumbnail": str(thumbnail.relative_to(root)), "icon": icon, "palette": palette, "shape": shape, "html_changed": after != before}
+    return {
+        "slug": slug,
+        "thumbnail": str(thumbnail.relative_to(root)),
+        "icon": icon,
+        "palette": palette,
+        "shape": shape,
+        "visible_cover": f"articles/{slug}/{slug}-thumbnail.svg",
+        "html_changed": after != before,
+    }
 
 
 def main() -> None:

@@ -4,8 +4,8 @@ source_html: articles/customer-support-ai/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/customer-support-ai/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2202
-reference_generated_at: 2026-07-30T13:49:40.505960+00:00
+japanese_chars: 2194
+reference_generated_at: 2026-07-30T13:56:22.327664+00:00
 ---
 
 # カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化する | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.505960+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/customer-support-ai/index.html`](../../../../articles/customer-support-ai/index.html)
-- source SHA-256: `4d53fe10709cc9d33a5a20b72309dc06fc0d5c777c62437076d1e41cb1e4793c`
+- source SHA-256: `5dd16850b6fc33b4d78c3f9ca74e5f738c2e9acf40afb89c6a165c8a8b1c79e3`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2202`
+- 日本語文字数（article本文）: `2194`
 - H1: `1` / H2: `10` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `4` / external links: `3`
@@ -82,14 +82,14 @@ reference_generated_at: 2026-07-30T13:49:40.505960+00:00
 
 ## 図解・画像
 
-### 顧客からの問い合わせをAIが分類と回答案作成で補助し、人が確認して返信または担当者へ引き継ぐ図解
+### カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化するのシンプルな記事サムネイル
 
-![顧客からの問い合わせをAIが分類と回答案作成で補助し、人が確認して返信または担当者へ引き継ぐ図解](../media/customer-support-ai/customer-support-ai-diagram.png)
+![カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化するのシンプルな記事サムネイル](../media/customer-support-ai/customer-support-ai-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/customer-support-ai-diagram.png`
-- dimensions: `1672×941`
-- caption: 顧客対応では、AIの回答候補を人が確認し、例外は担当者へ戻す。
-- sha256: `b396d9d54ece76e7d87b27185a8cadc2f6c89cd2e16c7c522f810db424c6c9da`
+- source: `customer-support-ai-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `7cd3c6696fe83d370d2e49c08ddf1fb15f40b47f6a413b826bc0c673c6ce5fff`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -168,9 +168,9 @@ AI KOMONSHITSU / CUSTOMER SUPPORT速く返す前に、正しく戻す場所を�
 - 顧客への送信前に、根拠資料と最新性を担当者が確認する
 - 正解率だけでなく、返信時間・修正・再問い合わせ・停止を測る
 
-![顧客からの問い合わせをAIが分類と回答案作成で補助し、人が確認して返信または担当者へ引き継ぐ図解](../media/customer-support-ai/customer-support-ai-diagram.png)
+![カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化するのシンプルな記事サムネイル](../media/customer-support-ai/customer-support-ai-thumbnail.svg)
 
-顧客対応では、AIの回答候補を人が確認し、例外は担当者へ戻す。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

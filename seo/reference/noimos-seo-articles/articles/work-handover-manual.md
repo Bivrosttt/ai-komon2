@@ -4,8 +4,8 @@ source_html: articles/work-handover-manual/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/work-handover-manual/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2075
-reference_generated_at: 2026-07-30T13:49:40.805268+00:00
+japanese_chars: 2063
+reference_generated_at: 2026-07-30T13:56:23.292802+00:00
 ---
 
 # 業務引き継ぎの方法｜後任が迷わないマニュアルの作り方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.805268+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/work-handover-manual/index.html`](../../../../articles/work-handover-manual/index.html)
-- source SHA-256: `7e77976f40c51155553d6919eaf9160a987e1e417b8cde26e5fecfa639ad1418`
+- source SHA-256: `297cf8c075136ce011334470b2c50b0d7de2da2e29a86abda410b88e9898955e`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2075`
+- 日本語文字数（article本文）: `2063`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `5` / external links: `3`
@@ -81,14 +81,14 @@ reference_generated_at: 2026-07-30T13:49:40.805268+00:00
 
 ## 図解・画像
 
-### 担当者の業務を一覧化し、優先順位を付け、後任が手順を実行して確認する引き継ぎフローの図解
+### 業務引き継ぎの方法｜後任が迷わないマニュアルの作り方のシンプルな記事サムネイル
 
-![担当者の業務を一覧化し、優先順位を付け、後任が手順を実行して確認する引き継ぎフローの図解](../media/work-handover-manual/work-handover-manual-diagram.png)
+![業務引き継ぎの方法｜後任が迷わないマニュアルの作り方のシンプルな記事サムネイル](../media/work-handover-manual/work-handover-manual-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/work-handover-manual-diagram.png`
-- dimensions: `1672×941`
-- caption: 引き継ぎは、一覧化して優先順位を付け、後任の実行結果を手順へ戻す。
-- sha256: `f16eada92716cef35cf0517194ca1726f893ce371fe3687419851ae4241351aa`
+- source: `work-handover-manual-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `974698e5b0de338aa0b62dd43b0dbaf092cb090f51d848e808df549494d8c163`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -167,9 +167,9 @@ AI KOMONSHITSU / HANDOVER MAP人から人へではなく、業務から次の担
 - 手順・判断基準・例外・連絡先を後任の実行単位で残す
 - 後任が実行した結果を確認し、手順書へ更新する
 
-![担当者の業務を一覧化し、優先順位を付け、後任が手順を実行して確認する引き継ぎフローの図解](../media/work-handover-manual/work-handover-manual-diagram.png)
+![業務引き継ぎの方法｜後任が迷わないマニュアルの作り方のシンプルな記事サムネイル](../media/work-handover-manual/work-handover-manual-thumbnail.svg)
 
-引き継ぎは、一覧化して優先順位を付け、後任の実行結果を手順へ戻す。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

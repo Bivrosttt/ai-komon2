@@ -4,8 +4,8 @@ source_html: articles/ai-roi/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-roi/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2414
-reference_generated_at: 2026-07-30T13:49:40.383619+00:00
+japanese_chars: 2406
+reference_generated_at: 2026-07-30T13:56:22.124674+00:00
 ---
 
 # AI導入の費用対効果｜削減時間・人件費・回収期間の試算方法 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.383619+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-roi/index.html`](../../../../articles/ai-roi/index.html)
-- source SHA-256: `984d61d38616e725588f691773975974516cd0d82e4e11df16ac8a3e577debee`
+- source SHA-256: `5cbf8ba3253e56d85af5a95b20997a730c8bdc363eef31be119e4374a95aa929`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2414`
+- 日本語文字数（article本文）: `2406`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `3` / details FAQ: `2`
 - internal links: `6` / external links: `2`
@@ -85,14 +85,14 @@ reference_generated_at: 2026-07-30T13:49:40.383619+00:00
 
 ## 図解・画像
 
-### 削減時間を金額へ換算し、月間効果とAI導入の回収期間を試算する図解
+### AI導入の費用対効果｜削減時間・人件費・回収期間の試算方法のシンプルな記事サムネイル
 
-![削減時間を金額へ換算し、月間効果とAI導入の回収期間を試算する図解](../media/ai-roi/ai-roi-diagram.png)
+![AI導入の費用対効果｜削減時間・人件費・回収期間の試算方法のシンプルな記事サムネイル](../media/ai-roi/ai-roi-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/ai-roi-diagram.png`
-- dimensions: `1672×941`
-- caption: ROIは、削減時間を金額へ換算し、費用と回収期間まで順番に見る。
-- sha256: `405a7718e24a04f661e2d259b1ac292f6200dd175c431dfe9f8c3a4ab794b273`
+- source: `ai-roi-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `22682235032e5bc81f031f1c5eaf581b5c66ef9f83523c80d8aa01629e9207d3`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -163,9 +163,9 @@ AI KOMONSHITSU / ROI GUIDE期待値ではなく、削減できた時間から計
 - 月間効果、導入費用、回収期間を同じ前提で試算する
 - 標準ケースだけでなく、保守ケースと効果が出ない場合も置く
 
-![削減時間を金額へ換算し、月間効果とAI導入の回収期間を試算する図解](../media/ai-roi/ai-roi-diagram.png)
+![AI導入の費用対効果｜削減時間・人件費・回収期間の試算方法のシンプルな記事サムネイル](../media/ai-roi/ai-roi-thumbnail.svg)
 
-ROIは、削減時間を金額へ換算し、費用と回収期間まで順番に見る。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

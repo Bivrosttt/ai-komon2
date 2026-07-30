@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">generative-ai-internal-rules article thumbnail</title>
+  <desc id="desc">A gradient background with a friendly white icon</desc>
+  <defs>
+    <linearGradient id="bg-generative-ai-internal-rules" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#273db2"/><stop offset="1" stop-color="#304fd0"/></linearGradient>
+    <linearGradient id="icon-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".34" stop-color="#fff"/><stop offset="1" stop-color="#aabaff"/></linearGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .055"/></feComponentTransfer></filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#052341" flood-opacity=".18"/></filter>
+  </defs>
+  <rect width="1600" height="900" rx="48" fill="url(#bg-generative-ai-internal-rules)"/>
+  <path d="M-60 160C270-40 520-40 820 150s550 210 850-30v230c-300 240-570 210-900 20S270 210-60 430Z" fill="#fff" opacity=".1"/><path d="M-80 590c310-230 580-210 900-20s570 220 860-30v210c-300 230-570 210-900 30S230 590-80 800Z" fill="#fff" opacity=".08"/>
+  <rect width="1600" height="900" rx="48" filter="url(#grain)" opacity=".42"/>
+  <g filter="url(#shadow)"><g fill="none" stroke="url(#icon-fill)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"><circle cx="800" cy="450" r="190"/><path d="M610 450h380M800 260c-88 90-88 290 0 380M800 260c88 90 88 290 0 380M670 330c80 45 180 45 260 0M670 570c80-45 180-45 260 0"/></g></g>
+</svg>

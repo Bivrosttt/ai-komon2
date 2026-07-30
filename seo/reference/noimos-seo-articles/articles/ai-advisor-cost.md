@@ -4,8 +4,8 @@ source_html: articles/ai-advisor-cost/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-advisor-cost/
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
-japanese_chars: 3067
-reference_generated_at: 2026-07-30T13:49:40.017122+00:00
+japanese_chars: 3047
+reference_generated_at: 2026-07-30T13:56:21.439422+00:00
 ---
 
 # AI顧問の費用はいくら？月額だけで決めない総額の見方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.017122+00:00
 - published: `2026-07-30`
 - modified: `2026-07-30`
 - source HTML: [`articles/ai-advisor-cost/index.html`](../../../../articles/ai-advisor-cost/index.html)
-- source SHA-256: `814187ad2e7992e88c5fc6e5e11621b36a1a000567340cb36a82c3339edbee40`
+- source SHA-256: `4c000b23acae8d23330f9ed17d174306d041e4d33c5e58226189747520f8b7a4`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `3067`
+- 日本語文字数（article本文）: `3047`
 - H1: `1` / H2: `8` / H3: `6`
 - table: `2` / details FAQ: `0`
 - internal links: `5` / external links: `3`
@@ -93,14 +93,14 @@ reference_generated_at: 2026-07-30T13:49:40.017122+00:00
 
 ## 図解・画像
 
-### AI顧問の費用を初期費用、月額固定費、従量費、追加作業費、社内工数に分解し年間総費用へ足し上げる図
+### AI顧問の費用はいくら？月額だけで決めない総額の見方のシンプルな記事サムネイル
 
-![AI顧問の費用を初期費用、月額固定費、従量費、追加作業費、社内工数に分解し年間総費用へ足し上げる図](../media/ai-advisor-cost/ai-advisor-cost-diagram.png)
+![AI顧問の費用はいくら？月額だけで決めない総額の見方のシンプルな記事サムネイル](../media/ai-advisor-cost/ai-advisor-cost-thumbnail.svg)
 
-- source: `ai-advisor-cost-diagram.png`
-- dimensions: `1600×900`
-- caption: 月額に含まれる支援範囲と、契約後に増えやすい費用を同じ表へ入れてから判断します。
-- sha256: `aeb952198f7e77a0e28c8a600da1d3cc221b58214763804b3ac3d6c283e983d8`
+- source: `ai-advisor-cost-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `79ef4e0f80ae222d2425753e62215993187f22572ebc2572ef0c5a2932511aba`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -207,9 +207,9 @@ AI KOMONSHITSU / AI ADVISOR COSTAI顧問の費用は、月額ではなく初期�
 - 公開価格は市場平均と混同せず、支援範囲と契約期間の前提を確認する
 - 月額が自社の対象業務と成果物に合わない場合は、研修や単発支援も比較する
 
-![AI顧問の費用を初期費用、月額固定費、従量費、追加作業費、社内工数に分解し年間総費用へ足し上げる図](../media/ai-advisor-cost/ai-advisor-cost-diagram.png)
+![AI顧問の費用はいくら？月額だけで決めない総額の見方のシンプルな記事サムネイル](../media/ai-advisor-cost/ai-advisor-cost-thumbnail.svg)
 
-月額に含まれる支援範囲と、契約後に増えやすい費用を同じ表へ入れてから判断します。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

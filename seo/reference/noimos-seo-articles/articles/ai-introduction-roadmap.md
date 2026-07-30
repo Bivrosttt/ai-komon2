@@ -4,8 +4,8 @@ source_html: articles/ai-introduction-roadmap/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-roadmap/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 3275
-reference_generated_at: 2026-07-30T13:49:40.204851+00:00
+japanese_chars: 3271
+reference_generated_at: 2026-07-30T13:56:21.874229+00:00
 ---
 
 # 中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.204851+00:00
 - published: `2026-07-12`
 - modified: `2026-07-13`
 - source HTML: [`articles/ai-introduction-roadmap/index.html`](../../../../articles/ai-introduction-roadmap/index.html)
-- source SHA-256: `dd3362b4ebd39a54b558a2d87330395035853e4ea7629ed8987da12272144ba3`
+- source SHA-256: `bbb395adc4add059550d65d28fe402ef18dae6af6b2406a28ec2627d0ce312ff`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `3275`
+- 日本語文字数（article本文）: `3271`
 - H1: `1` / H2: `12` / H3: `5`
 - table: `4` / details FAQ: `4`
 - internal links: `6` / external links: `3`
@@ -86,14 +86,14 @@ reference_generated_at: 2026-07-30T13:49:40.204851+00:00
 
 ## 図解・画像
 
-### 対象業務の選定、小さな試行、効果測定、定着と拡張を4段階で進めるロードマップ図解
+### 中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップのシンプルな記事サムネイル
 
-![対象業務の選定、小さな試行、効果測定、定着と拡張を4段階で進めるロードマップ図解](../media/ai-introduction-roadmap/ai-introduction-roadmap-diagram.png)
+![中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップのシンプルな記事サムネイル](../media/ai-introduction-roadmap/ai-introduction-roadmap-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/ai-introduction-roadmap-diagram.png`
-- dimensions: `1672×941`
-- caption: AI導入は、対象を選び、試し、測り、再現できてから広げる。
-- sha256: `128b10d91b55fafb79f0ce3ed63267e723c5603a020605799cb8c4c61eed2684`
+- source: `ai-introduction-roadmap-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `d7bbd92adb80d882badc8f809cdbe2b50e51284a798a1282d31f72479a9246f0`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -164,9 +164,9 @@ AI KOMONSHITSU / IMPLEMENTATION GUIDE30日で「使えるか」を確かめて�
 - 最初の30日は、使えるかを判断する試行期間。全社展開の完了を目指しません。
 - 安全性・再現性・測定結果の3つがそろった範囲だけ、次の部署や業務へ広げます。
 
-![対象業務の選定、小さな試行、効果測定、定着と拡張を4段階で進めるロードマップ図解](../media/ai-introduction-roadmap/ai-introduction-roadmap-diagram.png)
+![中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップのシンプルな記事サムネイル](../media/ai-introduction-roadmap/ai-introduction-roadmap-thumbnail.svg)
 
-AI導入は、対象を選び、試し、測り、再現できてから広げる。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

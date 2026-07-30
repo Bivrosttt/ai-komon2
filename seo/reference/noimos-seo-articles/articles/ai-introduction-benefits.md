@@ -4,8 +4,8 @@ source_html: articles/ai-introduction-benefits/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-benefits/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2410
-reference_generated_at: 2026-07-30T13:49:40.119778+00:00
+japanese_chars: 2403
+reference_generated_at: 2026-07-30T13:56:21.674653+00:00
 ---
 
 # AI導入のメリット｜中小企業が先に得るべき効果と見極め方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.119778+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-introduction-benefits/index.html`](../../../../articles/ai-introduction-benefits/index.html)
-- source SHA-256: `e638372e1180240de5e6156cb380532c95a5f7e991c4f41506b9d914ffe5ac05`
+- source SHA-256: `e6859f5cab6b16edfab17880c28315a346100af1b1425d6a819296007ce6a064`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2410`
+- 日本語文字数（article本文）: `2403`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `3` / details FAQ: `2`
 - internal links: `7` / external links: `2`
@@ -84,14 +84,14 @@ reference_generated_at: 2026-07-30T13:49:40.119778+00:00
 
 ## 図解・画像
 
-### AI導入のメリットを時間、品質、知識共有、対応速度の4つに整理する図解
+### AI導入のメリット｜中小企業が先に得るべき効果と見極め方のシンプルな記事サムネイル
 
-![AI導入のメリットを時間、品質、知識共有、対応速度の4つに整理する図解](../media/ai-introduction-benefits/ai-introduction-benefits-diagram.png)
+![AI導入のメリット｜中小企業が先に得るべき効果と見極め方のシンプルな記事サムネイル](../media/ai-introduction-benefits/ai-introduction-benefits-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/ai-introduction-benefits-diagram.png`
-- dimensions: `1672×941`
-- caption: AI導入の効果は、時間・品質・共有・速度の4つに分けて測る。
-- sha256: `1742dc3eb8091ffc3499d921b2661b8e9b495c9c656932daa7d5f5d9bf36378e`
+- source: `ai-introduction-benefits-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `92f16a72d3e9f89f2ae2f11024de2819633f46e77d8b8b79270d286d07b3e242`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -162,9 +162,9 @@ AI KOMONSHITSU / BENEFIT MAPAIに任せるのは、判断ではなく「詰ま�
 - AIの出力だけでなく、確認・修正・引き継ぎまで含めて効果を判断する
 - 効果が確認できないときに縮小・停止できる小さな試行から始める
 
-![AI導入のメリットを時間、品質、知識共有、対応速度の4つに整理する図解](../media/ai-introduction-benefits/ai-introduction-benefits-diagram.png)
+![AI導入のメリット｜中小企業が先に得るべき効果と見極め方のシンプルな記事サムネイル](../media/ai-introduction-benefits/ai-introduction-benefits-thumbnail.svg)
 
-AI導入の効果は、時間・品質・共有・速度の4つに分けて測る。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

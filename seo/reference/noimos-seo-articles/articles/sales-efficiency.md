@@ -4,8 +4,8 @@ source_html: articles/sales-efficiency/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/sales-efficiency/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2352
-reference_generated_at: 2026-07-30T13:49:40.760541+00:00
+japanese_chars: 2339
+reference_generated_at: 2026-07-30T13:56:23.223517+00:00
 ---
 
 # 営業効率化の方法｜見積・提案・追客のどこからAI化するか | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.760541+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/sales-efficiency/index.html`](../../../../articles/sales-efficiency/index.html)
-- source SHA-256: `67ae758d329f62b0a4f70b382963213d4ca01dec33c4de45a1deb578f890e9a9`
+- source SHA-256: `6795c4b33489bd358595d725197c79298c64a0b0e8f5bdbe2c200c28ce761415`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2352`
+- 日本語文字数（article本文）: `2339`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `3` / details FAQ: `2`
 - internal links: `6` / external links: `2`
@@ -84,14 +84,14 @@ reference_generated_at: 2026-07-30T13:49:40.760541+00:00
 
 ## 図解・画像
 
-### 営業メモを見積、提案、追客、確認の工程へ整理する営業効率化の図解
+### 営業効率化の方法｜見積・提案・追客のどこからAI化するかのシンプルな記事サムネイル
 
-![営業メモを見積、提案、追客、確認の工程へ整理する営業効率化の図解](../media/sales-efficiency/sales-efficiency-diagram.png)
+![営業効率化の方法｜見積・提案・追客のどこからAI化するかのシンプルな記事サムネイル](../media/sales-efficiency/sales-efficiency-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/sales-efficiency-diagram.png`
-- dimensions: `1672×941`
-- caption: 営業効率化は、顧客接点に近い作業ほど確認を残し、社内作業から整える。
-- sha256: `7e7b3aab8c391103992f14d5c175a8c48c3588f65d8794c3c809bc8ea12f891c`
+- source: `sales-efficiency-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `02b91c8e7cbfb634c0c71a055a09a78777e1736c98977309289a3a7dba885fc6`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -162,9 +162,9 @@ AI KOMONSHITSU / SALES EFFICIENCY顧客に向き合う時間を残すため、�
 - 顧客向けの約束や送信は人の確認を残し、社内作業から効率化する
 - 時間だけでなく、差し戻し・返信遅延・引き継ぎの欠落を測る
 
-![営業メモを見積、提案、追客、確認の工程へ整理する営業効率化の図解](../media/sales-efficiency/sales-efficiency-diagram.png)
+![営業効率化の方法｜見積・提案・追客のどこからAI化するかのシンプルな記事サムネイル](../media/sales-efficiency/sales-efficiency-thumbnail.svg)
 
-営業効率化は、顧客接点に近い作業ほど確認を残し、社内作業から整える。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

@@ -4,8 +4,8 @@ source_html: articles/ai-business-cases/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-business-cases/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2399
-reference_generated_at: 2026-07-30T13:49:40.072199+00:00
+japanese_chars: 2391
+reference_generated_at: 2026-07-30T13:56:21.596320+00:00
 ---
 
 # AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むか | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.072199+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-business-cases/index.html`](../../../../articles/ai-business-cases/index.html)
-- source SHA-256: `47185769776faf965b362e7c3e8fc58da924bcc770a9a912ec646d2536c073bb`
+- source SHA-256: `d7f37b0b110b14ffca9a8a8438cc19a0c8a4fda48adda5739b17c540e9840fe2`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2399`
+- 日本語文字数（article本文）: `2391`
 - H1: `1` / H2: `12` / H3: `4`
 - table: `2` / details FAQ: `2`
 - internal links: `10` / external links: `2`
@@ -84,14 +84,14 @@ reference_generated_at: 2026-07-30T13:49:40.072199+00:00
 
 ## 図解・画像
 
-### 営業、議事録、問い合わせ対応をAI補助と人の確認を通じて業務へ戻す活用事例の図解
+### AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むかのシンプルな記事サムネイル
 
-![営業、議事録、問い合わせ対応をAI補助と人の確認を通じて業務へ戻す活用事例の図解](../media/ai-business-cases/ai-business-cases-diagram.png)
+![AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むかのシンプルな記事サムネイル](../media/ai-business-cases/ai-business-cases-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/ai-business-cases-diagram.png`
-- dimensions: `1672×941`
-- caption: AI活用は、業務の途中に補助を置き、人の確認を経て実行へ戻す。
-- sha256: `0ded99d8a87be909635e1d59c16d76550e492479f80cb2af62a68ed1033b4126`
+- source: `ai-business-cases-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `98a971af6454d9336ed354b9e9e8fb2656c78687bc4f52cf4dd9698eb7529381`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -162,9 +162,9 @@ AI KOMONSHITSU / USE CASE MAPAI単体ではなく、業務の途中に置く。
 - 派手な成果数値ではなく、自社で確認できる小さな業務から試す
 - 実績・体験デモ・想定例を区別し、導入前後の測定条件をそろえる
 
-![営業、議事録、問い合わせ対応をAI補助と人の確認を通じて業務へ戻す活用事例の図解](../media/ai-business-cases/ai-business-cases-diagram.png)
+![AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むかのシンプルな記事サムネイル](../media/ai-business-cases/ai-business-cases-thumbnail.svg)
 
-AI活用は、業務の途中に補助を置き、人の確認を経て実行へ戻す。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

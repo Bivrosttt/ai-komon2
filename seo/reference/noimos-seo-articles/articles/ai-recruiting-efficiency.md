@@ -4,8 +4,8 @@ source_html: articles/ai-recruiting-efficiency/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-recruiting-efficiency/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2463
-reference_generated_at: 2026-07-30T13:49:40.357952+00:00
+japanese_chars: 2453
+reference_generated_at: 2026-07-30T13:56:22.090809+00:00
 ---
 
 # 採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.357952+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-recruiting-efficiency/index.html`](../../../../articles/ai-recruiting-efficiency/index.html)
-- source SHA-256: `17d8c479029493fdf5c06ef824c6ba4aa55e0299ae34674a3b70cedc59fd457a`
+- source SHA-256: `0aa73a0461d7f88c0e6367b2942733e7a2e2933d8ebfc93ef095de546522ecb2`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2463`
+- 日本語文字数（article本文）: `2453`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `3` / details FAQ: `2`
 - internal links: `5` / external links: `2`
@@ -84,14 +84,14 @@ reference_generated_at: 2026-07-30T13:49:40.357952+00:00
 
 ## 図解・画像
 
-### 求人票、候補者連絡、日程調整、面接記録を人の採用判断につなぐ図解
+### 採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方のシンプルな記事サムネイル
 
-![求人票、候補者連絡、日程調整、面接記録を人の採用判断につなぐ図解](../media/ai-recruiting-efficiency/ai-recruiting-efficiency-diagram.png)
+![採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方のシンプルな記事サムネイル](../media/ai-recruiting-efficiency/ai-recruiting-efficiency-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/ai-recruiting-efficiency-diagram.png`
-- dimensions: `1672×941`
-- caption: 採用AIは準備と連絡を補助し、候補者に関わる最終判断は人が持つ。
-- sha256: `50819da7d8f81aeef3fb76e71901dba7c360c2a6066f31f45ce9147894e073eb`
+- source: `ai-recruiting-efficiency-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `6be2e45c948af4c7e56943017a2d94669eb8fb2e486623e5c702d188ef2818b4`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -162,9 +162,9 @@ AI KOMONSHITSU / RECRUITING採用判断は人が持ち、準備と連絡を軽�
 - 候補者情報の入力範囲、保存先、閲覧権限を先に決める
 - 返信時間だけでなく、誤送信・修正・候補者体験を一緒に確認する
 
-![求人票、候補者連絡、日程調整、面接記録を人の採用判断につなぐ図解](../media/ai-recruiting-efficiency/ai-recruiting-efficiency-diagram.png)
+![採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方のシンプルな記事サムネイル](../media/ai-recruiting-efficiency/ai-recruiting-efficiency-thumbnail.svg)
 
-採用AIは準備と連絡を補助し、候補者に関わる最終判断は人が持つ。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

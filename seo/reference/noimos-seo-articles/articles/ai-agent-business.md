@@ -4,8 +4,8 @@ source_html: articles/ai-agent-business/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-agent-business/
 dateModified: 2026-07-13
 schema_types: [Article]
-japanese_chars: 2481
-reference_generated_at: 2026-07-30T13:49:40.051285+00:00
+japanese_chars: 2465
+reference_generated_at: 2026-07-30T13:56:21.464382+00:00
 ---
 
 # AIエージェントとは？中小企業の業務で任せる範囲と導入手順 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.051285+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/ai-agent-business/index.html`](../../../../articles/ai-agent-business/index.html)
-- source SHA-256: `300f8f3f5f35e4b544eb9a464795bf15c1956d74cc7dafe7cabcd4e7bbdd5c52`
+- source SHA-256: `f05cc4d642c172c5eb81cb85ea466a2320cea811436c54cca9852b60af57e5c5`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2481`
+- 日本語文字数（article本文）: `2465`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `3` / details FAQ: `3`
 - internal links: `4` / external links: `3`
@@ -82,14 +82,14 @@ reference_generated_at: 2026-07-30T13:49:40.051285+00:00
 
 ## 図解・画像
 
-### AIエージェントの導入を定型業務、参照データ、承認ポイント、記録監視に分け、小さく試して人が承認し範囲を広げる判断フロー図解
+### AIエージェントとは？中小企業の業務で任せる範囲と導入手順のシンプルな記事サムネイル
 
-![AIエージェントの導入を定型業務、参照データ、承認ポイント、記録監視に分け、小さく試して人が承認し範囲を広げる判断フロー図解](../media/ai-agent-business/ai-agent-business-diagram.png)
+![AIエージェントとは？中小企業の業務で任せる範囲と導入手順のシンプルな記事サムネイル](../media/ai-agent-business/ai-agent-business-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/ai-agent-business-diagram.png`
-- dimensions: `1672×941`
-- caption: AIエージェントは自律実行の前に、承認ポイントと記録・監視を業務へ組み込む。
-- sha256: `9cdd19aed1b541ffa2f0e05b33a9cc1fdd2ec9d803f57579268ea9cda5804bd2`
+- source: `ai-agent-business-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `270a8a6aee7bb20c54650aaaa1d172174dd2d59de747cedfe8579ffdcd30f5de`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -132,9 +132,9 @@ AI KOMONSHITSU / AGENT DESIGN自律性を増やすほど、承認と記録を置
 
 **先に結論：**AIエージェントは、質問に答えるだけでなく、目的に応じて情報を探し、分類・下書き・通知・記録など複数の作業をつなげる仕組みです。中小企業では、まず定型的で結果を確認できる業務を選び、人の承認を挟んで小さく試し、ログを見ながら範囲を広げます。
 
-![AIエージェントの導入を定型業務、参照データ、承認ポイント、記録監視に分け、小さく試して人が承認し範囲を広げる判断フロー図解](../media/ai-agent-business/ai-agent-business-diagram.png)
+![AIエージェントとは？中小企業の業務で任せる範囲と導入手順のシンプルな記事サムネイル](../media/ai-agent-business/ai-agent-business-thumbnail.svg)
 
-AIエージェントは自律実行の前に、承認ポイントと記録・監視を業務へ組み込む。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の要点**
 

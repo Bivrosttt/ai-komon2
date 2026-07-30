@@ -4,8 +4,8 @@ source_html: articles/estimate-time-reduction/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/estimate-time-reduction/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2270
-reference_generated_at: 2026-07-30T13:49:40.528850+00:00
+japanese_chars: 2257
+reference_generated_at: 2026-07-30T13:56:22.370663+00:00
 ---
 
 # 見積書作成の時間を減らす方法｜工数を測ってから自動化する | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.528850+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/estimate-time-reduction/index.html`](../../../../articles/estimate-time-reduction/index.html)
-- source SHA-256: `ed725fd86b1cdfdcca73f34e857d0a05180c56cd9b64734da62259e12ca878ae`
+- source SHA-256: `4c14bebcc61c111d489fa268e8e1a9a000473ed1c518216f82c920159db1f357`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2270`
+- 日本語文字数（article本文）: `2257`
 - H1: `1` / H2: `12` / H3: `6`
 - table: `2` / details FAQ: `2`
 - internal links: `5` / external links: `2`
@@ -87,14 +87,14 @@ reference_generated_at: 2026-07-30T13:49:40.528850+00:00
 
 ## 図解・画像
 
-### 見積作成の時間を受付、転記、確認、送付の工程に分けて短縮する図解
+### 見積書作成の時間を減らす方法｜工数を測ってから自動化するのシンプルな記事サムネイル
 
-![見積作成の時間を受付、転記、確認、送付の工程に分けて短縮する図解](../media/estimate-time-reduction/estimate-time-reduction-diagram.png)
+![見積書作成の時間を減らす方法｜工数を測ってから自動化するのシンプルな記事サムネイル](../media/estimate-time-reduction/estimate-time-reduction-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/estimate-time-reduction-diagram.png`
-- dimensions: `1672×941`
-- caption: 見積作成は、転記と確認の重複を見つけ、送付前の承認を残して短くする。
-- sha256: `09f31a70aa8e531da0fb731e550b13835419e60feda0e93bcbc9ccd7a8b8e2d5`
+- source: `estimate-time-reduction-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `90c8818098f47272fad1eebbbf97fcd27c368ef4299e11628ce5b9a23c35e104`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -165,9 +165,9 @@ AI KOMONSHITSU / ESTIMATE FLOW速く作る前に、どこで止まっている�
 - 金額・納期・顧客条件はAIに確定させず、人の承認点を残す
 - 自動化後も差し戻しと手動へ戻す経路を記録する
 
-![見積作成の時間を受付、転記、確認、送付の工程に分けて短縮する図解](../media/estimate-time-reduction/estimate-time-reduction-diagram.png)
+![見積書作成の時間を減らす方法｜工数を測ってから自動化するのシンプルな記事サムネイル](../media/estimate-time-reduction/estimate-time-reduction-thumbnail.svg)
 
-見積作成は、転記と確認の重複を見つけ、送付前の承認を残して短くする。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

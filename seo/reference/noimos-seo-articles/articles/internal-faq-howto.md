@@ -4,8 +4,8 @@ source_html: articles/internal-faq-howto/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/internal-faq-howto/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2249
-reference_generated_at: 2026-07-30T13:49:40.670703+00:00
+japanese_chars: 2236
+reference_generated_at: 2026-07-30T13:56:22.691559+00:00
 ---
 
 # 社内FAQの作り方｜質問を集めてAIで更新し続ける方法 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.670703+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/internal-faq-howto/index.html`](../../../../articles/internal-faq-howto/index.html)
-- source SHA-256: `b48609427d741782ed632a8e8b991d024cf35277e5dd86007856503a8aa2f327`
+- source SHA-256: `6e008f98b72199bb7eae4c8b0cb21cd963c46e25dd9319775c63de06f5767e69`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2249`
+- 日本語文字数（article本文）: `2236`
 - H1: `1` / H2: `10` / H3: `3`
 - table: `3` / details FAQ: `3`
 - internal links: `6` / external links: `3`
@@ -82,14 +82,14 @@ reference_generated_at: 2026-07-30T13:49:40.670703+00:00
 
 ## 図解・画像
 
-### 社内の繰り返し質問を根拠資料と確認を通じてFAQへ整理し、AIが検索を補助する流れの図解
+### 社内FAQの作り方｜質問を集めてAIで更新し続ける方法のシンプルな記事サムネイル
 
-![社内の繰り返し質問を根拠資料と確認を通じてFAQへ整理し、AIが検索を補助する流れの図解](../media/internal-faq-howto/internal-faq-howto-diagram.png)
+![社内FAQの作り方｜質問を集めてAIで更新し続ける方法のシンプルな記事サムネイル](../media/internal-faq-howto/internal-faq-howto-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/internal-faq-howto-diagram.png`
-- dimensions: `1672×941`
-- caption: 社内FAQは、実際の質問と根拠資料を結び、AIの回答候補を人が確認して育てる。
-- sha256: `02aa5db9d798d9c3401f995a02818e76f9c83d6e2fc65a11cebd4a963390e2e7`
+- source: `internal-faq-howto-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `c9eb6f76807ecdf1a2b33698d4747cc1e4adbf1547180e1ea54ef835eb0e8900`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -168,9 +168,9 @@ AI KOMONSHITSU / INTERNAL FAQ同じ質問を、知識の入口へ変える。
 - AIは分類と回答候補に置き、根拠資料と更新日を人が確認する
 - 未解決質問、古い回答、制度変更を更新トリガーにする
 
-![社内の繰り返し質問を根拠資料と確認を通じてFAQへ整理し、AIが検索を補助する流れの図解](../media/internal-faq-howto/internal-faq-howto-diagram.png)
+![社内FAQの作り方｜質問を集めてAIで更新し続ける方法のシンプルな記事サムネイル](../media/internal-faq-howto/internal-faq-howto-thumbnail.svg)
 
-社内FAQは、実際の質問と根拠資料を結び、AIの回答候補を人が確認して育てる。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

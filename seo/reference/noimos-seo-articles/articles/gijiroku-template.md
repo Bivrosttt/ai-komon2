@@ -4,8 +4,8 @@ source_html: articles/gijiroku-template/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/gijiroku-template/
 dateModified: 2026-07-12
 schema_types: [Article, BreadcrumbList]
-japanese_chars: 2158
-reference_generated_at: 2026-07-30T13:49:40.623320+00:00
+japanese_chars: 2141
+reference_generated_at: 2026-07-30T13:56:22.593389+00:00
 ---
 
 # 議事録の書き方｜決定事項とToDoが残るテンプレート | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.623320+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/gijiroku-template/index.html`](../../../../articles/gijiroku-template/index.html)
-- source SHA-256: `b90b1ba76210267d0051df5b13ff864711a0d95f0b9d7d1070751b5371063b02`
+- source SHA-256: `59e7fc69e41b8aae5060f72f5f9fe2261d366e98ba32d6053c9dc074b854a5b6`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2158`
+- 日本語文字数（article本文）: `2141`
 - H1: `1` / H2: `9` / H3: `6`
 - table: `2` / details FAQ: `3`
 - internal links: `4` / external links: `2`
@@ -102,17 +102,17 @@ reference_generated_at: 2026-07-30T13:49:40.623320+00:00
 
 - source: `../../assets/articles/gijiroku-template/meeting-editorial.webp`
 - dimensions: `1672×941`
-- caption: 議事録を「会議前・会議中・会議後」に分けると、決定事項とToDoが残りやすくなります。
+- caption: 記事テーマを示すシンプルなカバー画像。
 - sha256: `7d5e8cd71c1da454f32fd88a0e9a34119c9addeb6709e5db9c5b053a80a5c081`
 
-### 議事録を会議前・会議中・会議後の3段階で整理する図解
+### 議事録の書き方｜決定事項とToDoが残るテンプレートのシンプルな記事サムネイル
 
-![議事録を会議前・会議中・会議後の3段階で整理する図解](../media/gijiroku-template/gijiroku-3-steps.webp)
+![議事録の書き方｜決定事項とToDoが残るテンプレートのシンプルな記事サムネイル](../media/gijiroku-template/gijiroku-template-thumbnail.svg)
 
-- source: `../../assets/articles/gijiroku-template/gijiroku-3-steps.webp`
-- dimensions: `1672×941`
-- caption: 議事録を「会議前・会議中・会議後」に分けると、決定事項とToDoが残りやすくなります。
-- sha256: `73a9d8705f8174a6d6327a2270a704ac66989330751c3415f0cebd3d288479f7`
+- source: `gijiroku-template-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `076ddd43401fba2ae319cd15e62e53571cf1cdf2b52952e013b1eb6e1e4c0d68`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -206,9 +206,9 @@ MEETING MINUTES / PRACTICAL GUIDE
 
 議事録の項目を会議の時間軸に沿って分けると、記入漏れを減らせます。
 
-![議事録を会議前・会議中・会議後の3段階で整理する図解](../media/gijiroku-template/gijiroku-3-steps.webp)
+![議事録の書き方｜決定事項とToDoが残るテンプレートのシンプルな記事サムネイル](../media/gijiroku-template/gijiroku-template-thumbnail.svg)
 
-議事録を「会議前・会議中・会議後」に分けると、決定事項とToDoが残りやすくなります。
+記事テーマを示すシンプルなカバー画像。
 
 **01 / 会議前**
 

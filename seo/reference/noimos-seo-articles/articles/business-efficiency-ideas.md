@@ -4,8 +4,8 @@ source_html: articles/business-efficiency-ideas/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/business-efficiency-ideas/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2430
-reference_generated_at: 2026-07-30T13:49:40.410931+00:00
+japanese_chars: 2416
+reference_generated_at: 2026-07-30T13:56:22.162418+00:00
 ---
 
 # 業務効率化のアイデア｜中小企業が最初に見直す定型業務10選 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.410931+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/business-efficiency-ideas/index.html`](../../../../articles/business-efficiency-ideas/index.html)
-- source SHA-256: `867f22088f2b4925701039bd64da9757fcab64a56c472dffabc2a8223e8bad03`
+- source SHA-256: `1f257e0d79803607da5e87aa5f375c746e308bcec4ff2ab837bab252d756312b`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2430`
+- 日本語文字数（article本文）: `2416`
 - H1: `1` / H2: `11` / H3: `3`
 - table: `2` / details FAQ: `2`
 - internal links: `7` / external links: `2`
@@ -83,14 +83,14 @@ reference_generated_at: 2026-07-30T13:49:40.410931+00:00
 
 ## 図解・画像
 
-### 散らかった定型業務を整理し、確認可能な改善フローへ変える図解
+### 業務効率化のアイデア｜中小企業が最初に見直す定型業務10選のシンプルな記事サムネイル
 
-![散らかった定型業務を整理し、確認可能な改善フローへ変える図解](../media/business-efficiency-ideas/business-efficiency-ideas-diagram.png)
+![業務効率化のアイデア｜中小企業が最初に見直す定型業務10選のシンプルな記事サムネイル](../media/business-efficiency-ideas/business-efficiency-ideas-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/business-efficiency-ideas-diagram.png`
-- dimensions: `1672×941`
-- caption: 業務効率化は、散らかった作業を整理し、確認できる工程から小さく変える。
-- sha256: `0e3a39475142c33381db2719f6db0759fa86bd08b08d6e93f3224975afe7663f`
+- source: `business-efficiency-ideas-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `77158ad5c9d910cc0a958a76b1b0be8346e93bab6bada3f5b8a163abd8264343`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -161,9 +161,9 @@ AI KOMONSHITSU / PRACTICAL GUIDE先に「作業」を見直す。ツールはそ
 - AIに任せる部分と、人が承認する部分を工程ごとに分ける
 - 一つの業務で時間・修正・停止を測ってから、対象範囲を広げる
 
-![散らかった定型業務を整理し、確認可能な改善フローへ変える図解](../media/business-efficiency-ideas/business-efficiency-ideas-diagram.png)
+![業務効率化のアイデア｜中小企業が最初に見直す定型業務10選のシンプルな記事サムネイル](../media/business-efficiency-ideas/business-efficiency-ideas-thumbnail.svg)
 
-業務効率化は、散らかった作業を整理し、確認できる工程から小さく変える。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

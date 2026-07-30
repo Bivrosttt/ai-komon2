@@ -4,8 +4,8 @@ source_html: articles/generative-ai-internal-rules/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/generative-ai-internal-rules/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2644
-reference_generated_at: 2026-07-30T13:49:40.571527+00:00
+japanese_chars: 2635
+reference_generated_at: 2026-07-30T13:56:22.442826+00:00
 ---
 
 # 生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.571527+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/generative-ai-internal-rules/index.html`](../../../../articles/generative-ai-internal-rules/index.html)
-- source SHA-256: `64acafcc9a16aeac752719f3450896785dc250074a45aa404307207c4aa395bd`
+- source SHA-256: `19367e4eb8fd2d108e4e3a186ab8b0a9c049b062250b6a985cb3e4900c58f106`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2644`
+- 日本語文字数（article本文）: `2635`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `2` / details FAQ: `2`
 - internal links: `4` / external links: `3`
@@ -85,14 +85,14 @@ reference_generated_at: 2026-07-30T13:49:40.571527+00:00
 
 ## 図解・画像
 
-### 生成AIへの入力情報を利用可、要確認、入力禁止の3経路へ分け、人が承認する図解
+### 生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方のシンプルな記事サムネイル
 
-![生成AIへの入力情報を利用可、要確認、入力禁止の3経路へ分け、人が承認する図解](../media/generative-ai-internal-rules/generative-ai-internal-rules-diagram.png)
+![生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方のシンプルな記事サムネイル](../media/generative-ai-internal-rules/generative-ai-internal-rules-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/generative-ai-internal-rules-diagram.png`
-- dimensions: `1672×941`
-- caption: 社内ルールは、情報を3分類し、迷ったときに人へ戻す流れを作る。
-- sha256: `8f09282b9bb445c702cc2ea09d21c781daacd706d1904df617d61d58f85fa230`
+- source: `generative-ai-internal-rules-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `3bf3627b5dcdd5dda3c6bd575350ace8fd230932bfd77a2cde673b8cc8e76a59`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -163,9 +163,9 @@ AI KOMONSHITSU / INTERNAL RULES禁止だけでは、現場は動かない。迷�
 - 迷ったときに誰へ確認し、どのログを残すかを決める
 - 社内ルールはツール名ではなく、業務と情報の種類で更新する
 
-![生成AIへの入力情報を利用可、要確認、入力禁止の3経路へ分け、人が承認する図解](../media/generative-ai-internal-rules/generative-ai-internal-rules-diagram.png)
+![生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方のシンプルな記事サムネイル](../media/generative-ai-internal-rules/generative-ai-internal-rules-thumbnail.svg)
 
-社内ルールは、情報を3分類し、迷ったときに人へ戻す流れを作る。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

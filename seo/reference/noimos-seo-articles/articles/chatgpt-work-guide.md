@@ -4,8 +4,8 @@ source_html: articles/chatgpt-work-guide/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/chatgpt-work-guide/
 dateModified: 2026-07-13
 schema_types: [Article]
-japanese_chars: 2367
-reference_generated_at: 2026-07-30T13:49:40.468882+00:00
+japanese_chars: 2354
+reference_generated_at: 2026-07-30T13:56:22.242472+00:00
 ---
 
 # ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.468882+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/chatgpt-work-guide/index.html`](../../../../articles/chatgpt-work-guide/index.html)
-- source SHA-256: `45e5d811b814b8149774189b91ec1b9d4df0edf35006b9c7376b7aa5e66216aa`
+- source SHA-256: `1f63b3782f984cf6c22d6e8a67d5305abd95d102f7960c8e74516a146bf1bf8b`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2367`
+- 日本語文字数（article本文）: `2354`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `3` / details FAQ: `3`
 - internal links: `5` / external links: `3`
@@ -82,14 +82,14 @@ reference_generated_at: 2026-07-30T13:49:40.468882+00:00
 
 ## 図解・画像
 
-### ChatGPTを仕事で使う流れを目的設定、材料、条件指定、出力確認、業務反映の5段階で示す図解
+### ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方のシンプルな記事サムネイル
 
-![ChatGPTを仕事で使う流れを目的設定、材料、条件指定、出力確認、業務反映の5段階で示す図解](../media/chatgpt-work-guide/chatgpt-work-diagram.png)
+![ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方のシンプルな記事サムネイル](../media/chatgpt-work-guide/chatgpt-work-guide-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/chatgpt-work-diagram.png`
-- dimensions: `1672×941`
-- caption: ChatGPTの出力は完成品ではなく、確認を経て業務へ戻す中間成果物として扱う。
-- sha256: `1f8b5fca7557cd09c8d1f91eb1c76628e11d9230748ee3813e12480a8e5a0df0`
+- source: `chatgpt-work-guide-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `6f61319fe52fddd982235c0f19f6100931a7c19c7596220eb3e6b1e73f448024`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -132,9 +132,9 @@ AI KOMONSHITSU / CHATGPT WORKFLOW聞くだけで終わらせず、仕事の工�
 
 **先に結論：**ChatGPTを仕事で使うときは、「目的を決める → 材料を渡す → 条件を指定する → 出力を確認する → 業務へ反映する」の5段階に分けます。最初はメール・議事録・提案書の下書きなど、結果を人が確認しやすい定型業務から始めてください。
 
-![ChatGPTを仕事で使う流れを目的設定、材料、条件指定、出力確認、業務反映の5段階で示す図解](../media/chatgpt-work-guide/chatgpt-work-diagram.png)
+![ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方のシンプルな記事サムネイル](../media/chatgpt-work-guide/chatgpt-work-guide-thumbnail.svg)
 
-ChatGPTの出力は完成品ではなく、確認を経て業務へ戻す中間成果物として扱う。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の要点**
 

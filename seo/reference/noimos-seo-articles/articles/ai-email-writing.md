@@ -4,8 +4,8 @@ source_html: articles/ai-email-writing/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-email-writing/
 dateModified: 2026-07-26
 schema_types: [Article, BreadcrumbList]
-japanese_chars: 2329
-reference_generated_at: 2026-07-30T13:49:40.090197+00:00
+japanese_chars: 2314
+reference_generated_at: 2026-07-30T13:56:21.625234+00:00
 ---
 
 # 営業メールをAIで作成する方法｜目的・材料・確認を5段階で整える | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.090197+00:00
 - published: `2026-07-26`
 - modified: `2026-07-26`
 - source HTML: [`articles/ai-email-writing/index.html`](../../../../articles/ai-email-writing/index.html)
-- source SHA-256: `ce88bbf6f3249a31c8e9f356a08060af7645a0190d30a99fb8d7b7ebc2c42d07`
+- source SHA-256: `73a5fb1a9f95952c0904cb312f7a5b5d27800dae800a472497dbbbca34d67194`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2329`
+- 日本語文字数（article本文）: `2314`
 - H1: `1` / H2: `8` / H3: `5`
 - table: `1` / details FAQ: `3`
 - internal links: `4` / external links: `3`
@@ -79,14 +79,14 @@ reference_generated_at: 2026-07-30T13:49:40.090197+00:00
 
 ## 図解・画像
 
-### 営業メールをAIで作成する流れを目的、材料、条件、下書き、人が確認の5段階で示した図解
+### 営業メールをAIで作成する方法｜目的・材料・確認を5段階で整えるのシンプルな記事サムネイル
 
-![営業メールをAIで作成する流れを目的、材料、条件、下書き、人が確認の5段階で示した図解](../media/ai-email-writing/ai-email-writing-diagram.png)
+![営業メールをAIで作成する方法｜目的・材料・確認を5段階で整えるのシンプルな記事サムネイル](../media/ai-email-writing/ai-email-writing-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/ai-email-writing-diagram.png`
-- dimensions: `1600×900`
-- caption: 営業メールのAI活用は、下書きの前に目的と確認条件を決め、送信前に人へ戻す。
-- sha256: `f08eafd2ce2f86b880730ce350ab3cda595cf5179c64daa037bd31ef95f6205d`
+- source: `ai-email-writing-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `79bd90b41a58b90b2910a5ab3d624fea1c609717a17d92bb0dc27d5dc729511b`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -147,9 +147,9 @@ SALES OPERATIONS / AI EMAIL
 
 公開日: 2026年7月26日　|　AI顧問室 編集部
 
-![営業メールをAIで作成する流れを目的、材料、条件、下書き、人が確認の5段階で示した図解](../media/ai-email-writing/ai-email-writing-diagram.png)
+![営業メールをAIで作成する方法｜目的・材料・確認を5段階で整えるのシンプルな記事サムネイル](../media/ai-email-writing/ai-email-writing-thumbnail.svg)
 
-営業メールのAI活用は、下書きの前に目的と確認条件を決め、送信前に人へ戻す。
+記事テーマを示すシンプルなカバー画像。
 
 **先に結論：**営業メールのAI作成は、①誰に何を伝えるか、②根拠となる事実、③宛先・期限・トーン、④下書き、⑤人の確認の順に進めます。顧客への約束、金額、納期、個人情報を含む内容は、AIの出力をそのまま送信しません。
 

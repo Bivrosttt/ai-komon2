@@ -4,8 +4,8 @@ source_html: articles/ai-advisor-comparison/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-advisor-comparison/
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
-japanese_chars: 4352
-reference_generated_at: 2026-07-30T13:49:39.986596+00:00
+japanese_chars: 4335
+reference_generated_at: 2026-07-30T13:56:21.402214+00:00
 ---
 
 # AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:39.986596+00:00
 - published: `2026-07-30`
 - modified: `2026-07-30`
 - source HTML: [`articles/ai-advisor-comparison/index.html`](../../../../articles/ai-advisor-comparison/index.html)
-- source SHA-256: `67e41593cf2bd15eca4057e1e6bb04a4ace559eb4df1cb62e82dba5372137a32`
+- source SHA-256: `87607a6b3a30e0e09a8d15e68d5cdce2a08c650d60c81cd874d26ce99675c1d4`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `4352`
+- 日本語文字数（article本文）: `4335`
 - H1: `1` / H2: `12` / H3: `4`
 - table: `2` / details FAQ: `0`
 - internal links: `8` / external links: `2`
@@ -99,14 +99,14 @@ reference_generated_at: 2026-07-30T13:49:39.986596+00:00
 
 ## 図解・画像
 
-### AI顧問の比較は料金より業務から始め、対象業務・実装範囲・人の確認・費用構造・定着支援を確認する図
+### AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方のシンプルな記事サムネイル
 
-![AI顧問の比較は料金より業務から始め、対象業務・実装範囲・人の確認・費用構造・定着支援を確認する図](../media/ai-advisor-comparison/ai-advisor-comparison-diagram.png)
+![AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方のシンプルな記事サムネイル](../media/ai-advisor-comparison/ai-advisor-comparison-thumbnail.svg)
 
-- source: `ai-advisor-comparison-diagram.png`
-- dimensions: `1672×941`
-- caption: AI顧問の比較は、業務を選び、小さく試し、人が確認してから対象を広げる順で進める。
-- sha256: `68211f2a7ca8b5a1cb94ac6a430ea29193b85e54138b4479f2ece089fc921918`
+- source: `ai-advisor-comparison-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `58716a977481cfb9345a918d3fcaf5c8d641907cc26be679f6f780399381a678`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -205,9 +205,9 @@ AI顧問は、最安値ではなく「最初の90日で、どの業務を、ど�
 - 顧客送信、契約・請求、権限変更、削除は人の承認を残す
 - 提案書に成果物、追加費用、停止条件、引き継ぎ方法を書いてもらう
 
-![AI顧問の比較は料金より業務から始め、対象業務・実装範囲・人の確認・費用構造・定着支援を確認する図](../media/ai-advisor-comparison/ai-advisor-comparison-diagram.png)
+![AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方のシンプルな記事サムネイル](../media/ai-advisor-comparison/ai-advisor-comparison-thumbnail.svg)
 
-AI顧問の比較は、業務を選び、小さく試し、人が確認してから対象を広げる順で進める。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

@@ -4,8 +4,8 @@ source_html: articles/task-priority/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/task-priority/
 dateModified: 2026-07-26
 schema_types: [Article, BreadcrumbList]
-japanese_chars: 2292
-reference_generated_at: 2026-07-30T13:49:40.776503+00:00
+japanese_chars: 2278
+reference_generated_at: 2026-07-30T13:56:23.254894+00:00
 ---
 
 # タスクの優先順位の付け方｜緊急度だけで決めない4つの判断軸 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.776503+00:00
 - published: `2026-07-26`
 - modified: `2026-07-26`
 - source HTML: [`articles/task-priority/index.html`](../../../../articles/task-priority/index.html)
-- source SHA-256: `264df19d9044103d0dee8e28d25a6fdd4d33c30e62287c741cc951ffa1b3cb57`
+- source SHA-256: `c4e21bed21fbcc5206a273b292d873e9be3b86ed5c30256d323b4299c79d43a3`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2292`
+- 日本語文字数（article本文）: `2278`
 - H1: `1` / H2: `8` / H3: `4`
 - table: `1` / details FAQ: `3`
 - internal links: `5` / external links: `3`
@@ -78,14 +78,14 @@ reference_generated_at: 2026-07-30T13:49:40.776503+00:00
 
 ## 図解・画像
 
-### タスクの優先順位を影響の大きさと期限の近さで4象限に分けた図解
+### タスクの優先順位の付け方｜緊急度だけで決めない4つの判断軸のシンプルな記事サムネイル
 
-![タスクの優先順位を影響の大きさと期限の近さで4象限に分けた図解](../media/task-priority/task-priority-diagram.png)
+![タスクの優先順位の付け方｜緊急度だけで決めない4つの判断軸のシンプルな記事サムネイル](../media/task-priority/task-priority-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/task-priority-diagram.png`
-- dimensions: `1600×900`
-- caption: 優先順位は、緊急度だけでなく、期限と影響の大きさを組み合わせて決める。
-- sha256: `8d9ba59e83e54cff86684bcd679c20d48506743b2f624d276648da5cb32d9fab`
+- source: `task-priority-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `0726409b02bf70abff6d20a48bb648cfdb563399bade9a85e22990c60e5dfc1f`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -146,9 +146,9 @@ OPERATIONS / TASK PRIORITY
 
 公開日: 2026年7月26日　|　AI顧問室 編集部
 
-![タスクの優先順位を影響の大きさと期限の近さで4象限に分けた図解](../media/task-priority/task-priority-diagram.png)
+![タスクの優先順位の付け方｜緊急度だけで決めない4つの判断軸のシンプルな記事サムネイル](../media/task-priority/task-priority-thumbnail.svg)
 
-優先順位は、緊急度だけでなく、期限と影響の大きさを組み合わせて決める。
+記事テーマを示すシンプルなカバー画像。
 
 **先に結論：**タスクの優先順位は、影響の大きさ、期限の近さ、他者の待ち時間、再利用性の4軸で決めます。今やる、期限を決める、任せる・仕組み化する、やめる・保留するの4つに分けると、着手順と判断理由を共有できます。
 

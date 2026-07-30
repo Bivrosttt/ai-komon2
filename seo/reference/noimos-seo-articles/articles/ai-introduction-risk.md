@@ -4,8 +4,8 @@ source_html: articles/ai-introduction-risk/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-risk/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2607
-reference_generated_at: 2026-07-30T13:49:40.155231+00:00
+japanese_chars: 2597
+reference_generated_at: 2026-07-30T13:56:21.793900+00:00
 ---
 
 # AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.155231+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-introduction-risk/index.html`](../../../../articles/ai-introduction-risk/index.html)
-- source SHA-256: `cea4736021cab38685ecf7d30cac11323b000b10aa15f964d54cde71e926bafe`
+- source SHA-256: `d1bdf3330dfe3ca56b28bbb0d0b4f1ea737e20a501017b9aa74c3af6eab761ad`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2607`
+- 日本語文字数（article本文）: `2597`
 - H1: `1` / H2: `11` / H3: `6`
 - table: `2` / details FAQ: `2`
 - internal links: `4` / external links: `3`
@@ -87,14 +87,14 @@ reference_generated_at: 2026-07-30T13:49:40.155231+00:00
 
 ## 図解・画像
 
-### AIの中央処理を入力データ、権限、契約、運用など5つの保護層で囲むリスク図解
+### AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点のシンプルな記事サムネイル
 
-![AIの中央処理を入力データ、権限、契約、運用など5つの保護層で囲むリスク図解](../media/ai-introduction-risk/ai-introduction-risk-diagram.png)
+![AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点のシンプルな記事サムネイル](../media/ai-introduction-risk/ai-introduction-risk-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/ai-introduction-risk-diagram.png`
-- dimensions: `1672×941`
-- caption: AI導入のリスクは、入力・出力・権限・契約・運用の5層で確認する。
-- sha256: `1028a32e394edb4587d3806446a3f6f69b0e5135ce909d4baa3c9108cc3630eb`
+- source: `ai-introduction-risk-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `cb5e70197074fdba09a1b89f763e6e31f27235d25020a51d0eedb56d382f84ee`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -165,9 +165,9 @@ AI KOMONSHITSU / RISK MAP便利さの前に、どこまで任せるかを決め�
 - 外部送信・重要判断・削除は、人が承認してログを残す
 - 漏えい・誤回答・停止時の連絡先と切り戻し手順を先に決める
 
-![AIの中央処理を入力データ、権限、契約、運用など5つの保護層で囲むリスク図解](../media/ai-introduction-risk/ai-introduction-risk-diagram.png)
+![AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点のシンプルな記事サムネイル](../media/ai-introduction-risk/ai-introduction-risk-thumbnail.svg)
 
-AI導入のリスクは、入力・出力・権限・契約・運用の5層で確認する。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

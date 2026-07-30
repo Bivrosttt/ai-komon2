@@ -4,8 +4,8 @@ source_html: articles/proposal-ai/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/proposal-ai/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2183
-reference_generated_at: 2026-07-30T13:49:40.738187+00:00
+japanese_chars: 2170
+reference_generated_at: 2026-07-30T13:56:23.059525+00:00
 ---
 
 # 提案書をAIで作成する方法｜営業の下書きと確認を分ける | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T13:49:40.738187+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/proposal-ai/index.html`](../../../../articles/proposal-ai/index.html)
-- source SHA-256: `9c6e94e8c862f7585b9388cacfe30afad3312564fc02f98013478c7a3ea19b6b`
+- source SHA-256: `be196f4f868434ff2f4471fcfebcfd5140e9c106ae1314a7dbdb9f23bb6ce070`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2183`
+- 日本語文字数（article本文）: `2170`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `6` / external links: `3`
@@ -81,14 +81,14 @@ reference_generated_at: 2026-07-30T13:49:40.738187+00:00
 
 ## 図解・画像
 
-### 商談情報を整理し、AIが提案書の構成と下書きを補助し、人が条件を確認して提出する流れの図解
+### 提案書をAIで作成する方法｜営業の下書きと確認を分けるのシンプルな記事サムネイル
 
-![商談情報を整理し、AIが提案書の構成と下書きを補助し、人が条件を確認して提出する流れの図解](../media/proposal-ai/proposal-ai-diagram.png)
+![提案書をAIで作成する方法｜営業の下書きと確認を分けるのシンプルな記事サムネイル](../media/proposal-ai/proposal-ai-thumbnail.svg)
 
-- source: `../../assets/articles/diagrams/proposal-ai-diagram.png`
-- dimensions: `1671×941`
-- caption: 提案書作成では、AIを構成と下書きに置き、顧客条件と約束は人が確定する。
-- sha256: `1c89ea05b46f3fe697e5115dfcb04526fb8a9f2e36c9066f893a002ffdc54c89`
+- source: `proposal-ai-thumbnail.svg`
+- dimensions: `unknown`
+- caption: 記事テーマを示すシンプルなカバー画像。
+- sha256: `ffc647734097b296320d6e57a79b6518ec7ab8dac936186b4e8ad8ac6127358a`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -167,9 +167,9 @@ AI KOMONSHITSU / PROPOSAL FLOW提案の質を、下書きの速さだけで測�
 - AIには構成と下書きを任せ、価格・納期・約束は人が確定する
 - 提出後の修正と失注理由を次のテンプレート改善へ戻す
 
-![商談情報を整理し、AIが提案書の構成と下書きを補助し、人が条件を確認して提出する流れの図解](../media/proposal-ai/proposal-ai-diagram.png)
+![提案書をAIで作成する方法｜営業の下書きと確認を分けるのシンプルな記事サムネイル](../media/proposal-ai/proposal-ai-thumbnail.svg)
 
-提案書作成では、AIを構成と下書きに置き、顧客条件と約束は人が確定する。
+記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 
