@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">sales-efficiency article thumbnail</title>
+  <desc id="desc">A gradient background with a friendly white icon</desc>
+  <defs>
+    <linearGradient id="bg-sales-efficiency" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#063f43"/><stop offset="1" stop-color="#167f78"/></linearGradient>
+    <linearGradient id="icon-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".34" stop-color="#fff"/><stop offset="1" stop-color="#a8e7d2"/></linearGradient>
+    <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .055"/></feComponentTransfer></filter>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#052341" flood-opacity=".18"/></filter>
+  </defs>
+  <rect width="1600" height="900" rx="48" fill="url(#bg-sales-efficiency)"/>
+  <path d="M800 450 20 0h260l520 300L1320 0h260L800 450Zm0 0 780 450h-260L800 600 280 900H20l780-450Z" fill="#fff" opacity=".1"/><circle cx="800" cy="450" r="360" fill="none" stroke="#fff" stroke-width="80" opacity=".07"/>
+  <rect width="1600" height="900" rx="48" filter="url(#grain)" opacity=".42"/>
+  <g filter="url(#shadow)"><g fill="url(#icon-fill)"><path d="M630 415 1080 270v360L630 515Z"/><path d="M610 430H510c-44 0-80 36-80 80s36 80 80 80h100Z"/><path d="m700 570 50 130h110l-55-155Z"/></g></g>
+</svg>

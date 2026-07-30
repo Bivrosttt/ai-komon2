@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/estimate-time-reduction/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2270
-reference_generated_at: 2026-07-30T13:37:48.018098+00:00
+reference_generated_at: 2026-07-30T13:49:40.528850+00:00
 ---
 
 # 見積書作成の時間を減らす方法｜工数を測ってから自動化する | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.018098+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/estimate-time-reduction/index.html`](../../../../articles/estimate-time-reduction/index.html)
-- source SHA-256: `cfa1335126fab50d26ccea86db7c9902142f4613b11d90de93a19a6b82e1b3d3`
+- source SHA-256: `ed725fd86b1cdfdcca73f34e857d0a05180c56cd9b64734da62259e12ca878ae`
 
 ## ページ構造と計測用シグナル
 
@@ -105,7 +105,7 @@ reference_generated_at: 2026-07-30T13:37:48.018098+00:00
     "@type": "Article",
     "headline": "見積書作成の時間を減らす方法｜工数を測ってから自動化する",
     "description": "見積書作成の工数を分解し、転記・確認・送付のどこを改善するか解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/estimate-time-reduction/estimate-time-reduction-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-12",
     "author": {

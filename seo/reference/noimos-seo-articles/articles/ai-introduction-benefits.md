@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-benefits/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2410
-reference_generated_at: 2026-07-30T13:37:47.183787+00:00
+reference_generated_at: 2026-07-30T13:49:40.119778+00:00
 ---
 
 # AI導入のメリット｜中小企業が先に得るべき効果と見極め方 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.183787+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-introduction-benefits/index.html`](../../../../articles/ai-introduction-benefits/index.html)
-- source SHA-256: `4f6e8af364ff42d1913f7ac7ae6f68caa3bd69de1ce6e0dbc5e2ac205cdf541f`
+- source SHA-256: `e638372e1180240de5e6156cb380532c95a5f7e991c4f41506b9d914ffe5ac05`
 
 ## ページ構造と計測用シグナル
 
@@ -102,7 +102,7 @@ reference_generated_at: 2026-07-30T13:37:47.183787+00:00
     "@type": "Article",
     "headline": "AI導入のメリット｜中小企業が先に得るべき効果と見極め方",
     "description": "AI導入で期待できる効果と、導入前後の測定方法を整理します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/ai-introduction-benefits/ai-introduction-benefits-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-12",
     "author": {

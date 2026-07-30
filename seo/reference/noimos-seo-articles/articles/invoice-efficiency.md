@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/invoice-efficiency/
 dateModified: 2026-07-13
 schema_types: [Article]
 japanese_chars: 2415
-reference_generated_at: 2026-07-30T13:37:48.433341+00:00
+reference_generated_at: 2026-07-30T13:49:40.716157+00:00
 ---
 
 # 請求書作成を効率化する方法｜作成・確認・送付・記録をつなげる | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.433341+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/invoice-efficiency/index.html`](../../../../articles/invoice-efficiency/index.html)
-- source SHA-256: `6b5655f375f0e33a2c39319aea7955e5009c4410b8c1905b6c0b725c2ab331ed`
+- source SHA-256: `dbc580ff8b34030d0260e6e518b4620574b9e0be75258b20cc9f89381875e468`
 
 ## ページ構造と計測用シグナル
 
@@ -100,7 +100,7 @@ reference_generated_at: 2026-07-30T13:37:48.433341+00:00
     "@type": "Article",
     "headline": "請求書作成を効率化する方法｜作成・確認・送付・記録をつなげる",
     "description": "請求書業務を取引データ、作成、確認、送付、記録に分け、効率化の手順を解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/invoice-efficiency/invoice-efficiency-thumbnail.svg",
     "datePublished": "2026-07-13",
     "dateModified": "2026-07-13",
     "author": {

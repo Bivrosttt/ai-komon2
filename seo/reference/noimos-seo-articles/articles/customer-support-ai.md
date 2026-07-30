@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/customer-support-ai/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 2202
-reference_generated_at: 2026-07-30T13:37:47.966638+00:00
+reference_generated_at: 2026-07-30T13:49:40.505960+00:00
 ---
 
 # カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化する | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.966638+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/customer-support-ai/index.html`](../../../../articles/customer-support-ai/index.html)
-- source SHA-256: `84b8627fd5be7a60365d135b7180d4ffacc23541daa0df72043e661a496d3aba`
+- source SHA-256: `4d53fe10709cc9d33a5a20b72309dc06fc0d5c777c62437076d1e41cb1e4793c`
 
 ## ページ構造と計測用シグナル
 
@@ -100,7 +100,7 @@ reference_generated_at: 2026-07-30T13:37:47.966638+00:00
     "@type": "Article",
     "headline": "カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化する",
     "description": "問い合わせ対応をAIで効率化する工程と、顧客接点に必要な人の確認・切り戻しを解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/customer-support-ai/customer-support-ai-thumbnail.svg",
     "datePublished": "2026-07-13",
     "dateModified": "2026-07-13",
     "author": {

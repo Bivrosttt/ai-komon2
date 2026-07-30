@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/contract-ai/
 dateModified: 2026-07-13
 schema_types: [Article]
 japanese_chars: 2377
-reference_generated_at: 2026-07-30T13:37:47.916181+00:00
+reference_generated_at: 2026-07-30T13:49:40.488173+00:00
 ---
 
 # 契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進める | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.916181+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/contract-ai/index.html`](../../../../articles/contract-ai/index.html)
-- source SHA-256: `5772b05b4bb3eea9990e11309e7f38da03706a7fcd005377395460f4f8bef522`
+- source SHA-256: `dd6d8afd5ac2e263b5f6b572ca3ae68ec3f38a219574ca62e828e4474a4a5ecc`
 
 ## ページ構造と計測用シグナル
 
@@ -100,7 +100,7 @@ reference_generated_at: 2026-07-30T13:37:47.916181+00:00
     "@type": "Article",
     "headline": "契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進める",
     "description": "契約書業務を条件整理、下書き、確認、管理に分け、AIに任せる範囲と人の確認点を解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/contract-ai/contract-ai-thumbnail.svg",
     "datePublished": "2026-07-13",
     "dateModified": "2026-07-13",
     "author": {

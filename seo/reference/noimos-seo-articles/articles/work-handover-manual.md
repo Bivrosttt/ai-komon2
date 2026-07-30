@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/work-handover-manual/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 2075
-reference_generated_at: 2026-07-30T13:37:48.583733+00:00
+reference_generated_at: 2026-07-30T13:49:40.805268+00:00
 ---
 
 # 業務引き継ぎの方法｜後任が迷わないマニュアルの作り方 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.583733+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/work-handover-manual/index.html`](../../../../articles/work-handover-manual/index.html)
-- source SHA-256: `269b3a7d05d385f89b1cbad98f6957f488c217389caa72944b324d1aab0d1924`
+- source SHA-256: `7e77976f40c51155553d6919eaf9160a987e1e417b8cde26e5fecfa639ad1418`
 
 ## ページ構造と計測用シグナル
 
@@ -99,7 +99,7 @@ reference_generated_at: 2026-07-30T13:37:48.583733+00:00
     "@type": "Article",
     "headline": "業務引き継ぎの方法｜後任が迷わないマニュアルの作り方",
     "description": "業務引き継ぎを一覧、手順、判断基準、未完了タスクに分け、後任が使える資料へ整えます。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/work-handover-manual/work-handover-manual-thumbnail.svg",
     "datePublished": "2026-07-13",
     "dateModified": "2026-07-13",
     "author": {

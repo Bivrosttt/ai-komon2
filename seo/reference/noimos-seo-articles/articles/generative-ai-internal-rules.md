@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/generative-ai-internal-rules/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2644
-reference_generated_at: 2026-07-30T13:37:48.135484+00:00
+reference_generated_at: 2026-07-30T13:49:40.571527+00:00
 ---
 
 # 生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.135484+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/generative-ai-internal-rules/index.html`](../../../../articles/generative-ai-internal-rules/index.html)
-- source SHA-256: `c14a78576c80719ee080df5a2f82c08425329a3b075b5d1892a74f93d249d6a3`
+- source SHA-256: `64acafcc9a16aeac752719f3450896785dc250074a45aa404307207c4aa395bd`
 
 ## ページ構造と計測用シグナル
 
@@ -103,7 +103,7 @@ reference_generated_at: 2026-07-30T13:37:48.135484+00:00
     "@type": "Article",
     "headline": "生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方",
     "description": "生成AIを社内で使うときの情報分類、確認者、禁止事項を整理します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/generative-ai-internal-rules/generative-ai-internal-rules-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-12",
     "author": {

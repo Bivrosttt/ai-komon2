@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/task-priority/
 dateModified: 2026-07-26
 schema_types: [Article, BreadcrumbList]
 japanese_chars: 2292
-reference_generated_at: 2026-07-30T13:37:48.530589+00:00
+reference_generated_at: 2026-07-30T13:49:40.776503+00:00
 ---
 
 # タスクの優先順位の付け方｜緊急度だけで決めない4つの判断軸 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.530589+00:00
 - published: `2026-07-26`
 - modified: `2026-07-26`
 - source HTML: [`articles/task-priority/index.html`](../../../../articles/task-priority/index.html)
-- source SHA-256: `9e6f0da6ee52266f99ae9e1c2e6409f6b7d070394d233373d44f4ea9613a6f9c`
+- source SHA-256: `264df19d9044103d0dee8e28d25a6fdd4d33c30e62287c741cc951ffa1b3cb57`
 
 ## ページ構造と計測用シグナル
 
@@ -96,7 +96,7 @@ reference_generated_at: 2026-07-30T13:37:48.530589+00:00
     "@type": "Article",
     "headline": "タスクの優先順位の付け方｜緊急度だけで決めない4つの判断軸",
     "description": "タスクの優先順位を、影響・期限・待ち時間・再利用性で決める方法を整理します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/task-priority/task-priority-thumbnail.svg",
     "datePublished": "2026-07-26",
     "dateModified": "2026-07-26",
     "author": {

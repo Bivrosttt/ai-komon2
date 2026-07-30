@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/business-efficiency-ideas/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2430
-reference_generated_at: 2026-07-30T13:37:47.664492+00:00
+reference_generated_at: 2026-07-30T13:49:40.410931+00:00
 ---
 
 # 業務効率化のアイデア｜中小企業が最初に見直す定型業務10選 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.664492+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/business-efficiency-ideas/index.html`](../../../../articles/business-efficiency-ideas/index.html)
-- source SHA-256: `279f96dd1d238abbbf83f7c7e37d63375b4c2640f27b962aca6a9fd4d1b45fda`
+- source SHA-256: `867f22088f2b4925701039bd64da9757fcab64a56c472dffabc2a8223e8bad03`
 
 ## ページ構造と計測用シグナル
 
@@ -101,7 +101,7 @@ reference_generated_at: 2026-07-30T13:37:47.664492+00:00
     "@type": "Article",
     "headline": "業務効率化のアイデア｜中小企業が最初に見直す定型業務10選",
     "description": "業務効率化のアイデアを、定型業務から具体化する方法を解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/business-efficiency-ideas/business-efficiency-ideas-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-12",
     "author": {

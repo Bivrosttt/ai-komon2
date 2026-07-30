@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/proposal-ai/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 2183
-reference_generated_at: 2026-07-30T13:37:48.468946+00:00
+reference_generated_at: 2026-07-30T13:49:40.738187+00:00
 ---
 
 # 提案書をAIで作成する方法｜営業の下書きと確認を分ける | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.468946+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/proposal-ai/index.html`](../../../../articles/proposal-ai/index.html)
-- source SHA-256: `abb1fb23cffe2adb886e1c5ec823815e45f8dafe65376fbfbe5a267315589294`
+- source SHA-256: `9c6e94e8c862f7585b9388cacfe30afad3312564fc02f98013478c7a3ea19b6b`
 
 ## ページ構造と計測用シグナル
 
@@ -99,7 +99,7 @@ reference_generated_at: 2026-07-30T13:37:48.468946+00:00
     "@type": "Article",
     "headline": "提案書をAIで作成する方法｜営業の下書きと確認を分ける",
     "description": "提案書作成にAIを使う工程と、人が確認すべき情報を営業実務に沿って解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/proposal-ai/proposal-ai-thumbnail.svg",
     "datePublished": "2026-07-13",
     "dateModified": "2026-07-13",
     "author": {

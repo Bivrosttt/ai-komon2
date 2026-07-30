@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-roi/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2414
-reference_generated_at: 2026-07-30T13:37:47.603583+00:00
+reference_generated_at: 2026-07-30T13:49:40.383619+00:00
 ---
 
 # AI導入の費用対効果｜削減時間・人件費・回収期間の試算方法 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.603583+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-roi/index.html`](../../../../articles/ai-roi/index.html)
-- source SHA-256: `16165e0bb06613aa4afa693589dbfde80ccff0c5238e1bf239eed58da2a2352e`
+- source SHA-256: `984d61d38616e725588f691773975974516cd0d82e4e11df16ac8a3e577debee`
 
 ## ページ構造と計測用シグナル
 
@@ -103,7 +103,7 @@ reference_generated_at: 2026-07-30T13:37:47.603583+00:00
     "@type": "Article",
     "headline": "AI導入の費用対効果｜削減時間・人件費・回収期間の試算方法",
     "description": "AI導入のROIを、削減時間と確認工数を含めて試算する方法です。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/ai-roi/ai-roi-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-12",
     "author": {

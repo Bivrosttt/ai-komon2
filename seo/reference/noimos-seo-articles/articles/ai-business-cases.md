@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-business-cases/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2399
-reference_generated_at: 2026-07-30T13:37:47.117151+00:00
+reference_generated_at: 2026-07-30T13:49:40.072199+00:00
 ---
 
 # AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むか | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.117151+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-business-cases/index.html`](../../../../articles/ai-business-cases/index.html)
-- source SHA-256: `5dd0e0ec8a8308f4b988c39ffc2dba874b261bd52c919fe2030fb423a6ae7dd0`
+- source SHA-256: `47185769776faf965b362e7c3e8fc58da924bcc770a9a912ec646d2536c073bb`
 
 ## ページ構造と計測用シグナル
 
@@ -102,7 +102,7 @@ reference_generated_at: 2026-07-30T13:37:47.117151+00:00
     "@type": "Article",
     "headline": "AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むか",
     "description": "営業・議事録・問い合わせ対応のAI活用を、導入範囲と確認工程に分けて解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/ai-business-cases/ai-business-cases-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-12",
     "author": {

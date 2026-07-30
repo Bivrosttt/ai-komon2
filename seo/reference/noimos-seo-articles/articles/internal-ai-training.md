@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/internal-ai-training/
 dateModified: 2026-07-13
 schema_types: [Article]
 japanese_chars: 2408
-reference_generated_at: 2026-07-30T13:37:48.303680+00:00
+reference_generated_at: 2026-07-30T13:49:40.642483+00:00
 ---
 
 # 社内研修をAIで効率化する方法｜教材作成から定着までの設計 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.303680+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/internal-ai-training/index.html`](../../../../articles/internal-ai-training/index.html)
-- source SHA-256: `25267e809ed75968ca87d16a5e2f3f59c08fb220037ba7da76a63860a77b1782`
+- source SHA-256: `a48be6aa11fd2763ec6b6382c2ed62de68667b72b74043ae1ebf8387a5de87a1`
 
 ## ページ構造と計測用シグナル
 
@@ -100,7 +100,7 @@ reference_generated_at: 2026-07-30T13:37:48.303680+00:00
     "@type": "Article",
     "headline": "社内研修をAIで効率化する方法｜教材作成から定着までの設計",
     "description": "社内研修を課題整理、教材、演習、理解度確認、更新に分け、AIの使いどころを解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/internal-ai-training/internal-ai-training-thumbnail.svg",
     "datePublished": "2026-07-13",
     "dateModified": "2026-07-13",
     "author": {

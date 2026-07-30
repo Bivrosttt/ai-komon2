@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/chatgpt-work-guide/
 dateModified: 2026-07-13
 schema_types: [Article]
 japanese_chars: 2367
-reference_generated_at: 2026-07-30T13:37:47.833662+00:00
+reference_generated_at: 2026-07-30T13:49:40.468882+00:00
 ---
 
 # ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.833662+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/chatgpt-work-guide/index.html`](../../../../articles/chatgpt-work-guide/index.html)
-- source SHA-256: `af6b6b29c030e1a9002c822f0bceacd3f7779d9e575a93b98199622b5d2413ee`
+- source SHA-256: `45e5d811b814b8149774189b91ec1b9d4df0edf35006b9c7376b7aa5e66216aa`
 
 ## ページ構造と計測用シグナル
 
@@ -100,7 +100,7 @@ reference_generated_at: 2026-07-30T13:37:47.833662+00:00
     "@type": "Article",
     "headline": "ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方",
     "description": "ChatGPTを目的設定、材料、条件、確認、業務反映の5段階で使う方法を解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/chatgpt-work-guide/chatgpt-work-guide-thumbnail.svg",
     "datePublished": "2026-07-13",
     "dateModified": "2026-07-13",
     "author": {

@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-advisor-comparison/
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
 japanese_chars: 4352
-reference_generated_at: 2026-07-30T13:37:47.001778+00:00
+reference_generated_at: 2026-07-30T13:49:39.986596+00:00
 ---
 
 # AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.001778+00:00
 - published: `2026-07-30`
 - modified: `2026-07-30`
 - source HTML: [`articles/ai-advisor-comparison/index.html`](../../../../articles/ai-advisor-comparison/index.html)
-- source SHA-256: `3a246d5242c21905a0b5cc91323658824a795b1546c268a3f0b580fb5edee543`
+- source SHA-256: `67e41593cf2bd15eca4057e1e6bb04a4ace559eb4df1cb62e82dba5372137a32`
 
 ## ページ構造と計測用シグナル
 
@@ -116,7 +116,7 @@ reference_generated_at: 2026-07-30T13:37:47.001778+00:00
     "@type": "Article",
     "headline": "AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方",
     "description": "中小企業がAI顧問を比較するときの判断基準を、対象業務、実装範囲、人の確認、費用構造、定着支援の5軸で解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/articles/ai-advisor-comparison/ai-advisor-comparison-diagram.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/ai-advisor-comparison/ai-advisor-comparison-thumbnail.svg",
     "datePublished": "2026-07-30",
     "dateModified": "2026-07-30",
     "author": {

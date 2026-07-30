@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-risk/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2607
-reference_generated_at: 2026-07-30T13:37:47.233501+00:00
+reference_generated_at: 2026-07-30T13:49:40.155231+00:00
 ---
 
 # AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.233501+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-introduction-risk/index.html`](../../../../articles/ai-introduction-risk/index.html)
-- source SHA-256: `95ad5eee8989a70034f93ca6b41503fefc0abdd45fdbcaaea40e1cb41f58282d`
+- source SHA-256: `cea4736021cab38685ecf7d30cac11323b000b10aa15f964d54cde71e926bafe`
 
 ## ページ構造と計測用シグナル
 
@@ -105,7 +105,7 @@ reference_generated_at: 2026-07-30T13:37:47.233501+00:00
     "@type": "Article",
     "headline": "AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点",
     "description": "AI導入前に確認したい5つのリスクと、社内で決める項目を解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/ai-introduction-risk/ai-introduction-risk-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-12",
     "author": {

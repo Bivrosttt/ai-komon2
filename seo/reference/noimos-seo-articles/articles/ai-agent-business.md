@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-agent-business/
 dateModified: 2026-07-13
 schema_types: [Article]
 japanese_chars: 2481
-reference_generated_at: 2026-07-30T13:37:47.083461+00:00
+reference_generated_at: 2026-07-30T13:49:40.051285+00:00
 ---
 
 # AIエージェントとは？中小企業の業務で任せる範囲と導入手順 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.083461+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/ai-agent-business/index.html`](../../../../articles/ai-agent-business/index.html)
-- source SHA-256: `0a8a3982393b9e9f1e360e7f4447aa506d527ae1a2a6bbb5f9c8f1192b41b093`
+- source SHA-256: `300f8f3f5f35e4b544eb9a464795bf15c1956d74cc7dafe7cabcd4e7bbdd5c52`
 
 ## ページ構造と計測用シグナル
 
@@ -100,7 +100,7 @@ reference_generated_at: 2026-07-30T13:37:47.083461+00:00
     "@type": "Article",
     "headline": "AIエージェントとは？中小企業の業務で任せる範囲と導入手順",
     "description": "AIエージェントの仕組み、任せやすい業務、承認・監視を含む導入手順を解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/ai-agent-business/ai-agent-business-thumbnail.svg",
     "datePublished": "2026-07-13",
     "dateModified": "2026-07-13",
     "author": {

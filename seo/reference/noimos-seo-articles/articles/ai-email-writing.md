@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-email-writing/
 dateModified: 2026-07-26
 schema_types: [Article, BreadcrumbList]
 japanese_chars: 2329
-reference_generated_at: 2026-07-30T13:37:47.146791+00:00
+reference_generated_at: 2026-07-30T13:49:40.090197+00:00
 ---
 
 # 営業メールをAIで作成する方法｜目的・材料・確認を5段階で整える | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.146791+00:00
 - published: `2026-07-26`
 - modified: `2026-07-26`
 - source HTML: [`articles/ai-email-writing/index.html`](../../../../articles/ai-email-writing/index.html)
-- source SHA-256: `780b9c6fdabeaf4225002b2a81c8cb385bbaa1bcf114ae4f8bc918d56bb4c747`
+- source SHA-256: `ce88bbf6f3249a31c8e9f356a08060af7645a0190d30a99fb8d7b7ebc2c42d07`
 
 ## ページ構造と計測用シグナル
 
@@ -97,7 +97,7 @@ reference_generated_at: 2026-07-30T13:37:47.146791+00:00
     "@type": "Article",
     "headline": "営業メールをAIで作成する方法｜目的・材料・確認を5段階で整える",
     "description": "営業メールをAIで作成するときの目的設定、材料、条件、下書き、送信前確認を実務順に解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/ai-email-writing/ai-email-writing-thumbnail.svg",
     "datePublished": "2026-07-26",
     "dateModified": "2026-07-26",
     "author": {

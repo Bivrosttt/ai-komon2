@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/internal-faq-howto/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 2249
-reference_generated_at: 2026-07-30T13:37:48.351395+00:00
+reference_generated_at: 2026-07-30T13:49:40.670703+00:00
 ---
 
 # 社内FAQの作り方｜質問を集めてAIで更新し続ける方法 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.351395+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/internal-faq-howto/index.html`](../../../../articles/internal-faq-howto/index.html)
-- source SHA-256: `edb4faa2c0c4acea26f0bfacf4adc6b707b474c269aa0fd42a84dde66cb9d973`
+- source SHA-256: `b48609427d741782ed632a8e8b991d024cf35277e5dd86007856503a8aa2f327`
 
 ## ページ構造と計測用シグナル
 
@@ -100,7 +100,7 @@ reference_generated_at: 2026-07-30T13:37:48.351395+00:00
     "@type": "Article",
     "headline": "社内FAQの作り方｜質問を集めてAIで更新し続ける方法",
     "description": "社内FAQの作り方を、質問収集、回答設計、AI活用、権限管理、更新運用まで解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/internal-faq-howto/internal-faq-howto-thumbnail.svg",
     "datePublished": "2026-07-13",
     "dateModified": "2026-07-13",
     "author": {

@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-recruiting-efficiency/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2463
-reference_generated_at: 2026-07-30T13:37:47.556477+00:00
+reference_generated_at: 2026-07-30T13:49:40.357952+00:00
 ---
 
 # 採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.556477+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-recruiting-efficiency/index.html`](../../../../articles/ai-recruiting-efficiency/index.html)
-- source SHA-256: `4545788ca77163093301fe8042f4ed41a2e0bb60d5a6c41572de5397ea76ba3f`
+- source SHA-256: `17d8c479029493fdf5c06ef824c6ba4aa55e0299ae34674a3b70cedc59fd457a`
 
 ## ページ構造と計測用シグナル
 
@@ -102,7 +102,7 @@ reference_generated_at: 2026-07-30T13:37:47.556477+00:00
     "@type": "Article",
     "headline": "採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方",
     "description": "採用業務のどこをAIで補助できるか、判断と個人情報の扱いを含めて解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/ai-recruiting-efficiency/ai-recruiting-efficiency-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-12",
     "author": {

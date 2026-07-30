@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-roadmap/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 3275
-reference_generated_at: 2026-07-30T13:37:47.266322+00:00
+reference_generated_at: 2026-07-30T13:49:40.204851+00:00
 ---
 
 # 中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.266322+00:00
 - published: `2026-07-12`
 - modified: `2026-07-13`
 - source HTML: [`articles/ai-introduction-roadmap/index.html`](../../../../articles/ai-introduction-roadmap/index.html)
-- source SHA-256: `2c6ffb7be8b1ae19dd5d899b7017fc22bb30670d80723bdda509d7f9d31db0dc`
+- source SHA-256: `dd3362b4ebd39a54b558a2d87330395035853e4ea7629ed8987da12272144ba3`
 
 ## ページ構造と計測用シグナル
 
@@ -104,7 +104,7 @@ reference_generated_at: 2026-07-30T13:37:47.266322+00:00
     "@type": "Article",
     "headline": "中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ",
     "description": "AI導入を小さく試して、効果測定と社内ルールにつなげる30日ロードマップです。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/ai-introduction-roadmap/ai-introduction-roadmap-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-13",
     "author": {

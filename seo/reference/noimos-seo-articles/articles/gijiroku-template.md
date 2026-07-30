@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/gijiroku-template/
 dateModified: 2026-07-12
 schema_types: [Article, BreadcrumbList]
 japanese_chars: 2158
-reference_generated_at: 2026-07-30T13:37:48.270256+00:00
+reference_generated_at: 2026-07-30T13:49:40.623320+00:00
 ---
 
 # 議事録の書き方｜決定事項とToDoが残るテンプレート | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.270256+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/gijiroku-template/index.html`](../../../../articles/gijiroku-template/index.html)
-- source SHA-256: `309ef8e7f629b40ab5ac869b17de75ea561c7f345d7d52c14b6b84121f5ec916`
+- source SHA-256: `b90b1ba76210267d0051df5b13ff864711a0d95f0b9d7d1070751b5371063b02`
 
 ## ページ構造と計測用シグナル
 
@@ -123,7 +123,7 @@ reference_generated_at: 2026-07-30T13:37:48.270256+00:00
     "@type": "Article",
     "headline": "議事録の書き方｜決定事項とToDoが残るテンプレート",
     "description": "議事録の書き方を、会議前・会議中・会議後の3段階で解説。決定事項、保留事項、担当者、期限を残せる無料テンプレートも使えます。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/articles/gijiroku-template/meeting-editorial.webp",
+    "image": "https://ai-komon.bivrost.co.jp/articles/gijiroku-template/gijiroku-template-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-12",
     "author": {

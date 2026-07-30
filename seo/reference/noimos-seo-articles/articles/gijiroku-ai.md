@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/gijiroku-ai/
 dateModified: 2026-07-12
 schema_types: [Article, BreadcrumbList, FAQPage]
 japanese_chars: 2420
-reference_generated_at: 2026-07-30T13:37:48.230684+00:00
+reference_generated_at: 2026-07-30T13:49:40.591404+00:00
 ---
 
 # 議事録をAIで効率化する方法｜自動作成の確認ポイント | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.230684+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/gijiroku-ai/index.html`](../../../../articles/gijiroku-ai/index.html)
-- source SHA-256: `0b55e0ce11b7e1bb2020518d99167eb33dd0594d36054bdf5f7f9a0e7df7027f`
+- source SHA-256: `9b96f32a4ea3094fd4920649a8bac6675fe331ecaf7898dad9730312faef11be`
 
 ## ページ構造と計測用シグナル
 
@@ -122,7 +122,7 @@ reference_generated_at: 2026-07-30T13:37:48.230684+00:00
     "@type": "Article",
     "headline": "議事録をAIで効率化する方法｜自動作成の確認ポイント",
     "description": "議事録AI・自動作成ツールの使い方を解説。文字起こし、要約、決定事項抽出、人の確認、共有までの流れと、誤変換や情報管理を防ぐ確認ポイントを紹介します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/articles/gijiroku-ai/gijiroku-ai-hero.webp",
+    "image": "https://ai-komon.bivrost.co.jp/articles/gijiroku-ai/gijiroku-ai-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-12",
     "author": {

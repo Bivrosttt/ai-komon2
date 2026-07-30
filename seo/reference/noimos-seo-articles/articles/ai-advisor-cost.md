@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-advisor-cost/
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
 japanese_chars: 3067
-reference_generated_at: 2026-07-30T13:37:47.044828+00:00
+reference_generated_at: 2026-07-30T13:49:40.017122+00:00
 ---
 
 # AI顧問の費用はいくら？月額だけで決めない総額の見方 | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.044828+00:00
 - published: `2026-07-30`
 - modified: `2026-07-30`
 - source HTML: [`articles/ai-advisor-cost/index.html`](../../../../articles/ai-advisor-cost/index.html)
-- source SHA-256: `3c74949e20a28c954a7adb60f3d1fc30b6fdad89d380b64289a8f4cbafec2fd7`
+- source SHA-256: `814187ad2e7992e88c5fc6e5e11621b36a1a000567340cb36a82c3339edbee40`
 
 ## ページ構造と計測用シグナル
 
@@ -110,7 +110,7 @@ reference_generated_at: 2026-07-30T13:37:47.044828+00:00
     "@type": "Article",
     "headline": "AI顧問の費用はいくら？月額だけで決めない総額の見方",
     "description": "AI顧問の費用を初期・月額・従量・追加作業・社内工数に分解し、契約前に比較する方法を解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/articles/ai-advisor-cost/ai-advisor-cost-diagram.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/ai-advisor-cost/ai-advisor-cost-thumbnail.svg",
     "datePublished": "2026-07-30",
     "dateModified": "2026-07-30",
     "author": {

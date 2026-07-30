@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/business-manual-howto/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 2115
-reference_generated_at: 2026-07-30T13:37:47.772977+00:00
+reference_generated_at: 2026-07-30T13:49:40.439800+00:00
 ---
 
 # 業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にする | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:47.772977+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/business-manual-howto/index.html`](../../../../articles/business-manual-howto/index.html)
-- source SHA-256: `b95d6ecbd631c6c84278b13e2dfb25b3343db22d37d51287a485a796fcaa7b69`
+- source SHA-256: `5ba15385fe5d8d0542d4c6931de85133b6eb18bfd2fc959f329d7744bfe59a44`
 
 ## ページ構造と計測用シグナル
 
@@ -99,7 +99,7 @@ reference_generated_at: 2026-07-30T13:37:47.772977+00:00
     "@type": "Article",
     "headline": "業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にする",
     "description": "業務マニュアルを、対象業務の選定、手順分解、AI下書き、確認、更新運用まで解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/business-manual-howto/business-manual-howto-thumbnail.svg",
     "datePublished": "2026-07-13",
     "dateModified": "2026-07-13",
     "author": {

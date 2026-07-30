@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/internal-knowledge-search/
 dateModified: 2026-07-26
 schema_types: [Article, BreadcrumbList]
 japanese_chars: 2357
-reference_generated_at: 2026-07-30T13:37:48.397608+00:00
+reference_generated_at: 2026-07-30T13:49:40.688702+00:00
 ---
 
 # 社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐ | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.397608+00:00
 - published: `2026-07-26`
 - modified: `2026-07-26`
 - source HTML: [`articles/internal-knowledge-search/index.html`](../../../../articles/internal-knowledge-search/index.html)
-- source SHA-256: `dca490790f97ff0ab8b237d8bc81e38d194ff5351162d4cc45663feb798e4b17`
+- source SHA-256: `759939e8b6e63104aab4a5abe984e0f91d01236768b43c439399e8c3f2eec5a9`
 
 ## ページ構造と計測用シグナル
 
@@ -95,7 +95,7 @@ reference_generated_at: 2026-07-30T13:37:48.397608+00:00
     "@type": "Article",
     "headline": "社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐ",
     "description": "社内ナレッジ検索に生成AIを使う方法を、資料整理、根拠表示、人の確認、更新の流れで解説します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/internal-knowledge-search/internal-knowledge-search-thumbnail.svg",
     "datePublished": "2026-07-26",
     "dateModified": "2026-07-26",
     "author": {

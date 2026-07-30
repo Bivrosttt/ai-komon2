@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/sales-efficiency/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2352
-reference_generated_at: 2026-07-30T13:37:48.502185+00:00
+reference_generated_at: 2026-07-30T13:49:40.760541+00:00
 ---
 
 # 営業効率化の方法｜見積・提案・追客のどこからAI化するか | AI顧問室
@@ -20,7 +20,7 @@ reference_generated_at: 2026-07-30T13:37:48.502185+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/sales-efficiency/index.html`](../../../../articles/sales-efficiency/index.html)
-- source SHA-256: `08de21acdd0d800ea87cbb6d16e482ee7af6097efc355fdd2d6f58de8d437fc9`
+- source SHA-256: `67ae758d329f62b0a4f70b382963213d4ca01dec33c4de45a1deb578f890e9a9`
 
 ## ページ構造と計測用シグナル
 
@@ -102,7 +102,7 @@ reference_generated_at: 2026-07-30T13:37:48.502185+00:00
     "@type": "Article",
     "headline": "営業効率化の方法｜見積・提案・追客のどこからAI化するか",
     "description": "営業のどの工程を効率化するか、顧客接点のリスクを含めて整理します。",
-    "image": "https://ai-komon.bivrost.co.jp/assets/ogp.png",
+    "image": "https://ai-komon.bivrost.co.jp/articles/sales-efficiency/sales-efficiency-thumbnail.svg",
     "datePublished": "2026-07-12",
     "dateModified": "2026-07-12",
     "author": {
