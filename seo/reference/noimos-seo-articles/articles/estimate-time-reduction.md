@@ -4,8 +4,8 @@ source_html: articles/estimate-time-reduction/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/estimate-time-reduction/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2191
-reference_generated_at: 2026-07-30T10:41:05.610493+00:00
+japanese_chars: 2270
+reference_generated_at: 2026-07-30T11:55:16.441508+00:00
 ---
 
 # 見積書作成の時間を減らす方法｜工数を測ってから自動化する | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T10:41:05.610493+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/estimate-time-reduction/index.html`](../../../../articles/estimate-time-reduction/index.html)
-- source SHA-256: `e5f3a2b68a5fccf0ef6c6cd5585ad1db7eaa31260c0c875f847fcb9ccdc020b9`
+- source SHA-256: `cfa1335126fab50d26ccea86db7c9902142f4613b11d90de93a19a6b82e1b3d3`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2191`
+- 日本語文字数（article本文）: `2270`
 - H1: `1` / H2: `12` / H3: `6`
 - table: `2` / details FAQ: `2`
 - internal links: `5` / external links: `2`
@@ -69,6 +69,7 @@ reference_generated_at: 2026-07-30T10:41:05.610493+00:00
 | `hero-kicker` | `span`×1 | AI KOMONSHITSU / ESTIMATE FLOW |
 | `hero-title` | `span`×1 | 速く作る前に、どこで止まっているかを知る。 |
 | `hero-visual` | `div`×1 | AI KOMONSHITSU / ESTIMATE FLOW 速く作る前に、どこで止まっているかを知る。 受付 転記 確認 送付 |
+| `key-points` | `div`×1 | この記事の要点 受付・転記・確認・送付の工程ごとに現在の時間を測る 金額・納期・顧客条件はAIに確定させず、人の承認点を残す 自動化後も差し戻しと手動へ戻す経路を記録する |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 営業効率化の方法 営業工程の優先順位を決める AI導入の費用対効果 削減時間を金額へ換算 見積書AIデモ 整理の流れを確認 |
 | `service-cta` | `div`×1 | AI導入の相談はサービスから AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。 AI顧問室のサービスを見る |
@@ -157,6 +158,12 @@ AI KOMONSHITSU / ESTIMATE FLOW速く作る前に、どこで止まっている�
 受付転記確認送付
 
 **先に結論：**見積書作成の時間を減らすには、受付・条件確認・商品選択・転記・承認・送付を分解し、転記と確認の重複から減らします。AIは下書きと条件整理に使い、金額や契約条件の最終承認は人が持ちます。
+
+**この記事の要点**
+
+- 受付・転記・確認・送付の工程ごとに現在の時間を測る
+- 金額・納期・顧客条件はAIに確定させず、人の承認点を残す
+- 自動化後も差し戻しと手動へ戻す経路を記録する
 
 ![見積作成の時間を受付、転記、確認、送付の工程に分けて短縮する図解](../media/estimate-time-reduction/estimate-time-reduction-diagram.png)
 

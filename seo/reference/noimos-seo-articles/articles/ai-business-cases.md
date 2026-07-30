@@ -4,8 +4,8 @@ source_html: articles/ai-business-cases/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-business-cases/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2303
-reference_generated_at: 2026-07-30T10:41:05.454038+00:00
+japanese_chars: 2399
+reference_generated_at: 2026-07-30T11:55:15.130550+00:00
 ---
 
 # AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むか | AI顧問室
@@ -20,12 +20,12 @@ reference_generated_at: 2026-07-30T10:41:05.454038+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-business-cases/index.html`](../../../../articles/ai-business-cases/index.html)
-- source SHA-256: `4f47c6c1b06343629a3bf438a36ad594d1b0375a40d7e9c452dc9298d0d9cb70`
+- source SHA-256: `5dd0e0ec8a8308f4b988c39ffc2dba874b261bd52c919fe2030fb423a6ae7dd0`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2303`
-- H1: `1` / H2: `13` / H3: `3`
+- 日本語文字数（article本文）: `2399`
+- H1: `1` / H2: `12` / H3: `4`
 - table: `2` / details FAQ: `2`
 - internal links: `10` / external links: `2`
 - JSON-LD: `Article, FAQPage`
@@ -41,7 +41,6 @@ reference_generated_at: 2026-07-30T10:41:05.454038+00:00
 - H2: 3つの事例を自社の工程へ置き換える
 - H2: 導入事例の数字をそのまま自社へ移さない
 - H2: 事例を小さな試行へ落とす
-- H2: AI活用事例の根拠を分けて表示する
 - H2: 導入後に見るべきチェック項目
 - H2: AI導入の相談はサービスから
 - H2: よくある質問
@@ -49,6 +48,7 @@ reference_generated_at: 2026-07-30T10:41:05.454038+00:00
 - H3: 入力
 - H3: 処理
 - H3: 確認・実行
+- H3: AI活用事例の根拠を分けて表示する
 
 ## ページクローム
 
@@ -67,6 +67,7 @@ reference_generated_at: 2026-07-30T10:41:05.454038+00:00
 | `hero-kicker` | `span`×1 | AI KOMONSHITSU / USE CASE MAP |
 | `hero-title` | `span`×1 | AI単体ではなく、業務の途中に置く。 |
 | `hero-visual` | `div`×1 | AI KOMONSHITSU / USE CASE MAP AI単体ではなく、業務の途中に置く。 困りごと 入力 確認 実行 |
+| `key-points` | `div`×1 | この記事の要点 事例は困りごと・入力・AI処理・人の確認・業務へ戻す工程に分けて読む 派手な成果数値ではなく、自社で確認できる小さな業務から試す 実績・体験デモ・想定例を区別し、導入前後の測定条件をそろえる |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 業務効率化のアイデア 最初に見直す定型業務 AI導入の進め方 30日で小さく検証 デモ一覧 業務ごとの体験を見る |
 | `service-cta` | `div`×1 | AI導入の相談はサービスから AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。 AI顧問室のサービスを見る |
@@ -155,6 +156,12 @@ AI KOMONSHITSU / USE CASE MAPAI単体ではなく、業務の途中に置く。
 
 **先に結論：**AI活用の共通形は「困りごと → 入力 → AI処理 → 人の確認 → 業務システム」です。営業の下書き、議事録の整理、問い合わせの分類など、確認しやすい工程から始めると、自社の運用へ移しやすくなります。
 
+**この記事の要点**
+
+- 事例は困りごと・入力・AI処理・人の確認・業務へ戻す工程に分けて読む
+- 派手な成果数値ではなく、自社で確認できる小さな業務から試す
+- 実績・体験デモ・想定例を区別し、導入前後の測定条件をそろえる
+
 ![営業、議事録、問い合わせ対応をAI補助と人の確認を通じて業務へ戻す活用事例の図解](../media/ai-business-cases/ai-business-cases-diagram.png)
 
 AI活用は、業務の途中に補助を置き、人の確認を経て実行へ戻す。
@@ -240,7 +247,7 @@ AIの導入範囲を決めるときは、[30日ロードマップ](/articles/ai-
 | 目的・対象を決める | 誤りと修正を記録する | 継続・停止・再設計を判断する |
 | 入力範囲を決める | 確認者が承認する | 手順を別担当者で再現する |
 
-## AI活用事例の根拠を分けて表示する
+### AI活用事例の根拠を分けて表示する
 
 自社の実績、体験デモ、想定例は、読者が区別できるように表記します。数字を掲載するなら対象期間、件数、測り方を残し、効果を保証する表現を避けます。検証前の仮説は「想定例」と書き、公開後に実測値へ更新します。
 

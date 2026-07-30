@@ -4,8 +4,8 @@ source_html: articles/ai-roi/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-roi/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2327
-reference_generated_at: 2026-07-30T10:41:05.541065+00:00
+japanese_chars: 2414
+reference_generated_at: 2026-07-30T11:55:15.693555+00:00
 ---
 
 # AI導入の費用対効果｜削減時間・人件費・回収期間の試算方法 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T10:41:05.541065+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-roi/index.html`](../../../../articles/ai-roi/index.html)
-- source SHA-256: `daaf33fecefe667e19f6d9cf140dd5a5f2c21422ed276e7c8a4b17309cb590bf`
+- source SHA-256: `16165e0bb06613aa4afa693589dbfde80ccff0c5238e1bf239eed58da2a2352e`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2327`
+- 日本語文字数（article本文）: `2414`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `3` / details FAQ: `2`
 - internal links: `6` / external links: `2`
@@ -66,6 +66,7 @@ reference_generated_at: 2026-07-30T10:41:05.541065+00:00
 | `hero-kicker` | `span`×1 | AI KOMONSHITSU / ROI GUIDE |
 | `hero-title` | `span`×1 | 期待値ではなく、削減できた時間から計算する。 |
 | `hero-visual` | `div`×1 | AI KOMONSHITSU / ROI GUIDE 期待値ではなく、削減できた時間から計算する。 削減時間 時間単価 費用 回収期間 |
+| `key-points` | `div`×1 | この記事の要点 削減時間を金額へ換算する前に、作業・確認・修正の時間を分けて測る 月間効果、導入費用、回収期間を同じ前提で試算する 標準ケースだけでなく、保守ケースと効果が出ない場合も置く |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `note` | `div`×1 | 判断のポイント： 削減時間が小さくても、対応漏れが減る、引き継ぎが早くなる、担当者が顧客対応へ戻れるなどの効果があります。金額にしにくい効果は、別の指標として残します。 |
 | `related` | `div`×1 | AI導入の進め方 30日で試行と測定を行う 見積書作成の時間を減らす 工数の分解から始める 工数シミュレーター 営業・見積を数字で確認 |
@@ -155,6 +156,12 @@ AI KOMONSHITSU / ROI GUIDE期待値ではなく、削減できた時間から計
 削減時間時間単価費用回収期間
 
 **先に結論：**AI導入の費用対効果は「月間削減時間 × 時間単価 − 月間運用費用」で基本額を出し、確認・教育・例外対応を加味します。悲観・標準・楽観の3ケースを作り、実測値で更新することが大切です。
+
+**この記事の要点**
+
+- 削減時間を金額へ換算する前に、作業・確認・修正の時間を分けて測る
+- 月間効果、導入費用、回収期間を同じ前提で試算する
+- 標準ケースだけでなく、保守ケースと効果が出ない場合も置く
 
 ![削減時間を金額へ換算し、月間効果とAI導入の回収期間を試算する図解](../media/ai-roi/ai-roi-diagram.png)
 

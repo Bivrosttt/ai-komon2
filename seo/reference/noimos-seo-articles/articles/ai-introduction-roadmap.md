@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-roadmap/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 3275
-reference_generated_at: 2026-07-30T10:41:05.521132+00:00
+reference_generated_at: 2026-07-30T11:55:15.539990+00:00
 ---
 
 # 中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ | AI顧問室
@@ -20,12 +20,12 @@ reference_generated_at: 2026-07-30T10:41:05.521132+00:00
 - published: `2026-07-12`
 - modified: `2026-07-13`
 - source HTML: [`articles/ai-introduction-roadmap/index.html`](../../../../articles/ai-introduction-roadmap/index.html)
-- source SHA-256: `27141e2927c772fd64b6e5505cf37d4c196f7b79e7280a68b1dd92759e283657`
+- source SHA-256: `2c6ffb7be8b1ae19dd5d899b7017fc22bb30670d80723bdda509d7f9d31db0dc`
 
 ## ページ構造と計測用シグナル
 
 - 日本語文字数（article本文）: `3275`
-- H1: `1` / H2: `14` / H3: `3`
+- H1: `1` / H2: `12` / H3: `5`
 - table: `4` / details FAQ: `4`
 - internal links: `6` / external links: `3`
 - JSON-LD: `Article, FAQPage`
@@ -41,15 +41,15 @@ reference_generated_at: 2026-07-30T10:41:05.521132+00:00
 - H2: 失敗したときに戻れる設計を先に置く
 - H2: 30日試行で残すべき記録
 - H2: 全社展開前に3つのゲートを通す
-- H2: 30日試行の役割を先に割り当てる
 - H2: 継続・停止・再設計の条件を決める
-- H2: 週次レビューで試行を修正する
 - H2: AI導入の相談はサービスから
 - H2: よくある質問
 - H2: 次に読む・使う
 - H3: 1つの業務
 - H3: 1人の確認者
 - H3: 導入前の数字
+- H3: 30日試行の役割を先に割り当てる
+- H3: 週次レビューで試行を修正する
 
 ## ページクローム
 
@@ -270,7 +270,7 @@ AI導入の試行では、誤回答や確認工数の増加が起こります。
 
 [AI導入のリスク](/articles/ai-introduction-risk/)で入力・権限・停止条件を確認し、[費用対効果](/articles/ai-roi/)で実測値を更新してから、次の部署や業務へ進めます。
 
-## 30日試行の役割を先に割り当てる
+### 30日試行の役割を先に割り当てる
 
 小さな試行でも、業務責任者、利用者、確認者、情報管理の相談先を分けます。1人が全部を持つと、便利さと安全性の判断が混ざり、問題が起きたときに止めにくくなります。
 
@@ -293,7 +293,7 @@ AI導入は一度の成功で完了しません。[社内利用ルール](/artic
 - [経済産業省 AI事業者ガイドライン検討会](https://www.meti.go.jp/shingikai/mono_info_service/ai_shakai_jisso/)
 - [IPA AIの利活用、AIによるDXの推進](https://www.ipa.go.jp/digital/ai/transformation.html)
 
-## 週次レビューで試行を修正する
+### 週次レビューで試行を修正する
 
 30日間を最後に一度だけ評価すると、どの週で詰まったか分かりません。毎週、作業時間、修正、例外、利用者の困りごとを確認し、翌週の手順へ反映します。
 

@@ -4,8 +4,8 @@ source_html: articles/ai-introduction-risk/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-risk/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2519
-reference_generated_at: 2026-07-30T10:41:05.506448+00:00
+japanese_chars: 2607
+reference_generated_at: 2026-07-30T11:55:15.413344+00:00
 ---
 
 # AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T10:41:05.506448+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-introduction-risk/index.html`](../../../../articles/ai-introduction-risk/index.html)
-- source SHA-256: `c211398eb5e52f2b862417feb49b1c49fcda62251672cddf058a737cb8ce179c`
+- source SHA-256: `95ad5eee8989a70034f93ca6b41503fefc0abdd45fdbcaaea40e1cb41f58282d`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2519`
+- 日本語文字数（article本文）: `2607`
 - H1: `1` / H2: `11` / H3: `6`
 - table: `2` / details FAQ: `2`
 - internal links: `4` / external links: `3`
@@ -68,6 +68,7 @@ reference_generated_at: 2026-07-30T10:41:05.506448+00:00
 | `hero-kicker` | `span`×1 | AI KOMONSHITSU / RISK MAP |
 | `hero-title` | `span`×1 | 便利さの前に、どこまで任せるかを決める。 |
 | `hero-visual` | `div`×1 | AI KOMONSHITSU / RISK MAP 便利さの前に、どこまで任せるかを決める。 入力データ 出力品質 権限・契約 |
+| `key-points` | `div`×1 | この記事の要点 入力データ、出力の誤り、権限、契約、運用を別々のリスクとして確認する 外部送信・重要判断・削除は、人が承認してログを残す 漏えい・誤回答・停止時の連絡先と切り戻し手順を先に決める |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `note` | `div`×1 | 重要： この記事は法的適合性や安全性を保証するものではありません。個人情報、契約、業種規制に関わる場合は、社内の法務・情報管理担当や専門家と確認してください。 |
 | `related` | `div`×1 | 生成AIの社内利用ルール 入力してよい情報を分類する AI導入の進め方 30日で小さく試す AI導入リスク診断 確認項目を無料で整理 |
@@ -157,6 +158,12 @@ AI KOMONSHITSU / RISK MAP便利さの前に、どこまで任せるかを決め�
 入力データ出力品質権限・契約
 
 **先に結論：**AI導入のリスクは「AIだから危険」と一括りにせず、入力データ・出力品質・権限・契約・運用の5層で確認します。特に、個人情報や機密情報をどのサービスに入力できるか、出力を誰が確認するかを先に決めてください。
+
+**この記事の要点**
+
+- 入力データ、出力の誤り、権限、契約、運用を別々のリスクとして確認する
+- 外部送信・重要判断・削除は、人が承認してログを残す
+- 漏えい・誤回答・停止時の連絡先と切り戻し手順を先に決める
 
 ![AIの中央処理を入力データ、権限、契約、運用など5つの保護層で囲むリスク図解](../media/ai-introduction-risk/ai-introduction-risk-diagram.png)
 

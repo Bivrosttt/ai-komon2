@@ -4,8 +4,8 @@ source_html: articles/generative-ai-internal-rules/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/generative-ai-internal-rules/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2563
-reference_generated_at: 2026-07-30T10:41:05.622163+00:00
+japanese_chars: 2644
+reference_generated_at: 2026-07-30T11:55:16.571297+00:00
 ---
 
 # 生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T10:41:05.622163+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/generative-ai-internal-rules/index.html`](../../../../articles/generative-ai-internal-rules/index.html)
-- source SHA-256: `b8f0da28afac11494ab9bf99062292d9042648c7198db77b93c970914211bfec`
+- source SHA-256: `c14a78576c80719ee080df5a2f82c08425329a3b075b5d1892a74f93d249d6a3`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2563`
+- 日本語文字数（article本文）: `2644`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `2` / details FAQ: `2`
 - internal links: `4` / external links: `3`
@@ -66,6 +66,7 @@ reference_generated_at: 2026-07-30T10:41:05.622163+00:00
 | `hero-kicker` | `span`×1 | AI KOMONSHITSU / INTERNAL RULES |
 | `hero-title` | `span`×1 | 禁止だけでは、現場は動かない。迷わない境界をつくる。 |
 | `hero-visual` | `div`×1 | AI KOMONSHITSU / INTERNAL RULES 禁止だけでは、現場は動かない。迷わない境界をつくる。 利用可 要確認 入力禁止 |
+| `key-points` | `div`×1 | この記事の要点 入力情報を利用可・要確認・入力禁止の3分類へ分ける 迷ったときに誰へ確認し、どのログを残すかを決める 社内ルールはツール名ではなく、業務と情報の種類で更新する |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `note` | `div`×1 | 実務メモ： 最終判断者が不明なルールは、現場では使われません。「迷ったら誰に相談するか」「社外へ出す前に誰が確認するか」まで書いて完成です。 |
 | `related` | `div`×1 | AI導入のリスク 5層で導入前の論点を確認 AI導入の進め方 小さく試してから広げる プライバシーポリシー サイトの情報の扱いを確認 |
@@ -155,6 +156,12 @@ AI KOMONSHITSU / INTERNAL RULES禁止だけでは、現場は動かない。迷�
 利用可要確認入力禁止
 
 **先に結論：**生成AIの社内利用ルールは、情報を「入力してよい」「要確認」「入力禁止」の3色に分け、出力の確認者と事故時の相談先をセットで決めます。サービス名より、情報分類と業務ごとの確認手順を先に作るのが実務的です。
+
+**この記事の要点**
+
+- 入力情報を利用可・要確認・入力禁止の3分類へ分ける
+- 迷ったときに誰へ確認し、どのログを残すかを決める
+- 社内ルールはツール名ではなく、業務と情報の種類で更新する
 
 ![生成AIへの入力情報を利用可、要確認、入力禁止の3経路へ分け、人が承認する図解](../media/generative-ai-internal-rules/generative-ai-internal-rules-diagram.png)
 

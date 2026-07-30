@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/chatgpt-work-guide/
 dateModified: 2026-07-13
 schema_types: [Article]
 japanese_chars: 2367
-reference_generated_at: 2026-07-30T10:41:05.574970+00:00
+reference_generated_at: 2026-07-30T11:55:15.958927+00:00
 ---
 
 # ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方 | AI顧問室

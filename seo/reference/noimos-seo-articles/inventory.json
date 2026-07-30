@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30T10:41:05.770556+00:00",
+  "generated_at": "2026-07-30T11:55:19.339331+00:00",
   "source_root": "/Users/koki/Desktop/ai-komon2",
   "scope": "articles/*/index.html",
   "article_count": 27,
@@ -8,7 +8,7 @@
     {
       "slug": "ai-advisor-comparison",
       "source_html": "articles/ai-advisor-comparison/index.html",
-      "source_sha256": "c844a1d61a8c792e2f9a47a50fa332406cc0ec3ca5ea2d45e033b34abce74a63",
+      "source_sha256": "a2eda643667d1d01d536083a5bff690829f9e955d66186b0edd89e8c9490155f",
       "title": "AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方 | AI顧問室",
       "description": "中小企業がAI顧問を比較するときに確認すべき対象業務、実装範囲、人の承認、総費用、定着支援を、比較表と質問集で具体的に解説します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-advisor-comparison/",
@@ -19,7 +19,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "japanese_chars": 4034,
+      "japanese_chars": 4352,
       "headings": {
         "h1": [
           "AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方"
@@ -35,6 +35,7 @@
           "AI顧問室が向く会社・向かない会社",
           "よくある質問",
           "出典",
+          "次に読む・使う",
           "AI導入の相談はサービスから"
         ],
         "h3": [
@@ -61,9 +62,19 @@
       "external_link_count": 2,
       "classes": [
         "answer",
-        "service-cta"
+        "hero-badges",
+        "hero-kicker",
+        "hero-title",
+        "hero-visual",
+        "key-points",
+        "related",
+        "service-cta",
+        "table-scroll",
+        "toc"
       ],
-      "linked_stylesheets": [],
+      "linked_stylesheets": [
+        "../../assets/articles/article.css?v=20260730-refresh"
+      ],
       "inline_css_selectors": [
         ":root",
         "*",
@@ -105,6 +116,8 @@
         ".bar",
         ".bar span",
         "table",
+        ".table-scroll",
+        ".table-scroll table",
         "blockquote",
         ".service-cta"
       ]
@@ -112,7 +125,7 @@
     {
       "slug": "ai-advisor-cost",
       "source_html": "articles/ai-advisor-cost/index.html",
-      "source_sha256": "c4e265f23cf8495aba2806282177b6f02d881160f2f2d28acc46e51a31657f1b",
+      "source_sha256": "948927d7fe9445084ccbffdabc033545ddc9ecd8481e26b84ef2cc40186ac384",
       "title": "AI顧問の費用はいくら？月額だけで決めない総額の見方 | AI顧問室",
       "description": "AI顧問の費用を初期・月額・従量・追加作業・社内工数に分解。公開料金の読み方、総額計算、契約前の質問を中小企業向けに解説します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-advisor-cost/",
@@ -123,7 +136,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "japanese_chars": 2728,
+      "japanese_chars": 3067,
       "headings": {
         "h1": [
           "AI顧問の費用はいくら？月額だけで決めない総額の見方"
@@ -135,7 +148,8 @@
           "支援タイプ別に、費用の目的を合わせる",
           "AI顧問室の料金をどう読むか",
           "費用対効果と契約前の確認は、削減時間ではなく意思決定まで測る",
-          "よくある質問"
+          "よくある質問",
+          "次に読む・使う"
         ],
         "h3": [
           "AI顧問の費用は月額だけ見ればよいですか？",
@@ -159,14 +173,24 @@
           "sha256": "aeb952198f7e77a0e28c8a600da1d3cc221b58214763804b3ac3d6c283e983d8"
         }
       ],
-      "internal_link_count": 4,
+      "internal_link_count": 5,
       "external_link_count": 3,
       "classes": [
         "answer",
+        "hero-badges",
+        "hero-kicker",
+        "hero-title",
+        "hero-visual",
+        "key-points",
+        "related",
         "service-cta",
-        "source-list"
+        "source-list",
+        "table-scroll",
+        "toc"
       ],
-      "linked_stylesheets": [],
+      "linked_stylesheets": [
+        "../../assets/articles/article.css?v=20260730-refresh"
+      ],
       "inline_css_selectors": [
         ":root",
         "*",
@@ -207,6 +231,8 @@
         ".bar",
         ".bar span",
         "table",
+        ".table-scroll",
+        ".table-scroll table",
         ".answer",
         ".service-cta"
       ]
@@ -289,7 +315,7 @@
     {
       "slug": "ai-business-cases",
       "source_html": "articles/ai-business-cases/index.html",
-      "source_sha256": "4f47c6c1b06343629a3bf438a36ad594d1b0375a40d7e9c452dc9298d0d9cb70",
+      "source_sha256": "5dd0e0ec8a8308f4b988c39ffc2dba874b261bd52c919fe2030fb423a6ae7dd0",
       "title": "AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むか | AI顧問室",
       "description": "AI活用事例を、営業・議事録・問い合わせ対応の3つで紹介。困りごと、入力、AIの補助、人の確認、業務システムへの戻し方まで整理します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-business-cases/",
@@ -299,7 +325,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2303,
+      "japanese_chars": 2399,
       "headings": {
         "h1": [
           "AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むか"
@@ -313,7 +339,6 @@
           "3つの事例を自社の工程へ置き換える",
           "導入事例の数字をそのまま自社へ移さない",
           "事例を小さな試行へ落とす",
-          "AI活用事例の根拠を分けて表示する",
           "導入後に見るべきチェック項目",
           "AI導入の相談はサービスから",
           "よくある質問",
@@ -322,7 +347,8 @@
         "h3": [
           "入力",
           "処理",
-          "確認・実行"
+          "確認・実行",
+          "AI活用事例の根拠を分けて表示する"
         ]
       },
       "tables": 2,
@@ -349,6 +375,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "related",
         "service-cta",
@@ -439,7 +466,7 @@
     {
       "slug": "ai-introduction-benefits",
       "source_html": "articles/ai-introduction-benefits/index.html",
-      "source_sha256": "c7d8ce1a7b6c80adfe30abc8c1f9c8ef513989dc0dfe400d0e55e66fbb587f97",
+      "source_sha256": "4f6e8af364ff42d1913f7ac7ae6f68caa3bd69de1ce6e0dbc5e2ac205cdf541f",
       "title": "AI導入のメリット｜中小企業が先に得るべき効果と見極め方 | AI顧問室",
       "description": "AI導入のメリットを、時間削減・品質の安定・知識共有・対応速度に分けて解説。中小企業が期待値を膨らませすぎず、効果を測る方法を紹介します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-introduction-benefits/",
@@ -449,7 +476,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2311,
+      "japanese_chars": 2410,
       "headings": {
         "h1": [
           "AI導入のメリット｜中小企業が先に得るべき効果と見極め方"
@@ -498,6 +525,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "related",
         "service-cta",
@@ -516,7 +544,7 @@
     {
       "slug": "ai-introduction-risk",
       "source_html": "articles/ai-introduction-risk/index.html",
-      "source_sha256": "c211398eb5e52f2b862417feb49b1c49fcda62251672cddf058a737cb8ce179c",
+      "source_sha256": "95ad5eee8989a70034f93ca6b41503fefc0abdd45fdbcaaea40e1cb41f58282d",
       "title": "AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点 | AI顧問室",
       "description": "AI導入のリスクを、入力データ・出力品質・権限・契約・運用の5層で整理。情報漏えいや誤回答を防ぐため、導入前に確認したい項目を紹介します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-introduction-risk/",
@@ -526,7 +554,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2519,
+      "japanese_chars": 2607,
       "headings": {
         "h1": [
           "AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点"
@@ -577,6 +605,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "note",
         "related",
@@ -596,7 +625,7 @@
     {
       "slug": "ai-introduction-roadmap",
       "source_html": "articles/ai-introduction-roadmap/index.html",
-      "source_sha256": "27141e2927c772fd64b6e5505cf37d4c196f7b79e7280a68b1dd92759e283657",
+      "source_sha256": "2c6ffb7be8b1ae19dd5d899b7017fc22bb30670d80723bdda509d7f9d31db0dc",
       "title": "中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ | AI顧問室",
       "description": "中小企業のAI導入の進め方を30日ロードマップで解説。対象業務、確認者、効果測定、社内ルール、失敗時の戻し方まで実務順に整理します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-introduction-roadmap/",
@@ -620,9 +649,7 @@
           "失敗したときに戻れる設計を先に置く",
           "30日試行で残すべき記録",
           "全社展開前に3つのゲートを通す",
-          "30日試行の役割を先に割り当てる",
           "継続・停止・再設計の条件を決める",
-          "週次レビューで試行を修正する",
           "AI導入の相談はサービスから",
           "よくある質問",
           "次に読む・使う"
@@ -630,7 +657,9 @@
         "h3": [
           "1つの業務",
           "1人の確認者",
-          "導入前の数字"
+          "導入前の数字",
+          "30日試行の役割を先に割り当てる",
+          "週次レビューで試行を修正する"
         ]
       },
       "tables": 4,
@@ -676,7 +705,7 @@
     {
       "slug": "ai-recruiting-efficiency",
       "source_html": "articles/ai-recruiting-efficiency/index.html",
-      "source_sha256": "05fec425e141e4eee4ff3693606cecb8af7ab5b130511e28c50a5e80f9d6d18b",
+      "source_sha256": "4545788ca77163093301fe8042f4ed41a2e0bb60d5a6c41572de5397ea76ba3f",
       "title": "採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方 | AI顧問室",
       "description": "採用業務をAIで効率化する方法を、求人票・候補者対応・日程調整・面接記録に分けて解説。採用判断をAIに丸投げせず、補助に置く範囲を整理します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-recruiting-efficiency/",
@@ -686,7 +715,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2375,
+      "japanese_chars": 2463,
       "headings": {
         "h1": [
           "採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方"
@@ -735,6 +764,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "related",
         "service-cta",
@@ -753,7 +783,7 @@
     {
       "slug": "ai-roi",
       "source_html": "articles/ai-roi/index.html",
-      "source_sha256": "daaf33fecefe667e19f6d9cf140dd5a5f2c21422ed276e7c8a4b17309cb590bf",
+      "source_sha256": "16165e0bb06613aa4afa693589dbfde80ccff0c5238e1bf239eed58da2a2352e",
       "title": "AI導入の費用対効果｜削減時間・人件費・回収期間の試算方法 | AI顧問室",
       "description": "AI導入の費用対効果を、削減時間・時間単価・導入費用・回収期間に分けて試算。悲観・標準・楽観の3ケースと、確認工数を含めた判断方法を解説します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/ai-roi/",
@@ -763,7 +793,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2327,
+      "japanese_chars": 2414,
       "headings": {
         "h1": [
           "AI導入の費用対効果｜削減時間・人件費・回収期間の試算方法"
@@ -812,6 +842,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "note",
         "related",
@@ -831,7 +862,7 @@
     {
       "slug": "business-efficiency-ideas",
       "source_html": "articles/business-efficiency-ideas/index.html",
-      "source_sha256": "cd050efcd3559932d1b35eee05dcec746a9a768f4aeb936cc1fbc8e0a31acfe3",
+      "source_sha256": "279f96dd1d238abbbf83f7c7e37d63375b4c2640f27b962aca6a9fd4d1b45fda",
       "title": "業務効率化のアイデア｜中小企業が最初に見直す定型業務10選 | AI顧問室",
       "description": "業務効率化のアイデアを、入力が決まっている・繰り返しが多い・確認ルールがある業務から整理。中小企業が最初に見直しやすい10例と進め方を紹介します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/business-efficiency-ideas/",
@@ -841,7 +872,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2340,
+      "japanese_chars": 2430,
       "headings": {
         "h1": [
           "業務効率化のアイデア｜中小企業が最初に見直す定型業務10選"
@@ -889,6 +920,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "related",
         "service-cta",
@@ -907,9 +939,9 @@
     {
       "slug": "business-manual-howto",
       "source_html": "articles/business-manual-howto/index.html",
-      "source_sha256": "0a64aa700b1a6626bbd00b86fcd4d20c1aaf72a712bb9daf15f46da4e9c3dac9",
+      "source_sha256": "b95d6ecbd631c6c84278b13e2dfb25b3343db22d37d51287a485a796fcaa7b69",
       "title": "業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にする | AI顧問室",
-      "description": "業務マニュアルの作り方を、対象業務の選定、手順の分解、AIでの下書き、人の確認、更新運用まで実務順に解説します。",
+      "description": "業務マニュアルの作り方を、対象業務の選定、手順の分解、AIでの下書き、人の確認、更新運用まで実務順に解説。属人化を減らし、使われ続ける手順書にします。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/business-manual-howto/",
       "datePublished": "2026-07-13",
       "dateModified": "2026-07-13",
@@ -917,7 +949,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2029,
+      "japanese_chars": 2115,
       "headings": {
         "h1": [
           "業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にする"
@@ -963,6 +995,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "related",
         "service-cta",
@@ -1131,7 +1164,7 @@
     {
       "slug": "customer-support-ai",
       "source_html": "articles/customer-support-ai/index.html",
-      "source_sha256": "ffdcf6c11e5c7a2ba896fa9c5bff1f8547959ec4bf0400bbfda67c0d09068e80",
+      "source_sha256": "84b8627fd5be7a60365d135b7180d4ffacc23541daa0df72043e661a496d3aba",
       "title": "カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化する | AI顧問室",
       "description": "カスタマーサポートのAI活用を、問い合わせ分類、回答案、FAQ検索、エスカレーションに分けて解説。顧客対応で任せる範囲と確認点を整理します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/customer-support-ai/",
@@ -1141,7 +1174,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2112,
+      "japanese_chars": 2202,
       "headings": {
         "h1": [
           "カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化する"
@@ -1188,6 +1221,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "related",
         "service-cta",
@@ -1206,7 +1240,7 @@
     {
       "slug": "estimate-time-reduction",
       "source_html": "articles/estimate-time-reduction/index.html",
-      "source_sha256": "e5f3a2b68a5fccf0ef6c6cd5585ad1db7eaa31260c0c875f847fcb9ccdc020b9",
+      "source_sha256": "cfa1335126fab50d26ccea86db7c9902142f4613b11d90de93a19a6b82e1b3d3",
       "title": "見積書作成の時間を減らす方法｜工数を測ってから自動化する | AI顧問室",
       "description": "見積書作成の時間を減らす方法を、案件受付・条件確認・転記・承認・送付に分けて解説。確認工数と例外案件を含めて自動化の効果を測る方法を紹介します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/estimate-time-reduction/",
@@ -1216,7 +1250,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2191,
+      "japanese_chars": 2270,
       "headings": {
         "h1": [
           "見積書作成の時間を減らす方法｜工数を測ってから自動化する"
@@ -1268,6 +1302,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "related",
         "service-cta",
@@ -1286,7 +1321,7 @@
     {
       "slug": "generative-ai-internal-rules",
       "source_html": "articles/generative-ai-internal-rules/index.html",
-      "source_sha256": "b8f0da28afac11494ab9bf99062292d9042648c7198db77b93c970914211bfec",
+      "source_sha256": "c14a78576c80719ee080df5a2f82c08425329a3b075b5d1892a74f93d249d6a3",
       "title": "生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方 | AI顧問室",
       "description": "生成AIの社内利用ルールを、入力してよい情報・要確認の情報・入力禁止の情報に分けて整理。社員が迷わず使える最低限の項目と展開方法を解説します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/generative-ai-internal-rules/",
@@ -1296,7 +1331,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2563,
+      "japanese_chars": 2644,
       "headings": {
         "h1": [
           "生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方"
@@ -1345,6 +1380,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "note",
         "related",
@@ -1364,7 +1400,7 @@
     {
       "slug": "gijiroku-ai",
       "source_html": "articles/gijiroku-ai/index.html",
-      "source_sha256": "c34f45abba67ff03f0fea18bd3d756fc384131dc25922ef3f66d49cc7cf9c101",
+      "source_sha256": "0b55e0ce11b7e1bb2020518d99167eb33dd0594d36054bdf5f7f9a0e7df7027f",
       "title": "議事録をAIで効率化する方法｜自動作成の確認ポイント | AI顧問室",
       "description": "議事録AI・自動作成ツールの使い方を解説。文字起こし、要約、決定事項抽出、人の確認、共有までの流れと、誤変換や情報管理を防ぐ確認ポイントを紹介します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/gijiroku-ai/",
@@ -1375,7 +1411,7 @@
         "BreadcrumbList",
         "FAQPage"
       ],
-      "japanese_chars": 2284,
+      "japanese_chars": 2420,
       "headings": {
         "h1": [
           "議事録をAIで効率化する方法｜自動作成の確認ポイント"
@@ -1391,7 +1427,11 @@
           "まとめ",
           "参考にした公式情報"
         ],
-        "h3": []
+        "h3": [
+          "文字起こし",
+          "人が確認",
+          "共有・更新"
+        ]
       },
       "tables": 1,
       "details": 3,
@@ -1423,11 +1463,14 @@
         "dek",
         "eyebrow",
         "hero",
+        "key-points",
         "meta",
         "pipeline-note",
         "related",
         "service-cta",
         "sources",
+        "step",
+        "steps",
         "table-scroll",
         "toc",
         "tool-cta"
@@ -1502,7 +1545,7 @@
     {
       "slug": "gijiroku-template",
       "source_html": "articles/gijiroku-template/index.html",
-      "source_sha256": "c04c4e81e917970e0519ce56fe0e71a9b91e5aaddfed2a77d3b05dca9bfe890a",
+      "source_sha256": "309ef8e7f629b40ab5ac869b17de75ea561c7f345d7d52c14b6b84121f5ec916",
       "title": "議事録の書き方｜決定事項とToDoが残るテンプレート | AI顧問室",
       "description": "議事録の書き方を、会議前・会議中・会議後の3段階で解説。決定事項、保留事項、担当者、期限を残せる無料テンプレートも使えます。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/gijiroku-template/",
@@ -1512,7 +1555,7 @@
         "Article",
         "BreadcrumbList"
       ],
-      "japanese_chars": 1758,
+      "japanese_chars": 2158,
       "headings": {
         "h1": [
           "議事録の書き方｜決定事項とToDoが残るテンプレート"
@@ -1521,6 +1564,7 @@
           "議事録の役割は「発言の記録」ではなく「次の行動の共有」",
           "議事録の書き方は3段階で考える",
           "そのまま使える議事録の項目",
+          "共有前の5分レビューで誤解を防ぐ",
           "AI導入の相談はサービスから",
           "議事録でよくある4つの失敗",
           "議事録をAIで効率化するときの確認点",
@@ -1536,7 +1580,7 @@
           "3. 会議後は「ToDo・担当者・期限」をセットにする"
         ]
       },
-      "tables": 1,
+      "tables": 2,
       "details": 3,
       "images": [
         {
@@ -1559,16 +1603,18 @@
         }
       ],
       "internal_link_count": 4,
-      "external_link_count": 0,
+      "external_link_count": 2,
       "classes": [
         "answer",
         "button",
         "dek",
         "eyebrow",
         "hero",
+        "key-points",
         "meta",
         "related",
         "service-cta",
+        "sources",
         "step",
         "steps",
         "table-scroll",
@@ -1720,7 +1766,7 @@
     {
       "slug": "internal-faq-howto",
       "source_html": "articles/internal-faq-howto/index.html",
-      "source_sha256": "f3f053384f9fa8ea89aee0697c685cf5bf350e77c266a4d43c9166d7b2d56c90",
+      "source_sha256": "edb4faa2c0c4acea26f0bfacf4adc6b707b474c269aa0fd42a84dde66cb9d973",
       "title": "社内FAQの作り方｜質問を集めてAIで更新し続ける方法 | AI顧問室",
       "description": "社内FAQの作り方を、質問の集め方、回答の型、AIの使い方、権限管理、更新運用まで解説。同じ問い合わせを減らす設計を紹介します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/internal-faq-howto/",
@@ -1730,7 +1776,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 1931,
+      "japanese_chars": 2249,
       "headings": {
         "h1": [
           "社内FAQの作り方｜質問を集めてAIで更新し続ける方法"
@@ -1742,6 +1788,7 @@
           "FAQの回答範囲は、部署と権限で分ける",
           "未解決質問と古い回答を更新トリガーにする",
           "社内FAQの公開前チェック",
+          "FAQカードを一件ずつ管理する",
           "AI導入の相談はサービスから",
           "よくある質問",
           "次に読む・使う"
@@ -1752,7 +1799,7 @@
           "根拠"
         ]
       },
-      "tables": 2,
+      "tables": 3,
       "details": 3,
       "images": [
         {
@@ -1776,6 +1823,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "related",
         "service-cta",
@@ -1940,7 +1988,7 @@
     {
       "slug": "proposal-ai",
       "source_html": "articles/proposal-ai/index.html",
-      "source_sha256": "abf2d055f9cfb733f1e1b79f285dc6b0c271567c11cd8343a579041c2a3f2697",
+      "source_sha256": "abb1fb23cffe2adb886e1c5ec823815e45f8dafe65376fbfbe5a267315589294",
       "title": "提案書をAIで作成する方法｜営業の下書きと確認を分ける | AI顧問室",
       "description": "提案書をAIで作成する方法を、情報整理、構成案、下書き、事実確認、顧客向け編集の順に解説。営業で任せる範囲と注意点を整理します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/proposal-ai/",
@@ -1950,7 +1998,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2097,
+      "japanese_chars": 2183,
       "headings": {
         "h1": [
           "提案書をAIで作成する方法｜営業の下書きと確認を分ける"
@@ -1996,6 +2044,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "related",
         "service-cta",
@@ -2014,7 +2063,7 @@
     {
       "slug": "sales-efficiency",
       "source_html": "articles/sales-efficiency/index.html",
-      "source_sha256": "e582784019f03dffa3a9ea02dc169a6d54c72d697ba1fae28fdbbe99dd697b2d",
+      "source_sha256": "08de21acdd0d800ea87cbb6d16e482ee7af6097efc355fdd2d6f58de8d437fc9",
       "title": "営業効率化の方法｜見積・提案・追客のどこからAI化するか | AI顧問室",
       "description": "営業効率化の方法を、見積・提案・追客・報告に分けて解説。AIや自動化を入れる前に、定型度と顧客接点のリスクで優先順位を決める方法を紹介します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/sales-efficiency/",
@@ -2024,7 +2073,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 2264,
+      "japanese_chars": 2352,
       "headings": {
         "h1": [
           "営業効率化の方法｜見積・提案・追客のどこからAI化するか"
@@ -2073,6 +2122,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "related",
         "service-cta",
@@ -2163,7 +2213,7 @@
     {
       "slug": "work-handover-manual",
       "source_html": "articles/work-handover-manual/index.html",
-      "source_sha256": "2bf41308de1d10882216f238c746fdb932df41807b9ed13d3e6cfba3d69c2ddd",
+      "source_sha256": "269b3a7d05d385f89b1cbad98f6957f488c217389caa72944b324d1aab0d1924",
       "title": "業務引き継ぎの方法｜後任が迷わないマニュアルの作り方 | AI顧問室",
       "description": "業務引き継ぎの方法を、業務一覧、期限、判断基準、関係者、未完了タスクに分けて解説。後任が一人で動ける引き継ぎ資料の作り方を紹介します。",
       "canonical": "https://ai-komon.bivrost.co.jp/articles/work-handover-manual/",
@@ -2173,7 +2223,7 @@
         "Article",
         "FAQPage"
       ],
-      "japanese_chars": 1996,
+      "japanese_chars": 2075,
       "headings": {
         "h1": [
           "業務引き継ぎの方法｜後任が迷わないマニュアルの作り方"
@@ -2219,6 +2269,7 @@
         "hero-kicker",
         "hero-title",
         "hero-visual",
+        "key-points",
         "meta",
         "related",
         "service-cta",

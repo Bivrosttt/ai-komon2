@@ -4,8 +4,8 @@ source_html: articles/ai-recruiting-efficiency/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-recruiting-efficiency/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2375
-reference_generated_at: 2026-07-30T10:41:05.530392+00:00
+japanese_chars: 2463
+reference_generated_at: 2026-07-30T11:55:15.609161+00:00
 ---
 
 # 採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T10:41:05.530392+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-recruiting-efficiency/index.html`](../../../../articles/ai-recruiting-efficiency/index.html)
-- source SHA-256: `05fec425e141e4eee4ff3693606cecb8af7ab5b130511e28c50a5e80f9d6d18b`
+- source SHA-256: `4545788ca77163093301fe8042f4ed41a2e0bb60d5a6c41572de5397ea76ba3f`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2375`
+- 日本語文字数（article本文）: `2463`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `3` / details FAQ: `2`
 - internal links: `5` / external links: `2`
@@ -66,6 +66,7 @@ reference_generated_at: 2026-07-30T10:41:05.530392+00:00
 | `hero-kicker` | `span`×1 | AI KOMONSHITSU / RECRUITING |
 | `hero-title` | `span`×1 | 採用判断は人が持ち、準備と連絡を軽くする。 |
 | `hero-visual` | `div`×1 | AI KOMONSHITSU / RECRUITING 採用判断は人が持ち、準備と連絡を軽くする。 求人票 日程調整 記録 確認 |
+| `key-points` | `div`×1 | この記事の要点 求人票・日程調整・候補者連絡はAI補助に置き、採用判断は人が行う 候補者情報の入力範囲、保存先、閲覧権限を先に決める 返信時間だけでなく、誤送信・修正・候補者体験を一緒に確認する |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | AI導入のリスク 入力データと権限を確認 業務効率化のアイデア 定型業務を優先する AI活用レベル診断 導入前の現在地を確認 |
 | `service-cta` | `div`×1 | AI導入の相談はサービスから AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。 AI顧問室のサービスを見る |
@@ -154,6 +155,12 @@ AI KOMONSHITSU / RECRUITING採用判断は人が持ち、準備と連絡を軽�
 求人票日程調整記録確認
 
 **先に結論：**採用業務では、求人票の下書き、候補者への連絡文、日程調整、面接メモの整理からAI補助を試します。合否や評価の自動決定、候補者の個人情報を含む入力は、社内ルールとサービス条件を確認してから扱います。
+
+**この記事の要点**
+
+- 求人票・日程調整・候補者連絡はAI補助に置き、採用判断は人が行う
+- 候補者情報の入力範囲、保存先、閲覧権限を先に決める
+- 返信時間だけでなく、誤送信・修正・候補者体験を一緒に確認する
 
 ![求人票、候補者連絡、日程調整、面接記録を人の採用判断につなぐ図解](../media/ai-recruiting-efficiency/ai-recruiting-efficiency-diagram.png)
 

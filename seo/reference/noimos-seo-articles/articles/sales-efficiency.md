@@ -4,8 +4,8 @@ source_html: articles/sales-efficiency/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/sales-efficiency/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2264
-reference_generated_at: 2026-07-30T10:41:05.737676+00:00
+japanese_chars: 2352
+reference_generated_at: 2026-07-30T11:55:19.039724+00:00
 ---
 
 # 営業効率化の方法｜見積・提案・追客のどこからAI化するか | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T10:41:05.737676+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/sales-efficiency/index.html`](../../../../articles/sales-efficiency/index.html)
-- source SHA-256: `e582784019f03dffa3a9ea02dc169a6d54c72d697ba1fae28fdbbe99dd697b2d`
+- source SHA-256: `08de21acdd0d800ea87cbb6d16e482ee7af6097efc355fdd2d6f58de8d437fc9`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2264`
+- 日本語文字数（article本文）: `2352`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `3` / details FAQ: `2`
 - internal links: `6` / external links: `2`
@@ -66,6 +66,7 @@ reference_generated_at: 2026-07-30T10:41:05.737676+00:00
 | `hero-kicker` | `span`×1 | AI KOMONSHITSU / SALES EFFICIENCY |
 | `hero-title` | `span`×1 | 顧客に向き合う時間を残すため、社内作業から整える。 |
 | `hero-visual` | `div`×1 | AI KOMONSHITSU / SALES EFFICIENCY 顧客に向き合う時間を残すため、社内作業から整える。 見積 提案 追客 報告 |
+| `key-points` | `div`×1 | この記事の要点 営業の受付・見積・提案・追客を工程ごとに棚卸しする 顧客向けの約束や送信は人の確認を残し、社内作業から効率化する 時間だけでなく、差し戻し・返信遅延・引き継ぎの欠落を測る |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 見積書作成の時間を減らす 営業工数を具体的に測る AI活用事例 営業・議事録・問い合わせを比較 見積書AIデモ 見積の整理イメージを見る |
 | `service-cta` | `div`×1 | AI導入の相談はサービスから AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。 AI顧問室のサービスを見る |
@@ -154,6 +155,12 @@ AI KOMONSHITSU / SALES EFFICIENCY顧客に向き合う時間を残すため、�
 見積提案追客報告
 
 **先に結論：**営業効率化は、①社内報告・入力、②見積の転記、③提案書の下書き、④追客の候補整理の順で試すと、顧客への誤送信リスクを抑えやすくなります。受注率を先に約束せず、工数と対応漏れを測るのが基本です。
+
+**この記事の要点**
+
+- 営業の受付・見積・提案・追客を工程ごとに棚卸しする
+- 顧客向けの約束や送信は人の確認を残し、社内作業から効率化する
+- 時間だけでなく、差し戻し・返信遅延・引き継ぎの欠落を測る
 
 ![営業メモを見積、提案、追客、確認の工程へ整理する営業効率化の図解](../media/sales-efficiency/sales-efficiency-diagram.png)
 

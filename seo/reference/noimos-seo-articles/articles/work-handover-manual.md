@@ -4,8 +4,8 @@ source_html: articles/work-handover-manual/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/work-handover-manual/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 1996
-reference_generated_at: 2026-07-30T10:41:05.766969+00:00
+japanese_chars: 2075
+reference_generated_at: 2026-07-30T11:55:19.325957+00:00
 ---
 
 # 業務引き継ぎの方法｜後任が迷わないマニュアルの作り方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T10:41:05.766969+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/work-handover-manual/index.html`](../../../../articles/work-handover-manual/index.html)
-- source SHA-256: `2bf41308de1d10882216f238c746fdb932df41807b9ed13d3e6cfba3d69c2ddd`
+- source SHA-256: `269b3a7d05d385f89b1cbad98f6957f488c217389caa72944b324d1aab0d1924`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `1996`
+- 日本語文字数（article本文）: `2075`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `5` / external links: `3`
@@ -63,6 +63,7 @@ reference_generated_at: 2026-07-30T10:41:05.766969+00:00
 | `hero-kicker` | `span`×1 | AI KOMONSHITSU / HANDOVER MAP |
 | `hero-title` | `span`×1 | 人から人へではなく、業務から次の担当へ。 |
 | `hero-visual` | `div`×1 | AI KOMONSHITSU / HANDOVER MAP 人から人へではなく、業務から次の担当へ。 一覧化 優先順位 実行 確認 |
+| `key-points` | `div`×1 | この記事の要点 業務一覧を作り、期限・影響・頻度から引き継ぎ順を決める 手順・判断基準・例外・連絡先を後任の実行単位で残す 後任が実行した結果を確認し、手順書へ更新する |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 業務マニュアルの作り方 手順と更新運用を整える 社内FAQの作り方 引き継ぎ後の質問を蓄積する AI導入の進め方 小さく試して定着させる |
 | `service-cta` | `div`×1 | AI導入の相談はサービスから AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。 AI顧問室のサービスを見る |
@@ -159,6 +160,12 @@ AI KOMONSHITSU / HANDOVER MAP人から人へではなく、業務から次の担
 一覧化優先順位実行確認
 
 **先に結論：**業務引き継ぎは「業務一覧 → 優先順位 → 手順・判断基準 → 未完了タスク → 後任の実行確認」の順で進めます。退職や異動の直前に全てを説明するのではなく、後任が一人で実行して迷った場所を資料へ反映してください。
+
+**この記事の要点**
+
+- 業務一覧を作り、期限・影響・頻度から引き継ぎ順を決める
+- 手順・判断基準・例外・連絡先を後任の実行単位で残す
+- 後任が実行した結果を確認し、手順書へ更新する
 
 ![担当者の業務を一覧化し、優先順位を付け、後任が手順を実行して確認する引き継ぎフローの図解](../media/work-handover-manual/work-handover-manual-diagram.png)
 

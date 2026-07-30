@@ -4,8 +4,8 @@ source_html: articles/business-manual-howto/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/business-manual-howto/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2029
-reference_generated_at: 2026-07-30T10:41:05.563472+00:00
+japanese_chars: 2115
+reference_generated_at: 2026-07-30T11:55:15.876818+00:00
 ---
 
 # 業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にする | AI顧問室
@@ -15,16 +15,16 @@ reference_generated_at: 2026-07-30T10:41:05.563472+00:00
 ## SEOメタデータ
 
 - title: 業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にする | AI顧問室
-- description: 業務マニュアルの作り方を、対象業務の選定、手順の分解、AIでの下書き、人の確認、更新運用まで実務順に解説します。
+- description: 業務マニュアルの作り方を、対象業務の選定、手順の分解、AIでの下書き、人の確認、更新運用まで実務順に解説。属人化を減らし、使われ続ける手順書にします。
 - canonical: `https://ai-komon.bivrost.co.jp/articles/business-manual-howto/`
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/business-manual-howto/index.html`](../../../../articles/business-manual-howto/index.html)
-- source SHA-256: `0a64aa700b1a6626bbd00b86fcd4d20c1aaf72a712bb9daf15f46da4e9c3dac9`
+- source SHA-256: `b95d6ecbd631c6c84278b13e2dfb25b3343db22d37d51287a485a796fcaa7b69`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2029`
+- 日本語文字数（article本文）: `2115`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `5` / external links: `2`
@@ -63,6 +63,7 @@ reference_generated_at: 2026-07-30T10:41:05.563472+00:00
 | `hero-kicker` | `span`×1 | AI KOMONSHITSU / MANUAL DESIGN |
 | `hero-title` | `span`×1 | 暗黙知を、次の人が使える手順へ。 |
 | `hero-visual` | `div`×1 | AI KOMONSHITSU / MANUAL DESIGN 暗黙知を、次の人が使える手順へ。 対象選定 手順分解 確認 更新 |
+| `key-points` | `div`×1 | この記事の要点 手順だけでなく、開始条件・判断基準・例外・完了条件を残す 担当者の暗黙知を、後任が実行して確認できる単位へ分解する 更新担当と見直しのトリガーを決め、古い手順を残さない |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 社内FAQの作り方 手順書を質問への答えに変える AI導入のリスク 入力情報と確認者を決める AI導入の進め方 小さく試して定着させる |
 | `service-cta` | `div`×1 | AI導入の相談はサービスから AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。 AI顧問室のサービスを見る |
@@ -159,6 +160,12 @@ AI KOMONSHITSU / MANUAL DESIGN暗黙知を、次の人が使える手順へ。
 対象選定手順分解確認更新
 
 **先に結論：**業務マニュアルは「目的 → 前提 → 手順 → 判断基準 → 例外 → 完了条件」の順に作ると、後任者が迷いにくくなります。最初から全業務を網羅せず、属人化の影響が大きく、繰り返し使う業務を1つ選んでください。
+
+**この記事の要点**
+
+- 手順だけでなく、開始条件・判断基準・例外・完了条件を残す
+- 担当者の暗黙知を、後任が実行して確認できる単位へ分解する
+- 更新担当と見直しのトリガーを決め、古い手順を残さない
 
 ![担当者の暗黙知を業務マニュアルへ整理し、後任者が確認しながら実行する作成フローの図解](../media/business-manual-howto/business-manual-howto-diagram.png)
 

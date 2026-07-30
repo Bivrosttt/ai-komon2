@@ -4,8 +4,8 @@ source_html: articles/customer-support-ai/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/customer-support-ai/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2112
-reference_generated_at: 2026-07-30T10:41:05.599278+00:00
+japanese_chars: 2202
+reference_generated_at: 2026-07-30T11:55:16.326950+00:00
 ---
 
 # カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化する | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T10:41:05.599278+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/customer-support-ai/index.html`](../../../../articles/customer-support-ai/index.html)
-- source SHA-256: `ffdcf6c11e5c7a2ba896fa9c5bff1f8547959ec4bf0400bbfda67c0d09068e80`
+- source SHA-256: `84b8627fd5be7a60365d135b7180d4ffacc23541daa0df72043e661a496d3aba`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2112`
+- 日本語文字数（article本文）: `2202`
 - H1: `1` / H2: `10` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `4` / external links: `3`
@@ -64,6 +64,7 @@ reference_generated_at: 2026-07-30T10:41:05.599278+00:00
 | `hero-kicker` | `span`×1 | AI KOMONSHITSU / CUSTOMER SUPPORT |
 | `hero-title` | `span`×1 | 速く返す前に、正しく戻す場所を決める。 |
 | `hero-visual` | `div`×1 | AI KOMONSHITSU / CUSTOMER SUPPORT 速く返す前に、正しく戻す場所を決める。 分類 検索 確認 エスカレーション |
+| `key-points` | `div`×1 | この記事の要点 問い合わせを分類・回答案・人の確認・エスカレーションに分ける 顧客への送信前に、根拠資料と最新性を担当者が確認する 正解率だけでなく、返信時間・修正・再問い合わせ・停止を測る |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 社内FAQの作り方 回答の根拠と更新を整える AI導入のリスク 入力・権限・契約を確認する AI導入の進め方 小さな試行から広げる |
 | `service-cta` | `div`×1 | AI導入の相談はサービスから AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。 AI顧問室のサービスを見る |
@@ -160,6 +161,12 @@ AI KOMONSHITSU / CUSTOMER SUPPORT速く返す前に、正しく戻す場所を�
 分類検索確認エスカレーション
 
 **先に結論：**カスタマーサポートのAI活用は「問い合わせ分類 → 関連資料の検索 → 回答案 → 人の確認 → 返信・引き継ぎ」に分けます。まずは社内向けの分類や回答案から試し、返金、契約、障害、個別事情がある回答は人へ戻してください。
+
+**この記事の要点**
+
+- 問い合わせを分類・回答案・人の確認・エスカレーションに分ける
+- 顧客への送信前に、根拠資料と最新性を担当者が確認する
+- 正解率だけでなく、返信時間・修正・再問い合わせ・停止を測る
 
 ![顧客からの問い合わせをAIが分類と回答案作成で補助し、人が確認して返信または担当者へ引き継ぐ図解](../media/customer-support-ai/customer-support-ai-diagram.png)
 

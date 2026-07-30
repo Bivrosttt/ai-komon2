@@ -4,8 +4,8 @@ source_html: articles/proposal-ai/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/proposal-ai/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2097
-reference_generated_at: 2026-07-30T10:41:05.723216+00:00
+japanese_chars: 2183
+reference_generated_at: 2026-07-30T11:55:18.943883+00:00
 ---
 
 # 提案書をAIで作成する方法｜営業の下書きと確認を分ける | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T10:41:05.723216+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/proposal-ai/index.html`](../../../../articles/proposal-ai/index.html)
-- source SHA-256: `abf2d055f9cfb733f1e1b79f285dc6b0c271567c11cd8343a579041c2a3f2697`
+- source SHA-256: `abb1fb23cffe2adb886e1c5ec823815e45f8dafe65376fbfbe5a267315589294`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2097`
+- 日本語文字数（article本文）: `2183`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `6` / external links: `3`
@@ -63,6 +63,7 @@ reference_generated_at: 2026-07-30T10:41:05.723216+00:00
 | `hero-kicker` | `span`×1 | AI KOMONSHITSU / PROPOSAL FLOW |
 | `hero-title` | `span`×1 | 提案の質を、下書きの速さだけで測らない。 |
 | `hero-visual` | `div`×1 | AI KOMONSHITSU / PROPOSAL FLOW 提案の質を、下書きの速さだけで測らない。 情報整理 構成 確認 提出 |
+| `key-points` | `div`×1 | この記事の要点 商談情報・顧客条件・提案構成・下書き・提出前確認を分ける AIには構成と下書きを任せ、価格・納期・約束は人が確定する 提出後の修正と失注理由を次のテンプレート改善へ戻す |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | AI導入の進め方 小さな試行で確認工程を作る 見積書作成の時間を減らす 数字と承認の確認を分ける AI導入のメリット 効果を導入前後で測る |
 | `service-cta` | `div`×1 | AI導入の相談はサービスから AIに任せる業務の選定から、実装、社内ルール、現場への定着までを一気通貫で支援します。自社でどこから始めるか、サービス内容を確認してください。 AI顧問室のサービスを見る |
@@ -159,6 +160,12 @@ AI KOMONSHITSU / PROPOSAL FLOW提案の質を、下書きの速さだけで測�
 情報整理構成確認提出
 
 **先に結論：**提案書は「商談情報の整理 → 顧客課題の構造化 → 構成案 → 下書き → 事実・条件の確認 → 顧客向け編集」に分けると、AIを安全に使えます。金額、納期、実績、契約条件、顧客への約束は人が確定してください。
+
+**この記事の要点**
+
+- 商談情報・顧客条件・提案構成・下書き・提出前確認を分ける
+- AIには構成と下書きを任せ、価格・納期・約束は人が確定する
+- 提出後の修正と失注理由を次のテンプレート改善へ戻す
 
 ![商談情報を整理し、AIが提案書の構成と下書きを補助し、人が条件を確認して提出する流れの図解](../media/proposal-ai/proposal-ai-diagram.png)
 
