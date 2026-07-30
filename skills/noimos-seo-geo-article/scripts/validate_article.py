@@ -29,6 +29,7 @@ def main() -> int:
     parser.add_argument("--input", required=True)
     parser.add_argument("--site-root", required=True)
     parser.add_argument("--out", required=True)
+    parser.add_argument("--approval-mode", choices=["human", "ai_only"], default="human")
     args = parser.parse_args()
 
     path = Path(args.input).resolve()
@@ -145,7 +146,8 @@ def main() -> int:
         "overall": overall,
         "score": round(100 * (len(results) - len(failures)) / len(results)),
         "checks": results,
-        "human_approval_required": True,
+        "approval_mode": args.approval_mode,
+        "human_approval_required": args.approval_mode == "human",
     }
     Path(args.out).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"overall": overall, "score": report["score"], "failures": len(failures), "p0": len(p0)}, ensure_ascii=False))

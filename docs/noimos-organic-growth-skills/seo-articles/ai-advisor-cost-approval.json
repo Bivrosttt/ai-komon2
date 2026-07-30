@@ -1,0 +1,20 @@
+{
+  "mode": "ai_only",
+  "status": "ai_approved",
+  "pipeline": "noimos-seo-cost-article-v1",
+  "reviewed_at": "2026-07-30T19:20:03+09:00",
+  "checks": {
+    "claim_evidence": true,
+    "brand_alignment": true,
+    "specificity": true,
+    "risk_screen": true,
+    "render_qa": true
+  },
+  "corrections": [
+    "市場平均を断定せず、公開ページの整理例と自社一次情報を分離した",
+    "月額以外の費用と社内確認工数を計算式・質問表へ追加した",
+    "AI顧問室が向かない条件と契約終了条件を明記した",
+    "画像生成API未設定のため、記事固有のSVG図解を作成してPNG化し目視確認した"
+  ],
+  "publication_performed": false
+}

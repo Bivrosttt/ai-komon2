@@ -9,7 +9,9 @@ license: MIT
 # Noimos SEO/GEO Article
 
 Create the best decision aid for the reader, not a longer paraphrase of the
-SERP. Publication is a separate, human-approved action.
+SERP. Publication is a separate action gated by the configured approval policy.
+The default is human review; an explicit `ai_only` policy is valid only when
+the deterministic quality gate and render checks are all recorded as true.
 
 ## Required inputs
 
@@ -60,7 +62,7 @@ SERP. Publication is a separate, human-approved action.
 - [ ] Render at mobile, tablet, and desktop widths.
 - [ ] Check images, links, console, JSON-LD, overflow, and CTA destination.
 - [ ] Run the Noimos content quality gate.
-- [ ] Require named human approval before publish.
+- [ ] Require the configured approval policy (`human` or explicit `ai_only`) before publish.
 
 ```bash
 python3 "$SKILL_DIR/scripts/validate_article.py" \
@@ -72,4 +74,4 @@ python3 "$SKILL_DIR/scripts/validate_article.py" \
 Return the research memo, claim ledger, approved outline, canonical draft,
 validation report, screenshots, remaining blockers, and post-publication
 measurement plan. Do not present a draft as publish-ready when any P0 gate
-fails or human approval is absent.
+fails or the configured approval policy is incomplete.
