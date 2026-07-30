@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-advisor-comparison/
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
 japanese_chars: 4352
-reference_generated_at: 2026-07-30T13:24:51.264109+00:00
+reference_generated_at: 2026-07-30T13:28:52.284973+00:00
 ---
 
 # AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方 | AI顧問室

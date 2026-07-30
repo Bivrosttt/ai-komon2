@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-email-writing/
 dateModified: 2026-07-26
 schema_types: [Article, BreadcrumbList]
 japanese_chars: 2329
-reference_generated_at: 2026-07-30T13:24:51.368686+00:00
+reference_generated_at: 2026-07-30T13:28:52.366296+00:00
 ---
 
 # 営業メールをAIで作成する方法｜目的・材料・確認を5段階で整える | AI顧問室

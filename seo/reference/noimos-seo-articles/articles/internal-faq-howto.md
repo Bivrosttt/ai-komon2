@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/internal-faq-howto/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
 japanese_chars: 2249
-reference_generated_at: 2026-07-30T13:24:52.222676+00:00
+reference_generated_at: 2026-07-30T13:28:52.954770+00:00
 ---
 
 # 社内FAQの作り方｜質問を集めてAIで更新し続ける方法 | AI顧問室

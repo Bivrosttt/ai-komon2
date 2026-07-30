@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/gijiroku-template/
 dateModified: 2026-07-12
 schema_types: [Article, BreadcrumbList]
 japanese_chars: 2158
-reference_generated_at: 2026-07-30T13:24:52.133797+00:00
+reference_generated_at: 2026-07-30T13:28:52.920257+00:00
 ---
 
 # 議事録の書き方｜決定事項とToDoが残るテンプレート | AI顧問室

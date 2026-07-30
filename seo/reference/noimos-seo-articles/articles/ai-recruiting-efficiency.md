@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-recruiting-efficiency/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2463
-reference_generated_at: 2026-07-30T13:24:51.720249+00:00
+reference_generated_at: 2026-07-30T13:28:52.588381+00:00
 ---
 
 # 採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方 | AI顧問室

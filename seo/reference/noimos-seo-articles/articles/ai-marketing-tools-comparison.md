@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/ai-marketing-tools-comparison
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
 japanese_chars: 2557
-reference_generated_at: 2026-07-30T13:24:51.670237+00:00
+reference_generated_at: 2026-07-30T13:28:52.553530+00:00
 ---
 
 # AIマーケティングツール比較｜中小企業向け5タイプの選び方 | AI顧問室
@@ -87,7 +87,7 @@ reference_generated_at: 2026-07-30T13:24:51.670237+00:00
 - source: `ai-marketing-tools-comparison-thumbnail.svg`
 - dimensions: `unknown`
 - caption: AIマーケティングツール比較
-- sha256: `ef4b3a10de9d3a155bb18fc464ec020ee997a1a3e2aa5ad19dd06e6bb2a4282f`
+- sha256: `ef590a1f6a0ba2a8d59c237823a61281f62cad5d101f709ff94ab2362deabaed`
 
 ## 構造化データ（JSON-LD原文）
 

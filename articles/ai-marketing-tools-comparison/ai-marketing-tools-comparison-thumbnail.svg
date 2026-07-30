@@ -1,13 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
-  <title id="title">AIマーケティングツール比較</title>
-  <desc id="desc">AIマーケティングツール比較の記事サムネイル</desc>
+  <title id="title">ai-marketing-tools-comparison article thumbnail</title>
+  <desc id="desc">A gradient background with a friendly white icon</desc>
   <defs>
-    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#082448"/>
-      <stop offset="0.55" stop-color="#1769aa"/>
-      <stop offset="1" stop-color="#5fb7b2"/>
-    </linearGradient>
-  </defs>
-  <rect width="1600" height="900" rx="48" fill="url(#background)"/>
-  <path d="M-120 720 610 0h180L60 900h-180ZM500 900 1420 0h240L740 900H500Z" fill="#fff" opacity=".12"/>
+    <linearGradient id="bg-ai-marketing-tools-comparison" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5630ba"/><stop offset="1" stop-color="#9b65df"/></linearGradient>
+    <linearGradient id="icon-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#eee6ff"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#052341" flood-opacity=".18"/></filter></defs>
+  <rect width="1600" height="900" rx="48" fill="url(#bg-ai-marketing-tools-comparison)"/>
+  <path d="M-160 760 620 0h190L30 900h-190ZM500 900 1430 0h230L730 900H500Z" fill="#fff" opacity=".13"/>
+  <g filter="url(#shadow)"><g fill="url(#icon-fill)"><path d="m800 210 30 150 150 30-150 30-30 150-30-150-150-30 150-30 30-150Z"/><path d="m1060 470 18 88 88 18-88 18-18 88-18-88-88-18 88-18 18-88Z"/><circle cx="570" cy="560" r="30"/><circle cx="1030" cy="250" r="20"/></g></g>
 </svg>

@@ -56,3 +56,23 @@
 - 参照記事内の市場データ・価格・機能説明は、公開日時点の主張であり、当社の検証済み事実とは分けて扱う。
 - 比較表に記載する製品仕様や価格は、公開前に各社公式ページと対象プランを再確認する。
 - 比較記事で自社を推奨する場合も、向かないケース、確認点、停止条件を併記して信頼性を保つ。
+
+## 実画像の確認と量産ツール
+
+参照4ページのOG画像をダウンロードして目視確認した。いずれも900×506のPNGで、文字や長い説明はなく、背景の形状・色・中央の白いアイコンだけが違っていた。
+
+- 保存先（ローカル確認用）: `tmp/noimos-reference-thumbnails/`
+- `dental.png`: 水色の斜線背景 + 白い地球アイコン
+- `lead-generation.png`: 深い緑の曲線背景 + 白い地球アイコン
+- `content-strategy.png`: 青い曲線背景 + 白い棒グラフアイコン
+- `ai-cmo.png`: 紫の斜線背景 + 白い雲アイコン
+
+当社では、参照画像をそのまま再配布せず、同じ設計原則をオリジナルSVGとして量産する。
+
+```bash
+python3 scripts/generate_article_thumbnail.py \
+  --output articles/<slug>/<slug>-thumbnail.svg \
+  --icon sparkles --palette purple --shape diagonal --seed <slug>
+```
+
+利用可能なアイコンは `globe / cloud / bars / sparkles / bot / heart / megaphone`、背景は `diagonal / arcs / waves / rays / blobs`。slugをseedにすることで、記事ごとに背景形状を変えながら再現可能なサムネイルを生成できる。

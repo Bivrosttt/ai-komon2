@@ -5,7 +5,7 @@ canonical: https://ai-komon.bivrost.co.jp/articles/generative-ai-internal-rules/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
 japanese_chars: 2644
-reference_generated_at: 2026-07-30T13:24:51.983995+00:00
+reference_generated_at: 2026-07-30T13:28:52.869143+00:00
 ---
 
 # 生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方 | AI顧問室

@@ -262,6 +262,23 @@ class NoimosSkillTests(unittest.TestCase):
             )
             self.assertEqual(json.loads(blocked.read_text())["status"], "BLOCK")
 
+    def test_10_thumbnail_generator_creates_text_free_icon_cover(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            output = Path(temp) / "thumbnail.svg"
+            run_script(
+                "scripts/generate_article_thumbnail.py",
+                "--output", output,
+                "--icon", "sparkles",
+                "--palette", "purple",
+                "--shape", "diagonal",
+                "--seed", "test-thumbnail",
+            )
+            svg = output.read_text(encoding="utf-8")
+            self.assertIn("viewBox=\"0 0 1600 900\"", svg)
+            self.assertIn("icon-fill", svg)
+            self.assertIn("linearGradient", svg)
+            self.assertNotIn("Compare the system", svg)
+
 
 if __name__ == "__main__":
     unittest.main()
