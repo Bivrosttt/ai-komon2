@@ -31,6 +31,14 @@ python3 seo/scripts/run_daily.py --root .
 
 記事ページは `site_audit.py` の基本メタ監査に加えて、記事固有の図解、alt、figcaption、内部リンク、一次情報を確認する。図解のない記事は公開前の改善対象とする。
 
+## Noimos SEO記事リファレンス
+
+既存の自社SEO記事27本を、本文・見出し・装飾クラス・CSS・JSON-LD・CTA・画像・図解・リンク構造まで再利用できる形で [`reference/noimos-seo-articles/`](reference/noimos-seo-articles/) に整理している。再生成は次のコマンドで行う。
+
+```bash
+python3 scripts/build_noimos_seo_reference.py --out seo/reference/noimos-seo-articles
+```
+
 ## データソースの扱い
 
 - サジェストは意図の発見用で、検索数ではない。
