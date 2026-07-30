@@ -4,8 +4,8 @@ source_html: articles/generative-ai-internal-rules/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/generative-ai-internal-rules/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2619
-reference_generated_at: 2026-07-30T14:00:58.204225+00:00
+japanese_chars: 2600
+reference_generated_at: 2026-07-30T14:11:50.879029+00:00
 ---
 
 # 生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.204225+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/generative-ai-internal-rules/index.html`](../../../../articles/generative-ai-internal-rules/index.html)
-- source SHA-256: `4955a3809d1b4a2e678c5880986a3ba73530974b7dfefd56b44aa6eae64503b9`
+- source SHA-256: `3cdc74d3d6df6b758c4fde3f93ff787734f08e35f93260e494ea9e1cd213aab2`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2619`
+- 日本語文字数（article本文）: `2600`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `2` / details FAQ: `2`
 - internal links: `4` / external links: `3`
@@ -62,10 +62,6 @@ reference_generated_at: 2026-07-30T14:00:58.204225+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 社内ルールは「AIを使ってよいか」だけでは足りません。現場が止まらないように、入力情報と出力の扱いを、短い分類表と確認フローに落とし込みます。 |
 | `eyebrow` | `p`×1 | GENERATIVE AI / INTERNAL POLICY |
-| `hero-badges` | `div`×1 | 利用可 要確認 入力禁止 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / INTERNAL RULES |
-| `hero-title` | `span`×1 | 禁止だけでは、現場は動かない。迷わない境界をつくる。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / INTERNAL RULES 禁止だけでは、現場は動かない。迷わない境界をつくる。 利用可 要確認 入力禁止 |
 | `key-points` | `div`×1 | この記事の要点 入力情報を利用可・要確認・入力禁止の3分類へ分ける 迷ったときに誰へ確認し、どのログを残すかを決める 社内ルールはツール名ではなく、業務と情報の種類で更新する |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `note` | `div`×1 | 実務メモ： 最終判断者が不明なルールは、現場では使われません。「迷ったら誰に相談するか」「社外へ出す前に誰が確認するか」まで書いて完成です。 |
@@ -77,6 +73,7 @@ reference_generated_at: 2026-07-30T14:00:58.204225+00:00
 | `table-scroll` | `div`×2 | 分類 例 運用 利用可 公開済み商品情報、一般的な文章の下書き 出力を確認して利用 要確認 社内資料、顧客名を伏せた案件情報、未公開企画 承認者とサービス条件を確認 入力禁止 個人情報、認証情報、契約前の秘密情報 AIサービスへ入力しない |
 | `toc` | `div`×1 | この記事の目次 最低限決める6項目 入力情報を3分類する 社員へ展開する方法 定期的に見直す |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方のカバー画像 |
 
 ### 外部 stylesheet
 
@@ -91,7 +88,7 @@ reference_generated_at: 2026-07-30T14:00:58.204225+00:00
 
 - source: `generative-ai-internal-rules-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方のカバー画像
 - sha256: `3bf3627b5dcdd5dda3c6bd575350ace8fd230932bfd77a2cde673b8cc8e76a59`
 
 ## 構造化データ（JSON-LD原文）
@@ -151,9 +148,9 @@ GENERATIVE AI / INTERNAL POLICY
 
 公開日: 2026年7月12日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / INTERNAL RULES禁止だけでは、現場は動かない。迷わない境界をつくる。
+![生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方のシンプルな記事サムネイル](../media/generative-ai-internal-rules/generative-ai-internal-rules-thumbnail.svg)
 
-利用可要確認入力禁止
+生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方のカバー画像
 
 **先に結論：**生成AIの社内利用ルールは、情報を「入力してよい」「要確認」「入力禁止」の3色に分け、出力の確認者と事故時の相談先をセットで決めます。サービス名より、情報分類と業務ごとの確認手順を先に作るのが実務的です。
 
@@ -162,10 +159,6 @@ AI KOMONSHITSU / INTERNAL RULES禁止だけでは、現場は動かない。迷�
 - 入力情報を利用可・要確認・入力禁止の3分類へ分ける
 - 迷ったときに誰へ確認し、どのログを残すかを決める
 - 社内ルールはツール名ではなく、業務と情報の種類で更新する
-
-![生成AIの社内利用ルール｜社員が迷わず使える最低限の決め方のシンプルな記事サムネイル](../media/generative-ai-internal-rules/generative-ai-internal-rules-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

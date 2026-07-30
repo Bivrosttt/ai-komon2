@@ -4,8 +4,8 @@ source_html: articles/sales-efficiency/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/sales-efficiency/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2323
-reference_generated_at: 2026-07-30T14:00:58.456124+00:00
+japanese_chars: 2305
+reference_generated_at: 2026-07-30T14:11:51.427464+00:00
 ---
 
 # 営業効率化の方法｜見積・提案・追客のどこからAI化するか | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.456124+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/sales-efficiency/index.html`](../../../../articles/sales-efficiency/index.html)
-- source SHA-256: `38571fa3063e77262cda81b1490b67766716ae983d8c55f17c9a77051a97c581`
+- source SHA-256: `c74a09b18dc4a4a4ecee5576f8a80a62dc8cf6ede4aaaa707e9e199ccb65235a`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2323`
+- 日本語文字数（article本文）: `2305`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `3` / details FAQ: `2`
 - internal links: `6` / external links: `2`
@@ -62,10 +62,6 @@ reference_generated_at: 2026-07-30T14:00:58.456124+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 営業効率化は、営業担当者の行動を一括で自動化することではありません。見積、提案、追客、報告を分け、顧客接点のリスクが低い工程から整えます。 |
 | `eyebrow` | `p`×1 | SALES OPERATIONS / EFFICIENCY |
-| `hero-badges` | `div`×1 | 見積 提案 追客 報告 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / SALES EFFICIENCY |
-| `hero-title` | `span`×1 | 顧客に向き合う時間を残すため、社内作業から整える。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / SALES EFFICIENCY 顧客に向き合う時間を残すため、社内作業から整える。 見積 提案 追客 報告 |
 | `key-points` | `div`×1 | この記事の要点 営業の受付・見積・提案・追客を工程ごとに棚卸しする 顧客向けの約束や送信は人の確認を残し、社内作業から効率化する 時間だけでなく、差し戻し・返信遅延・引き継ぎの欠落を測る |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 見積書作成の時間を減らす 営業工数を具体的に測る AI活用事例 営業・議事録・問い合わせを比較 見積書AIデモ 見積の整理イメージを見る |
@@ -76,6 +72,7 @@ reference_generated_at: 2026-07-30T14:00:58.456124+00:00
 | `table-scroll` | `div`×3 | 工程 定型度 最初の改善案 営業報告 高い 入力項目を減らし、要約を補助 見積作成 高〜中 商品・単価の転記を整える 提案書 中 素材の整理と構成案を作る 追客 中 候補抽出と文面の下書き 顧客への送信 低〜中 人の承認を必須にする |
 | `toc` | `div`×1 | この記事の目次 営業プロセスを分ける AI化の優先順位 現場で回る改善手順 成果の測り方 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 営業効率化の方法｜見積・提案・追客のどこからAI化するかのカバー画像 |
 
 ### 外部 stylesheet
 
@@ -90,7 +87,7 @@ reference_generated_at: 2026-07-30T14:00:58.456124+00:00
 
 - source: `sales-efficiency-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 営業効率化の方法｜見積・提案・追客のどこからAI化するかのカバー画像
 - sha256: `02b91c8e7cbfb634c0c71a055a09a78777e1736c98977309289a3a7dba885fc6`
 
 ## 構造化データ（JSON-LD原文）
@@ -150,9 +147,9 @@ SALES OPERATIONS / EFFICIENCY
 
 公開日: 2026年7月12日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / SALES EFFICIENCY顧客に向き合う時間を残すため、社内作業から整える。
+![営業効率化の方法｜見積・提案・追客のどこからAI化するかのシンプルな記事サムネイル](../media/sales-efficiency/sales-efficiency-thumbnail.svg)
 
-見積提案追客報告
+営業効率化の方法｜見積・提案・追客のどこからAI化するかのカバー画像
 
 **先に結論：**営業効率化は、①社内報告・入力、②見積の転記、③提案書の下書き、④追客の候補整理の順で試すと、顧客への誤送信リスクを抑えやすくなります。受注率を先に約束せず、工数と対応漏れを測るのが基本です。
 
@@ -161,10 +158,6 @@ AI KOMONSHITSU / SALES EFFICIENCY顧客に向き合う時間を残すため、�
 - 営業の受付・見積・提案・追客を工程ごとに棚卸しする
 - 顧客向けの約束や送信は人の確認を残し、社内作業から効率化する
 - 時間だけでなく、差し戻し・返信遅延・引き継ぎの欠落を測る
-
-![営業効率化の方法｜見積・提案・追客のどこからAI化するかのシンプルな記事サムネイル](../media/sales-efficiency/sales-efficiency-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

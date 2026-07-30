@@ -4,8 +4,8 @@ source_html: articles/gijiroku-ai/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/gijiroku-ai/
 dateModified: 2026-07-12
 schema_types: [Article, BreadcrumbList, FAQPage]
-japanese_chars: 2395
-reference_generated_at: 2026-07-30T14:00:58.229445+00:00
+japanese_chars: 2406
+reference_generated_at: 2026-07-30T14:11:51.010664+00:00
 ---
 
 # 議事録をAIで効率化する方法｜自動作成の確認ポイント | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.229445+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/gijiroku-ai/index.html`](../../../../articles/gijiroku-ai/index.html)
-- source SHA-256: `3ced8769411f48992590b726134f9b173645f67985e4b7da1d35797250d2a408`
+- source SHA-256: `eae92e69df443f2f5a711166cc13276af5194e286a74f6f5f11c6b69b92528c7`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2395`
+- 日本語文字数（article本文）: `2406`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `1` / details FAQ: `3`
 - internal links: `5` / external links: `4`
@@ -71,6 +71,7 @@ reference_generated_at: 2026-07-30T14:00:58.229445+00:00
 | `table-scroll` | `div`×1 | 工程 AIに任せること 人が確認すること 1. 文字起こし 音声をテキストに変換 話者名、専門用語、数字 2. 要約 話題ごとの短い整理 重要な条件や反対意見の抜け 3. 決定事項抽出 結論らしい文を候補化 本当に合意した内容か 4. 人の確認 確認用の見出しや一覧を作る 担当者、期限、保留事項 5. 共有 指定フォーマットへ整形 権限、宛先、保存期間 |
 | `toc` | `div`×1 | この記事の目次 議事録AIで任せられる作業 品質管理の5段階 人が確認すべき項目 情報管理と導入前の確認 小さく試す手順 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 議事録をAIで効率化する方法｜自動作成の確認ポイントのカバー画像 |
 
 ### Inline CSS（原文）
 
@@ -95,23 +96,23 @@ reference_generated_at: 2026-07-30T14:00:58.229445+00:00
 
 ## 図解・画像
 
-### 会議中にノートパソコンとタスクカードを確認する様子
-
-![会議中にノートパソコンとタスクカードを確認する様子](../media/gijiroku-ai/gijiroku-ai-hero.webp)
-
-- source: `../../assets/articles/gijiroku-ai/gijiroku-ai-hero.webp`
-- dimensions: `1672×941`
-- caption: 記事テーマを示すシンプルなカバー画像。
-- sha256: `2b5a429febd806a11818b81b3e86e1b7609ed354baa7e846c02582d909f6ddaa`
-
 ### 議事録をAIで効率化する方法｜自動作成の確認ポイントのシンプルな記事サムネイル
 
 ![議事録をAIで効率化する方法｜自動作成の確認ポイントのシンプルな記事サムネイル](../media/gijiroku-ai/gijiroku-ai-thumbnail.svg)
 
 - source: `gijiroku-ai-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 議事録をAIで効率化する方法｜自動作成の確認ポイントのカバー画像
 - sha256: `38f2a141cdd5d398568b7a61daee494c30a6f62a719d4c4b995c1a3d9e9b4c08`
+
+### 会議中にノートパソコンとタスクカードを確認する様子
+
+![会議中にノートパソコンとタスクカードを確認する様子](../media/gijiroku-ai/gijiroku-ai-hero.webp)
+
+- source: `../../assets/articles/gijiroku-ai/gijiroku-ai-hero.webp`
+- dimensions: `1672×941`
+- caption: なし
+- sha256: `2b5a429febd806a11818b81b3e86e1b7609ed354baa7e846c02582d909f6ddaa`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -202,6 +203,10 @@ AI MEETING MINUTES / PRACTICAL GUIDE
 
 公開日: 2026年7月12日　|　AI顧問室 編集部
 
+![議事録をAIで効率化する方法｜自動作成の確認ポイントのシンプルな記事サムネイル](../media/gijiroku-ai/gijiroku-ai-thumbnail.svg)
+
+議事録をAIで効率化する方法｜自動作成の確認ポイントのカバー画像
+
 ![会議中にノートパソコンとタスクカードを確認する様子](../media/gijiroku-ai/gijiroku-ai-hero.webp)
 
 **先に結論：**議事録AIは「文字起こし → 要約 → 決定事項抽出 → 人の確認 → 共有」の5段階で使うと、速さと正確さを両立しやすくなります。まずは[無料の議事録テンプレート](/tools/gijiroku-template/)で残す項目を決め、次に[議事録AI体験デモ](/demo-minutes.html)で自動整理の範囲を確認するのがおすすめです。
@@ -231,10 +236,6 @@ AI MEETING MINUTES / PRACTICAL GUIDE
 ## 議事録AIの品質を保つ5段階とは？
 
 AI議事録は、一度の生成で完成させるより、処理を5段階に分ける方が確認漏れを見つけやすくなります。2026年3月31日時点で経済産業省の検討会ページにはAI事業者ガイドライン第1.2版が掲載されており、AIを使う側もリスクを認識して対策を行う考え方が示されています。
-
-![議事録をAIで効率化する方法｜自動作成の確認ポイントのシンプルな記事サムネイル](../media/gijiroku-ai/gijiroku-ai-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **01 / TRANSCRIBE**
 

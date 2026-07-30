@@ -4,8 +4,8 @@ source_html: articles/proposal-ai/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/proposal-ai/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2154
-reference_generated_at: 2026-07-30T14:00:58.412388+00:00
+japanese_chars: 2138
+reference_generated_at: 2026-07-30T14:11:51.393954+00:00
 ---
 
 # 提案書をAIで作成する方法｜営業の下書きと確認を分ける | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.412388+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/proposal-ai/index.html`](../../../../articles/proposal-ai/index.html)
-- source SHA-256: `c6428860500633e6321fe560bbb7865df5dc2f1d1d74e0e27e61b691d8549c62`
+- source SHA-256: `3c8b38ef067e25078a9900fd02422793a128f136872d66cfed8e862683d86adf`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2154`
+- 日本語文字数（article本文）: `2138`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `6` / external links: `3`
@@ -59,10 +59,6 @@ reference_generated_at: 2026-07-30T14:00:58.412388+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 提案書作成でAIを使うなら、顧客理解と責任ある判断を残しながら、情報整理と下書きを短くするのが基本です。営業担当者の経験を置き換えるのではなく、確認しやすい原稿へ整えます。 |
 | `eyebrow` | `p`×1 | SALES / PROPOSAL WORKFLOW |
-| `hero-badges` | `div`×1 | 情報整理 構成 確認 提出 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / PROPOSAL FLOW |
-| `hero-title` | `span`×1 | 提案の質を、下書きの速さだけで測らない。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / PROPOSAL FLOW 提案の質を、下書きの速さだけで測らない。 情報整理 構成 確認 提出 |
 | `key-points` | `div`×1 | この記事の要点 商談情報・顧客条件・提案構成・下書き・提出前確認を分ける AIには構成と下書きを任せ、価格・納期・約束は人が確定する 提出後の修正と失注理由を次のテンプレート改善へ戻す |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | AI導入の進め方 小さな試行で確認工程を作る 見積書作成の時間を減らす 数字と承認の確認を分ける AI導入のメリット 効果を導入前後で測る |
@@ -73,6 +69,7 @@ reference_generated_at: 2026-07-30T14:00:58.412388+00:00
 | `table-scroll` | `div`×2 | 工程 AIの補助 人が持つ判断 情報整理 商談メモの分類・要約 事実と推測の区別 構成 課題・提案・効果の並び替え 顧客に合う優先順位 下書き 文章、見出し、比較表の草案 自社の提供範囲と表現 確認 表記ゆれ・抜けの候補出し 金額、納期、契約、約束 提出 送付文の下書き 最終承認と送信 |
 | `toc` | `div`×1 | この記事の目次 AIへ任せる工程と任せない工程 入力情報を整える 構成案と下書きを作る 営業担当者が確認する項目 チームで再利用する方法 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 提案書をAIで作成する方法｜営業の下書きと確認を分けるのカバー画像 |
 
 ### 外部 stylesheet
 
@@ -87,7 +84,7 @@ reference_generated_at: 2026-07-30T14:00:58.412388+00:00
 
 - source: `proposal-ai-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 提案書をAIで作成する方法｜営業の下書きと確認を分けるのカバー画像
 - sha256: `ffc647734097b296320d6e57a79b6518ec7ab8dac936186b4e8ad8ac6127358a`
 
 ## 構造化データ（JSON-LD原文）
@@ -155,9 +152,9 @@ SALES / PROPOSAL WORKFLOW
 
 公開日: 2026年7月13日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / PROPOSAL FLOW提案の質を、下書きの速さだけで測らない。
+![提案書をAIで作成する方法｜営業の下書きと確認を分けるのシンプルな記事サムネイル](../media/proposal-ai/proposal-ai-thumbnail.svg)
 
-情報整理構成確認提出
+提案書をAIで作成する方法｜営業の下書きと確認を分けるのカバー画像
 
 **先に結論：**提案書は「商談情報の整理 → 顧客課題の構造化 → 構成案 → 下書き → 事実・条件の確認 → 顧客向け編集」に分けると、AIを安全に使えます。金額、納期、実績、契約条件、顧客への約束は人が確定してください。
 
@@ -166,10 +163,6 @@ AI KOMONSHITSU / PROPOSAL FLOW提案の質を、下書きの速さだけで測�
 - 商談情報・顧客条件・提案構成・下書き・提出前確認を分ける
 - AIには構成と下書きを任せ、価格・納期・約束は人が確定する
 - 提出後の修正と失注理由を次のテンプレート改善へ戻す
-
-![提案書をAIで作成する方法｜営業の下書きと確認を分けるのシンプルな記事サムネイル](../media/proposal-ai/proposal-ai-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

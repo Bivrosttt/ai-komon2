@@ -4,8 +4,8 @@ source_html: articles/invoice-efficiency/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/invoice-efficiency/
 dateModified: 2026-07-13
 schema_types: [Article]
-japanese_chars: 2385
-reference_generated_at: 2026-07-30T14:00:58.376186+00:00
+japanese_chars: 2374
+reference_generated_at: 2026-07-30T14:11:51.344378+00:00
 ---
 
 # 請求書作成を効率化する方法｜作成・確認・送付・記録をつなげる | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.376186+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/invoice-efficiency/index.html`](../../../../articles/invoice-efficiency/index.html)
-- source SHA-256: `fa0d2c4272efeeb702b2fe22584133c737d64fc6d6108a7770bdb01de590b622`
+- source SHA-256: `640eb30ffb2d3cccacdda061b53f25f56eae50c7391d82d5bc0978aa13c98963`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2385`
+- 日本語文字数（article本文）: `2374`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `5` / external links: `3`
@@ -59,10 +59,6 @@ reference_generated_at: 2026-07-30T14:00:58.376186+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 請求書の効率化は、PDFを早く作るだけでは終わりません。取引条件を正しく集め、金額と宛先を確認し、送付と入金記録までつなげると、月末の手戻りを減らせます。 |
 | `eyebrow` | `p`×1 | BACK OFFICE / INVOICE OPERATIONS |
-| `hero-badges` | `div`×1 | 取引データ 作成 承認 送付 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / INVOICE OPERATIONS |
-| `hero-title` | `span`×1 | 発行だけでなく、確認と記録まで整える。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / INVOICE OPERATIONS 発行だけでなく、確認と記録まで整える。 取引データ 作成 承認 送付 |
 | `key-points` | `div`×1 | この記事の要点 最初に統一するのは請求書のデザインより、元データと項目の持ち方 金額・宛先・税区分・対象期間は自動作成後に必ず照合する 作成時間だけでなく、差し戻し・再送・入金確認まで測る |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `note` | `div`×1 | 制度面の注意： インボイス制度、電子帳簿保存法、取引先との個別条件は、最新の公的情報と自社の経理・税務担当者に照合します。AIに制度適合性の最終判断を任せません。 |
@@ -74,6 +70,7 @@ reference_generated_at: 2026-07-30T14:00:58.376186+00:00
 | `table-scroll` | `div`×2 | 工程 起きやすい詰まり 見直すポイント 取引条件 営業メモと契約条件が違う 確定データの所有者 作成 毎回同じ項目を転記する 項目名・単価・期間の標準化 確認 担当者が目視で探す 確認欄と承認者の固定 送付・記録 送付済みや入金状況が追えない ステータスと期限の一元管理 |
 | `toc` | `div`×1 | この記事の目次 どこで時間がかかるか 先に取引データを揃える 請求書の確認項目 AI・自動化を入れる場所 効果の測り方 失敗時に戻す方法 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 請求書作成を効率化する方法｜作成・確認・送付・記録をつなげるのカバー画像 |
 
 ### 外部 stylesheet
 
@@ -88,7 +85,7 @@ reference_generated_at: 2026-07-30T14:00:58.376186+00:00
 
 - source: `invoice-efficiency-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 請求書作成を効率化する方法｜作成・確認・送付・記録をつなげるのカバー画像
 - sha256: `1d685dc791798de2bffe0a10d0f75fb4c30f8c2b9d9eb95a214719217d33125d`
 
 ## 構造化データ（JSON-LD原文）
@@ -126,15 +123,11 @@ BACK OFFICE / INVOICE OPERATIONS
 
 公開日: 2026年7月13日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / INVOICE OPERATIONS発行だけでなく、確認と記録まで整える。
-
-取引データ作成承認送付
-
-**先に結論：**請求書作成は、①取引データを一か所に集める、②請求書を作る、③金額・宛先・税区分を確認する、④送付と入金状況を記録する、の4段階で見直します。AIや自動化は転記・定型文・台帳更新の補助に使い、金額と送付先の最終確認は人が行います。
-
 ![請求書作成を効率化する方法｜作成・確認・送付・記録をつなげるのシンプルな記事サムネイル](../media/invoice-efficiency/invoice-efficiency-thumbnail.svg)
 
-記事テーマを示すシンプルなカバー画像。
+請求書作成を効率化する方法｜作成・確認・送付・記録をつなげるのカバー画像
+
+**先に結論：**請求書作成は、①取引データを一か所に集める、②請求書を作る、③金額・宛先・税区分を確認する、④送付と入金状況を記録する、の4段階で見直します。AIや自動化は転記・定型文・台帳更新の補助に使い、金額と送付先の最終確認は人が行います。
 
 **この記事の要点**
 

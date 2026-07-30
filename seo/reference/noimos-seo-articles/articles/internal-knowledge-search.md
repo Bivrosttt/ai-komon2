@@ -4,8 +4,8 @@ source_html: articles/internal-knowledge-search/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/internal-knowledge-search/
 dateModified: 2026-07-26
 schema_types: [Article, BreadcrumbList]
-japanese_chars: 2318
-reference_generated_at: 2026-07-30T14:00:58.344967+00:00
+japanese_chars: 2331
+reference_generated_at: 2026-07-30T14:11:51.211401+00:00
 ---
 
 # 社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐ | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.344967+00:00
 - published: `2026-07-26`
 - modified: `2026-07-26`
 - source HTML: [`articles/internal-knowledge-search/index.html`](../../../../articles/internal-knowledge-search/index.html)
-- source SHA-256: `03acabbc7724ed2e659df1e86094d5bb241966bd68bc2dd9a03f0f47eff4e7e7`
+- source SHA-256: `5fc2269cba20b674d414c2551ece00a6156f38b5c43429a1feaa5d2839f4b210`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2318`
+- 日本語文字数（article本文）: `2331`
 - H1: `1` / H2: `8` / H3: `3`
 - table: `1` / details FAQ: `3`
 - internal links: `4` / external links: `3`
@@ -69,6 +69,7 @@ reference_generated_at: 2026-07-30T14:00:58.344967+00:00
 | `table-scroll` | `div`×1 | 項目 登録する内容 未整理のときのリスク 資料名 業務名・手順名・質問カテゴリ 似た資料を混同する 版・更新日 適用開始日、廃止日、改訂者 古い手順を返す 根拠 規程、契約、公式手順、決定記録 回答を検証できない 権限 部署、役割、閲覧範囲 見せてはいけない情報を返す |
 | `toc` | `div`×1 | この記事の目次 社内検索とチャットの違い 根拠資料を整える方法 回答に確認工程を入れる 質問ログを更新へ戻す 小さく始める手順 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐのカバー画像 |
 
 ### 外部 stylesheet
 
@@ -83,7 +84,7 @@ reference_generated_at: 2026-07-30T14:00:58.344967+00:00
 
 - source: `internal-knowledge-search-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐのカバー画像
 - sha256: `cee112c0ca2b64636d71819e7eea0d90c8b0ff76e0ed8542054f83d39e65af04`
 
 ## 構造化データ（JSON-LD原文）
@@ -147,7 +148,7 @@ KNOWLEDGE / INTERNAL SEARCH
 
 ![社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐのシンプルな記事サムネイル](../media/internal-knowledge-search/internal-knowledge-search-thumbnail.svg)
 
-記事テーマを示すシンプルなカバー画像。
+社内ナレッジ検索に生成AIを使う方法｜FAQと根拠資料をつなぐのカバー画像
 
 **先に結論：**生成AIを社内検索に使うときは、まず資料の版・責任者・公開範囲を整え、回答候補に根拠を添え、人が確認してから業務へ戻します。答えが見つからない質問も、FAQや手順書を更新する材料として記録します。
 

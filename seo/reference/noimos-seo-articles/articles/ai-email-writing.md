@@ -4,8 +4,8 @@ source_html: articles/ai-email-writing/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-email-writing/
 dateModified: 2026-07-26
 schema_types: [Article, BreadcrumbList]
-japanese_chars: 2298
-reference_generated_at: 2026-07-30T14:00:57.739318+00:00
+japanese_chars: 2314
+reference_generated_at: 2026-07-30T14:11:49.874968+00:00
 ---
 
 # 営業メールをAIで作成する方法｜目的・材料・確認を5段階で整える | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:57.739318+00:00
 - published: `2026-07-26`
 - modified: `2026-07-26`
 - source HTML: [`articles/ai-email-writing/index.html`](../../../../articles/ai-email-writing/index.html)
-- source SHA-256: `5e219985671937913e1d4a887adfd6db2615e2c097420d49d205895340c1498c`
+- source SHA-256: `b1ab6dd35e600bad990d3845ab1ecc0e4557865b076aa6a742a75907b2c246c3`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2298`
+- 日本語文字数（article本文）: `2314`
 - H1: `1` / H2: `8` / H3: `5`
 - table: `1` / details FAQ: `3`
 - internal links: `4` / external links: `3`
@@ -71,6 +71,7 @@ reference_generated_at: 2026-07-30T14:00:57.739318+00:00
 | `table-scroll` | `div`×1 | 確認項目 見る内容 止める条件 事実 会社名、案件名、相手の発言、添付 根拠が見つからない 約束 金額、納期、対応範囲、次回日時 社内承認がない 宛先 To / Cc / 添付ファイル 共有範囲が不明 情報 個人情報、機密、未公開の条件 入力・送信ルールに違反 |
 | `toc` | `div`×1 | この記事の目次 営業メールにAIを使う範囲 5段階の作成手順 そのまま使える指示の型 送信前に確認する項目 小さく試して測る方法 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 営業メールをAIで作成する方法｜目的・材料・確認を5段階で整えるのカバー画像 |
 
 ### 外部 stylesheet
 
@@ -85,7 +86,7 @@ reference_generated_at: 2026-07-30T14:00:57.739318+00:00
 
 - source: `ai-email-writing-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 営業メールをAIで作成する方法｜目的・材料・確認を5段階で整えるのカバー画像
 - sha256: `79bd90b41a58b90b2910a5ab3d624fea1c609717a17d92bb0dc27d5dc729511b`
 
 ## 構造化データ（JSON-LD原文）
@@ -149,7 +150,7 @@ SALES OPERATIONS / AI EMAIL
 
 ![営業メールをAIで作成する方法｜目的・材料・確認を5段階で整えるのシンプルな記事サムネイル](../media/ai-email-writing/ai-email-writing-thumbnail.svg)
 
-記事テーマを示すシンプルなカバー画像。
+営業メールをAIで作成する方法｜目的・材料・確認を5段階で整えるのカバー画像
 
 **先に結論：**営業メールのAI作成は、①誰に何を伝えるか、②根拠となる事実、③宛先・期限・トーン、④下書き、⑤人の確認の順に進めます。顧客への約束、金額、納期、個人情報を含む内容は、AIの出力をそのまま送信しません。
 

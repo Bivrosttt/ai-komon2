@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Apply article-specific Noimos-style thumbnails to existing article pages.
 
-The refresh is intentionally scoped to share previews and Article JSON-LD:
-canonical URLs, visible article copy, existing diagrams, and redirects are
-left unchanged. Running it repeatedly is safe because metadata is replaced by
-the same canonical thumbnail URL.
+The refresh is intentionally scoped to share previews and the opening article
+cover: canonical URLs, article copy, detailed source assets, and redirects are
+left unchanged. Running it repeatedly is safe because metadata and cover
+placement are replaced by the same canonical thumbnail URL.
 """
 
 from __future__ import annotations
@@ -93,11 +93,11 @@ def replace_jsonld_image(html: str, url: str) -> str:
 
 
 def replace_visible_cover(page_html: str, slug: str) -> str:
-    """Use the generated SVG as the first visible article cover.
+    """Place the generated SVG immediately after the article metadata.
 
-    Existing detailed diagrams remain available as source assets, but the
-    article opening now follows the Noimos pattern: one simple, article-
-    specific cover image with a descriptive caption.
+    The Noimos pattern uses one simple cover between the author/date line and
+    the article body. The old custom hero block is removed; detailed source
+    assets are not deleted.
     """
     figure_match = re.search(r'<figure\b[^>]*>.*?</figure>', page_html, flags=re.IGNORECASE | re.DOTALL)
     if not figure_match or not re.search(r'<img\b', figure_match.group(0), flags=re.IGNORECASE):
@@ -105,24 +105,31 @@ def replace_visible_cover(page_html: str, slug: str) -> str:
     h1_match = re.search(r'<h1\b[^>]*>(.*?)</h1>', page_html, flags=re.IGNORECASE | re.DOTALL)
     title = re.sub(r'<[^>]+>', '', h1_match.group(1)).strip() if h1_match else slug.replace('-', ' ')
     alt = html.escape(f'{title}のシンプルな記事サムネイル', quote=True)
-    caption = html.escape('記事テーマを示すシンプルなカバー画像。')
+    caption = html.escape(f'{title}のカバー画像')
     new_img = (
         f'<img src="{slug}-thumbnail.svg" alt="{alt}" width="1600" height="900" '
         'loading="eager" fetchpriority="high">'
     )
     figure = figure_match.group(0)
     figure = re.sub(r'<img\b[^>]*>', new_img, figure, count=1, flags=re.IGNORECASE)
-    if re.search(r'<figcaption\b[^>]*>.*?</figcaption>', figure, flags=re.IGNORECASE | re.DOTALL):
-        figure = re.sub(
-            r'<figcaption\b[^>]*>.*?</figcaption>',
-            f'<figcaption>{caption}</figcaption>',
-            figure,
-            count=1,
-            flags=re.IGNORECASE | re.DOTALL,
-        )
-    else:
-        figure = figure.replace('</figure>', f'<figcaption>{caption}</figcaption></figure>', 1)
-    return page_html[: figure_match.start()] + figure + page_html[figure_match.end() :]
+    # Keep the required semantic caption without displaying a duplicate line
+    # under the thumbnail.
+    figure = re.sub(r'<figcaption\b[^>]*>.*?</figcaption>', '', figure, count=1, flags=re.IGNORECASE | re.DOTALL)
+    figure = figure.replace('</figure>', f'<figcaption class="visually-hidden">{caption}</figcaption></figure>', 1)
+    without_cover = page_html[: figure_match.start()] + page_html[figure_match.end() :]
+
+    # Remove the former text-heavy hero block wherever it was inserted.
+    without_cover = re.sub(
+        r'\s*(?:<!--\s*noimos-refresh:hero\s*-->\s*)?<div class="hero-visual">.*?<div class="hero-badges">.*?</div>\s*</div>',
+        '',
+        without_cover,
+        count=1,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    meta_match = re.search(r'<p\b[^>]*>.*?公開日:.*?</p>', without_cover, flags=re.IGNORECASE | re.DOTALL)
+    if not meta_match:
+        return without_cover + '\n' + figure
+    return without_cover[: meta_match.end()] + '\n  ' + figure + without_cover[meta_match.end() :]
 
 
 def refresh_page(page: Path, root: Path) -> dict[str, str | bool]:

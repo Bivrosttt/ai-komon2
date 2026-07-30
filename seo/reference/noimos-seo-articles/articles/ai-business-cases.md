@@ -4,8 +4,8 @@ source_html: articles/ai-business-cases/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-business-cases/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2375
-reference_generated_at: 2026-07-30T14:00:57.695314+00:00
+japanese_chars: 2368
+reference_generated_at: 2026-07-30T14:11:49.830250+00:00
 ---
 
 # AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むか | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:57.695314+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-business-cases/index.html`](../../../../articles/ai-business-cases/index.html)
-- source SHA-256: `ffbd170d3cdf2773ae8b7bb01c26b87eb1a3ff05e0b3ae9b3b3ab5fb2921b964`
+- source SHA-256: `6ccd7c3d4b4968434977458fbe12970f9fd3a0772af6a11f7d515dab8ffefda6`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2375`
+- 日本語文字数（article本文）: `2368`
 - H1: `1` / H2: `12` / H3: `4`
 - table: `2` / details FAQ: `2`
 - internal links: `10` / external links: `2`
@@ -63,10 +63,6 @@ reference_generated_at: 2026-07-30T14:00:57.695314+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | AI活用事例を見るときは、派手な成果より業務のつなぎ方に注目します。困りごと、入力、AIの補助、人の確認、システムへの戻し方を分けると、自社で試せる範囲が見えてきます。 |
 | `eyebrow` | `p`×1 | AI USE CASES / BUSINESS |
-| `hero-badges` | `div`×1 | 困りごと 入力 確認 実行 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / USE CASE MAP |
-| `hero-title` | `span`×1 | AI単体ではなく、業務の途中に置く。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / USE CASE MAP AI単体ではなく、業務の途中に置く。 困りごと 入力 確認 実行 |
 | `key-points` | `div`×1 | この記事の要点 事例は困りごと・入力・AI処理・人の確認・業務へ戻す工程に分けて読む 派手な成果数値ではなく、自社で確認できる小さな業務から試す 実績・体験デモ・想定例を区別し、導入前後の測定条件をそろえる |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 業務効率化のアイデア 最初に見直す定型業務 AI導入の進め方 30日で小さく検証 デモ一覧 業務ごとの体験を見る |
@@ -76,6 +72,7 @@ reference_generated_at: 2026-07-30T14:00:57.695314+00:00
 | `table-scroll` | `div`×2 | 事例 入力 AIの補助 人の確認 営業 商談メモ 論点・見積候補 条件と顧客意向 議事録 音声・メモ 要約・ToDo整理 決定事項・期限 問い合わせ 質問文 分類・回答案 最新版と個別事情 |
 | `toc` | `div`×1 | この記事の目次 3事例に共通する構造 営業・見積 議事録 問い合わせ対応 自社で選ぶ基準 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むかのカバー画像 |
 
 ### 外部 stylesheet
 
@@ -90,7 +87,7 @@ reference_generated_at: 2026-07-30T14:00:57.695314+00:00
 
 - source: `ai-business-cases-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むかのカバー画像
 - sha256: `98a971af6454d9336ed354b9e9e8fb2656c78687bc4f52cf4dd9698eb7529381`
 
 ## 構造化データ（JSON-LD原文）
@@ -150,9 +147,9 @@ AI活用事例を見るときは、派手な成果より業務のつなぎ方に
 
 公開日: 2026年7月12日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / USE CASE MAPAI単体ではなく、業務の途中に置く。
+![AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むかのシンプルな記事サムネイル](../media/ai-business-cases/ai-business-cases-thumbnail.svg)
 
-困りごと入力確認実行
+AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むかのカバー画像
 
 **先に結論：**AI活用の共通形は「困りごと → 入力 → AI処理 → 人の確認 → 業務システム」です。営業の下書き、議事録の整理、問い合わせの分類など、確認しやすい工程から始めると、自社の運用へ移しやすくなります。
 
@@ -161,10 +158,6 @@ AI KOMONSHITSU / USE CASE MAPAI単体ではなく、業務の途中に置く。
 - 事例は困りごと・入力・AI処理・人の確認・業務へ戻す工程に分けて読む
 - 派手な成果数値ではなく、自社で確認できる小さな業務から試す
 - 実績・体験デモ・想定例を区別し、導入前後の測定条件をそろえる
-
-![AI活用事例｜営業・議事録・問い合わせ対応をどう業務に組み込むかのシンプルな記事サムネイル](../media/ai-business-cases/ai-business-cases-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

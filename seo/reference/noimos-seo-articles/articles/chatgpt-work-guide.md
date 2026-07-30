@@ -4,8 +4,8 @@ source_html: articles/chatgpt-work-guide/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/chatgpt-work-guide/
 dateModified: 2026-07-13
 schema_types: [Article]
-japanese_chars: 2338
-reference_generated_at: 2026-07-30T14:00:58.043793+00:00
+japanese_chars: 2325
+reference_generated_at: 2026-07-30T14:11:50.625148+00:00
 ---
 
 # ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.043793+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/chatgpt-work-guide/index.html`](../../../../articles/chatgpt-work-guide/index.html)
-- source SHA-256: `6c141ab24994385f0c6c86e6c48c7377b76ee31e1ab976907a61b46fe5c44af4`
+- source SHA-256: `ff8e26a31c6e61a4bd71175d2bc80326ee7d8289c1c8a7458a4c302504b7ee67`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2338`
+- 日本語文字数（article本文）: `2325`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `3` / details FAQ: `3`
 - internal links: `5` / external links: `3`
@@ -59,10 +59,6 @@ reference_generated_at: 2026-07-30T14:00:58.043793+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | ChatGPTは質問に答えるだけでなく、文章の下書き、情報整理、比較、会議準備などの補助に使えます。ただし、良い結果を得るには目的・材料・条件を揃え、出力を確認して業務へ戻す手順が必要です。 |
 | `eyebrow` | `p`×1 | WORKFLOW / CHATGPT FOR BUSINESS |
-| `hero-badges` | `div`×1 | 目的 材料 条件 確認 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / CHATGPT WORKFLOW |
-| `hero-title` | `span`×1 | 聞くだけで終わらせず、仕事の工程へ戻す。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / CHATGPT WORKFLOW 聞くだけで終わらせず、仕事の工程へ戻す。 目的 材料 条件 確認 |
 | `key-points` | `div`×1 | この記事の要点 ChatGPTはゼロから任せるより、材料を整理して下書きを作る用途で始める 出力の事実、数字、宛先、社内ルールを人が確認する プロンプトを個人技にせず、良い例・確認項目・保存場所を共有する |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `note` | `div`×1 | AIの出力をそのまま送らない： 顧客向けメール、契約・請求に関わる文書、採用判断、個人情報を含む文章は、担当者が原資料と社内ルールを確認してから使います。 |
@@ -74,6 +70,7 @@ reference_generated_at: 2026-07-30T14:00:58.043793+00:00
 | `table-scroll` | `div`×3 | 業務 ChatGPTに頼むこと 人が確認すること メール 要点から返信の下書き 事実、温度感、宛先、約束 会議準備 論点、質問、決定事項の整理 前提、参加者、優先順位 提案書 顧客情報から構成案と初稿 実績、価格、固有名詞、表現 社内文書 長文の要約と箇条書き 抜け落ちた条件と最新版 アイデア整理 選択肢、比較軸、質問案 実行可能性と自社事情 |
 | `toc` | `div`×1 | この記事の目次 最初に試しやすい5業務 指示を安定させる型 出力を確認する方法 社内で使い続ける仕組み 入力してはいけない情報 そのまま使える依頼の型 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方のカバー画像 |
 
 ### 外部 stylesheet
 
@@ -88,7 +85,7 @@ reference_generated_at: 2026-07-30T14:00:58.043793+00:00
 
 - source: `chatgpt-work-guide-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方のカバー画像
 - sha256: `6f61319fe52fddd982235c0f19f6100931a7c19c7596220eb3e6b1e73f448024`
 
 ## 構造化データ（JSON-LD原文）
@@ -126,15 +123,11 @@ ChatGPTは質問に答えるだけでなく、文章の下書き、情報整理�
 
 公開日: 2026年7月13日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / CHATGPT WORKFLOW聞くだけで終わらせず、仕事の工程へ戻す。
-
-目的材料条件確認
-
-**先に結論：**ChatGPTを仕事で使うときは、「目的を決める → 材料を渡す → 条件を指定する → 出力を確認する → 業務へ反映する」の5段階に分けます。最初はメール・議事録・提案書の下書きなど、結果を人が確認しやすい定型業務から始めてください。
-
 ![ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方のシンプルな記事サムネイル](../media/chatgpt-work-guide/chatgpt-work-guide-thumbnail.svg)
 
-記事テーマを示すシンプルなカバー画像。
+ChatGPTを仕事で使う方法｜中小企業の最初の5業務と安全な進め方のカバー画像
+
+**先に結論：**ChatGPTを仕事で使うときは、「目的を決める → 材料を渡す → 条件を指定する → 出力を確認する → 業務へ反映する」の5段階に分けます。最初はメール・議事録・提案書の下書きなど、結果を人が確認しやすい定型業務から始めてください。
 
 **この記事の要点**
 

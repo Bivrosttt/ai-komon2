@@ -4,8 +4,8 @@ source_html: articles/task-priority/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/task-priority/
 dateModified: 2026-07-26
 schema_types: [Article, BreadcrumbList]
-japanese_chars: 2262
-reference_generated_at: 2026-07-30T14:00:58.491233+00:00
+japanese_chars: 2277
+reference_generated_at: 2026-07-30T14:11:51.457669+00:00
 ---
 
 # タスクの優先順位の付け方｜緊急度だけで決めない4つの判断軸 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.491233+00:00
 - published: `2026-07-26`
 - modified: `2026-07-26`
 - source HTML: [`articles/task-priority/index.html`](../../../../articles/task-priority/index.html)
-- source SHA-256: `6dbe67ff637883a227d062c42b9270776fc157f40d1469e97f978546ba5552cb`
+- source SHA-256: `996062bc5b6ee2758a4e41b4a15d0aced9ff8d4e15e556d9e562bd2313763e1d`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2262`
+- 日本語文字数（article本文）: `2277`
 - H1: `1` / H2: `8` / H3: `4`
 - table: `1` / details FAQ: `3`
 - internal links: `5` / external links: `3`
@@ -70,6 +70,7 @@ reference_generated_at: 2026-07-30T14:00:58.491233+00:00
 | `table-scroll` | `div`×1 | 判断軸 高い状態 確認する質問 影響 顧客、売上、安全、法令に直結 止めると何が困るか？ 期限 今日・明日が締切、遅延が連鎖 本当の締切はいつか？ 待ち時間 他者や後工程が止まっている 誰が何を待っているか？ 再利用性 テンプレートや仕組みとして何度も使う 一度直すと何回減るか？ |
 | `toc` | `div`×1 | この記事の目次 優先順位が崩れる理由 4つの判断軸 4象限に分ける方法 AIに任せる範囲 毎日・毎週の見直し |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | タスクの優先順位の付け方｜緊急度だけで決めない4つの判断軸のカバー画像 |
 
 ### 外部 stylesheet
 
@@ -84,7 +85,7 @@ reference_generated_at: 2026-07-30T14:00:58.491233+00:00
 
 - source: `task-priority-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: タスクの優先順位の付け方｜緊急度だけで決めない4つの判断軸のカバー画像
 - sha256: `0726409b02bf70abff6d20a48bb648cfdb563399bade9a85e22990c60e5dfc1f`
 
 ## 構造化データ（JSON-LD原文）
@@ -148,7 +149,7 @@ OPERATIONS / TASK PRIORITY
 
 ![タスクの優先順位の付け方｜緊急度だけで決めない4つの判断軸のシンプルな記事サムネイル](../media/task-priority/task-priority-thumbnail.svg)
 
-記事テーマを示すシンプルなカバー画像。
+タスクの優先順位の付け方｜緊急度だけで決めない4つの判断軸のカバー画像
 
 **先に結論：**タスクの優先順位は、影響の大きさ、期限の近さ、他者の待ち時間、再利用性の4軸で決めます。今やる、期限を決める、任せる・仕組み化する、やめる・保留するの4つに分けると、着手順と判断理由を共有できます。
 

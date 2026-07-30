@@ -4,8 +4,8 @@ source_html: articles/ai-advisor-comparison/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-advisor-comparison/
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
-japanese_chars: 4349
-reference_generated_at: 2026-07-30T14:00:57.545402+00:00
+japanese_chars: 4323
+reference_generated_at: 2026-07-30T14:11:49.704274+00:00
 ---
 
 # AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:57.545402+00:00
 - published: `2026-07-30`
 - modified: `2026-07-30`
 - source HTML: [`articles/ai-advisor-comparison/index.html`](../../../../articles/ai-advisor-comparison/index.html)
-- source SHA-256: `09f98f16dd16eb3dbb56cbbf481961eca17447902443f6574992ea147e6b1b74`
+- source SHA-256: `cdf6c4498f619fffd3eeb861513719adaaa2ddbdd6f74392d7471d6955946168`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `4349`
+- 日本語文字数（article本文）: `4323`
 - H1: `1` / H2: `12` / H3: `4`
 - table: `2` / details FAQ: `0`
 - internal links: `8` / external links: `2`
@@ -61,15 +61,12 @@ reference_generated_at: 2026-07-30T14:00:57.545402+00:00
 | class | element count | purpose/sample |
 | --- | ---: | --- |
 | `answer` | `div`×1 | 先に結論： AI顧問は、最安値ではなく「最初の90日で、どの業務を、どこまで変え、誰が確認し、どう社内へ残すか」で比較してください。相談だけ、研修だけ、ツール導入だけ、個別開発、継続伴走では役割が違います。自社の目的に合わない支援を安く買うより、対象業務と完了条件が一致する支援を小さく試す方が判断しやすくなります。 |
-| `hero-badges` | `div`×1 | 対象業務 実装範囲 承認 総費用 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / AI ADVISOR COMPARISON |
-| `hero-title` | `span`×1 | AI顧問を比較するときは、料金より業務の完了条件からそろえる。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / AI ADVISOR COMPARISON AI顧問を比較するときは、料金より業務の完了条件からそろえる。 対象業務 実装範囲 承認 総費用 |
 | `key-points` | `div`×1 | この記事の要点 料金だけでなく、対象業務・実装範囲・人の確認・総費用・定着支援を同じ条件で比べる 顧客送信、契約・請求、権限変更、削除は人の承認を残す 提案書に成果物、追加費用、停止条件、引き継ぎ方法を書いてもらう |
 | `related` | `div`×1 | AI顧問の費用 初期・月額・従量まで総額で見る AI導入の進め方 30日で小さく試す AI導入の費用対効果 回収期間を試算する |
 | `service-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
 | `table-scroll` | `div`×2 | 比較基準 確認する内容 良い回答の例 注意する回答 対象業務 最初に扱う一業務、開始・完了条件 対象と対象外を言える 「何でもAI化できます」 実装範囲 助言、設定、試作、本番、保守 成果物と責任分界が明確 実装費が後からしか分からない 人の確認 送信、公開、支払い、削除の承認 止める地点とログがある 完全自動だけを強調する 費用構造 初期、月額、従量、追加改修、解約 総額を条件付きで試算できる 月額だけが安く見える 定着支援 研修、手 |
 | `toc` | `div`×1 | この記事の目次 AI顧問は何を基準に比較すればよいですか？ 比較すべき5つの基準 支援タイプの違いをどう見分けますか？ 費用は月額ではなく総コストで比べる 初回面談で確認する10の質問 提案書を同じ一枚にそろえて比較する AI顧問選びで起きやすい失敗 AI顧問室が向く会社・向かない会社 |
+| `visually-hidden` | `figcaption`×1 | AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方のカバー画像 |
 
 ### Inline CSS（原文）
 
@@ -105,7 +102,7 @@ reference_generated_at: 2026-07-30T14:00:57.545402+00:00
 
 - source: `ai-advisor-comparison-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方のカバー画像
 - sha256: `58716a977481cfb9345a918d3fcaf5c8d641907cc26be679f6f780399381a678`
 
 ## 構造化データ（JSON-LD原文）
@@ -192,9 +189,9 @@ reference_generated_at: 2026-07-30T14:00:57.545402+00:00
 
 公開日: 2026年7月30日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / AI ADVISOR COMPARISONAI顧問を比較するときは、料金より業務の完了条件からそろえる。
+![AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方のシンプルな記事サムネイル](../media/ai-advisor-comparison/ai-advisor-comparison-thumbnail.svg)
 
-対象業務実装範囲承認総費用
+AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方のカバー画像
 
 **先に結論：**
 AI顧問は、最安値ではなく「最初の90日で、どの業務を、どこまで変え、誰が確認し、どう社内へ残すか」で比較してください。相談だけ、研修だけ、ツール導入だけ、個別開発、継続伴走では役割が違います。自社の目的に合わない支援を安く買うより、対象業務と完了条件が一致する支援を小さく試す方が判断しやすくなります。
@@ -204,10 +201,6 @@ AI顧問は、最安値ではなく「最初の90日で、どの業務を、ど�
 - 料金だけでなく、対象業務・実装範囲・人の確認・総費用・定着支援を同じ条件で比べる
 - 顧客送信、契約・請求、権限変更、削除は人の承認を残す
 - 提案書に成果物、追加費用、停止条件、引き継ぎ方法を書いてもらう
-
-![AI顧問を比較する5つの基準｜中小企業向け選び方と費用の見方のシンプルな記事サムネイル](../media/ai-advisor-comparison/ai-advisor-comparison-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

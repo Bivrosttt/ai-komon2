@@ -4,8 +4,8 @@ source_html: articles/internal-faq-howto/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/internal-faq-howto/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2220
-reference_generated_at: 2026-07-30T14:00:58.323865+00:00
+japanese_chars: 2201
+reference_generated_at: 2026-07-30T14:11:51.179162+00:00
 ---
 
 # 社内FAQの作り方｜質問を集めてAIで更新し続ける方法 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.323865+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/internal-faq-howto/index.html`](../../../../articles/internal-faq-howto/index.html)
-- source SHA-256: `847752b460803703b9b6c9e8b5b5e78b24ea1765a8be26f3ac23e23f6ea8ab46`
+- source SHA-256: `b7398ef4ac0ed4901f6abc2fe9311752668d66420949af186d91f8099a2a3cb9`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2220`
+- 日本語文字数（article本文）: `2201`
 - H1: `1` / H2: `10` / H3: `3`
 - table: `3` / details FAQ: `3`
 - internal links: `6` / external links: `3`
@@ -60,10 +60,6 @@ reference_generated_at: 2026-07-30T14:00:58.323865+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 社内FAQは、質問と答えを並べるだけでは使われません。実際の問い合わせを集め、答えの根拠と更新者を決め、AIは検索や下書きの補助に置くと、現場の自己解決へつなげやすくなります。 |
 | `eyebrow` | `p`×1 | KNOWLEDGE / INTERNAL FAQ |
-| `hero-badges` | `div`×1 | 質問収集 根拠資料 回答確認 更新 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / INTERNAL FAQ |
-| `hero-title` | `span`×1 | 同じ質問を、知識の入口へ変える。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / INTERNAL FAQ 同じ質問を、知識の入口へ変える。 質問収集 根拠資料 回答確認 更新 |
 | `key-points` | `div`×1 | この記事の要点 質問履歴から頻度の高いものを集め、結論・条件・根拠・窓口で答える AIは分類と回答候補に置き、根拠資料と更新日を人が確認する 未解決質問、古い回答、制度変更を更新トリガーにする |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 業務マニュアルの作り方 FAQの根拠となる手順を整える AI導入の進め方 小さく試して定着させる デモ一覧 問い合わせ対応の工程を見る |
@@ -74,6 +70,7 @@ reference_generated_at: 2026-07-30T14:00:58.323865+00:00
 | `table-scroll` | `div`×3 | 質問の集め方 見るポイント FAQ化の優先度 メール・チャット 同じ質問が何度も出るか 高 担当者への聞き取り 特定の人しか答えられないか 高 検索ログ 検索しても答えに届いていないか 中 アンケート 言語化されていない困りごとか 中 |
 | `toc` | `div`×1 | この記事の目次 質問を集める方法 答えが伝わるFAQの型 AIを使う範囲 権限と情報管理 更新と改善の回し方 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 社内FAQの作り方｜質問を集めてAIで更新し続ける方法のカバー画像 |
 
 ### 外部 stylesheet
 
@@ -88,7 +85,7 @@ reference_generated_at: 2026-07-30T14:00:58.323865+00:00
 
 - source: `internal-faq-howto-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 社内FAQの作り方｜質問を集めてAIで更新し続ける方法のカバー画像
 - sha256: `c9eb6f76807ecdf1a2b33698d4747cc1e4adbf1547180e1ea54ef835eb0e8900`
 
 ## 構造化データ（JSON-LD原文）
@@ -156,9 +153,9 @@ KNOWLEDGE / INTERNAL FAQ
 
 公開日: 2026年7月13日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / INTERNAL FAQ同じ質問を、知識の入口へ変える。
+![社内FAQの作り方｜質問を集めてAIで更新し続ける方法のシンプルな記事サムネイル](../media/internal-faq-howto/internal-faq-howto-thumbnail.svg)
 
-質問収集根拠資料回答確認更新
+社内FAQの作り方｜質問を集めてAIで更新し続ける方法のカバー画像
 
 **先に結論：**社内FAQは「質問を集める → 回答の根拠を決める → 短く答える → 更新日を管理する」の順で作ります。最初から全社の疑問を網羅せず、総務・情シス・人事などへ繰り返し届く定型質問から始めてください。
 
@@ -167,10 +164,6 @@ AI KOMONSHITSU / INTERNAL FAQ同じ質問を、知識の入口へ変える。
 - 質問履歴から頻度の高いものを集め、結論・条件・根拠・窓口で答える
 - AIは分類と回答候補に置き、根拠資料と更新日を人が確認する
 - 未解決質問、古い回答、制度変更を更新トリガーにする
-
-![社内FAQの作り方｜質問を集めてAIで更新し続ける方法のシンプルな記事サムネイル](../media/internal-faq-howto/internal-faq-howto-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

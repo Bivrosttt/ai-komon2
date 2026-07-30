@@ -4,8 +4,8 @@ source_html: articles/business-manual-howto/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/business-manual-howto/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2083
-reference_generated_at: 2026-07-30T14:00:57.977510+00:00
+japanese_chars: 2075
+reference_generated_at: 2026-07-30T14:11:50.507696+00:00
 ---
 
 # 業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にする | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:57.977510+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/business-manual-howto/index.html`](../../../../articles/business-manual-howto/index.html)
-- source SHA-256: `aa227bcb6e508d2e177698c478635c98290a4ea48ac1c7b3ab3dedaa80b2d1d6`
+- source SHA-256: `504ec975f4cd58db1c0f33c5a96ab083cc9558f62f9297fc24d9b8186584de8c`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2083`
+- 日本語文字数（article本文）: `2075`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `5` / external links: `2`
@@ -59,10 +59,6 @@ reference_generated_at: 2026-07-30T14:00:57.977510+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 業務マニュアルは、文章を長く書けば使われるものではありません。対象業務を絞り、読む人の判断が分かる順番へ分解し、AIは下書きに、人は現場確認に使い分けます。 |
 | `eyebrow` | `p`×1 | OPERATIONS / MANUAL DESIGN |
-| `hero-badges` | `div`×1 | 対象選定 手順分解 確認 更新 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / MANUAL DESIGN |
-| `hero-title` | `span`×1 | 暗黙知を、次の人が使える手順へ。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / MANUAL DESIGN 暗黙知を、次の人が使える手順へ。 対象選定 手順分解 確認 更新 |
 | `key-points` | `div`×1 | この記事の要点 手順だけでなく、開始条件・判断基準・例外・完了条件を残す 担当者の暗黙知を、後任が実行して確認できる単位へ分解する 更新担当と見直しのトリガーを決め、古い手順を残さない |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 社内FAQの作り方 手順書を質問への答えに変える AI導入のリスク 入力情報と確認者を決める AI導入の進め方 小さく試して定着させる |
@@ -73,6 +69,7 @@ reference_generated_at: 2026-07-30T14:00:57.977510+00:00
 | `table-scroll` | `div`×2 | 候補業務 作成を優先する理由 最初に残すもの 見積作成 条件確認と承認が複数人にまたがる 入力項目・計算・承認者 問い合わせ対応 同じ質問への回答が属人化する 分類・回答・エスカレーション 月次報告 締切と確認項目が固定されている データ取得・集計・提出 入社手続き 漏れが後工程へ影響する 期限・担当・完了条件 |
 | `toc` | `div`×1 | この記事の目次 最初に作る業務の選び方 読まれる手順書の構成 AIを使う範囲と使わない範囲 現場で確認する方法 更新される仕組み |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にするのカバー画像 |
 
 ### 外部 stylesheet
 
@@ -87,7 +84,7 @@ reference_generated_at: 2026-07-30T14:00:57.977510+00:00
 
 - source: `business-manual-howto-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にするのカバー画像
 - sha256: `6a2bbd985811e4b7267bcda1a74db310d6169e0a55b613b7a2332a577d0da48b`
 
 ## 構造化データ（JSON-LD原文）
@@ -155,9 +152,9 @@ OPERATIONS / MANUAL DESIGN
 
 公開日: 2026年7月13日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / MANUAL DESIGN暗黙知を、次の人が使える手順へ。
+![業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にするのシンプルな記事サムネイル](../media/business-manual-howto/business-manual-howto-thumbnail.svg)
 
-対象選定手順分解確認更新
+業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にするのカバー画像
 
 **先に結論：**業務マニュアルは「目的 → 前提 → 手順 → 判断基準 → 例外 → 完了条件」の順に作ると、後任者が迷いにくくなります。最初から全業務を網羅せず、属人化の影響が大きく、繰り返し使う業務を1つ選んでください。
 
@@ -166,10 +163,6 @@ AI KOMONSHITSU / MANUAL DESIGN暗黙知を、次の人が使える手順へ。
 - 手順だけでなく、開始条件・判断基準・例外・完了条件を残す
 - 担当者の暗黙知を、後任が実行して確認できる単位へ分解する
 - 更新担当と見直しのトリガーを決め、古い手順を残さない
-
-![業務マニュアルの作り方｜属人化を減らし、使われ続ける手順書にするのシンプルな記事サムネイル](../media/business-manual-howto/business-manual-howto-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

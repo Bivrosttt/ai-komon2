@@ -4,8 +4,8 @@ source_html: articles/work-handover-manual/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/work-handover-manual/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2047
-reference_generated_at: 2026-07-30T14:00:58.523836+00:00
+japanese_chars: 2031
+reference_generated_at: 2026-07-30T14:11:51.514307+00:00
 ---
 
 # 業務引き継ぎの方法｜後任が迷わないマニュアルの作り方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.523836+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/work-handover-manual/index.html`](../../../../articles/work-handover-manual/index.html)
-- source SHA-256: `d0a532f63f96e73a1ddc71a14a0718ebb11e32b78e3d9a645df7460525fae0b5`
+- source SHA-256: `30669cd59571f9c6f9c9f5198692e498f4de5fd900213a72496dba0c523e5b7b`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2047`
+- 日本語文字数（article本文）: `2031`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `5` / external links: `3`
@@ -59,10 +59,6 @@ reference_generated_at: 2026-07-30T14:00:58.523836+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 業務引き継ぎは、説明会を開くだけでは完了しません。業務の一覧、期限、判断基準、未完了タスク、関係者を整理し、後任が実際に動いたときの質問まで資料へ戻します。 |
 | `eyebrow` | `p`×1 | OPERATIONS / HANDOVER |
-| `hero-badges` | `div`×1 | 一覧化 優先順位 実行 確認 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / HANDOVER MAP |
-| `hero-title` | `span`×1 | 人から人へではなく、業務から次の担当へ。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / HANDOVER MAP 人から人へではなく、業務から次の担当へ。 一覧化 優先順位 実行 確認 |
 | `key-points` | `div`×1 | この記事の要点 業務一覧を作り、期限・影響・頻度から引き継ぎ順を決める 手順・判断基準・例外・連絡先を後任の実行単位で残す 後任が実行した結果を確認し、手順書へ更新する |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 業務マニュアルの作り方 手順と更新運用を整える 社内FAQの作り方 引き継ぎ後の質問を蓄積する AI導入の進め方 小さく試して定着させる |
@@ -73,6 +69,7 @@ reference_generated_at: 2026-07-30T14:00:58.523836+00:00
 | `table-scroll` | `div`×2 | 項目 書く内容 確認する資料 業務名 何を完了させる仕事か 予定表・タスク 頻度と期限 毎日・毎月・発生時、締切 カレンダー・規程 関係者 社内外の担当・承認者 連絡先・案件履歴 状態 未着手・進行中・完了 案件管理・メール |
 | `toc` | `div`×1 | この記事の目次 業務を一覧にする 期限と影響で優先順位を付ける 判断基準まで書く 後任が実行して確認する 引き継ぎ後に更新する |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 業務引き継ぎの方法｜後任が迷わないマニュアルの作り方のカバー画像 |
 
 ### 外部 stylesheet
 
@@ -87,7 +84,7 @@ reference_generated_at: 2026-07-30T14:00:58.523836+00:00
 
 - source: `work-handover-manual-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 業務引き継ぎの方法｜後任が迷わないマニュアルの作り方のカバー画像
 - sha256: `974698e5b0de338aa0b62dd43b0dbaf092cb090f51d848e808df549494d8c163`
 
 ## 構造化データ（JSON-LD原文）
@@ -155,9 +152,9 @@ OPERATIONS / HANDOVER
 
 公開日: 2026年7月13日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / HANDOVER MAP人から人へではなく、業務から次の担当へ。
+![業務引き継ぎの方法｜後任が迷わないマニュアルの作り方のシンプルな記事サムネイル](../media/work-handover-manual/work-handover-manual-thumbnail.svg)
 
-一覧化優先順位実行確認
+業務引き継ぎの方法｜後任が迷わないマニュアルの作り方のカバー画像
 
 **先に結論：**業務引き継ぎは「業務一覧 → 優先順位 → 手順・判断基準 → 未完了タスク → 後任の実行確認」の順で進めます。退職や異動の直前に全てを説明するのではなく、後任が一人で実行して迷った場所を資料へ反映してください。
 
@@ -166,10 +163,6 @@ AI KOMONSHITSU / HANDOVER MAP人から人へではなく、業務から次の担
 - 業務一覧を作り、期限・影響・頻度から引き継ぎ順を決める
 - 手順・判断基準・例外・連絡先を後任の実行単位で残す
 - 後任が実行した結果を確認し、手順書へ更新する
-
-![業務引き継ぎの方法｜後任が迷わないマニュアルの作り方のシンプルな記事サムネイル](../media/work-handover-manual/work-handover-manual-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

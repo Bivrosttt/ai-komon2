@@ -4,8 +4,8 @@ source_html: articles/ai-recruiting-efficiency/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-recruiting-efficiency/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2437
-reference_generated_at: 2026-07-30T14:00:57.909400+00:00
+japanese_chars: 2426
+reference_generated_at: 2026-07-30T14:11:50.107380+00:00
 ---
 
 # 採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:57.909400+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-recruiting-efficiency/index.html`](../../../../articles/ai-recruiting-efficiency/index.html)
-- source SHA-256: `a526a596868dbbbc0da86d810ecfc7329772cfb349ce4ba82b8f348ed25413f8`
+- source SHA-256: `93c41447b437f578744da24ff2257ef4fdbd41ad0f6581a2f866bb70a5bf07af`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2437`
+- 日本語文字数（article本文）: `2426`
 - H1: `1` / H2: `12` / H3: `3`
 - table: `3` / details FAQ: `2`
 - internal links: `5` / external links: `2`
@@ -62,10 +62,6 @@ reference_generated_at: 2026-07-30T14:00:57.909400+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 採用にAIを使うときは、候補者の評価を自動化する前に、文章作成や日程調整などの負担を分けて考えます。個人情報と採用判断を守りながら、補助できる範囲を整理します。 |
 | `eyebrow` | `p`×1 | RECRUITING / AI EFFICIENCY |
-| `hero-badges` | `div`×1 | 求人票 日程調整 記録 確認 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / RECRUITING |
-| `hero-title` | `span`×1 | 採用判断は人が持ち、準備と連絡を軽くする。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / RECRUITING 採用判断は人が持ち、準備と連絡を軽くする。 求人票 日程調整 記録 確認 |
 | `key-points` | `div`×1 | この記事の要点 求人票・日程調整・候補者連絡はAI補助に置き、採用判断は人が行う 候補者情報の入力範囲、保存先、閲覧権限を先に決める 返信時間だけでなく、誤送信・修正・候補者体験を一緒に確認する |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | AI導入のリスク 入力データと権限を確認 業務効率化のアイデア 定型業務を優先する AI活用レベル診断 導入前の現在地を確認 |
@@ -76,6 +72,7 @@ reference_generated_at: 2026-07-30T14:00:57.909400+00:00
 | `table-scroll` | `div`×3 | 工程 AI補助の例 人が確認すること 求人票 仕事内容・魅力の下書き 事実、条件、表現の公平性 日程調整 候補日時の案内文 宛先、日時、個別配慮 候補者対応 質問の分類・返信案 回答の正確さ、個別事情 面接記録 メモの要約・項目整理 評価の根拠と事実関係 採否判断 判断の自動化は避ける 責任者が基準に沿って判断 |
 | `toc` | `div`×1 | この記事の目次 採用業務を4工程に分ける AI補助に向く仕事 人が持つべき判断 小さく試す方法 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方のカバー画像 |
 
 ### 外部 stylesheet
 
@@ -90,7 +87,7 @@ reference_generated_at: 2026-07-30T14:00:57.909400+00:00
 
 - source: `ai-recruiting-efficiency-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方のカバー画像
 - sha256: `6be2e45c948af4c7e56943017a2d94669eb8fb2e486623e5c702d188ef2818b4`
 
 ## 構造化データ（JSON-LD原文）
@@ -150,9 +147,9 @@ RECRUITING / AI EFFICIENCY
 
 公開日: 2026年7月12日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / RECRUITING採用判断は人が持ち、準備と連絡を軽くする。
+![採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方のシンプルな記事サムネイル](../media/ai-recruiting-efficiency/ai-recruiting-efficiency-thumbnail.svg)
 
-求人票日程調整記録確認
+採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方のカバー画像
 
 **先に結論：**採用業務では、求人票の下書き、候補者への連絡文、日程調整、面接メモの整理からAI補助を試します。合否や評価の自動決定、候補者の個人情報を含む入力は、社内ルールとサービス条件を確認してから扱います。
 
@@ -161,10 +158,6 @@ AI KOMONSHITSU / RECRUITING採用判断は人が持ち、準備と連絡を軽�
 - 求人票・日程調整・候補者連絡はAI補助に置き、採用判断は人が行う
 - 候補者情報の入力範囲、保存先、閲覧権限を先に決める
 - 返信時間だけでなく、誤送信・修正・候補者体験を一緒に確認する
-
-![採用業務をAIで効率化する方法｜求人票・日程調整・候補者対応の分け方のシンプルな記事サムネイル](../media/ai-recruiting-efficiency/ai-recruiting-efficiency-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

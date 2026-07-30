@@ -4,8 +4,8 @@ source_html: articles/estimate-time-reduction/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/estimate-time-reduction/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2241
-reference_generated_at: 2026-07-30T14:00:58.159530+00:00
+japanese_chars: 2229
+reference_generated_at: 2026-07-30T14:11:50.729454+00:00
 ---
 
 # 見積書作成の時間を減らす方法｜工数を測ってから自動化する | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.159530+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/estimate-time-reduction/index.html`](../../../../articles/estimate-time-reduction/index.html)
-- source SHA-256: `6b969417ea5e32dfe39ff467a419edfef50bf7b8c2f1425928e5c8e16816610c`
+- source SHA-256: `0f088f8d0855d830aba689f2d3072bbfe9dbfa0baf2bef6d9f5f99472164fe1f`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2241`
+- 日本語文字数（article本文）: `2229`
 - H1: `1` / H2: `12` / H3: `6`
 - table: `2` / details FAQ: `2`
 - internal links: `5` / external links: `2`
@@ -65,10 +65,6 @@ reference_generated_at: 2026-07-30T14:00:58.159530+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 見積書作成の時間は、入力だけでなく、条件確認や承認、差し戻しに隠れています。まず工程を分け、例外案件を含めた現状を測ってから改善します。 |
 | `eyebrow` | `p`×1 | SALES / ESTIMATE WORKFLOW |
-| `hero-badges` | `div`×1 | 受付 転記 確認 送付 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / ESTIMATE FLOW |
-| `hero-title` | `span`×1 | 速く作る前に、どこで止まっているかを知る。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / ESTIMATE FLOW 速く作る前に、どこで止まっているかを知る。 受付 転記 確認 送付 |
 | `key-points` | `div`×1 | この記事の要点 受付・転記・確認・送付の工程ごとに現在の時間を測る 金額・納期・顧客条件はAIに確定させず、人の承認点を残す 自動化後も差し戻しと手動へ戻す経路を記録する |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 営業効率化の方法 営業工程の優先順位を決める AI導入の費用対効果 削減時間を金額へ換算 見積書AIデモ 整理の流れを確認 |
@@ -79,6 +75,7 @@ reference_generated_at: 2026-07-30T14:00:58.159530+00:00
 | `table-scroll` | `div`×2 | 工程 確認すること 改善の例 受付 依頼内容の不足・重複 入力フォームや項目表 条件確認 数量・納期・値引き条件 確認リスト 商品選択 品番・単価・代替品 マスタの最新版 転記・計算 二重入力・税・合計 テンプレートや連携 承認・送付 承認者・宛先・添付 人の最終確認 |
 | `toc` | `div`×1 | この記事の目次 見積作成の工程を分解する 定型案件から標準化する 自動化する範囲を決める 工数と品質を測る |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 見積書作成の時間を減らす方法｜工数を測ってから自動化するのカバー画像 |
 
 ### 外部 stylesheet
 
@@ -93,7 +90,7 @@ reference_generated_at: 2026-07-30T14:00:58.159530+00:00
 
 - source: `estimate-time-reduction-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 見積書作成の時間を減らす方法｜工数を測ってから自動化するのカバー画像
 - sha256: `90c8818098f47272fad1eebbbf97fcd27c368ef4299e11628ce5b9a23c35e104`
 
 ## 構造化データ（JSON-LD原文）
@@ -153,9 +150,9 @@ SALES / ESTIMATE WORKFLOW
 
 公開日: 2026年7月12日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / ESTIMATE FLOW速く作る前に、どこで止まっているかを知る。
+![見積書作成の時間を減らす方法｜工数を測ってから自動化するのシンプルな記事サムネイル](../media/estimate-time-reduction/estimate-time-reduction-thumbnail.svg)
 
-受付転記確認送付
+見積書作成の時間を減らす方法｜工数を測ってから自動化するのカバー画像
 
 **先に結論：**見積書作成の時間を減らすには、受付・条件確認・商品選択・転記・承認・送付を分解し、転記と確認の重複から減らします。AIは下書きと条件整理に使い、金額や契約条件の最終承認は人が持ちます。
 
@@ -164,10 +161,6 @@ AI KOMONSHITSU / ESTIMATE FLOW速く作る前に、どこで止まっている�
 - 受付・転記・確認・送付の工程ごとに現在の時間を測る
 - 金額・納期・顧客条件はAIに確定させず、人の承認点を残す
 - 自動化後も差し戻しと手動へ戻す経路を記録する
-
-![見積書作成の時間を減らす方法｜工数を測ってから自動化するのシンプルな記事サムネイル](../media/estimate-time-reduction/estimate-time-reduction-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

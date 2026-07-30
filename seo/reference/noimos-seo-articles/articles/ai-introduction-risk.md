@@ -4,8 +4,8 @@ source_html: articles/ai-introduction-risk/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-risk/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2581
-reference_generated_at: 2026-07-30T14:00:57.798096+00:00
+japanese_chars: 2562
+reference_generated_at: 2026-07-30T14:11:49.981160+00:00
 ---
 
 # AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:57.798096+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/ai-introduction-risk/index.html`](../../../../articles/ai-introduction-risk/index.html)
-- source SHA-256: `5f35d087f87a2ce761cebab12bb989c824ed859c9891f242e6907048f6067308`
+- source SHA-256: `aef8db6b36331ecd5b37c6b8ecd815dfd2a20b80b3eb9bc2f24aa1db6e4bbe17`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2581`
+- 日本語文字数（article本文）: `2562`
 - H1: `1` / H2: `11` / H3: `6`
 - table: `2` / details FAQ: `2`
 - internal links: `4` / external links: `3`
@@ -64,10 +64,6 @@ reference_generated_at: 2026-07-30T14:00:57.798096+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | AI導入の不安は、サービス名だけを比較しても解消しません。入力する情報、出力の確認、権限、契約、運用の5層に分けると、導入前の確認事項が見えてきます。 |
 | `eyebrow` | `p`×1 | AI GOVERNANCE / RISK CHECK |
-| `hero-badges` | `div`×1 | 入力データ 出力品質 権限・契約 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / RISK MAP |
-| `hero-title` | `span`×1 | 便利さの前に、どこまで任せるかを決める。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / RISK MAP 便利さの前に、どこまで任せるかを決める。 入力データ 出力品質 権限・契約 |
 | `key-points` | `div`×1 | この記事の要点 入力データ、出力の誤り、権限、契約、運用を別々のリスクとして確認する 外部送信・重要判断・削除は、人が承認してログを残す 漏えい・誤回答・停止時の連絡先と切り戻し手順を先に決める |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `note` | `div`×1 | 重要： この記事は法的適合性や安全性を保証するものではありません。個人情報、契約、業種規制に関わる場合は、社内の法務・情報管理担当や専門家と確認してください。 |
@@ -79,6 +75,7 @@ reference_generated_at: 2026-07-30T14:00:57.798096+00:00
 | `table-scroll` | `div`×2 | 層 確認する質問 対策の例 入力 入力禁止の情報は定義されているか 情報分類と匿名化 出力 誤回答を見抜く担当者はいるか 数字・固有名詞・引用の確認 権限 退職者や外部委託者の権限を消せるか アカウント台帳と定期棚卸し 契約 保存期間、学習利用、委託先は確認したか 規約・DPA・利用条件の確認 運用 事故や誤出力を報告できるか ログ、承認、停止手順 |
 | `toc` | `div`×1 | この記事の目次 AI導入で見るべき5つの層 導入前チェックリスト 安全に小さく試す方法 公的資料との照合 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点のカバー画像 |
 
 ### 外部 stylesheet
 
@@ -93,7 +90,7 @@ reference_generated_at: 2026-07-30T14:00:57.798096+00:00
 
 - source: `ai-introduction-risk-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点のカバー画像
 - sha256: `cb5e70197074fdba09a1b89f763e6e31f27235d25020a51d0eedb56d382f84ee`
 
 ## 構造化データ（JSON-LD原文）
@@ -153,9 +150,9 @@ AI導入の不安は、サービス名だけを比較しても解消しません
 
 公開日: 2026年7月12日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / RISK MAP便利さの前に、どこまで任せるかを決める。
+![AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点のシンプルな記事サムネイル](../media/ai-introduction-risk/ai-introduction-risk-thumbnail.svg)
 
-入力データ出力品質権限・契約
+AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点のカバー画像
 
 **先に結論：**AI導入のリスクは「AIだから危険」と一括りにせず、入力データ・出力品質・権限・契約・運用の5層で確認します。特に、個人情報や機密情報をどのサービスに入力できるか、出力を誰が確認するかを先に決めてください。
 
@@ -164,10 +161,6 @@ AI KOMONSHITSU / RISK MAP便利さの前に、どこまで任せるかを決め�
 - 入力データ、出力の誤り、権限、契約、運用を別々のリスクとして確認する
 - 外部送信・重要判断・削除は、人が承認してログを残す
 - 漏えい・誤回答・停止時の連絡先と切り戻し手順を先に決める
-
-![AI導入のリスク｜情報漏えい・誤回答・社内ルールの確認点のシンプルな記事サムネイル](../media/ai-introduction-risk/ai-introduction-risk-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

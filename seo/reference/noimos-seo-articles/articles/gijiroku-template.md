@@ -4,8 +4,8 @@ source_html: articles/gijiroku-template/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/gijiroku-template/
 dateModified: 2026-07-12
 schema_types: [Article, BreadcrumbList]
-japanese_chars: 2125
-reference_generated_at: 2026-07-30T14:00:58.261501+00:00
+japanese_chars: 2134
+reference_generated_at: 2026-07-30T14:11:51.089768+00:00
 ---
 
 # 議事録の書き方｜決定事項とToDoが残るテンプレート | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.261501+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/gijiroku-template/index.html`](../../../../articles/gijiroku-template/index.html)
-- source SHA-256: `224ffd0b8fb73b77e4ce01a6eb928a711d69f91c71711a89bbe79b19d88a600e`
+- source SHA-256: `5c3bbc7ae86a4d09413a745e4100c7a268ebe77d032f0cbec0199393ab926a93`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2125`
+- 日本語文字数（article本文）: `2134`
 - H1: `1` / H2: `9` / H3: `6`
 - table: `2` / details FAQ: `3`
 - internal links: `4` / external links: `2`
@@ -73,6 +73,7 @@ reference_generated_at: 2026-07-30T14:00:58.261501+00:00
 | `table-scroll` | `div`×2 | 項目 書く内容 記入例 会議名 会議の目的が分かる名前 営業定例会 日時・参加者 開催日、参加者、欠席者 2026/7/12、田中・佐藤 議題 話し合うテーマ 次月の新規提案について 決定事項 合意した内容 新しい提案書を7月から使う 保留・確認事項 追加確認が必要な内容 価格表の最新版を確認 ToDo 担当者・作業・期限 田中｜提案書作成｜7/18 |
 | `toc` | `div`×1 | この記事の目次 議事録の役割 書き方の3段階 そのまま使える項目 よくある失敗 AIで効率化するときの確認点 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 議事録の書き方｜決定事項とToDoが残るテンプレートのカバー画像 |
 
 ### Inline CSS（原文）
 
@@ -96,23 +97,23 @@ reference_generated_at: 2026-07-30T14:00:58.261501+00:00
 
 ## 図解・画像
 
-### 会議の議事録をノートとノートパソコンで整理している様子
-
-![会議の議事録をノートとノートパソコンで整理している様子](../media/gijiroku-template/meeting-editorial.webp)
-
-- source: `../../assets/articles/gijiroku-template/meeting-editorial.webp`
-- dimensions: `1672×941`
-- caption: 記事テーマを示すシンプルなカバー画像。
-- sha256: `7d5e8cd71c1da454f32fd88a0e9a34119c9addeb6709e5db9c5b053a80a5c081`
-
 ### 議事録の書き方｜決定事項とToDoが残るテンプレートのシンプルな記事サムネイル
 
 ![議事録の書き方｜決定事項とToDoが残るテンプレートのシンプルな記事サムネイル](../media/gijiroku-template/gijiroku-template-thumbnail.svg)
 
 - source: `gijiroku-template-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 議事録の書き方｜決定事項とToDoが残るテンプレートのカバー画像
 - sha256: `076ddd43401fba2ae319cd15e62e53571cf1cdf2b52952e013b1eb6e1e4c0d68`
+
+### 会議の議事録をノートとノートパソコンで整理している様子
+
+![会議の議事録をノートとノートパソコンで整理している様子](../media/gijiroku-template/meeting-editorial.webp)
+
+- source: `../../assets/articles/gijiroku-template/meeting-editorial.webp`
+- dimensions: `1672×941`
+- caption: なし
+- sha256: `7d5e8cd71c1da454f32fd88a0e9a34119c9addeb6709e5db9c5b053a80a5c081`
 
 ## 構造化データ（JSON-LD原文）
 
@@ -173,6 +174,10 @@ MEETING MINUTES / PRACTICAL GUIDE
 
 公開日: 2026年7月12日　|　AI顧問室 編集部
 
+![議事録の書き方｜決定事項とToDoが残るテンプレートのシンプルな記事サムネイル](../media/gijiroku-template/gijiroku-template-thumbnail.svg)
+
+議事録の書き方｜決定事項とToDoが残るテンプレートのカバー画像
+
 ![会議の議事録をノートとノートパソコンで整理している様子](../media/gijiroku-template/meeting-editorial.webp)
 
 **先に結論：**議事録は「目的・議題」「決定事項・保留事項」「ToDo・担当者・期限」の3段階で作ると、読み返した人が次の行動に移りやすくなります。入力だけで形にしたい場合は、[無料の議事録テンプレート・ToDo整理ツール](/tools/gijiroku-template/)を使えます。
@@ -205,10 +210,6 @@ MEETING MINUTES / PRACTICAL GUIDE
 ## 議事録の書き方は3段階で考える
 
 議事録の項目を会議の時間軸に沿って分けると、記入漏れを減らせます。
-
-![議事録の書き方｜決定事項とToDoが残るテンプレートのシンプルな記事サムネイル](../media/gijiroku-template/gijiroku-template-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **01 / 会議前**
 

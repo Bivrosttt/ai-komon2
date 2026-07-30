@@ -4,8 +4,8 @@ source_html: articles/ai-introduction-roadmap/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-introduction-roadmap/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 3255
-reference_generated_at: 2026-07-30T14:00:57.828785+00:00
+japanese_chars: 3248
+reference_generated_at: 2026-07-30T14:11:50.029538+00:00
 ---
 
 # 中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップ | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:57.828785+00:00
 - published: `2026-07-12`
 - modified: `2026-07-13`
 - source HTML: [`articles/ai-introduction-roadmap/index.html`](../../../../articles/ai-introduction-roadmap/index.html)
-- source SHA-256: `e400badb7805cea8fb2521ca218667e14091f5ed0ddf32794435663c3dd1a324`
+- source SHA-256: `052147fa3f871974cb2ea7d741af1e69baf722ecf0b4f8dd237640bd7d3ba8d9`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `3255`
+- 日本語文字数（article本文）: `3248`
 - H1: `1` / H2: `12` / H3: `5`
 - table: `4` / details FAQ: `4`
 - internal links: `6` / external links: `3`
@@ -64,10 +64,6 @@ reference_generated_at: 2026-07-30T14:00:57.828785+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | AI導入は、ツールを契約した日から始まるわけではありません。対象業務、確認者、測定方法を決め、小さな試行で自社に合う使い方を見つけるプロセスです。 |
 | `eyebrow` | `p`×1 | AI IMPLEMENTATION / 30-DAY ROADMAP |
-| `hero-badges` | `div`×1 | 選ぶ 試す 測る 定着 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / IMPLEMENTATION GUIDE |
-| `hero-title` | `span`×1 | 30日で「使えるか」を確かめてから、広げる。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / IMPLEMENTATION GUIDE 30日で「使えるか」を確かめてから、広げる。 選ぶ 試す 測る 定着 |
 | `key-points` | `div`×1 | この記事の要点 導入の初手はツール選びではなく、対象業務・確認者・測定方法の決定です。 最初の30日は、使えるかを判断する試行期間。全社展開の完了を目指しません。 安全性・再現性・測定結果の3つがそろった範囲だけ、次の部署や業務へ広げます。 |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 更新日: 2026年7月13日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | AI導入のリスク 入力・出力・権限を先に確認 AI導入の費用対効果 削減時間を金額に換算 AI活用レベル診断 導入前の現在地を確認 |
@@ -78,6 +74,7 @@ reference_generated_at: 2026-07-30T14:00:57.828785+00:00
 | `table-scroll` | `div`×4 | 期間 やること 成果物 1〜7日 業務の棚卸し、目的、対象データ、確認者を決める 試行シート・リスク確認 8〜14日 安全なサンプルで試し、出力と修正を記録する 手順の初稿・事例 15〜21日 現行方法と比較し、時間・品質・再作業を測る 効果測定表 22〜30日 利用ルール、対象範囲、次の改善を決める 運用ルール・継続判断 |
 | `toc` | `div`×1 | この記事の目次 導入前に決める3つ 30日ロードマップ 効果測定の方法 定着・拡張の条件 最初に選ぶ業務の例 失敗時に戻る設計 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップのカバー画像 |
 
 ### 外部 stylesheet
 
@@ -92,7 +89,7 @@ reference_generated_at: 2026-07-30T14:00:57.828785+00:00
 
 - source: `ai-introduction-roadmap-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップのカバー画像
 - sha256: `d7bbd92adb80d882badc8f809cdbe2b50e51284a798a1282d31f72479a9246f0`
 
 ## 構造化データ（JSON-LD原文）
@@ -152,9 +149,9 @@ AI導入は、ツールを契約した日から始まるわけではありませ
 
 公開日: 2026年7月12日　更新日: 2026年7月13日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / IMPLEMENTATION GUIDE30日で「使えるか」を確かめてから、広げる。
+![中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップのシンプルな記事サムネイル](../media/ai-introduction-roadmap/ai-introduction-roadmap-thumbnail.svg)
 
-選ぶ試す測る定着
+中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップのカバー画像
 
 **先に結論：**中小企業のAI導入は、1週目に対象業務を決め、2週目に安全な条件で試し、3週目に時間と品質を測り、4週目にルールと次の範囲を決めます。全社展開や高額な開発は、試行結果が出てから判断します。
 
@@ -163,10 +160,6 @@ AI KOMONSHITSU / IMPLEMENTATION GUIDE30日で「使えるか」を確かめて�
 - 導入の初手はツール選びではなく、対象業務・確認者・測定方法の決定です。
 - 最初の30日は、使えるかを判断する試行期間。全社展開の完了を目指しません。
 - 安全性・再現性・測定結果の3つがそろった範囲だけ、次の部署や業務へ広げます。
-
-![中小企業のAI導入の進め方｜いきなり全社展開しない30日ロードマップのシンプルな記事サムネイル](../media/ai-introduction-roadmap/ai-introduction-roadmap-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

@@ -4,8 +4,8 @@ source_html: articles/ai-marketing-tools-comparison/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-marketing-tools-comparison/
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
-japanese_chars: 2561
-reference_generated_at: 2026-07-30T14:00:57.877837+00:00
+japanese_chars: 2574
+reference_generated_at: 2026-07-30T14:11:50.073030+00:00
 ---
 
 # AIマーケティングツール比較｜中小企業向け5タイプの選び方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:57.877837+00:00
 - published: `2026-07-30`
 - modified: `2026-07-30`
 - source HTML: [`articles/ai-marketing-tools-comparison/index.html`](../../../../articles/ai-marketing-tools-comparison/index.html)
-- source SHA-256: `e5ae3db73140287a351500fa260c372d57d276f9fd119f9d55a771d39cc75a00`
+- source SHA-256: `fd8261647a52202dcdafb72af91a7215b8dac067353b2f078b86124909f9e6ed`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2561`
+- 日本語文字数（article本文）: `2574`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `3` / details FAQ: `4`
 - internal links: `4` / external links: `4`
@@ -56,7 +56,7 @@ reference_generated_at: 2026-07-30T14:00:57.877837+00:00
 | class | element count | purpose/sample |
 | --- | ---: | --- |
 | `answer` | `div`×1 | 先に結論： 中小企業のAIマーケティングツール比較では、まず「改善したい一つの業務」と「完了条件」を決めます。そのうえで、①調査、②コンテンツ作成、③SNS・CRMへの実行、④分析・改善の4工程を、どこまで自動化できるか、誰が承認するか、何が社内に残るかで比べてください。 |
-| `article-thumb` | `figure`×1 | 記事テーマを示すシンプルなカバー画像。 |
+| `article-thumb` | `figure`×1 | AIマーケティングツール比較｜中小企業向け5タイプの選び方のカバー画像 |
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | AIマーケティングツールは、機能の多さや月額の安さだけでは選べません。調査、作成、配信、分析のどこを任せるのかを分け、社内の確認と成果物まで同じ条件で比較します。 |
 | `eyebrow` | `p`×1 | AIマーケティング / 比較ガイド |
@@ -71,6 +71,7 @@ reference_generated_at: 2026-07-30T14:00:57.877837+00:00
 | `table-scroll` | `div`×3 | タイプ 主な役割 向く会社 契約前の確認 オールインワン／自律型チーム 調査・作成・配信・分析を一つの運用へつなぐ 少人数で複数チャネルを継続したい どこまで自動実行できるか、人の承認点、データの扱い CRM連携型 顧客データを使ったリード育成、メール、スコアリング CRMに顧客情報が蓄積されている 読み取りだけか、双方向同期か、従量課金の条件 SEO／GEO特化型 キーワード調査、記事、順位・AI検索の可視化 検索流入を伸ばし、更新を |
 | `toc` | `div`×1 | この記事の目次 AIマーケティングツール比較の前提 5タイプの比較 選定基準 比較表 30日で試す手順 AI顧問室が向くケース |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | AIマーケティングツール比較｜中小企業向け5タイプの選び方のカバー画像 |
 
 ### 外部 stylesheet
 
@@ -85,7 +86,7 @@ reference_generated_at: 2026-07-30T14:00:57.877837+00:00
 
 - source: `ai-marketing-tools-comparison-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: AIマーケティングツール比較｜中小企業向け5タイプの選び方のカバー画像
 - sha256: `40643308315e51729af04a5718704fdd1bba6319c7222fb4ff5a50b32c947b63`
 
 ## 構造化データ（JSON-LD原文）
@@ -182,6 +183,10 @@ AIマーケティングツールは、機能の多さや月額の安さだけで
 
 公開日: 2026年7月30日　|　AI顧問室 編集部
 
+![AIマーケティングツール比較｜中小企業向け5タイプの選び方のシンプルな記事サムネイル](../media/ai-marketing-tools-comparison/ai-marketing-tools-comparison-thumbnail.svg)
+
+AIマーケティングツール比較｜中小企業向け5タイプの選び方のカバー画像
+
 **先に結論：**中小企業のAIマーケティングツール比較では、まず「改善したい一つの業務」と「完了条件」を決めます。そのうえで、①調査、②コンテンツ作成、③SNS・CRMへの実行、④分析・改善の4工程を、どこまで自動化できるか、誰が承認するか、何が社内に残るかで比べてください。
 
 **この記事の要点**
@@ -189,10 +194,6 @@ AIマーケティングツールは、機能の多さや月額の安さだけで
 - AIマーケティングツールは、単機能ではなく業務のつながりと成果物で比較する
 - オールインワン、CRM連携、SEO/GEO、ブランド運用、業務自動化の5タイプに分けると選びやすい
 - 最初の30日は一業務で試し、時間・品質・確認負担・停止条件を記録する
-
-![AIマーケティングツール比較｜中小企業向け5タイプの選び方のシンプルな記事サムネイル](../media/ai-marketing-tools-comparison/ai-marketing-tools-comparison-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

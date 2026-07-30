@@ -4,8 +4,8 @@ source_html: articles/customer-support-ai/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/customer-support-ai/
 dateModified: 2026-07-13
 schema_types: [Article, FAQPage]
-japanese_chars: 2178
-reference_generated_at: 2026-07-30T14:00:58.126740+00:00
+japanese_chars: 2163
+reference_generated_at: 2026-07-30T14:11:50.695050+00:00
 ---
 
 # カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化する | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.126740+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/customer-support-ai/index.html`](../../../../articles/customer-support-ai/index.html)
-- source SHA-256: `fb795c57dd9c43703e4279f14f4a2c698082a469addd1218e85380f3bf5f6af4`
+- source SHA-256: `ef11cb3ced381375d6f59b4d2d5b045d103ec391cfb1d37a1e616d8180ea9a6f`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2178`
+- 日本語文字数（article本文）: `2163`
 - H1: `1` / H2: `10` / H3: `3`
 - table: `2` / details FAQ: `3`
 - internal links: `4` / external links: `3`
@@ -60,10 +60,6 @@ reference_generated_at: 2026-07-30T14:00:58.126740+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | カスタマーサポートにAIを入れるときは、自動返信の可否から始めないことが重要です。質問の分類、FAQ検索、回答案、担当者への引き継ぎを分け、顧客への約束は人が確認します。 |
 | `eyebrow` | `p`×1 | CUSTOMER SUPPORT / AI OPERATIONS |
-| `hero-badges` | `div`×1 | 分類 検索 確認 エスカレーション |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / CUSTOMER SUPPORT |
-| `hero-title` | `span`×1 | 速く返す前に、正しく戻す場所を決める。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / CUSTOMER SUPPORT 速く返す前に、正しく戻す場所を決める。 分類 検索 確認 エスカレーション |
 | `key-points` | `div`×1 | この記事の要点 問い合わせを分類・回答案・人の確認・エスカレーションに分ける 顧客への送信前に、根拠資料と最新性を担当者が確認する 正解率だけでなく、返信時間・修正・再問い合わせ・停止を測る |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | 社内FAQの作り方 回答の根拠と更新を整える AI導入のリスク 入力・権限・契約を確認する AI導入の進め方 小さな試行から広げる |
@@ -74,6 +70,7 @@ reference_generated_at: 2026-07-30T14:00:58.126740+00:00
 | `table-scroll` | `div`×2 | 工程 AIの補助 開始条件 分類 カテゴリ・担当部署の候補 分類ルールがある 検索 関連FAQ・手順の候補 根拠資料が更新されている 回答案 下書き・要約・言い換え 送信前確認者がいる 返信 定型文の補助 例外と停止条件が明確 引き継ぎ 要点と履歴の整理 担当者と期限が決まる |
 | `toc` | `div`×1 | この記事の目次 AIに任せる工程を分ける FAQと根拠資料を整える 人が確認する問い合わせ 顧客データと権限を管理する 改善指標と切り戻し |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化するのカバー画像 |
 
 ### 外部 stylesheet
 
@@ -88,7 +85,7 @@ reference_generated_at: 2026-07-30T14:00:58.126740+00:00
 
 - source: `customer-support-ai-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化するのカバー画像
 - sha256: `7cd3c6696fe83d370d2e49c08ddf1fb15f40b47f6a413b826bc0c673c6ce5fff`
 
 ## 構造化データ（JSON-LD原文）
@@ -156,9 +153,9 @@ CUSTOMER SUPPORT / AI OPERATIONS
 
 公開日: 2026年7月13日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / CUSTOMER SUPPORT速く返す前に、正しく戻す場所を決める。
+![カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化するのシンプルな記事サムネイル](../media/customer-support-ai/customer-support-ai-thumbnail.svg)
 
-分類検索確認エスカレーション
+カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化するのカバー画像
 
 **先に結論：**カスタマーサポートのAI活用は「問い合わせ分類 → 関連資料の検索 → 回答案 → 人の確認 → 返信・引き継ぎ」に分けます。まずは社内向けの分類や回答案から試し、返金、契約、障害、個別事情がある回答は人へ戻してください。
 
@@ -167,10 +164,6 @@ AI KOMONSHITSU / CUSTOMER SUPPORT速く返す前に、正しく戻す場所を�
 - 問い合わせを分類・回答案・人の確認・エスカレーションに分ける
 - 顧客への送信前に、根拠資料と最新性を担当者が確認する
 - 正解率だけでなく、返信時間・修正・再問い合わせ・停止を測る
-
-![カスタマーサポートのAI活用｜問い合わせ対応を安全に効率化するのシンプルな記事サムネイル](../media/customer-support-ai/customer-support-ai-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

@@ -4,8 +4,8 @@ source_html: articles/contract-ai/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/contract-ai/
 dateModified: 2026-07-13
 schema_types: [Article]
-japanese_chars: 2341
-reference_generated_at: 2026-07-30T14:00:58.090118+00:00
+japanese_chars: 2329
+reference_generated_at: 2026-07-30T14:11:50.661467+00:00
 ---
 
 # 契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進める | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.090118+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/contract-ai/index.html`](../../../../articles/contract-ai/index.html)
-- source SHA-256: `20e64e841c4771b72ea3e685958bcf3a94838f7d4bdacd2235b6536fe414a999`
+- source SHA-256: `71b6ee996e75bca52f3726516c0da034d4866e3cc8e379f868f50cf091b9ac3f`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2341`
+- 日本語文字数（article本文）: `2329`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `1` / details FAQ: `3`
 - internal links: `4` / external links: `3`
@@ -59,10 +59,6 @@ reference_generated_at: 2026-07-30T14:00:58.090118+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 契約書へのAI活用は、法的な最終判断を任せることではありません。条件の整理、下書き、比較、台帳入力など、確認しやすい作業から切り分けると、リスクを増やさず工数を減らせます。 |
 | `eyebrow` | `p`×1 | LEGAL OPERATIONS / CONTRACT AI |
-| `hero-badges` | `div`×1 | 条件整理 下書き 人の確認 更新管理 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / CONTRACT OPERATIONS |
-| `hero-title` | `span`×1 | 契約書を、作成・確認・管理に分ける。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / CONTRACT OPERATIONS 契約書を、作成・確認・管理に分ける。 条件整理 下書き 人の確認 更新管理 |
 | `key-points` | `div`×1 | この記事の要点 AIに任せやすいのは整理・下書き・差分抽出で、締結判断ではない 金額、期間、解除、責任範囲、個人情報の扱いは人が確認する 契約後の更新日・相手先・版を台帳へ戻して初めて業務改善になる |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `note` | `div`×1 | 入力情報の注意： 顧客名、個人情報、未公開の料金、交渉中の条件を外部AIへ入力する場合は、サービスのデータ利用条件と社内ルールを確認します。迷う情報は匿名化するか、入力前に責任者へ確認します。 |
@@ -74,6 +70,7 @@ reference_generated_at: 2026-07-30T14:00:58.090118+00:00
 | `table-scroll` | `div`×1 | 業務 AIに任せる補助 人が残す判断 条件整理 金額、期間、相手先、納品条件の項目化 条件の正しさと抜け漏れ 下書き 社内ひな型へ情報を入れた初稿 自社の方針と交渉余地 比較 旧版と新版の差分一覧 差分が与える実務・法務上の影響 台帳 契約日、更新日、相手先の抽出 原本との照合と登録完了 |
 | `toc` | `div`×1 | この記事の目次 AIに任せやすい契約書業務 人が確認する条項 導入の進め方 契約後の管理 使わない方がよいケース 試行前のチェック |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進めるのカバー画像 |
 
 ### 外部 stylesheet
 
@@ -88,7 +85,7 @@ reference_generated_at: 2026-07-30T14:00:58.090118+00:00
 
 - source: `contract-ai-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進めるのカバー画像
 - sha256: `a21bcd1fe51d5bd91ffa5bed6444a5b86da94e7293c39e29c350de1c1b1d75ad`
 
 ## 構造化データ（JSON-LD原文）
@@ -126,15 +123,11 @@ LEGAL OPERATIONS / CONTRACT AI
 
 公開日: 2026年7月13日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / CONTRACT OPERATIONS契約書を、作成・確認・管理に分ける。
-
-条件整理下書き人の確認更新管理
-
-**先に結論：**契約書AIの安全な使い方は、①契約条件の整理、②下書きや比較表の作成、③人による条項・権限・相手先条件の確認、④契約台帳と更新日の管理に分けることです。AIの出力をそのまま締結文書にせず、確認者と承認記録を残してください。
-
 ![契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進めるのシンプルな記事サムネイル](../media/contract-ai/contract-ai-thumbnail.svg)
 
-記事テーマを示すシンプルなカバー画像。
+契約書をAIで効率化する方法｜下書き・確認・管理を分けて安全に進めるのカバー画像
+
+**先に結論：**契約書AIの安全な使い方は、①契約条件の整理、②下書きや比較表の作成、③人による条項・権限・相手先条件の確認、④契約台帳と更新日の管理に分けることです。AIの出力をそのまま締結文書にせず、確認者と承認記録を残してください。
 
 **この記事の要点**
 

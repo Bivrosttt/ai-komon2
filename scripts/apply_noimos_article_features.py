@@ -229,9 +229,8 @@ def main() -> int:
             continue
         original = path.read_text(encoding="utf-8")
         updated = original
-        if slug in HERO:
-            updated = add_external_css(updated)
-            updated = add_after_meta(updated, hero_html(slug))
+        # Text-heavy hero blocks were retired in favor of the article-specific
+        # SVG cover. Keep this structural refresh focused on answer/TOC/etc.
         updated = add_after_answer(updated, key_points_html(slug))
         if slug in {"ai-advisor-comparison", "ai-advisor-cost"}:
             updated = add_external_css(updated)

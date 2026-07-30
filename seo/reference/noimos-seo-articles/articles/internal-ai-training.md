@@ -4,8 +4,8 @@ source_html: articles/internal-ai-training/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/internal-ai-training/
 dateModified: 2026-07-13
 schema_types: [Article]
-japanese_chars: 2378
-reference_generated_at: 2026-07-30T14:00:58.291078+00:00
+japanese_chars: 2366
+reference_generated_at: 2026-07-30T14:11:51.128015+00:00
 ---
 
 # 社内研修をAIで効率化する方法｜教材作成から定着までの設計 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:58.291078+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/internal-ai-training/index.html`](../../../../articles/internal-ai-training/index.html)
-- source SHA-256: `71e255c0433d7be79d5f67601cbbb722acd556c6556a4cc6b146886cf69b017a`
+- source SHA-256: `610ebd7a7935ad71ded634cf8643e6f2a25dda57b6f958930679a0f46f7e96d8`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2378`
+- 日本語文字数（article本文）: `2366`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `3` / details FAQ: `3`
 - internal links: `5` / external links: `3`
@@ -59,10 +59,6 @@ reference_generated_at: 2026-07-30T14:00:58.291078+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | AI研修は、スライドを作って受講させるだけでは定着しません。現場の課題を決め、教材を下書きし、実際の業務で演習し、質問やつまずきを次の教材へ戻す流れを作ります。 |
 | `eyebrow` | `p`×1 | PEOPLE / INTERNAL AI TRAINING |
-| `hero-badges` | `div`×1 | 課題設定 教材 演習 更新 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / INTERNAL TRAINING |
-| `hero-title` | `span`×1 | 研修を、受講イベントから業務改善へ。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / INTERNAL TRAINING 研修を、受講イベントから業務改善へ。 課題設定 教材 演習 更新 |
 | `key-points` | `div`×1 | この記事の要点 研修テーマはAIそのものではなく、現場の業務課題から決める 教材はAIで速く下書きし、社内用語・判断基準・禁止事項は人が確定する 受講率より、業務で試した回数・質問・再現できた結果を見る |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `note` | `div`×1 | 成果の見方： 受講人数や満足度は入口の指標です。業務で試した回数、作業時間、修正回数、確認漏れ、質問の種類を追うと、研修が業務へ定着したかを判断しやすくなります。 |
@@ -74,6 +70,7 @@ reference_generated_at: 2026-07-30T14:00:58.291078+00:00
 | `table-scroll` | `div`×3 | 研修テーマ 受講後の到達点 測定する行動 文書作成 既存情報から下書きを作れる 初稿までの時間・修正回数 会議準備 論点と確認事項を整理できる 準備時間・抜け漏れ 問い合わせ対応 質問を分類し回答案を作れる 分類精度・確認時間 ナレッジ共有 手順を質問と回答へ変換できる 更新数・再質問数 |
 | `toc` | `div`×1 | この記事の目次 研修テーマの決め方 AIで教材を作る範囲 演習と理解度確認 研修を更新する仕組み 情報管理と講師の役割 管理者が用意するもの |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 社内研修をAIで効率化する方法｜教材作成から定着までの設計のカバー画像 |
 
 ### 外部 stylesheet
 
@@ -88,7 +85,7 @@ reference_generated_at: 2026-07-30T14:00:58.291078+00:00
 
 - source: `internal-ai-training-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 社内研修をAIで効率化する方法｜教材作成から定着までの設計のカバー画像
 - sha256: `e8808307ed1301d43940cac4ae75a5aa61119d239b25a6383577b547ced4cc76`
 
 ## 構造化データ（JSON-LD原文）
@@ -126,15 +123,11 @@ AI研修は、スライドを作って受講させるだけでは定着しませ
 
 公開日: 2026年7月13日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / INTERNAL TRAINING研修を、受講イベントから業務改善へ。
-
-課題設定教材演習更新
-
-**先に結論：**社内研修へのAI活用は、教材の下書き、受講者別の演習問題、質問の分類、理解度確認、教材の更新に分けると効果を測りやすくなります。AIに研修設計を丸投げせず、自社の業務基準と人が確認すべき判断を教材へ入れてください。
-
 ![社内研修をAIで効率化する方法｜教材作成から定着までの設計のシンプルな記事サムネイル](../media/internal-ai-training/internal-ai-training-thumbnail.svg)
 
-記事テーマを示すシンプルなカバー画像。
+社内研修をAIで効率化する方法｜教材作成から定着までの設計のカバー画像
+
+**先に結論：**社内研修へのAI活用は、教材の下書き、受講者別の演習問題、質問の分類、理解度確認、教材の更新に分けると効果を測りやすくなります。AIに研修設計を丸投げせず、自社の業務基準と人が確認すべき判断を教材へ入れてください。
 
 **この記事の要点**
 

@@ -4,8 +4,8 @@ source_html: articles/ai-advisor-cost/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-advisor-cost/
 dateModified: 2026-07-30
 schema_types: [Article, BreadcrumbList, FAQPage]
-japanese_chars: 3061
-reference_generated_at: 2026-07-30T14:00:57.629848+00:00
+japanese_chars: 3030
+reference_generated_at: 2026-07-30T14:11:49.744450+00:00
 ---
 
 # AI顧問の費用はいくら？月額だけで決めない総額の見方 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:57.629848+00:00
 - published: `2026-07-30`
 - modified: `2026-07-30`
 - source HTML: [`articles/ai-advisor-cost/index.html`](../../../../articles/ai-advisor-cost/index.html)
-- source SHA-256: `48a1e8b0f1a356c7da916f221225d0ee16d711044e047b559d885dd69e2981fd`
+- source SHA-256: `9cd0414d196f853ce0e84e14719aab3f24acfaacdb9c5bf574a4b7a5cb2ed1be`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `3061`
+- 日本語文字数（article本文）: `3030`
 - H1: `1` / H2: `8` / H3: `6`
 - table: `2` / details FAQ: `0`
 - internal links: `5` / external links: `3`
@@ -59,16 +59,13 @@ reference_generated_at: 2026-07-30T14:00:57.629848+00:00
 | class | element count | purpose/sample |
 | --- | ---: | --- |
 | `answer` | `div`×1, `p`×1 | 結論： AI顧問の料金は「月額」ではなく、 年間総費用と任せる範囲 で比べます。初期・月額・従量・追加作業・社内確認工数を足し、成果物、承認点、契約終了条件が自社の業務に合うかを確認してください。 |
-| `hero-badges` | `div`×1 | 初期費用 月額 従量費 社内工数 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / AI ADVISOR COST |
-| `hero-title` | `span`×1 | AI顧問の費用は、月額ではなく初期・従量・社内工数まで総額で見る。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / AI ADVISOR COST AI顧問の費用は、月額ではなく初期・従量・社内工数まで総額で見る。 初期費用 月額 従量費 社内工数 |
 | `key-points` | `div`×1 | この記事の要点 初期費用・月額・従量費・追加作業・社内確認工数を年間総額へ入れる 公開価格は市場平均と混同せず、支援範囲と契約期間の前提を確認する 月額が自社の対象業務と成果物に合わない場合は、研修や単発支援も比較する |
 | `related` | `div`×1 | AI顧問の比較基準 支援範囲を同じ条件で比べる AI導入の費用対効果 削減時間と回収期間を見る AI導入の進め方 小さく試して定着させる |
 | `service-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
 | `source-list` | `ul`×1 | 37Design「AI顧問の費用比較」 （公開ページの料金整理例、2026-07-30取得） Dr.Wallet BPO「AI顧問の費用」 （支援範囲別の整理例、2026-07-30取得） clearAI「AIコンサルティング」 （PoC・本番導入とスコープ依存のFAQ、2026-07-30取得） AI顧問室 公式料金ページ （自社一次情報、2026-07-30取得） |
 | `table-scroll` | `div`×2 | 費用 含まれる作業の例 契約前に聞くこと 初期費用 現状診断、業務選定、要件整理、初期設定 初月の成果物と、月額との重複は何か 月額固定費 定例会、チャット相談、改善提案、運用レビュー 回数、対応時間、担当者、対象業務の上限は何か 従量費 AIツール、API、外部サービス、データ保管 誰が契約し、上限通知と停止条件を持つか 追加作業費 個別連携、改修、出張、データ整備 追加になる条件と、事前承認の方法は何か 社内工数 データ準備、出力確 |
 | `toc` | `div`×1 | この記事の目次 先に結論：AI顧問の費用は「総額」と「任せる範囲」で決まる 公開ページの料金帯は「相場」ではなく前提付きの例として読む 見積もりを五つの費用に分解する 支援タイプ別に、費用の目的を合わせる AI顧問室の料金をどう読むか 費用対効果と契約前の確認は、削減時間ではなく意思決定まで測る |
+| `visually-hidden` | `figcaption`×1 | AI顧問の費用はいくら？月額だけで決めない総額の見方のカバー画像 |
 
 ### Inline CSS（原文）
 
@@ -99,7 +96,7 @@ reference_generated_at: 2026-07-30T14:00:57.629848+00:00
 
 - source: `ai-advisor-cost-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: AI顧問の費用はいくら？月額だけで決めない総額の見方のカバー画像
 - sha256: `79ef4e0f80ae222d2425753e62215993187f22572ebc2572ef0c5a2932511aba`
 
 ## 構造化データ（JSON-LD原文）
@@ -195,9 +192,9 @@ AI顧問の費用を比べるとき、月額の数字だけでは判断できま
 
 公開日: 2026年7月30日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / AI ADVISOR COSTAI顧問の費用は、月額ではなく初期・従量・社内工数まで総額で見る。
+![AI顧問の費用はいくら？月額だけで決めない総額の見方のシンプルな記事サムネイル](../media/ai-advisor-cost/ai-advisor-cost-thumbnail.svg)
 
-初期費用月額従量費社内工数
+AI顧問の費用はいくら？月額だけで決めない総額の見方のカバー画像
 
 **結論：**AI顧問の料金は「月額」ではなく、**年間総費用と任せる範囲**で比べます。初期・月額・従量・追加作業・社内確認工数を足し、成果物、承認点、契約終了条件が自社の業務に合うかを確認してください。
 
@@ -206,10 +203,6 @@ AI KOMONSHITSU / AI ADVISOR COSTAI顧問の費用は、月額ではなく初期�
 - 初期費用・月額・従量費・追加作業・社内確認工数を年間総額へ入れる
 - 公開価格は市場平均と混同せず、支援範囲と契約期間の前提を確認する
 - 月額が自社の対象業務と成果物に合わない場合は、研修や単発支援も比較する
-
-![AI顧問の費用はいくら？月額だけで決めない総額の見方のシンプルな記事サムネイル](../media/ai-advisor-cost/ai-advisor-cost-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

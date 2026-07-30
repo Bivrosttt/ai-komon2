@@ -4,8 +4,8 @@ source_html: articles/business-efficiency-ideas/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/business-efficiency-ideas/
 dateModified: 2026-07-12
 schema_types: [Article, FAQPage]
-japanese_chars: 2400
-reference_generated_at: 2026-07-30T14:00:57.960812+00:00
+japanese_chars: 2385
+reference_generated_at: 2026-07-30T14:11:50.441525+00:00
 ---
 
 # 業務効率化のアイデア｜中小企業が最初に見直す定型業務10選 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:57.960812+00:00
 - published: `2026-07-12`
 - modified: `2026-07-12`
 - source HTML: [`articles/business-efficiency-ideas/index.html`](../../../../articles/business-efficiency-ideas/index.html)
-- source SHA-256: `66f8f11ae1f03bbcd0590a9cbb1589ef544435f9593c84daad4f774987dacb7a`
+- source SHA-256: `b868feeb07beadf30c73dee823480ba0da23ac897d5634601bb7682730383ae2`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2400`
+- 日本語文字数（article本文）: `2385`
 - H1: `1` / H2: `11` / H3: `3`
 - table: `2` / details FAQ: `2`
 - internal links: `7` / external links: `2`
@@ -61,10 +61,6 @@ reference_generated_at: 2026-07-30T14:00:57.960812+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | 業務効率化は、いきなり新しいツールを増やすことではありません。毎週くり返す作業を見つけ、入力・判断・確認のどこを短くするか決めることから始まります。 |
 | `eyebrow` | `p`×1 | BUSINESS IMPROVEMENT / IDEAS |
-| `hero-badges` | `div`×1 | 定型業務 工数計測 小さく改善 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / PRACTICAL GUIDE |
-| `hero-title` | `span`×1 | 先に「作業」を見直す。ツールはそのあと。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / PRACTICAL GUIDE 先に「作業」を見直す。ツールはそのあと。 定型業務 工数計測 小さく改善 |
 | `key-points` | `div`×1 | この記事の要点 業務名ではなく、繰り返し・転記・確認・待ち時間の多い工程から探す AIに任せる部分と、人が承認する部分を工程ごとに分ける 一つの業務で時間・修正・停止を測ってから、対象範囲を広げる |
 | `meta` | `p`×1 | 公開日: 2026年7月12日 \| AI顧問室 編集部 |
 | `related` | `div`×1 | AI導入の進め方 小さく試す30日ロードマップ 営業効率化の方法 見積・提案・追客を分けて考える AI活用レベル診断 自社の詰まりを整理する |
@@ -75,6 +71,7 @@ reference_generated_at: 2026-07-30T14:00:57.960812+00:00
 | `table-scroll` | `div`×2 | 業務 最初に整えること 効率化の方向 議事録 決定事項・ToDoの書式 テンプレート やAI下書き 問い合わせ 質問と回答の分類 一次回答の下書き 見積書 商品・単価・条件の一覧 転記と計算の補助 定型メール 宛先別の文面ルール 返信案の作成 営業報告 入力項目と提出時刻 要約と未入力確認 採用連絡 候補者ステータス 日程調整文の作成 資料探し ファイル名と保管場所 検索・要約 SNS投稿 商品情報と禁止表現 媒体別の下書き 請求前確認 |
 | `toc` | `div`×1 | この記事の目次 効率化しやすい業務の条件 最初に見直す10のアイデア 優先順位の付け方 小さく試す手順 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | 業務効率化のアイデア｜中小企業が最初に見直す定型業務10選のカバー画像 |
 
 ### 外部 stylesheet
 
@@ -89,7 +86,7 @@ reference_generated_at: 2026-07-30T14:00:57.960812+00:00
 
 - source: `business-efficiency-ideas-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: 業務効率化のアイデア｜中小企業が最初に見直す定型業務10選のカバー画像
 - sha256: `77158ad5c9d910cc0a958a76b1b0be8346e93bab6bada3f5b8a163abd8264343`
 
 ## 構造化データ（JSON-LD原文）
@@ -149,9 +146,9 @@ BUSINESS IMPROVEMENT / IDEAS
 
 公開日: 2026年7月12日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / PRACTICAL GUIDE先に「作業」を見直す。ツールはそのあと。
+![業務効率化のアイデア｜中小企業が最初に見直す定型業務10選のシンプルな記事サムネイル](../media/business-efficiency-ideas/business-efficiency-ideas-thumbnail.svg)
 
-定型業務工数計測小さく改善
+業務効率化のアイデア｜中小企業が最初に見直す定型業務10選のカバー画像
 
 **先に結論：**最初の候補は、①入力が決まっている、②週に何度も繰り返す、③完了条件を人が確認できる業務です。議事録、問い合わせ整理、見積の下書き、定型メールなどを、作業時間と回数で並べると優先順位を付けやすくなります。
 
@@ -160,10 +157,6 @@ AI KOMONSHITSU / PRACTICAL GUIDE先に「作業」を見直す。ツールはそ
 - 業務名ではなく、繰り返し・転記・確認・待ち時間の多い工程から探す
 - AIに任せる部分と、人が承認する部分を工程ごとに分ける
 - 一つの業務で時間・修正・停止を測ってから、対象範囲を広げる
-
-![業務効率化のアイデア｜中小企業が最初に見直す定型業務10選のシンプルな記事サムネイル](../media/business-efficiency-ideas/business-efficiency-ideas-thumbnail.svg)
-
-記事テーマを示すシンプルなカバー画像。
 
 **この記事の目次**
 

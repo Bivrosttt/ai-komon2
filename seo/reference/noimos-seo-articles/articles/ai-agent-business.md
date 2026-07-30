@@ -4,8 +4,8 @@ source_html: articles/ai-agent-business/index.html
 canonical: https://ai-komon.bivrost.co.jp/articles/ai-agent-business/
 dateModified: 2026-07-13
 schema_types: [Article]
-japanese_chars: 2449
-reference_generated_at: 2026-07-30T14:00:57.664881+00:00
+japanese_chars: 2433
+reference_generated_at: 2026-07-30T14:11:49.790964+00:00
 ---
 
 # AIエージェントとは？中小企業の業務で任せる範囲と導入手順 | AI顧問室
@@ -20,11 +20,11 @@ reference_generated_at: 2026-07-30T14:00:57.664881+00:00
 - published: `2026-07-13`
 - modified: `2026-07-13`
 - source HTML: [`articles/ai-agent-business/index.html`](../../../../articles/ai-agent-business/index.html)
-- source SHA-256: `edce11629f88b70201f6be9c0ab695e2ff684aa7c64015de7c2b88897d061f47`
+- source SHA-256: `814dcb47f2953921b15bc308084527b49f4361fe36545be88660de6c65bac957`
 
 ## ページ構造と計測用シグナル
 
-- 日本語文字数（article本文）: `2449`
+- 日本語文字数（article本文）: `2433`
 - H1: `1` / H2: `9` / H3: `3`
 - table: `3` / details FAQ: `3`
 - internal links: `4` / external links: `3`
@@ -59,10 +59,6 @@ reference_generated_at: 2026-07-30T14:00:57.664881+00:00
 | `button` | `a`×1 | 無料でコンサル1回分を受け取る |
 | `dek` | `p`×1 | AIエージェントは、目的に沿って情報を参照し、複数の処理を進める仕組みです。便利さだけで判断せず、定型業務・参照データ・承認ポイント・記録と監視を先に設計すると、導入範囲を安全に決められます。 |
 | `eyebrow` | `p`×1 | AI OPERATIONS / AGENT DESIGN |
-| `hero-badges` | `div`×1 | 定型業務 参照データ 承認 監視 |
-| `hero-kicker` | `span`×1 | AI KOMONSHITSU / AGENT DESIGN |
-| `hero-title` | `span`×1 | 自律性を増やすほど、承認と記録を置く。 |
-| `hero-visual` | `div`×1 | AI KOMONSHITSU / AGENT DESIGN 自律性を増やすほど、承認と記録を置く。 定型業務 参照データ 承認 監視 |
 | `key-points` | `div`×1 | この記事の要点 チャットAIは回答中心、AIエージェントは複数の作業を目的に沿って進める 最初は定型度が高く、失敗時に人が止められる業務を選ぶ 承認・権限・ログ・切り戻しを決めないまま自動実行を広げない |
 | `meta` | `p`×1 | 公開日: 2026年7月13日 \| AI顧問室 編集部 |
 | `note` | `div`×1 | 人の承認を省略しない処理： 顧客への外部連絡、契約・請求の確定、個人評価、権限変更、削除などは、業務責任者の承認を残します。 |
@@ -74,6 +70,7 @@ reference_generated_at: 2026-07-30T14:00:57.664881+00:00
 | `table-scroll` | `div`×3 | 仕組み 主な役割 人が決めること 生成AI 文章、要約、分類、アイデアの生成 材料と出力の確認 チャットボット 質問への回答やFAQ検索 回答範囲とエスカレーション RPA 決まった画面操作の自動実行 手順と例外処理 AIエージェント 目的に沿った複数工程の実行 権限、承認、停止条件、ログ |
 | `toc` | `div`×1 | この記事の目次 AIエージェントとは 生成AI・チャットボットとの違い 任せやすい業務 導入設計の4項目 小さく試す方法 失敗時の戻し方 |
 | `tool-cta` | `div`×1 | 無料でコンサル1回分をプレゼント 対象業務、AI導入の課題、実装範囲を整理するコンサルティングを1回分、無料でお試しいただけます。 無料でコンサル1回分を受け取る |
+| `visually-hidden` | `figcaption`×1 | AIエージェントとは？中小企業の業務で任せる範囲と導入手順のカバー画像 |
 
 ### 外部 stylesheet
 
@@ -88,7 +85,7 @@ reference_generated_at: 2026-07-30T14:00:57.664881+00:00
 
 - source: `ai-agent-business-thumbnail.svg`
 - dimensions: `unknown`
-- caption: 記事テーマを示すシンプルなカバー画像。
+- caption: AIエージェントとは？中小企業の業務で任せる範囲と導入手順のカバー画像
 - sha256: `270a8a6aee7bb20c54650aaaa1d172174dd2d59de747cedfe8579ffdcd30f5de`
 
 ## 構造化データ（JSON-LD原文）
@@ -126,15 +123,11 @@ AIエージェントは、目的に沿って情報を参照し、複数の処理
 
 公開日: 2026年7月13日　|　AI顧問室 編集部
 
-AI KOMONSHITSU / AGENT DESIGN自律性を増やすほど、承認と記録を置く。
-
-定型業務参照データ承認監視
-
-**先に結論：**AIエージェントは、質問に答えるだけでなく、目的に応じて情報を探し、分類・下書き・通知・記録など複数の作業をつなげる仕組みです。中小企業では、まず定型的で結果を確認できる業務を選び、人の承認を挟んで小さく試し、ログを見ながら範囲を広げます。
-
 ![AIエージェントとは？中小企業の業務で任せる範囲と導入手順のシンプルな記事サムネイル](../media/ai-agent-business/ai-agent-business-thumbnail.svg)
 
-記事テーマを示すシンプルなカバー画像。
+AIエージェントとは？中小企業の業務で任せる範囲と導入手順のカバー画像
+
+**先に結論：**AIエージェントは、質問に答えるだけでなく、目的に応じて情報を探し、分類・下書き・通知・記録など複数の作業をつなげる仕組みです。中小企業では、まず定型的で結果を確認できる業務を選び、人の承認を挟んで小さく試し、ログを見ながら範囲を広げます。
 
 **この記事の要点**
 
