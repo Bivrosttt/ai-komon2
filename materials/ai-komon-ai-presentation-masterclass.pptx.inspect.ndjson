@@ -1,699 +1,699 @@
-{"kind":"deck","id":"pr/zvne75","name":"Deck"}
-{"kind":"layout","layoutId":"c918da33-0278-43d4-a4a6-e0608fbd0047","name":"Master","type":"master"}
-{"kind":"layout","layoutId":"2450a4f4-f3c6-4f7c-92aa-e3de63191ac7","name":"Title Slide","type":"title"}
-{"kind":"slide","id":"sl/btycza","slide":1,"title":"実務プレイブック","textShapes":4}
-{"kind":"shape","id":"sh/cni5czq5","slide":1,"bbox":[0,0,1280,720]}
-{"kind":"shape","id":"sh/xor654rq","slide":1,"bbox":[92,112,620,470]}
-{"kind":"textbox","id":"sh/2xgn6p83","slide":1,"text":"実務プレイブック","textPreview":"実務プレイブック","textChars":8,"textLines":1,"bbox":[132,150,260,24]}
-{"kind":"textbox","id":"sh/3ypozu9o","slide":1,"name":"slide-title-01","text":"AIで、\n良質なプレゼンを\nつくる。","textPreview":"AIで、 | 良質なプレゼンを | つくる。","textChars":18,"textLines":3,"bbox":[132,196,510,190]}
-{"kind":"textbox","id":"sh/ozy58fq9","slide":1,"text":"AIに丸投げせず、\n判断が進む資料を設計する5段階","textPreview":"AIに丸投げせず、 | 判断が進む資料を設計する5段階","textChars":25,"textLines":2,"bbox":[132,404,450,92]}
-{"kind":"shape","id":"sh/pk761kru","slide":1,"bbox":[132,532,154,8]}
-{"kind":"textbox","id":"sh/mtkni98n","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"image","id":"im/y9ova1sn","slide":1,"name":"","alt":"夜の会議室とプレゼン資料、白い意思決定シート","bbox":[0,0,1280,720]}
-{"kind":"notes","id":"nt/btycza","slide":1,"text":"この教材はデザイン集ではなく、AIと人の作業を分ける実務工程であると宣言する。\n\n[Sources]\n- Generated visual: cover-background.png（AI顧問室制作）\n[/Sources]"}
-{"kind":"slide","id":"sl/5sj4e1","slide":2,"title":"PROBLEM / SPEED ≠ DECISION","textShapes":9}
-{"kind":"textbox","id":"sh/6pgvetg7","slide":2,"text":"PROBLEM / SPEED ≠ DECISION","textPreview":"PROBLEM / SPEED ≠ DECISION","textChars":26,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/tsru9ofy","slide":2,"name":"slide-title-2","text":"AIは資料を速く作れる。\nでも、意思決定までは速くならない。","textPreview":"AIは資料を速く作れる。 | でも、意思決定までは速くならない。","textChars":30,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"textbox","id":"sh/sridg3yd","slide":2,"text":"生成速度","textPreview":"生成速度","textChars":4,"textLines":1,"bbox":[90,216,360,58]}
-{"kind":"textbox","id":"sh/j2pc3exw","slide":2,"text":"判断速度","textPreview":"判断速度","textChars":4,"textLines":1,"bbox":[830,216,360,58]}
-{"kind":"shape","id":"sh/i1gva9gb","slide":2,"bbox":[86,306,230,126]}
-{"kind":"shape","id":"sh/5o7u5ofm","slide":2,"bbox":[102,322,128.8,14]}
-{"kind":"shape","id":"sh/k3ydcjyh","slide":2,"bbox":[102,350,165.6,28]}
-{"kind":"shape","id":"sh/vy5czexk","slide":2,"bbox":[132,328,230,126]}
-{"kind":"shape","id":"sh/axwb69gz","slide":2,"bbox":[148,350,94,84]}
-{"kind":"shape","id":"sh/sbud4jux","slide":2,"bbox":[252,350,94,84]}
-{"kind":"shape","id":"sh/tc3ux4bi","slide":2,"bbox":[178,350,230,126]}
-{"kind":"shape","id":"sh/69cb29c7","slide":2,"bbox":[194,366,128.8,14]}
-{"kind":"shape","id":"sh/7alcvetc","slide":2,"bbox":[194,394,165.6,28]}
-{"kind":"shape","id":"sh/k7ut0zu1","slide":2,"bbox":[224,372,230,126]}
-{"kind":"shape","id":"sh/583ut4bm","slide":2,"bbox":[240,394,94,84]}
-{"kind":"shape","id":"sh/i5sbypcv","slide":2,"bbox":[344,394,94,84]}
-{"kind":"shape","id":"sh/j61crutg","slide":2,"bbox":[270,394,230,126]}
-{"kind":"shape","id":"sh/o3edc3u5","slide":2,"bbox":[286,410,128.8,14]}
-{"kind":"shape","id":"sh/p4nu5obq","slide":2,"bbox":[286,438,165.6,28]}
-{"kind":"shape","id":"sh/xk3upo3u","slide":2,"bbox":[316,416,230,126]}
-{"kind":"shape","id":"sh/cjatwj29","slide":2,"bbox":[332,438,94,84]}
-{"kind":"shape","id":"sh/bi1cnelo","slide":2,"bbox":[436,438,94,84]}
-{"kind":"textbox","id":"sh/axsbut4j","slide":2,"text":"≠","textPreview":"≠","textChars":1,"textLines":1,"bbox":[554,292,170,130]}
-{"kind":"shape","id":"sh/pwjulo3y","slide":2,"bbox":[846,312,316,184]}
-{"kind":"textbox","id":"sh/ovatsjmd","slide":2,"text":"会議後の決定","textPreview":"会議後の決定","textChars":6,"textLines":1,"bbox":[878,342,220,24]}
-{"kind":"shape","id":"sh/nu1cjels","slide":2,"bbox":[878,388,252,54]}
-{"kind":"textbox","id":"sh/2tsbq947","slide":2,"text":"未記入","textPreview":"未記入","textChars":3,"textLines":1,"bbox":[878,388,252,54]}
-{"kind":"textbox","id":"sh/1szuh43m","slide":2,"text":"速く作ることと、相手が決められることは別の設計課題。","textPreview":"速く作ることと、相手が決められることは別の設計課題。","textChars":26,"textLines":1,"bbox":[192,586,896,42]}
-{"kind":"shape","id":"sh/grqtozm1","slide":2,"bbox":[64,665,1088,0]}
-{"kind":"textbox","id":"sh/6xory5kz","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/5sj4e1","slide":2,"text":"AIの価値を否定せず、評価軸を作成時間から意思決定へ移す。\n\n[Sources]\n- AI顧問室による実務工程の整理\n[/Sources]"}
-{"kind":"slide","id":"sl/0lttxu","slide":3,"title":"資料は完成しているのに、","textShapes":7}
-{"kind":"shape","id":"sh/cje1w7yl","slide":3,"bbox":[0,0,1280,720]}
-{"kind":"shape","id":"sh/dkn2pcz6","slide":3,"bbox":[62,54,1156,602]}
-{"kind":"textbox","id":"sh/2tcjqxgj","slide":3,"name":"slide-title-3","text":"資料は完成しているのに、\n会議の判断が進まない。","textPreview":"資料は完成しているのに、 | 会議の判断が進まない。","textChars":24,"textLines":2,"bbox":[104,82,1050,112]}
-{"kind":"textbox","id":"sh/3ulkj2h4","slide":3,"text":"会議後に残る3つ","textPreview":"会議後に残る3つ","textChars":8,"textLines":1,"bbox":[104,230,300,24]}
-{"kind":"shape","id":"sh/4ve1sny9","slide":3,"bbox":[104,280,690,58]}
-{"kind":"textbox","id":"sh/pwn2lszu","slide":3,"text":"「もう少し情報がほしい」","textPreview":"「もう少し情報がほしい」","textChars":12,"textLines":1,"bbox":[128,280,620,58]}
-{"kind":"shape","id":"sh/mpgj2hgn","slide":3,"bbox":[104,362,632,58]}
-{"kind":"textbox","id":"sh/nqpkvmh8","slide":3,"text":"「社内で確認します」","textPreview":"「社内で確認します」","textChars":10,"textLines":1,"bbox":[128,362,620,58]}
-{"kind":"shape","id":"sh/7epobq1c","slide":3,"bbox":[104,444,574,58]}
-{"kind":"textbox","id":"sh/6dgn25kr","slide":3,"text":"「次回また検討します」","textPreview":"「次回また検討します」","textChars":11,"textLines":1,"bbox":[128,444,620,58]}
-{"kind":"textbox","id":"sh/tg76d0ji","slide":3,"text":"ページは完成。\n決定は未完成。","textPreview":"ページは完成。 | 決定は未完成。","textChars":15,"textLines":2,"bbox":[842,306,282,128]}
-{"kind":"textbox","id":"sh/8fyp4v2x","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"image","id":"im/ats3yl4z","slide":3,"name":"","alt":"資料を見ながら判断が止まっている日本の経営会議","bbox":[0,0,1280,720]}
-{"kind":"notes","id":"nt/0lttxu","slide":3,"text":"読者自身の会議を想起させる。成果数値は断定しない。\n\n[Sources]\n- Generated visual: stalled-meeting.png（AI顧問室制作）\n[/Sources]"}
-{"kind":"slide","id":"sl/f9zyv7","slide":4,"title":"CAUSE / DEFINE THE DECISION","textShapes":7}
-{"kind":"textbox","id":"sh/zu9c3qt4","slide":4,"text":"CAUSE / DEFINE THE DECISION","textPreview":"CAUSE / DEFINE THE DECISION","textChars":27,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/0vitwvap","slide":4,"name":"slide-title-4","text":"止まる理由は、ページ不足ではなく\n「何を決めるか」が曖昧だから。","textPreview":"止まる理由は、ページ不足ではなく | 「何を決めるか」が曖昧だから。","textChars":32,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/1wru50ba","slide":4,"bbox":[82,260,390,238]}
-{"kind":"shape","id":"sh/mhkby5sv","slide":4,"bbox":[96,250,390,238]}
-{"kind":"shape","id":"sh/nitc7atg","slide":4,"bbox":[110,240,390,238]}
-{"kind":"shape","id":"sh/oj2t0fa1","slide":4,"bbox":[124,230,390,238]}
-{"kind":"shape","id":"sh/9kbu90bm","slide":4,"bbox":[138,220,390,238]}
-{"kind":"shape","id":"sh/alkb25sr","slide":4,"bbox":[152,210,390,238]}
-{"kind":"shape","id":"sh/bmtcbatc","slide":4,"bbox":[166,200,390,238]}
-{"kind":"shape","id":"sh/fq98jqh0","slide":4,"bbox":[180,190,390,238]}
-{"kind":"shape","id":"sh/up0ralgf","slide":4,"bbox":[194,180,390,238]}
-{"kind":"textbox","id":"sh/hsrqlgzq","slide":4,"text":"ページを増やす","textPreview":"ページを増やす","textChars":7,"textLines":1,"bbox":[154,382,278,50]}
-{"kind":"shape","id":"sh/gri9cbyl","slide":4,"bbox":[530,356,106,40]}
-{"kind":"shape","id":"sh/7m98f6ho","slide":4,"bbox":[696,222,492,330]}
-{"kind":"textbox","id":"sh/6lgr61g3","slide":4,"text":"決めること","textPreview":"決めること","textChars":5,"textLines":1,"bbox":[740,258,180,24]}
-{"kind":"shape","id":"sh/torqhgzu","slide":4,"bbox":[740,308,400,102]}
-{"kind":"textbox","id":"sh/sni98by9","slide":4,"text":"次回、担当部署で\n2週間の検証を始めるか","textPreview":"次回、担当部署で | 2週間の検証を始めるか","textChars":20,"textLines":2,"bbox":[764,326,352,66]}
-{"kind":"textbox","id":"sh/ritsrax8","slide":4,"text":"「決定」とは、会議後に誰が何をするかが変わる選択。","textPreview":"「決定」とは、会議後に誰が何をするかが変わる選択。","textChars":25,"textLines":1,"bbox":[740,452,400,54]}
-{"kind":"textbox","id":"sh/qhkri5gn","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/f9zyv7","slide":4,"text":"意思決定設計を、会議後の行動が変わる選択として定義する。\n\n[Sources]\n- AI顧問室による実務工程の整理\n[/Sources]"}
-{"kind":"slide","id":"sl/f6o0e9","slide":5,"title":"FAILURE MODE / ONE-SHOT GENERATION","textShapes":10}
-{"kind":"textbox","id":"sh/hszm1c3q","slide":5,"text":"FAILURE MODE / ONE-SHOT GENERATION","textPreview":"FAILURE MODE / ONE-SHOT GENERATION","textChars":34,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/upo3qhkf","slide":5,"name":"slide-title-5","text":"一発生成は、\n平均的なページを大量につくる。","textPreview":"一発生成は、 | 平均的なページを大量につくる。","textChars":22,"textLines":2,"bbox":[64,46,610,112]}
-{"kind":"shape","id":"sh/vqhkzml0","slide":5,"bbox":[66,228,472,298]}
-{"kind":"textbox","id":"sh/8n6lo729","slide":5,"text":"PROMPT","textPreview":"PROMPT","textChars":6,"textLines":1,"bbox":[98,260,120,24]}
-{"kind":"textbox","id":"sh/9of2xc3u","slide":5,"text":"「このテーマで\n30枚の資料を作って」","textPreview":"「このテーマで | 30枚の資料を作って」","textChars":19,"textLines":2,"bbox":[98,314,382,104]}
-{"kind":"shape","id":"sh/mlo3mxk3","slide":5,"bbox":[98,462,214,42]}
-{"kind":"textbox","id":"sh/7mxkv2lo","slide":5,"text":"一度で完成させる","textPreview":"一度で完成させる","textChars":8,"textLines":1,"bbox":[98,462,214,42]}
-{"kind":"shape","id":"sh/kj6lkn2d","slide":5,"bbox":[666,182,188,106]}
-{"kind":"shape","id":"sh/lkf2ts3i","slide":5,"bbox":[682,198,105.28,14]}
-{"kind":"shape","id":"sh/58fql4rq","slide":5,"bbox":[682,226,135.36,28]}
-{"kind":"shape","id":"sh/476psjq5","slide":5,"bbox":[820,182,188,106]}
-{"kind":"shape","id":"sh/j6x8je9k","slide":5,"bbox":[836,204,73,64]}
-{"kind":"shape","id":"sh/i5o7q98z","slide":5,"bbox":[919,204,73,64]}
-{"kind":"shape","id":"sh/h4fqh4re","slide":5,"bbox":[974,182,188,106]}
-{"kind":"shape","id":"sh/w3mpozq9","slide":5,"bbox":[990,198,105.28,14]}
-{"kind":"shape","id":"sh/v2d8fu9o","slide":5,"bbox":[990,226,135.36,28]}
-{"kind":"shape","id":"sh/u147mp83","slide":5,"bbox":[666,318,188,106]}
-{"kind":"shape","id":"sh/90vqdkri","slide":5,"bbox":[682,340,73,64]}
-{"kind":"shape","id":"sh/8zmpkfqx","slide":5,"bbox":[765,340,73,64]}
-{"kind":"shape","id":"sh/kvahgj25","slide":5,"bbox":[820,318,188,106]}
-{"kind":"shape","id":"sh/lwjypo3q","slide":5,"bbox":[836,334,105.28,14]}
-{"kind":"shape","id":"sh/yt8ze9kz","slide":5,"bbox":[836,362,135.36,28]}
-{"kind":"shape","id":"sh/zuhgnelk","slide":5,"bbox":[974,318,188,106]}
-{"kind":"shape","id":"sh/crqhcjmt","slide":5,"bbox":[990,340,73,64]}
-{"kind":"shape","id":"sh/xszylo3e","slide":5,"bbox":[1073,340,73,64]}
-{"kind":"shape","id":"sh/ap8za943","slide":5,"bbox":[666,454,188,106]}
-{"kind":"shape","id":"sh/bqhgjel8","slide":5,"bbox":[682,470,105.28,14]}
-{"kind":"shape","id":"sh/wnuho32d","slide":5,"bbox":[682,498,135.36,28]}
-{"kind":"textbox","id":"sh/ho3ix83i","slide":5,"text":"似た構図","textPreview":"似た構図","textChars":4,"textLines":1,"bbox":[650,586,136,38]}
-{"kind":"textbox","id":"sh/ri5kn250","slide":5,"text":"長い本文","textPreview":"長い本文","textChars":4,"textLines":1,"bbox":[798,586,136,38]}
-{"kind":"textbox","id":"sh/qhwjux4f","slide":5,"text":"根拠の混在","textPreview":"根拠の混在","textChars":5,"textLines":1,"bbox":[946,586,136,38]}
-{"kind":"textbox","id":"sh/dkn2pcnq","slide":5,"text":"弱い結論","textPreview":"弱い結論","textChars":4,"textLines":1,"bbox":[1094,586,136,38]}
-{"kind":"shape","id":"sh/sje1w7ml","slide":5,"bbox":[64,665,1088,0]}
-{"kind":"textbox","id":"sh/fmpkrm5w","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/f6o0e9","slide":5,"text":"明確・具体的な指示と反復改善を、資料制作の工程分解へ翻訳する。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n[/Sources]"}
-{"kind":"slide","id":"sl/795r9w","slide":6,"title":"WORST FUTURE / FAILURE LOOP","textShapes":9}
-{"kind":"textbox","id":"sh/vq943mh4","slide":6,"text":"WORST FUTURE / FAILURE LOOP","textPreview":"WORST FUTURE / FAILURE LOOP","textChars":27,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/wrilw7i9","slide":6,"name":"slide-title-6","text":"このままでは修正と不信が増え、\nAI導入そのものが止まる。","textPreview":"このままでは修正と不信が増え、 | AI導入そのものが止まる。","textChars":29,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/xsbm5czu","slide":6,"bbox":[304,270,150,34]}
-{"kind":"shape","id":"sh/ml03qx07","slide":6,"bbox":[720,270,150,34]}
-{"kind":"shape","id":"sh/nm94z2hs","slide":6,"bbox":[774,420,150,34]}
-{"kind":"shape","id":"sh/8nils7id","slide":6,"bbox":[304,420,150,34]}
-{"kind":"textbox","id":"sh/9orm1czy","slide":6,"text":"生成","textPreview":"生成","textChars":2,"textLines":1,"bbox":[136,254,154,154]}
-{"kind":"textbox","id":"sh/exg3mx0b","slide":6,"text":"修正","textPreview":"修正","textChars":2,"textLines":1,"bbox":[478,198,154,154]}
-{"kind":"textbox","id":"sh/zip4vihw","slide":6,"text":"根拠確認","textPreview":"根拠確認","textChars":4,"textLines":1,"bbox":[828,254,154,154]}
-{"kind":"textbox","id":"sh/3qt8redk","slide":6,"text":"作り直し","textPreview":"作り直し","textChars":4,"textLines":1,"bbox":[478,440,154,154]}
-{"kind":"shape","id":"sh/2p07i9wz","slide":6,"bbox":[512,330,256,104]}
-{"kind":"textbox","id":"sh/psbqt4va","slide":6,"text":"導入停止","textPreview":"導入停止","textChars":4,"textLines":1,"bbox":[512,330,256,104]}
-{"kind":"textbox","id":"sh/or2pkzep","slide":6,"text":"起こりうる失敗ループ：生成を完成と扱い、人の確認工程を持たない。","textPreview":"起こりうる失敗ループ：生成を完成と扱い、人の確認工程を持たない。","textChars":32,"textLines":1,"bbox":[230,626,820,34]}
-{"kind":"textbox","id":"sh/but8vedg","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/795r9w","slide":6,"text":"組織の実測値ではなく、起こりうる典型的なリスクモデルとして説明する。\n\n[Sources]\n- AI顧問室による実務工程の整理\n[/Sources]"}
-{"kind":"slide","id":"sl/i7ubgi","slide":7,"title":"BEST FUTURE / DECISION LOG","textShapes":15}
-{"kind":"textbox","id":"sh/r6103ilc","slide":7,"text":"BEST FUTURE / DECISION LOG","textPreview":"BEST FUTURE / DECISION LOG","textChars":26,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/s7ahwnmx","slide":7,"name":"slide-title-7","text":"反対に、判断が設計された資料は、\n会議後の次の一手を生む。","textPreview":"反対に、判断が設計された資料は、 | 会議後の次の一手を生む。","textChars":29,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/t8ji5s3i","slide":7,"bbox":[132,208,1016,390]}
-{"kind":"textbox","id":"sh/e9szyx43","slide":7,"text":"会議後の決定ログ","textPreview":"会議後の決定ログ","textChars":8,"textLines":1,"bbox":[178,244,260,24]}
-{"kind":"shape","id":"sh/fa1072lo","slide":7,"bbox":[178,286,924,0]}
-{"kind":"textbox","id":"sh/gba107m9","slide":7,"text":"決定","textPreview":"決定","textChars":2,"textLines":1,"bbox":[178,320,180,24]}
-{"kind":"shape","id":"sh/1c3i9c3e","slide":7,"bbox":[378,312,688,44]}
-{"kind":"textbox","id":"sh/ud8zmt4j","slide":7,"text":"2週間の検証を開始","textPreview":"2週間の検証を開始","textChars":9,"textLines":1,"bbox":[398,312,640,44]}
-{"kind":"textbox","id":"sh/veh0vyl4","slide":7,"text":"Owner","textPreview":"Owner","textChars":5,"textLines":1,"bbox":[178,380,180,24]}
-{"kind":"shape","id":"sh/j258bixw","slide":7,"bbox":[378,372,688,44]}
-{"kind":"textbox","id":"sh/i1wr2dwr","slide":7,"text":"営業責任者","textPreview":"営業責任者","textChars":5,"textLines":1,"bbox":[398,372,640,44]}
-{"kind":"textbox","id":"sh/547qdsf2","slide":7,"text":"Deadline","textPreview":"Deadline","textChars":8,"textLines":1,"bbox":[178,440,180,24]}
-{"kind":"shape","id":"sh/k3y94neh","slide":7,"bbox":[378,432,688,44]}
-{"kind":"textbox","id":"sh/vy587yx0","slide":7,"text":"次回会議まで","textPreview":"次回会議まで","textChars":6,"textLines":1,"bbox":[398,432,640,44]}
-{"kind":"textbox","id":"sh/axw7ydgf","slide":7,"text":"Next action","textPreview":"Next action","textChars":11,"textLines":1,"bbox":[178,500,180,24]}
-{"kind":"shape","id":"sh/x0nq98f6","slide":7,"bbox":[378,492,688,44]}
-{"kind":"textbox","id":"sh/wzep03el","slide":7,"text":"対象業務を3つ選ぶ","textPreview":"対象業務を3つ選ぶ","textChars":9,"textLines":1,"bbox":[398,492,640,44]}
-{"kind":"textbox","id":"sh/nal83yx4","slide":7,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[1060,522,52,52]}
-{"kind":"textbox","id":"sh/m9c7utgj","slide":7,"text":"架空例","textPreview":"架空例","textChars":3,"textLines":1,"bbox":[1022,574,92,24]}
-{"kind":"textbox","id":"sh/q5cr6t0b","slide":7,"text":"良い資料は「分かった」で終わらず、次の行動が残る。","textPreview":"良い資料は「分かった」で終わらず、次の行動が残る。","textChars":25,"textLines":1,"bbox":[238,632,804,34]}
-{"kind":"textbox","id":"sh/b6l8fyhw","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/i7ubgi","slide":7,"text":"決定を成果物として見せる。例は架空であることを明示する。\n\n[Sources]\n- AI顧問室による実務工程の整理\n[/Sources]"}
-{"kind":"slide","id":"sl/4ap4rb","slide":8,"title":"REFRAME / DECISION DESIGN","textShapes":8}
-{"kind":"textbox","id":"sh/batkjq90","slide":8,"text":"REFRAME / DECISION DESIGN","textPreview":"REFRAME / DECISION DESIGN","textChars":25,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/cb2lsvql","slide":8,"name":"slide-title-8","text":"プレゼンは、ページ制作ではなく\n意思決定の設計である。","textPreview":"プレゼンは、ページ制作ではなく | 意思決定の設計である。","textChars":27,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/dcv2l0r6","slide":8,"bbox":[72,306,222,126]}
-{"kind":"shape","id":"sh/2lk3mlsj","slide":8,"bbox":[88,322,124.32,14]}
-{"kind":"shape","id":"sh/3mtkfq9o","slide":8,"bbox":[88,350,159.84,28]}
-{"kind":"shape","id":"sh/on2lovq9","slide":8,"bbox":[120,338,222,126]}
-{"kind":"shape","id":"sh/pob2hgru","slide":8,"bbox":[136,360,90,84]}
-{"kind":"shape","id":"sh/eh03i1s7","slide":8,"bbox":[236,360,90,84]}
-{"kind":"shape","id":"sh/fi9kb69s","slide":8,"bbox":[168,370,222,126]}
-{"kind":"shape","id":"sh/vixkreh0","slide":8,"bbox":[184,386,124.32,14]}
-{"kind":"shape","id":"sh/uho3y90f","slide":8,"bbox":[184,414,159.84,28]}
-{"kind":"shape","id":"sh/hkzmtoz6","slide":8,"bbox":[216,402,222,126]}
-{"kind":"shape","id":"sh/wj6l0jil","slide":8,"bbox":[232,424,90,84]}
-{"kind":"shape","id":"sh/jmh4vyhc","slide":8,"bbox":[332,424,90,84]}
-{"kind":"shape","id":"sh/il832t0r","slide":8,"bbox":[264,434,222,126]}
-{"kind":"shape","id":"sh/5ozmxoz2","slide":8,"bbox":[280,450,124.32,14]}
-{"kind":"shape","id":"sh/4nql4jix","slide":8,"bbox":[280,478,159.84,28]}
-{"kind":"shape","id":"sh/zqdkju1s","slide":8,"bbox":[386,390,168,56]}
-{"kind":"textbox","id":"sh/yp43qp0n","slide":8,"text":"理解","textPreview":"理解","textChars":2,"textLines":1,"bbox":[622,326,104,104]}
-{"kind":"shape","id":"sh/25cnyxkv","slide":8,"bbox":[710,370,76,18]}
-{"kind":"textbox","id":"sh/36lor21g","slide":8,"text":"比較","textPreview":"比較","textChars":2,"textLines":1,"bbox":[758,290,104,104]}
-{"kind":"shape","id":"sh/o7up0721","slide":8,"bbox":[846,334,76,18]}
-{"kind":"textbox","id":"sh/p836tcjm","slide":8,"text":"納得","textPreview":"納得","textChars":2,"textLines":1,"bbox":[894,252,104,104]}
-{"kind":"shape","id":"sh/ehsnuxkz","slide":8,"bbox":[982,296,76,18]}
-{"kind":"textbox","id":"sh/fi1oni1k","slide":8,"text":"行動","textPreview":"行動","textChars":2,"textLines":1,"bbox":[1030,210,104,104]}
-{"kind":"textbox","id":"sh/g3u5wn25","slide":8,"text":"意思決定設計 = 相手が理解し、比べ、納得し、行動できる順に材料を置くこと","textPreview":"意思決定設計 = 相手が理解し、比べ、納得し、行動できる順に材料を置くこと","textChars":37,"textLines":1,"bbox":[150,600,980,42]}
-{"kind":"shape","id":"sh/1436psja","slide":8,"bbox":[64,665,1088,0]}
-{"kind":"textbox","id":"sh/6dsnqdkn","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/4ap4rb","slide":8,"text":"現状と可能性の差を使う考えを、実務の決定順序へ翻訳する。\n\n[Sources]\n- https://www.duarte.com/resources/communication-skills/business-storytelling/\n[/Sources]"}
-{"kind":"slide","id":"sl/46a0jb","slide":9,"title":"MAP / HOW PEOPLE MOVE","textShapes":16}
-{"kind":"textbox","id":"sh/bi90n2dg","slide":9,"text":"MAP / HOW PEOPLE MOVE","textPreview":"MAP / HOW PEOPLE MOVE","textChars":21,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/cji1w7ul","slide":9,"name":"slide-title-9","text":"相手は「理解・比較・納得・行動」の順に動く。","textPreview":"相手は「理解・比較・納得・行動」の順に動く。","textChars":22,"textLines":1,"bbox":[64,46,1152,72]}
-{"kind":"shape","id":"sh/xkr2psv6","slide":9,"bbox":[268,374,122,26]}
-{"kind":"shape","id":"sh/ylkjyxcr","slide":9,"bbox":[88,314,210,142]}
-{"kind":"textbox","id":"sh/zmtkr2dc","slide":9,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[110,332,54,24]}
-{"kind":"textbox","id":"sh/kn2107ux","slide":9,"text":"理解","textPreview":"理解","textChars":2,"textLines":1,"bbox":[110,362,166,40]}
-{"kind":"textbox","id":"sh/lob2tcvi","slide":9,"text":"何の話か","textPreview":"何の話か","textChars":4,"textLines":1,"bbox":[110,410,166,28]}
-{"kind":"shape","id":"sh/mpkj2hc3","slide":9,"bbox":[556,330,122,26]}
-{"kind":"shape","id":"sh/7qtkvmd8","slide":9,"bbox":[376,270,210,142]}
-{"kind":"textbox","id":"sh/ny5cjm10","slide":9,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[398,288,54,24]}
-{"kind":"textbox","id":"sh/mxwvq10f","slide":9,"text":"比較","textPreview":"比較","textChars":2,"textLines":1,"bbox":[398,318,166,40]}
-{"kind":"textbox","id":"sh/9k7ulwj6","slide":9,"text":"何が違うか","textPreview":"何が違うか","textChars":5,"textLines":1,"bbox":[398,366,166,28]}
-{"kind":"shape","id":"sh/8zydsril","slide":9,"bbox":[844,284,122,26]}
-{"kind":"shape","id":"sh/zu5cfm1o","slide":9,"bbox":[664,224,210,142]}
-{"kind":"textbox","id":"sh/ytwvmh03","slide":9,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[686,242,54,24]}
-{"kind":"textbox","id":"sh/lwnuhwju","slide":9,"text":"納得","textPreview":"納得","textChars":2,"textLines":1,"bbox":[686,272,166,40]}
-{"kind":"textbox","id":"sh/0vedori9","slide":9,"text":"なぜ信じられるか","textPreview":"なぜ信じられるか","textChars":8,"textLines":1,"bbox":[686,320,166,28]}
-{"kind":"shape","id":"sh/jq9wr618","slide":9,"bbox":[952,176,210,142]}
-{"kind":"textbox","id":"sh/ipgvyl0n","slide":9,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[974,194,54,24]}
-{"kind":"textbox","id":"sh/elkfq5kv","slide":9,"text":"行動","textPreview":"行動","textChars":2,"textLines":1,"bbox":[974,224,166,40]}
-{"kind":"textbox","id":"sh/fmtgjalg","slide":9,"text":"次に何をするか","textPreview":"次に何をするか","textChars":7,"textLines":1,"bbox":[974,272,166,28]}
-{"kind":"textbox","id":"sh/gn2xsf21","slide":9,"text":"AI導入提案なら：対象業務 → 現状との差 → 根拠 → 小さな検証","textPreview":"AI導入提案なら：対象業務 → 現状との差 → 根拠 → 小さな検証","textChars":34,"textLines":1,"bbox":[194,610,892,38]}
-{"kind":"textbox","id":"sh/1obylk36","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/46a0jb","slide":9,"text":"学術モデルとしてではなく、本教材で使う実務上の順序として説明する。\n\n[Sources]\n- https://www.duarte.com/resources/communication-skills/business-storytelling/\n[/Sources]"}
-{"kind":"slide","id":"sl/83b6wf","slide":10,"title":"STEP 1 / BRIEF","textShapes":14}
-{"kind":"textbox","id":"sh/2dcj25or","slide":10,"text":"STEP 1 / BRIEF","textPreview":"STEP 1 / BRIEF","textChars":14,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/p0n2d0n2","slide":10,"name":"slide-title-10","text":"AIに頼む前に、読者・決定・根拠・\n次の行動を固定する。","textPreview":"AIに頼む前に、読者・決定・根拠・ | 次の行動を固定する。","textChars":28,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/4fe14v6h","slide":10,"bbox":[72,212,670,402]}
-{"kind":"textbox","id":"sh/r25kfa58","slide":10,"text":"BRIEF / 4 QUESTIONS","textPreview":"BRIEF / 4 QUESTIONS","textChars":19,"textLines":1,"bbox":[110,242,280,24]}
-{"kind":"textbox","id":"sh/q1w365on","slide":10,"text":"読者","textPreview":"読者","textChars":2,"textLines":1,"bbox":[110,298,128,24]}
-{"kind":"shape","id":"sh/d4n2hkne","slide":10,"bbox":[248,288,438,46]}
-{"kind":"textbox","id":"sh/c3el8f6t","slide":10,"text":"誰が読むか","textPreview":"誰が読むか","textChars":5,"textLines":1,"bbox":[268,288,398,46]}
-{"kind":"textbox","id":"sh/761k3654","slide":10,"text":"決定","textPreview":"決定","textChars":2,"textLines":1,"bbox":[110,366,128,24]}
-{"kind":"shape","id":"sh/65sjuloj","slide":10,"bbox":[248,356,438,46]}
-{"kind":"textbox","id":"sh/sbilwv6d","slide":10,"text":"何を決めてもらうか","textPreview":"何を決めてもらうか","textChars":9,"textLines":1,"bbox":[268,356,398,46]}
-{"kind":"textbox","id":"sh/dcr2507y","slide":10,"text":"根拠","textPreview":"根拠","textChars":2,"textLines":1,"bbox":[110,434,128,24]}
-{"kind":"shape","id":"sh/q903ulon","slide":10,"bbox":[248,424,438,46]}
-{"kind":"textbox","id":"sh/ra9k3qps","slide":10,"text":"何が信頼材料か","textPreview":"何が信頼材料か","textChars":7,"textLines":1,"bbox":[268,424,398,46]}
-{"kind":"textbox","id":"sh/0fil0f6p","slide":10,"text":"次の行動","textPreview":"次の行動","textChars":4,"textLines":1,"bbox":[110,502,128,24]}
-{"kind":"shape","id":"sh/1gb29k7a","slide":10,"bbox":[248,492,438,46]}
-{"kind":"textbox","id":"sh/ed03y5oj","slide":10,"text":"会議後に何をしてほしいか","textPreview":"会議後に何をしてほしいか","textChars":12,"textLines":1,"bbox":[268,492,398,46]}
-{"kind":"shape","id":"sh/fe9k7ap4","slide":10,"bbox":[786,264,420,290]}
-{"kind":"textbox","id":"sh/gjy1ob65","slide":10,"text":"COPY PROMPT","textPreview":"COPY PROMPT","textChars":11,"textLines":1,"bbox":[822,294,180,24]}
-{"kind":"textbox","id":"sh/hk72xg7q","slide":10,"text":"あなたはプレゼン編集者です。\n次の4項目を質問し、曖昧な点を埋めてください。\n\n読者／決定／根拠／次の行動\n\n本文やスライドは、まだ作らないでください。","textPreview":"あなたはプレゼン編集者です。 | 次の4項目を質問し、曖昧な点を埋めてください。 |  | 読者／決定／根拠／次の行動 |  | 本文やスライドは、まだ作らないでください。","textChars":76,"textLines":6,"bbox":[822,336,346,178]}
-{"kind":"textbox","id":"sh/xofq58vi","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/83b6wf","slide":10,"text":"明確なコンテキストを先に渡す原則を、質問型のBrief作成にする。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n[/Sources]"}
-{"kind":"slide","id":"sl/byes4p","slide":11,"title":"BRIEF / VAGUE VS SPECIFIC","textShapes":10}
-{"kind":"textbox","id":"sh/t4byp07e","slide":11,"text":"BRIEF / VAGUE VS SPECIFIC","textPreview":"BRIEF / VAGUE VS SPECIFIC","textChars":25,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/61kfelo3","slide":11,"name":"slide-title-11","text":"Briefが曖昧なら、\nどれだけ良いプロンプトでも資料はぶれる。","textPreview":"Briefが曖昧なら、 | どれだけ良いプロンプトでも資料はぶれる。","textChars":32,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"textbox","id":"sh/72tgnqp8","slide":11,"text":"VAGUE","textPreview":"VAGUE","textChars":5,"textLines":1,"bbox":[92,226,180,24]}
-{"kind":"shape","id":"sh/g72xkv65","slide":11,"bbox":[92,270,446,248]}
-{"kind":"textbox","id":"sh/h8byt07q","slide":11,"text":"経営者向けに\nAIの提案資料を作る","textPreview":"経営者向けに | AIの提案資料を作る","textChars":17,"textLines":2,"bbox":[132,330,366,94]}
-{"kind":"textbox","id":"sh/u5kfi5oz","slide":11,"text":"読者も、決定も、場面も曖昧","textPreview":"読者も、決定も、場面も曖昧","textChars":13,"textLines":1,"bbox":[150,460,330,24]}
-{"kind":"shape","id":"sh/v6tgrqpk","slide":11,"bbox":[566,368,116,44]}
-{"kind":"textbox","id":"sh/wbix8b6l","slide":11,"text":"SPECIFIC","textPreview":"SPECIFIC","textChars":8,"textLines":1,"bbox":[726,226,180,24]}
-{"kind":"shape","id":"sh/xcrehg76","slide":11,"bbox":[726,254,466,294]}
-{"kind":"textbox","id":"sh/hs3udc3i","slide":11,"text":"従業員30〜100名の経営者が、\n問い合わせ対応で\n2週間の試験導入を承認する提案","textPreview":"従業員30〜100名の経営者が、 | 問い合わせ対応で | 2週間の試験導入を承認する提案","textChars":41,"textLines":3,"bbox":[770,314,378,134]}
-{"kind":"shape","id":"sh/grutk7mx","slide":11,"bbox":[816,470,284,42]}
-{"kind":"textbox","id":"sh/fqlcbm5c","slide":11,"text":"判断条件が具体的","textPreview":"判断条件が具体的","textChars":8,"textLines":1,"bbox":[816,470,284,42]}
-{"kind":"textbox","id":"sh/upcbih4r","slide":11,"text":"具体化するのは文章量ではなく、判断条件。","textPreview":"具体化するのは文章量ではなく、判断条件。","textChars":20,"textLines":1,"bbox":[322,610,636,38]}
-{"kind":"textbox","id":"sh/pw3uhw3e","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/byes4p","slide":11,"text":"具体的の意味を、形容詞追加ではなく読者・決定・場面の固定として説明する。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n[/Sources]"}
-{"kind":"slide","id":"sl/p4pv3i","slide":12,"title":"STEP 2 / GHOST DECK","textShapes":15}
-{"kind":"textbox","id":"sh/g3ypon6l","slide":12,"text":"STEP 2 / GHOST DECK","textPreview":"STEP 2 / GHOST DECK","textChars":19,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/v2p8vip0","slide":12,"name":"slide-title-12","text":"最初に作るのは本文ではなく、\nタイトルだけのGhost Deckである。","textPreview":"最初に作るのは本文ではなく、 | タイトルだけのGhost Deckである。","textChars":36,"textLines":2,"bbox":[64,46,700,112]}
-{"kind":"shape","id":"sh/uhg7mdof","slide":12,"bbox":[690,158,390,104]}
-{"kind":"textbox","id":"sh/tgnqt87u","slide":12,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[718,176,44,24]}
-{"kind":"textbox","id":"sh/8fepk369","slide":12,"text":"問題を特定する","textPreview":"問題を特定する","textChars":7,"textLines":1,"bbox":[778,180,270,56]}
-{"kind":"shape","id":"sh/7e58ripo","slide":12,"bbox":[735,236,390,104]}
-{"kind":"textbox","id":"sh/6dw7idoj","slide":12,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[763,254,44,24]}
-{"kind":"textbox","id":"sh/lcnqp87y","slide":12,"text":"原因を絞る","textPreview":"原因を絞る","textChars":5,"textLines":1,"bbox":[823,258,270,56]}
-{"kind":"shape","id":"sh/kbepg36d","slide":12,"bbox":[780,314,390,104]}
-{"kind":"textbox","id":"sh/q18jed8v","slide":12,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[808,332,44,24]}
-{"kind":"textbox","id":"sh/r2107i90","slide":12,"text":"見方を変える","textPreview":"見方を変える","textChars":6,"textLines":1,"bbox":[868,336,270,56]}
-{"kind":"shape","id":"sh/s3a1gnql","slide":12,"bbox":[825,392,390,104]}
-{"kind":"textbox","id":"sh/d4ji9sr6","slide":12,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[853,410,44,24]}
-{"kind":"textbox","id":"sh/id8zad8j","slide":12,"text":"根拠を示す","textPreview":"根拠を示す","textChars":5,"textLines":1,"bbox":[913,414,270,56]}
-{"kind":"shape","id":"sh/3eh03i94","slide":12,"bbox":[870,470,390,104]}
-{"kind":"textbox","id":"sh/4fqhcnqp","slide":12,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[898,488,44,24]}
-{"kind":"textbox","id":"sh/5gzi58ra","slide":12,"text":"今日の行動を決める","textPreview":"今日の行動を決める","textChars":9,"textLines":1,"bbox":[958,492,270,56]}
-{"kind":"shape","id":"sh/u9oz6t8n","slide":12,"bbox":[68,294,508,236]}
-{"kind":"textbox","id":"sh/vah0zy98","slide":12,"text":"COPY PROMPT","textPreview":"COPY PROMPT","textChars":11,"textLines":1,"bbox":[104,326,160,24]}
-{"kind":"textbox","id":"sh/jedg7up0","slide":12,"text":"Briefを基に、結論タイトルだけで\n12〜20枚の流れを作ってください。\n本文・画像・レイアウトは、\nまだ作らないでください。","textPreview":"Briefを基に、結論タイトルだけで | 12〜20枚の流れを作ってください。 | 本文・画像・レイアウトは、 | まだ作らないでください。","textChars":64,"textLines":4,"bbox":[104,370,430,130]}
-{"kind":"shape","id":"sh/yd4fepof","slide":12,"bbox":[64,665,1088,0]}
-{"kind":"textbox","id":"sh/lgvy947q","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/p4pv3i","slide":12,"text":"action title先行の考えを、日本語のGhost Deckとして手順化する。\n\n[Sources]\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n[/Sources]"}
-{"kind":"slide","id":"sl/wvqsxq","slide":13,"title":"GHOST DECK / PASS-FAIL TEST","textShapes":15}
-{"kind":"textbox","id":"sh/kn21ormd","slide":13,"text":"GHOST DECK / PASS-FAIL TEST","textPreview":"GHOST DECK / PASS-FAIL TEST","textChars":27,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/jmt0fm58","slide":13,"name":"slide-title-13","text":"タイトルだけで話が通れば、本文は短くできる。","textPreview":"タイトルだけで話が通れば、本文は短くできる。","textChars":22,"textLines":1,"bbox":[64,46,1152,72]}
-{"kind":"shape","id":"sh/ylkjmh4n","slide":13,"bbox":[216,224,0,360]}
-{"kind":"textbox","id":"sh/tcvilw3a","slide":13,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[194,226,44,44]}
-{"kind":"shape","id":"sh/8bm1srmp","slide":13,"bbox":[264,214,760,56]}
-{"kind":"textbox","id":"sh/7at0jml4","slide":13,"text":"問い合わせ対応に時間がかかっている","textPreview":"問い合わせ対応に時間がかかっている","textChars":17,"textLines":1,"bbox":[292,214,708,56]}
-{"kind":"textbox","id":"sh/6pkjqh4j","slide":13,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[194,298,44,44]}
-{"kind":"shape","id":"sh/hgv2pg36","slide":13,"bbox":[264,286,760,56]}
-{"kind":"textbox","id":"sh/gfm1wbml","slide":13,"text":"原因は定型質問の繰り返しにある","textPreview":"原因は定型質問の繰り返しにある","textChars":15,"textLines":1,"bbox":[292,286,708,56]}
-{"kind":"textbox","id":"sh/mhojm98v","slide":13,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[194,370,44,44]}
-{"kind":"shape","id":"sh/7ix0fe9g","slide":13,"bbox":[264,358,760,56]}
-{"kind":"textbox","id":"sh/8jq1ojq1","slide":13,"text":"AIは一次回答だけを担当できる","textPreview":"AIは一次回答だけを担当できる","textChars":15,"textLines":1,"bbox":[292,358,708,56]}
-{"kind":"textbox","id":"sh/9kzihorm","slide":13,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[194,442,44,44]}
-{"kind":"shape","id":"sh/ul8jq987","slide":13,"bbox":[264,430,760,56]}
-{"kind":"textbox","id":"sh/vmh0je9s","slide":13,"text":"まず2週間、FAQ上位10件で検証する","textPreview":"まず2週間、FAQ上位10件で検証する","textChars":19,"textLines":1,"bbox":[292,430,708,56]}
-{"kind":"textbox","id":"sh/w7q1sjqx","slide":13,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[194,514,44,44]}
-{"kind":"shape","id":"sh/h8z2lori","slide":13,"bbox":[264,502,760,56]}
-{"kind":"textbox","id":"sh/ap4zepsn","slide":13,"text":"本日決めるのは担当者と開始日","textPreview":"本日決めるのは担当者と開始日","textChars":14,"textLines":1,"bbox":[292,502,708,56]}
-{"kind":"shape","id":"sh/bqd07u98","slide":13,"bbox":[1054,214,146,344]}
-{"kind":"textbox","id":"sh/futgfqp0","slide":13,"text":"縦に読んで\n因果が\nつながるか","textPreview":"縦に読んで | 因果が | つながるか","textChars":15,"textLines":3,"bbox":[1074,290,106,126]}
-{"kind":"textbox","id":"sh/etkfml8f","slide":13,"text":"架空例","textPreview":"架空例","textChars":3,"textLines":1,"bbox":[1068,508,112,24]}
-{"kind":"textbox","id":"sh/1wbyh076","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/wvqsxq","slide":13,"text":"action titles全体で一貫した物語になるという考えを、実務チェックへ落とす。\n\n[Sources]\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n[/Sources]"}
-{"kind":"slide","id":"sl/pv9bui","slide":14,"title":"STORY / BUILD PRESSURE","textShapes":14}
-{"kind":"textbox","id":"sh/329o3m9c","slide":14,"text":"STORY / BUILD PRESSURE","textPreview":"STORY / BUILD PRESSURE","textChars":22,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/o3ipwrax","slide":14,"name":"slide-title-14","text":"物語は「現状・問題・転換・根拠・行動」の順に\n圧力をつくる。","textPreview":"物語は「現状・問題・転換・根拠・行動」の順に | 圧力をつくる。","textChars":30,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/por65wri","slide":14,"bbox":[158,436,178,44]}
-{"kind":"shape","id":"sh/qp07y1s3","slide":14,"bbox":[384,366,178,114]}
-{"kind":"shape","id":"sh/bq9o769o","slide":14,"bbox":[610,294,178,72]}
-{"kind":"shape","id":"sh/crip0bat","slide":14,"bbox":[836,222,178,72]}
-{"kind":"textbox","id":"sh/dsr69gre","slide":14,"text":"現状","textPreview":"現状","textChars":2,"textLines":1,"bbox":[84,388,108,108]}
-{"kind":"textbox","id":"sh/6twnmhsj","slide":14,"text":"共有できる事実","textPreview":"共有できる事実","textChars":7,"textLines":1,"bbox":[56,512,164,38]}
-{"kind":"textbox","id":"sh/rupov294","slide":14,"text":"問題","textPreview":"問題","textChars":2,"textLines":1,"bbox":[310,432,108,108]}
-{"kind":"textbox","id":"sh/bqtcbmlo","slide":14,"text":"放置する損失","textPreview":"放置する損失","textChars":6,"textLines":1,"bbox":[282,556,164,38]}
-{"kind":"textbox","id":"sh/ap0vih43","slide":14,"text":"転換","textPreview":"転換","textChars":2,"textLines":1,"bbox":[536,318,108,108]}
-{"kind":"textbox","id":"sh/xsbudw3e","slide":14,"text":"見方を変える一文","textPreview":"見方を変える一文","textChars":8,"textLines":1,"bbox":[508,442,164,38]}
-{"kind":"textbox","id":"sh/cr2dkrmt","slide":14,"text":"根拠","textPreview":"根拠","textChars":2,"textLines":1,"bbox":[762,246,108,108]}
-{"kind":"textbox","id":"sh/3m9c7mlc","slide":14,"text":"信じる材料","textPreview":"信じる材料","textChars":5,"textLines":1,"bbox":[734,370,164,38]}
-{"kind":"textbox","id":"sh/2l0veh4r","slide":14,"text":"行動","textPreview":"行動","textChars":2,"textLines":1,"bbox":[988,174,108,108]}
-{"kind":"textbox","id":"sh/poru9w3i","slide":14,"text":"今日決めること","textPreview":"今日決めること","textChars":7,"textLines":1,"bbox":[960,298,164,38]}
-{"kind":"shape","id":"sh/onidgrmx","slide":14,"bbox":[308,610,664,44]}
-{"kind":"textbox","id":"sh/fypc325g","slide":14,"text":"「圧力」は不安を煽ることではなく、次を知る必要を作ること。","textPreview":"「圧力」は不安を煽ることではなく、次を知る必要を作ること。","textChars":29,"textLines":1,"bbox":[328,610,624,44]}
-{"kind":"textbox","id":"sh/exgbax4v","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/pv9bui","slide":14,"text":"現状と可能性の対比を、初心者向けの5段階に噛み砕く。\n\n[Sources]\n- https://www.duarte.com/resources/communication-skills/business-storytelling/\n[/Sources]"}
-{"kind":"slide","id":"sl/1uy2xr","slide":15,"title":"COPY / TAKEAWAY TITLES","textShapes":9}
-{"kind":"textbox","id":"sh/zyx8ji5s","slide":15,"text":"COPY / TAKEAWAY TITLES","textPreview":"COPY / TAKEAWAY TITLES","textChars":22,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/0z69sn6d","slide":15,"name":"slide-title-15","text":"タイトルには話題ではなく、\n読み手が持ち帰る結論を書く。","textPreview":"タイトルには話題ではなく、 | 読み手が持ち帰る結論を書く。","textChars":28,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/l0fal8ni","slide":15,"bbox":[92,240,1096,314]}
-{"kind":"textbox","id":"sh/q94rmtov","slide":15,"text":"TOPIC TITLE","textPreview":"TOPIC TITLE","textChars":11,"textLines":1,"bbox":[132,280,200,24]}
-{"kind":"shape","id":"sh/bad8fy5g","slide":15,"bbox":[132,324,376,104]}
-{"kind":"textbox","id":"sh/cbm9o361","slide":15,"text":"AI導入の現状","textPreview":"AI導入の現状","textChars":7,"textLines":1,"bbox":[156,324,328,104]}
-{"kind":"shape","id":"sh/dwfqh8nm","slide":15,"bbox":[548,352,136,48]}
-{"kind":"textbox","id":"sh/a58ryx4f","slide":15,"text":"TAKEAWAY TITLE","textPreview":"TAKEAWAY TITLE","textChars":14,"textLines":1,"bbox":[720,280,220,24]}
-{"kind":"shape","id":"sh/v6hsr250","slide":15,"bbox":[720,318,420,126]}
-{"kind":"textbox","id":"sh/j6pwr2h8","slide":15,"text":"問い合わせ対応から始めると、\n小さく検証できる","textPreview":"問い合わせ対応から始めると、 | 小さく検証できる","textChars":23,"textLines":2,"bbox":[748,338,364,84]}
-{"kind":"textbox","id":"sh/y5wfyxgn","slide":15,"text":"主語 + 変化 / 判断 + 理由","textPreview":"主語 + 変化 / 判断 + 理由","textChars":17,"textLines":1,"bbox":[366,478,548,42]}
-{"kind":"textbox","id":"sh/l87etszy","slide":15,"text":"タイトルだけで「だから何？」に答えているか。","textPreview":"タイトルだけで「だから何？」に答えているか。","textChars":22,"textLines":1,"bbox":[332,606,616,38]}
-{"kind":"textbox","id":"sh/k7yx0nyd","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/1uy2xr","slide":15,"text":"action titleは話題名ではなく、ページの主要メッセージを表すという原則を説明する。\n\n[Sources]\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n[/Sources]"}
-{"kind":"slide","id":"sl/7w63fu","slide":16,"title":"FOCUS / ONE SLIDE, ONE CLAIM","textShapes":12}
-{"kind":"textbox","id":"sh/e9s76tsn","slide":16,"text":"FOCUS / ONE SLIDE, ONE CLAIM","textPreview":"FOCUS / ONE SLIDE, ONE CLAIM","textChars":28,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/1w3618by","slide":16,"name":"slide-title-16","text":"1枚に1つの主張を守ると、\n視線の行き先が1つになる。","textPreview":"1枚に1つの主張を守ると、 | 視線の行き先が1つになる。","textChars":27,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"textbox","id":"sh/0bap83ad","slide":16,"text":"NG","textPreview":"NG","textChars":2,"textLines":1,"bbox":[100,228,80,24]}
-{"kind":"shape","id":"sh/nylo3yt4","slide":16,"bbox":[100,268,470,276]}
-{"kind":"shape","id":"sh/mxc7atsj","slide":16,"bbox":[128,302,160,52]}
-{"kind":"textbox","id":"sh/903658ba","slide":16,"text":"結論","textPreview":"結論","textChars":2,"textLines":1,"bbox":[128,302,160,52]}
-{"kind":"shape","id":"sh/ozupc3ap","slide":16,"bbox":[350,298,174,84]}
-{"kind":"textbox","id":"sh/32horet0","slide":16,"text":"例外","textPreview":"例外","textChars":2,"textLines":1,"bbox":[350,298,174,84]}
-{"kind":"shape","id":"sh/218ny9sf","slide":16,"bbox":[162,412,222,82]}
-{"kind":"textbox","id":"sh/orehg7i1","slide":16,"text":"次の行動","textPreview":"次の行動","textChars":4,"textLines":1,"bbox":[162,412,222,82]}
-{"kind":"shape","id":"sh/psnipczm","slide":16,"bbox":[410,420,112,68]}
-{"kind":"textbox","id":"sh/2pwzex0v","slide":16,"text":"補足","textPreview":"補足","textChars":2,"textLines":1,"bbox":[410,420,112,68]}
-{"kind":"shape","id":"sh/3q50n2hg","slide":16,"bbox":[208,338,124,52]}
-{"kind":"shape","id":"sh/cfyhk7yx","slide":16,"bbox":[332,336,110,54]}
-{"kind":"shape","id":"sh/dg7itczi","slide":16,"bbox":[260,390,72,78]}
-{"kind":"shape","id":"sh/qtwzix0r","slide":16,"bbox":[332,390,132,78]}
-{"kind":"textbox","id":"sh/be50r2hc","slide":16,"text":"OK","textPreview":"OK","textChars":2,"textLines":1,"bbox":[706,228,80,24]}
-{"kind":"shape","id":"sh/sjuh8nit","slide":16,"bbox":[706,268,474,276]}
-{"kind":"shape","id":"sh/tk3yhsze","slide":16,"bbox":[760,314,366,98]}
-{"kind":"textbox","id":"sh/9gvyl4r2","slide":16,"text":"結論は1つ","textPreview":"結論は1つ","textChars":5,"textLines":1,"bbox":[760,314,366,98]}
-{"kind":"textbox","id":"sh/8fmxczah","slide":16,"text":"支える情報は、結論に従属させる","textPreview":"支える情報は、結論に従属させる","textChars":15,"textLines":1,"bbox":[760,450,366,42]}
-{"kind":"textbox","id":"sh/7edwje9w","slide":16,"text":"2つの「だから何？」があるなら、2枚に分ける。","textPreview":"2つの「だから何？」があるなら、2枚に分ける。","textChars":23,"textLines":1,"bbox":[334,608,612,38]}
-{"kind":"textbox","id":"sh/md4fa9sb","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/7w63fu","slide":16,"text":"1スライド1アイデア、短い文章、折り返し回避の原則を結びつける。\n\n[Sources]\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n[/Sources]"}
-{"kind":"slide","id":"sl/99pini","slide":17,"title":"EVIDENCE / SO WHAT?","textShapes":10}
-{"kind":"textbox","id":"sh/a18rqhkz","slide":17,"text":"EVIDENCE / SO WHAT?","textPreview":"EVIDENCE / SO WHAT?","textChars":19,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/x4zqlw3q","slide":17,"name":"slide-title-17","text":"根拠は数字を置くだけでなく、\n「だから何か」まで示す。","textPreview":"根拠は数字を置くだけでなく、 | 「だから何か」まで示す。","textChars":27,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/w3q9sr25","slide":17,"bbox":[405,366,62,34]}
-{"kind":"shape","id":"sh/nex8fml8","slide":17,"bbox":[811,366,62,34]}
-{"kind":"shape","id":"sh/mdo7mhk3","slide":17,"bbox":[70,246,328,298]}
-{"kind":"textbox","id":"sh/90zqhc3e","slide":17,"text":"CLAIM","textPreview":"CLAIM","textChars":5,"textLines":1,"bbox":[98,278,272,24]}
-{"kind":"textbox","id":"sh/ofqpor2t","slide":17,"text":"次回は価格説明より\nセキュリティ確認を優先","textPreview":"次回は価格説明より | セキュリティ確認を優先","textChars":21,"textLines":2,"bbox":[98,354,272,112]}
-{"kind":"shape","id":"sh/7a18r6ls","slide":17,"bbox":[476,246,328,298]}
-{"kind":"textbox","id":"sh/69sry1k7","slide":17,"text":"EVIDENCE","textPreview":"EVIDENCE","textChars":8,"textLines":1,"bbox":[504,278,272,24]}
-{"kind":"textbox","id":"sh/w3udc7qd","slide":17,"text":"稟議コメントの未確認事項が\nセキュリティ欄に集中","textPreview":"稟議コメントの未確認事項が | セキュリティ欄に集中","textChars":24,"textLines":2,"bbox":[504,354,272,112]}
-{"kind":"shape","id":"sh/x43u5c7y","slide":17,"bbox":[882,246,328,298]}
-{"kind":"textbox","id":"sh/a1cvax8n","slide":17,"text":"MEANING","textPreview":"MEANING","textChars":7,"textLines":1,"bbox":[910,278,272,24]}
-{"kind":"textbox","id":"sh/v2lc32p8","slide":17,"text":"決裁停止の原因に合わせて\n会議の議題を変える","textPreview":"決裁停止の原因に合わせて | 会議の議題を変える","textChars":22,"textLines":2,"bbox":[910,354,272,112]}
-{"kind":"textbox","id":"sh/8zud87qh","slide":17,"text":"架空例","textPreview":"架空例","textChars":3,"textLines":1,"bbox":[1088,560,114,24]}
-{"kind":"shape","id":"sh/903u1s72","slide":17,"bbox":[64,665,1088,0]}
-{"kind":"textbox","id":"sh/mxsv6x8b","slide":17,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/99pini","slide":17,"text":"根拠を陳列せず、意思決定への含意まで書く。例は架空である。\n\n[Sources]\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n[/Sources]"}
-{"kind":"slide","id":"sl/r9os8x","slide":18,"title":"STEP 3 / SLIDE SPEC","textShapes":21}
-{"kind":"textbox","id":"sh/r6ps32h0","slide":18,"text":"STEP 3 / SLIDE SPEC","textPreview":"STEP 3 / SLIDE SPEC","textChars":19,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/c7y9c7i5","slide":18,"name":"slide-title-18","text":"Slide Specが、各ページの主張・根拠・\n見せ方・出典を固定する。","textPreview":"Slide Specが、各ページの主張・根拠・ | 見せ方・出典を固定する。","textChars":36,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/d87a5czq","slide":18,"bbox":[72,208,890,422]}
-{"kind":"textbox","id":"sh/e9greh0b","slide":18,"text":"SLIDE SPEC / SAMPLE","textPreview":"SLIDE SPEC / SAMPLE","textChars":19,"textLines":1,"bbox":[108,236,280,24]}
-{"kind":"textbox","id":"sh/zaps7mhw","slide":18,"text":"Title","textPreview":"Title","textChars":5,"textLines":1,"bbox":[108,280,180,24]}
-{"kind":"shape","id":"sh/0by9grih","slide":18,"bbox":[288,274,628,30]}
-{"kind":"textbox","id":"sh/1c7a9wz2","slide":18,"text":"読み手が持ち帰る結論","textPreview":"読み手が持ち帰る結論","textChars":10,"textLines":1,"bbox":[304,274,596,30]}
-{"kind":"textbox","id":"sh/md0bih0n","slide":18,"text":"Narrative job","textPreview":"Narrative job","textChars":13,"textLines":1,"bbox":[108,319,180,24]}
-{"kind":"shape","id":"sh/ne9sbmhs","slide":18,"bbox":[288,313,628,30]}
-{"kind":"textbox","id":"sh/v6dwri10","slide":18,"text":"このページが物語で担う役割","textPreview":"このページが物語で担う役割","textChars":13,"textLines":1,"bbox":[304,313,596,30]}
-{"kind":"textbox","id":"sh/u5kfidkf","slide":18,"text":"Visible content","textPreview":"Visible content","textChars":15,"textLines":1,"bbox":[108,358,180,24]}
-{"kind":"shape","id":"sh/h8vyt8j6","slide":18,"bbox":[288,352,628,30]}
-{"kind":"textbox","id":"sh/g7mxkn2l","slide":18,"text":"画面に残す情報だけ","textPreview":"画面に残す情報だけ","textChars":9,"textLines":1,"bbox":[304,352,596,30]}
-{"kind":"textbox","id":"sh/72twny14","slide":18,"text":"Evidence","textPreview":"Evidence","textChars":8,"textLines":1,"bbox":[108,397,180,24]}
-{"kind":"shape","id":"sh/61kfetkj","slide":18,"bbox":[288,391,628,30]}
-{"kind":"textbox","id":"sh/t4bep8ja","slide":18,"text":"主張を信じる材料","textPreview":"主張を信じる材料","textChars":8,"textLines":1,"bbox":[304,391,596,30]}
-{"kind":"textbox","id":"sh/832xg32p","slide":18,"text":"Visual type","textPreview":"Visual type","textChars":11,"textLines":1,"bbox":[108,436,180,24]}
-{"kind":"shape","id":"sh/ryxgz218","slide":18,"bbox":[288,430,628,30]}
-{"kind":"textbox","id":"sh/qx4fqxkn","slide":18,"text":"HERO / CONTRAST / PROCESS / EVIDENCE / ACTION","textPreview":"HERO / CONTRAST / PROCESS / EVIDENCE / ACTION","textChars":45,"textLines":1,"bbox":[304,430,596,30]}
-{"kind":"textbox","id":"sh/m5srel87","slide":18,"text":"Layout","textPreview":"Layout","textChars":6,"textLines":1,"bbox":[108,475,180,24]}
-{"kind":"shape","id":"sh/n6187qps","slide":18,"bbox":[288,469,628,30]}
-{"kind":"textbox","id":"sh/87a9gvqd","slide":18,"text":"情報の重心と視線","textPreview":"情報の重心と視線","textChars":8,"textLines":1,"bbox":[304,469,596,30]}
-{"kind":"textbox","id":"sh/98ja907y","slide":18,"text":"Source","textPreview":"Source","textChars":6,"textLines":1,"bbox":[108,514,180,24]}
-{"kind":"shape","id":"sh/a9sri58j","slide":18,"bbox":[288,508,628,30]}
-{"kind":"textbox","id":"sh/valsbapo","slide":18,"text":"出典URL","textPreview":"出典URL","textChars":5,"textLines":1,"bbox":[304,508,596,30]}
-{"kind":"textbox","id":"sh/wvu9kfq9","slide":18,"text":"QA risk","textPreview":"QA risk","textChars":7,"textLines":1,"bbox":[108,553,180,24]}
-{"kind":"shape","id":"sh/xw3ad07u","slide":18,"bbox":[288,547,628,30]}
-{"kind":"textbox","id":"sh/qd8r618z","slide":18,"text":"切れ・重なり・誤認の危険","textPreview":"切れ・重なり・誤認の危険","textChars":12,"textLines":1,"bbox":[304,547,596,30]}
-{"kind":"shape","id":"sh/reh8z6pk","slide":18,"bbox":[1000,280,220,132]}
-{"kind":"shape","id":"sh/tsnu54r2","slide":18,"bbox":[1016,300,92.4,92]}
-{"kind":"shape","id":"sh/sretczah","slide":18,"bbox":[1114.4,304,70.4,18]}
-{"kind":"shape","id":"sh/7q5c3e9w","slide":18,"bbox":[1114.4,334,88,12]}
-{"kind":"shape","id":"sh/6pwba9sr","slide":18,"bbox":[934,340,72,28]}
-{"kind":"textbox","id":"sh/hw7u9ore","slide":18,"text":"作り始める前に、\n完成条件を\n言語化する。","textPreview":"作り始める前に、 | 完成条件を | 言語化する。","textChars":21,"textLines":3,"bbox":[994,442,226,108]}
-{"kind":"textbox","id":"sh/gvydgjat","slide":18,"text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/r9os8x","slide":18,"text":"計画・実装・QAの分離を参考に、初心者が使える事前仕様へ整理した。\n\n[Sources]\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
-{"kind":"slide","id":"sl/ll1p1p","slide":19,"title":"VISUAL / FIVE TYPES","textShapes":14}
-{"kind":"textbox","id":"sh/eh4ru9wb","slide":19,"text":"VISUAL / FIVE TYPES","textPreview":"VISUAL / FIVE TYPES","textChars":19,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/1kfa5ofm","slide":19,"name":"slide-title-19","text":"見せ方は、主張に合わせて5つの型から選べる。","textPreview":"見せ方は、主張に合わせて5つの型から選べる。","textChars":22,"textLines":1,"bbox":[64,46,1152,72]}
-{"kind":"shape","id":"sh/0j69wje1","slide":19,"bbox":[66,250,254,210]}
-{"kind":"shape","id":"sh/nmxs7yxs","slide":19,"bbox":[82,266,142.24,14]}
-{"kind":"shape","id":"sh/mlorytw7","slide":19,"bbox":[82,294,182.88,28]}
-{"kind":"textbox","id":"sh/98fa9ofy","slide":19,"text":"HERO","textPreview":"HERO","textChars":4,"textLines":1,"bbox":[66,482,254,24]}
-{"kind":"textbox","id":"sh/o7690jed","slide":19,"text":"結論を記憶させる","textPreview":"結論を記憶させる","textChars":8,"textLines":1,"bbox":[66,512,254,36]}
-{"kind":"shape","id":"sh/3qt8vuxo","slide":19,"bbox":[338,294,208,172]}
-{"kind":"shape","id":"sh/ipkrmpw3","slide":19,"bbox":[354,316,83,130]}
-{"kind":"shape","id":"sh/47elgv29","slide":19,"bbox":[447,316,83,130]}
-{"kind":"textbox","id":"sh/58nm90ju","slide":19,"text":"CONTRAST","textPreview":"CONTRAST","textChars":8,"textLines":1,"bbox":[338,488,208,24]}
-{"kind":"textbox","id":"sh/i5w3e5k3","slide":19,"text":"違いを判断させる","textPreview":"違いを判断させる","textChars":8,"textLines":1,"bbox":[338,518,208,36]}
-{"kind":"shape","id":"sh/j654nqlo","slide":19,"bbox":[566,250,208,210]}
-{"kind":"shape","id":"sh/sbylkf25","slide":19,"bbox":[584,343,24,24]}
-{"kind":"shape","id":"sh/tc7mdkjq","slide":19,"bbox":[608,349,61,12]}
-{"kind":"shape","id":"sh/69w3i5kf","slide":19,"bbox":[660,343,24,24]}
-{"kind":"shape","id":"sh/ra54ba10","slide":19,"bbox":[684,349,61,12]}
-{"kind":"shape","id":"sh/8ful8b21","slide":19,"bbox":[736,343,24,24]}
-{"kind":"textbox","id":"sh/9g32hg3m","slide":19,"text":"PROCESS","textPreview":"PROCESS","textChars":7,"textLines":1,"bbox":[566,482,208,24]}
-{"kind":"textbox","id":"sh/pkbap8ry","slide":19,"text":"順序を理解させる","textPreview":"順序を理解させる","textChars":8,"textLines":1,"bbox":[566,512,208,36]}
-{"kind":"shape","id":"sh/oj29w3qt","slide":19,"bbox":[794,300,208,166]}
-{"kind":"shape","id":"sh/3ytsni98","slide":19,"bbox":[810,320,87.36,126]}
-{"kind":"shape","id":"sh/2xkrud8n","slide":19,"bbox":[902.16,324,66.56,18]}
-{"kind":"shape","id":"sh/xovatsra","slide":19,"bbox":[902.16,354,83.2,12]}
-{"kind":"textbox","id":"sh/cnmt0nqp","slide":19,"text":"EVIDENCE","textPreview":"EVIDENCE","textChars":8,"textLines":1,"bbox":[794,488,208,24]}
-{"kind":"textbox","id":"sh/bmdsri94","slide":19,"text":"根拠を信じてもらう","textPreview":"根拠を信じてもらう","textChars":9,"textLines":1,"bbox":[794,518,208,36]}
-{"kind":"shape","id":"sh/qlkbyd8j","slide":19,"bbox":[1022,230,192,230]}
-{"kind":"shape","id":"sh/lsvaxsr6","slide":19,"bbox":[1042,250,152,168]}
-{"kind":"shape","id":"sh/krmt47q1","slide":19,"bbox":[1127.6,430,57.6,14]}
-{"kind":"textbox","id":"sh/ixg7ipo3","slide":19,"text":"ACTION","textPreview":"ACTION","textChars":6,"textLines":1,"bbox":[1022,482,192,24]}
-{"kind":"textbox","id":"sh/jyp8rupo","slide":19,"text":"その場で使わせる","textPreview":"その場で使わせる","textChars":8,"textLines":1,"bbox":[1022,512,192,36]}
-{"kind":"textbox","id":"sh/4zypkz69","slide":19,"text":"先に型を選び、あとから内容を詰める。","textPreview":"先に型を選び、あとから内容を詰める。","textChars":18,"textLines":1,"bbox":[366,626,548,38]}
-{"kind":"textbox","id":"sh/507qt47u","slide":19,"text":"19","textPreview":"19","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/ll1p1p","slide":19,"text":"5型はAI顧問室による制作上の分類であり、状況に応じて複合してよい。\n\n[Sources]\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n[/Sources]"}
-{"kind":"slide","id":"sl/9yb0sy","slide":20,"title":"背景画像は、雰囲気ではなく","textShapes":9}
-{"kind":"shape","id":"sh/1obadsru","slide":20,"bbox":[0,0,1280,720]}
-{"kind":"shape","id":"sh/032t4na9","slide":20,"bbox":[48,42,1184,622]}
-{"kind":"textbox","id":"sh/ry9s7ytc","slide":20,"name":"slide-title-20","text":"背景画像は、雰囲気ではなく\n理解を助ける舞台として使う。","textPreview":"背景画像は、雰囲気ではなく | 理解を助ける舞台として使う。","textChars":28,"textLines":2,"bbox":[82,72,1110,112]}
-{"kind":"shape","id":"sh/d0ra98ri","slide":20,"bbox":[82,246,300,214]}
-{"kind":"textbox","id":"sh/czi903ax","slide":20,"text":"×","textPreview":"×","textChars":1,"textLines":1,"bbox":[102,266,42,42]}
-{"kind":"textbox","id":"sh/budsj29w","slide":20,"text":"ただ未来的\nただ綺麗\nただAIらしい","textPreview":"ただ未来的 | ただ綺麗 | ただAIらしい","textChars":18,"textLines":3,"bbox":[126,330,212,90]}
-{"kind":"shape","id":"sh/at4baxsb","slide":20,"bbox":[448,246,700,286]}
-{"kind":"textbox","id":"sh/43uxsfed","slide":20,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[476,274,42,42]}
-{"kind":"textbox","id":"sh/p43y1kvy","slide":20,"text":"会議の緊張を見せる背景","textPreview":"会議の緊張を見せる背景","textChars":11,"textLines":1,"bbox":[542,272,510,42]}
-{"kind":"textbox","id":"sh/21sfq5w7","slide":20,"text":"+","textPreview":"+","textChars":1,"textLines":1,"bbox":[682,336,58,24]}
-{"kind":"shape","id":"sh/32lgzads","slide":20,"bbox":[536,384,520,92]}
-{"kind":"textbox","id":"sh/gfaxove1","slide":20,"text":"判断シートを前景に置く","textPreview":"判断シートを前景に置く","textChars":11,"textLines":1,"bbox":[536,384,520,92]}
-{"kind":"textbox","id":"sh/hgjyx0vm","slide":20,"text":"場所・人物・状況が、主張の理解に必要なときだけ使う。","textPreview":"場所・人物・状況が、主張の理解に必要なときだけ使う。","textChars":26,"textLines":1,"bbox":[284,590,712,38]}
-{"kind":"textbox","id":"sh/udsfm5wb","slide":20,"text":"20","textPreview":"20","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"image","id":"im/nq94fmxc","slide":20,"name":"","alt":"業務プロセスを比較し意思決定する日本の管理職チーム","bbox":[0,0,1280,720]}
-{"kind":"image","id":"im/z2p4bmx0","slide":20,"name":"","geometry":"roundRect","alt":"意味を持たない抽象的なAI背景の例","bbox":[82,246,300,214]}
-{"kind":"notes","id":"nt/9yb0sy","slide":20,"text":"画像は話を伝えるために使い、多すぎないようにする原則を採用基準へ翻訳する。\n\n[Sources]\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n- Generated visual: generic-ai-background.png（AI顧問室制作）\n- Generated visual: meaningful-workshop.png（AI顧問室制作）\n[/Sources]"}
-{"kind":"slide","id":"sl/75xosc","slide":21,"title":"背景画像の上には前景モックを置き、","textShapes":10}
-{"kind":"shape","id":"sh/kfy1grmh","slide":21,"bbox":[0,0,1280,720]}
-{"kind":"shape","id":"sh/5g7i9w3m","slide":21,"bbox":[56,42,1168,118]}
-{"kind":"textbox","id":"sh/apwjax4z","slide":21,"name":"slide-title-21","text":"背景画像の上には前景モックを置き、\n文字の居場所をつくる。","textPreview":"背景画像の上には前景モックを置き、 | 文字の居場所をつくる。","textChars":29,"textLines":2,"bbox":[90,54,1100,94]}
-{"kind":"shape","id":"sh/vq5032lk","slide":21,"bbox":[82,226,378,332]}
-{"kind":"textbox","id":"sh/wry1c7m5","slide":21,"text":"PAPER MOCK","textPreview":"PAPER MOCK","textChars":10,"textLines":1,"bbox":[120,254,180,24]}
-{"kind":"textbox","id":"sh/xs7i5c3q","slide":21,"text":"説明・結論","textPreview":"説明・結論","textChars":5,"textLines":1,"bbox":[120,314,300,54]}
-{"kind":"textbox","id":"sh/ul0jm1kj","slide":21,"text":"写真は舞台。\n文字は情報面。","textPreview":"写真は舞台。 | 文字は情報面。","textChars":14,"textLines":2,"bbox":[120,394,300,84]}
-{"kind":"shape","id":"sh/fm9kf6l4","slide":21,"bbox":[482,246,438,286]}
-{"kind":"shape","id":"sh/j6h0veds","slide":21,"bbox":[482,246,438,42]}
-{"kind":"shape","id":"sh/y58jm9w7","slide":21,"bbox":[500,260,12,12]}
-{"kind":"shape","id":"sh/l8zixovi","slide":21,"bbox":[520,260,12,12]}
-{"kind":"shape","id":"sh/k7q1ojex","slide":21,"bbox":[540,260,12,12]}
-{"kind":"textbox","id":"sh/7a1kzedo","slide":21,"text":"BROWSER MOCK","textPreview":"BROWSER MOCK","textChars":12,"textLines":1,"bbox":[524,318,220,24]}
-{"kind":"textbox","id":"sh/698jqtw3","slide":21,"text":"プロンプト・操作","textPreview":"プロンプト・操作","textChars":8,"textLines":1,"bbox":[524,370,338,50]}
-{"kind":"shape","id":"sh/twj21ovu","slide":21,"bbox":[524,442,338,44]}
-{"kind":"textbox","id":"sh/8va1sje9","slide":21,"text":"編集可能な入力欄","textPreview":"編集可能な入力欄","textChars":8,"textLines":1,"bbox":[544,442,298,44]}
-{"kind":"shape","id":"sh/vy1k3ydk","slide":21,"bbox":[964,250,208,328]}
-{"kind":"shape","id":"sh/uxsjutwf","slide":21,"bbox":[980,274,176,278]}
-{"kind":"textbox","id":"sh/qtw32xgn","slide":21,"text":"DEVICE","textPreview":"DEVICE","textChars":6,"textLines":1,"bbox":[1002,306,130,24]}
-{"kind":"textbox","id":"sh/ru54v2xs","slide":21,"text":"閲覧体験","textPreview":"閲覧体験","textChars":4,"textLines":1,"bbox":[994,366,148,52]}
-{"kind":"textbox","id":"sh/svel47yd","slide":21,"text":"21","textPreview":"21","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"image","id":"im/y90zi9sb","slide":21,"name":"","alt":"情報量の多いプロジェクトルーム","bbox":[0,0,1280,720]}
-{"kind":"notes","id":"nt/75xosc","slide":21,"text":"十分なコントラストを担保し、画像と文字の役割を分ける。\n\n[Sources]\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n- https://support.microsoft.com/en-us/accessibility/powerpoint/make-your-powerpoint-presentations-accessible-to-people-with-disabilities\n- Generated visual: busy-project-room.png（AI顧問室制作）\n[/Sources]"}
-{"kind":"slide","id":"sl/dhsb0f","slide":22,"title":"RHYTHM / VARY THE SILHOUETTE","textShapes":4}
-{"kind":"textbox","id":"sh/nadsv65g","slide":22,"text":"RHYTHM / VARY THE SILHOUETTE","textPreview":"RHYTHM / VARY THE SILHOUETTE","textChars":28,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/obmt4bm1","slide":22,"name":"slide-title-22","text":"同じレイアウトを繰り返さず、\n主張に合わせて画面の形を変える。","textPreview":"同じレイアウトを繰り返さず、 | 主張に合わせて画面の形を変える。","textChars":31,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/pcvaxgnm","slide":22,"bbox":[70,314,188,210]}
-{"kind":"shape","id":"sh/elkry14z","slide":22,"bbox":[86,330,105.28,14]}
-{"kind":"shape","id":"sh/fmdsr654","slide":22,"bbox":[86,358,135.36,28]}
-{"kind":"shape","id":"sh/0nm90bmp","slide":22,"bbox":[250,326,20,93]}
-{"kind":"shape","id":"sh/18vatgna","slide":22,"bbox":[260,250,180,152]}
-{"kind":"shape","id":"sh/qhkruh4n","slide":22,"bbox":[276,272,69,110]}
-{"kind":"shape","id":"sh/ritsnm58","slide":22,"bbox":[355,272,69,110]}
-{"kind":"shape","id":"sh/bid83qho","slide":22,"bbox":[432,326,26,78]}
-{"kind":"shape","id":"sh/qh47algj","slide":22,"bbox":[448,306,196,196]}
-{"kind":"shape","id":"sh/dkfq50zu","slide":22,"bbox":[466,392,24,24]}
-{"kind":"shape","id":"sh/cjmpcvy9","slide":22,"bbox":[490,398,55,12]}
-{"kind":"shape","id":"sh/zmx87ah0","slide":22,"bbox":[536,392,24,24]}
-{"kind":"shape","id":"sh/ylo7e5gf","slide":22,"bbox":[560,398,55,12]}
-{"kind":"shape","id":"sh/lofq90z6","slide":22,"bbox":[606,392,24,24]}
-{"kind":"shape","id":"sh/0n6pgvyl","slide":22,"bbox":[636,316,24,88]}
-{"kind":"shape","id":"sh/fqtob6hw","slide":22,"bbox":[650,232,184,168]}
-{"kind":"shape","id":"sh/epk721gb","slide":22,"bbox":[666,252,77.28,128]}
-{"kind":"shape","id":"sh/ihcjqd4v","slide":22,"bbox":[745.68,256,58.88,18]}
-{"kind":"shape","id":"sh/3ilkzy5g","slide":22,"bbox":[745.68,286,73.6,12]}
-{"kind":"shape","id":"sh/4ju1s3m1","slide":22,"bbox":[826,316,26,93]}
-{"kind":"shape","id":"sh/5k3218nm","slide":22,"bbox":[842,300,176,218]}
-{"kind":"shape","id":"sh/utsjmt4z","slide":22,"bbox":[862,320,136,156]}
-{"kind":"shape","id":"sh/vu10vy5k","slide":22,"bbox":[938.8,488,52.8,14]}
-{"kind":"shape","id":"sh/gva1o3m5","slide":22,"bbox":[1010,307,26,102]}
-{"kind":"shape","id":"sh/hw3ix8na","slide":22,"bbox":[1026,218,188,178]}
-{"kind":"shape","id":"sh/mpsjit4n","slide":22,"bbox":[1042,234,105.28,14]}
-{"kind":"shape","id":"sh/7q10re58","slide":22,"bbox":[1042,262,135.36,28]}
-{"kind":"textbox","id":"sh/pk7mxw7q","slide":22,"text":"色を変えるのではなく、情報の形を変える。","textPreview":"色を変えるのではなく、情報の形を変える。","textChars":20,"textLines":1,"bbox":[326,604,628,38]}
-{"kind":"textbox","id":"sh/ojyl4r65","slide":22,"text":"22","textPreview":"22","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/dhsb0f","slide":22,"text":"レイアウトを変え、全スライドを画像で確認する考えをリズム検査に使う。\n\n[Sources]\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
-{"kind":"slide","id":"sl/75sax3","slide":23,"title":"COLLABORATION / AI × HUMAN","textShapes":17}
-{"kind":"textbox","id":"sh/lkf6lw3q","slide":23,"text":"COLLABORATION / AI × HUMAN","textPreview":"COLLABORATION / AI × HUMAN","textChars":26,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/yxonahkz","slide":23,"name":"slide-title-23","text":"AIには候補と速度を任せ、\n人は目的・事実・優先順位を持つ。","textPreview":"AIには候補と速度を任せ、 | 人は目的・事実・優先順位を持つ。","textChars":30,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"textbox","id":"sh/jixojmlk","slide":23,"text":"AI","textPreview":"AI","textChars":2,"textLines":1,"bbox":[80,236,86,24]}
-{"kind":"textbox","id":"sh/wv658729","slide":23,"text":"HUMAN","textPreview":"HUMAN","textChars":5,"textLines":1,"bbox":[80,452,110,24]}
-{"kind":"shape","id":"sh/xwf6hc3u","slide":23,"bbox":[190,260,988,0]}
-{"kind":"shape","id":"sh/at4n6xk3","slide":23,"bbox":[190,476,988,0]}
-{"kind":"shape","id":"sh/budof2lo","slide":23,"bbox":[212,286,190,74]}
-{"kind":"textbox","id":"sh/orm5472x","slide":23,"text":"タイトル候補","textPreview":"タイトル候補","textChars":6,"textLines":1,"bbox":[212,286,190,74]}
-{"kind":"shape","id":"sh/9sv6dc3i","slide":23,"bbox":[404,309,46,24]}
-{"kind":"shape","id":"sh/pkrixg3a","slide":23,"bbox":[212,498,190,74]}
-{"kind":"textbox","id":"sh/4ji1obmp","slide":23,"text":"目的を決める","textPreview":"目的を決める","textChars":6,"textLines":1,"bbox":[212,498,190,74]}
-{"kind":"shape","id":"sh/3i90v6l4","slide":23,"bbox":[420,392,52,52]}
-{"kind":"textbox","id":"sh/2h0jm14z","slide":23,"text":"承認","textPreview":"承認","textChars":2,"textLines":1,"bbox":[408,446,76,28]}
-{"kind":"shape","id":"sh/hgritw3e","slide":23,"bbox":[456,286,190,74]}
-{"kind":"textbox","id":"sh/gfi1krmt","slide":23,"text":"構成案","textPreview":"構成案","textChars":3,"textLines":1,"bbox":[456,286,190,74]}
-{"kind":"shape","id":"sh/fe90r6l8","slide":23,"bbox":[648,309,46,24]}
-{"kind":"shape","id":"sh/ud0ji14n","slide":23,"bbox":[456,498,190,74]}
-{"kind":"textbox","id":"sh/tc7ipw32","slide":23,"text":"事実を確認","textPreview":"事実を確認","textChars":5,"textLines":1,"bbox":[456,498,190,74]}
-{"kind":"shape","id":"sh/sby1grmh","slide":23,"bbox":[664,392,52,52]}
-{"kind":"textbox","id":"sh/kv21wrud","slide":23,"text":"承認","textPreview":"承認","textChars":2,"textLines":1,"bbox":[652,446,76,28]}
-{"kind":"shape","id":"sh/lwbi5wby","slide":23,"bbox":[700,286,190,74]}
-{"kind":"textbox","id":"sh/ytkjuhcn","slide":23,"text":"表現の短縮","textPreview":"表現の短縮","textChars":5,"textLines":1,"bbox":[700,286,190,74]}
-{"kind":"shape","id":"sh/jut03mts","slide":23,"bbox":[892,309,46,24]}
-{"kind":"shape","id":"sh/wr21sruh","slide":23,"bbox":[700,498,190,74]}
-{"kind":"textbox","id":"sh/xsbi1cb2","slide":23,"text":"何を削るか","textPreview":"何を削るか","textChars":5,"textLines":1,"bbox":[700,498,190,74]}
-{"kind":"shape","id":"sh/ap0jqhcb","slide":23,"bbox":[908,392,52,52]}
-{"kind":"textbox","id":"sh/bq90zmdw","slide":23,"text":"承認","textPreview":"承認","textChars":2,"textLines":1,"bbox":[896,446,76,28]}
-{"kind":"shape","id":"sh/gnm14bul","slide":23,"bbox":[944,286,190,74]}
-{"kind":"textbox","id":"sh/hov2dgb6","slide":23,"text":"ビジュアル案","textPreview":"ビジュアル案","textChars":6,"textLines":1,"bbox":[944,286,190,74]}
-{"kind":"shape","id":"sh/rih43ad8","slide":23,"bbox":[944,498,190,74]}
-{"kind":"textbox","id":"sh/qho3u5wn","slide":23,"text":"最終承認","textPreview":"最終承認","textChars":4,"textLines":1,"bbox":[944,498,190,74]}
-{"kind":"textbox","id":"sh/dkzm5kve","slide":23,"text":"生成は委任できる。責任は委任しない。","textPreview":"生成は委任できる。責任は委任しない。","textChars":18,"textLines":1,"bbox":[346,632,588,40]}
-{"kind":"textbox","id":"sh/sjqlwfet","slide":23,"text":"23","textPreview":"23","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/75sax3","slide":23,"text":"AIを自動完成装置ではなく、選択肢を速く出す協働者として位置づける。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
-{"kind":"slide","id":"sl/6fbiq3","slide":24,"title":"WORKFLOW / FIVE STAGES","textShapes":22}
-{"kind":"textbox","id":"sh/p0ru94bi","slide":24,"text":"WORKFLOW / FIVE STAGES","textPreview":"WORKFLOW / FIVE STAGES","textChars":22,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/2xgbypsr","slide":24,"name":"slide-title-24","text":"制作はBrief、Ghost Deck、Slide Spec、\nVisual、QAの順に進める。","textPreview":"制作はBrief、Ghost Deck、Slide Spec、 | Visual、QAの順に進める。","textChars":48,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/3ypc7utc","slide":24,"bbox":[58,278,204,144]}
-{"kind":"textbox","id":"sh/gvytwza1","slide":24,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[76,294,30,24]}
-{"kind":"textbox","id":"sh/1w7u54b6","slide":24,"text":"Brief","textPreview":"Brief","textChars":5,"textLines":1,"bbox":[76,332,168,42]}
-{"kind":"textbox","id":"sh/e9gbupsv","slide":24,"text":"読者と決定","textPreview":"読者と決定","textChars":5,"textLines":1,"bbox":[76,380,168,28]}
-{"kind":"shape","id":"sh/fapc3utg","slide":24,"bbox":[260,328,42,24]}
-{"kind":"shape","id":"sh/0r2d8ja5","slide":24,"bbox":[266,446,48,48]}
-{"kind":"textbox","id":"sh/lsbuhobq","slide":24,"text":"人が承認","textPreview":"人が承認","textChars":4,"textLines":1,"bbox":[238,502,106,24]}
-{"kind":"shape","id":"sh/l0vy10fe","slide":24,"bbox":[302,278,204,144]}
-{"kind":"textbox","id":"sh/kzmh8vy9","slide":24,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[320,294,30,24]}
-{"kind":"textbox","id":"sh/zytgzqxo","slide":24,"text":"Ghost Deck","textPreview":"Ghost Deck","textChars":10,"textLines":1,"bbox":[320,332,168,42]}
-{"kind":"textbox","id":"sh/yxkz6lg3","slide":24,"text":"タイトルで物語","textPreview":"タイトルで物語","textChars":7,"textLines":1,"bbox":[320,380,168,28]}
-{"kind":"shape","id":"sh/xcbyxgfi","slide":24,"bbox":[504,328,42,24]}
-{"kind":"shape","id":"sh/cb2h4byx","slide":24,"bbox":[510,446,48,48]}
-{"kind":"textbox","id":"sh/batgvqxc","slide":24,"text":"人が承認","textPreview":"人が承認","textChars":4,"textLines":1,"bbox":[482,502,106,24]}
-{"kind":"shape","id":"sh/a9kz2lgr","slide":24,"bbox":[546,278,204,144]}
-{"kind":"textbox","id":"sh/hsfi9kfm","slide":24,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[564,294,30,24]}
-{"kind":"textbox","id":"sh/w76hgfe1","slide":24,"text":"Slide Spec","textPreview":"Slide Spec","textChars":10,"textLines":1,"bbox":[564,332,168,42]}
-{"kind":"textbox","id":"sh/gnytsnqp","slide":24,"text":"根拠と見せ方","textPreview":"根拠と見せ方","textChars":6,"textLines":1,"bbox":[564,380,168,28]}
-{"kind":"shape","id":"sh/1o7a1sra","slide":24,"bbox":[748,328,42,24]}
-{"kind":"shape","id":"sh/elwbqd8j","slide":24,"bbox":[754,446,48,48]}
-{"kind":"textbox","id":"sh/fm5szi94","slide":24,"text":"人が承認","textPreview":"人が承認","textChars":4,"textLines":1,"bbox":[726,502,106,24]}
-{"kind":"shape","id":"sh/sje9o3qd","slide":24,"bbox":[790,278,204,144]}
-{"kind":"textbox","id":"sh/tknax8ry","slide":24,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[808,294,30,24]}
-{"kind":"textbox","id":"sh/6hwrmd8n","slide":24,"text":"Visual","textPreview":"Visual","textChars":6,"textLines":1,"bbox":[808,332,168,42]}
-{"kind":"textbox","id":"sh/ri5svy98","slide":24,"text":"制作","textPreview":"制作","textChars":2,"textLines":1,"bbox":[808,380,168,28]}
-{"kind":"shape","id":"sh/4fu9k3qh","slide":24,"bbox":[992,328,42,24]}
-{"kind":"shape","id":"sh/5gnat8r2","slide":24,"bbox":[1034,278,204,144]}
-{"kind":"textbox","id":"sh/7qls3yto","slide":24,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1052,294,30,24]}
-{"kind":"textbox","id":"sh/mpcbutcj","slide":24,"text":"QA","textPreview":"QA","textChars":2,"textLines":1,"bbox":[1052,332,168,42]}
-{"kind":"textbox","id":"sh/9s3u5obu","slide":24,"text":"全ページ検査","textPreview":"全ページ検査","textChars":6,"textLines":1,"bbox":[1052,380,168,28]}
-{"kind":"shape","id":"sh/8rutw3u9","slide":24,"bbox":[198,554,884,74]}
-{"kind":"textbox","id":"sh/velc7yt0","slide":24,"text":"「各工程の承認が出るまで次へ進まないでください。最初はBriefだけを作成してください。」","textPreview":"「各工程の承認が出るまで次へ進まないでください。最初はBriefだけを作成してください。」","textChars":45,"textLines":1,"bbox":[224,570,832,42]}
-{"kind":"shape","id":"sh/udcbytcf","slide":24,"bbox":[64,665,1088,0]}
-{"kind":"textbox","id":"sh/hgnu98b6","slide":24,"text":"24","textPreview":"24","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/6fbiq3","slide":24,"text":"本教材自身がこのワークフローで作られている。反復改善を工程承認で制御する。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
-{"kind":"slide","id":"sl/u1c6uq","slide":25,"title":"QA / DRAFT AS HYPOTHESIS","textShapes":9}
-{"kind":"textbox","id":"sh/pcnypcrm","slide":25,"text":"QA / DRAFT AS HYPOTHESIS","textPreview":"QA / DRAFT AS HYPOTHESIS","textChars":24,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/29cfex8b","slide":25,"name":"slide-title-25","text":"AIの初稿は、完成品ではなく\n検査するための仮説である。","textPreview":"AIの初稿は、完成品ではなく | 検査するための仮説である。","textChars":28,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/3algn29w","slide":25,"bbox":[154,228,706,372]}
-{"kind":"shape","id":"sh/cfehkrqd","slide":25,"bbox":[170,248,296.52,332]}
-{"kind":"shape","id":"sh/dgnytw7y","slide":25,"bbox":[521.12,252,225.92,18]}
-{"kind":"shape","id":"sh/qdwfih87","slide":25,"bbox":[521.12,282,282.4,12]}
-{"kind":"shape","id":"sh/be5grm9s","slide":25,"bbox":[650,250,184,58]}
-{"kind":"textbox","id":"sh/sjax8nq9","slide":25,"text":"DRAFT 01","textPreview":"DRAFT 01","textChars":8,"textLines":1,"bbox":[650,250,184,58]}
-{"kind":"shape","id":"sh/tk3yhsru","slide":25,"bbox":[914,248,26,26]}
-{"kind":"textbox","id":"sh/54fa14bm","slide":25,"text":"何が伝わるか","textPreview":"何が伝わるか","textChars":6,"textLines":1,"bbox":[956,244,200,34]}
-{"kind":"shape","id":"sh/k36t8zu1","slide":25,"bbox":[856,260,52,0]}
-{"kind":"shape","id":"sh/j2xszutg","slide":25,"bbox":[968,344,26,26]}
-{"kind":"textbox","id":"sh/i14b6pcv","slide":25,"text":"何が余計か","textPreview":"何が余計か","textChars":5,"textLines":1,"bbox":[1010,340,200,34]}
-{"kind":"shape","id":"sh/tsfu54bi","slide":25,"bbox":[910,356,52,0]}
-{"kind":"shape","id":"sh/s76tcjux","slide":25,"bbox":[926,438,26,26]}
-{"kind":"textbox","id":"sh/76xc3etc","slide":25,"text":"何が足りないか","textPreview":"何が足りないか","textChars":7,"textLines":1,"bbox":[968,434,200,34]}
-{"kind":"shape","id":"sh/65oba9cr","slide":25,"bbox":[868,450,52,0]}
-{"kind":"shape","id":"sh/hwzu9obe","slide":25,"bbox":[846,536,26,26]}
-{"kind":"textbox","id":"sh/gvqtgju9","slide":25,"text":"何が未確認か","textPreview":"何が未確認か","textChars":6,"textLines":1,"bbox":[888,532,200,34]}
-{"kind":"shape","id":"sh/0zydcni5","slide":25,"bbox":[788,548,52,0]}
-{"kind":"textbox","id":"sh/107e5sjq","slide":25,"text":"直す前に、問題の種類を言葉にする。","textPreview":"直す前に、問題の種類を言葉にする。","textChars":17,"textLines":1,"bbox":[354,626,572,38]}
-{"kind":"textbox","id":"sh/edgvax0f","slide":25,"text":"25","textPreview":"25","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/u1c6uq","slide":25,"text":"反復改善と全ページ検査を、初稿の定義として説明する。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
-{"kind":"slide","id":"sl/b59wl4","slide":26,"title":"QA / FIVE PASSES","textShapes":19}
-{"kind":"textbox","id":"sh/xwjet0jy","slide":26,"text":"QA / FIVE PASSES","textPreview":"QA / FIVE PASSES","textChars":16,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/atsvil07","slide":26,"name":"slide-title-26","text":"品質は、物語・焦点・収まり・根拠・\n読みやすさの5回に分けて確認する。","textPreview":"品質は、物語・焦点・収まり・根拠・ | 読みやすさの5回に分けて確認する。","textChars":35,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/bu1wrq1s","slide":26,"bbox":[86,286,360,220]}
-{"kind":"shape","id":"sh/kjuxofi9","slide":26,"bbox":[102,302,201.6,14]}
-{"kind":"shape","id":"sh/lk3ex0ju","slide":26,"bbox":[102,330,259.2,28]}
-{"kind":"textbox","id":"sh/yxsvm50j","slide":26,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[528,214,48,48]}
-{"kind":"textbox","id":"sh/ji1wva14","slide":26,"text":"物語","textPreview":"物語","textChars":2,"textLines":1,"bbox":[596,210,172,40]}
-{"kind":"textbox","id":"sh/0nqdcbi5","slide":26,"text":"タイトルだけで因果が通るか","textPreview":"タイトルだけで因果が通るか","textChars":13,"textLines":1,"bbox":[772,212,414,36]}
-{"kind":"shape","id":"sh/1ozelgjq","slide":26,"bbox":[552,262,0,30]}
-{"kind":"textbox","id":"sh/1ovepsna","slide":26,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[528,292,48,48]}
-{"kind":"textbox","id":"sh/0nmdgn6p","slide":26,"text":"焦点","textPreview":"焦点","textChars":2,"textLines":1,"bbox":[596,288,172,40]}
-{"kind":"textbox","id":"sh/fmdcni54","slide":26,"text":"1枚1主張か","textPreview":"1枚1主張か","textChars":6,"textLines":1,"bbox":[772,290,414,36]}
-{"kind":"shape","id":"sh/el4vedoj","slide":26,"bbox":[552,340,0,30]}
-{"kind":"textbox","id":"sh/pcfetsn6","slide":26,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[528,370,48,48]}
-{"kind":"textbox","id":"sh/ob6dkn6l","slide":26,"text":"収まり","textPreview":"収まり","textChars":3,"textLines":1,"bbox":[596,366,172,40]}
-{"kind":"textbox","id":"sh/naxwr25g","slide":26,"text":"重なり・切れ・折返し","textPreview":"重なり・切れ・折返し","textChars":10,"textLines":1,"bbox":[772,368,414,36]}
-{"kind":"shape","id":"sh/2povixov","slide":26,"bbox":[552,418,0,30]}
-{"kind":"textbox","id":"sh/xgfexcni","slide":26,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[528,448,48,48]}
-{"kind":"textbox","id":"sh/cf6do76x","slide":26,"text":"根拠","textPreview":"根拠","textChars":2,"textLines":1,"bbox":[596,444,172,40]}
-{"kind":"textbox","id":"sh/gvypgfy5","slide":26,"text":"出典・仮定・架空例","textPreview":"出典・仮定・架空例","textChars":9,"textLines":1,"bbox":[772,446,414,36]}
-{"kind":"shape","id":"sh/hw769kzq","slide":26,"bbox":[552,496,0,30]}
-{"kind":"textbox","id":"sh/utg7e5gf","slide":26,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[528,526,48,48]}
-{"kind":"textbox","id":"sh/vupo7ahk","slide":26,"text":"読みやすさ","textPreview":"読みやすさ","textChars":5,"textLines":1,"bbox":[596,522,172,40]}
-{"kind":"textbox","id":"sh/4zipkfyh","slide":26,"text":"距離・コントラスト・読み順","textPreview":"距離・コントラスト・読み順","textChars":13,"textLines":1,"bbox":[772,524,414,36]}
-{"kind":"shape","id":"sh/50r6dkz2","slide":26,"bbox":[142,548,300,74]}
-{"kind":"textbox","id":"sh/ixg7ipgb","slide":26,"text":"1回 1目的","textPreview":"1回 1目的","textChars":6,"textLines":1,"bbox":[142,548,300,74]}
-{"kind":"textbox","id":"sh/3y9obahw","slide":26,"text":"26","textPreview":"26","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/b59wl4","slide":26,"text":"検査を分けることで見落としを減らす実務手順。効果量は断定しない。\n\n[Sources]\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n- https://support.microsoft.com/en-us/accessibility/powerpoint/make-your-powerpoint-presentations-accessible-to-people-with-disabilities\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
-{"kind":"slide","id":"sl/s22gwo","slide":27,"title":"QA / FOUR OUTPUTS","textShapes":12}
-{"kind":"textbox","id":"sh/e94nip8v","slide":27,"text":"QA / FOUR OUTPUTS","textPreview":"QA / FOUR OUTPUTS","textChars":17,"textLines":1,"bbox":[64,18,280,24]}
-{"kind":"textbox","id":"sh/1wf6tkrm","slide":27,"name":"slide-title-27","text":"PPTX、PDF、投影、スマホでは、\n同じ資料でも崩れ方が違う。","textPreview":"PPTX、PDF、投影、スマホでは、 | 同じ資料でも崩れ方が違う。","textChars":32,"textLines":2,"bbox":[64,46,1152,112]}
-{"kind":"shape","id":"sh/0b65kzq1","slide":27,"bbox":[74,256,286,188]}
-{"kind":"shape","id":"sh/nyxovu9s","slide":27,"bbox":[90,272,160.16,14]}
-{"kind":"shape","id":"sh/2xonmp87","slide":27,"bbox":[90,300,205.92,28]}
-{"kind":"textbox","id":"sh/p0f6x4ri","slide":27,"text":"PPTX","textPreview":"PPTX","textChars":4,"textLines":1,"bbox":[74,466,286,24]}
-{"kind":"textbox","id":"sh/oz65ozqx","slide":27,"text":"編集・フォント・互換性","textPreview":"編集・フォント・互換性","textChars":11,"textLines":1,"bbox":[74,494,286,44]}
-{"kind":"shape","id":"sh/j2t4ja98","slide":27,"bbox":[390,224,220,288]}
-{"kind":"shape","id":"sh/i1kna58n","slide":27,"bbox":[406,244,92.4,248]}
-{"kind":"shape","id":"sh/o3u5kb61","slide":27,"bbox":[504.4,248,70.4,18]}
-{"kind":"shape","id":"sh/p436dgnm","slide":27,"bbox":[504.4,278,88,12]}
-{"kind":"textbox","id":"sh/21snilov","slide":27,"text":"PDF","textPreview":"PDF","textChars":3,"textLines":1,"bbox":[390,534,220,24]}
-{"kind":"textbox","id":"sh/32lob65g","slide":27,"text":"固定レイアウト・リンク","textPreview":"固定レイアウト・リンク","textChars":11,"textLines":1,"bbox":[390,562,220,44]}
-{"kind":"shape","id":"sh/c7u5ov6d","slide":27,"bbox":[640,250,316,204]}
-{"kind":"shape","id":"sh/d836h0ni","slide":27,"bbox":[656,272,137,162]}
-{"kind":"shape","id":"sh/q5cnmlo7","slide":27,"bbox":[803,272,137,162]}
-{"kind":"textbox","id":"sh/b6lofq5s","slide":27,"text":"投影","textPreview":"投影","textChars":2,"textLines":1,"bbox":[640,476,316,24]}
-{"kind":"textbox","id":"sh/sba5cr6t","slide":27,"text":"距離・端の切れ・色","textPreview":"距離・端の切れ・色","textChars":9,"textLines":1,"bbox":[640,504,316,44]}
-{"kind":"shape","id":"sh/tcjm5wne","slide":27,"bbox":[1010,218,164,300]}
-{"kind":"shape","id":"sh/9sb29sf2","slide":27,"bbox":[1022,242,140,252]}
-{"kind":"shape","id":"sh/8r2lgnyx","slide":27,"bbox":[1034,272,116,92]}
-{"kind":"shape","id":"sh/769k7ixc","slide":27,"bbox":[1054,292,76,30]}
-{"kind":"shape","id":"sh/m503edgr","slide":27,"bbox":[1097.8,334,34.8,14]}
-{"kind":"textbox","id":"sh/hwbmdsfe","slide":27,"text":"スマホ","textPreview":"スマホ","textChars":3,"textLines":1,"bbox":[1010,540,164,24]}
-{"kind":"textbox","id":"sh/wv2lk7yt","slide":27,"text":"縮小時の文字量","textPreview":"縮小時の文字量","textChars":7,"textLines":1,"bbox":[1010,568,164,44]}
-{"kind":"textbox","id":"sh/vut4b2x8","slide":27,"text":"開く → PDF化 → 全画面投影 → スマホ確認","textPreview":"開く → PDF化 → 全画面投影 → スマホ確認","textChars":25,"textLines":1,"bbox":[302,622,676,38]}
-{"kind":"textbox","id":"sh/utk3ixgn","slide":27,"text":"27","textPreview":"27","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"notes","id":"nt/s22gwo","slide":27,"text":"互換性、フォント置換、PDF書き出し、投影解像度の注意を実務チェックへまとめる。\n\n[Sources]\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n- https://support.microsoft.com/en-us/powerpoint/export-a-presentation\n- https://support.microsoft.com/en-US/Office/fonts/download-and-install-custom-fonts-to-use-with-office\n- https://support.microsoft.com/en-US/PowerPoint/compatibility-checker-in-powerpoint\n[/Sources]"}
-{"kind":"slide","id":"sl/9yzc0i","slide":28,"title":"まず自社資料1本で試し、","textShapes":15}
-{"kind":"shape","id":"sh/7elk7yt8","slide":28,"bbox":[0,0,1280,720]}
-{"kind":"shape","id":"sh/6dcjytsn","slide":28,"bbox":[54,46,742,624]}
-{"kind":"textbox","id":"sh/5c325obi","slide":28,"name":"slide-title-28","text":"まず自社資料1本で試し、\n迷う工程だけ\n無料顧問を使う。","textPreview":"まず自社資料1本で試し、 | 迷う工程だけ | 無料顧問を使う。","textChars":28,"textLines":3,"bbox":[92,68,648,150]}
-{"kind":"textbox","id":"sh/kbu1wjax","slide":28,"text":"今日やること","textPreview":"今日やること","textChars":6,"textLines":1,"bbox":[92,232,240,24]}
-{"kind":"textbox","id":"sh/jalk3etc","slide":28,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[92,276,28,28]}
-{"kind":"textbox","id":"sh/i9cjutsr","slide":28,"text":"自社資料を1本選ぶ","textPreview":"自社資料を1本選ぶ","textChars":9,"textLines":1,"bbox":[136,274,586,60]}
-{"kind":"textbox","id":"sh/x8321ob6","slide":28,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[92,340,28,28]}
-{"kind":"textbox","id":"sh/w7u1sjal","slide":28,"text":"Briefの4項目を書く","textPreview":"Briefの4項目を書く","textChars":12,"textLines":1,"bbox":[136,338,586,60]}
-{"kind":"textbox","id":"sh/2dsvulk7","slide":28,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[92,404,28,28]}
-{"kind":"textbox","id":"sh/3e1cnq1s","slide":28,"text":"タイトルだけでGhost Deckを作る","textPreview":"タイトルだけでGhost Deckを作る","textChars":20,"textLines":1,"bbox":[136,402,586,60]}
-{"kind":"textbox","id":"sh/4fudwb2d","slide":28,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[92,468,28,28]}
-{"kind":"textbox","id":"sh/pg3upgjy","slide":28,"text":"1枚だけSlide Specを書いて作り直す","textPreview":"1枚だけSlide Specを書いて作り直す","textChars":22,"textLines":1,"bbox":[136,466,586,60]}
-{"kind":"textbox","id":"sh/upsvq1kb","slide":28,"text":"教材だけで進められる方は、そのまま実践してください。","textPreview":"教材だけで進められる方は、そのまま実践してください。","textChars":26,"textLines":1,"bbox":[92,588,626,32]}
-{"kind":"shape","id":"sh/fq1cj61w","slide":28,"bbox":[844,390,364,214]}
-{"kind":"textbox","id":"sh/gbadsb2h","slide":28,"text":"OPTION","textPreview":"OPTION","textChars":6,"textLines":1,"bbox":[880,420,120,24]}
-{"kind":"textbox","id":"sh/hcjulgj2","slide":28,"text":"無料顧問\n1回分","textPreview":"無料顧問 | 1回分","textChars":8,"textLines":2,"bbox":[880,458,286,74]}
-{"kind":"textbox","id":"sh/6l8bm1kf","slide":28,"text":"自社資料を持ち込み、\nBriefとGhost Deckを一緒に作る","textPreview":"自社資料を持ち込み、 | BriefとGhost Deckを一緒に作る","textChars":33,"textLines":2,"bbox":[880,544,286,44]}
-{"kind":"textbox","id":"sh/7mhcf6lk","slide":28,"text":"28","textPreview":"28","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
-{"kind":"image","id":"im/tgry94b6","slide":28,"name":"","alt":"自社資料を一つ選びBriefを書き始める日本の経営者と担当者","bbox":[0,0,1280,720]}
-{"kind":"notes","id":"nt/9yzc0i","slide":28,"text":"第1幕の会議が止まる問題を、自社資料1本の行動で回収する。CTAは支援の選択肢としてのみ提示する。\n\n[Sources]\n- Generated visual: closing-work-session.png（AI顧問室制作）\n[/Sources]"}
+{"kind":"deck","id":"pr/zb09zx","name":"Deck"}
+{"kind":"layout","layoutId":"9ceca35b-7556-4f85-9a71-2cdab5b648c3","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"9344d366-ad5c-411b-8e5f-a7b651a706e0","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/mtgco1","slide":1,"title":"社長・決裁者向け 実務プレイブック","textShapes":4}
+{"kind":"shape","id":"sh/oj2t0rap","slide":1,"bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/pkbutwba","slide":1,"bbox":[92,112,620,470]}
+{"kind":"textbox","id":"sh/alkb2hsv","slide":1,"text":"社長・決裁者向け 実務プレイブック","textPreview":"社長・決裁者向け 実務プレイブック","textChars":17,"textLines":1,"bbox":[132,150,420,24]}
+{"kind":"textbox","id":"sh/bmtcvmtg","slide":1,"name":"slide-title-01","text":"これだけでOK。\nAIでクオリティの高い\nスライドを作る方法","textPreview":"これだけでOK。 | AIでクオリティの高い | スライドを作る方法","textChars":30,"textLines":3,"bbox":[132,196,520,210]}
+{"kind":"textbox","id":"sh/cn2t4ra1","slide":1,"text":"経営会議で判断される資料を、\nAIと人で設計する5段階","textPreview":"経営会議で判断される資料を、 | AIと人で設計する5段階","textChars":27,"textLines":2,"bbox":[132,430,500,76]}
+{"kind":"shape","id":"sh/xobuxwbm","slide":1,"bbox":[132,532,154,8]}
+{"kind":"textbox","id":"sh/6pgbqxcr","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"image","id":"im/q1cvuhkv","slide":1,"name":"","alt":"夜の会議室とプレゼン資料、白い意思決定シート","bbox":[0,0,1280,720]}
+{"kind":"notes","id":"nt/mtgco1","slide":1,"text":"この教材はデザイン集ではなく、AIと人の作業を分ける実務工程であると宣言する。\n\n[Sources]\n- Generated visual: cover-background.png（AI顧問室制作）\n[/Sources]"}
+{"kind":"slide","id":"sl/4jfgm2","slide":2,"title":"PROBLEM / SPEED ≠ DECISION","textShapes":9}
+{"kind":"textbox","id":"sh/8vqdcja1","slide":2,"text":"PROBLEM / SPEED ≠ DECISION","textPreview":"PROBLEM / SPEED ≠ DECISION","textChars":26,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/7uhwjetw","slide":2,"name":"slide-title-2","text":"AIで資料は速くなる。\nでも、経営会議の判断は速くならない。","textPreview":"AIで資料は速くなる。 | でも、経営会議の判断は速くならない。","textChars":30,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"textbox","id":"sh/m98va9sb","slide":2,"text":"生成速度","textPreview":"生成速度","textChars":4,"textLines":1,"bbox":[90,216,360,58]}
+{"kind":"textbox","id":"sh/l8feh4bq","slide":2,"text":"判断速度","textPreview":"判断速度","textChars":4,"textLines":1,"bbox":[830,216,360,58]}
+{"kind":"shape","id":"sh/k76d8za5","slide":2,"bbox":[86,306,230,126]}
+{"kind":"shape","id":"sh/z6xwfutk","slide":2,"bbox":[102,322,128.8,14]}
+{"kind":"shape","id":"sh/y5ov69sz","slide":2,"bbox":[102,350,165.6,28]}
+{"kind":"shape","id":"sh/x4fed4be","slide":2,"bbox":[132,328,230,126]}
+{"kind":"shape","id":"sh/c36d4za9","slide":2,"bbox":[148,350,94,84]}
+{"kind":"shape","id":"sh/u58r298j","slide":2,"bbox":[252,350,94,84]}
+{"kind":"shape","id":"sh/f6hsvu94","slide":2,"bbox":[178,350,230,126]}
+{"kind":"shape","id":"sh/g7qt4zqp","slide":2,"bbox":[194,366,128.8,14]}
+{"kind":"shape","id":"sh/h8zax4ra","slide":2,"bbox":[194,394,165.6,28]}
+{"kind":"shape","id":"sh/6horyp8n","slide":2,"bbox":[224,372,230,126]}
+{"kind":"shape","id":"sh/7ixsru98","slide":2,"bbox":[240,394,94,84]}
+{"kind":"shape","id":"sh/sj690zqd","slide":2,"bbox":[344,394,94,84]}
+{"kind":"shape","id":"sh/tkzat4ry","slide":2,"bbox":[270,394,230,126]}
+{"kind":"shape","id":"sh/idorup8b","slide":2,"bbox":[286,410,128.8,14]}
+{"kind":"shape","id":"sh/jexsna9w","slide":2,"bbox":[286,438,165.6,28]}
+{"kind":"shape","id":"sh/nitovqpo","slide":2,"bbox":[316,416,230,126]}
+{"kind":"shape","id":"sh/mhk72lo3","slide":2,"bbox":[332,438,94,84]}
+{"kind":"shape","id":"sh/9kbqxg7u","slide":2,"bbox":[436,438,94,84]}
+{"kind":"textbox","id":"sh/oj2p4b69","slide":2,"text":"≠","textPreview":"≠","textChars":1,"textLines":1,"bbox":[554,292,170,130]}
+{"kind":"shape","id":"sh/bmd8zqp0","slide":2,"bbox":[846,312,316,184]}
+{"kind":"textbox","id":"sh/al476lof","slide":2,"text":"会議後の決定","textPreview":"会議後の決定","textChars":6,"textLines":1,"bbox":[878,342,220,24]}
+{"kind":"shape","id":"sh/xovq107q","slide":2,"bbox":[878,388,252,54]}
+{"kind":"textbox","id":"sh/wnmp8v65","slide":2,"text":"未記入","textPreview":"未記入","textChars":3,"textLines":1,"bbox":[878,388,252,54]}
+{"kind":"textbox","id":"sh/rq9on6pg","slide":2,"text":"速く作ることと、相手が決められることは別の設計課題。","textPreview":"速く作ることと、相手が決められることは別の設計課題。","textChars":26,"textLines":1,"bbox":[192,586,896,42]}
+{"kind":"shape","id":"sh/qp07u1ov","slide":2,"bbox":[64,665,1088,0]}
+{"kind":"textbox","id":"sh/gvylo7mt","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/4jfgm2","slide":2,"text":"AIの価値を否定せず、評価軸を作成時間から意思決定へ移す。\n\n[Sources]\n- AI顧問室による実務工程の整理\n[/Sources]"}
+{"kind":"slide","id":"sl/sfot67","slide":3,"title":"資料は完成しているのに、","textShapes":7}
+{"kind":"shape","id":"sh/adgfupgb","slide":3,"bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/vepgnuxw","slide":3,"bbox":[62,54,1156,602]}
+{"kind":"textbox","id":"sh/k3ih0zyd","slide":3,"name":"slide-title-3","text":"資料は完成しているのに、\n経営会議の判断が進まない。","textPreview":"資料は完成しているのに、 | 経営会議の判断が進まない。","textChars":26,"textLines":2,"bbox":[104,82,1050,112]}
+{"kind":"textbox","id":"sh/54ryt4fy","slide":3,"text":"会議後に残る3つ","textPreview":"会議後に残る3つ","textChars":8,"textLines":1,"bbox":[104,230,300,24]}
+{"kind":"shape","id":"sh/i10zypgn","slide":3,"bbox":[104,280,690,58]}
+{"kind":"textbox","id":"sh/j29grux8","slide":3,"text":"「もう少し情報がほしい」","textPreview":"「もう少し情報がほしい」","textChars":12,"textLines":1,"bbox":[128,280,620,58]}
+{"kind":"shape","id":"sh/07exofy9","slide":3,"bbox":[104,362,632,58]}
+{"kind":"textbox","id":"sh/l8nyh0fu","slide":3,"text":"「社内で確認します」","textPreview":"「社内で確認します」","textChars":10,"textLines":1,"bbox":[128,362,620,58]}
+{"kind":"shape","id":"sh/p87mp8fm","slide":3,"bbox":[104,444,574,58]}
+{"kind":"textbox","id":"sh/47y5g3y1","slide":3,"text":"「次回また検討します」","textPreview":"「次回また検討します」","textChars":11,"textLines":1,"bbox":[128,444,620,58]}
+{"kind":"textbox","id":"sh/36p4nixg","slide":3,"text":"ページは完成。\n決定は未完成。","textPreview":"ページは完成。 | 決定は未完成。","textChars":15,"textLines":2,"bbox":[842,306,282,128]}
+{"kind":"textbox","id":"sh/25wnedgb","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"image","id":"im/4j694jut","slide":3,"name":"","alt":"資料を見ながら判断が止まっている日本の経営会議","bbox":[0,0,1280,720]}
+{"kind":"notes","id":"nt/sfot67","slide":3,"text":"読者自身の会議を想起させる。成果数値は断定しない。\n\n[Sources]\n- Generated visual: stalled-meeting.png（AI顧問室制作）\n[/Sources]"}
+{"kind":"slide","id":"sl/ofvw2e","slide":4,"title":"CAUSE / DEFINE THE DECISION","textShapes":7}
+{"kind":"textbox","id":"sh/bmtkv6t0","slide":4,"text":"CAUSE / DEFINE THE DECISION","textPreview":"CAUSE / DEFINE THE DECISION","textChars":27,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/cn2l4bal","slide":4,"name":"slide-title-4","text":"止まる理由は、ページ不足ではなく\n「何を決めるか」が曖昧だから。","textPreview":"止まる理由は、ページ不足ではなく | 「何を決めるか」が曖昧だから。","textChars":32,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/dob2xgb6","slide":4,"bbox":[82,260,390,238]}
+{"kind":"shape","id":"sh/2h0jyhsj","slide":4,"bbox":[96,250,390,238]}
+{"kind":"shape","id":"sh/3i9krmt4","slide":4,"bbox":[110,240,390,238]}
+{"kind":"shape","id":"sh/oj210rap","slide":4,"bbox":[124,230,390,238]}
+{"kind":"shape","id":"sh/pkb2twba","slide":4,"bbox":[138,220,390,238]}
+{"kind":"shape","id":"sh/et0juhsn","slide":4,"bbox":[152,210,390,238]}
+{"kind":"shape","id":"sh/fe9knmt8","slide":4,"bbox":[166,200,390,238]}
+{"kind":"shape","id":"sh/v2xk3up4","slide":4,"bbox":[180,190,390,238]}
+{"kind":"shape","id":"sh/a1o3upoj","slide":4,"bbox":[194,180,390,238]}
+{"kind":"textbox","id":"sh/x4z2547a","slide":4,"text":"ページを増やす","textPreview":"ページを増やす","textChars":7,"textLines":1,"bbox":[154,382,278,50]}
+{"kind":"shape","id":"sh/w36lwz6p","slide":4,"bbox":[530,356,106,40]}
+{"kind":"shape","id":"sh/jqhk7up0","slide":4,"bbox":[696,222,492,330]}
+{"kind":"textbox","id":"sh/i583y9of","slide":4,"text":"決めること","textPreview":"決めること","textChars":5,"textLines":1,"bbox":[740,258,180,24]}
+{"kind":"shape","id":"sh/5sz29476","slide":4,"bbox":[740,308,400,102]}
+{"kind":"textbox","id":"sh/krql0z6l","slide":4,"text":"次回、担当部署で\n2週間の検証を始めるか","textPreview":"次回、担当部署で | 2週間の検証を始めるか","textChars":20,"textLines":2,"bbox":[764,326,352,66]}
+{"kind":"textbox","id":"sh/zudkvapw","slide":4,"text":"「決定」とは、会議後に誰が何をするかが変わる選択。","textPreview":"「決定」とは、会議後に誰が何をするかが変わる選択。","textChars":25,"textLines":1,"bbox":[740,452,400,54]}
+{"kind":"textbox","id":"sh/y94jm5ob","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/ofvw2e","slide":4,"text":"意思決定設計を、会議後の行動が変わる選択として定義する。\n\n[Sources]\n- AI顧問室による実務工程の整理\n[/Sources]"}
+{"kind":"slide","id":"sl/sezcqd","slide":5,"title":"FAILURE MODE / ONE-SHOT GENERATION","textShapes":10}
+{"kind":"textbox","id":"sh/gj654bax","slide":5,"text":"FAILURE MODE / ONE-SHOT GENERATION","textPreview":"FAILURE MODE / ONE-SHOT GENERATION","textChars":34,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/fix4bq9c","slide":5,"name":"slide-title-5","text":"一発生成は、\n平均的なページを大量につくる。","textPreview":"一発生成は、 | 平均的なページを大量につくる。","textChars":22,"textLines":2,"bbox":[64,46,610,112]}
+{"kind":"shape","id":"sh/uxo32lsr","slide":5,"bbox":[66,228,472,298]}
+{"kind":"textbox","id":"sh/pozmh0re","slide":5,"text":"PROMPT","textPreview":"PROMPT","textChars":6,"textLines":1,"bbox":[98,260,120,24]}
+{"kind":"textbox","id":"sh/4n658vat","slide":5,"text":"「このテーマで\n30枚の資料を作って」","textPreview":"「このテーマで | 30枚の資料を作って」","textChars":19,"textLines":2,"bbox":[98,314,382,104]}
+{"kind":"shape","id":"sh/3mx4fq98","slide":5,"bbox":[98,462,214,42]}
+{"kind":"textbox","id":"sh/2lon6ls3","slide":5,"text":"一度で完成させる","textPreview":"一度で完成させる","textChars":8,"textLines":1,"bbox":[98,462,214,42]}
+{"kind":"shape","id":"sh/dszml0rq","slide":5,"bbox":[666,182,188,106]}
+{"kind":"shape","id":"sh/crq5cva5","slide":5,"bbox":[682,198,105.28,14]}
+{"kind":"shape","id":"sh/yhkn2h8j","slide":5,"bbox":[682,226,135.36,28]}
+{"kind":"shape","id":"sh/zit4vmp4","slide":5,"bbox":[820,182,188,106]}
+{"kind":"shape","id":"sh/0jm54rqp","slide":5,"bbox":[836,204,73,64]}
+{"kind":"shape","id":"sh/lkvmxw7a","slide":5,"bbox":[919,204,73,64]}
+{"kind":"shape","id":"sh/ml4n6h8v","slide":5,"bbox":[974,182,188,106]}
+{"kind":"shape","id":"sh/nmd4zmpg","slide":5,"bbox":[990,198,105.28,14]}
+{"kind":"shape","id":"sh/8nm58r6l","slide":5,"bbox":[990,226,135.36,28]}
+{"kind":"shape","id":"sh/9ov61w76","slide":5,"bbox":[666,318,188,106]}
+{"kind":"shape","id":"sh/2p0nux8b","slide":5,"bbox":[682,340,73,64]}
+{"kind":"shape","id":"sh/3q94n2pw","slide":5,"bbox":[765,340,73,64]}
+{"kind":"shape","id":"sh/rupkvy5o","slide":5,"bbox":[820,318,188,106]}
+{"kind":"shape","id":"sh/6tgjmto3","slide":5,"bbox":[836,334,105.28,14]}
+{"kind":"shape","id":"sh/tw72x8nu","slide":5,"bbox":[836,362,135.36,28]}
+{"kind":"shape","id":"sh/svy1o369","slide":5,"bbox":[974,318,188,106]}
+{"kind":"shape","id":"sh/jq5kre5s","slide":5,"bbox":[990,340,73,64]}
+{"kind":"shape","id":"sh/ipwji9o7","slide":5,"bbox":[1073,340,73,64]}
+{"kind":"shape","id":"sh/5s72toni","slide":5,"bbox":[666,454,188,106]}
+{"kind":"shape","id":"sh/4re1kj6d","slide":5,"bbox":[682,470,105.28,14]}
+{"kind":"shape","id":"sh/3m9k3i5w","slide":5,"bbox":[682,498,135.36,28]}
+{"kind":"textbox","id":"sh/2l03udob","slide":5,"text":"似た構図","textPreview":"似た構図","textChars":4,"textLines":1,"bbox":[650,586,136,38]}
+{"kind":"textbox","id":"sh/07ahofmt","slide":5,"text":"長い本文","textPreview":"長い本文","textChars":4,"textLines":1,"bbox":[798,586,136,38]}
+{"kind":"textbox","id":"sh/l8jyxk3e","slide":5,"text":"根拠の混在","textPreview":"根拠の混在","textChars":5,"textLines":1,"bbox":[946,586,136,38]}
+{"kind":"textbox","id":"sh/y5szm54n","slide":5,"text":"弱い結論","textPreview":"弱い結論","textChars":4,"textLines":1,"bbox":[1094,586,136,38]}
+{"kind":"shape","id":"sh/z61gval8","slide":5,"bbox":[64,665,1088,0]}
+{"kind":"textbox","id":"sh/8vuhsfm5","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/sezcqd","slide":5,"text":"明確・具体的な指示と反復改善を、資料制作の工程分解へ翻訳する。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n[/Sources]"}
+{"kind":"slide","id":"sl/mw12yv","slide":6,"title":"WORST FUTURE / FAILURE LOOP","textShapes":9}
+{"kind":"textbox","id":"sh/qpsriloz","slide":6,"text":"WORST FUTURE / FAILURE LOOP","textPreview":"WORST FUTURE / FAILURE LOOP","textChars":27,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/ds3at0nq","slide":6,"name":"slide-title-6","text":"このままでは修正と不信が増え、\nAI導入そのものが止まる。","textPreview":"このままでは修正と不信が増え、 | AI導入そのものが止まる。","textChars":29,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/cra9kv65","slide":6,"bbox":[304,270,150,34]}
+{"kind":"shape","id":"sh/zelsva5g","slide":6,"bbox":[720,270,150,34]}
+{"kind":"shape","id":"sh/ytcrm5ov","slide":6,"bbox":[774,420,150,34]}
+{"kind":"shape","id":"sh/lg3axknm","slide":6,"bbox":[304,420,150,34]}
+{"kind":"textbox","id":"sh/0futof61","slide":6,"text":"生成","textPreview":"生成","textChars":2,"textLines":1,"bbox":[136,254,154,154]}
+{"kind":"textbox","id":"sh/fihsj65c","slide":6,"text":"修正","textPreview":"修正","textChars":2,"textLines":1,"bbox":[478,198,154,154]}
+{"kind":"textbox","id":"sh/ux8ra1or","slide":6,"text":"根拠確認","textPreview":"根拠確認","textChars":4,"textLines":1,"bbox":[828,254,154,154]}
+{"kind":"textbox","id":"sh/ozipgzq9","slide":6,"text":"作り直し","textPreview":"作り直し","textChars":4,"textLines":1,"bbox":[478,440,154,154]}
+{"kind":"shape","id":"sh/90rqp47u","slide":6,"bbox":[512,330,256,104]}
+{"kind":"textbox","id":"sh/mx07ep8j","slide":6,"text":"導入停止","textPreview":"導入停止","textChars":4,"textLines":1,"bbox":[512,330,256,104]}
+{"kind":"textbox","id":"sh/ny98nup4","slide":6,"text":"起こりうる失敗ループ：生成を完成と扱い、人の確認工程を持たない。","textPreview":"起こりうる失敗ループ：生成を完成と扱い、人の確認工程を持たない。","textChars":32,"textLines":1,"bbox":[230,626,820,34]}
+{"kind":"textbox","id":"sh/w32pkjql","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/mw12yv","slide":6,"text":"組織の実測値ではなく、起こりうる典型的なリスクモデルとして説明する。\n\n[Sources]\n- AI顧問室による実務工程の整理\n[/Sources]"}
+{"kind":"slide","id":"sl/9919ld","slide":7,"title":"BEST FUTURE / DECISION LOG","textShapes":15}
+{"kind":"textbox","id":"sh/6h87q1sn","slide":7,"text":"BEST FUTURE / DECISION LOG","textPreview":"BEST FUTURE / DECISION LOG","textChars":26,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/tkjqlwry","slide":7,"name":"slide-title-7","text":"反対に、判断が設計された資料は、\n会議後の次の一手を生む。","textPreview":"反対に、判断が設計された資料は、 | 会議後の次の一手を生む。","textChars":29,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/sjapsbad","slide":7,"bbox":[132,208,1016,390]}
+{"kind":"textbox","id":"sh/juh8fm9w","slide":7,"text":"会議後の決定ログ","textPreview":"会議後の決定ログ","textChars":8,"textLines":1,"bbox":[178,244,260,24]}
+{"kind":"shape","id":"sh/it87mhsb","slide":7,"bbox":[178,286,924,0]}
+{"kind":"textbox","id":"sh/5wzqhwr2","slide":7,"text":"決定","textPreview":"決定","textChars":2,"textLines":1,"bbox":[178,320,180,24]}
+{"kind":"shape","id":"sh/kvqporah","slide":7,"bbox":[378,312,688,44]}
+{"kind":"textbox","id":"sh/3ql8rq90","slide":7,"text":"2週間の検証を開始","textPreview":"2週間の検証を開始","textChars":9,"textLines":1,"bbox":[398,312,640,44]}
+{"kind":"textbox","id":"sh/2ps7ylsv","slide":7,"text":"Owner","textPreview":"Owner","textChars":5,"textLines":1,"bbox":[178,380,180,24]}
+{"kind":"shape","id":"sh/cjmtgz21","slide":7,"bbox":[378,372,688,44]}
+{"kind":"textbox","id":"sh/dkva94jm","slide":7,"text":"営業責任者","textPreview":"営業責任者","textChars":5,"textLines":1,"bbox":[398,372,640,44]}
+{"kind":"textbox","id":"sh/qhkbepkb","slide":7,"text":"Deadline","textPreview":"Deadline","textChars":8,"textLines":1,"bbox":[178,440,180,24]}
+{"kind":"shape","id":"sh/bids7u1g","slide":7,"bbox":[378,432,688,44]}
+{"kind":"textbox","id":"sh/of2tcz25","slide":7,"text":"次回会議まで","textPreview":"次回会議まで","textChars":6,"textLines":1,"bbox":[398,432,640,44]}
+{"kind":"textbox","id":"sh/pgba54jq","slide":7,"text":"Next action","textPreview":"Next action","textChars":11,"textLines":1,"bbox":[178,500,180,24]}
+{"kind":"shape","id":"sh/2dkrapkz","slide":7,"bbox":[378,492,688,44]}
+{"kind":"textbox","id":"sh/3ets3u1k","slide":7,"text":"対象業務を3つ選ぶ","textPreview":"対象業務を3つ選ぶ","textChars":9,"textLines":1,"bbox":[398,492,640,44]}
+{"kind":"textbox","id":"sh/gr298f2t","slide":7,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[1060,522,52,52]}
+{"kind":"textbox","id":"sh/1sba1kje","slide":7,"text":"架空例","textPreview":"架空例","textChars":3,"textLines":1,"bbox":[1022,574,92,24]}
+{"kind":"textbox","id":"sh/hwjipc76","slide":7,"text":"良い資料は「分かった」で終わらず、次の行動が残る。","textPreview":"良い資料は「分かった」で終わらず、次の行動が残る。","textChars":25,"textLines":1,"bbox":[238,632,804,34]}
+{"kind":"textbox","id":"sh/wvahg7ql","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/9919ld","slide":7,"text":"決定を成果物として見せる。例は架空であることを明示する。\n\n[Sources]\n- AI顧問室による実務工程の整理\n[/Sources]"}
+{"kind":"slide","id":"sl/nwoun5","slide":8,"title":"REFRAME / DECISION DESIGN","textShapes":8}
+{"kind":"textbox","id":"sh/wfax87e5","slide":8,"text":"REFRAME / DECISION DESIGN","textPreview":"REFRAME / DECISION DESIGN","textChars":25,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/ve1gfmxk","slide":8,"name":"slide-title-8","text":"経営者が判断できる資料は、\nページではなく意思決定を設計する。","textPreview":"経営者が判断できる資料は、 | ページではなく意思決定を設計する。","textChars":31,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/adsf6hwz","slide":8,"bbox":[72,306,222,126]}
+{"kind":"shape","id":"sh/9sjydcfe","slide":8,"bbox":[88,322,124.32,14]}
+{"kind":"shape","id":"sh/8rax47et","slide":8,"bbox":[88,350,159.84,28]}
+{"kind":"shape","id":"sh/nq1gb2x8","slide":8,"bbox":[120,338,222,126]}
+{"kind":"shape","id":"sh/mpsf2xw3","slide":8,"bbox":[136,360,90,84]}
+{"kind":"shape","id":"sh/t8nypwvy","slide":8,"bbox":[236,360,90,84]}
+{"kind":"shape","id":"sh/snuhgred","slide":8,"bbox":[168,370,222,126]}
+{"kind":"shape","id":"sh/e1kr25cf","slide":8,"bbox":[184,386,124.32,14]}
+{"kind":"shape","id":"sh/f2tsbat0","slide":8,"bbox":[184,414,159.84,28]}
+{"kind":"shape","id":"sh/g3294ful","slide":8,"bbox":[216,402,222,126]}
+{"kind":"shape","id":"sh/14badkb6","slide":8,"bbox":[232,424,90,84]}
+{"kind":"shape","id":"sh/6x0rylcj","slide":8,"bbox":[332,424,90,84]}
+{"kind":"shape","id":"sh/ryts7qto","slide":8,"bbox":[264,434,222,126]}
+{"kind":"shape","id":"sh/sz290vu9","slide":8,"bbox":[280,450,124.32,14]}
+{"kind":"shape","id":"sh/t0ba90bu","slide":8,"bbox":[280,478,159.84,28]}
+{"kind":"shape","id":"sh/qt4bapcn","slide":8,"bbox":[386,390,168,56]}
+{"kind":"textbox","id":"sh/budsjut8","slide":8,"text":"理解","textPreview":"理解","textChars":2,"textLines":1,"bbox":[622,326,104,104]}
+{"kind":"shape","id":"sh/7e5obm9k","slide":8,"bbox":[710,370,76,18]}
+{"kind":"textbox","id":"sh/mdw72hsz","slide":8,"text":"比較","textPreview":"比較","textChars":2,"textLines":1,"bbox":[758,290,104,104]}
+{"kind":"shape","id":"sh/9076dwrq","slide":8,"bbox":[846,334,76,18]}
+{"kind":"textbox","id":"sh/8fyp4ra5","slide":8,"text":"納得","textPreview":"納得","textChars":2,"textLines":1,"bbox":[894,252,104,104]}
+{"kind":"shape","id":"sh/v2pofm9g","slide":8,"bbox":[982,296,76,18]}
+{"kind":"textbox","id":"sh/u1g761sb","slide":8,"text":"行動","textPreview":"行動","textChars":2,"textLines":1,"bbox":[1030,210,104,104]}
+{"kind":"textbox","id":"sh/h476hwrm","slide":8,"text":"意思決定設計 = 相手が理解し、比べ、納得し、行動できる順に材料を置くこと","textPreview":"意思決定設計 = 相手が理解し、比べ、納得し、行動できる順に材料を置くこと","textChars":37,"textLines":1,"bbox":[150,600,980,42]}
+{"kind":"shape","id":"sh/w3yp8ra1","slide":8,"bbox":[64,665,1088,0]}
+{"kind":"textbox","id":"sh/j698j69s","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/nwoun5","slide":8,"text":"現状と可能性の差を使う考えを、実務の決定順序へ翻訳する。\n\n[Sources]\n- https://www.duarte.com/resources/communication-skills/business-storytelling/\n[/Sources]"}
+{"kind":"slide","id":"sl/je8edi","slide":9,"title":"MAP / HOW PEOPLE MOVE","textShapes":16}
+{"kind":"textbox","id":"sh/54ritgru","slide":9,"text":"MAP / HOW PEOPLE MOVE","textPreview":"MAP / HOW PEOPLE MOVE","textChars":21,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/i10zil83","slide":9,"name":"slide-title-9","text":"経営者が判断するには、\n理解・比較・納得・行動の順が必要だ。","textPreview":"経営者が判断するには、 | 理解・比較・納得・行動の順が必要だ。","textChars":30,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/3290rq9o","slide":9,"bbox":[268,374,122,26]}
+{"kind":"shape","id":"sh/gzyhgbax","slide":9,"bbox":[88,314,210,142]}
+{"kind":"textbox","id":"sh/h0ripgri","slide":9,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[110,332,54,24]}
+{"kind":"textbox","id":"sh/uxgze1sr","slide":9,"text":"理解","textPreview":"理解","textChars":2,"textLines":1,"bbox":[110,362,166,40]}
+{"kind":"textbox","id":"sh/vyp0n69c","slide":9,"text":"何の話か","textPreview":"何の話か","textChars":4,"textLines":1,"bbox":[110,410,166,28]}
+{"kind":"shape","id":"sh/0v21sfqh","slide":9,"bbox":[556,330,122,26]}
+{"kind":"shape","id":"sh/1wbi1krm","slide":9,"bbox":[376,270,210,142]}
+{"kind":"textbox","id":"sh/5w3upsfi","slide":9,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[398,288,54,24]}
+{"kind":"textbox","id":"sh/kbudwnex","slide":9,"text":"比較","textPreview":"比較","textChars":2,"textLines":1,"bbox":[398,318,166,40]}
+{"kind":"textbox","id":"sh/jalcnixc","slide":9,"text":"何が違うか","textPreview":"何が違うか","textChars":5,"textLines":1,"bbox":[398,366,166,28]}
+{"kind":"shape","id":"sh/i9cbudwr","slide":9,"bbox":[844,284,122,26]}
+{"kind":"shape","id":"sh/x83ul8f6","slide":9,"bbox":[664,224,210,142]}
+{"kind":"textbox","id":"sh/w7ats3el","slide":9,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[686,242,54,24]}
+{"kind":"textbox","id":"sh/v61cjyxg","slide":9,"text":"納得","textPreview":"納得","textChars":2,"textLines":1,"bbox":[686,272,166,40]}
+{"kind":"textbox","id":"sh/a5sbqdwv","slide":9,"text":"なぜ信じられるか","textPreview":"なぜ信じられるか","textChars":8,"textLines":1,"bbox":[686,320,166,28]}
+{"kind":"shape","id":"sh/h4nuxcfq","slide":9,"bbox":[952,176,210,142]}
+{"kind":"textbox","id":"sh/g3ed47e5","slide":9,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[974,194,54,24]}
+{"kind":"textbox","id":"sh/07mx0bm1","slide":9,"text":"行動","textPreview":"行動","textChars":2,"textLines":1,"bbox":[974,224,166,40]}
+{"kind":"textbox","id":"sh/18vetg3m","slide":9,"text":"次に何をするか","textPreview":"次に何をするか","textChars":7,"textLines":1,"bbox":[974,272,166,28]}
+{"kind":"textbox","id":"sh/e54fy14b","slide":9,"text":"AI導入提案なら：対象業務 → 現状との差 → 根拠 → 小さな検証","textPreview":"AI導入提案なら：対象業務 → 現状との差 → 根拠 → 小さな検証","textChars":34,"textLines":1,"bbox":[194,610,892,38]}
+{"kind":"textbox","id":"sh/z6dwr6lw","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/je8edi","slide":9,"text":"学術モデルとしてではなく、本教材で使う実務上の順序として説明する。\n\n[Sources]\n- https://www.duarte.com/resources/communication-skills/business-storytelling/\n[/Sources]"}
+{"kind":"slide","id":"sl/hdb2k6","slide":10,"title":"STEP 1 / BRIEF","textShapes":14}
+{"kind":"textbox","id":"sh/x8je50be","slide":10,"text":"STEP 1 / BRIEF","textPreview":"STEP 1 / BRIEF","textChars":14,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/al8valcn","slide":10,"name":"slide-title-10","text":"AIに頼む前に、読者・決定・根拠・\n次の行動を固定する。","textPreview":"AIに頼む前に、読者・決定・根拠・ | 次の行動を固定する。","textChars":28,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/bmhc3qt8","slide":10,"bbox":[72,212,670,402]}
+{"kind":"textbox","id":"sh/kbadgvup","slide":10,"text":"BRIEF / 4 QUESTIONS","textPreview":"BRIEF / 4 QUESTIONS","textChars":19,"textLines":1,"bbox":[110,242,280,24]}
+{"kind":"textbox","id":"sh/lcje90ba","slide":10,"text":"読者","textPreview":"読者","textChars":2,"textLines":1,"bbox":[110,298,128,24]}
+{"kind":"shape","id":"sh/y9sve5cz","slide":10,"bbox":[248,288,438,46]}
+{"kind":"textbox","id":"sh/za1w7qt4","slide":10,"text":"誰が読むか","textPreview":"誰が読むか","textChars":5,"textLines":1,"bbox":[268,288,398,46]}
+{"kind":"textbox","id":"sh/8fudkfu1","slide":10,"text":"決定","textPreview":"決定","textChars":2,"textLines":1,"bbox":[110,366,128,24]}
+{"kind":"shape","id":"sh/9g3edkbm","slide":10,"bbox":[248,356,438,46]}
+{"kind":"textbox","id":"sh/tgnu9gnq","slide":10,"text":"何を決めてもらうか","textPreview":"何を決めてもらうか","textChars":9,"textLines":1,"bbox":[268,356,398,46]}
+{"kind":"textbox","id":"sh/sfed0v65","slide":10,"text":"根拠","textPreview":"根拠","textChars":2,"textLines":1,"bbox":[110,434,128,24]}
+{"kind":"shape","id":"sh/7e5c7qpk","slide":10,"bbox":[248,424,438,46]}
+{"kind":"textbox","id":"sh/6dwvylof","slide":10,"text":"何が信頼材料か","textPreview":"何が信頼材料か","textChars":7,"textLines":1,"bbox":[268,424,398,46]}
+{"kind":"textbox","id":"sh/14ned0n2","slide":10,"text":"次の行動","textPreview":"次の行動","textChars":4,"textLines":1,"bbox":[110,502,128,24]}
+{"kind":"shape","id":"sh/g3ed4v6h","slide":10,"bbox":[248,492,438,46]}
+{"kind":"textbox","id":"sh/fi5wbq5w","slide":10,"text":"会議後に何をしてほしいか","textPreview":"会議後に何をしてほしいか","textChars":12,"textLines":1,"bbox":[268,492,398,46]}
+{"kind":"shape","id":"sh/ehwv2lob","slide":10,"bbox":[786,264,420,290]}
+{"kind":"textbox","id":"sh/x83u1w7i","slide":10,"text":"COPY PROMPT","textPreview":"COPY PROMPT","textChars":11,"textLines":1,"bbox":[822,294,180,24]}
+{"kind":"textbox","id":"sh/w7udsr6x","slide":10,"text":"あなたはプレゼン編集者です。\n次の4項目を質問し、曖昧な点を埋めてください。\n\n読者／決定／根拠／次の行動\n\n本文やスライドは、まだ作らないでください。","textPreview":"あなたはプレゼン編集者です。 | 次の4項目を質問し、曖昧な点を埋めてください。 |  | 読者／決定／根拠／次の行動 |  | 本文やスライドは、まだ作らないでください。","textChars":76,"textLines":6,"bbox":[822,336,346,178]}
+{"kind":"textbox","id":"sh/oryd8bet","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/hdb2k6","slide":10,"text":"明確なコンテキストを先に渡す原則を、質問型のBrief作成にする。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n[/Sources]"}
+{"kind":"slide","id":"sl/1nb41l","slide":11,"title":"BRIEF / VAGUE VS SPECIFIC","textShapes":10}
+{"kind":"textbox","id":"sh/mdcb6903","slide":11,"text":"BRIEF / VAGUE VS SPECIFIC","textPreview":"BRIEF / VAGUE VS SPECIFIC","textChars":25,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/9g3uhozu","slide":11,"name":"slide-title-11","text":"Briefが曖昧なら、\nどれだけ良いプロンプトでも資料はぶれる。","textPreview":"Briefが曖昧なら、 | どれだけ良いプロンプトでも資料はぶれる。","textChars":32,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"textbox","id":"sh/8fut8ji9","slide":11,"text":"VAGUE","textPreview":"VAGUE","textChars":5,"textLines":1,"bbox":[92,226,180,24]}
+{"kind":"shape","id":"sh/zq1cbehs","slide":11,"bbox":[92,270,446,248]}
+{"kind":"textbox","id":"sh/ypsb2907","slide":11,"text":"経営者向けに\nAIの提案資料を作る","textPreview":"経営者向けに | AIの提案資料を作る","textChars":17,"textLines":2,"bbox":[132,330,366,94]}
+{"kind":"textbox","id":"sh/lc3udozi","slide":11,"text":"読者も、決定も、場面も曖昧","textPreview":"読者も、決定も、場面も曖昧","textChars":13,"textLines":1,"bbox":[150,460,330,24]}
+{"kind":"shape","id":"sh/kbut4jix","slide":11,"bbox":[566,368,116,44]}
+{"kind":"textbox","id":"sh/bm1c7uhg","slide":11,"text":"SPECIFIC","textPreview":"SPECIFIC","textChars":8,"textLines":1,"bbox":[726,226,180,24]}
+{"kind":"shape","id":"sh/alsbyp0v","slide":11,"bbox":[726,254,466,294]}
+{"kind":"textbox","id":"sh/4bq98jyt","slide":11,"text":"従業員30〜100名の経営者が、\n問い合わせ対応で\n2週間の試験導入を承認する提案","textPreview":"従業員30〜100名の経営者が、 | 問い合わせ対応で | 2週間の試験導入を承認する提案","textChars":41,"textLines":3,"bbox":[770,314,378,134]}
+{"kind":"shape","id":"sh/5czq14fe","slide":11,"bbox":[816,470,284,42]}
+{"kind":"textbox","id":"sh/i9or69gn","slide":11,"text":"判断条件が具体的","textPreview":"判断条件が具体的","textChars":8,"textLines":1,"bbox":[816,470,284,42]}
+{"kind":"textbox","id":"sh/jah8zex8","slide":11,"text":"具体化するのは文章量ではなく、判断条件。","textPreview":"具体化するのは文章量ではなく、判断条件。","textChars":20,"textLines":1,"bbox":[322,610,636,38]}
+{"kind":"textbox","id":"sh/w7694zyh","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/1nb41l","slide":11,"text":"具体的の意味を、形容詞追加ではなく読者・決定・場面の固定として説明する。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n[/Sources]"}
+{"kind":"slide","id":"sl/66s4a1","slide":12,"title":"STEP 2 / GHOST DECK","textShapes":15}
+{"kind":"textbox","id":"sh/xovmx0ry","slide":12,"text":"STEP 2 / GHOST DECK","textPreview":"STEP 2 / GHOST DECK","textChars":19,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/al432l87","slide":12,"name":"slide-title-12","text":"最初に作るのは本文ではなく、\nタイトルだけのGhost Deckである。","textPreview":"最初に作るのは本文ではなく、 | タイトルだけのGhost Deckである。","textChars":36,"textLines":2,"bbox":[64,46,700,112]}
+{"kind":"shape","id":"sh/bmdkvq9s","slide":12,"bbox":[690,158,390,104]}
+{"kind":"textbox","id":"sh/kr6l8fq9","slide":12,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[718,176,44,24]}
+{"kind":"textbox","id":"sh/lsfm10ru","slide":12,"text":"問題を特定する","textPreview":"問題を特定する","textChars":7,"textLines":1,"bbox":[778,180,270,56]}
+{"kind":"shape","id":"sh/yp43658j","slide":12,"bbox":[735,236,390,104]}
+{"kind":"textbox","id":"sh/zqd4za9o","slide":12,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[763,254,44,24]}
+{"kind":"textbox","id":"sh/8f6lcfql","slide":12,"text":"原因を絞る","textPreview":"原因を絞る","textChars":5,"textLines":1,"bbox":[823,258,270,56]}
+{"kind":"shape","id":"sh/tgfm5k76","slide":12,"bbox":[780,314,390,104]}
+{"kind":"textbox","id":"sh/lk7ytkby","slide":12,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[808,332,44,24]}
+{"kind":"textbox","id":"sh/kjyx0fad","slide":12,"text":"見方を変える","textPreview":"見方を変える","textChars":6,"textLines":1,"bbox":[868,336,270,56]}
+{"kind":"shape","id":"sh/zi5grut8","slide":12,"bbox":[825,392,390,104]}
+{"kind":"textbox","id":"sh/yhwfypsn","slide":12,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[853,410,44,24]}
+{"kind":"textbox","id":"sh/987yx4ba","slide":12,"text":"根拠を示す","textPreview":"根拠を示す","textChars":5,"textLines":1,"bbox":[913,414,270,56]}
+{"kind":"shape","id":"sh/87yh4zap","slide":12,"bbox":[870,470,390,104]}
+{"kind":"textbox","id":"sh/7mpgvut4","slide":12,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[898,488,44,24]}
+{"kind":"textbox","id":"sh/mlgf2psj","slide":12,"text":"今日の行動を決める","textPreview":"今日の行動を決める","textChars":9,"textLines":1,"bbox":[958,492,270,56]}
+{"kind":"shape","id":"sh/pcnyl0bq","slide":12,"bbox":[68,294,508,236]}
+{"kind":"textbox","id":"sh/obexsval","slide":12,"text":"COPY PROMPT","textPreview":"COPY PROMPT","textChars":11,"textLines":1,"bbox":[104,326,160,24]}
+{"kind":"textbox","id":"sh/gvyx8f21","slide":12,"text":"Briefを基に、結論タイトルだけで\n12〜20枚の流れを作ってください。\n本文・画像・レイアウトは、\nまだ作らないでください。","textPreview":"Briefを基に、結論タイトルだけで | 12〜20枚の流れを作ってください。 | 本文・画像・レイアウトは、 | まだ作らないでください。","textChars":64,"textLines":4,"bbox":[104,370,430,130]}
+{"kind":"shape","id":"sh/hwry10jm","slide":12,"bbox":[64,665,1088,0]}
+{"kind":"textbox","id":"sh/utgf65kb","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/66s4a1","slide":12,"text":"action title先行の考えを、日本語のGhost Deckとして手順化する。\n\n[Sources]\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n[/Sources]"}
+{"kind":"slide","id":"sl/5e1dzd","slide":13,"title":"GHOST DECK / PASS-FAIL TEST","textShapes":15}
+{"kind":"textbox","id":"sh/p072t0bm","slide":13,"text":"GHOST DECK / PASS-FAIL TEST","textPreview":"GHOST DECK / PASS-FAIL TEST","textChars":27,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/2xg3ylsv","slide":13,"name":"slide-title-13","text":"タイトルだけで話が通れば、本文は短くできる。","textPreview":"タイトルだけで話が通れば、本文は短くできる。","textChars":22,"textLines":1,"bbox":[64,46,1152,72]}
+{"kind":"shape","id":"sh/nypkrqtg","slide":13,"bbox":[216,224,0,360]}
+{"kind":"textbox","id":"sh/cnil4vax","slide":13,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[194,226,44,44]}
+{"kind":"shape","id":"sh/xor2x0bi","slide":13,"bbox":[264,214,760,56]}
+{"kind":"textbox","id":"sh/a1g32lsr","slide":13,"text":"問い合わせ対応に時間がかかっている","textPreview":"問い合わせ対応に時間がかかっている","textChars":17,"textLines":1,"bbox":[292,214,708,56]}
+{"kind":"textbox","id":"sh/b29kvqtc","slide":13,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[194,298,44,44]}
+{"kind":"shape","id":"sh/kril8fa9","slide":13,"bbox":[264,286,760,56]}
+{"kind":"textbox","id":"sh/lsrm1kbe","slide":13,"text":"原因は定型質問の繰り返しにある","textPreview":"原因は定型質問の繰り返しにある","textChars":15,"textLines":1,"bbox":[292,286,708,56]}
+{"kind":"textbox","id":"sh/dsvit0bi","slide":13,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[194,370,44,44]}
+{"kind":"shape","id":"sh/crm10fux","slide":13,"bbox":[264,358,760,56]}
+{"kind":"textbox","id":"sh/rqd0ratc","slide":13,"text":"AIは一次回答だけを担当できる","textPreview":"AIは一次回答だけを担当できる","textChars":15,"textLines":1,"bbox":[292,358,708,56]}
+{"kind":"textbox","id":"sh/qp4jy5cr","slide":13,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[194,442,44,44]}
+{"kind":"shape","id":"sh/1wfixkbe","slide":13,"bbox":[264,430,760,56]}
+{"kind":"textbox","id":"sh/0v614fut","slide":13,"text":"まず2週間、FAQ上位10件で検証する","textPreview":"まず2週間、FAQ上位10件で検証する","textChars":19,"textLines":1,"bbox":[292,430,708,56]}
+{"kind":"textbox","id":"sh/zud0vat8","slide":13,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[194,514,44,44]}
+{"kind":"shape","id":"sh/et4j25cn","slide":13,"bbox":[264,502,760,56]}
+{"kind":"textbox","id":"sh/h0bilgva","slide":13,"text":"本日決めるのは担当者と開始日","textPreview":"本日決めるのは担当者と開始日","textChars":14,"textLines":1,"bbox":[292,502,708,56]}
+{"kind":"shape","id":"sh/gz2hsvup","slide":13,"bbox":[1054,214,146,344]}
+{"kind":"textbox","id":"sh/sfq9of6x","slide":13,"text":"縦に読んで\n因果が\nつながるか","textPreview":"縦に読んで | 因果が | つながるか","textChars":15,"textLines":3,"bbox":[1074,290,106,126]}
+{"kind":"textbox","id":"sh/tgzaxk72","slide":13,"text":"架空例","textPreview":"架空例","textChars":3,"textLines":1,"bbox":[1068,508,112,24]}
+{"kind":"textbox","id":"sh/6torm5or","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/5e1dzd","slide":13,"text":"action titles全体で一貫した物語になるという考えを、実務チェックへ落とす。\n\n[Sources]\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n[/Sources]"}
+{"kind":"slide","id":"sl/uoe7qr","slide":14,"title":"STORY / BUILD PRESSURE","textShapes":14}
+{"kind":"textbox","id":"sh/7yd472dw","slide":14,"text":"STORY / BUILD PRESSURE","textPreview":"STORY / BUILD PRESSURE","textChars":22,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/8zml07uh","slide":14,"name":"slide-title-14","text":"物語は「現状・問題・転換・根拠・行動」の順に\n圧力をつくる。","textPreview":"物語は「現状・問題・転換・根拠・行動」の順に | 圧力をつくる。","textChars":30,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/t0vm9cv2","slide":14,"bbox":[158,436,178,44]}
+{"kind":"shape","id":"sh/ytk3udwf","slide":14,"bbox":[384,366,178,114]}
+{"kind":"shape","id":"sh/zutk3idk","slide":14,"bbox":[610,294,178,72]}
+{"kind":"shape","id":"sh/kv2lwnu5","slide":14,"bbox":[836,222,178,72]}
+{"kind":"textbox","id":"sh/lwvm5svq","slide":14,"text":"現状","textPreview":"現状","textChars":2,"textLines":1,"bbox":[84,388,108,108]}
+{"kind":"textbox","id":"sh/ipo36hcj","slide":14,"text":"共有できる事実","textPreview":"共有できる事実","textChars":7,"textLines":1,"bbox":[56,512,164,38]}
+{"kind":"textbox","id":"sh/3qx4fmd4","slide":14,"text":"問題","textPreview":"問題","textChars":2,"textLines":1,"bbox":[310,432,108,108]}
+{"kind":"textbox","id":"sh/3qho7ydk","slide":14,"text":"放置する損失","textPreview":"放置する損失","textChars":6,"textLines":1,"bbox":[282,556,164,38]}
+{"kind":"textbox","id":"sh/2p8nedcz","slide":14,"text":"転換","textPreview":"転換","textChars":2,"textLines":1,"bbox":[536,318,108,108]}
+{"kind":"textbox","id":"sh/psj698vq","slide":14,"text":"見方を変える一文","textPreview":"見方を変える一文","textChars":8,"textLines":1,"bbox":[508,442,164,38]}
+{"kind":"textbox","id":"sh/orq5g3u5","slide":14,"text":"根拠","textPreview":"根拠","textChars":2,"textLines":1,"bbox":[762,246,108,108]}
+{"kind":"textbox","id":"sh/be1obidg","slide":14,"text":"信じる材料","textPreview":"信じる材料","textChars":5,"textLines":1,"bbox":[734,370,164,38]}
+{"kind":"textbox","id":"sh/qdsnidcv","slide":14,"text":"行動","textPreview":"行動","textChars":2,"textLines":1,"bbox":[988,174,108,108]}
+{"kind":"textbox","id":"sh/dgj6dsvm","slide":14,"text":"今日決めること","textPreview":"今日決めること","textChars":7,"textLines":1,"bbox":[960,298,164,38]}
+{"kind":"shape","id":"sh/cfa5knu1","slide":14,"bbox":[308,610,664,44]}
+{"kind":"textbox","id":"sh/zi1ofids","slide":14,"text":"「圧力」は不安を煽ることではなく、次を知る必要を作ること。","textPreview":"「圧力」は不安を煽ることではなく、次を知る必要を作ること。","textChars":29,"textLines":1,"bbox":[328,610,624,44]}
+{"kind":"textbox","id":"sh/yhs7mxc7","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/uoe7qr","slide":14,"text":"現状と可能性の対比を、初心者向けの5段階に噛み砕く。\n\n[Sources]\n- https://www.duarte.com/resources/communication-skills/business-storytelling/\n[/Sources]"}
+{"kind":"slide","id":"sl/zkxf4g","slide":15,"title":"COPY / TAKEAWAY TITLES","textShapes":9}
+{"kind":"textbox","id":"sh/q10z6987","slide":15,"text":"COPY / TAKEAWAY TITLES","textPreview":"COPY / TAKEAWAY TITLES","textChars":22,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/d4ry1ori","slide":15,"name":"slide-title-15","text":"タイトルには話題ではなく、\n読み手が持ち帰る結論を書く。","textPreview":"タイトルには話題ではなく、 | 読み手が持ち帰る結論を書く。","textChars":28,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/c3ih8jqx","slide":15,"bbox":[92,240,1096,314]}
+{"kind":"textbox","id":"sh/z69g3e9o","slide":15,"text":"TOPIC TITLE","textPreview":"TOPIC TITLE","textChars":11,"textLines":1,"bbox":[132,280,200,24]}
+{"kind":"shape","id":"sh/e50za983","slide":15,"bbox":[132,324,376,104]}
+{"kind":"textbox","id":"sh/18bi5oru","slide":15,"text":"AI導入の現状","textPreview":"AI導入の現状","textChars":7,"textLines":1,"bbox":[156,324,328,104]}
+{"kind":"shape","id":"sh/072hcjq9","slide":15,"bbox":[548,352,136,48]}
+{"kind":"textbox","id":"sh/nat07y9k","slide":15,"text":"TAKEAWAY TITLE","textPreview":"TAKEAWAY TITLE","textChars":14,"textLines":1,"bbox":[720,280,220,24]}
+{"kind":"shape","id":"sh/m9kzet8z","slide":15,"bbox":[720,318,420,126]}
+{"kind":"textbox","id":"sh/ozapwb2l","slide":15,"text":"問い合わせ対応から始めると、\n小さく検証できる","textPreview":"問い合わせ対応から始めると、 | 小さく検証できる","textChars":23,"textLines":2,"bbox":[748,338,364,84]}
+{"kind":"textbox","id":"sh/p0jqpg36","slide":15,"text":"主語 + 変化 / 判断 + 理由","textPreview":"主語 + 変化 / 判断 + 理由","textChars":17,"textLines":1,"bbox":[366,478,548,42]}
+{"kind":"textbox","id":"sh/2x87ulkf","slide":15,"text":"タイトルだけで「だから何？」に答えているか。","textPreview":"タイトルだけで「だから何？」に答えているか。","textChars":22,"textLines":1,"bbox":[332,606,616,38]}
+{"kind":"textbox","id":"sh/3y18n6l0","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/zkxf4g","slide":15,"text":"action titleは話題名ではなく、ページの主要メッセージを表すという原則を説明する。\n\n[Sources]\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n[/Sources]"}
+{"kind":"slide","id":"sl/m20kku","slide":16,"title":"FOCUS / ONE SLIDE, ONE CLAIM","textShapes":12}
+{"kind":"textbox","id":"sh/gzelon61","slide":16,"text":"FOCUS / ONE SLIDE, ONE CLAIM","textPreview":"FOCUS / ONE SLIDE, ONE CLAIM","textChars":28,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/fy54fi5g","slide":16,"name":"slide-title-16","text":"1枚に1つの主張を守ると、\n視線の行き先が1つになる。","textPreview":"1枚に1つの主張を守ると、 | 視線の行き先が1つになる。","textChars":27,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"textbox","id":"sh/udw3mdov","slide":16,"text":"NG","textPreview":"NG","textChars":2,"textLines":1,"bbox":[100,228,80,24]}
+{"kind":"shape","id":"sh/tc3mdsna","slide":16,"bbox":[100,268,470,276]}
+{"kind":"shape","id":"sh/sbulkn6p","slide":16,"bbox":[128,302,160,52]}
+{"kind":"textbox","id":"sh/7alkbip4","slide":16,"text":"結論","textPreview":"結論","textChars":2,"textLines":1,"bbox":[128,302,160,52]}
+{"kind":"shape","id":"sh/69c3idoj","slide":16,"bbox":[350,298,174,84]}
+{"kind":"textbox","id":"sh/d87mpcne","slide":16,"text":"例外","textPreview":"例外","textChars":2,"textLines":1,"bbox":[350,298,174,84]}
+{"kind":"shape","id":"sh/c7ylw76t","slide":16,"bbox":[162,412,222,82]}
+{"kind":"textbox","id":"sh/uhg7qx83","slide":16,"text":"次の行動","textPreview":"次の行動","textChars":4,"textLines":1,"bbox":[162,412,222,82]}
+{"kind":"shape","id":"sh/vip8z2po","slide":16,"bbox":[410,420,112,68]}
+{"kind":"textbox","id":"sh/gjyps7q9","slide":16,"text":"補足","textPreview":"補足","textChars":2,"textLines":1,"bbox":[410,420,112,68]}
+{"kind":"shape","id":"sh/hkrq1c7u","slide":16,"bbox":[208,338,124,52]}
+{"kind":"shape","id":"sh/6dg7mx87","slide":16,"bbox":[332,336,110,54]}
+{"kind":"shape","id":"sh/7ep8vips","slide":16,"bbox":[260,390,72,78]}
+{"kind":"shape","id":"sh/8fyponqd","slide":16,"bbox":[332,390,132,78]}
+{"kind":"textbox","id":"sh/tg7qxs7i","slide":16,"text":"OK","textPreview":"OK","textChars":2,"textLines":1,"bbox":[706,228,80,24]}
+{"kind":"shape","id":"sh/q90ryh8b","slide":16,"bbox":[706,268,474,276]}
+{"kind":"shape","id":"sh/ra987mpw","slide":16,"bbox":[760,314,366,98]}
+{"kind":"textbox","id":"sh/nul4je58","slide":16,"text":"結論は1つ","textPreview":"結論は1つ","textChars":5,"textLines":1,"bbox":[760,314,366,98]}
+{"kind":"textbox","id":"sh/2tcnq9on","slide":16,"text":"支える情報は、結論に従属させる","textPreview":"支える情報は、結論に従属させる","textChars":15,"textLines":1,"bbox":[760,450,366,42]}
+{"kind":"textbox","id":"sh/pg3mlone","slide":16,"text":"2つの「だから何？」があるなら、2枚に分ける。","textPreview":"2つの「だから何？」があるなら、2枚に分ける。","textChars":23,"textLines":1,"bbox":[334,608,612,38]}
+{"kind":"textbox","id":"sh/ovu5sj6t","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/m20kku","slide":16,"text":"1スライド1アイデア、短い文章、折り返し回避の原則を結びつける。\n\n[Sources]\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n[/Sources]"}
+{"kind":"slide","id":"sl/2i8kpv","slide":17,"title":"EVIDENCE / SO WHAT?","textShapes":10}
+{"kind":"textbox","id":"sh/sbaxob6p","slide":17,"text":"EVIDENCE / SO WHAT?","textPreview":"EVIDENCE / SO WHAT?","textChars":19,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/ra1gf654","slide":17,"name":"slide-title-17","text":"根拠は数字を置くだけでなく、\n「だから何か」まで示す。","textPreview":"根拠は数字を置くだけでなく、 | 「だから何か」まで示す。","textChars":27,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/q9sfm1oj","slide":17,"bbox":[405,366,62,34]}
+{"kind":"shape","id":"sh/103ylgn6","slide":17,"bbox":[811,366,62,34]}
+{"kind":"shape","id":"sh/0zuxsbml","slide":17,"bbox":[70,246,328,298]}
+{"kind":"textbox","id":"sh/fy1gj650","slide":17,"text":"CLAIM","textPreview":"CLAIM","textChars":5,"textLines":1,"bbox":[98,278,272,24]}
+{"kind":"textbox","id":"sh/exsfq14f","slide":17,"text":"次回は価格説明より\nセキュリティ確認を優先","textPreview":"次回は価格説明より | セキュリティ確認を優先","textChars":21,"textLines":2,"bbox":[98,354,272,112]}
+{"kind":"shape","id":"sh/p43ypgn2","slide":17,"bbox":[476,246,328,298]}
+{"kind":"textbox","id":"sh/o3uhwvmx","slide":17,"text":"EVIDENCE","textPreview":"EVIDENCE","textChars":8,"textLines":1,"bbox":[504,278,272,24]}
+{"kind":"textbox","id":"sh/q90zad4r","slide":17,"text":"稟議コメントの未確認事項が\nセキュリティ欄に集中","textPreview":"稟議コメントの未確認事項が | セキュリティ欄に集中","textChars":24,"textLines":2,"bbox":[504,354,272,112]}
+{"kind":"shape","id":"sh/ra9g3i5c","slide":17,"bbox":[882,246,328,298]}
+{"kind":"textbox","id":"sh/sbihcnmx","slide":17,"text":"MEANING","textPreview":"MEANING","textChars":7,"textLines":1,"bbox":[910,278,272,24]}
+{"kind":"textbox","id":"sh/dwry5s3i","slide":17,"text":"決裁停止の原因に合わせて\n会議の議題を変える","textPreview":"決裁停止の原因に合わせて | 会議の議題を変える","textChars":22,"textLines":2,"bbox":[910,354,272,112]}
+{"kind":"textbox","id":"sh/ex0zex4n","slide":17,"text":"架空例","textPreview":"架空例","textChars":3,"textLines":1,"bbox":[1088,560,114,24]}
+{"kind":"shape","id":"sh/fy9g72l8","slide":17,"bbox":[64,665,1088,0]}
+{"kind":"textbox","id":"sh/0zihgnmt","slide":17,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/2i8kpv","slide":17,"text":"根拠を陳列せず、意思決定への含意まで書く。例は架空である。\n\n[Sources]\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n[/Sources]"}
+{"kind":"slide","id":"sl/dy3hem","slide":18,"title":"STEP 3 / SLIDE SPEC","textShapes":21}
+{"kind":"textbox","id":"sh/o3e9k3ix","slide":18,"text":"STEP 3 / SLIDE SPEC","textPreview":"STEP 3 / SLIDE SPEC","textChars":19,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/3258ry1s","slide":18,"name":"slide-title-18","text":"Slide Specが、各ページの主張・根拠・\n見せ方・出典を固定する。","textPreview":"Slide Specが、各ページの主張・根拠・ | 見せ方・出典を固定する。","textChars":36,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/21writ07","slide":18,"bbox":[72,208,890,422]}
+{"kind":"textbox","id":"sh/103qpojm","slide":18,"text":"SLIDE SPEC / SAMPLE","textPreview":"SLIDE SPEC / SAMPLE","textChars":19,"textLines":1,"bbox":[108,236,280,24]}
+{"kind":"textbox","id":"sh/gzu9gji1","slide":18,"text":"Title","textPreview":"Title","textChars":5,"textLines":1,"bbox":[108,280,180,24]}
+{"kind":"shape","id":"sh/fyl8ne1g","slide":18,"bbox":[288,274,628,30]}
+{"kind":"textbox","id":"sh/udcre90v","slide":18,"text":"読み手が持ち帰る結論","textPreview":"読み手が持ち帰る結論","textChars":10,"textLines":1,"bbox":[304,274,596,30]}
+{"kind":"textbox","id":"sh/tc3ql4ja","slide":18,"text":"Narrative job","textPreview":"Narrative job","textChars":13,"textLines":1,"bbox":[108,319,180,24]}
+{"kind":"shape","id":"sh/sbu9cji5","slide":18,"bbox":[288,313,628,30]}
+{"kind":"textbox","id":"sh/2187uhgr","slide":18,"text":"このページが物語で担う役割","textPreview":"このページが物語で担う役割","textChars":13,"textLines":1,"bbox":[304,313,596,30]}
+{"kind":"textbox","id":"sh/3mh8nmhc","slide":18,"text":"Visible content","textPreview":"Visible content","textChars":15,"textLines":1,"bbox":[108,358,180,24]}
+{"kind":"shape","id":"sh/4nqpwryx","slide":18,"bbox":[288,352,628,30]}
+{"kind":"textbox","id":"sh/pozqpczi","slide":18,"text":"画面に残す情報だけ","textPreview":"画面に残す情報だけ","textChars":9,"textLines":1,"bbox":[304,352,596,30]}
+{"kind":"textbox","id":"sh/uxo7qxgv","slide":18,"text":"Evidence","textPreview":"Evidence","textChars":8,"textLines":1,"bbox":[108,397,180,24]}
+{"kind":"shape","id":"sh/fyh8j2h0","slide":18,"bbox":[288,391,628,30]}
+{"kind":"textbox","id":"sh/gzqps7yl","slide":18,"text":"主張を信じる材料","textPreview":"主張を信じる材料","textChars":8,"textLines":1,"bbox":[304,391,596,30]}
+{"kind":"textbox","id":"sh/h0zqlcz6","slide":18,"text":"Visual type","textPreview":"Visual type","textChars":11,"textLines":1,"bbox":[108,436,180,24]}
+{"kind":"shape","id":"sh/6to7mxgj","slide":18,"bbox":[288,430,628,30]}
+{"kind":"textbox","id":"sh/7ux8f2h4","slide":18,"text":"HERO / CONTRAST / PROCESS / EVIDENCE / ACTION","textPreview":"HERO / CONTRAST / PROCESS / EVIDENCE / ACTION","textChars":45,"textLines":1,"bbox":[304,430,596,30]}
+{"kind":"textbox","id":"sh/vyt4nyxw","slide":18,"text":"Layout","textPreview":"Layout","textChars":6,"textLines":1,"bbox":[108,475,180,24]}
+{"kind":"shape","id":"sh/axknutwb","slide":18,"bbox":[288,469,628,30]}
+{"kind":"textbox","id":"sh/x0vmp8f2","slide":18,"text":"情報の重心と視線","textPreview":"情報の重心と視線","textChars":8,"textLines":1,"bbox":[304,469,596,30]}
+{"kind":"textbox","id":"sh/wzm5w3eh","slide":18,"text":"Source","textPreview":"Source","textChars":6,"textLines":1,"bbox":[108,514,180,24]}
+{"kind":"shape","id":"sh/j2doryxs","slide":18,"bbox":[288,508,628,30]}
+{"kind":"textbox","id":"sh/i14nytwn","slide":18,"text":"出典URL","textPreview":"出典URL","textChars":5,"textLines":1,"bbox":[304,508,596,30]}
+{"kind":"textbox","id":"sh/54v6t8fy","slide":18,"text":"QA risk","textPreview":"QA risk","textChars":7,"textLines":1,"bbox":[108,553,180,24]}
+{"kind":"shape","id":"sh/k3m503ed","slide":18,"bbox":[288,547,628,30]}
+{"kind":"textbox","id":"sh/z694fexo","slide":18,"text":"切れ・重なり・誤認の危険","textPreview":"切れ・重なり・誤認の危険","textChars":12,"textLines":1,"bbox":[304,547,596,30]}
+{"kind":"shape","id":"sh/y50nm9w3","slide":18,"bbox":[1000,280,220,132]}
+{"kind":"shape","id":"sh/4zet0bqp","slide":18,"bbox":[1016,300,92.4,92]}
+{"kind":"shape","id":"sh/50na9gra","slide":18,"bbox":[1114.4,304,70.4,18]}
+{"kind":"shape","id":"sh/ixwby18z","slide":18,"bbox":[1114.4,334,88,12]}
+{"kind":"shape","id":"sh/3y5s7694","slide":18,"bbox":[934,340,72,28]}
+{"kind":"textbox","id":"sh/gvetwbqt","slide":18,"text":"作り始める前に、\n完成条件を\n言語化する。","textPreview":"作り始める前に、 | 完成条件を | 言語化する。","textChars":21,"textLines":3,"bbox":[994,442,226,108]}
+{"kind":"textbox","id":"sh/hwna5gre","slide":18,"text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/dy3hem","slide":18,"text":"計画・実装・QAの分離を参考に、初心者が使える事前仕様へ整理した。\n\n[Sources]\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
+{"kind":"slide","id":"sl/emezsw","slide":19,"title":"VISUAL / FIVE TYPES","textShapes":14}
+{"kind":"textbox","id":"sh/batwju1k","slide":19,"text":"VISUAL / FIVE TYPES","textPreview":"VISUAL / FIVE TYPES","textChars":19,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/cv2dczi5","slide":19,"name":"slide-title-19","text":"見せ方は、主張に合わせて5つの型から選べる。","textPreview":"見せ方は、主張に合わせて5つの型から選べる。","textChars":22,"textLines":1,"bbox":[64,46,1152,72]}
+{"kind":"shape","id":"sh/dwbel4jq","slide":19,"bbox":[66,250,254,210]}
+{"kind":"shape","id":"sh/250vmp0n","slide":19,"bbox":[82,266,142.24,14]}
+{"kind":"shape","id":"sh/369wfu18","slide":19,"bbox":[82,294,182.88,28]}
+{"kind":"textbox","id":"sh/o7idozit","slide":19,"text":"HERO","textPreview":"HERO","textChars":4,"textLines":1,"bbox":[66,482,254,24]}
+{"kind":"textbox","id":"sh/p8reh4je","slide":19,"text":"結論を記憶させる","textPreview":"結論を記憶させる","textChars":8,"textLines":1,"bbox":[66,512,254,36]}
+{"kind":"shape","id":"sh/m1kfit07","slide":19,"bbox":[338,294,208,172]}
+{"kind":"shape","id":"sh/n2dwre1s","slide":19,"bbox":[354,316,83,130]}
+{"kind":"shape","id":"sh/julob25w","slide":19,"bbox":[447,316,83,130]}
+{"kind":"textbox","id":"sh/ytcnixob","slide":19,"text":"CONTRAST","textPreview":"CONTRAST","textChars":8,"textLines":1,"bbox":[338,488,208,24]}
+{"kind":"textbox","id":"sh/5gn6dsn2","slide":19,"text":"違いを判断させる","textPreview":"違いを判断させる","textChars":8,"textLines":1,"bbox":[338,518,208,36]}
+{"kind":"shape","id":"sh/kvu5k76h","slide":19,"bbox":[566,250,208,210]}
+{"kind":"shape","id":"sh/7i5of25s","slide":19,"bbox":[584,343,24,24]}
+{"kind":"shape","id":"sh/6hwnmxon","slide":19,"bbox":[608,349,61,12]}
+{"kind":"shape","id":"sh/tkn6hcny","slide":19,"bbox":[660,343,24,24]}
+{"kind":"shape","id":"sh/sjepo76d","slide":19,"bbox":[684,349,61,12]}
+{"kind":"shape","id":"sh/fm5ojm54","slide":19,"bbox":[736,343,24,24]}
+{"kind":"textbox","id":"sh/ulw7qhoj","slide":19,"text":"PROCESS","textPreview":"PROCESS","textChars":7,"textLines":1,"bbox":[566,482,208,24]}
+{"kind":"textbox","id":"sh/qh0ril8r","slide":19,"text":"順序を理解させる","textPreview":"順序を理解させる","textChars":8,"textLines":1,"bbox":[566,512,208,36]}
+{"kind":"shape","id":"sh/ri98bqpc","slide":19,"bbox":[794,300,208,166]}
+{"kind":"shape","id":"sh/cji9kbqx","slide":19,"bbox":[810,320,87.36,126]}
+{"kind":"shape","id":"sh/dkrqdg7i","slide":19,"bbox":[902.16,324,66.56,18]}
+{"kind":"shape","id":"sh/2dgre18v","slide":19,"bbox":[902.16,354,83.2,12]}
+{"kind":"textbox","id":"sh/3ep8n6p0","slide":19,"text":"EVIDENCE","textPreview":"EVIDENCE","textChars":8,"textLines":1,"bbox":[794,488,208,24]}
+{"kind":"textbox","id":"sh/4fy9gbql","slide":19,"text":"根拠を信じてもらう","textPreview":"根拠を信じてもらう","textChars":9,"textLines":1,"bbox":[794,518,208,36]}
+{"kind":"shape","id":"sh/pgrq9g76","slide":19,"bbox":[1022,230,192,230]}
+{"kind":"shape","id":"sh/m9krq58z","slide":19,"bbox":[1042,250,152,168]}
+{"kind":"shape","id":"sh/natsjapk","slide":19,"bbox":[1127.6,430,57.6,14]}
+{"kind":"textbox","id":"sh/xgf25ovy","slide":19,"text":"ACTION","textPreview":"ACTION","textChars":6,"textLines":1,"bbox":[1022,482,192,24]}
+{"kind":"textbox","id":"sh/wf6lwjed","slide":19,"text":"その場で使わせる","textPreview":"その場で使わせる","textChars":8,"textLines":1,"bbox":[1022,512,192,36]}
+{"kind":"textbox","id":"sh/vexk3yds","slide":19,"text":"先に型を選び、あとから内容を詰める。","textPreview":"先に型を選び、あとから内容を詰める。","textChars":18,"textLines":1,"bbox":[366,626,548,38]}
+{"kind":"textbox","id":"sh/ado3utw7","slide":19,"text":"19","textPreview":"19","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/emezsw","slide":19,"text":"5型はAI顧問室による制作上の分類であり、状況に応じて複合してよい。\n\n[Sources]\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n- https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf\n[/Sources]"}
+{"kind":"slide","id":"sl/ab18hi","slide":20,"title":"背景画像は、雰囲気ではなく","textShapes":9}
+{"kind":"shape","id":"sh/a9o36pw7","slide":20,"bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/baxkfuds","slide":20,"bbox":[48,42,1184,622]}
+{"kind":"textbox","id":"sh/kfqlcje9","slide":20,"name":"slide-title-20","text":"背景画像は、雰囲気ではなく\n理解を助ける舞台として使う。","textPreview":"背景画像は、雰囲気ではなく | 理解を助ける舞台として使う。","textChars":28,"textLines":2,"bbox":[82,72,1110,112]}
+{"kind":"shape","id":"sh/yd83a9w3","slide":20,"bbox":[82,246,300,214]}
+{"kind":"textbox","id":"sh/jehkjedo","slide":20,"text":"×","textPreview":"×","textChars":1,"textLines":1,"bbox":[102,266,42,42]}
+{"kind":"textbox","id":"sh/0jml0fe5","slide":20,"text":"ただ未来的\nただ綺麗\nただAIらしい","textPreview":"ただ未来的 | ただ綺麗 | ただAIらしい","textChars":18,"textLines":3,"bbox":[126,330,212,90]}
+{"kind":"shape","id":"sh/1kv29kvq","slide":20,"bbox":[448,246,700,286]}
+{"kind":"textbox","id":"sh/xo3ql8ne","slide":20,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[476,274,42,42]}
+{"kind":"textbox","id":"sh/w3u9s36t","slide":20,"text":"会議の緊張を見せる背景","textPreview":"会議の緊張を見せる背景","textChars":11,"textLines":1,"bbox":[542,272,510,42]}
+{"kind":"textbox","id":"sh/b2l8jy5o","slide":20,"text":"+","textPreview":"+","textChars":1,"textLines":1,"bbox":[682,336,58,24]}
+{"kind":"shape","id":"sh/a1crqto3","slide":20,"bbox":[536,384,520,92]}
+{"kind":"textbox","id":"sh/5snqp8nq","slide":20,"text":"判断シートを前景に置く","textPreview":"判断シートを前景に置く","textChars":11,"textLines":1,"bbox":[536,384,520,92]}
+{"kind":"textbox","id":"sh/kre9w3m5","slide":20,"text":"場所・人物・状況が、主張の理解に必要なときだけ使う。","textPreview":"場所・人物・状況が、主張の理解に必要なときだけ使う。","textChars":26,"textLines":1,"bbox":[284,590,712,38]}
+{"kind":"textbox","id":"sh/jq58ny5k","slide":20,"text":"20","textPreview":"20","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"image","id":"im/ozihg3at","slide":20,"name":"","alt":"業務プロセスを比較し意思決定する日本の管理職チーム","bbox":[0,0,1280,720]}
+{"kind":"image","id":"im/c3ihkna5","slide":20,"name":"","geometry":"roundRect","alt":"意味を持たない抽象的なAI背景の例","bbox":[82,246,300,214]}
+{"kind":"notes","id":"nt/ab18hi","slide":20,"text":"画像は話を伝えるために使い、多すぎないようにする原則を採用基準へ翻訳する。\n\n[Sources]\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n- Generated visual: generic-ai-background.png（AI顧問室制作）\n- Generated visual: meaningful-workshop.png（AI顧問室制作）\n[/Sources]"}
+{"kind":"slide","id":"sl/8ceft0","slide":21,"title":"背景画像の上には前景モックを置き、","textShapes":10}
+{"kind":"shape","id":"sh/f2h8jat8","slide":21,"bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/u18ra5s3","slide":21,"bbox":[56,42,1168,118]}
+{"kind":"textbox","id":"sh/t0fqh0bi","slide":21,"name":"slide-title-21","text":"背景画像の上には前景モックを置き、\n文字の居場所をつくる。","textPreview":"背景画像の上には前景モックを置き、 | 文字の居場所をつくる。","textChars":29,"textLines":2,"bbox":[90,54,1100,94]}
+{"kind":"shape","id":"sh/sz698vax","slide":21,"bbox":[82,226,378,332]}
+{"kind":"textbox","id":"sh/7yx8fqtc","slide":21,"text":"PAPER MOCK","textPreview":"PAPER MOCK","textChars":10,"textLines":1,"bbox":[120,254,180,24]}
+{"kind":"textbox","id":"sh/6xor6lsr","slide":21,"text":"説明・結論","textPreview":"説明・結論","textChars":5,"textLines":1,"bbox":[120,314,300,54]}
+{"kind":"textbox","id":"sh/5wfqdgb6","slide":21,"text":"写真は舞台。\n文字は情報面。","textPreview":"写真は舞台。 | 文字は情報面。","textChars":14,"textLines":2,"bbox":[120,394,300,84]}
+{"kind":"shape","id":"sh/kv6p4val","slide":21,"bbox":[482,246,438,286]}
+{"kind":"shape","id":"sh/a9oru18n","slide":21,"bbox":[482,246,438,42]}
+{"kind":"shape","id":"sh/vax8n6p8","slide":21,"bbox":[500,260,12,12]}
+{"kind":"shape","id":"sh/wb69wrqt","slide":21,"bbox":[520,260,12,12]}
+{"kind":"shape","id":"sh/xcfqpw7e","slide":21,"bbox":[540,260,12,12]}
+{"kind":"textbox","id":"sh/mlo7qh8r","slide":21,"text":"BROWSER MOCK","textPreview":"BROWSER MOCK","textChars":12,"textLines":1,"bbox":[524,318,220,24]}
+{"kind":"textbox","id":"sh/nmx8jmpc","slide":21,"text":"プロンプト・操作","textPreview":"プロンプト・操作","textChars":8,"textLines":1,"bbox":[524,370,338,50]}
+{"kind":"shape","id":"sh/876psrqx","slide":21,"bbox":[524,442,338,44]}
+{"kind":"textbox","id":"sh/98fqlw72","slide":21,"text":"編集可能な入力欄","textPreview":"編集可能な入力欄","textChars":8,"textLines":1,"bbox":[544,442,298,44]}
+{"kind":"shape","id":"sh/yh47mh8f","slide":21,"bbox":[964,250,208,328]}
+{"kind":"shape","id":"sh/zid8fmp0","slide":21,"bbox":[980,274,176,278]}
+{"kind":"textbox","id":"sh/3mtoni5s","slide":21,"text":"DEVICE","textPreview":"DEVICE","textChars":6,"textLines":1,"bbox":[1002,306,130,24]}
+{"kind":"textbox","id":"sh/2l0nudo7","slide":21,"text":"閲覧体験","textPreview":"閲覧体験","textChars":4,"textLines":1,"bbox":[994,366,148,52]}
+{"kind":"textbox","id":"sh/pob6p8ny","slide":21,"text":"21","textPreview":"21","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"image","id":"im/d0z6h8rm","slide":21,"name":"","alt":"情報量の多いプロジェクトルーム","bbox":[0,0,1280,720]}
+{"kind":"notes","id":"nt/8ceft0","slide":21,"text":"十分なコントラストを担保し、画像と文字の役割を分ける。\n\n[Sources]\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n- https://support.microsoft.com/en-us/accessibility/powerpoint/make-your-powerpoint-presentations-accessible-to-people-with-disabilities\n- Generated visual: busy-project-room.png（AI顧問室制作）\n[/Sources]"}
+{"kind":"slide","id":"sl/4n5aoy","slide":22,"title":"RHYTHM / VARY THE SILHOUETTE","textShapes":4}
+{"kind":"textbox","id":"sh/qlc7a5wb","slide":22,"text":"RHYTHM / VARY THE SILHOUETTE","textPreview":"RHYTHM / VARY THE SILHOUETTE","textChars":28,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/do3ql0vm","slide":22,"name":"slide-title-22","text":"同じレイアウトを繰り返さず、\n主張に合わせて画面の形を変える。","textPreview":"同じレイアウトを繰り返さず、 | 主張に合わせて画面の形を変える。","textChars":31,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/cnupcve1","slide":22,"bbox":[70,314,188,210]}
+{"kind":"shape","id":"sh/3y18fqxk","slide":22,"bbox":[86,330,105.28,14]}
+{"kind":"shape","id":"sh/2xs76lwz","slide":22,"bbox":[86,358,135.36,28]}
+{"kind":"shape","id":"sh/pkjqh0fq","slide":22,"bbox":[250,326,20,93]}
+{"kind":"shape","id":"sh/4jap8ve5","slide":22,"bbox":[260,250,180,152]}
+{"kind":"shape","id":"sh/ne58rudo","slide":22,"bbox":[276,272,69,110]}
+{"kind":"shape","id":"sh/mtwripwj","slide":22,"bbox":[355,272,69,110]}
+{"kind":"shape","id":"sh/03e1kb2t","slide":22,"bbox":[432,326,26,78]}
+{"kind":"shape","id":"sh/l472tg3e","slide":22,"bbox":[448,306,196,196]}
+{"kind":"shape","id":"sh/y1wjilk3","slide":22,"bbox":[466,392,24,24]}
+{"kind":"shape","id":"sh/z25kr6l8","slide":22,"bbox":[490,398,55,12]}
+{"kind":"shape","id":"sh/cfe1gb2x","slide":22,"bbox":[536,392,24,24]}
+{"kind":"shape","id":"sh/dgn2pg3i","slide":22,"bbox":[560,398,55,12]}
+{"kind":"shape","id":"sh/qdwje1kr","slide":22,"bbox":[606,392,24,24]}
+{"kind":"shape","id":"sh/be50n6lc","slide":22,"bbox":[636,316,24,88]}
+{"kind":"shape","id":"sh/obu1cr2l","slide":22,"bbox":[650,232,184,168]}
+{"kind":"shape","id":"sh/pcnilw36","slide":22,"bbox":[666,252,77.28,128]}
+{"kind":"shape","id":"sh/58fypsva","slide":22,"bbox":[745.68,256,58.88,18]}
+{"kind":"shape","id":"sh/47mhgnep","slide":22,"bbox":[745.68,286,73.6,12]}
+{"kind":"shape","id":"sh/j6dgnid4","slide":22,"bbox":[826,316,26,93]}
+{"kind":"shape","id":"sh/i54zedwj","slide":22,"bbox":[842,300,176,218]}
+{"kind":"shape","id":"sh/h4vyl8vy","slide":22,"bbox":[862,320,136,156]}
+{"kind":"shape","id":"sh/w3mhcned","slide":22,"bbox":[938.8,488,52.8,14]}
+{"kind":"shape","id":"sh/v2dgjids","slide":22,"bbox":[1010,307,26,102]}
+{"kind":"shape","id":"sh/u14zadwn","slide":22,"bbox":[1026,218,188,178]}
+{"kind":"shape","id":"sh/10zixcvi","slide":22,"bbox":[1042,234,105.28,14]}
+{"kind":"shape","id":"sh/0z6ho7ux","slide":22,"bbox":[1042,262,135.36,28]}
+{"kind":"textbox","id":"sh/ytgn2583","slide":22,"text":"色を変えるのではなく、情報の形を変える。","textPreview":"色を変えるのではなく、情報の形を変える。","textChars":20,"textLines":1,"bbox":[326,604,628,38]}
+{"kind":"textbox","id":"sh/zupovapo","slide":22,"text":"22","textPreview":"22","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/4n5aoy","slide":22,"text":"レイアウトを変え、全スライドを画像で確認する考えをリズム検査に使う。\n\n[Sources]\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
+{"kind":"slide","id":"sl/qesons","slide":23,"title":"COLLABORATION / AI × HUMAN","textShapes":17}
+{"kind":"textbox","id":"sh/vaxk321w","slide":23,"text":"COLLABORATION / AI × HUMAN","textPreview":"COLLABORATION / AI × HUMAN","textChars":26,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/gb6lwn21","slide":23,"name":"slide-title-23","text":"AIには候補と速度を任せ、\n人は目的・事実・優先順位を持つ。","textPreview":"AIには候補と速度を任せ、 | 人は目的・事実・優先順位を持つ。","textChars":30,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"textbox","id":"sh/hcf25sjm","slide":23,"text":"AI","textPreview":"AI","textChars":2,"textLines":1,"bbox":[80,236,86,24]}
+{"kind":"textbox","id":"sh/ido3yxk7","slide":23,"text":"HUMAN","textPreview":"HUMAN","textChars":5,"textLines":1,"bbox":[80,452,110,24]}
+{"kind":"shape","id":"sh/3ehk721s","slide":23,"bbox":[190,260,988,0]}
+{"kind":"shape","id":"sh/4fql072d","slide":23,"bbox":[190,476,988,0]}
+{"kind":"shape","id":"sh/5gz29cjy","slide":23,"bbox":[212,286,190,74]}
+{"kind":"textbox","id":"sh/qh832hkj","slide":23,"text":"タイトル候補","textPreview":"タイトル候補","textChars":6,"textLines":1,"bbox":[212,286,190,74]}
+{"kind":"shape","id":"sh/rihkbm1o","slide":23,"bbox":[404,309,46,24]}
+{"kind":"shape","id":"sh/bm1cjyls","slide":23,"bbox":[212,498,190,74]}
+{"kind":"textbox","id":"sh/alsbqtk7","slide":23,"text":"目的を決める","textPreview":"目的を決める","textChars":6,"textLines":1,"bbox":[212,498,190,74]}
+{"kind":"shape","id":"sh/xojul83y","slide":23,"bbox":[420,392,52,52]}
+{"kind":"textbox","id":"sh/cnats32d","slide":23,"text":"承認","textPreview":"承認","textChars":2,"textLines":1,"bbox":[408,446,76,28]}
+{"kind":"shape","id":"sh/ni1cfelw","slide":23,"bbox":[456,286,190,74]}
+{"kind":"textbox","id":"sh/2h8bm9kb","slide":23,"text":"構成案","textPreview":"構成案","textChars":3,"textLines":1,"bbox":[456,286,190,74]}
+{"kind":"shape","id":"sh/pkjuho32","slide":23,"bbox":[648,309,46,24]}
+{"kind":"shape","id":"sh/ojatoj2h","slide":23,"bbox":[456,498,190,74]}
+{"kind":"textbox","id":"sh/7elcril0","slide":23,"text":"事実を確認","textPreview":"事実を確認","textChars":5,"textLines":1,"bbox":[456,498,190,74]}
+{"kind":"shape","id":"sh/mdcbydkf","slide":23,"bbox":[664,392,52,52]}
+{"kind":"textbox","id":"sh/ilgn618z","slide":23,"text":"承認","textPreview":"承認","textChars":2,"textLines":1,"bbox":[652,446,76,28]}
+{"kind":"shape","id":"sh/3m9of69k","slide":23,"bbox":[700,286,190,74]}
+{"kind":"textbox","id":"sh/4ni58bq5","slide":23,"text":"表現の短縮","textPreview":"表現の短縮","textChars":5,"textLines":1,"bbox":[700,286,190,74]}
+{"kind":"shape","id":"sh/por6hgrq","slide":23,"bbox":[892,309,46,24]}
+{"kind":"shape","id":"sh/qp0nal8b","slide":23,"bbox":[700,498,190,74]}
+{"kind":"textbox","id":"sh/rq9ojq9g","slide":23,"text":"何を削るか","textPreview":"何を削るか","textChars":5,"textLines":1,"bbox":[700,498,190,74]}
+{"kind":"shape","id":"sh/cri5cvq1","slide":23,"bbox":[908,392,52,52]}
+{"kind":"textbox","id":"sh/dcr6l07m","slide":23,"text":"承認","textPreview":"承認","textChars":2,"textLines":1,"bbox":[896,446,76,28]}
+{"kind":"shape","id":"sh/6twnyh8r","slide":23,"bbox":[944,286,190,74]}
+{"kind":"textbox","id":"sh/7u547m9c","slide":23,"text":"ビジュアル案","textPreview":"ビジュアル案","textChars":6,"textLines":1,"bbox":[944,286,190,74]}
+{"kind":"shape","id":"sh/98vqdkbu","slide":23,"bbox":[944,498,190,74]}
+{"kind":"textbox","id":"sh/o7m94za9","slide":23,"text":"最終承認","textPreview":"最終承認","textChars":4,"textLines":1,"bbox":[944,498,190,74]}
+{"kind":"textbox","id":"sh/n6d8buto","slide":23,"text":"生成は委任できる。責任は委任しない。","textPreview":"生成は委任できる。責任は委任しない。","textChars":18,"textLines":1,"bbox":[346,632,588,40]}
+{"kind":"textbox","id":"sh/ml4r2psj","slide":23,"text":"23","textPreview":"23","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/qesons","slide":23,"text":"AIを自動完成装置ではなく、選択肢を速く出す協働者として位置づける。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
+{"kind":"slide","id":"sl/5jbd47","slide":24,"title":"WORKFLOW / FIVE STAGES","textShapes":22}
+{"kind":"textbox","id":"sh/ml0b65wb","slide":24,"text":"WORKFLOW / FIVE STAGES","textPreview":"WORKFLOW / FIVE STAGES","textChars":22,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/9obahkvm","slide":24,"name":"slide-title-24","text":"制作はBrief、Ghost Deck、Slide Spec、\nVisual、QAの順に進める。","textPreview":"制作はBrief、Ghost Deck、Slide Spec、 | Visual、QAの順に進める。","textChars":48,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/8n2t8fe1","slide":24,"bbox":[58,278,204,144]}
+{"kind":"textbox","id":"sh/vatsjuds","slide":24,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[76,294,30,24]}
+{"kind":"textbox","id":"sh/upkbapw7","slide":24,"text":"Brief","textPreview":"Brief","textChars":5,"textLines":1,"bbox":[76,332,168,42]}
+{"kind":"textbox","id":"sh/hcbal4vy","slide":24,"text":"読者と決定","textPreview":"読者と決定","textChars":5,"textLines":1,"bbox":[76,380,168,28]}
+{"kind":"shape","id":"sh/wb2tczed","slide":24,"bbox":[260,328,42,24]}
+{"kind":"shape","id":"sh/bups7qxo","slide":24,"bbox":[266,446,48,48]}
+{"kind":"textbox","id":"sh/qtgrylw3","slide":24,"text":"人が承認","textPreview":"人が承認","textChars":4,"textLines":1,"bbox":[238,502,106,24]}
+{"kind":"shape","id":"sh/kbit0zi1","slide":24,"bbox":[302,278,204,144]}
+{"kind":"textbox","id":"sh/5crat4jm","slide":24,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[320,294,30,24]}
+{"kind":"textbox","id":"sh/i90by90v","slide":24,"text":"Ghost Deck","textPreview":"Ghost Deck","textChars":10,"textLines":1,"bbox":[320,332,168,42]}
+{"kind":"textbox","id":"sh/ja9sru1g","slide":24,"text":"タイトルで物語","textPreview":"タイトルで物語","textChars":7,"textLines":1,"bbox":[320,380,168,28]}
+{"kind":"shape","id":"sh/szit4jix","slide":24,"bbox":[504,328,42,24]}
+{"kind":"shape","id":"sh/t0ruxoji","slide":24,"bbox":[510,446,48,48]}
+{"kind":"textbox","id":"sh/6d0b290r","slide":24,"text":"人が承認","textPreview":"人が承認","textChars":4,"textLines":1,"bbox":[482,502,106,24]}
+{"kind":"shape","id":"sh/ry9sve1c","slide":24,"bbox":[546,278,204,144]}
+{"kind":"textbox","id":"sh/83ytsfit","slide":24,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[564,294,30,24]}
+{"kind":"textbox","id":"sh/947alkje","slide":24,"text":"Slide Spec","textPreview":"Slide Spec","textChars":10,"textLines":1,"bbox":[564,332,168,42]}
+{"kind":"textbox","id":"sh/p0zqpgb2","slide":24,"text":"根拠と見せ方","textPreview":"根拠と見せ方","textChars":6,"textLines":1,"bbox":[564,380,168,28]}
+{"kind":"shape","id":"sh/ozq9wbuh","slide":24,"bbox":[748,328,42,24]}
+{"kind":"shape","id":"sh/nyh8n6tw","slide":24,"bbox":[754,446,48,48]}
+{"kind":"textbox","id":"sh/2xoru1cb","slide":24,"text":"人が承認","textPreview":"人が承認","textChars":4,"textLines":1,"bbox":[726,502,106,24]}
+{"kind":"shape","id":"sh/x4zqtgby","slide":24,"bbox":[790,278,204,144]}
+{"kind":"textbox","id":"sh/c3q90vut","slide":24,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[808,294,30,24]}
+{"kind":"textbox","id":"sh/b2h8rqt8","slide":24,"text":"Visual","textPreview":"Visual","textChars":6,"textLines":1,"bbox":[808,332,168,42]}
+{"kind":"textbox","id":"sh/a18rylcn","slide":24,"text":"制作","textPreview":"制作","textChars":2,"textLines":1,"bbox":[808,380,168,28]}
+{"kind":"shape","id":"sh/lsjax0ba","slide":24,"bbox":[992,328,42,24]}
+{"kind":"shape","id":"sh/kra94vup","slide":24,"bbox":[1034,278,204,144]}
+{"kind":"textbox","id":"sh/idknyxs7","slide":24,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1052,294,30,24]}
+{"kind":"textbox","id":"sh/3edor29s","slide":24,"text":"QA","textPreview":"QA","textChars":2,"textLines":1,"bbox":[1052,332,168,42]}
+{"kind":"textbox","id":"sh/4fm507ad","slide":24,"text":"全ページ検査","textPreview":"全ページ検査","textChars":6,"textLines":1,"bbox":[1052,380,168,28]}
+{"kind":"shape","id":"sh/5gv6tcry","slide":24,"bbox":[198,554,884,74]}
+{"kind":"textbox","id":"sh/q14n2xs3","slide":24,"text":"「各工程の承認が出るまで次へ進まないでください。最初はBriefだけを作成してください。」","textPreview":"「各工程の承認が出るまで次へ進まないでください。最初はBriefだけを作成してください。」","textChars":45,"textLines":1,"bbox":[224,570,832,42]}
+{"kind":"shape","id":"sh/r2dov29o","slide":24,"bbox":[64,665,1088,0]}
+{"kind":"textbox","id":"sh/s3m547a9","slide":24,"text":"24","textPreview":"24","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/5jbd47","slide":24,"text":"本教材自身がこのワークフローで作られている。反復改善を工程承認で制御する。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
+{"kind":"slide","id":"sl/iim96o","slide":25,"title":"QA / DRAFT AS HYPOTHESIS","textShapes":9}
+{"kind":"textbox","id":"sh/3edcbudw","slide":25,"text":"QA / DRAFT AS HYPOTHESIS","textPreview":"QA / DRAFT AS HYPOTHESIS","textChars":24,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/4fmd4zuh","slide":25,"name":"slide-title-25","text":"AIの初稿は、完成品ではなく\n検査するための仮説である。","textPreview":"AIの初稿は、完成品ではなく | 検査するための仮説である。","textChars":28,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/pgvud4v2","slide":25,"bbox":[154,228,706,372]}
+{"kind":"shape","id":"sh/qh4v69cn","slide":25,"bbox":[170,248,296.52,332]}
+{"kind":"shape","id":"sh/rixcfed8","slide":25,"bbox":[521.12,252,225.92,18]}
+{"kind":"shape","id":"sh/cj6d8jut","slide":25,"bbox":[521.12,282,282.4,12]}
+{"kind":"shape","id":"sh/d4feh4ve","slide":25,"bbox":[650,250,184,58]}
+{"kind":"textbox","id":"sh/6lkvu5wj","slide":25,"text":"DRAFT 01","textPreview":"DRAFT 01","textChars":8,"textLines":1,"bbox":[650,250,184,58]}
+{"kind":"shape","id":"sh/7mtc3ado","slide":25,"bbox":[914,248,26,26]}
+{"kind":"textbox","id":"sh/jaxgjatw","slide":25,"text":"何が伝わるか","textPreview":"何が伝わるか","textChars":6,"textLines":1,"bbox":[956,244,200,34]}
+{"kind":"shape","id":"sh/i9ofapcb","slide":25,"bbox":[856,260,52,0]}
+{"kind":"shape","id":"sh/5cfylkbm","slide":25,"bbox":[968,344,26,26]}
+{"kind":"textbox","id":"sh/kb6xcfu1","slide":25,"text":"何が余計か","textPreview":"何が余計か","textChars":5,"textLines":1,"bbox":[1010,340,200,34]}
+{"kind":"shape","id":"sh/v6xwfatk","slide":25,"bbox":[910,356,52,0]}
+{"kind":"shape","id":"sh/a54f65cz","slide":25,"bbox":[926,438,26,26]}
+{"kind":"textbox","id":"sh/x8fyhkbq","slide":25,"text":"何が足りないか","textPreview":"何が足りないか","textChars":7,"textLines":1,"bbox":[968,434,200,34]}
+{"kind":"shape","id":"sh/w76x8fu5","slide":25,"bbox":[868,450,52,0]}
+{"kind":"shape","id":"sh/nidwbqto","slide":25,"bbox":[846,536,26,26]}
+{"kind":"textbox","id":"sh/mh4f25c3","slide":25,"text":"何が未確認か","textPreview":"何が未確認か","textChars":6,"textLines":1,"bbox":[888,532,200,34]}
+{"kind":"shape","id":"sh/qdkfulwv","slide":25,"bbox":[788,548,52,0]}
+{"kind":"textbox","id":"sh/retgnqxg","slide":25,"text":"直す前に、問題の種類を言葉にする。","textPreview":"直す前に、問題の種類を言葉にする。","textChars":17,"textLines":1,"bbox":[354,626,572,38]}
+{"kind":"textbox","id":"sh/cfmhwve1","slide":25,"text":"25","textPreview":"25","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/iim96o","slide":25,"text":"反復改善と全ページ検査を、初稿の定義として説明する。\n\n[Sources]\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
+{"kind":"slide","id":"sl/jdp6pu","slide":26,"title":"QA / FIVE PASSES","textShapes":19}
+{"kind":"textbox","id":"sh/bmhoj650","slide":26,"text":"QA / FIVE PASSES","textPreview":"QA / FIVE PASSES","textChars":16,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/cnqpsbml","slide":26,"name":"slide-title-26","text":"品質は、物語・焦点・収まり・根拠・\n読みやすさの5回に分けて確認する。","textPreview":"品質は、物語・焦点・収まり・根拠・ | 読みやすさの5回に分けて確認する。","textChars":35,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/doj6lgn6","slide":26,"bbox":[86,286,360,220]}
+{"kind":"shape","id":"sh/2x87m14j","slide":26,"bbox":[102,302,201.6,14]}
+{"kind":"shape","id":"sh/3yhof654","slide":26,"bbox":[102,330,259.2,28]}
+{"kind":"textbox","id":"sh/ozqpobmp","slide":26,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[528,214,48,48]}
+{"kind":"textbox","id":"sh/p0z6hgna","slide":26,"text":"物語","textPreview":"物語","textChars":2,"textLines":1,"bbox":[596,210,172,40]}
+{"kind":"textbox","id":"sh/etonih4n","slide":26,"text":"タイトルだけで因果が通るか","textPreview":"タイトルだけで因果が通るか","textChars":13,"textLines":1,"bbox":[772,212,414,36]}
+{"kind":"shape","id":"sh/fuxobm5s","slide":26,"bbox":[552,262,0,30]}
+{"kind":"textbox","id":"sh/va5cvqps","slide":26,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[528,292,48,48]}
+{"kind":"textbox","id":"sh/u9wbmlo7","slide":26,"text":"焦点","textPreview":"焦点","textChars":2,"textLines":1,"bbox":[596,288,172,40]}
+{"kind":"textbox","id":"sh/hcnuxg7i","slide":26,"text":"1枚1主張か","textPreview":"1枚1主張か","textChars":6,"textLines":1,"bbox":[772,290,414,36]}
+{"kind":"shape","id":"sh/wbetob6x","slide":26,"bbox":[552,340,0,30]}
+{"kind":"textbox","id":"sh/jepczqpo","slide":26,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[528,370,48,48]}
+{"kind":"textbox","id":"sh/idwbqlo3","slide":26,"text":"収まり","textPreview":"収まり","textChars":3,"textLines":1,"bbox":[596,366,172,40]}
+{"kind":"textbox","id":"sh/5g7u107u","slide":26,"text":"重なり・切れ・折返し","textPreview":"重なり・切れ・折返し","textChars":10,"textLines":1,"bbox":[772,368,414,36]}
+{"kind":"shape","id":"sh/4fytsv69","slide":26,"bbox":[552,418,0,30]}
+{"kind":"textbox","id":"sh/zilsn6pk","slide":26,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[528,448,48,48]}
+{"kind":"textbox","id":"sh/yhcbe1oz","slide":26,"text":"根拠","textPreview":"根拠","textChars":2,"textLines":1,"bbox":[596,444,172,40]}
+{"kind":"textbox","id":"sh/m9knitcj","slide":26,"text":"出典・仮定・架空例","textPreview":"出典・仮定・架空例","textChars":9,"textLines":1,"bbox":[772,446,414,36]}
+{"kind":"shape","id":"sh/nadobyd4","slide":26,"bbox":[552,496,0,30]}
+{"kind":"textbox","id":"sh/obm5k3up","slide":26,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[528,526,48,48]}
+{"kind":"textbox","id":"sh/9cv6d8va","slide":26,"text":"読みやすさ","textPreview":"読みやすさ","textChars":5,"textLines":1,"bbox":[596,522,172,40]}
+{"kind":"textbox","id":"sh/elknetcn","slide":26,"text":"距離・コントラスト・読み順","textPreview":"距離・コントラスト・読み順","textChars":13,"textLines":1,"bbox":[772,524,414,36]}
+{"kind":"shape","id":"sh/z6to7yd8","slide":26,"bbox":[142,548,300,74]}
+{"kind":"textbox","id":"sh/0725gjut","slide":26,"text":"1回 1目的","textPreview":"1回 1目的","textChars":6,"textLines":1,"bbox":[142,548,300,74]}
+{"kind":"textbox","id":"sh/18b69ovy","slide":26,"text":"26","textPreview":"26","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/jdp6pu","slide":26,"text":"検査を分けることで見落としを減らす実務手順。効果量は断定しない。\n\n[Sources]\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n- https://support.microsoft.com/en-us/accessibility/powerpoint/make-your-powerpoint-presentations-accessible-to-people-with-disabilities\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
+{"kind":"slide","id":"sl/w5kr7r","slide":27,"title":"QA / FOUR OUTPUTS","textShapes":12}
+{"kind":"textbox","id":"sh/apojmd4n","slide":27,"text":"QA / FOUR OUTPUTS","textPreview":"QA / FOUR OUTPUTS","textChars":17,"textLines":1,"bbox":[64,18,280,24]}
+{"kind":"textbox","id":"sh/xszix83y","slide":27,"name":"slide-title-27","text":"PPTX、PDF、投影、スマホでは、\n同じ資料でも崩れ方が違う。","textPreview":"PPTX、PDF、投影、スマホでは、 | 同じ資料でも崩れ方が違う。","textChars":32,"textLines":2,"bbox":[64,46,1152,112]}
+{"kind":"shape","id":"sh/wr61o3mt","slide":27,"bbox":[74,256,286,188]}
+{"kind":"shape","id":"sh/jeh0zil4","slide":27,"bbox":[90,272,160.16,14]}
+{"kind":"shape","id":"sh/yd8jqd4j","slide":27,"bbox":[90,300,205.92,28]}
+{"kind":"textbox","id":"sh/lgzi1s3a","slide":27,"text":"PPTX","textPreview":"PPTX","textChars":4,"textLines":1,"bbox":[74,466,286,24]}
+{"kind":"textbox","id":"sh/kfq1snmp","slide":27,"text":"編集・フォント・互換性","textPreview":"編集・フォント・互換性","textChars":11,"textLines":1,"bbox":[74,494,286,44]}
+{"kind":"shape","id":"sh/zid0nyl0","slide":27,"bbox":[390,224,220,288]}
+{"kind":"shape","id":"sh/eh4zet4f","slide":27,"bbox":[406,244,92.4,248]}
+{"kind":"shape","id":"sh/ojihczyl","slide":27,"bbox":[504.4,248,70.4,18]}
+{"kind":"shape","id":"sh/pkry54z6","slide":27,"bbox":[504.4,278,88,12]}
+{"kind":"textbox","id":"sh/2hgfapgf","slide":27,"text":"PDF","textPreview":"PDF","textChars":3,"textLines":1,"bbox":[390,534,220,24]}
+{"kind":"textbox","id":"sh/3i9g3uh0","slide":27,"text":"固定レイアウト・リンク","textPreview":"固定レイアウト・リンク","textChars":11,"textLines":1,"bbox":[390,562,220,44]}
+{"kind":"shape","id":"sh/c7ihgzyh","slide":27,"bbox":[640,250,316,204]}
+{"kind":"shape","id":"sh/d8ry94z2","slide":27,"bbox":[656,272,137,162]}
+{"kind":"shape","id":"sh/q50zepgr","slide":27,"bbox":[803,272,137,162]}
+{"kind":"textbox","id":"sh/b69g7uhc","slide":27,"text":"投影","textPreview":"投影","textChars":2,"textLines":1,"bbox":[640,476,316,24]}
+{"kind":"textbox","id":"sh/sbyx4fyd","slide":27,"text":"距離・端の切れ・色","textPreview":"距離・端の切れ・色","textChars":9,"textLines":1,"bbox":[640,504,316,44]}
+{"kind":"shape","id":"sh/tc7yxkzy","slide":27,"bbox":[1010,218,164,300]}
+{"kind":"shape","id":"sh/9wfmlcnq","slide":27,"bbox":[1022,242,140,252]}
+{"kind":"shape","id":"sh/8v65s7m5","slide":27,"bbox":[1034,272,116,92]}
+{"kind":"shape","id":"sh/7ux4j25k","slide":27,"bbox":[1054,292,76,30]}
+{"kind":"shape","id":"sh/mtonqx4z","slide":27,"bbox":[1097.8,334,34.8,14]}
+{"kind":"textbox","id":"sh/h0z6pcnm","slide":27,"text":"スマホ","textPreview":"スマホ","textChars":3,"textLines":1,"bbox":[1010,540,164,24]}
+{"kind":"textbox","id":"sh/wz65w7m1","slide":27,"text":"縮小時の文字量","textPreview":"縮小時の文字量","textChars":7,"textLines":1,"bbox":[1010,568,164,44]}
+{"kind":"textbox","id":"sh/vyx4nm5g","slide":27,"text":"開く → PDF化 → 全画面投影 → スマホ確認","textPreview":"開く → PDF化 → 全画面投影 → スマホ確認","textChars":25,"textLines":1,"bbox":[302,622,676,38]}
+{"kind":"textbox","id":"sh/uxonuh4v","slide":27,"text":"27","textPreview":"27","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"notes","id":"nt/w5kr7r","slide":27,"text":"互換性、フォント置換、PDF書き出し、投影解像度の注意を実務チェックへまとめる。\n\n[Sources]\n- https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation\n- https://support.microsoft.com/en-us/powerpoint/export-a-presentation\n- https://support.microsoft.com/en-US/Office/fonts/download-and-install-custom-fonts-to-use-with-office\n- https://support.microsoft.com/en-US/PowerPoint/compatibility-checker-in-powerpoint\n[/Sources]"}
+{"kind":"slide","id":"sl/n2cz1a","slide":28,"title":"まず自社資料1本で試し、","textShapes":15}
+{"kind":"shape","id":"sh/czqlgva5","slide":28,"bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/d0zm90bq","slide":28,"bbox":[54,46,742,624]}
+{"kind":"textbox","id":"sh/2to3a1s3","slide":28,"name":"slide-title-28","text":"まず自社資料1本で試し、\nAI導入の判断を前に進める。","textPreview":"まず自社資料1本で試し、 | AI導入の判断を前に進める。","textChars":27,"textLines":2,"bbox":[92,68,648,122]}
+{"kind":"textbox","id":"sh/3ux436t8","slide":28,"text":"今日やること","textPreview":"今日やること","textChars":6,"textLines":1,"bbox":[92,232,240,24]}
+{"kind":"textbox","id":"sh/ov6lcbat","slide":28,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[92,276,28,28]}
+{"kind":"textbox","id":"sh/pwfm5gbe","slide":28,"text":"自社資料を1本選ぶ","textPreview":"自社資料を1本選ぶ","textChars":9,"textLines":1,"bbox":[136,274,586,60]}
+{"kind":"textbox","id":"sh/mp8nm5s7","slide":28,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[92,340,28,28]}
+{"kind":"textbox","id":"sh/nq14fats","slide":28,"text":"Briefの4項目を書く","textPreview":"Briefの4項目を書く","textChars":12,"textLines":1,"bbox":[136,338,586,60]}
+{"kind":"textbox","id":"sh/jqpw7a5o","slide":28,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[92,404,28,28]}
+{"kind":"textbox","id":"sh/ipgve5o3","slide":28,"text":"タイトルだけでGhost Deckを作る","textPreview":"タイトルだけでGhost Deckを作る","textChars":20,"textLines":1,"bbox":[136,402,586,60]}
+{"kind":"textbox","id":"sh/5s7e9knu","slide":28,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[92,468,28,28]}
+{"kind":"textbox","id":"sh/krydgf69","slide":28,"text":"1枚だけSlide Specを書いて作り直す","textPreview":"1枚だけSlide Specを書いて作り直す","textChars":22,"textLines":1,"bbox":[136,466,586,60]}
+{"kind":"textbox","id":"sh/7epwbu5k","slide":28,"text":"教材だけで進められる方は、そのまま実践してください。","textPreview":"教材だけで進められる方は、そのまま実践してください。","textChars":26,"textLines":1,"bbox":[92,588,626,32]}
+{"kind":"shape","id":"sh/6tgfipoz","slide":28,"bbox":[844,390,364,214]}
+{"kind":"textbox","id":"sh/tgred4nq","slide":28,"text":"OPTION","textPreview":"OPTION","textChars":6,"textLines":1,"bbox":[880,420,120,24]}
+{"kind":"textbox","id":"sh/sfyxkz65","slide":28,"text":"無料顧問\n1回分","textPreview":"無料顧問 | 1回分","textChars":8,"textLines":2,"bbox":[880,458,286,74]}
+{"kind":"textbox","id":"sh/fi9wfu5w","slide":28,"text":"自社資料を持ち込み、\nBriefとGhost Deckを一緒に作る","textPreview":"自社資料を持ち込み、 | BriefとGhost Deckを一緒に作る","textChars":33,"textLines":2,"bbox":[880,544,286,44]}
+{"kind":"textbox","id":"sh/uh0fmpob","slide":28,"text":"28","textPreview":"28","textChars":2,"textLines":1,"bbox":[1184,678,32,18]}
+{"kind":"image","id":"im/yhg3q18b","slide":28,"name":"","alt":"自社資料を一つ選びBriefを書き始める日本の経営者と担当者","bbox":[0,0,1280,720]}
+{"kind":"notes","id":"nt/n2cz1a","slide":28,"text":"第1幕の会議が止まる問題を、自社資料1本の行動で回収する。CTAは支援の選択肢としてのみ提示する。\n\n[Sources]\n- Generated visual: closing-work-session.png（AI顧問室制作）\n[/Sources]"}
