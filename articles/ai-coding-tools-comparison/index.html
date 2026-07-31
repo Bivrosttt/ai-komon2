@@ -19,13 +19,13 @@
     <p class="meta">公開日: 2026年7月31日　|　料金・レビュー取得日: 2026年7月31日</p>
     <figure class="article-thumb"><img src="ai-coding-tools-comparison-thumbnail.svg" alt="AIコーディングサービス比較のシンプルなサムネイル" width="1600" height="900" loading="eager" fetchpriority="high"><figcaption class="visually-hidden">AIコーディングサービス比較のカバー画像</figcaption></figure>
     <div class="answer"><strong>先に結論：</strong><a href="https://github.com/features/copilot" rel="noopener noreferrer">GitHub Copilot</a>はGitHubとIDEの補完・レビュー、<a href="https://cursor.com/" rel="noopener noreferrer">Cursor</a>はエディタ内の複数ファイル編集、<a href="https://claude.com/product/claude-code" rel="noopener noreferrer">Claude Code</a>はターミナル主体の自律作業、<a href="https://replit.com/" rel="noopener noreferrer">Replit</a>はブラウザ上の試作が得意です。日常の補完ならCopilot、既存コードの大きな変更ならCursor、Issueから実装まで任せるならClaude Code、環境構築を省いて公開まで進めるならReplitを選びます。</div>
-    <div class="key-points"><strong>この記事の要点</strong><ul><li>月額、AIクレジット、補完数、エージェント倍率を同じ表で比較</li><li>G2・Capterra・TechRadar・国内調査・開発者コミュニティの傾向を分けて記載</li><li>定額の安さではなく、作業の自律性と従量課金を含めてコスパを判断</li></ul></div>
+    <div class="key-points"><strong>要点を先に：作業別の第一候補と料金</strong><ul><li><b>補完・PR：</b><a href="https://github.com/features/copilot" rel="noopener noreferrer">GitHub Copilot</a>。Proは$10/月で、GitHub中心の開発に最も入りやすい選択です。</li><li><b>複数ファイル編集：</b><a href="https://cursor.com/" rel="noopener noreferrer">Cursor</a>。Proは$20/月ですが、モデル利用量を超えると従量課金が膨らみます。</li><li><b>端末で自律作業：</b><a href="https://claude.com/product/claude-code" rel="noopener noreferrer">Claude Code</a>。Proは$20/月で、調査から実装・テストまで続けたい人向けです。</li><li><b>試作・公開：</b><a href="https://replit.com/" rel="noopener noreferrer">Replit</a>。Coreは$25/月で、環境構築を省けますがAgent creditsの消費が早い依頼には不向きです。</li></ul></div>
     <div class="toc"><strong>この記事の目次</strong><ol><li><a href="#price">料金・usage・コスパ比較</a></li><li><a href="#reviews">4サービスの実力と口コミ</a></li><li><a href="#strengths">強み・弱み比較表</a></li><li><a href="#decision">用途別の決定ルール</a></li><li><a href="#aikomon">AI顧問室への最短経路</a></li></ol></div>
 
     <h2 id="price">料金・usage・コスパ比較（2026年7月31日時点）</h2>
     <p>AIコーディングのusageは、補完回数ではなくチャット・エージェント・モデル利用のクレジットで減ることが増えています。料金と同時に、含まれる利用量と追加課金の仕組みを比較します。</p>
     <p class="callout"><strong>比較シナリオ：</strong>既存リポジトリの小さな修正を週10件、月1回の機能追加を行う開発者を基準にしました。補完とPR中心ならCopilot、複数ファイルの実装ならCursor、端末で調査からテストまで続けるならClaude Code、環境構築を省いて試作を公開するならReplitが、支払額に対して得られる作業量を読みやすい選択です。</p>
-    <div class="table-scroll" role="region" aria-label="AIコーディングサービス料金とusage比較" tabindex="0"><table><thead><tr><th>サービス（公式）</th><th>代表プランと月額</th><th>含まれるusage</th><th>実効コスト</th><th>コスパの結論</th></tr></thead><tbody>
+    <div class="table-scroll" role="region" aria-label="AIコーディングサービス料金とusage比較" tabindex="0"><table class="service-comparison-table"><thead><tr><th>サービス（公式）</th><th>代表プランと月額</th><th>含まれるusage</th><th>実効コスト</th><th>コスパの結論</th></tr></thead><tbody>
       <tr><th><a href="https://github.com/features/copilot" rel="noopener noreferrer">GitHub Copilot</a></th><td>Free $0、Pro $10、Pro+ $39、Max $100</td><td>Freeは2,000補完/月。Proは$15、Pro+は$70、Maxは$200のAI credits/月</td><td>Proは固定$10+credits超過時の従量</td><td>GitHub利用者の補完・レビューなら最も始めやすい</td></tr>
       <tr><th><a href="https://cursor.com/" rel="noopener noreferrer">Cursor</a></th><td>Hobby無料、Pro $20/月、Teams $40/ユーザー/月</td><td>Pro+はProの3倍、Ultraは20倍のAgent上限。全プランでモデル利用量を消費</td><td>含有量を超えるon-demandは後払い</td><td>複数ファイルの編集量が多いほど価値、請求の振れ幅に注意</td></tr>
       <tr><th><a href="https://claude.com/product/claude-code" rel="noopener noreferrer">Claude Code</a></th><td>Free $0、Pro $20/月（年払い$17/月）、Max $100〜</td><td>ProはClaude Code込み。MaxはProの5倍または20倍利用</td><td>定額のほかAPIはモデル・token量で変動</td><td>大きなリポジトリを端末で進めるなら作業量に対して強い</td></tr>
@@ -59,7 +59,7 @@
     </section>
 
     <h2 id="strengths">強み・弱み比較表</h2>
-    <div class="table-scroll" role="region" aria-label="AIコーディングサービスの強みと弱み" tabindex="0"><table><thead><tr><th>サービス</th><th>強み</th><th>弱み</th><th>向く人</th><th>向かない人</th></tr></thead><tbody>
+    <div class="table-scroll" role="region" aria-label="AIコーディングサービスの強みと弱み" tabindex="0"><table class="service-comparison-table"><thead><tr><th>サービス</th><th>強み</th><th>弱み</th><th>向く人</th><th>向かない人</th></tr></thead><tbody>
       <tr><th>GitHub Copilot</th><td>補完、PR、GitHub連携、低い入口価格</td><td>Agentのcredits消費、モデルごとの単価</td><td>GitHub中心の開発者</td><td>IDE外で長いタスクを丸ごと任せたい人</td></tr>
       <tr><th>Cursor</th><td>コードベース理解、複数ファイル編集、Agent</td><td>従量課金、変更の広がり、上位価格の表示差</td><td>エディタで日常的に開発する人</td><td>固定費だけで予算を確定したい人</td></tr>
       <tr><th>Claude Code</th><td>長い文脈、端末操作、IssueからPRまで</td><td>IDEの視覚性、Max/Teamの価格</td><td>大規模コードを端末で扱う人</td><td>補完だけを軽く使う人</td></tr>

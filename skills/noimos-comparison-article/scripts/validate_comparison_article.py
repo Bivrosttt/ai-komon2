@@ -61,6 +61,19 @@ def main() -> int:
         if not any(marker.lower() in text.lower() for marker in markers):
             blockers.append({"code": "required_comparison_section_missing", "section": name})
 
+    key_points = soup.select_one(".key-points")
+    if not key_points:
+        blockers.append({"code": "key_points_missing"})
+    else:
+        key_point_text = key_points.get_text(" ", strip=True)
+        missing_services = [service for service in services if service not in key_point_text]
+        if missing_services:
+            blockers.append({"code": "key_points_service_missing", "services": missing_services})
+        key_point_markers = ["月", "分", "選", "向き", "不向き", "第一候補", "credits", "$", "価格"]
+        marker_count = sum(1 for marker in key_point_markers if marker.lower() in key_point_text.lower())
+        if marker_count < 4 or not re.search(r"\d", key_point_text):
+            blockers.append({"code": "key_points_not_decision_ready", "marker_count": marker_count})
+
     first_link_failures = []
     for service in services:
         # Locate the first text occurrence in DOM order and require an ancestor link.
