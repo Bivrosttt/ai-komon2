@@ -1,86 +1,58 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AIコーディングサービス比較｜Copilot・Cursor・Claude Code・Replitの違い【2026年】 | AI顧問室</title>
-  <meta name="description" content="AIコーディングサービスをGitHub Copilot、Cursor、Claude Code、Replit Agentで比較。補完、エージェント、レビュー、開発環境、料金と安全性を基準に、自社へ最適なAIを組み込む方法を解説します。">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIコーディングサービス比較｜Copilot・Cursor・Claude Code・Replit【2026年】 | AI顧問室</title>
+  <meta name="description" content="GitHub Copilot、Cursor、Claude Code、Replitを公式価格・usage・口コミ・コスパ・強み弱みで比較。補完、エージェント、試作の用途別に最適な選択を解説します。">
   <link rel="canonical" href="https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/">
-  <meta property="og:type" content="article"><meta property="og:site_name" content="AI顧問室"><meta property="og:title" content="AIコーディングサービス比較｜Copilot・Cursor・Claude Code・Replitの違い【2026年】"><meta property="og:description" content="AIコーディングサービスを、開発工程・自律性・権限・費用・チーム運用で比較します。"><meta property="og:url" content="https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/"><meta property="og:image" content="https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/ai-coding-tools-comparison-thumbnail.svg">
-  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AIコーディングサービス比較｜Copilot・Cursor・Claude Code・Replitの違い【2026年】"><meta name="twitter:description" content="補完から自律的な実装まで、AIコーディングサービスの選び方を整理します。"><meta name="twitter:image" content="https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/ai-coding-tools-comparison-thumbnail.svg">
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org","@graph":[
-      {"@type":"Article","headline":"AIコーディングサービス比較｜Copilot・Cursor・Claude Code・Replitの違い【2026年】","description":"AIコーディングサービスを開発工程・自律性・権限・費用・チーム運用で比較します。","image":"https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/ai-coding-tools-comparison-thumbnail.svg","datePublished":"2026-07-31","dateModified":"2026-07-31","author":{"@type":"Organization","name":"AI顧問室 編集部"},"publisher":{"@type":"Organization","name":"AI顧問室"},"mainEntityOfPage":"https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/"},
-      {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI顧問室","item":"https://ai-komon.bivrost.co.jp/"},{"@type":"ListItem","position":2,"name":"記事","item":"https://ai-komon.bivrost.co.jp/articles/"},{"@type":"ListItem","position":3,"name":"AIコーディングサービス比較","item":"https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/"}]},
-      {"@type":"FAQPage","mainEntity":[
-        {"@type":"Question","name":"AIコーディングサービスはどれが一番おすすめですか？","acceptedAnswer":{"@type":"Answer","text":"補完とGitHub連携はCopilot、AIエディタ内での編集はCursor、ターミナルでリポジトリを横断して作業するならClaude Code、自然言語からアプリを試作するならReplit Agentが候補です。既存の開発工程と権限で選びます。"}},
-        {"@type":"Question","name":"AIにコードを書かせるときの注意点は？","acceptedAnswer":{"@type":"Answer","text":"本番環境の権限、秘密情報、依存関係、ライセンス、テスト、レビューを分けて設計します。AIに実行させる範囲と、人が承認してからマージする地点を先に決めてください。"}},
-        {"@type":"Question","name":"非エンジニアでもAIコーディングサービスを使えますか？","acceptedAnswer":{"@type":"Answer","text":"試作や小さな社内ツールなら可能です。ただし公開・決済・顧客データを扱う場合は、要件、保守担当、テスト、セキュリティ確認まで含めて判断します。"}},
-        {"@type":"Question","name":"会社で導入するなら何から始めるべきですか？","acceptedAnswer":{"@type":"Answer","text":"まずドキュメント整備、テスト作成、既存コードの説明など、失敗しても戻せる工程を選びます。次にブランチ、レビュー、ログ、権限を揃えてから実装へ広げます。"}}
-      ]}
-    ]
-  }
-  </script>
+  <meta property="og:type" content="article"><meta property="og:site_name" content="AI顧問室"><meta property="og:title" content="AIコーディングサービス比較｜Copilot・Cursor・Claude Code・Replit【2026年】"><meta property="og:description" content="AIコーディングサービス4社を価格、usage、口コミ、コスパ、強み弱みで比較します。"><meta property="og:url" content="https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/"><meta property="og:image" content="https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/ai-coding-tools-comparison-thumbnail.svg">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AIコーディングサービス比較｜Copilot・Cursor・Claude Code・Replit【2026年】"><meta name="twitter:description" content="補完から自律エージェントまで、公式価格とレビューを比較します。"><meta name="twitter:image" content="https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/ai-coding-tools-comparison-thumbnail.svg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"AIコーディングサービス比較｜Copilot・Cursor・Claude Code・Replit【2026年】","description":"AIコーディングサービス4社を価格、usage、口コミ、コスパ、強み弱みで比較します。","image":"https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/ai-coding-tools-comparison-thumbnail.svg","datePublished":"2026-07-31","dateModified":"2026-07-31","author":{"@type":"Organization","name":"AI顧問室 編集部"},"publisher":{"@type":"Organization","name":"AI顧問室"},"mainEntityOfPage":"https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI顧問室","item":"https://ai-komon.bivrost.co.jp/"},{"@type":"ListItem","position":2,"name":"記事","item":"https://ai-komon.bivrost.co.jp/articles/"},{"@type":"ListItem","position":3,"name":"AIコーディングサービス比較","item":"https://ai-komon.bivrost.co.jp/articles/ai-coding-tools-comparison/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"AIコーディングサービスはどれが最適ですか？","acceptedAnswer":{"@type":"Answer","text":"GitHub中心ならCopilot、IDEで複数ファイルを編集するならCursor、ターミナルで大きな作業を任せるならClaude Code、環境構築なしで試作するならReplitが第一候補です。"}},{"@type":"Question","name":"一番安いサービスはどれですか？","acceptedAnswer":{"@type":"Answer","text":"無料枠は4サービスにあります。定額で使い始めるならCopilot Proが月10ドル、Cursor ProとClaude Proが月20ドル、Replit Coreが月25ドルです。"}},{"@type":"Question","name":"usageは何を見ればよいですか？","acceptedAnswer":{"@type":"Answer","text":"補完数、AIクレジット、エージェント倍率、月額クレジット、従量課金の有無を見ます。サービスごとに単位が違うため、料金表では公式の単位を残しています。"}}]}]}</script>
   <link rel="stylesheet" href="../../assets/articles/article.css?v=20260731-service-comparison-cta">
 </head>
-<body>
-<main>
+<body><main>
   <nav class="breadcrumb" aria-label="パンくず"><a href="/">AI顧問室</a> / <a href="/articles/">記事</a> / AIコーディングサービス比較</nav>
   <article>
     <p class="eyebrow">AI CODING / 比較ガイド</p>
-    <h1>AIコーディングサービス比較｜Copilot・Cursor・Claude Code・Replitの違い【2026年】</h1>
-    <p class="dek">AIコーディングサービスは、コード補完からリポジトリを横断するエージェントまで役割が違います。実在サービスを、開発工程・権限・レビュー・費用・チーム定着の条件で比べ、自社に組み込む最短経路を整理します。</p>
-    <p class="meta">公開日: 2026年7月31日　|　AI顧問室 編集部</p>
-    <figure class="article-thumb"><img src="ai-coding-tools-comparison-thumbnail.svg" alt="AIコーディングサービス比較。補完からエージェントまでの選び方を示すシンプルな記事サムネイル" width="1600" height="900" loading="eager" fetchpriority="high"><figcaption class="visually-hidden">AIコーディングサービス比較のカバー画像</figcaption></figure>
+    <h1>AIコーディングサービス比較｜<a href="https://github.com/features/copilot/plans?locale=ja" rel="noopener noreferrer">Copilot</a>・<a href="https://www.cursor.com/pricing" rel="noopener noreferrer">Cursor</a>・<a href="https://claude.com/pricing" rel="noopener noreferrer">Claude Code</a>・<a href="https://replit.com/pricing?web=1" rel="noopener noreferrer">Replit</a>【2026年】</h1>
+    <p class="dek">AIコーディングは、補完を速くしたいのか、複数ファイルの実装を任せたいのか、環境ごと試作したいのかで選択が変わります。公式価格・usageと国内外レビューを照合し、用途別の結論を出します。</p>
+    <p class="meta">公開日: 2026年7月31日　|　料金・レビュー取得日: 2026年7月31日</p>
+    <figure class="article-thumb"><img src="ai-coding-tools-comparison-thumbnail.svg" alt="AIコーディングサービス比較のシンプルなサムネイル" width="1600" height="900" loading="eager" fetchpriority="high"><figcaption class="visually-hidden">AIコーディングサービス比較のカバー画像</figcaption></figure>
+    <div class="answer"><strong>先に結論：</strong><a href="https://github.com/features/copilot/plans?locale=ja" rel="noopener noreferrer">GitHub Copilot</a>はGitHubとIDEの補完・レビュー、<a href="https://www.cursor.com/pricing" rel="noopener noreferrer">Cursor</a>はエディタ内の複数ファイル編集、<a href="https://claude.com/pricing" rel="noopener noreferrer">Claude Code</a>はターミナル主体の自律作業、<a href="https://replit.com/pricing?web=1" rel="noopener noreferrer">Replit</a>はブラウザ上の試作が得意です。日常の補完ならCopilot、既存コードの大きな変更ならCursor、Issueから実装まで任せるならClaude Code、環境構築を省いて公開まで進めるならReplitを選びます。</div>
+    <div class="key-points"><strong>この記事の要点</strong><ul><li>月額、AIクレジット、補完数、エージェント倍率を同じ表で比較</li><li>G2・Capterra・TechRadar・国内調査・開発者コミュニティの傾向を分けて記載</li><li>定額の安さではなく、作業の自律性と従量課金を含めてコスパを判断</li></ul></div>
+    <div class="toc"><strong>この記事の目次</strong><ol><li><a href="#price">料金・usage・コスパ比較</a></li><li><a href="#reviews">4サービスの実力と口コミ</a></li><li><a href="#strengths">強み・弱み比較表</a></li><li><a href="#decision">用途別の決定ルール</a></li><li><a href="#aikomon">AI顧問室への最短経路</a></li></ol></div>
 
-    <div class="answer"><strong>先に結論：</strong>GitHubを中心に補完・チャット・レビューまで揃えるならGitHub Copilot、エディタ内で大きく編集するならCursor、ターミナルで調査・編集・テストをつなぐならClaude Code、自然言語でアプリを試作・公開するならReplit Agentが候補です。会社導入では、モデルの賢さより「どの工程を任せ、どこで人がレビューするか」を優先します。</div>
-    <div class="key-points"><strong>この記事の要点</strong><ul><li>AIコーディングサービスは補完型、AIエディタ型、ターミナルエージェント型、クラウド試作型に分けられる</li><li>同じリポジトリとタスクで試し、修正範囲、テスト、レビュー、権限、利用量を記録する</li><li>自社に最適なAIを選び、開発ルールと業務フローへ組み込む最短経路はAI顧問室で設計できる</li></ul></div>
-
-    <div class="toc"><strong>この記事の目次</strong><ol><li><a href="#decision">先に決めるべき開発工程</a></li><li><a href="#services">実在サービス4社の違い</a></li><li><a href="#table">比較表</a></li><li><a href="#safety">導入時の安全設計</a></li><li><a href="#pilot">最短で試す手順</a></li><li><a href="#aikomon">AI顧問室が向くケース</a></li></ol></div>
-
-    <h2 id="decision">AIコーディングサービスは「任せる工程」から選ぶ</h2>
-    <p>コード生成の比較で起きる失敗は、デモの出力だけを見て本番運用まで任せてしまうことです。入力するコード、実行できるコマンド、変更できるファイル、テストとレビューの責任はサービスごとに違います。まず、補完、調査、実装、テスト、レビュー、デプロイのどこを変えるのかを一つに絞ります。</p>
-    <div class="steps"><div class="step"><b>01 / CONTEXT</b><h3>何を読ませるか</h3><p>開いているファイル、リポジトリ、Issue、ドキュメント、外部サービスのどこまでを文脈にするか決めます。</p></div><div class="step"><b>02 / ACTION</b><h3>何を実行させるか</h3><p>提案、編集、テスト、コマンド、PR作成、デプロイの権限を分けます。</p></div><div class="step"><b>03 / REVIEW</b><h3>どこで止めるか</h3><p>差分、テスト、秘密情報、依存、ライセンスを人が確認し、マージ条件を残します。</p></div></div>
-
-    <h2 id="services">実在するAIコーディングサービス4社の違い</h2>
-    <p>各社の公式ページとドキュメントを2026年7月31日に確認しました。料金・モデル・利用上限は変更されるため、会社契約では対象プランとデータ処理条件を再確認してください。</p>
-    <h3>GitHub Copilot：GitHub中心の開発工程を広く補助</h3>
-    <p>GitHub Copilotは、IDEのコード補完やチャットに加え、GitHub上のコードレビュー、エージェント、CLIなどを比較できるサービスです。既にGitHubでIssue、Pull Request、レビューを回しているチームは、既存の流れを変えずにAIを追加しやすいのが特徴です。組織ではライセンス、ポリシー、利用量、コードやプロンプトの扱いを管理者が確認します。</p>
-    <h3>Cursor：AIエディタで大きく編集したい開発者向け</h3>
-    <p>Cursorは、AIを中心に設計したコードエディタとして、補完、Agent、Background Agents、Bugbotなどを比較できます。複数ファイルの変更や、エディタ内での反復作業を速くしたい開発者に向きます。モデル利用量によって消費が変わるため、チームでは利用状況と上限、Privacy Mode、管理者設定を先に決めます。</p>
-    <h3>Claude Code：ターミナルでリポジトリを調べ、編集し、検証</h3>
-    <p>Claude Codeは、ターミナルでプロジェクトを読み、ファイルを編集し、コマンドやテストを実行するエージェントとして案内されています。CLI、MCP、Git運用と接続しやすく、複雑な調査や繰り返し作業を一つのタスクとして任せたい場合に候補です。シェル権限、環境変数、ネットワーク、書き込み範囲を最小化し、変更は必ず差分とテストで確認します。</p>
-    <h3>Replit Agent：自然言語からクラウドで試作・公開</h3>
-    <p>Replit Agentは、作りたいアプリやWebサイトを自然言語で説明し、クラウド上で構築・公開する流れを比較しやすいサービスです。非エンジニアの試作や、検証用の小さな社内ツールには向きます。一方で、Agentの利用量は作業の複雑さに応じて変わるため、公開後の保守、データベース、権限、費用上限を先に決めておきます。</p>
-
-    <h2 id="table">AIコーディングサービス比較表</h2>
-    <div class="table-scroll" role="region" aria-label="AIコーディングサービス比較表" tabindex="0"><table><thead><tr><th>サービス</th><th>得意な仕事</th><th>主な作業環境</th><th>運用・料金の見方</th><th>注意する点</th></tr></thead><tbody>
-      <tr><th>GitHub Copilot</th><td>補完、チャット、コードレビュー、GitHub上のエージェント</td><td>IDE、GitHub、CLI</td><td>席数、プラン、AIクレジット、組織ポリシーを管理</td><td>リポジトリ権限、データ利用、レビュー責任を分ける</td></tr>
-      <tr><th>Cursor</th><td>エディタ内の複数ファイル編集、Agent、Bugbot</td><td>AIコードエディタ、Background Agents</td><td>モデルとAgent利用量、チーム席、Privacy Modeを確認</td><td>大きな差分を自動で受け入れず、ブランチとテストを必須にする</td></tr>
-      <tr><th>Claude Code</th><td>リポジトリ調査、編集、コマンド、テスト、Git作業</td><td>ターミナル、MCP、ローカルまたはクラウド環境</td><td>契約・API・利用量、モデル、実行環境の上限を確認</td><td>シェル、秘密情報、ネットワーク、削除権限を最小化する</td></tr>
-      <tr><th>Replit Agent</th><td>自然言語からアプリの試作、データ・公開まで</td><td>クラウドIDE、ホスティング、データベース</td><td>Agentの作業量、公開、保存、DB、コラボ席をまとめて比較</td><td>試作と本番を分け、保守担当と移行方法を決める</td></tr>
+    <h2 id="price">料金・usage・コスパ比較（2026年7月31日時点）</h2>
+    <p>AIコーディングのusageは、補完回数ではなくチャット・エージェント・モデル利用のクレジットで減ることが増えています。料金と同時に、含まれる利用量と追加課金の仕組みを比較します。</p>
+    <div class="table-scroll" role="region" aria-label="AIコーディングサービス料金とusage比較" tabindex="0"><table><thead><tr><th>サービス（公式）</th><th>代表プランと月額</th><th>含まれるusage</th><th>実効コスト</th><th>コスパの結論</th></tr></thead><tbody>
+      <tr><th><a href="https://github.com/features/copilot/plans?locale=ja" rel="noopener noreferrer">GitHub Copilot</a></th><td>Free $0、Pro $10、Pro+ $39、Max $100</td><td>Freeは2,000補完/月。Proは$15、Pro+は$70、Maxは$200のAI credits/月</td><td>Proは固定$10+credits超過時の従量</td><td>GitHub利用者の補完・レビューなら最も始めやすい</td></tr>
+      <tr><th><a href="https://www.cursor.com/pricing" rel="noopener noreferrer">Cursor</a></th><td>Hobby無料、Pro $20/月、Teams $40/ユーザー/月</td><td>Pro+はProの3倍、Ultraは20倍のAgent上限。全プランでモデル利用量を消費</td><td>含有量を超えるon-demandは後払い</td><td>複数ファイルの編集量が多いほど価値、請求の振れ幅に注意</td></tr>
+      <tr><th><a href="https://claude.com/pricing" rel="noopener noreferrer">Claude Code</a></th><td>Free $0、Pro $20/月（年払い$17/月）、Max $100〜</td><td>ProはClaude Code込み。MaxはProの5倍または20倍利用</td><td>定額のほかAPIはモデル・token量で変動</td><td>大きなリポジトリを端末で進めるなら作業量に対して強い</td></tr>
+      <tr><th><a href="https://replit.com/pricing?web=1" rel="noopener noreferrer">Replit</a></th><td>Starter無料、Core $25/月（年払い$20）、Pro $100/月（年払い$95）</td><td>Core $25、Pro $100のAgent credits/月。Coreは並列Agent 2、Proは10</td><td>Agentの複雑さでcredit消費、追加利用は従量</td><td>環境構築・公開の時間を買うサービス。小規模試作で高コスパ</td></tr>
     </tbody></table></div>
 
-    <h2 id="safety">導入時は「書けるか」より安全設計を先にする</h2>
-    <div class="table-scroll" role="region" aria-label="AIコーディング導入の安全設計" tabindex="0"><table><thead><tr><th>確認項目</th><th>質問</th><th>最低限のルール</th></tr></thead><tbody><tr><th>権限</th><td>何を読め、何を書け、何を実行できるか</td><td>本番・顧客データ・秘密情報へ直接アクセスさせない</td></tr><tr><th>差分</th><td>誰が変更をレビューし、戻せるか</td><td>ブランチ、PR、レビュー、ロールバックを必須にする</td></tr><tr><th>テスト</th><td>生成コードの正しさをどのテストで確認するか</td><td>既存テストと新しい境界条件を実行する</td></tr><tr><th>費用</th><td>利用量が増えたとき誰が気付くか</td><td>上限、通知、モデル選択、追加請求を管理する</td></tr><tr><th>引き継ぎ</th><td>AIの作業ルールと判断を誰が再現できるか</td><td>README、規約、ログ、失敗例をリポジトリに残す</td></tr></tbody></table></div>
+    <h2 id="reviews">4サービスの実力と口コミ</h2>
+    <h3>GitHub Copilot：既存IDEとGitHubを変えない</h3><p>補完、チャット、コードレビュー、Cloud Agentを一つの契約で使えます。GitHubにコードとIssueが集まるチームほど導入が軽く、Proの月10ドルは入口として分かりやすい価格です。海外報道と開発者コミュニティでは、agent・reviewの利用でcreditsが早く減ること、モデルごとの消費量が読みにくいことが不満として目立ちます。</p>
+    <h3>Cursor：エディタ内の複数ファイル編集</h3><p>VS Code系の操作感で、プロジェクト全体を読ませて編集・テストまで進めます。TechRadarは大規模な複数ファイル作業とAgent体験を高く評価する一方、レガシーコードで局所的に正しい変更が別の箇所を壊すこと、重いモデルで請求が膨らむことを弱みとして挙げています。Capterraや開発者コミュニティでも、精度と速度への評価と、使用量の予測しにくさが同時に見られます。</p>
+    <h3>Claude Code：ターミナルで一連の作業を任せる</h3><p>コードベースの探索、編集、テスト、Issue対応をターミナルから一続きで進めます。長いコンテキストと大きな変更への対応が強みで、ProならClaude Codeを含みます。一方、IDEの補完や視覚的な差分が中心の人には学習負担があり、MaxやTeam Premiumは月額が大きくなります。G2/Capterraのレビューでは、深い理解と自律性を評価する声と、曖昧な指示では手戻りが増えるという声が並びます。</p>
+    <h3>Replit：ブラウザで試作から公開まで</h3><p>環境構築なしでAgentにアプリを作らせ、ブラウザから公開できます。G2とCapterraでは自然言語からの試作速度が好評ですが、複雑な依頼でAgent creditsが早く消える、追加課金が読みにくいという不満もあります。既存リポジトリの精密な保守より、企画の検証や小さな社内ツールの公開に向きます。</p>
 
-    <h2 id="pilot">最短で試す手順</h2>
-    <ol><li><strong>戻せる作業を選ぶ：</strong>テスト作成、ドキュメント整備、既存コードの説明など、本番を直接変更しない工程から始めます。</li><li><strong>同じリポジトリで試す：</strong>同じIssueを各サービスへ渡し、変更ファイル数、テスト結果、修正時間、レビュー指摘を記録します。</li><li><strong>権限を段階化する：</strong>読み取り、編集、コマンド実行、PR作成、デプロイを分け、最初は人が承認する設定にします。</li><li><strong>チームのルールへ接続する：</strong>利用目的、禁止データ、レビュー、費用上限、障害時の停止と引き継ぎを文書化します。</li></ol>
-    <div class="note"><strong>比較時の注意：</strong>AIコーディングサービスのモデル、利用上限、料金、データ保持条件は更新されます。契約前に公式の料金・プライバシー・企業向けポリシーを確認し、実際のリポジトリで小さく検証してください。</div>
+    <h2 id="strengths">強み・弱み比較表</h2>
+    <div class="table-scroll" role="region" aria-label="AIコーディングサービスの強みと弱み" tabindex="0"><table><thead><tr><th>サービス</th><th>強み</th><th>弱み</th><th>向く人</th><th>向かない人</th></tr></thead><tbody>
+      <tr><th>GitHub Copilot</th><td>補完、PR、GitHub連携、低い入口価格</td><td>Agentのcredits消費、モデルごとの単価</td><td>GitHub中心の開発者</td><td>IDE外で長いタスクを丸ごと任せたい人</td></tr>
+      <tr><th>Cursor</th><td>コードベース理解、複数ファイル編集、Agent</td><td>従量課金、変更の広がり、上位価格の表示差</td><td>エディタで日常的に開発する人</td><td>固定費だけで予算を確定したい人</td></tr>
+      <tr><th>Claude Code</th><td>長い文脈、端末操作、IssueからPRまで</td><td>IDEの視覚性、Max/Teamの価格</td><td>大規模コードを端末で扱う人</td><td>補完だけを軽く使う人</td></tr>
+      <tr><th>Replit</th><td>環境構築不要、試作、公開、並列Agent</td><td>credits消費、既存コードの精密保守</td><td>個人開発・新規プロトタイプ</td><td>複雑な既存基盤を厳密に保守する人</td></tr>
+    </tbody></table></div>
 
-    <h2 id="aikomon">自社に最適なAIを開発業務へ組み込むなら</h2>
-    <p>AIコーディングは、ツールを入れただけでは速くなりません。Issueの書き方、ブランチ、レビュー、テスト、リリース、障害対応がつながって初めて、会社の開発力として残ります。AI顧問室では、候補サービスを先に固定せず、今の工程で詰まっている箇所と、任せてよい範囲を整理してから導入します。</p>
-    <p>「社内ツールを試作したい」「保守の手戻りを減らしたい」「開発者以外も安全にAIを使いたい」のように、最初に変えたい業務を持ち込んでください。最短経路は、AIに全部任せることではなく、任せる工程と人が責任を持つ工程を分けることです。</p>
+    <h2 id="decision">用途別の決定ルール</h2>
+    <div class="steps"><div class="step"><b>補完・レビュー</b><h3>Copilot</h3><p>GitHubのIssueとPRを中心に、日々の入力支援を安く足したい場合。</p></div><div class="step"><b>複数ファイル</b><h3>Cursor</h3><p>既存コードを読み、編集・テストまでエディタ内で進めたい場合。</p></div><div class="step"><b>自律タスク</b><h3>Claude Code</h3><p>調査から実装、テスト、PRまで端末で連続させたい場合。</p></div><div class="step"><b>試作・公開</b><h3>Replit</h3><p>環境構築を省き、アイデアをブラウザで動く形にしたい場合。</p></div></div>
+    <p>「毎日使う補完」ならCopilot、「変更量の大きい開発」ならCursorかClaude Code、「検証用アプリ」ならReplitです。モデル利用量が多いチームは、固定費だけでなくcreditsの消費上限も予算へ入れると選択を誤りません。</p>
 
-    <div class="sources"><strong>公式情報を確認したサービスページ</strong><ul><li><a href="https://github.com/features/copilot/plans" rel="noopener noreferrer">GitHub Copilot Plans &amp; pricing</a></li><li><a href="https://www.cursor.com/pricing" rel="noopener noreferrer">Cursor Pricing</a> / <a href="https://docs.cursor.com/account/pricing" rel="noopener noreferrer">Cursor Docs: Pricing</a></li><li><a href="https://code.claude.com/docs/en/overview" rel="noopener noreferrer">Claude Code Overview</a> / <a href="https://docs.anthropic.com/en/docs/claude-code/cli-usage" rel="noopener noreferrer">Claude Code CLI reference</a></li><li><a href="https://replit.com/products/agent" rel="noopener noreferrer">Replit Agent</a> / <a href="https://docs.replit.com/billing/ai-billing" rel="noopener noreferrer">Replit AI billing</a></li></ul><p>確認日: 2026年7月31日。料金・対象機能・データ条件は契約前に各公式ページを再確認してください。</p></div>
-
-    <h2>よくある質問</h2><details><summary>AIコーディングサービスはどれが一番おすすめですか？</summary><p>補完とGitHub連携はCopilot、AIエディタ内の編集はCursor、ターミナルでの調査・編集・検証はClaude Code、自然言語からのクラウド試作はReplit Agentが候補です。</p></details><details><summary>AIにコードを書かせるときの注意点は？</summary><p>本番権限、秘密情報、依存関係、ライセンス、テスト、レビューを分けます。差分を人が確認し、戻せる状態で使い始めてください。</p></details><details><summary>非エンジニアでも使えますか？</summary><p>試作や小さな社内ツールなら可能です。公開・決済・顧客データを扱う場合は、要件、保守担当、セキュリティ、運用費まで含めて判断します。</p></details><details><summary>会社で導入するなら何から始めるべきですか？</summary><p>ドキュメント整備やテスト作成など、失敗しても戻せる工程から始め、権限とレビューを整えてから実装へ広げます。</p></details>
-
-    <h2>次に読む・相談する</h2><div class="related"><a href="/articles/ai-agent-business/"><strong>AIエージェントを業務へ導入する方法</strong><span>自律性と人の確認を設計する</span></a><a href="/articles/ai-introduction-risk/"><strong>AI導入のリスク</strong><span>権限・データ・契約を確認する</span></a><a href="/articles/ai-introduction-roadmap/"><strong>AI導入30日ロードマップ</strong><span>小さく試して定着させる</span></a></div>
-    <div class="tool-cta service-cta"><h2>自社に最適なAIを、最短経路で組み込む</h2><p>開発工程、権限、レビュー、費用上限を整理します。無料でコンサル一回分をプレゼントします。</p><a class="button" href="../../#contact">無料でコンサル一回分をプレゼント</a></div>
-  </article>
-  <footer><a href="/">AI顧問室</a> / <a href="/articles/">記事</a> / <a href="/privacy.html">プライバシーポリシー</a></footer>
-</main>
-</body>
-</html>
+    <h2 id="aikomon">自社の開発業務へ最短経路で組み込む</h2><p>AIコーディングの導入は、ツールを配るだけでは終わりません。Issueの書き方、リポジトリの読み方、テストの置き場、PRの流れを一つの開発業務としてつなぐ必要があります。AI顧問室は、現在の工程から自動化対象を切り出し、最適なサービスと運用へ組み込みます。</p>
+    <div class="sources"><strong>調査に使った公式・独立レビュー</strong><ul><li><a href="https://github.com/features/copilot/plans?locale=ja" rel="noopener noreferrer">GitHub Copilot料金</a> / <a href="https://www.itpro.com/software/development/github-copilot-pricing-change" rel="noopener noreferrer">ITPro価格分析</a> / <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/github-copilot-price-hikes-reportedly-reach-100x-as-users-report-surprise-bills" rel="noopener noreferrer">Tom's Hardware</a></li><li><a href="https://www.cursor.com/pricing" rel="noopener noreferrer">Cursor料金</a> / <a href="https://www.capterra.com/p/10033962/Cursor/" rel="noopener noreferrer">Cursor Capterra</a> / <a href="https://www.techradar.com/best/best-ai-tools" rel="noopener noreferrer">TechRadar比較レビュー</a></li><li><a href="https://claude.com/pricing" rel="noopener noreferrer">Claude料金</a> / <a href="https://www.g2.com/it/products/anthropic-claude-code/reviews" rel="noopener noreferrer">Claude Code G2</a> / <a href="https://www.eesel.ai/blog/claude-code-review" rel="noopener noreferrer">Claude Code独立レビュー</a></li><li><a href="https://replit.com/pricing?web=1" rel="noopener noreferrer">Replit料金</a> / <a href="https://www.g2.com/products/replit/reviews" rel="noopener noreferrer">Replit G2</a> / <a href="https://www.capterra.com/p/10011212/Replit/" rel="noopener noreferrer">Replit Capterra</a></li></ul><p>価格・利用量・レビューは2026年7月31日に取得しました。</p></div>
+    <h2>よくある質問</h2><details><summary>無料枠だけで使えますか？</summary><p>4サービスとも無料枠があります。補完中心ならCopilot、エディタ体験ならCursor、端末の試用ならClaude Code、公開までの試作ならReplitが入口です。</p></details><details><summary>コスパを一言で言うと？</summary><p>補完はCopilot、複数ファイル編集はCursor、長い自律タスクはClaude Code、環境構築を省く試作はReplitが、それぞれの作業量に対してコスパを出しやすい選択です。</p></details><details><summary>AI顧問室では何をしてくれますか？</summary><p>開発工程を分解し、どのサービスをどの作業へ接続するか、運用の形まで設計します。</p></details>
+    <div class="related"><a href="/articles/ai-introduction-roadmap/"><strong>AI導入30日ロードマップ</strong><span>業務へ定着させる順序</span></a><a href="/articles/ai-marketing-tools-comparison/"><strong>AIマーケティングツール比較</strong><span>集客工程のサービス選び</span></a></div>
+    <div class="tool-cta service-cta"><h2>自社に最適なAIを、最短経路で組み込む</h2><p>候補サービスの比較から、開発工程に組み込む設計までまとめます。無料でコンサル一回分をプレゼントします。</p><a class="button" href="../../#contact">無料でコンサル一回分をプレゼント</a></div>
+  </article><footer><a href="/">AI顧問室</a> / <a href="/articles/">記事</a> / <a href="/privacy.html">プライバシーポリシー</a></footer>
+</main></body></html>

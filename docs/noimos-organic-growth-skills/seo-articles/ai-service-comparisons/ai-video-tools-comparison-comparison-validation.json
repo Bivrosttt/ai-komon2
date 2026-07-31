@@ -1,0 +1,13 @@
+{
+  "tool": "noimos-comparison-article",
+  "input": "articles/ai-video-tools-comparison/index.html",
+  "status": "PASS",
+  "blockers": [],
+  "warnings": [],
+  "services": [
+    "Runway",
+    "HeyGen",
+    "Synthesia",
+    "Adobe Firefly"
+  ]
+}

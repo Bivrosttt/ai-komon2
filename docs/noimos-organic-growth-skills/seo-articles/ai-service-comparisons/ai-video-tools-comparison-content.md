@@ -1,17 +1,22 @@
-# AI動画生成サービス比較：公開前の判断メモ
+# AI動画生成サービス比較：根拠付きスナップショット
 
-対象は、動画制作の担当者がいない会社、研修・営業・採用の動画を小さく試したい会社です。比較の軸は「何を入力するか」「誰が確認するか」「公開後に直せるか」です。料金だけで順位を固定せず、対象業務と完成条件から選びます。
+対象読者は中小企業の経営者と業務担当者。記事は広告・営業・研修・Adobe制作の用途別に結論を出し、料金・usage・コスパ・強み弱みを一つのページで比較する。
+判断条件は用途、月間usage、出力形式の3点。まず公式料金をそろえ、次にレビューの傾向を照合し、注意点を強み弱み表へ戻す。
 
-## 根拠付きの特徴
+## 料金とusage
 
-- [CLAIM:video_runway_workflow]Runwayはテキストや画像を起点に動画を生成・編集する方向のサービスです。[/CLAIM]
-- [CLAIM:video_heygen_avatar]HeyGenは文章や素材からアバター動画を作成する用途に向きます。[/CLAIM]
-- [CLAIM:video_synthesia_avatar]Synthesiaは説明・研修のように、台本と話者表現をそろえる用途を検討しやすいサービスです。[/CLAIM]
-- Adobe FireflyはAdobe環境で素材制作をまとめたい場合の候補です。モデル、出力条件、商用利用の扱いは契約前に確認します。
-- [CLAIM:video_pricing_dynamic]料金、クレジット、利用上限は変わるため、価格を永続的なランキングとして扱いません。[/CLAIM]
+- [CLAIM:video_runway_price]Runway Standardは月15ドル、年払い表示は月12ドル、625 credits/月でGen-4.5約52秒相当。[/CLAIM]
+- [CLAIM:video_heygen_price]HeyGen Creatorは月29ドル、600 credits、最大30分/動画、175言語以上。[/CLAIM]
+- [CLAIM:video_synthesia_price]Synthesia Starterは月29ドル、年払い表示は月18ドル、最大10分/月。[/CLAIM]
+- [CLAIM:video_firefly_price]Adobe Firefly Standardは月9.99ドル、2,000 credits、5秒動画最大20本相当。[/CLAIM]
 
-## 選定手順
+## レビューから見えた差
 
-まず動画の対象業務を一つに絞ります。次に台本、素材、字幕、ブランド表現、公開承認の担当を決めます。その後、同じ台本で候補を試し、修正回数、確認にかかった時間、公開後の問い合わせを記録します。最後に、継続運用の担当と停止条件を決めます。
+- [CLAIM:video_runway_reviews]Runwayは短尺の生成品質が評価される一方、credits消費と生成の不安定さが不満。[/CLAIM]
+- [CLAIM:video_heygen_reviews]HeyGenは操作性とアバターが評価される一方、グリッチとサポートが弱み。[/CLAIM]
+- [CLAIM:video_firefly_reviews]FireflyはAdobe連携とBoardsが評価される一方、速度とアバター不足が弱み。[/CLAIM]
 
-比較記事の結論は「最も高機能なツール」ではなく「自社の業務が止まらず、確認可能な成果物を出せるツール」です。AI顧問室では、候補選びから権限・確認フロー・公開までを会社の実務に合わせて組み立てます。最短経路でAIを組み込みたい場合は、無料でコンサル一回分をプレゼントする相談導線から、対象業務と完成条件を共有してください。
+## 結論
+
+[CLAIM:video_decision_rules]広告・SNSはRunway、アバター営業・翻訳はHeyGen、研修はSynthesia、Adobe制作環境との接続はFireflyが第一候補。[/CLAIM]
+比較本文の最後だけAI顧問室へつなぎ、候補選定を業務の台本・素材・配信へ組み込む相談を案内する。

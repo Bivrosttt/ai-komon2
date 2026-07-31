@@ -1,16 +1,22 @@
-# AIコーディングサービス比較：導入判断メモ
+# AIコーディングサービス比較：根拠付きスナップショット
 
-対象は、開発者が少ない会社、既存コードの保守を軽くしたい会社、試作から業務アプリ公開までの手順を短くしたい会社です。比較軸は「作業場所」「変更権限」「テストとレビュー」「秘密情報の扱い」です。
+対象読者は中小企業の経営者、開発責任者、業務担当者。補完、複数ファイル編集、ターミナルの自律タスク、ブラウザ試作のどれを導入するかを比較する。
+判断条件は開発工程、usageの上限、追加課金の3点。まず料金表を読み、次にレビューの失敗例を照合し、注意点を弱み欄へ戻す。
 
-## 根拠付きの特徴
+## 料金とusage
 
-- [CLAIM:coding_copilot_surface]GitHub CopilotはIDE、CLI、GitHub上のコード支援やエージェント、レビューを一つの導線で検討できます。[/CLAIM]
-- [CLAIM:coding_cursor_agent]CursorはAIエディタとエージェントを中心に、エディタ内での変更・検証を組み立てる候補です。[/CLAIM]
-- [CLAIM:coding_claude_code_cli]Claude Codeはターミナルからプロジェクトを読み、編集やコマンド実行を行うCLI型の候補です。[/CLAIM]
-- [CLAIM:coding_replit_effort_billing]Replit Agentは自然言語からアプリを作り、公開まで試したい場合の候補です。[/CLAIM]
+- [CLAIM:coding_copilot_price]GitHub Copilot Freeは月2,000補完、Proは月10ドルと15ドル分のAI credits。[/CLAIM]
+- [CLAIM:coding_cursor_price]Cursor Proは月20ドル、Teamsは1ユーザー月40ドル。Pro+は3倍、Ultraは20倍のAgent上限。[/CLAIM]
+- [CLAIM:coding_claude_price]Claude Proは月20ドルまたは年払い表示月17ドルでClaude Codeを含み、Maxは5倍または20倍利用。[/CLAIM]
+- [CLAIM:coding_replit_price]Replit Coreは月25ドルまたは年払い表示月20ドルで25ドル分のAgent credits、Proは月100ドルで100ドル分。[/CLAIM]
 
-## 選定手順
+## レビューから見えた差
 
-最初に、AIに触らせてよいリポジトリと禁止対象を分けます。次に、テストを実行してよいか、外部サービスへ接続してよいか、変更を誰が承認するかを決めます。同じ小さな課題を候補ごとに渡し、修正差分、テスト結果、レビュー時間、戻しやすさを比較します。最後に、ログ保存、秘密情報の除外、障害時の手動手順を文書化します。
+- [CLAIM:coding_cursor_reviews]Cursorは複数ファイル編集と速度が好評で、変更範囲と従量課金が弱み。[/CLAIM]
+- [CLAIM:coding_claude_reviews]Claude Codeは長い文脈と自律性が評価され、端末中心の学習負担と価格が弱み。[/CLAIM]
+- [CLAIM:coding_replit_reviews]Replitは試作速度が好評で、Agent creditsの消費と追加課金が不満。[/CLAIM]
 
-AI顧問室は、ツールを置くだけでなく、会社の開発ルールと業務成果物に接続します。最短経路でAIを組み込みたい場合は、無料でコンサル一回分をプレゼントする相談導線から、対象リポジトリ、権限、完了条件を共有してください。人の確認点を残したまま、試作から定着までを設計します。
+## 結論
+
+[CLAIM:coding_decision_rules]補完・レビューはCopilot、IDEの複数ファイル編集はCursor、端末の自律タスクはClaude Code、試作・公開はReplitが第一候補。[/CLAIM]
+比較本文の最後だけAI顧問室へつなぎ、開発工程に最適なサービスを組み込む相談を案内する。

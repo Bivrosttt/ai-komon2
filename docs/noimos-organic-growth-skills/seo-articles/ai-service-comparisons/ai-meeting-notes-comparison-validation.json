@@ -1,6 +1,6 @@
 {
   "tool": "noimos-seo-geo-article",
-  "generated_at": "2026-07-31T12:41:31.501390+00:00",
+  "generated_at": "2026-07-31T13:07:57.958748+00:00",
   "input": "/Users/koki/Desktop/ai-komon2/articles/ai-meeting-notes-comparison/index.html",
   "overall": "pass",
   "score": 100,
@@ -8,7 +8,7 @@
     {
       "check": "title",
       "status": "pass",
-      "evidence": "AI議事録ツール比較｜Notta・Otter・Fireflies・Zoomの選び方【2026年】 | AI顧問室",
+      "evidence": "AI議事録ツール比較｜Notta・Otter・Fireflies・Zoom【2026年】 | AI顧問室",
       "priority": "P0"
     },
     {
@@ -20,7 +20,7 @@
     {
       "check": "h2_depth",
       "status": "pass",
-      "evidence": "9 H2 elements",
+      "evidence": "7 H2 elements",
       "priority": "P1"
     },
     {
@@ -32,7 +32,7 @@
     {
       "check": "meta_description",
       "status": "pass",
-      "evidence": "110 chars",
+      "evidence": "104 chars",
       "priority": "P1"
     },
     {
@@ -62,13 +62,13 @@
     {
       "check": "internal_links",
       "status": "pass",
-      "evidence": "7 unique",
+      "evidence": "6 unique",
       "priority": "P1"
     },
     {
       "check": "external_sources",
       "status": "pass",
-      "evidence": "6 unique",
+      "evidence": "11 unique",
       "priority": "P1"
     },
     {
@@ -86,7 +86,7 @@
     {
       "check": "substantive_length",
       "status": "pass",
-      "evidence": "2809 Japanese characters",
+      "evidence": "2321 Japanese characters",
       "priority": "P1"
     },
     {

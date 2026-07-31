@@ -1,0 +1,4 @@
+interface:
+  display_name: "Noimos比較記事"
+  short_description: "実在サービスを公式情報と口コミで深掘りし比較表で判断を支援"
+  default_prompt: "Use $noimos-comparison-article to research real services and write a decision-ready comparison article."

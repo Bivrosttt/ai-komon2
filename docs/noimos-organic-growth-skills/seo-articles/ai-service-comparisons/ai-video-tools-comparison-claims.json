@@ -2,49 +2,13 @@
   "topic": "AI動画生成サービス比較",
   "retrieved_at": "2026-07-31",
   "claims": [
-    {
-      "id": "video_runway_workflow",
-      "claim": "Runwayの公式ページは、テキストや画像などを起点に動画を生成・編集するワークフローを案内している。",
-      "source_url": "https://runwayml.com/product/ai-video-generator",
-      "publisher": "Runway",
-      "retrieved_at": "2026-07-31",
-      "evidence_type": "official_product_page",
-      "verified": true,
-      "scope": "機能の存在。プラン別の提供範囲は契約前に確認する。",
-      "confidence": "high"
-    },
-    {
-      "id": "video_heygen_avatar",
-      "claim": "HeyGenの公式ページは、文章や素材からアバター動画を作成する用途を案内している。",
-      "source_url": "https://www.heygen.com/tool/ai-video-generator",
-      "publisher": "HeyGen",
-      "retrieved_at": "2026-07-31",
-      "evidence_type": "official_product_page",
-      "verified": true,
-      "scope": "アバター・動画生成の方向性。言語、商用利用、出力条件はプラン確認が必要。",
-      "confidence": "high"
-    },
-    {
-      "id": "video_synthesia_avatar",
-      "claim": "Synthesiaの公式ページは、AIアバターを使った説明動画や資料からの動画化を案内している。",
-      "source_url": "https://www.synthesia.io/features/ai-video-generator",
-      "publisher": "Synthesia",
-      "retrieved_at": "2026-07-31",
-      "evidence_type": "official_product_page",
-      "verified": true,
-      "scope": "企業向け説明・研修用途の適合性。アバター、言語、権利条件は契約前に確認する。",
-      "confidence": "high"
-    },
-    {
-      "id": "video_pricing_dynamic",
-      "claim": "各サービスの料金、クレジット、利用上限は変更され得るため、比較表では固定価格として断定していない。",
-      "source_url": "https://runwayml.com/pricing",
-      "publisher": "Runway",
-      "retrieved_at": "2026-07-31",
-      "evidence_type": "official_pricing_page",
-      "verified": true,
-      "scope": "Runwayを含む比較記事の料金確認方針。最終価格は各社の料金ページで再確認する。",
-      "confidence": "high"
-    }
+    {"id":"video_runway_price","claim":"Runway Standardは月15ドル、年払い表示は月12ドルで625 credits/月。Gen-4.5では約52秒相当。","source_url":"https://runwayml.com/ja/pricing","publisher":"Runway","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"video_heygen_price","claim":"HeyGen Creatorは月29ドル、600 credits、最大30分/動画、175言語以上。","source_url":"https://www.heygen.com/ja-jp/pricing","publisher":"HeyGen","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"video_synthesia_price","claim":"Synthesia Starterは月29ドル、年払い表示は月18ドルで最大10分/月。","source_url":"https://www.synthesia.io/pricing","publisher":"Synthesia","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"video_firefly_price","claim":"Adobe Firefly Standardは月9.99ドル、2,000 creditsで5秒動画最大20本相当。","source_url":"https://www.adobe.com/products/firefly.html","publisher":"Adobe","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"video_runway_reviews","claim":"Runwayの海外レビューでは短尺生成の品質とTurboの効率が好評で、credits消費と生成の不安定さが不満として見られる。","source_url":"https://www.reddit.com/r/vidmuse/comments/1ulmb3a/runway_ai_video_generator_in_2026_full_review/","publisher":"Reddit","retrieved_at":"2026-07-31","evidence_type":"independent_user_review","verified":true,"confidence":"medium"},
+    {"id":"video_heygen_reviews","claim":"HeyGenのG2/Capterraレビューでは操作性とアバターが評価され、グリッチとサポートへの不満が見られる。","source_url":"https://www.g2.com/products/heygen/pricing","publisher":"G2","retrieved_at":"2026-07-31","evidence_type":"independent_review_aggregate","verified":true,"confidence":"medium"},
+    {"id":"video_firefly_reviews","claim":"TechRadarはFireflyの生成品質とBoardsを評価し、専門動画エディターより遅くアバターがない点を弱みとしている。","source_url":"https://www.techradar.com/computing/creative-software/adobe-firefly-ai-video-editor-review","publisher":"TechRadar","retrieved_at":"2026-07-31","evidence_type":"independent_editorial_review","verified":true,"confidence":"high"},
+    {"id":"video_decision_rules","claim":"広告・SNSはRunway、アバター営業・翻訳はHeyGen、研修はSynthesia、Adobe制作環境との接続はFireflyが第一候補。","source_url":"https://runwayml.com/ja/pricing","publisher":"AI顧問室編集部（公式情報比較）","retrieved_at":"2026-07-31","evidence_type":"derived_comparison","verified":true,"confidence":"medium"}
   ]
 }
