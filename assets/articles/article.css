@@ -36,7 +36,7 @@ li { margin:7px 0; }
 .table-scroll { width:100%; overflow-x:auto; margin:22px 0; -webkit-overflow-scrolling:touch; }
 table { width:100%; min-width:650px; border-collapse:collapse; margin:0; font-size:.95rem; }
 th,td { border:1px solid var(--line); padding:12px; text-align:left; vertical-align:top; }
-th { background:var(--soft); }
+th { background:var(--soft); color:var(--ink); }
 .note { margin:26px 0; padding:18px 20px; border:1px solid #cfe5d8; border-radius:14px; background:var(--green); }
 .tool-cta { margin:42px 0; padding:26px; color:#fff; background:var(--navy); border-radius:20px; }
 .tool-cta h2 { margin-top:0; }
