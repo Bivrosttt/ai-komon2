@@ -12,6 +12,8 @@
 
 比較専用バリデータ（`skills/noimos-comparison-article/scripts/validate_comparison_article.py`）は3記事すべて `PASS`。禁止表現0件、料金・usage・コスパ・強み弱み、初出公式リンク、末尾AI顧問室CTAを検出した。
 
+ホーム画面スクリーンショットも3記事すべてサービス数と一致。各レビュー見出し直前の`figure.service-home-shot`、公式URL、取得日を検出した。Replitだけは公式ホームがCloudflareでブロックされたため、公式Docs掲載のProject Editorホーム画面を代替使用し、captionと台帳に明記した。
+
 ## ブラウザ確認
 
 - デスクトップ 1440px: 3ページでタイトル、目次、比較表、CTA、サムネイルの表示を確認。

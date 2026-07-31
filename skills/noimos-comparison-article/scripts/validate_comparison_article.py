@@ -34,6 +34,7 @@ def main() -> int:
     parser.add_argument("--input", required=True)
     parser.add_argument("--services", required=True, help="JSON array of service names")
     parser.add_argument("--out", required=True)
+    parser.add_argument("--screenshot-dir", help="Directory containing official service home screenshots")
     args = parser.parse_args()
 
     path = Path(args.input)
@@ -78,6 +79,31 @@ def main() -> int:
             first_link_failures.append({"service": service, "reason": "first_occurrence_not_linked"})
     if first_link_failures:
         blockers.append({"code": "first_service_link_missing", "detail": first_link_failures})
+
+    # Every review service must begin with an official home/product screenshot.
+    reviews_heading = soup.select_one("#reviews")
+    screenshot_failures = []
+    if reviews_heading:
+        review_h3s = []
+        for node in reviews_heading.find_all_next():
+            if node.name == "h2":
+                break
+            if node.name == "h3":
+                review_h3s.append(node)
+        if len(review_h3s) < len(services):
+            screenshot_failures.append({"reason": "review_heading_count_less_than_services", "review_h3_count": len(review_h3s)})
+        for heading in review_h3s[:len(services)]:
+            previous = heading.find_previous_sibling()
+            classes = previous.get("class", []) if previous else []
+            if not previous or "service-home-shot" not in classes or not previous.find("img"):
+                screenshot_failures.append({"service_heading": heading.get_text(" ", strip=True), "reason": "screenshot_not_immediately_before_heading"})
+    if args.screenshot_dir:
+        screenshot_dir = Path(args.screenshot_dir)
+        image_files = sorted([*screenshot_dir.glob("*.png"), *screenshot_dir.glob("*.webp"), *screenshot_dir.glob("*.jpg"), *screenshot_dir.glob("*.jpeg")])
+        if len(image_files) < len(services):
+            screenshot_failures.append({"reason": "screenshot_file_count_less_than_services", "file_count": len(image_files), "screenshot_dir": str(screenshot_dir)})
+    if screenshot_failures:
+        blockers.append({"code": "home_screenshot_missing", "detail": screenshot_failures})
 
     service_cta = soup.select_one(".service-cta")
     if not service_cta:

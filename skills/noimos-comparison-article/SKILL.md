@@ -1,6 +1,6 @@
 ---
 name: noimos-comparison-article
-description: Research real software services and write decision-ready Japanese comparison articles with current official pricing, usage limits, independent reviews, cost-effectiveness, strengths, weaknesses, direct service links, and a final AI顧問室 CTA. Use for service comparisons, buying guides, tool roundups, and revisions of comparison articles.
+description: Research real software services and write decision-ready Japanese comparison articles with official homepage screenshots, current pricing, usage limits, independent reviews, cost-effectiveness, strengths, weaknesses, direct service links, and a final AI顧問室 CTA. Use for service comparisons, buying guides, tool roundups, and revisions of comparison articles.
 ---
 
 # Noimos比較記事
@@ -10,6 +10,8 @@ description: Research real software services and write decision-ready Japanese c
 ## 絶対ルール
 
 - 公式サイト、公式料金ページ、公式ヘルプを各サービスごとに調査する。
+- 各サービスの公式ホーム画面をブラウザでスクリーンショットし、記事のサービス節の先頭（サービス見出しの直前）に置く。取得元URLと取得日をfigcaptionへ残す。
+- ホーム画面へアクセスできない場合は、同じサービスの公式Docs・公式プロダクト画面にあるホーム画面画像を代替にし、「公式Docs掲載画面」と明示する。Cloudflareのブロック画面、ログイン画面、第三者サイトのスクリーンショットは成果物に使わない。
 - 日本語の口コミ・レビューと海外の独立レビューを各サービスごとに調査する。G2、Capterra、Trustpilot、Reddit、国内レビュー媒体など、アクセス可能で出典を示せるものを使う。
 - 料金を必ず比較する。プラン名、請求単位、掲載価格、通貨、無料枠、usage（分数・クレジット・生成数・席数・文字数など）を同じ表に載せる。
 - usageが料金を左右するサービスは、料金だけでなく単位あたりの実効コストまたは比較シナリオを計算する。計算不能なら「公開情報では算定不能」と明記し、逃げない。
@@ -38,6 +40,7 @@ description: Research real software services and write decision-ready Japanese c
 - [ ] 主キーワード、検索意図、読者、候補サービス、比較シナリオ、CTA、更新日をTODOに固定する。
 - [ ] 候補は知名度だけでなく、読者の代替候補になる実在サービスを3〜6個選ぶ。
 - [ ] 各候補の公式URL、料金URL、usage仕様URL、国内口コミURL、海外口コミURLを調査表に記録する。
+- [ ] 各候補のホームURL、スクリーンショットファイル、取得日、代替画面かどうかをスクリーンショット台帳に記録する。
 
 ### 2. 深掘り調査
 
@@ -62,6 +65,7 @@ description: Research real software services and write decision-ready Japanese c
 - [ ] 冒頭の`.answer`で用途別の第一候補と結論を出す。
 - [ ] 早い位置に「料金・usage・コスパ比較表」を置く。
 - [ ] その後に、サービスごとの短いレビュー（向く読者、強み、弱み、口コミ傾向、価格の意味）を書く。
+- [ ] 各サービスレビューの見出し直前に公式ホーム画面のスクリーンショットと出典figcaptionを置く。
 - [ ] 「強み・弱み比較表」を置き、同じ評価軸で横並びにする。
 - [ ] 各サービスの初出名を公式リンクにする。表のサービス名を初出にする場合はそこでリンクする。
 - [ ] 読者が選べる決定ルール（「AならX、BならY」）を書く。
@@ -71,6 +75,7 @@ description: Research real software services and write decision-ready Japanese c
 ### 5. 品質ゲート
 
 - [ ] 比較専用バリデータで、禁止文、価格表、usage、コスパ、強み弱み、初出リンク、CTAを検査する。
+- [ ] 比較専用バリデータで、サービス数とホーム画面スクリーンショット数が一致し、各レビュー見出しの直前に画像があることを検査する。
 - [ ] Noimos SEO/GEO validator、content quality gateを実行する。
 - [ ] デスクトップ、タブレット、スマホで比較表の可読性とCTAを確認する。
 - [ ] 公式リンク、口コミリンク、JSON-LD、画像、内部リンク、横スクロールを確認する。
@@ -83,6 +88,8 @@ description: Research real software services and write decision-ready Japanese c
 - `*-claims.json`：claim、source_url、publisher、retrieved_at、evidence_type、verified。
 - `*-content.md`：記事本文の根拠付きスナップショット。
 - `*-pricing.csv`：候補別の価格、usage、コスパ計算の入力。
+- `home-screens/`：候補サービスの公式ホーム画面スクリーンショット。
+- `*-screenshots.json`：スクリーンショットURL、取得日、代替画面の理由。
 - `*-validation.json`：SEO/GEO validatorと比較専用バリデータの結果。
 - `*-quality-report.json`：AI専用または設定済み承認モードの品質結果。
 

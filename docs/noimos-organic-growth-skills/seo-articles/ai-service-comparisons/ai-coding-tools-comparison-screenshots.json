@@ -1,0 +1,10 @@
+{
+  "retrieved_at": "2026-07-31",
+  "viewport": "1440x900 (Replit official Docs image is 840x484)",
+  "screenshots": [
+    {"service":"GitHub Copilot","file":"articles/ai-coding-tools-comparison/home-screens/github-copilot-home.png","source_url":"https://github.com/features/copilot","source_type":"official_home"},
+    {"service":"Cursor","file":"articles/ai-coding-tools-comparison/home-screens/cursor-home.png","source_url":"https://cursor.com/","source_type":"official_home"},
+    {"service":"Claude Code","file":"articles/ai-coding-tools-comparison/home-screens/claude-code-home.png","source_url":"https://claude.com/product/claude-code","source_type":"official_home"},
+    {"service":"Replit","file":"articles/ai-coding-tools-comparison/home-screens/replit-home.png","source_url":"https://docs.replit.com/learn/projects-and-artifacts/project-editor","source_type":"official_docs_home_screen","note":"Replit homepage was Cloudflare-blocked in the capture browser; this is the official Docs Project Editor home screen, not a third-party image."}
+  ]
+}
