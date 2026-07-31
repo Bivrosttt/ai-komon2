@@ -35,12 +35,14 @@ def main() -> int:
     parser.add_argument("--services", required=True, help="JSON array of service names")
     parser.add_argument("--out", required=True)
     parser.add_argument("--screenshot-dir", help="Directory containing official service home screenshots")
+    parser.add_argument("--home-urls", help="JSON object mapping service names to canonical official home URLs")
     args = parser.parse_args()
 
     path = Path(args.input)
     html = path.read_text(encoding="utf-8")
     soup = BeautifulSoup(html, "html.parser")
     services = json.loads(args.services)
+    home_urls = json.loads(args.home_urls) if args.home_urls else {}
     text = soup.get_text(" ", strip=True)
     blockers: list[dict] = []
     warnings: list[dict] = []
@@ -77,6 +79,19 @@ def main() -> int:
             first_link_failures.append({"service": service, "reason": "service_name_missing"})
         elif not linked:
             first_link_failures.append({"service": service, "reason": "first_occurrence_not_linked"})
+        elif service in home_urls:
+            link = parent if parent.name == "a" else parent.find_parent("a")
+            href = (link.get("href") or "").split("#", 1)[0].rstrip("/")
+            expected = str(home_urls[service]).split("#", 1)[0].rstrip("/")
+            if href != expected:
+                first_link_failures.append(
+                    {
+                        "service": service,
+                        "reason": "first_occurrence_not_home_url",
+                        "href": link.get("href"),
+                        "expected": home_urls[service],
+                    }
+                )
     if first_link_failures:
         blockers.append({"code": "first_service_link_missing", "detail": first_link_failures})
 
@@ -126,6 +141,7 @@ def main() -> int:
         "blockers": blockers,
         "warnings": warnings,
         "services": services,
+        "home_urls": home_urls,
     }
     Path(args.out).write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"status": report["status"], "blockers": len(blockers), "warnings": len(warnings)}, ensure_ascii=False))

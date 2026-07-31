@@ -1,6 +1,6 @@
 ---
 name: noimos-comparison-article
-description: Research real software services and write decision-ready Japanese comparison articles with official homepage screenshots, current pricing, usage limits, independent reviews, cost-effectiveness, strengths, weaknesses, direct service links, and a final AI顧問室 CTA. Use for service comparisons, buying guides, tool roundups, and revisions of comparison articles.
+description: Research real software services and write decision-ready Japanese comparison articles with official homepage screenshots, homepage-first service links, current pricing, usage limits, independent reviews, cost-effectiveness, strengths, weaknesses, direct service links, and a final AI顧問室 CTA. Use for service comparisons, buying guides, tool roundups, and revisions of comparison articles.
 ---
 
 # Noimos比較記事
@@ -27,6 +27,8 @@ description: Research real software services and write decision-ready Japanese c
 - [ ] usageが料金を左右するサービスは、料金だけでなく単位あたりの実効コストまたは比較シナリオを計算する。計算不能なら「公開情報では算定不能」と明記し、逃げない。
 - [ ] 強み・弱みを全候補で同じ項目にそろえた表を必ず置く。
 - [ ] 本文でサービス名が初めて出る箇所は、そのサービスの公式サイトへのリンクにする。見出し、結論、比較表、本文のどこが初出かをDOM順で確認する。以後の同名は必要に応じてリンクを省略する。
+- [ ] サービス名・H1・結論・比較表の主リンクは、必ずそのサービスの公式ホーム（または公式プロダクトホーム）へ向ける。`/pricing`、`/plans`、課金画面をサービス導線に使わない。
+- [ ] 料金ページへのリンクは価格セルまたは調査ソース欄に限定し、リンク文言を「料金」「Pricing」など価格ソースと明示する。サービス名のホームリンクと混同させない。
 - [ ] 読者向け本文では調査結果を断定的に示し、最後の一箇所だけAI顧問室へ接続する。比較本文の途中に自社導入の営業文を挟まない。
 - [ ] 価格・usage・口コミには取得日を付ける。変動情報は「2026年7月31日時点」のように記事内で明示し、読者へ再調査を押し付ける一般的な注意書きで代用しない。
 
@@ -85,6 +87,7 @@ description: Research real software services and write decision-ready Japanese c
 ### 5. 品質ゲート
 
 - [ ] 比較専用バリデータで、禁止文、価格表、usage、コスパ、強み弱み、初出リンク、CTAを検査する。
+- [ ] 比較専用バリデータで、初出のサービスリンクが登録した公式ホームURLと一致し、`pricing` / `plans` URLへ飛ばないことを検査する。
 - [ ] 比較専用バリデータで、サービス数とホーム画面スクリーンショット数が一致し、各レビュー見出しの直前に画像があることを検査する。
 - [ ] Noimos SEO/GEO validator、content quality gateを実行する。
 - [ ] デスクトップ、タブレット、スマホで比較表の可読性とCTAを確認する。
