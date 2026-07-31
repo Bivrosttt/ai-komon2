@@ -1,6 +1,6 @@
 {
   "tool": "noimos-seo-geo-article",
-  "generated_at": "2026-07-31T13:07:57.958748+00:00",
+  "generated_at": "2026-07-31T13:29:18.446196+00:00",
   "input": "/Users/koki/Desktop/ai-komon2/articles/ai-meeting-notes-comparison/index.html",
   "overall": "pass",
   "score": 100,
@@ -56,7 +56,7 @@
     {
       "check": "article_diagram",
       "status": "pass",
-      "evidence": "images_with_alt=1, figcaptions=1",
+      "evidence": "images_with_alt=5, figcaptions=5",
       "priority": "P0"
     },
     {
@@ -68,7 +68,7 @@
     {
       "check": "external_sources",
       "status": "pass",
-      "evidence": "11 unique",
+      "evidence": "14 unique",
       "priority": "P1"
     },
     {
@@ -86,7 +86,7 @@
     {
       "check": "substantive_length",
       "status": "pass",
-      "evidence": "2321 Japanese characters",
+      "evidence": "2495 Japanese characters",
       "priority": "P1"
     },
     {
