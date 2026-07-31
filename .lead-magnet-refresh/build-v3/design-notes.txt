@@ -1,0 +1,40 @@
+AI PRESENTATION PLAYBOOK — IMPLEMENTATION NOTES
+
+Canvas
+- 1280 x 720, 16:9.
+- Safe frame: left/right 64 px, top 48 px, bottom 42 px.
+
+Typography
+- Japanese: Arial for portability and stable rendering.
+- Cover title: 58–64 px.
+- Slide title: 36–42 px; one-line titles must not wrap.
+- Body: 20–25 px.
+- Micro labels: 14–16 px.
+
+Palette
+- Ink: #111111
+- Paper: #FFFFFF
+- Fog: #F2F3F5
+- Muted: #62666D
+- Red: #E33B36 for risk/problem
+- Blue: #2357D9 for structure/process
+- Yellow: #F4C542 for decisions/actions
+
+Composition
+- Editorial, flat, decisive.
+- Use one dominant composition per slide.
+- Avoid dashboard card grids, decorative bars, pills, and repeated left/right splits.
+- Use paper, browser, slide, and device mocks as information surfaces.
+- Full-bleed photos only appear behind opaque foreground mocks.
+- Vary adjacent silhouettes and visual weight.
+
+Editability
+- All visible text is native PowerPoint text.
+- Diagrams, arrows, worksheets, and mocks are native PowerPoint shapes.
+- Generated photographs are the only raster assets.
+
+QA
+- Export every slide to PNG and layout JSON.
+- Inspect each rendered slide individually.
+- Run overflow detection.
+- Check PPTX open/render, PDF export, and HTML preview sync.

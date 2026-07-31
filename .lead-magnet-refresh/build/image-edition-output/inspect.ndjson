@@ -1,0 +1,48 @@
+{"kind":"slide","id":"sl/6wodu2","slide":1,"title":"Slide 1","textShapes":0}
+{"kind":"image","id":"im/mp03mx47","slide":1,"name":"","geometry":"rect","alt":"AIで、良質なプレゼンをつくる。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/6wodu2","slide":1,"text":"AIで、良質なプレゼンをつくる。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
+{"kind":"slide","id":"sl/v0vnlu","slide":2,"title":"Slide 2","textShapes":0}
+{"kind":"image","id":"im/gfa9g76h","slide":2,"name":"","geometry":"rect","alt":"AIは空白を埋め、人は何を捨てるか決める。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/v0vnlu","slide":2,"text":"AIは空白を埋め、人は何を捨てるか決める。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
+{"kind":"slide","id":"sl/da3t2n","slide":3,"title":"Slide 3","textShapes":0}
+{"kind":"image","id":"im/f2lo7mho","slide":3,"name":"","geometry":"rect","alt":"プレゼンは意思決定の設計である。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/da3t2n","slide":3,"text":"プレゼンは意思決定の設計である。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/Gabberflast/academic-pptx-skill\n[/Sources]"}
+{"kind":"slide","id":"sl/c700ap","slide":4,"title":"Slide 4","textShapes":0}
+{"kind":"image","id":"im/axgb29wf","slide":4,"name":"","geometry":"rect","alt":"良質な資料を構成する4層。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/c700ap","slide":4,"text":"良質な資料を構成する4層。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n- https://github.com/tristan-mcinnis/pptx-from-layouts-skill\n[/Sources]"}
+{"kind":"slide","id":"sl/z09dei","slide":5,"title":"Slide 5","textShapes":0}
+{"kind":"image","id":"im/ovedcry1","slide":5,"name":"","geometry":"rect","alt":"最初の10分で決める4つの条件。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/z09dei","slide":5,"text":"最初の10分で決める4つの条件。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n[/Sources]"}
+{"kind":"slide","id":"sl/d8lmgo","slide":6,"title":"Slide 6","textShapes":0}
+{"kind":"image","id":"im/gbehkvmp","slide":6,"name":"","geometry":"rect","alt":"話題タイトルを結論タイトルへ変える。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/d8lmgo","slide":6,"text":"話題タイトルを結論タイトルへ変える。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/Gabberflast/academic-pptx-skill\n[/Sources]"}
+{"kind":"slide","id":"sl/c6yj5a","slide":7,"title":"Slide 7","textShapes":0}
+{"kind":"image","id":"im/7ep0f2tc","slide":7,"name":"","geometry":"rect","alt":"1枚に1つの主張を置く。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/c6yj5a","slide":7,"text":"1枚に1つの主張を置く。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
+{"kind":"slide","id":"sl/9cnx28","slide":8,"title":"Slide 8","textShapes":0}
+{"kind":"image","id":"im/3ep4zmd8","slide":8,"name":"","geometry":"rect","alt":"主張に応じて5つの見せ方を選ぶ。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/9cnx28","slide":8,"text":"主張に応じて5つの見せ方を選ぶ。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/tristan-mcinnis/pptx-from-layouts-skill\n[/Sources]"}
+{"kind":"slide","id":"sl/zvdd7s","slide":9,"title":"Slide 9","textShapes":0}
+{"kind":"image","id":"im/9wn61sbq","slide":9,"name":"","geometry":"rect","alt":"装飾する前に情報を削る。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/zvdd7s","slide":9,"text":"装飾する前に情報を削る。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n[/Sources]"}
+{"kind":"slide","id":"sl/a0599y","slide":10,"title":"Slide 10","textShapes":0}
+{"kind":"image","id":"im/crq9gzul","slide":10,"name":"","geometry":"rect","alt":"AIへの指示を3段階に分ける。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/a0599y","slide":10,"text":"AIへの指示を3段階に分ける。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/FluidForm-ai/fluiddocs-deck-builder\n- https://github.com/Gabberflast/academic-pptx-skill\n[/Sources]"}
+{"kind":"slide","id":"sl/2z4vrt","slide":11,"title":"Slide 11","textShapes":0}
+{"kind":"image","id":"im/v6l43md8","slide":11,"name":"","geometry":"rect","alt":"設計条件だけを作るプロンプト。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/2z4vrt","slide":11,"text":"設計条件だけを作るプロンプト。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices\n[/Sources]"}
+{"kind":"slide","id":"sl/06tnek","slide":12,"title":"Slide 12","textShapes":0}
+{"kind":"image","id":"im/fa1wvalw","slide":12,"name":"","geometry":"rect","alt":"タイトルだけで物語を作るプロンプト。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/06tnek","slide":12,"text":"タイトルだけで物語を作るプロンプト。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/Gabberflast/academic-pptx-skill\n[/Sources]"}
+{"kind":"slide","id":"sl/k9d8l9","slide":13,"title":"Slide 13","textShapes":0}
+{"kind":"image","id":"im/m9gbqlsz","slide":13,"name":"","geometry":"rect","alt":"AIと人の仕事を交互にする。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/k9d8l9","slide":13,"text":"AIと人の仕事を交互にする。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/FluidForm-ai/fluiddocs-deck-builder\n[/Sources]"}
+{"kind":"slide","id":"sl/x9s37k","slide":14,"title":"Slide 14","textShapes":0}
+{"kind":"image","id":"im/atkfedw3","slide":14,"name":"","geometry":"rect","alt":"生成後に通す5つの品質検査。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/x9s37k","slide":14,"text":"生成後に通す5つの品質検査。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md\n- https://support.microsoft.com/en-us/office/make-your-powerpoint-presentations-accessible-to-people-with-disabilities-6f7772b2-2f33-4bd2-8ca7-dae3b2b3ef25\n[/Sources]"}
+{"kind":"slide","id":"sl/1epl0p","slide":15,"title":"Slide 15","textShapes":0}
+{"kind":"image","id":"im/1c7ilo3i","slide":15,"name":"","geometry":"rect","alt":"1枚ごとの設計図を作るプロンプト。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/1epl0p","slide":15,"text":"1枚ごとの設計図を作るプロンプト。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n- https://github.com/tristan-mcinnis/pptx-from-layouts-skill\n[/Sources]"}
+{"kind":"slide","id":"sl/r3ssen","slide":16,"title":"Slide 16","textShapes":0}
+{"kind":"image","id":"im/t8729kny","slide":16,"name":"","geometry":"rect","alt":"自社資料を1本持ち込むCTA。","bbox":[0,0,1152,768]}
+{"kind":"notes","id":"nt/r3ssen","slide":16,"text":"自社資料を1本持ち込むCTA。\n\n[Sources]\n- AI image generation via OpenAI image tool, 2026-07-28\n[/Sources]"}

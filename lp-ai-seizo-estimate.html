@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>製造業の見積前工程をAIで効率化する方法｜AI顧問室</title>
+  <meta name="description" content="類似図面や過去見積を探す見積前工程を、AIで効率化する方法を製造業の業務に合わせて教えます。">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/campaign-lp-foundation.css">
+  <style>
+    :root { --page: #eef0f1; --ink: #242a2f; --muted: #626a70; --line: #cfd4d7; --dark: #22282d; --accent: #e36f36; --accent-ink: #231f1d; }
+    body { background-image: linear-gradient(#dfe3e5 1px, transparent 1px), linear-gradient(90deg, #dfe3e5 1px, transparent 1px); background-size: 32px 32px; }
+    .site-header { background: rgba(247,248,247,.96); }
+    .hero {
+      position: relative;
+      min-height: calc(100dvh - 68px);
+      display: flex;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      background: #252b30 url("output/imagegen/final-ads/seizo-bg.png") center / cover no-repeat;
+    }
+    .hero::before { content: ""; position: absolute; inset: 0; background: rgba(25, 30, 34, .69); }
+    .hero-inner { position: relative; z-index: 1; padding: 76px 0 88px; }
+    .hero h1 { max-width: 800px; margin: 0; font-size: 60px; line-height: 1.18; }
+    .hero-copy { max-width: 690px; margin: 25px 0 14px; font-size: 27px; line-height: 1.5; font-weight: 800; }
+    .hero-sub { max-width: 650px; margin: 0 0 30px; color: rgba(255,255,255,.76); }
+    .drawing-search { padding: 98px 0; background: rgba(247,248,247,.96); }
+    .search-layout { display: grid; grid-template-columns: 1fr .86fr; gap: 72px; align-items: center; }
+    .drawing-stack { position: relative; min-height: 430px; }
+    .drawing-sheet { position: absolute; width: 82%; min-height: 310px; padding: 26px; border: 1px solid #9da6ac; background: #fff; box-shadow: 10px 14px 0 rgba(29,36,41,.08); }
+    .drawing-sheet:nth-child(1) { left: 0; top: 74px; transform: rotate(-4deg); opacity: .55; }
+    .drawing-sheet:nth-child(2) { right: 0; top: 36px; transform: rotate(3deg); opacity: .72; }
+    .drawing-sheet:nth-child(3) { left: 8%; top: 0; z-index: 2; }
+    .drawing-mark { height: 175px; border: 2px solid #67747c; position: relative; }
+    .drawing-mark::before, .drawing-mark::after { content: ""; position: absolute; background: #75828a; }
+    .drawing-mark::before { width: 65%; height: 2px; left: 17%; top: 50%; }
+    .drawing-mark::after { width: 2px; height: 70%; left: 50%; top: 15%; }
+    .drawing-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 18px; }
+    .drawing-meta span { height: 18px; background: #dce1e4; }
+    .search-cost { padding: 88px 0; background: var(--dark); color: #fff; }
+    .search-cost h2 { margin: 0; font-size: 42px; line-height: 1.35; }
+    .cost-grid { margin-top: 46px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(255,255,255,.25); border-bottom: 1px solid rgba(255,255,255,.25); }
+    .cost-grid article { min-height: 205px; padding: 28px 24px; border-right: 1px solid rgba(255,255,255,.22); }
+    .cost-grid article:last-child { border-right: 0; }
+    .cost-grid b { color: var(--accent); font-size: 12px; }
+    .cost-grid h3 { margin: 16px 0 8px; font-size: 19px; }
+    .cost-grid p { margin: 0; color: rgba(255,255,255,.67); font-size: 14px; }
+    .match-view { padding: 98px 0; background: #fff; }
+    .comparison { margin-top: 46px; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); }
+    .comparison section { padding: 34px; }
+    .comparison section + section { border-left: 1px solid var(--line); background: #f4f6f5; }
+    .comparison h3 { margin: 0 0 20px; font-size: 21px; }
+    .spec-row { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 13px 0; border-top: 1px solid var(--line); font-size: 14px; }
+    .spec-row b { color: var(--muted); font-size: 12px; }
+    .spec-row span { font-weight: 700; }
+    .judgement { padding: 92px 0; background: #e6e9ea; }
+    .judgement-grid { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .judgement-grid article { padding: 28px; background: #fff; border-top: 4px solid var(--accent); }
+    .judgement-grid h3 { margin: 0 0 9px; }
+    .judgement-grid p { margin: 0; color: var(--muted); font-size: 14px; }
+    .final-cta { background: var(--accent); }
+    .final-cta .primary-cta { background: var(--dark); color: #fff; }
+    @media (max-width: 760px) {
+      .hero { min-height: 660px; background-position: 67% center; }
+      .hero h1 { font-size: 39px; }
+      .hero-copy { font-size: 22px; }
+      .drawing-search, .search-cost, .match-view, .judgement { padding: 66px 0; }
+      .search-layout { grid-template-columns: 1fr; gap: 44px; }
+      .drawing-stack { min-height: 360px; }
+      .cost-grid { grid-template-columns: 1fr 1fr; }
+      .cost-grid article:nth-child(2) { border-right: 0; }
+      .cost-grid article:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.22); }
+      .comparison, .judgement-grid { grid-template-columns: 1fr; }
+      .comparison section + section { border-left: 0; border-top: 1px solid var(--line); }
+      .spec-row { grid-template-columns: 105px 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="wrap header-row">
+    <a class="brand" href="index.html"><strong>AI顧問室</strong><span>製造業向け</span></a>
+    <a class="nav-cta" href="index.html?from=lp_ai_seizo_estimate#contact">AIで効率化する方法を相談する</a>
+  </div></header>
+  <main>
+    <section class="hero" data-analytics-section="hero"><div class="wrap hero-inner">
+      <p class="kicker">製造業の見積前工程をAIで効率化する方法</p>
+      <h1>類似図面を探す仕事を、<br>AIで効率化する方法。</h1>
+      <p class="hero-copy">見積依頼が来た。<br>類似図面を探して30分。まだ見つからない。</p>
+      <p class="hero-sub">図面と過去資料を見て、AIで類似案件と確認項目を探す方法を教えます。価格・加工可否・納期は担当者が判断します。</p>
+      <a class="primary-cta" href="index.html?from=lp_ai_seizo_estimate#contact">AIで効率化する方法を相談する</a>
+    </div></section>
+    <section class="drawing-search">
+      <div class="wrap search-layout">
+        <div>
+          <p class="kicker">似た案件は、社内にある</p>
+          <h2 class="section-title">ファイル名では、<br>図面の中身を探せない。</h2>
+          <p class="section-lead">材質、寸法、形状、公差、工程。似ている理由は図面の中にありますが、検索は担当者の記憶に頼りがちです。</p>
+        </div>
+        <div class="drawing-stack" aria-label="重なった図面ファイルのイメージ">
+          <div class="drawing-sheet"><div class="drawing-mark"></div><div class="drawing-meta"><span></span><span></span><span></span><span></span></div></div>
+          <div class="drawing-sheet"><div class="drawing-mark"></div><div class="drawing-meta"><span></span><span></span><span></span><span></span></div></div>
+          <div class="drawing-sheet"><div class="drawing-mark"></div><div class="drawing-meta"><span></span><span></span><span></span><span></span></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="search-cost"><div class="wrap">
+      <h2>見積前に、4つの場所を往復する。</h2>
+      <div class="cost-grid">
+        <article><b>01</b><h3>新しい図面</h3><p>営業から届いた仕様と加工条件を読み解く。</p></article>
+        <article><b>02</b><h3>過去フォルダ</h3><p>顧客名や日付を手がかりに候補を開く。</p></article>
+        <article><b>03</b><h3>見積ファイル</h3><p>図面と別に保管された価格・工程を探す。</p></article>
+        <article><b>04</b><h3>担当者の記憶</h3><p>誰が似た案件を知っているか聞いて回る。</p></article>
+      </div>
+    </div></section>
+    <section class="match-view"><div class="wrap">
+      <h2 class="section-title">AIで類似案件を探す方法を、<br>過去資料から考える。</h2>
+      <p class="section-lead">図面だけでなく、過去見積・実績・注意点を比べる順番を、今の資料の持ち方に合わせて整理します。</p>
+      <div class="comparison">
+        <section><h3>今回の見積依頼</h3><div class="spec-row"><b>材質</b><span>SUS系</span></div><div class="spec-row"><b>形状</b><span>薄板・曲げ</span></div><div class="spec-row"><b>精度</b><span>要確認</span></div><div class="spec-row"><b>納期</b><span>短納期</span></div></section>
+        <section><h3>類似候補と確認項目</h3><div class="spec-row"><b>候補</b><span>形状と材質が近い案件</span></div><div class="spec-row"><b>過去実績</b><span>工程・工数・外注有無</span></div><div class="spec-row"><b>相違点</b><span>公差と表面処理</span></div><div class="spec-row"><b>確認待ち</b><span>加工可否・原価・納期</span></div></section>
+      </div>
+    </div></section>
+    <section class="judgement"><div class="wrap">
+      <h2 class="section-title">最終判断は、現場の知見で。</h2>
+      <div class="judgement-grid">
+        <article><h3>AIに任せる工程</h3><p>図面特徴、過去案件、見積、注意点の候補を整理する。</p></article>
+        <article><h3>担当者が比べる</h3><p>加工方法、品質リスク、原価、納期の違いを確認。</p></article>
+        <article><h3>会社が決める</h3><p>価格、条件、提出内容を確定し、顧客へ回答。</p></article>
+      </div>
+    </div></section>
+    <section class="final-cta" data-analytics-section="final_cta"><div class="wrap">
+      <h2>見つからなかった図面を、<br>一件だけ見せてください。</h2>
+      <p>どこを探し、誰に聞き、何を比べたか。その探索経路を見ながら、AIで効率化する方法を教えます。</p>
+      <a class="primary-cta" href="index.html?from=lp_ai_seizo_estimate#contact">AIで効率化する方法を相談する</a>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-row"><strong>AI顧問室</strong><span>製造業の見積前工程を見て、AIで効率化する方法を一緒に設計する。</span></div></footer>
+  <script src="analytics-config.js"></script>
+  <script src="measurement-config.js"></script>
+  <script src="meta-pixel-config.js"></script>
+  <script src="meta-pixel.js"></script>
+  <script src="measurement.js"></script>
+  <script src="ga4-events.js"></script>
+</body>
+</html>

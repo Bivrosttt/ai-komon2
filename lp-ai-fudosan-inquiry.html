@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>不動産仲介の問い合わせ対応をAIで効率化する方法｜AI顧問室</title>
+  <meta name="description" content="問い合わせ対応をAIで効率化する方法を、不動産仲介の業務に合わせて整理。希望条件・不足情報・返信文の作り方を見直します。">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/campaign-lp-foundation.css">
+  <style>
+    :root { --page: #f3f6f5; --ink: #17312f; --muted: #60716f; --line: #cfdad7; --dark: #143c39; --accent: #38b6a7; --accent-ink: #0d2927; }
+    .hero {
+      position: relative;
+      min-height: calc(100dvh - 68px);
+      display: flex;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+      background: #163f3b url("output/imagegen/final-ads/fudosan-bg.png") center / cover no-repeat;
+    }
+    .hero::before { content: ""; position: absolute; inset: 0; background: rgba(11, 45, 42, .67); }
+    .hero-inner { position: relative; z-index: 1; padding: 76px 0 90px; }
+    .hero h1 { max-width: 800px; margin: 0; font-size: 58px; line-height: 1.2; letter-spacing: 0; }
+    .clock-copy { margin: 28px 0 12px; font-size: 29px; line-height: 1.45; font-weight: 800; }
+    .hero p:last-of-type { max-width: 620px; margin: 0 0 30px; color: rgba(255,255,255,.8); }
+    .reply-clock { background: #fff; padding: 92px 0; }
+    .clock-layout { display: grid; grid-template-columns: .82fr 1.18fr; gap: 86px; align-items: start; }
+    .timeline { position: relative; border-left: 2px solid var(--accent); margin-left: 44px; }
+    .time-row { position: relative; display: grid; grid-template-columns: 90px 1fr; gap: 20px; min-height: 128px; padding: 0 0 28px 42px; }
+    .time-row::before { content: ""; position: absolute; left: -9px; top: 7px; width: 14px; height: 14px; border: 2px solid var(--accent); background: #fff; border-radius: 50%; }
+    .time-row:last-child { min-height: 0; padding-bottom: 0; }
+    .time { color: var(--dark); font-size: 22px; font-weight: 800; }
+    .time-row h3 { margin: 0 0 6px; font-size: 19px; }
+    .time-row p { margin: 0; color: var(--muted); font-size: 14px; }
+    .reply-anatomy { padding: 92px 0; background: #dfece9; }
+    .anatomy-grid { margin-top: 46px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; }
+    .message-panel { padding: 34px; background: #fff; border-left: 5px solid var(--accent); }
+    .message-panel h3 { margin: 0 0 18px; font-size: 22px; }
+    .message-lines { display: grid; gap: 12px; }
+    .message-lines div { padding: 15px 17px; background: #edf4f2; color: #40514f; font-size: 14px; }
+    .check-panel { padding: 34px; background: var(--dark); color: #fff; }
+    .check-panel h3 { margin: 0 0 18px; font-size: 22px; }
+    .check-panel ul { margin: 0; padding-left: 1.2em; color: rgba(255,255,255,.75); }
+    .check-panel li { margin: 10px 0; }
+    .follow-up { padding: 100px 0; background: #fff; }
+    .follow-flow { margin-top: 50px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
+    .follow-flow article { padding-top: 22px; border-top: 3px solid var(--accent); }
+    .follow-flow b { color: var(--accent-ink); font-size: 12px; }
+    .follow-flow h3 { margin: 11px 0 7px; font-size: 20px; }
+    .follow-flow p { margin: 0; color: var(--muted); font-size: 14px; }
+    .boundary { padding: 92px 0; background: var(--dark); color: #fff; }
+    .boundary h2 { margin: 0; font-size: 40px; line-height: 1.35; }
+    .boundary-grid { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,.24); }
+    .boundary-grid div { padding: 28px 32px 0 0; }
+    .boundary-grid div + div { padding-left: 32px; border-left: 1px solid rgba(255,255,255,.24); }
+    .boundary-grid h3 { margin: 0 0 12px; }
+    .boundary-grid p { margin: 0; color: rgba(255,255,255,.7); }
+    .final-cta { background: #dfece9; }
+    @media (max-width: 760px) {
+      .hero { min-height: 650px; background-position: 65% center; }
+      .hero h1 { font-size: 39px; }
+      .clock-copy { font-size: 22px; }
+      .reply-clock, .reply-anatomy, .follow-up, .boundary { padding: 66px 0; }
+      .clock-layout { grid-template-columns: 1fr; gap: 44px; }
+      .timeline { margin-left: 10px; }
+      .time-row { grid-template-columns: 70px 1fr; padding-left: 26px; }
+      .anatomy-grid, .follow-flow, .boundary-grid { grid-template-columns: 1fr; }
+      .boundary-grid div + div { padding: 24px 0 0; margin-top: 24px; border-left: 0; border-top: 1px solid rgba(255,255,255,.24); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="wrap header-row">
+    <a class="brand" href="index.html"><strong>AI顧問室</strong><span>不動産仲介向け</span></a>
+    <a class="nav-cta" href="index.html?from=lp_ai_fudosan_inquiry#contact">AIで効率化する方法を相談する</a>
+  </div></header>
+  <main>
+    <section class="hero" data-analytics-section="hero"><div class="wrap hero-inner">
+      <p class="kicker">不動産仲介の問い合わせ対応をAIで効率化する方法</p>
+      <h1>問い合わせ対応を、<br>AIで効率化する方法。</h1>
+      <p class="clock-copy">11:02に問い合わせ。<br>11:32、まだ返信できていない。</p>
+      <p>問い合わせ文と物件資料を見て、AIで希望条件・不足情報・返信案を整理する方法を教えます。空室と条件の最終確認は担当者が行います。</p>
+      <a class="primary-cta" href="index.html?from=lp_ai_fudosan_inquiry#contact">AIで効率化する方法を相談する</a>
+    </div></section>
+    <section class="reply-clock">
+      <div class="wrap clock-layout">
+        <div>
+          <p class="kicker">返信までの30分</p>
+          <h2 class="section-title">返信文を書く前に、<br>確認が散らばっている。</h2>
+          <p class="section-lead">問い合わせ一件の裏に、物件、空室、初期費用、内見日、顧客条件の確認があります。</p>
+        </div>
+        <div class="timeline">
+          <article class="time-row"><div class="time">11:02</div><div><h3>ポータルから問い合わせ</h3><p>希望条件と質問が自由文で届く。</p></div></article>
+          <article class="time-row"><div class="time">11:08</div><div><h3>物件資料を探す</h3><p>空室、初期費用、設備、内見可能日を別々に確認する。</p></div></article>
+          <article class="time-row"><div class="time">11:17</div><div><h3>担当者へ確認</h3><p>最新条件が資料と違い、折り返し待ちになる。</p></div></article>
+          <article class="time-row"><div class="time">11:32</div><div><h3>まだ返信文は白紙</h3><p>回答できる項目と未確認項目が整理されていない。</p></div></article>
+        </div>
+      </div>
+    </section>
+    <section class="reply-anatomy">
+      <div class="wrap">
+        <h2 class="section-title">返信案をAIで作る方法を、<br>業務に合わせて整理する。</h2>
+        <p class="section-lead">回答できる情報と、担当者に聞くべき情報を最初から分ける手順を一緒に考えます。</p>
+        <div class="anatomy-grid">
+          <div class="message-panel"><h3>返信文の下書き</h3><div class="message-lines"><div>お問い合わせ内容を、希望条件と質問に分ける</div><div>物件資料から確認済み情報だけを反映する</div><div>次の行動として内見候補や追加資料を提示する</div></div></div>
+          <aside class="check-panel"><h3>確認待ち</h3><ul><li>現在の空室状況</li><li>初期費用と条件変更</li><li>内見可能日時</li><li>個別の入居条件</li></ul></aside>
+        </div>
+      </div>
+    </section>
+    <section class="follow-up">
+      <div class="wrap">
+        <h2 class="section-title">返信後も、追客が記憶頼みにならない。</h2>
+        <div class="follow-flow">
+          <article><b>REPLY</b><h3>最初の返信</h3><p>問い合わせ内容に合わせ、確認済み情報と次の選択肢を送る。</p></article>
+          <article><b>REMIND</b><h3>次の連絡日</h3><p>顧客の反応と内見候補をもとに、次に連絡する日を残す。</p></article>
+          <article><b>UPDATE</b><h3>条件の更新</h3><p>空室や募集条件が変わったとき、影響する顧客候補を整理する。</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="boundary"><div class="wrap">
+      <h2>AIで効率化する方法を知る。<br>担当者が確かめる。</h2>
+      <div class="boundary-grid">
+        <div><h3>AIに任せる工程</h3><p>希望条件、質問、物件情報、返信案、追客候補、確認待ち。</p></div>
+        <div><h3>担当者が判断する</h3><p>空室・条件・内見可否、提案内容、送信、個人情報の取り扱い。</p></div>
+      </div>
+    </div></section>
+    <section class="final-cta" data-analytics-section="final_cta"><div class="wrap">
+      <h2>昨日届いた問い合わせを、<br>一件だけ見せてください。</h2>
+      <p>どの画面と資料を開き、誰に確認しているか。その30分を見ながら、AIで効率化する方法を教えます。</p>
+      <a class="primary-cta" href="index.html?from=lp_ai_fudosan_inquiry#contact">AIで効率化する方法を相談する</a>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-row"><strong>AI顧問室</strong><span>不動産仲介の問い合わせ対応を、AIで効率化する方法を一緒に設計する。</span></div></footer>
+  <script src="analytics-config.js"></script>
+  <script src="measurement-config.js"></script>
+  <script src="meta-pixel-config.js"></script>
+  <script src="meta-pixel.js"></script>
+  <script src="measurement.js"></script>
+  <script src="ga4-events.js"></script>
+</body>
+</html>

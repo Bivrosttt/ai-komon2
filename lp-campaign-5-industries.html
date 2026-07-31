@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>AI顧問室｜業務をAIで整理する</title>
+  <meta name="description" content="現場や事務所にある資料と業務の流れを見ながら、AIで下書き・整理・確認項目を設計するAI顧問室。">
+  <meta property="og:site_name" content="AI顧問室">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI顧問室｜業務をAIで整理する">
+  <meta property="og:description" content="業界ごとの具体的な業務を、AIで整理し、人が確認できる状態まで進めます。">
+  <meta property="og:image" content="https://ai-komon.bivrost.co.jp/assets/ogp.png">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #18212b;
+      --muted: #5f6c78;
+      --line: #d9e0e5;
+      --paper: #f6f7f5;
+      --white: #fff;
+      --navy: #0c203c;
+      --navy-deep: #07182e;
+      --accent: #c7942e;
+      --accent-soft: #f2e7c8;
+      --hero-image: url("output/imagegen/ai-komon-ad-01-kensetsu.png");
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Noto Sans JP", "Hiragino Sans", sans-serif; line-height: 1.85; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.97); border-bottom: 1px solid var(--line); }
+    .header-inner { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: flex; align-items: baseline; gap: 9px; white-space: nowrap; }
+    .brand strong { font-family: "Noto Serif JP", serif; color: var(--navy); font-size: 22px; letter-spacing: .04em; }
+    .brand span { color: var(--muted); font-size: 10px; letter-spacing: .14em; }
+    .industry-switch { display: flex; gap: 4px; align-items: center; overflow-x: auto; white-space: nowrap; }
+    .industry-switch a { padding: 6px 9px; color: var(--muted); font-size: 12px; border-bottom: 2px solid transparent; }
+    .industry-switch a[aria-current="page"] { color: var(--navy); font-weight: 700; border-bottom-color: var(--accent); }
+    .header-cta, .primary-cta { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 11px 22px; background: var(--accent); color: var(--navy-deep); font-weight: 800; border-radius: 3px; transition: opacity .2s, transform .2s; }
+    .header-cta:hover, .primary-cta:hover { opacity: .86; transform: translateY(-1px); }
+    .hero { position: relative; min-height: 700px; display: flex; align-items: center; overflow: hidden; color: var(--white); background-color: var(--navy-deep); }
+    .hero::before { content: ""; position: absolute; inset: 0; background-image: var(--hero-image); background-size: 300% 100%; background-repeat: no-repeat; background-position: right center; }
+    .hero::after { content: ""; position: absolute; inset: 0; background: rgba(7, 24, 46, .75); }
+    .hero-content { position: relative; z-index: 1; padding: 92px 0 116px; max-width: 760px; }
+    .hero-kicker { margin: 0 0 20px; color: var(--accent-soft); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
+    .hero h1 { margin: 0; font-family: "Noto Serif JP", serif; font-size: 56px; line-height: 1.28; letter-spacing: 0; }
+    .hero-copy { max-width: 650px; margin: 26px 0 30px; font-size: 19px; line-height: 1.9; }
+    .hero-copy strong { color: var(--accent-soft); font-weight: 800; }
+    .hero-note { margin: 16px 0 0; color: rgba(255,255,255,.72); font-size: 12px; }
+    .route-note { padding: 13px 0; background: var(--navy); color: rgba(255,255,255,.8); font-size: 12px; }
+    .route-note strong { color: var(--accent-soft); }
+    section { padding: 92px 0; }
+    .section-head { max-width: 720px; margin-bottom: 48px; }
+    .eyebrow { display: block; margin-bottom: 12px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .16em; }
+    h2 { margin: 0 0 18px; color: var(--navy); font-family: "Noto Serif JP", serif; font-size: 38px; line-height: 1.45; letter-spacing: 0; }
+    h3 { margin: 0 0 10px; color: var(--navy); font-size: 20px; line-height: 1.5; }
+    .lead { margin: 0; color: var(--muted); font-size: 16px; }
+    .scene { background: var(--white); }
+    .scene-grid { display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(320px, .96fr); gap: 72px; align-items: center; }
+    .scene-quote { margin: 0; padding-left: 28px; border-left: 4px solid var(--accent); color: var(--navy); font-family: "Noto Serif JP", serif; font-size: 32px; line-height: 1.65; }
+    .scene-detail { margin-top: 26px; color: var(--muted); }
+    .ad-image { width: 100%; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--line); }
+    .workflow { background: var(--paper); }
+    .workflow-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .workflow-step { min-height: 230px; padding: 28px 24px 30px; border-right: 1px solid var(--line); }
+    .workflow-step:last-child { border-right: 0; }
+    .step-number { display: block; margin-bottom: 22px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+    .workflow-step p { margin: 0; color: var(--muted); font-size: 14px; }
+    .scope { background: var(--navy); color: var(--white); }
+    .scope h2, .scope h3 { color: var(--white); }
+    .scope .lead { color: rgba(255,255,255,.72); }
+    .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid rgba(255,255,255,.24); border-bottom: 1px solid rgba(255,255,255,.24); }
+    .scope-column { padding: 32px 34px 36px 0; }
+    .scope-column + .scope-column { padding: 32px 0 36px 34px; border-left: 1px solid rgba(255,255,255,.24); }
+    .scope-column ul { margin: 18px 0 0; padding-left: 1.2em; color: rgba(255,255,255,.78); }
+    .scope-column li { margin: 8px 0; }
+    .examples { background: var(--white); }
+    .example-list { margin: 0; border-top: 1px solid var(--line); }
+    .example { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 26px; padding: 25px 0; border-bottom: 1px solid var(--line); }
+    .example-label { color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .1em; }
+    .example p { margin: 0; color: var(--muted); }
+    .final-cta { background: var(--accent-soft); }
+    .final-cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .final-cta h2 { margin-bottom: 8px; }
+    .final-cta p { margin: 0; color: var(--muted); }
+    .footer { padding: 34px 0; background: var(--navy-deep); color: rgba(255,255,255,.65); font-size: 12px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    @media (max-width: 900px) {
+      .header-inner { flex-wrap: wrap; padding: 10px 0; }
+      .industry-switch { order: 3; width: 100%; }
+      .header-cta { margin-left: auto; }
+      .hero { min-height: 650px; }
+      .hero-content { padding: 82px 0 100px; }
+      .hero h1 { font-size: 48px; }
+      .scene-grid { grid-template-columns: 1fr; gap: 42px; }
+      .ad-image { max-width: 520px; }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(100% - 36px, 1120px); }
+      .brand span { display: none; }
+      .header-cta { min-height: 38px; padding: 7px 12px; font-size: 12px; }
+      .hero { min-height: 610px; }
+      .hero-content { padding: 72px 0 94px; }
+      .hero h1 { font-size: 38px; }
+      .hero-copy { margin-top: 21px; font-size: 16px; line-height: 1.8; }
+      section { padding: 66px 0; }
+      h2 { font-size: 29px; }
+      .scene-quote { padding-left: 18px; font-size: 25px; }
+      .workflow-grid { grid-template-columns: 1fr 1fr; }
+      .workflow-step { min-height: 205px; padding: 22px 16px; }
+      .workflow-step:nth-child(2) { border-right: 0; }
+      .workflow-step:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
+      .workflow-step p { font-size: 13px; line-height: 1.75; }
+      .scope-grid { grid-template-columns: 1fr; }
+      .scope-column, .scope-column + .scope-column { padding: 26px 0; border-left: 0; }
+      .scope-column + .scope-column { border-top: 1px solid rgba(255,255,255,.24); }
+      .example { grid-template-columns: 1fr; gap: 5px; padding: 20px 0; }
+      .final-cta-inner { display: block; }
+      .final-cta .primary-cta { margin-top: 24px; width: 100%; }
+      .footer-inner { display: block; }
+      .footer-inner span { display: block; margin-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html"><strong>AI顧問室</strong><span>AI KOMONSHITSU</span></a>
+      <nav class="industry-switch" aria-label="業界を切り替える">
+        <a data-industry-link="kensetsu" href="?industry=kensetsu">建設</a>
+        <a data-industry-link="fudosan" href="?industry=fudosan">不動産</a>
+        <a data-industry-link="seizo" href="?industry=seizo">製造</a>
+        <a data-industry-link="unsou" href="?industry=unsou">運送</a>
+        <a data-industry-link="shukuhaku" href="?industry=shukuhaku">宿泊</a>
+      </nav>
+      <a class="header-cta" data-cta href="index.html#contact">AIで効率化する方法を相談する</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" data-analytics-section="hero" aria-labelledby="hero-title">
+      <div class="container hero-content">
+        <p class="hero-kicker" id="hero-kicker">AI顧問室｜業務をAIで効率化する方法</p>
+        <h1 id="hero-title">AI顧問室</h1>
+        <p class="hero-copy" id="hero-copy"></p>
+        <a class="primary-cta" data-cta href="index.html#contact">AIで効率化する方法を相談する →</a>
+        <p class="hero-note">業務の資料や今の流れを見ながら、AIを使う方法と人が確認する範囲を一緒に整理します。</p>
+      </div>
+    </section>
+
+    <div class="route-note"><div class="container"><strong id="route-industry">建設</strong>の広告から来た方へ。広告で見た「その瞬間」から、業務の流れを具体的に見ていきます。</div></div>
+
+    <section class="scene" id="scene">
+      <div class="container scene-grid">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">THE MOMENT</span>
+            <h2 id="scene-title"></h2>
+            <p class="lead" id="scene-lead"></p>
+          </div>
+          <p class="scene-quote" id="scene-quote"></p>
+          <p class="scene-detail" id="scene-detail"></p>
+        </div>
+        <img class="ad-image" id="ad-image" src="tmp/creative-final-kensetsu.png" alt="建設業向け広告クリエイティブ">
+      </div>
+    </section>
+
+    <section class="workflow" id="workflow">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">FROM INPUT TO DRAFT</span>
+          <h2 id="workflow-title"></h2>
+          <p class="lead">ツールを提供するのではなく、今ある資料・写真・メモを入口に、AIで効率化する方法を一緒に整理します。</p>
+        </div>
+        <div class="workflow-grid" id="workflow-grid"></div>
+      </div>
+    </section>
+
+    <section class="scope" id="scope">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">ROLE SPLIT</span>
+          <h2>AIで効率化する方法と、<br>人が決めるところ。</h2>
+          <p class="lead">業務の中で、どこまでAIを使うかを最初に整理します。判断が必要な箇所は、担当者が確認できる流れにします。</p>
+        </div>
+        <div class="scope-grid">
+          <div class="scope-column">
+            <h3>AIに任せる工程</h3>
+            <ul id="ai-list"></ul>
+          </div>
+          <div class="scope-column">
+            <h3>担当者が確認・判断する</h3>
+            <ul id="human-list"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="examples" id="examples">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">A SMALL FIRST STEP</span>
+          <h2 id="examples-title"></h2>
+          <p class="lead">最初から全社を変えるのではなく、負担が見える一つの業務から試します。</p>
+        </div>
+        <div class="example-list" id="example-list"></div>
+      </div>
+    </section>
+
+    <section class="final-cta" id="contact" data-analytics-section="final_cta">
+      <div class="container final-cta-inner">
+        <div>
+          <span class="eyebrow">NEXT CONVERSATION</span>
+          <h2 id="cta-title">この業務を、もう少し具体的に話す。</h2>
+          <p id="cta-copy"></p>
+        </div>
+        <a class="primary-cta" data-cta href="index.html#contact">AIで効率化する方法を相談する →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner"><strong>AI顧問室</strong><span>業務を見て、AIで効率化する方法を一緒に設計する。</span></div>
+  </footer>
+
+  <script src="analytics-config.js"></script>
+  <script src="measurement-config.js"></script>
+  <script src="meta-pixel-config.js"></script>
+  <script src="meta-pixel.js"></script>
+  <script src="measurement.js"></script>
+  <script src="ga4-events.js"></script>
+  <script>
+    const industries = {
+      kensetsu: {
+        label: "建設", color: "#c7942e", image: "output/imagegen/ai-komon-ad-01-kensetsu.png", ad: "tmp/creative-final-kensetsu.png",
+        copy: "現場写真を80枚撮った。事務所に戻って30分。写真台帳はまだ白紙。",
+        sceneTitle: "写真を撮る仕事は終わっているのに、台帳作成が始まらない。",
+        sceneLead: "現場監督の一日は、撮影で終わりません。写真の取り込み、工種や場所ごとの分類、コメント、台帳、日報までが後ろに残ります。",
+        detail: "国土交通省の業務整理でも、写真整理・品質管理・出来形・施工計画書などが現場監督の仕事として並びます。AI顧問室は、判断そのものではなく、その前後の整理を対象にします。",
+        workflowTitle: "現場写真から、確認できる台帳の下書きまで。",
+        steps: [["01｜入力", "スマホの現場写真、音声メモ、工事名・工種・場所の既存ルール"], ["02｜整理", "写真を工種・場所・日付で候補分類し、抜けや重複を一覧化"], ["03｜下書き", "写真台帳の並び、コメント、日報のたたき台を作成"], ["04｜確認", "監督が内容・品質・安全に関わる箇所を確認して確定"]],
+        ai: ["写真の候補分類とファイル名の整理", "音声メモから日報の項目を抽出", "台帳コメントと未確認箇所の下書き"], human: ["写真が示す品質・安全の判断", "工事ごとの最終表現と提出判断", "例外や追加確認が必要な箇所の指示"],
+        examplesTitle: "まずは、写真台帳の一工程から始める。",
+        examples: [["取り込み", "その日の写真を決めた場所へ置くと、工事名・日付・工種の候補を一覧にする。"], ["下書き", "写真ごとのコメント候補と、足りない情報を確認待ちとしてまとめる。"], ["引き継ぎ", "担当者が確認した箇所だけを確定版として残し、次の人が追える状態にする。"]],
+        cta: "写真台帳や日報の今の作り方を見ながら、最初に整理する工程を決めます。"
+      },
+      fudosan: {
+        label: "不動産", color: "#287c78", image: "output/imagegen/ai-komon-ad-02-fudosan.png", ad: "tmp/creative-final-fudosan.png",
+        copy: "11:02に問い合わせ。11:32、まだ返信できていない。",
+        sceneTitle: "問い合わせは来ている。返信に必要な情報が、頭の中と複数の画面に散っている。",
+        sceneLead: "物件名、空室状況、初期費用、内見可能日、顧客の希望条件。問い合わせ一件に返すだけでも、確認する場所と担当者が増えます。",
+        detail: "国土交通省も不動産取引のデジタル化・AI活用を、重要事項説明や仲介業務の効率化の観点で整理しています。AI顧問室は、物件と顧客の条件を照合し、返信の下書きと次の確認事項を整えます。",
+        workflowTitle: "問い合わせ文と物件情報から、返信の下書きまで。",
+        steps: [["01｜入力", "問い合わせ本文、物件情報、募集条件、社内の返信ルール"], ["02｜整理", "希望条件・質問・不足情報・返信期限を項目ごとに抽出"], ["03｜下書き", "確認済みの物件情報をもとに返信文と候補物件を作成"], ["04｜確認", "募集状況、条件、表現を担当者が確認して送信"]],
+        ai: ["問い合わせから希望条件と質問を抽出", "物件資料から返信に使える項目を整理", "返信文・追客候補・確認待ちを下書き"], human: ["空室・条件・内見可否の最終確認", "顧客に合わせた提案の判断", "送信と個人情報の取り扱い"],
+        examplesTitle: "まずは、問い合わせ返信の最初の30分を整える。",
+        examples: [["受信", "問い合わせが届いたら、希望条件・質問・期限を一つの画面にまとめる。"], ["照合", "物件資料と照らし合わせ、回答できる項目と担当者確認が必要な項目を分ける。"], ["追客", "返信後に確認する日付と、次に送る情報の候補を残す。"]],
+        cta: "問い合わせから返信までの画面と資料を見ながら、最初に減らす確認作業を決めます。"
+      },
+      seizo: {
+        label: "製造", color: "#b65d32", image: "output/imagegen/ai-komon-ad-03-seizo.png", ad: "tmp/creative-final-seizo.png",
+        copy: "見積依頼が来た。類似図面を探して30分。まだ見つからない。",
+        sceneTitle: "似た案件は過去にある。けれど、図面と見積が同じ場所にない。",
+        sceneLead: "営業が受けた図面、過去の見積、加工条件、担当者の記憶。類似案件を探す時間が長いほど、回答は遅れ、見積の前提も人によって変わります。",
+        detail: "経済産業省のAI自動見積ガイドでも、加工図面をもとにした見積や、属人化した見積業務の整理がテーマになっています。AI顧問室は、類似候補と確認項目を先に並べます。",
+        workflowTitle: "図面と過去見積から、比較できる候補まで。",
+        steps: [["01｜入力", "加工図面、仕様、過去見積、材料・工程・顧客条件"], ["02｜整理", "図面の特徴、材質、寸法、工程、過去案件の候補を抽出"], ["03｜下書き", "類似案件の比較表と、見積前に確認する項目を作成"], ["04｜確認", "加工可否・原価・納期・例外条件を担当者が判断"]],
+        ai: ["図面・仕様の検索語と特徴を整理", "類似図面・過去見積の候補を並べる", "見積前の確認項目と回答文を下書き"], human: ["加工方法・品質・原価の判断", "特殊条件やリスクの評価", "価格・納期・提出内容の確定"],
+        examplesTitle: "まずは、類似案件を探す時間から短くする。",
+        examples: [["検索", "新しい見積依頼を受けたら、図面の特徴と条件を検索できる形にする。"], ["比較", "過去の図面・見積・実績を、似ている理由と一緒に並べる。"], ["確認", "判断が必要な寸法・工程・納期だけを、担当者の確認待ちにする。"]],
+        cta: "過去図面と見積の保管場所を見ながら、最初に検索可能にする範囲を決めます。"
+      },
+      unsou: {
+        label: "運送・物流", color: "#5d7e9b", image: "output/imagegen/ai-komon-ad-04-unsou.png", ad: "tmp/creative-final-unsou.png",
+        copy: "朝6時。配車変更が3件。どの車に反映したか追えない。",
+        sceneTitle: "変更は電話で届く。反映先はホワイトボード、紙、個人のメモに分かれている。",
+        sceneLead: "ドライバー、荷主、倉庫からの変更を受けながら、配車表と運行記録を更新する。朝の数件の変更が、確認漏れと折り返しの連鎖になります。",
+        detail: "国土交通省の調査・事例でも、荷待ちや荷役時間、紙の運行記録、配車担当者の経験に依存した運用が課題として扱われています。AI顧問室は、変更を記録し、未反映を見える状態にします。",
+        workflowTitle: "電話・紙・メモの変更を、追える配車情報へ。",
+        steps: [["01｜入力", "電話メモ、運行表、点呼・点検記録、倉庫や荷主からの変更"], ["02｜整理", "車両・ドライバー・時間・荷物・変更内容を一件ずつ構造化"], ["03｜下書き", "配車表の更新候補、折り返し先、未反映一覧を作成"], ["04｜確認", "運行可否・安全・契約条件を配車担当者が確認"]],
+        ai: ["変更連絡から車両・時間・行先を抽出", "配車表と変更内容の差分を一覧化", "未反映・折り返し・点検項目を整理"], human: ["安全・法令・契約条件の判断", "配車の最終確定とドライバーへの連絡", "例外運行や緊急対応の指示"],
+        examplesTitle: "まずは、変更が追えなくなる朝の流れを整える。",
+        examples: [["受信", "変更連絡を一件ずつ記録し、車両・時間・行先・連絡元に分ける。"], ["反映", "現在の配車表との差分を出し、まだ更新されていないものを残す。"], ["確認", "配車担当者が確定した変更だけを、ドライバー連絡用にまとめる。"]],
+        cta: "朝の配車変更が届く順番と記録方法を見ながら、追跡できる単位を決めます。"
+      },
+      shukuhaku: {
+        label: "旅館・ホテル", color: "#9b4f63", image: "output/imagegen/ai-komon-ad-05-shukuhaku.png", ad: "tmp/creative-final-shukuhaku.png",
+        copy: "チェックインの列に3組。代表電話が鳴る。",
+        sceneTitle: "目の前のお客様に対応しながら、電話と館内案内の質問も止まらない。",
+        sceneLead: "チェックイン、電話、館内設備、食事時間、アクセス。フロントが同じ質問に答えている間にも、列と別の業務が積み上がります。",
+        detail: "観光庁の宿泊業支援事例では、セルフチェックイン、AIコンシェルジュ、館内案内のデジタル化などが、人手不足下の業務効率化として扱われています。AI顧問室は、施設固有の情報を回答候補とスタッフ用の案内に整えます。",
+        workflowTitle: "館内情報とよくある質問から、回答候補まで。",
+        steps: [["01｜入力", "館内案内、電話でよく聞かれる質問、設備情報、アクセス、注意事項"], ["02｜整理", "質問をカテゴリ化し、回答元と更新が必要な情報を紐づけ"], ["03｜下書き", "お客様向け回答候補と、スタッフ用の確認手順を作成"], ["04｜確認", "営業時間・料金・安全・接客表現を担当者が確認"]],
+        ai: ["電話・フロント質問をカテゴリ別に整理", "案内資料から回答候補と参照元を抽出", "更新が必要な館内情報を一覧化"], human: ["営業・料金・安全情報の確定", "お客様への最終案内と接客判断", "例外対応やクレームへの判断"],
+        examplesTitle: "まずは、フロントに集中できない時間帯を整える。",
+        examples: [["集める", "紙の案内、Webページ、スタッフの回答を一つの質問リストにまとめる。"], ["揃える", "回答の根拠と更新日を付け、古い案内を見つけられるようにする。"], ["使う", "フロントが確認してよい回答候補を、スタッフ用の手順として残す。"]],
+        cta: "フロントで繰り返される質問と、今使っている案内資料を見ながら始める範囲を決めます。"
+      }
+    };
+
+    const params = new URLSearchParams(location.search);
+    const key = industries[params.get("industry")] ? params.get("industry") : "kensetsu";
+    const data = industries[key];
+    document.documentElement.style.setProperty("--accent", data.color);
+    document.documentElement.style.setProperty("--hero-image", `url("${data.image}")`);
+    document.title = `AI顧問室｜${data.label}の業務をAIで効率化する方法`;
+    document.querySelector('meta[name="description"]').setAttribute("content", `${data.label}の業務を見て、AIで効率化する方法を一緒に整理するAI顧問室。`);
+    document.getElementById("hero-kicker").textContent = `AI顧問室｜${data.label}の業務をAIで効率化する方法`;
+    document.getElementById("hero-copy").innerHTML = `<strong>${data.copy}</strong><br>${data.label}の現場・事務にある資料と流れを見ながら、AIで効率化する方法を教えます。`;
+    document.getElementById("route-industry").textContent = data.label;
+    document.getElementById("scene-title").textContent = data.sceneTitle;
+    document.getElementById("scene-lead").textContent = data.sceneLead;
+    document.getElementById("scene-quote").textContent = data.copy;
+    document.getElementById("scene-detail").textContent = data.detail;
+    document.getElementById("ad-image").src = data.ad;
+    document.getElementById("ad-image").alt = `${data.label}向けメインコピークリエイティブ`;
+    document.getElementById("workflow-title").textContent = data.workflowTitle;
+    document.getElementById("workflow-grid").innerHTML = data.steps.map((step) => `<div class="workflow-step"><span class="step-number">${step[0]}</span><p>${step[1]}</p></div>`).join("");
+    document.getElementById("ai-list").innerHTML = data.ai.map((item) => `<li>${item}</li>`).join("");
+    document.getElementById("human-list").innerHTML = data.human.map((item) => `<li>${item}</li>`).join("");
+    document.getElementById("examples-title").textContent = data.examplesTitle;
+    document.getElementById("example-list").innerHTML = data.examples.map((item) => `<div class="example"><div class="example-label">${item[0]}</div><p>${item[1]}</p></div>`).join("");
+    document.getElementById("cta-copy").textContent = data.cta;
+    document.querySelectorAll("[data-industry-link]").forEach((link) => {
+      if (link.dataset.industryLink === key) link.setAttribute("aria-current", "page");
+      link.href = `?industry=${link.dataset.industryLink}&from=campaign_${link.dataset.industryLink}`;
+    });
+    document.querySelectorAll("[data-cta]").forEach((link) => {
+      link.href = `index.html?from=campaign_${key}#contact`;
+      link.dataset.industry = key;
+    });
+    if (typeof window.aiKomonGaTrack === "function") {
+      window.aiKomonGaTrack("campaign_lp_view", { industry: key, creative_copy: data.copy });
+    }
+  </script>
+</body>
+</html>

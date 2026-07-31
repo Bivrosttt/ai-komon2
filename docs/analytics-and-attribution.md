@@ -63,6 +63,7 @@ flowchart LR
 
 - [ ] `node --test tests/analytics-setup.test.mjs`を実行する
 - [ ] `node scripts/check_analytics_setup.mjs`を実行し、`Analytics audit passed`を確認する
+- [ ] テスト出力に「リポジトリ内の全広告LPを実ファイルで監査する」が含まれ、追加LPの設定漏れがないことを確認する
 - [ ] 本番ホストにテストURL（UTM付き）を開く
 - [ ] GA4リアルタイムまたはDebugViewで`page_view`、`view_content`、`cta_click`、`timerex_click`を確認する
 - [ ] GA4で`scroll_depth`、`section_view`、`engagement_10s`を確認する
@@ -81,6 +82,8 @@ flowchart LR
 node --test tests/analytics-setup.test.mjs
 node scripts/check_analytics_setup.mjs
 ```
+
+`tests/analytics-setup.test.mjs`には、必須スクリプトや区画識別子の単体テストに加えて、リポジトリ内で検出された全広告LPを実ファイルで監査する統合テストが含まれます。新しい`lp-*.html`や`diagnosis.html`を追加したときに、計測スクリプト・`hero`・`final_cta`の不足があると、既知の例外を除いてテストとCIが失敗します。
 
 実装:
 

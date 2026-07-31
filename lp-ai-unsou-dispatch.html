@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>運送会社の配車変更をAIで効率化する方法｜AI顧問室</title>
+  <meta name="description" content="電話・紙・ホワイトボードに散らばる配車変更を、AIで効率化する方法を運送会社の業務に合わせて整理します。">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/campaign-lp-foundation.css">
+  <style>
+    :root { --page: #edf2f5; --ink: #152b3d; --muted: #5a6b78; --line: #c9d4dc; --dark: #10293d; --accent: #6bb4e4; --accent-ink: #102638; }
+    .hero {
+      position: relative;
+      min-height: calc(100dvh - 68px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+      background: #10293d url("output/imagegen/final-ads/unsou-bg.png") center / cover no-repeat;
+    }
+    .hero::before { content: ""; position: absolute; inset: 0; background: rgba(8, 28, 44, .7); }
+    .hero-inner { position: relative; z-index: 1; padding: 76px 0 90px; }
+    .hero h1 { max-width: 820px; margin: 0; font-size: 60px; line-height: 1.2; }
+    .dispatch-copy { max-width: 720px; margin: 26px 0 14px; font-size: 28px; line-height: 1.5; font-weight: 800; }
+    .hero-sub { max-width: 650px; margin: 0 0 30px; color: rgba(255,255,255,.75); }
+    .dawn-bar { background: #0a1c2b; color: #fff; }
+    .dawn-bar .wrap { display: grid; grid-template-columns: 130px 1fr; min-height: 78px; align-items: center; }
+    .dawn-time { color: var(--accent); font-size: 28px; font-weight: 800; }
+    .dawn-bar p { margin: 0; color: rgba(255,255,255,.72); }
+    .change-board { padding: 94px 0; background: #f7f9fa; }
+    .board-layout { display: grid; grid-template-columns: .72fr 1.28fr; gap: 70px; align-items: start; }
+    .board-layout > * { min-width: 0; }
+    .dispatch-board { border: 1px solid #aebbc4; background: #fff; box-shadow: 12px 14px 0 #dce4e9; }
+    .board-head, .board-row { display: grid; grid-template-columns: .8fr 1.2fr .9fr .8fr; }
+    .board-head { background: #173a54; color: #fff; font-size: 12px; font-weight: 700; }
+    .board-head span, .board-row span { padding: 13px 12px; border-right: 1px solid rgba(255,255,255,.16); }
+    .board-row { min-height: 68px; border-top: 1px solid var(--line); color: #465a68; font-size: 13px; }
+    .board-row span { border-right: 1px solid var(--line); }
+    .changed { background: #dceef9; color: #10293d; font-weight: 800; }
+    .loose-notes { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .loose-notes span { min-height: 88px; padding: 16px; background: #fff3b8; color: #4d4524; font-size: 13px; transform: rotate(-1deg); box-shadow: 3px 4px 0 rgba(28,40,50,.08); }
+    .loose-notes span:nth-child(2) { transform: rotate(2deg); background: #d9f0ff; }
+    .loose-notes span:nth-child(3) { transform: rotate(-2deg); background: #eadfff; }
+    .one-record { padding: 94px 0; background: var(--dark); color: #fff; }
+    .one-record h2 { margin: 0; font-size: 42px; line-height: 1.35; }
+    .record-flow { margin-top: 46px; display: grid; grid-template-columns: 1fr 44px 1fr 44px 1fr; align-items: stretch; }
+    .record-card { padding: 28px; border: 1px solid rgba(255,255,255,.25); }
+    .record-card b { color: var(--accent); font-size: 12px; }
+    .record-card h3 { margin: 14px 0 8px; }
+    .record-card p { margin: 0; color: rgba(255,255,255,.68); font-size: 14px; }
+    .arrow { display: grid; place-items: center; color: var(--accent); font-size: 22px; }
+    .morning-sequence { padding: 96px 0; background: #fff; }
+    .sequence-list { margin-top: 44px; border-top: 2px solid var(--ink); }
+    .sequence-row { display: grid; grid-template-columns: 150px 1fr 230px; gap: 24px; padding: 23px 0; border-bottom: 1px solid var(--line); align-items: center; }
+    .sequence-row b { color: var(--dark); }
+    .sequence-row p { margin: 0; color: var(--muted); }
+    .sequence-row span { color: #24628a; font-size: 13px; font-weight: 700; }
+    .safety { padding: 90px 0; background: #dce7ed; }
+    .safety-grid { margin-top: 38px; display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+    .safety-grid article { padding: 28px 0; border-top: 3px solid var(--accent); }
+    .safety-grid h3 { margin: 0 0 8px; }
+    .safety-grid p { margin: 0; color: var(--muted); }
+    .final-cta { background: var(--accent); }
+    .final-cta .primary-cta { background: var(--dark); color: #fff; }
+    @media (max-width: 760px) {
+      .hero { min-height: 660px; background-position: 64% center; }
+      .hero h1 { font-size: 39px; }
+      .dispatch-copy { font-size: 22px; }
+      .dawn-bar .wrap { grid-template-columns: 90px 1fr; }
+      .change-board, .one-record, .morning-sequence, .safety { padding: 66px 0; }
+      .board-layout { grid-template-columns: minmax(0, 1fr); gap: 42px; }
+      .dispatch-board { max-width: 100%; overflow-x: auto; }
+      .board-head, .board-row { min-width: 620px; }
+      .loose-notes { grid-template-columns: 1fr; }
+      .record-flow { grid-template-columns: 1fr; }
+      .arrow { min-height: 44px; transform: rotate(90deg); }
+      .sequence-row { grid-template-columns: 78px 1fr; }
+      .sequence-row span { grid-column: 2; }
+      .safety-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="wrap header-row">
+    <a class="brand" href="index.html"><strong>AI顧問室</strong><span>運送会社向け</span></a>
+    <a class="nav-cta" href="index.html?from=lp_ai_unsou_dispatch#contact">AIで効率化する方法を相談する</a>
+  </div></header>
+  <main>
+    <section class="hero" data-analytics-section="hero"><div class="wrap hero-inner">
+      <p class="kicker">運送会社の配車変更をAIで効率化する方法</p>
+      <h1>配車変更の確認を、<br>AIで効率化する方法。</h1>
+      <p class="dispatch-copy">朝6時。配車変更が3件。<br>どの車に反映したか追えない。</p>
+      <p class="hero-sub">電話メモ・紙・配車表を見て、AIで変更を車両ごとに整理する方法を教えます。最終配車と安全判断は担当者が行います。</p>
+      <a class="primary-cta" href="index.html?from=lp_ai_unsou_dispatch#contact">AIで効率化する方法を相談する</a>
+    </div></section>
+    <div class="dawn-bar"><div class="wrap"><div class="dawn-time">06:00</div><p>トラックが出る前に、変更をすべての人へ伝えなければならない。</p></div></div>
+    <section class="change-board">
+      <div class="wrap board-layout">
+        <div>
+          <p class="kicker">変更は届く。反映先が分かれる。</p>
+          <h2 class="section-title">電話、紙、白板。<br>正しい配車はどれか。</h2>
+          <p class="section-lead">変更内容そのものより、どこまで反映したかが見えないことが、朝の折り返しと確認を増やします。</p>
+        </div>
+        <div>
+          <div class="dispatch-board" aria-label="配車表のイメージ">
+            <div class="board-head"><span>車両</span><span>行先</span><span>時刻</span><span>状態</span></div>
+            <div class="board-row"><span>車両A</span><span>配送先A</span><span>早朝</span><span>確認済</span></div>
+            <div class="board-row"><span>車両B</span><span class="changed">変更あり</span><span>要確認</span><span>未反映</span></div>
+            <div class="board-row"><span>車両C</span><span>配送先C</span><span>午前</span><span>確認中</span></div>
+          </div>
+          <div class="loose-notes"><span>荷主から時間変更の電話</span><span>倉庫から積込順変更</span><span>ドライバーから車両確認</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="one-record"><div class="wrap">
+      <h2>配車変更をAIで整理する方法を、<br>朝の流れに合わせて考える。</h2>
+      <div class="record-flow">
+        <article class="record-card"><b>INPUT</b><h3>変更連絡</h3><p>電話メモ、SMS、紙、点呼時の口頭連絡。</p></article><div class="arrow">→</div>
+        <article class="record-card"><b>AI活用の方法</b><h3>車両ごとに整理</h3><p>車両、ドライバー、時間、行先、荷物、連絡元を整理する。</p></article><div class="arrow">→</div>
+        <article class="record-card"><b>CHECK</b><h3>未反映を残す</h3><p>配車表、運行指示、ドライバー連絡の完了状況。</p></article>
+      </div>
+    </div></section>
+    <section class="morning-sequence"><div class="wrap">
+      <h2 class="section-title">朝の確認を、順番にする。</h2>
+      <div class="sequence-list">
+        <div class="sequence-row"><b>受ける</b><p>変更を一件ずつ記録する。</p><span>AI：項目を抽出</span></div>
+        <div class="sequence-row"><b>比べる</b><p>現在の配車表との差分を見る。</p><span>AI：未反映を表示</span></div>
+        <div class="sequence-row"><b>決める</b><p>安全・契約・時間を確認して確定する。</p><span>人：最終配車</span></div>
+        <div class="sequence-row"><b>伝える</b><p>確定内容をドライバーへ連絡する。</p><span>AI：連絡文を下書き</span></div>
+      </div>
+    </div></section>
+    <section class="safety"><div class="wrap">
+      <h2 class="section-title">安全と法令の判断は、担当者が行う。</h2>
+      <div class="safety-grid"><article><h3>AIに任せる工程</h3><p>変更内容、差分、折り返し先、未確認項目、連絡文の下書き。</p></article><article><h3>配車担当者が判断する</h3><p>運行可否、拘束時間、安全、契約条件、緊急時の例外対応。</p></article></div>
+    </div></section>
+    <section class="final-cta" data-analytics-section="final_cta"><div class="wrap">
+      <h2>今朝の配車変更を、<br>3件だけ見せてください。</h2>
+      <p>どこから届き、どこへ書き、誰に伝えたか。その流れを見ながら、AIで効率化する方法を教えます。</p>
+      <a class="primary-cta" href="index.html?from=lp_ai_unsou_dispatch#contact">AIで効率化する方法を相談する</a>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-row"><strong>AI顧問室</strong><span>運送会社の配車変更を見て、AIで効率化する方法を一緒に設計する。</span></div></footer>
+  <script src="analytics-config.js"></script>
+  <script src="measurement-config.js"></script>
+  <script src="meta-pixel-config.js"></script>
+  <script src="meta-pixel.js"></script>
+  <script src="measurement.js"></script>
+  <script src="ga4-events.js"></script>
+</body>
+</html>

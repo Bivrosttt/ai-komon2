@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>建設業務をAIで効率化する方法｜AI顧問室</title>
+  <meta name="description" content="現場写真の分類、台帳コメント、日報づくりを、AIで効率化する方法を建設会社の業務に合わせて一緒に整理します。">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/campaign-lp-foundation.css">
+  <style>
+    :root { --page: #eef1ef; --ink: #182029; --muted: #5d666d; --line: #cfd6d2; --dark: #15202a; --accent: #f2bd34; --accent-ink: #172029; }
+    .hero {
+      min-height: calc(100dvh - 68px);
+      position: relative;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      color: #fff;
+      background: #17212a url("output/imagegen/final-ads/kensetsu-bg.png") center / cover no-repeat;
+    }
+    .hero::before { content: ""; position: absolute; inset: 0; background: rgba(12, 20, 28, .64); }
+    .hero-inner { position: relative; z-index: 1; width: min(900px, 100%); margin-inline: auto; padding: 80px 0 88px; }
+    .hero h1 { max-width: 760px; margin: 0 auto; font-size: 62px; line-height: 1.18; letter-spacing: 0; }
+    .pain-copy { max-width: 700px; margin: 24px auto 30px; font-size: 24px; line-height: 1.55; font-weight: 700; }
+    .hero .primary-cta { margin-inline: auto; }
+    .work-strip { background: var(--accent); color: var(--accent-ink); }
+    .work-strip .wrap { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .work-strip strong { font-size: 17px; }
+    .work-strip span { font-size: 13px; }
+    .photo-ledger { padding: 96px 0; background: #fff; }
+    .ledger-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; align-items: start; }
+    .ledger-steps { border-top: 2px solid var(--ink); }
+    .ledger-step { display: grid; grid-template-columns: 70px 1fr; gap: 20px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+    .ledger-step b { color: var(--accent-ink); font-size: 12px; }
+    .ledger-step h3 { margin: 0 0 7px; font-size: 19px; }
+    .ledger-step p { margin: 0; color: var(--muted); font-size: 14px; }
+    .photo-workbench { margin-top: 38px; padding: 22px; border: 1px solid var(--line); background: #f4f6f4; box-shadow: 10px 12px 0 rgba(24,32,41,.08); }
+    .workbench-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+    .workbench-label { display: block; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+    .workbench-stat { font-size: 28px; line-height: 1.1; }
+    .workbench-stat small { color: var(--muted); font-size: 12px; font-weight: 700; }
+    .workbench-action { border: 0; padding: 11px 14px; background: var(--dark); color: #fff; font-size: 13px; font-weight: 800; cursor: pointer; transition: transform .18s ease, background .18s ease; }
+    .workbench-action:hover { background: #263744; transform: translateY(-1px); }
+    .workbench-action:active { transform: translateY(1px); }
+    .workbench-action:disabled { background: #93a09c; cursor: default; transform: none; }
+    .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+    .photo-tile { position: relative; aspect-ratio: 1.15; overflow: hidden; border: 0; padding: 0; background-image: url("output/imagegen/final-ads/kensetsu-bg.png"); background-size: 360%; background-repeat: no-repeat; cursor: default; }
+    .photo-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,14,18,.08), rgba(8,14,18,.56)); }
+    .photo-tile span { position: absolute; z-index: 1; left: 10px; bottom: 8px; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .04em; }
+    .photo-tile.is-done { filter: saturate(.32); }
+    .photo-tile.is-done::after { background: rgba(239,243,240,.58); }
+    .photo-tile.is-done span { color: var(--ink); }
+    .workbench-foot { display: flex; justify-content: space-between; gap: 14px; margin-top: 14px; color: var(--muted); font-size: 12px; }
+    .ai-fill { padding: 96px 0; background: var(--dark); color: #fff; }
+    .ai-fill .section-title { color: #fff; }
+    .ai-fill .section-lead { color: rgba(255,255,255,.68); }
+    .fill-sequence { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.26); border-bottom: 1px solid rgba(255,255,255,.26); }
+    .fill-sequence article { padding: 30px 26px; border-right: 1px solid rgba(255,255,255,.22); }
+    .fill-sequence article:last-child { border-right: 0; }
+    .fill-sequence b { display: block; color: var(--accent); font-size: 12px; margin-bottom: 14px; }
+    .fill-sequence h3 { margin: 0 0 8px; font-size: 20px; }
+    .fill-sequence p { margin: 0; color: rgba(255,255,255,.68); font-size: 14px; }
+    .decision { padding: 96px 0; }
+    .decision-grid { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); background: #fff; }
+    .decision-col { padding: 34px; }
+    .decision-col + .decision-col { border-left: 1px solid var(--line); }
+    .decision-col h3 { margin: 0 0 18px; font-size: 20px; }
+    .decision-col ul { margin: 0; padding-left: 1.2em; color: var(--muted); }
+    .decision-col li { margin: 9px 0; }
+    .final-cta { background: var(--accent); color: var(--accent-ink); }
+    .final-cta p { color: #35404a; }
+    .final-cta .primary-cta { background: var(--dark); color: #fff; }
+    @media (max-width: 760px) {
+      .hero { min-height: 660px; background-position: 62% center; }
+      .hero-inner { padding: 70px 0 76px; }
+      .hero h1 { font-size: 40px; }
+      .pain-copy { font-size: 20px; }
+      .workbench-head, .workbench-foot { display: block; }
+      .workbench-action { margin-top: 16px; width: 100%; }
+      .photo-grid { gap: 7px; }
+      .photo-tile span { left: 7px; bottom: 6px; font-size: 10px; }
+      .workbench-foot span + span { display: block; margin-top: 5px; }
+      .work-strip .wrap { min-height: 92px; display: block; padding-block: 18px; }
+      .work-strip span { display: block; margin-top: 5px; }
+      .photo-ledger, .ai-fill, .decision { padding: 66px 0; }
+      .ledger-layout { grid-template-columns: 1fr; gap: 38px; }
+      .fill-sequence { grid-template-columns: 1fr; }
+      .fill-sequence article { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.22); }
+      .fill-sequence article:last-child { border-bottom: 0; }
+      .decision-grid { grid-template-columns: 1fr; }
+      .decision-col + .decision-col { border-left: 0; border-top: 1px solid var(--line); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="wrap header-row">
+    <a class="brand" href="index.html"><strong>AI顧問室</strong><span>建設会社向け</span></a>
+    <a class="nav-cta" href="index.html?from=lp_ai_kensetsu_photo#contact">AIで効率化する方法を相談する</a>
+  </div></header>
+  <main>
+    <section class="hero" data-analytics-section="hero">
+      <div class="wrap hero-inner">
+        <h1>現場写真の整理を、<br>AIで効率化する方法。</h1>
+        <p class="pain-copy">現場写真を80枚撮った。<br>事務所に戻って30分。写真台帳はまだ白紙。</p>
+        <a class="primary-cta" href="index.html?from=lp_ai_kensetsu_photo#contact">AIで効率化する方法を相談する</a>
+      </div>
+    </section>
+    <div class="work-strip"><div class="wrap"><strong>撮影は終わった。残っているのは、整理と転記。</strong><span>写真 → 分類 → コメント → 台帳 → 日報</span></div></div>
+    <section class="photo-ledger">
+      <div class="wrap ledger-layout">
+        <div>
+          <p class="kicker">現場のあとに残る仕事</p>
+          <h2 class="section-title">80枚を、一枚ずつ<br>人が処理している。</h2>
+          <p class="section-lead">写真そのものではなく、どの工種・場所・日付なのかを判断できる形にそろえる工程が、台帳作成を重くします。</p>
+          <div class="photo-workbench" data-photo-workbench aria-label="現場写真を一枚ずつ整理する体験">
+            <div class="workbench-head">
+              <div><span class="workbench-label">一枚ずつ確認・入力</span><strong class="workbench-stat"><span data-photo-done>0</span><small> / 80枚</small></strong></div>
+              <div><span class="workbench-label">経過時間</span><strong class="workbench-stat"><span data-photo-minutes>0</span><small>分</small></strong></div>
+              <button class="workbench-action" type="button" data-photo-next>一枚整理する</button>
+            </div>
+            <div class="photo-grid" data-photo-grid></div>
+            <div class="workbench-foot"><span data-photo-message>写真を一枚選んで、工種・場所・日付を入力する。</span><span>あと <b data-photo-remaining>80</b> 枚</span></div>
+          </div>
+        </div>
+        <div class="ledger-steps">
+          <article class="ledger-step"><b>01</b><div><h3>写真を取り込む</h3><p>スマホ、カメラ、LINE、共有フォルダから、その日の写真を集める。</p></div></article>
+          <article class="ledger-step"><b>02</b><div><h3>工種と場所を思い出す</h3><p>写真を開き、現場名・階・部位・工種を一枚ずつ付ける。</p></div></article>
+          <article class="ledger-step"><b>03</b><div><h3>台帳へ貼り直す</h3><p>順番を整え、コメントを書き、足りない写真を探し直す。</p></div></article>
+          <article class="ledger-step"><b>04</b><div><h3>日報と突き合わせる</h3><p>作業内容と写真が合っているか、最後に監督が確認する。</p></div></article>
+        </div>
+      </div>
+    </section>
+    <section class="ai-fill">
+      <div class="wrap">
+        <h2 class="section-title">写真台帳をAIで効率化する方法を、<br>今の業務から整理する。</h2>
+        <p class="section-lead">今の写真管理ルールを見ながら、整理・転記・不足確認をAIに任せる順番を一緒に決めます。</p>
+        <div class="fill-sequence">
+          <article><b>INPUT</b><h3>写真と音声メモ</h3><p>写真、撮影時刻、現場名、監督の音声メモをまとめる。</p></article>
+          <article><b>AI活用の方法</b><h3>分類とコメント候補</h3><p>工種・場所・日付の候補と、台帳コメントの下書きを作る手順を考える。</p></article>
+          <article><b>OUTPUT</b><h3>確認待ちの台帳</h3><p>不明点だけを残し、監督が確認できる順番で並べる。</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="decision">
+      <div class="wrap">
+        <h2 class="section-title">任せるのは、判断の前後。</h2>
+        <p class="section-lead">品質・安全・施工内容の最終判断は担当者が行います。</p>
+        <div class="decision-grid">
+          <div class="decision-col"><h3>AIに任せる工程</h3><ul><li>写真の候補分類とファイル整理</li><li>コメントと日報の下書き</li><li>不足情報・重複・確認箇所の一覧化</li></ul></div>
+          <div class="decision-col"><h3>監督が確認する</h3><ul><li>品質・安全に関わる写真の意味</li><li>工事ごとの表現と提出内容</li><li>例外と追加撮影の判断</li></ul></div>
+        </div>
+      </div>
+    </section>
+    <section class="final-cta" data-analytics-section="final_cta"><div class="wrap">
+      <h2>まず、昨日の写真台帳を<br>一緒に見せてください。</h2>
+      <p>写真がどこに入り、誰が何を確認しているか。その流れを見ながら、最初に試すAI活用の方法を教えます。</p>
+      <a class="primary-cta" href="index.html?from=lp_ai_kensetsu_photo#contact">AIで効率化する方法を相談する</a>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-row"><strong>AI顧問室</strong><span>建設会社の業務を見て、AIで効率化する方法を一緒に設計する。</span></div></footer>
+  <script src="analytics-config.js"></script>
+  <script src="measurement-config.js"></script>
+  <script src="meta-pixel-config.js"></script>
+  <script src="meta-pixel.js"></script>
+  <script src="measurement.js"></script>
+  <script src="ga4-events.js"></script>
+  <script>
+    (() => {
+      const grid = document.querySelector('[data-photo-grid]');
+      const next = document.querySelector('[data-photo-next]');
+      const done = document.querySelector('[data-photo-done]');
+      const minutes = document.querySelector('[data-photo-minutes]');
+      const remaining = document.querySelector('[data-photo-remaining]');
+      const message = document.querySelector('[data-photo-message]');
+      if (!grid || !next) return;
+      const positions = ['0% 0%', '50% 0%', '100% 0%', '0% 50%', '50% 50%', '100% 50%', '0% 100%', '50% 100%', '100% 100%'];
+      positions.forEach((position, index) => {
+        const tile = document.createElement('div');
+        tile.className = 'photo-tile';
+        tile.style.backgroundPosition = position;
+        tile.innerHTML = `<span>写真 ${String(index + 1).padStart(2, '0')}｜未整理</span>`;
+        grid.appendChild(tile);
+      });
+      let count = 0;
+      next.addEventListener('click', () => {
+        const tile = grid.querySelector('.photo-tile:not(.is-done)');
+        if (!tile) return;
+        count += 1;
+        tile.classList.add('is-done');
+        tile.querySelector('span').textContent = `写真 ${String(count).padStart(2, '0')}｜整理済`;
+        done.textContent = count;
+        minutes.textContent = count;
+        remaining.textContent = 80 - count;
+        message.textContent = count < 9 ? '次の写真を開いて、工種・場所・日付を入力する。' : 'この9枚の先にも、まだ71枚残っている。';
+        if (count === 9) next.textContent = 'まだ71枚ある';
+      });
+    })();
+  </script>
+</body>
+</html>
