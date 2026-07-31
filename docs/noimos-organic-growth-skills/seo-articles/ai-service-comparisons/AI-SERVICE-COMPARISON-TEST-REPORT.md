@@ -14,12 +14,14 @@
 
 今回のリライトでは、各記事の料金表直前に代表シナリオ（動画月20本、開発の週10件修正＋月1機能追加、1時間会議月20回）を追加し、単純な月額順ではなくusageに対する判断を先に渡す構成へ更新した。比較スキル本体とエージェントプロンプトも、作業開始時の永続TODOと全項目チェックボックスを必須化した。
 
+サービスレビュー節は、画像・見出し・説明文を一つのカードへまとめ、番号・カテゴリ色・背景色・十分なカード間隔でサービスの上下関係を明示した。3記事すべてに同じデザインルールを適用した。
+
 ホーム画面スクリーンショットも3記事すべてサービス数と一致。各レビュー見出し直前の`figure.service-home-shot`、公式URL、取得日を検出した。Replitだけは公式ホームがCloudflareでブロックされたため、公式Docs掲載のProject Editorホーム画面を代替使用し、captionと台帳に明記した。
 
 ## ブラウザ確認
 
-- デスクトップ 1440px: 3ページでタイトル、目次、比較表、CTA、サムネイル、代表シナリオ callout の表示を確認（`/tmp/ai-video-tools-comparison-desktop.png`、`/tmp/ai-coding-tools-comparison-desktop.png`、`/tmp/ai-meeting-notes-comparison-desktop.png`）。
-- モバイル 390px: 3ページで横スクロールなし、目次非表示、CTAが記事末尾へ移動、比較表が横スクロール可能、サービス画像4枚の`complete=true`を確認。
+- デスクトップ 1440px: 3ページでタイトル、目次、比較表、CTA、サムネイル、代表シナリオ callout、サービスカード4枚の表示を確認（`/tmp/ai-video-tools-comparison-desktop.png`、`/tmp/ai-coding-tools-comparison-desktop.png`、`/tmp/ai-meeting-notes-comparison-desktop.png`）。
+- モバイル 390px: 3ページで横スクロールなし、目次非表示、CTAが記事末尾へ移動、比較表が横スクロール可能、サービスカード間隔、サービス画像4枚の`complete=true`を確認（`/tmp/ai-video-service-review-desktop.png`、`/tmp/ai-video-service-review-mobile.png`）。
 - SVGサムネイル: 3ページとも `complete=true` かつ自然幅を取得。
 - アイコン位置: SVGの変形後バウンディングボックスをブラウザで測定し、3枚ともキャンバス中心（1600×900の中心）に一致することを確認。
 - 代表スクリーンショット: `/tmp/ai-komon-service-articles/video-desktop.png`、`coding-desktop.png`、`meeting-desktop.png`、`meeting-mobile.png`

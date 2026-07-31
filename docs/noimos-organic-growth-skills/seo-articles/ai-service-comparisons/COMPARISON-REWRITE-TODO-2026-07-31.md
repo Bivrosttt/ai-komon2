@@ -62,3 +62,11 @@
 - AI-only品質出力: 各 `*-quality-report.json`（3件とも `PASS`）
 - 公式ホーム画面台帳: 各 `*-screenshots.json` と各記事の `home-screens/`
 - 実ブラウザ画面: `/tmp/ai-video-tools-comparison-desktop.png`、`/tmp/ai-coding-tools-comparison-desktop.png`、`/tmp/ai-meeting-notes-comparison-desktop.png`
+
+## サービス間の視認性改善（2026年7月31日 22:40）
+
+- [x] 3記事の4サービス節を `service-review` カードに分割した
+- [x] サービスごとに番号、アクセント色、背景色、見出し上の区切り線を付けた
+- [x] デスクトップでカード間隔148px相当、スマホで106px相当を実ブラウザ計測した
+- [x] 3記事すべてで画像4枚の読み込み、横幅、目次、末尾CTAを再確認した
+- [x] 代表画面を保存した: `/tmp/ai-video-service-review-desktop.png`、`/tmp/ai-video-service-review-mobile.png`
