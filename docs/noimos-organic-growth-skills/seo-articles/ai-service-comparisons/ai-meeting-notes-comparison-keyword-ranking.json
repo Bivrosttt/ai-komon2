@@ -1,0 +1,83 @@
+{
+  "tool": "noimos-commercial-keywords",
+  "generated_at": "2026-07-31T12:15:41.522063+00:00",
+  "method": "planning heuristic; not a ranking or revenue prediction",
+  "eligible_count": 5,
+  "candidates": [
+    {
+      "keyword": "AI議事録ツール 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 81.3,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "Notta Otter 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 75.2,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "日本語 AI議事録",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 71.5,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "議事録 自動化 ツール",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 70.5,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI議事録 会社 導入",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 67.2,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    }
+  ]
+}

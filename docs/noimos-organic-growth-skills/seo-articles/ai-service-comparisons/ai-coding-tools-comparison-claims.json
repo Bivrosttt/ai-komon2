@@ -1,0 +1,50 @@
+{
+  "topic": "AIコーディングサービス比較",
+  "retrieved_at": "2026-07-31",
+  "claims": [
+    {
+      "id": "coding_copilot_surface",
+      "claim": "GitHub Copilotの公式ページは、IDE、CLI、GitHub上でのコード支援やエージェント、レビューを案内している。",
+      "source_url": "https://github.com/features/copilot/plans",
+      "publisher": "GitHub",
+      "retrieved_at": "2026-07-31",
+      "evidence_type": "official_product_and_pricing_page",
+      "verified": true,
+      "scope": "機能カテゴリの確認。プラン、上限、組織ポリシーは契約前に確認する。",
+      "confidence": "high"
+    },
+    {
+      "id": "coding_cursor_agent",
+      "claim": "Cursorの公式ページとドキュメントは、AIエディタ、エージェント、バックグラウンド処理、チーム向け設定を案内している。",
+      "source_url": "https://www.cursor.com/pricing",
+      "publisher": "Cursor",
+      "retrieved_at": "2026-07-31",
+      "evidence_type": "official_product_and_docs_page",
+      "verified": true,
+      "scope": "エディタ型導入の適合性。モデル利用量、プライバシー、チーム管理は契約前に確認する。",
+      "confidence": "high"
+    },
+    {
+      "id": "coding_claude_code_cli",
+      "claim": "Claude Codeの公式ドキュメントは、ターミナルからプロジェクトを読み、編集やコマンド実行、Git・MCP連携を行うエージェント型ワークフローを案内している。",
+      "source_url": "https://code.claude.com/docs/en/overview",
+      "publisher": "Anthropic",
+      "retrieved_at": "2026-07-31",
+      "evidence_type": "official_docs_page",
+      "verified": true,
+      "scope": "CLI型導入の適合性。権限、秘密情報、実行コマンドの承認設計は利用前に決める。",
+      "confidence": "high"
+    },
+    {
+      "id": "coding_replit_effort_billing",
+      "claim": "Replitの公式ページは、自然言語からアプリを作成・公開するAgentと、AI利用を努力量ベースで計算する課金説明を案内している。",
+      "source_url": "https://docs.replit.com/billing/ai-billing",
+      "publisher": "Replit",
+      "retrieved_at": "2026-07-31",
+      "evidence_type": "official_product_and_billing_docs",
+      "verified": true,
+      "scope": "プロトタイプから公開までの適合性。利用量とプラン差分は最新の課金ページで確認する。",
+      "confidence": "high"
+    }
+  ]
+}

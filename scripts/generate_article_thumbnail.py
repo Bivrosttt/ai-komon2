@@ -21,6 +21,19 @@ from pathlib import Path
 
 WIDTH, HEIGHT = 1600, 900
 
+# Center the actual icon geometry, not its nominal construction coordinates.
+# Several asymmetric icons (for example the cloud and megaphone) have a visual
+# bounding box that is offset from the 1600x900 canvas center.
+ICON_TRANSLATIONS = {
+    "globe": (0, 0),
+    "cloud": (-67.5, 57),
+    "bars": (0, -40),
+    "sparkles": (-53, 4),
+    "bot": (0, -12.5),
+    "heart": (0, -15),
+    "megaphone": (45, -35),
+}
+
 PALETTES = {
     "ocean": ("#2eabc3", "#69c4cf", "#b8eef0"),
     "teal": ("#063f43", "#167f78", "#a8e7d2"),
@@ -76,6 +89,7 @@ def icon(icon_name: str) -> str:
 def render(output: Path, icon_name: str, palette_name: str, shape: str, seed: str) -> None:
     start, end, icon_light = PALETTES[palette_name]
     ident = safe_id(seed)
+    icon_tx, icon_ty = ICON_TRANSLATIONS[icon_name]
     title = html.escape(f"{seed} article thumbnail")
     desc = html.escape("A gradient background with a friendly white icon")
     svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="title desc">
@@ -90,7 +104,7 @@ def render(output: Path, icon_name: str, palette_name: str, shape: str, seed: st
   <rect width="{WIDTH}" height="{HEIGHT}" rx="48" fill="url(#bg-{ident})"/>
   {background(shape, seed)}
   <rect width="{WIDTH}" height="{HEIGHT}" rx="48" filter="url(#grain)" opacity=".42"/>
-  <g filter="url(#shadow)">{icon(icon_name)}</g>
+  <g filter="url(#shadow)" transform="translate({icon_tx:g} {icon_ty:g})">{icon(icon_name)}</g>
 </svg>
 '''
     output.parent.mkdir(parents=True, exist_ok=True)

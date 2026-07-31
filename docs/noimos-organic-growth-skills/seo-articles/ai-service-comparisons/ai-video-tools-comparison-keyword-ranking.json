@@ -1,0 +1,83 @@
+{
+  "tool": "noimos-commercial-keywords",
+  "generated_at": "2026-07-31T12:15:41.206681+00:00",
+  "method": "planning heuristic; not a ranking or revenue prediction",
+  "eligible_count": 5,
+  "candidates": [
+    {
+      "keyword": "AI動画生成サービス 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 80.3,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI動画 作成ツール 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 76.2,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AIアバター 動画 企業",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 69.5,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI動画 自動化 導入",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 66.8,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI動画 研修 ツール",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 66.0,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    }
+  ]
+}

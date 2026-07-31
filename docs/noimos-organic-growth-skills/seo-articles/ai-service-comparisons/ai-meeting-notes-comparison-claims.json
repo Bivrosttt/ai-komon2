@@ -1,0 +1,50 @@
+{
+  "topic": "AI議事録ツール比較",
+  "retrieved_at": "2026-07-31",
+  "claims": [
+    {
+      "id": "meeting_notta_inputs",
+      "claim": "Nottaの公式ヘルプは、会議の録音・ファイル入力、文字起こし、AI要約を含む機能構成を案内している。",
+      "source_url": "https://support.notta.ai/hc/en-us/articles/45649026891419-What-is-included-in-each-Notta-plan",
+      "publisher": "Notta",
+      "retrieved_at": "2026-07-31",
+      "evidence_type": "official_help_and_pricing_page",
+      "verified": true,
+      "scope": "入力・要約機能の確認。言語、上限、保存、チーム共有はプラン確認が必要。",
+      "confidence": "high"
+    },
+    {
+      "id": "meeting_otter_collaboration",
+      "claim": "Otterの公式料金ページは、リアルタイムの会議記録、注釈・コメント、AIチャット、営業向け記録の機能群を案内している。",
+      "source_url": "https://otter.ai/pricing",
+      "publisher": "Otter.ai",
+      "retrieved_at": "2026-07-31",
+      "evidence_type": "official_pricing_page",
+      "verified": true,
+      "scope": "会議中の共同作業と営業記録の適合性。機能・上限は契約前に確認する。",
+      "confidence": "high"
+    },
+    {
+      "id": "meeting_fireflies_analysis",
+      "claim": "Firefliesの公式ページは、会議ボット、要約・アクションアイテム、会話分析を含むワークフローを案内している。",
+      "source_url": "https://fireflies.ai/pricing",
+      "publisher": "Fireflies.ai",
+      "retrieved_at": "2026-07-31",
+      "evidence_type": "official_pricing_and_billing_page",
+      "verified": true,
+      "scope": "会議後の検索・分析の適合性。AIクレジット、保存、連携は最新条件を確認する。",
+      "confidence": "high"
+    },
+    {
+      "id": "meeting_zoom_host_summary",
+      "claim": "Zoomの公式サポートは、ホストが開始する会議要約が音声の文字起こしをもとに作られ、ライセンスや管理設定の影響を受けることを案内している。",
+      "source_url": "https://support.zoom.com/hc/en/article?id=zm_kb&sysparm_article=KB0058013",
+      "publisher": "Zoom",
+      "retrieved_at": "2026-07-31",
+      "evidence_type": "official_support_page",
+      "verified": true,
+      "scope": "既存Zoom環境への追加導入の適合性。通知、保存、管理者設定は社内で確認する。",
+      "confidence": "high"
+    }
+  ]
+}
