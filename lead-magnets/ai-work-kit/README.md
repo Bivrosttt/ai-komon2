@@ -8,16 +8,13 @@
 - `/lead-magnets/ai-work-kit/prompts/`: 相談後に送付するプロンプト100選の案内ページ
 - `/lead-magnets/ai-work-kit/agent-implementation-guide/`: AIエージェント導入ガイドのプレビュー
 - `/lead-magnets/ai-work-kit/state-of-ai-report/`: 中小企業のAI活用レポートのプレビュー
-- `/lead-magnets/ai-work-kit/ai-presentation-guide/`: AIスライド実務ガイドのプレビュー
 
 ## 今回の整理
 
 - プロンプト100選は、検索・絞り込み・コピーができるWeb版を本体として運用する。
-- AIスライド教材は、既存の `ai-presentation-guide/` プレビューを入口にし、面談後の送付内容に合わせて管理する。
 - `../../materials/ai-komon-ai-presentation-masterclass.pptx`: 正本。海外のPowerPoint制作スキルを再調査し、構成・1枚の主張・視覚化・QA・実務プロンプトまでを28枚で体系化した編集可能PPTX教材。
 - `../../materials/ai-komon-ai-presentation-masterclass.pdf`: 正本PPTXから生成した配布用PDF。
 - `node scripts/sync_ai_presentation_guide.mjs`（リポジトリルートから実行）: 正本PDFからHTMLの代表プレビュー12枚を同期し、PPTX/PDFのハッシュをマニフェストに記録する。
-- `ai-presentation-guide/presentation-guide-manifest.json`: HTMLの各プレビューがどの正本スライドから生成されたかを記録する。
 
 ## 広告クリエイティブ
 
@@ -32,7 +29,7 @@
 
 本命クリエイティブの主見出しは「AI活用 10大特典」。画像生成時に、見出し・10個の特典名・各商品の説明・CTAまで直接描画しています。詳細説明と実際に使えるページはAI仕事道具箱とプロンプト100選に集約しています。
 
-追加した3教材は、海外のAIコンサル企業に多い診断・成熟度・ロードマップ型の構成と、AIスライド関連サービスの実務フローを参考にしたAI顧問室オリジナルです。公開ページは本編のプレビューとして扱い、相談後に業務内容に合わせて送付します。
+追加した2教材は、海外のAIコンサル企業に多い診断・成熟度・ロードマップ型の構成を参考にしたAI顧問室オリジナルです。公開ページは本編のプレビューとして扱い、相談後に業務内容に合わせて送付します。
 
 ## 10個のプレゼント
 
