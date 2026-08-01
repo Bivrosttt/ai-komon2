@@ -1,6 +1,6 @@
 # AIサービス比較記事 テストレポート
 
-実行日: 2026-07-31
+実行日: 2026-08-01
 
 ## 自動チェック
 
@@ -20,7 +20,9 @@
 
 冒頭の要点ブロックは、記事の構成説明ではなく、用途別の候補、価格・usage、選ばない条件を直接提示する内容へ更新した。比較表のサービス列は内容幅ベースの`nowrap`にし、候補名の最長幅で自動調整されることを確認した。
 
-3記事に共通ヘッダーを追加し、デスクトップは左250px・中央可変・右240pxの3カラムへ調整した。スマホはナビを簡略化し、目次を非表示、CTAを記事下へ移動する既存ルールを維持した。
+3記事に共通ヘッダーを追加し、デスクトップは左250px・中央可変・右290pxの3カラムへ調整した。ヘッダーのナビはAI導入・記事に整理し、スマホはナビを簡略化、目次を非表示、CTAを記事下へ移動する既存ルールを維持した。
+
+右CTAは見出しを「自社に合うAIを / 最短経路で導入」の2行に固定し、説明文を1文＋オファー1行へ整理した。ボタンは「無料コンサルを受け取る」に短縮し、デスクトップで1行表示できる幅を確保した。1440pxで右CTA290px・ボタン242px、横スクロール0を確認した。
 
 ホーム画面スクリーンショットも3記事すべてサービス数と一致。各レビュー見出し直前の`figure.service-home-shot`、公式URL、取得日を検出した。Replitだけは公式ホームがCloudflareでブロックされたため、公式Docs掲載のProject Editorホーム画面を代替使用し、captionと台帳に明記した。
 
@@ -29,7 +31,7 @@
 - デスクトップ 1440px: 3ページでタイトル、目次、比較表、CTA、サムネイル、代表シナリオ callout、サービスカード4枚の表示を確認（`/tmp/ai-video-tools-comparison-desktop.png`、`/tmp/ai-coding-tools-comparison-desktop.png`、`/tmp/ai-meeting-notes-comparison-desktop.png`）。
 - モバイル 390px: 3ページで横スクロールなし、目次非表示、CTAが記事末尾へ移動、比較表が横スクロール可能、サービスカード間隔、サービス画像4枚の`complete=true`を確認（`/tmp/ai-video-service-review-desktop.png`、`/tmp/ai-video-service-review-mobile.png`）。
 - 要点・表QA: 3ページで要点4項目、全候補名、具体的な数値、判断条件、サービス列の改行なしを確認（`/tmp/ai-video-key-points-desktop.png`、`/tmp/ai-video-key-points-mobile.png`、`/tmp/ai-video-strengths-desktop.png`）。
-- ヘッダー・左右欄QA: 3ページでデスクトップのヘッダー高75px、左目次250px、右CTA240px、スマホのヘッダー高65px、横幅390pxを確認（`/tmp/ai-video-header-desktop.png`、`/tmp/ai-video-header-wide.png`、`/tmp/ai-video-header-mobile-2.png`）。
+- ヘッダー・左右欄QA: 3ページでデスクトップのヘッダー高75px、左目次250px、右CTA290px、CTAボタン1行、スマホのヘッダー高65px、横幅390px、横スクロール0を確認（`/tmp/ai-video-cta-1440.png`、`/tmp/ai-video-cta-2048.png`、`/tmp/ai-video-cta-mobile.png`）。
 - SVGサムネイル: 3ページとも `complete=true` かつ自然幅を取得。
 - アイコン位置: SVGの変形後バウンディングボックスをブラウザで測定し、3枚ともキャンバス中心（1600×900の中心）に一致することを確認。
 - 代表スクリーンショット: `/tmp/ai-komon-service-articles/video-desktop.png`、`coding-desktop.png`、`meeting-desktop.png`、`meeting-mobile.png`
