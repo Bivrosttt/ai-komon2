@@ -1,0 +1,83 @@
+{
+  "tool": "noimos-commercial-keywords",
+  "generated_at": "2026-07-31T12:15:41.323178+00:00",
+  "method": "planning heuristic; not a ranking or revenue prediction",
+  "eligible_count": 5,
+  "candidates": [
+    {
+      "keyword": "AIコーディングサービス 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 80.8,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "GitHub Copilot Cursor 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 78.8,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "Claude Code 企業導入",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 71.8,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI開発ツール 選び方",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 69.2,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AIコード生成 会社",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 67.0,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "Google/SERP discovery + official product pages",
+      "retrieved_at": "2026-07-31",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    }
+  ]
+}

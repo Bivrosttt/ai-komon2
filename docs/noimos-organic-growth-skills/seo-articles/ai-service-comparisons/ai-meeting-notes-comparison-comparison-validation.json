@@ -1,0 +1,19 @@
+{
+  "tool": "noimos-comparison-article",
+  "input": "articles/ai-meeting-notes-comparison/index.html",
+  "status": "PASS",
+  "blockers": [],
+  "warnings": [],
+  "services": [
+    "Notta",
+    "Otter",
+    "Fireflies",
+    "Zoom"
+  ],
+  "home_urls": {
+    "Notta": "https://www.notta.ai/",
+    "Otter": "https://otter.ai/",
+    "Fireflies": "https://fireflies.ai/",
+    "Zoom": "https://www.zoom.com/en/products/ai-assistant/"
+  }
+}

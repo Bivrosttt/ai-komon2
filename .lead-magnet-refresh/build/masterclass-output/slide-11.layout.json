@@ -1,0 +1,1649 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/b146i9",
+    "id": "b146i9",
+    "slide": 11,
+    "layoutId": "67548e21-b8db-4131-b9fd-44dde8db5eb6",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "0a5edf58-c549-40f0-aed1-ba8c922d07d5",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Hiragino Sans"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "67548e21-b8db-4131-b9fd-44dde8db5eb6",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "0a5edf58-c549-40f0-aed1-ba8c922d07d5",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "0a5edf58-c549-40f0-aed1-ba8c922d07d5",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h8b6pk36",
+      "id": "1",
+      "bbox": [
+        66,
+        28,
+        150,
+        22
+      ],
+      "geometry": "rect",
+      "text": "AI顧問室",
+      "textPreview": "AI顧問室",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 14,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AI顧問室"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AI顧問室",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AI顧問室",
+              "fontSize": 14,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u5knup4f",
+      "id": "2",
+      "bbox": [
+        220,
+        29,
+        340,
+        20
+      ],
+      "geometry": "rect",
+      "text": "04 VISUAL",
+      "textPreview": "04 VISUAL",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 12,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "04 VISUAL"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "04 VISUAL",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "04 VISUAL",
+              "fontSize": 12,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/f6tonal0",
+      "id": "3",
+      "bbox": [
+        1150,
+        28,
+        62,
+        22
+      ],
+      "geometry": "rect",
+      "text": "11",
+      "textPreview": "11",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 14,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "11"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "11",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "11",
+              "fontSize": 14,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s325sfm9",
+      "id": "4",
+      "bbox": [
+        66,
+        668,
+        8,
+        8
+      ],
+      "geometry": "rect",
+      "fillColor": "#E43E2B",
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/t4b6lk3u",
+      "id": "5",
+      "bbox": [
+        1188,
+        668,
+        8,
+        8
+      ],
+      "geometry": "rect",
+      "fillColor": "#111214",
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/610nq54j",
+      "id": "6",
+      "bbox": [
+        66,
+        88,
+        1040,
+        126
+      ],
+      "geometry": "rect",
+      "text": "主張が決まれば、見せ方は5択になる。",
+      "textPreview": "主張が決まれば、見せ方は5択になる。",
+      "resolvedFontSize": 45,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 45,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "主張が決まれば、見せ方は5択になる。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "主張が決まれば、見せ方は5択になる。",
+          "lineSpacingPercent": 96000,
+          "resolvedTextStyle": {
+            "fontSize": 45,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true,
+            "lineSpacing": 0.96
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "主張が決まれば、見せ方は5択になる。",
+              "fontSize": 45,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true,
+              "lineSpacing": 0.96
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/729ojal4",
+      "id": "7",
+      "bbox": [
+        66,
+        304,
+        180,
+        22
+      ],
+      "geometry": "rect",
+      "text": "HERO",
+      "textPreview": "HERO",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 12,
+        "typeface": "Hiragino Sans",
+        "color": "#E43E2B",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "HERO"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "HERO",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "typeface": "Hiragino Sans",
+            "color": "#E43E2B",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "HERO",
+              "fontSize": 12,
+              "typeface": "Hiragino Sans",
+              "color": "#E43E2B",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/czmp4z2t",
+      "id": "8",
+      "bbox": [
+        66,
+        358,
+        100,
+        90
+      ],
+      "geometry": "rect",
+      "text": "A",
+      "textPreview": "A",
+      "resolvedFontSize": 76,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 76,
+        "typeface": "Hiragino Sans",
+        "color": "#E43E2B",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "A"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "A",
+          "resolvedTextStyle": {
+            "fontSize": 76,
+            "typeface": "Hiragino Sans",
+            "color": "#E43E2B",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A",
+              "fontSize": 76,
+              "typeface": "Hiragino Sans",
+              "color": "#E43E2B",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d0v6x43e",
+      "id": "9",
+      "bbox": [
+        66,
+        478,
+        180,
+        30
+      ],
+      "geometry": "rect",
+      "text": "主張",
+      "textPreview": "主張",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "主張"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "主張",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "主張",
+              "fontSize": 22,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ts3udsf6",
+      "id": "10",
+      "bbox": [
+        66,
+        518,
+        180,
+        28
+      ],
+      "geometry": "rect",
+      "text": "一言を残す",
+      "textPreview": "一言を残す",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "一言を残す"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "一言を残す",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "一言を残す",
+              "fontSize": 16,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/srudkny1",
+      "id": "11",
+      "bbox": [
+        290,
+        338,
+        180,
+        22
+      ],
+      "geometry": "rect",
+      "text": "CONTRAST",
+      "textPreview": "CONTRAST",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 12,
+        "typeface": "Hiragino Sans",
+        "color": "#1858D8",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CONTRAST"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CONTRAST",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "typeface": "Hiragino Sans",
+            "color": "#1858D8",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CONTRAST",
+              "fontSize": 12,
+              "typeface": "Hiragino Sans",
+              "color": "#1858D8",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7qlcbihg",
+      "id": "12",
+      "bbox": [
+        290,
+        394,
+        64,
+        80
+      ],
+      "geometry": "rect",
+      "fillColor": "#E9F0FF",
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6psbixgv",
+      "id": "13",
+      "bbox": [
+        362,
+        416,
+        84,
+        58
+      ],
+      "geometry": "rect",
+      "fillColor": "#1858D8",
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5oju9sza",
+      "id": "14",
+      "bbox": [
+        290,
+        512,
+        180,
+        30
+      ],
+      "geometry": "rect",
+      "text": "比較",
+      "textPreview": "比較",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "比較"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "比較",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "比較",
+              "fontSize": 22,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/knatgnyp",
+      "id": "15",
+      "bbox": [
+        290,
+        552,
+        180,
+        28
+      ],
+      "geometry": "rect",
+      "text": "違いを選ぶ",
+      "textPreview": "違いを選ぶ",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "違いを選ぶ"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "違いを選ぶ",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "違いを選ぶ",
+              "fontSize": 16,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jm1c7ih4",
+      "id": "16",
+      "bbox": [
+        514,
+        304,
+        180,
+        22
+      ],
+      "geometry": "rect",
+      "text": "PROCESS",
+      "textPreview": "PROCESS",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 12,
+        "typeface": "Hiragino Sans",
+        "color": "#F6C945",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "PROCESS"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "PROCESS",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "typeface": "Hiragino Sans",
+            "color": "#F6C945",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "PROCESS",
+              "fontSize": 12,
+              "typeface": "Hiragino Sans",
+              "color": "#F6C945",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ilsbedgj",
+      "id": "17",
+      "bbox": [
+        514,
+        378,
+        28,
+        28
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#FFF5CE",
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pknulcfe",
+      "id": "18",
+      "bbox": [
+        542,
+        391,
+        26,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#111214",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ojedc7yt",
+      "id": "19",
+      "bbox": [
+        568,
+        378,
+        28,
+        28
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#F6C945",
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/onmxov65",
+      "id": "20",
+      "bbox": [
+        596,
+        391,
+        26,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#111214",
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9ovehgnq",
+      "id": "21",
+      "bbox": [
+        622,
+        378,
+        28,
+        28
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#FFF5CE",
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ml4fmloz",
+      "id": "22",
+      "bbox": [
+        514,
+        478,
+        180,
+        30
+      ],
+      "geometry": "rect",
+      "text": "工程",
+      "textPreview": "工程",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "工程"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "工程",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "工程",
+              "fontSize": 22,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nmdwfq5k",
+      "id": "23",
+      "bbox": [
+        514,
+        518,
+        180,
+        28
+      ],
+      "geometry": "rect",
+      "text": "順番を追う",
+      "textPreview": "順番を追う",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "順番を追う"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "順番を追う",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "順番を追う",
+              "fontSize": 16,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0z2xkb69",
+      "id": "24",
+      "bbox": [
+        738,
+        338,
+        180,
+        22
+      ],
+      "geometry": "rect",
+      "text": "EVIDENCE",
+      "textPreview": "EVIDENCE",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 12,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "EVIDENCE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "EVIDENCE",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "EVIDENCE",
+              "fontSize": 12,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/10bedgnu",
+      "id": "25",
+      "bbox": [
+        738,
+        440,
+        26,
+        50
+      ],
+      "geometry": "rect",
+      "fillColor": "#B7BBC0",
+      "lineWidth": 0
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/exkfi1o3",
+      "id": "26",
+      "bbox": [
+        782,
+        406,
+        26,
+        84
+      ],
+      "geometry": "rect",
+      "fillColor": "#B7BBC0",
+      "lineWidth": 0
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zytwb65o",
+      "id": "27",
+      "bbox": [
+        826,
+        372,
+        26,
+        118
+      ],
+      "geometry": "rect",
+      "fillColor": "#111214",
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cv2dgb6x",
+      "id": "28",
+      "bbox": [
+        738,
+        512,
+        180,
+        30
+      ],
+      "geometry": "rect",
+      "text": "証拠",
+      "textPreview": "証拠",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "証拠"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "証拠",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "証拠",
+              "fontSize": 22,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dwbe9wni",
+      "id": "29",
+      "bbox": [
+        738,
+        552,
+        180,
+        28
+      ],
+      "geometry": "rect",
+      "text": "根拠を信じる",
+      "textPreview": "根拠を信じる",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "根拠を信じる"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "根拠を信じる",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "根拠を信じる",
+              "fontSize": 16,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fq9gj69k",
+      "id": "30",
+      "bbox": [
+        962,
+        304,
+        180,
+        22
+      ],
+      "geometry": "rect",
+      "text": "ACTION",
+      "textPreview": "ACTION",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 12,
+        "typeface": "Hiragino Sans",
+        "color": "#E43E2B",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "ACTION"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "ACTION",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "typeface": "Hiragino Sans",
+            "color": "#E43E2B",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ACTION",
+              "fontSize": 12,
+              "typeface": "Hiragino Sans",
+              "color": "#E43E2B",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 31,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/up0fq18z",
+      "id": "31",
+      "bbox": [
+        962,
+        372,
+        154,
+        60
+      ],
+      "geometry": "rightArrow",
+      "fillColor": "#E43E2B",
+      "lineWidth": 0
+    },
+    {
+      "order": 32,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hsrylwra",
+      "id": "32",
+      "bbox": [
+        962,
+        478,
+        180,
+        30
+      ],
+      "geometry": "rect",
+      "text": "行動",
+      "textPreview": "行動",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "行動"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "行動",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "行動",
+              "fontSize": 22,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 33,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/grixsrqp",
+      "id": "33",
+      "bbox": [
+        962,
+        518,
+        180,
+        28
+      ],
+      "geometry": "rect",
+      "text": "次へ進む",
+      "textPreview": "次へ進む",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "次へ進む"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "次へ進む",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "次へ進む",
+              "fontSize": 16,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 34,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3utgn69g",
+      "id": "34",
+      "bbox": [
+        66,
+        620,
+        760,
+        28
+      ],
+      "geometry": "rect",
+      "text": "箇条書きは、他の4つが合わない時だけ使う。",
+      "textPreview": "箇条書きは、他の4つが合わない時だけ使う。",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 21,
+        "typeface": "Hiragino Sans",
+        "color": "#E43E2B",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "箇条書きは、他の4つが合わない時だけ使う。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "箇条書きは、他の4つが合わない時だけ使う。",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "typeface": "Hiragino Sans",
+            "color": "#E43E2B",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "箇条書きは、他の4つが合わない時だけ使う。",
+              "fontSize": 21,
+              "typeface": "Hiragino Sans",
+              "color": "#E43E2B",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

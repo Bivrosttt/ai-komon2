@@ -1,0 +1,686 @@
+AI PRESENTATION PLAYBOOK — SLIDE SPEC
+Status: APPROVED BY USER / 2026-07-29
+Depends on: brief.txt, ghost-deck.txt
+Rule: 本ファイルが承認されるまでPPTXを生成しない。
+
+COMMUNICATION JOB
+読了後、中小企業の経営者・管理職・営業責任者が、自社資料1本をBrief → Ghost Deck → Slide Spec → Visual → QAの順で作り直せる。理由は、良質なプレゼンはAIの一発生成ではなく、目的・主張・根拠・検査を工程ごとに分けることで再現できるから。
+
+VISUAL SYSTEM
+- Canvas: 16:9
+- Base: 白 70%、黒 20%。赤は問題・警告、青は手順・構造、黄は判断・行動だけに使う。
+- Type: 日本語は可読性と互換性を優先。タイトル35pt以上、本文16pt以上。1行想定のタイトルは折り返さない。
+- Motif: 「意思決定シート」。紙、スライド、ブラウザ、会議資料の前景面を繰り返し登場させる。
+- Visual types:
+  HERO = 1つの結論を大きく見せる
+  CONTRAST = 誤りと正解、現状と未来を比較する
+  PROCESS = 順序・因果・役割分担を示す
+  EVIDENCE = 根拠と意味を結びつける
+  ACTION = 読者がその場で使えるシートや手順を渡す
+- 写真・生成画像は各ページの理解に必要な場合だけ使う。
+- 全面背景画像の上に裸の文字を置かない。必ず紙面、ブラウザ、スライド、会議資料などの不透明な前景モックを置く。
+- 隣接ページで同じ左右二分割を繰り返さない。
+- UIカードの大量配置、装飾バー、意味のないアイコン列、アクセント線の多用を避ける。
+
+SOURCE KEYS
+S1 Microsoft Support, Tips for creating and delivering an effective presentation
+https://support.microsoft.com/en-US/PowerPoint/tips-for-creating-and-delivering-an-effective-presentation
+
+S2 Microsoft Support, Make your PowerPoint presentations accessible to people with disabilities
+https://support.microsoft.com/en-us/accessibility/powerpoint/make-your-powerpoint-presentations-accessible-to-people-with-disabilities
+
+S3 think-cell, PowerPoint Best Practices
+https://info.think-cell.com/rs/287-QVC-366/images/EB-PPTBP23-EN-PowerPoint-Best-Practices.pdf
+
+S4 Duarte, Business Storytelling: How to Structure a Story That Moves People
+https://www.duarte.com/resources/communication-skills/business-storytelling/
+
+S5 OpenAI, Prompt engineering best practices for ChatGPT
+https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices
+
+S6 Anthropic, Public PPTX skill
+https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md
+
+S7 Microsoft Support, Export a presentation
+https://support.microsoft.com/en-us/powerpoint/export-a-presentation
+
+S8 Microsoft Support, Download and install custom fonts to use with Office
+https://support.microsoft.com/en-US/Office/fonts/download-and-install-custom-fonts-to-use-with-office
+
+S9 Microsoft Support, Compatibility Checker in PowerPoint
+https://support.microsoft.com/en-US/PowerPoint/compatibility-checker-in-powerpoint
+
+S10 AI顧問室による実務工程の整理、架空例、ワークシート
+External URL: なし
+
+SOURCE NOTE FORMAT
+各スライドの話者ノート末尾に以下を置く。
+[Sources]
+- URL
+- Generated visual: AI顧問室制作（画像生成を使った場合）
+[/Sources]
+
+SLIDE 01
+Title: AIで、良質なプレゼンをつくる。
+Narrative job: 教材の約束を最小限で提示する。
+Visible content:
+- Subtitle: AIに丸投げせず、判断が進む資料を設計する5段階
+- Small label: 実務プレイブック
+Visual type: HERO
+Layout / silhouette:
+- 黒基調の全面ビジュアル。
+- 右寄りに、白い「意思決定シート」を挟んだ透明なプレゼン資料モック。
+- タイトルは前景の白い表紙面に置く。背景画像上へ直接置かない。
+Image / mock:
+- 生成画像。暗い会議室、中央右に立体的なプレゼン冊子と意思決定シート。文字は画像内に生成しない。
+Evidence / source: S10
+Speaker note purpose:
+- この教材はデザイン集ではなく、AIと人の作業を分ける実務工程であると宣言する。
+QA risk:
+- 表紙へ情報を足しすぎない。タイトルは1行、字幕は2行以内。
+
+SLIDE 02
+Title: AIは資料を速く作れる。でも、意思決定までは速くならない。
+Narrative job: 「生成速度」と「資料の成果」を分離し、問題を開く。
+Visible content:
+- 左の大語: 生成速度
+- 右の大語: 判断速度
+- Bottom line: 速く作ることと、相手が決められることは別の設計課題。
+Visual type: CONTRAST
+Layout / silhouette:
+- 画面中央に大きな「≠」。
+- 左は高速で増えるスライドサムネイル、右は止まった会議の決定欄。
+Image / mock:
+- PowerPointネイティブのスライド束と、空欄の決定欄を持つ会議シート。
+Evidence / source: S10
+Speaker note purpose:
+- AIの価値を否定せず、評価軸を「作成時間」から「意思決定」へ移す。
+QA risk:
+- 左右の情報量を同じにしない。右の空白を意図的な停止として見せる。
+
+SLIDE 03
+Title: 資料は完成しているのに、会議の判断が進まない。
+Narrative job: 読者が経験したことのある場面として問題を具体化する。
+Visible content:
+- 会議後に残る3つ:
+  - 「もう少し情報がほしい」
+  - 「社内で確認します」
+  - 「次回また検討します」
+- Caption: ページは完成。決定は未完成。
+Visual type: EVIDENCE
+Layout / silhouette:
+- 生成した会議風景を背景にする。
+- 手前中央に、不透明な議事録シート。上記3つの発言をコメントとして置く。
+Image / mock:
+- 生成画像。日本の中小企業の会議、話者より資料を見ている参加者。
+- 文字はすべて前景の議事録面へ配置。
+Evidence / source: S10（典型場面の整理。統計主張ではない）
+Speaker note purpose:
+- 読者自身の会議を想起させる。成果数値は断定しない。
+QA risk:
+- 吹き出しを散らさず、議事録面1枚に集約する。
+
+SLIDE 04
+Title: 止まる理由は、ページ不足ではなく「何を決めるか」が曖昧だから。
+Narrative job: 症状から原因へ進む。
+Visible content:
+- NG: 製品の良さを説明する
+- OK: 次回、担当部署で2週間の検証を始めるか決めてもらう
+- Definition: 「決定」とは、会議後に誰が何をするかが変わる選択。
+Visual type: CONTRAST
+Layout / silhouette:
+- 左上に厚いページ束を小さく置く。
+- 右下に大きな1枚の意思決定シート。「決めること」欄を黄色で強調。
+Image / mock:
+- 紙面モックのみ。写真なし。
+Evidence / source: S10
+Speaker note purpose:
+- 専門語「意思決定設計」を、会議後の行動が変わる選択として定義する。
+QA risk:
+- 定義を長くしない。黄色は「決めること」だけに使う。
+
+SLIDE 05
+Title: 一発生成は、平均的なページを大量につくる。
+Narrative job: 現在の失敗行動を明示する。
+Visible content:
+- Prompt: 「このテーマで30枚の資料を作って」
+- Output: 似た構図 / 長い本文 / 根拠の混在 / 弱い結論
+- Bottom line: 一度に決める項目が多すぎると、何が悪いか検査できない。
+Visual type: CONTRAST
+Layout / silhouette:
+- ブラウザのプロンプト入力面を左上。
+- 右から下へ、同じ型のスライドサムネイルが機械的に流れ落ちる。
+- 赤い検査スタンプを1か所だけ置く。
+Image / mock:
+- PowerPointネイティブのブラウザモックとサムネイル。
+Evidence / source: S5（明確・具体的な指示、反復改善）、S10
+Speaker note purpose:
+- OpenAIの「明確かつ具体的」「反復的に改善」を、資料制作の工程分解へ翻訳する。
+QA risk:
+- サムネイル内の文字を読ませない。反復する形自体で問題を伝える。
+
+SLIDE 06
+Title: このままでは修正と不信が増え、AI導入そのものが止まる。
+Narrative job: 失敗を放置した最悪の未来を示す。
+Visible content:
+- 生成
+- 修正
+- 根拠確認
+- 作り直し
+- 結果: 「AI資料は使えない」という評価だけが残る
+Visual type: PROCESS
+Layout / silhouette:
+- 赤い循環矢印で4段階を回す。
+- 中央に黒い停止標識「導入停止」。
+- ページ下部に、人の確認不足が原因だと示す短い注記。
+Image / mock:
+- ネイティブ図解。写真なし。
+Evidence / source: S10（因果仮説として提示）
+Speaker note purpose:
+- 組織の実測値として断定せず、「起こりうる失敗ループ」と説明する。
+QA risk:
+- 因果を過度に一般化しない。話者ノートで「典型的なリスクモデル」と明記。
+
+SLIDE 07
+Title: 反対に、判断が設計された資料は、会議後の次の一手を生む。
+Narrative job: 最高の未来を、具体的な会議成果として示す。
+Visible content:
+- 決定: 2週間の検証を開始
+- Owner: 営業責任者
+- Deadline: 次回会議まで
+- Next action: 対象業務を3つ選ぶ
+- Bottom line: 良い資料は「分かった」で終わらず、次の行動が残る。
+Visual type: ACTION
+Layout / silhouette:
+- 1枚の大きな「会議後の決定ログ」を中央配置。
+- 右下にチェック済みの次アクション。
+Image / mock:
+- 紙面モック。数値や固有名詞は「架空例」と明記。
+Evidence / source: S10（架空例）
+Speaker note purpose:
+- 「決定」を成果物として見せる。架空例であることを明確にする。
+QA risk:
+- 架空例ラベルを小さくしすぎない。
+
+SLIDE 08
+Title: プレゼンは、ページ制作ではなく意思決定の設計である。
+Narrative job: 第1幕の問題を、新しい見方で解決可能な課題へ変える。
+Visible content:
+- Old: 情報をページに入れる
+- New: 相手が決める順番をつくる
+- Definition: 意思決定設計 = 相手が理解し、比べ、納得し、行動できる順に材料を置くこと
+Visual type: HERO
+Layout / silhouette:
+- 左下に散らばるページ部品。
+- 右上へ向かう1本の決定ルート。
+- 中央の大語「設計するのは、ページではなく判断」。
+Image / mock:
+- ネイティブ図解。赤から青へ意味色を転換。
+Evidence / source: S4、S10
+Speaker note purpose:
+- Duarteの「聴衆を中心に、現状と可能性の差を作る」考えを実務の決定順序へ翻訳する。
+QA risk:
+- 抽象語だけで終えず、定義を必ず見せる。
+
+SLIDE 09
+Title: 相手は「理解・比較・納得・行動」の順に動く。
+Narrative job: 意思決定設計の全体地図を渡す。
+Visible content:
+- 理解: 何の話か
+- 比較: 何が違うか
+- 納得: なぜ信じられるか
+- 行動: 次に何をするか
+- Example line: AI導入提案なら、対象業務 → 現状との差 → 根拠 → 小さな検証
+Visual type: PROCESS
+Layout / silhouette:
+- 画面を横断する4つの大きな足場。カード状にせず、1本の連続した道として見せる。
+- 読者の視線が左下から右上へ進む。
+Image / mock:
+- ネイティブ図解。
+Evidence / source: S4、S10
+Speaker note purpose:
+- 学術モデルとしてではなく、本教材で使う実務上の順序と説明する。
+QA risk:
+- 4段階を同じ見た目にしすぎず、行動へ向けて視覚的圧力を高める。
+
+SLIDE 10
+Title: AIに頼む前に、読者・決定・根拠・次の行動を固定する。
+Narrative job: 最初の作業であるBriefを実行可能にする。
+Visible content:
+- 読者: 誰が読むか
+- 決定: 何を決めてもらうか
+- 根拠: 何が信頼材料か
+- 次の行動: 会議後に何をしてほしいか
+- Copy prompt:
+  「あなたはプレゼン編集者です。次の4項目を質問し、曖昧な点を埋めてください。読者／決定／根拠／次の行動。本文やスライドはまだ作らないでください。」
+Visual type: ACTION
+Layout / silhouette:
+- A4判Briefシートを左寄りに大きく配置。
+- 右下にコピー可能な短いプロンプト欄。
+Image / mock:
+- 紙面モック。写真なし。
+Evidence / source: S5、S10
+Speaker note purpose:
+- 明確なコンテキストを先に渡すというプロンプト原則を、質問型のBrief作成にする。
+QA risk:
+- プロンプトを小さくしない。必要なら本文を話者ノートへ逃がさず、見える範囲で短くする。
+
+SLIDE 11
+Title: Briefが曖昧なら、どれだけ良いプロンプトでも資料はぶれる。
+Narrative job: Brief省略の影響を比較で見せる。
+Visible content:
+- Vague: 経営者向けにAIの提案資料を作る
+- Specific: 従業員30〜100名の経営者が、問い合わせ対応で2週間の試験導入を承認するための提案
+- Bottom line: 具体化するのは文章量ではなく、判断条件。
+Visual type: CONTRAST
+Layout / silhouette:
+- 上半分に曖昧なBriefを霧のようにぼかす。
+- 下半分に具体Briefを焦点の合った紙面として置く。
+Image / mock:
+- 生成背景は使わず、タイポグラフィと紙面の焦点差で表現。
+Evidence / source: S5、S10
+Speaker note purpose:
+- 「具体的」の意味を、形容詞追加ではなく読者・決定・場面の固定として説明する。
+QA risk:
+- ぼかしで実際の可読性を損なわない。Vague側は読める濃度を保つ。
+
+SLIDE 12
+Title: 最初に作るのは本文ではなく、タイトルだけのGhost Deckである。
+Narrative job: 2段階目の作業を定義する。
+Visible content:
+- Ghost Deck = 各ページの結論タイトルだけを並べた設計図
+- 目的: 話の抜け・重複・順番を、デザイン前に直す
+- Copy prompt:
+  「Briefを基に、結論タイトルだけで12〜20枚の流れを作ってください。本文・画像・レイアウトはまだ作らないでください。」
+Visual type: ACTION
+Layout / silhouette:
+- 斜めに連なるタイトルだけの白いスライドカード。
+- 最前面のカードに定義、背後に物語の流れ。
+Image / mock:
+- ネイティブのスライドモック。
+Evidence / source: S3、S10
+Speaker note purpose:
+- think-cellのaction title先行の考えを、日本語の「Ghost Deck」として手順化する。
+QA risk:
+- カードグリッドにせず、1本のストーリーとして連ねる。
+
+SLIDE 13
+Title: タイトルだけで話が通れば、本文は短くできる。
+Narrative job: Ghost Deckの合格条件を具体例で示す。
+Visible content:
+- 例:
+  1. 問い合わせ対応に時間がかかっている
+  2. 原因は定型質問の繰り返しにある
+  3. AIは一次回答だけを担当できる
+  4. まず2週間、FAQ上位10件で検証する
+  5. 本日決めるのは担当者と開始日
+- Test: タイトルを縦に読んで、結論まで因果がつながるか
+Visual type: EVIDENCE
+Layout / silhouette:
+- 5枚の細長いタイトル札を縦に積む。
+- 右端に1本の因果線。本文領域は意図的に空白。
+Image / mock:
+- ネイティブ図解。架空例ラベル。
+Evidence / source: S3、S10（架空例）
+Speaker note purpose:
+- action titles全体で一貫した物語になるという考えを、実務チェックへ落とす。
+QA risk:
+- 5タイトルを小さくしすぎない。必要なら各1行に短縮する。
+
+SLIDE 14
+Title: 物語は「現状・問題・転換・根拠・行動」の順に圧力をつくる。
+Narrative job: Ghost Deckを組み立てる物語構造を渡す。
+Visible content:
+- 現状: 共有できる事実
+- 問題: 放置する損失
+- 転換: 見方を変える一文
+- 根拠: 信じる材料
+- 行動: 今日決めること
+- Note: 「圧力」は不安を煽ることではなく、次を知る必要を作ること。
+Visual type: PROCESS
+Layout / silhouette:
+- 左の低い現状から、中央の問題で落ち込み、右の行動へ上がる一本のストーリー曲線。
+- 5地点に短いラベルのみ。
+Image / mock:
+- ネイティブ図解。
+Evidence / source: S4、S10
+Speaker note purpose:
+- Duarteの現状と可能性の対比を、初心者向けの5段階に噛み砕く。
+QA risk:
+- Duarte固有図を複製しない。AI顧問室独自の5段階として描く。
+
+SLIDE 15
+Title: タイトルには話題ではなく、読み手が持ち帰る結論を書く。
+Narrative job: action titleの書き方を比較で教える。
+Visible content:
+- Topic title: AI導入の現状
+- Takeaway title: 問い合わせ対応から始めると、小さく検証できる
+- Formula: 主語 + 変化 / 判断 + 理由
+- Check: タイトルだけで「だから何？」に答えているか
+Visual type: CONTRAST
+Layout / silhouette:
+- 1枚のスライドを上下でBefore / Afterにめくる紙面。
+- After側を大きく、Before側は剥がされた付箋として小さく置く。
+Image / mock:
+- 紙面モック。
+Evidence / source: S3、S10
+Speaker note purpose:
+- action titleは話題名ではなく、ページの主要メッセージを表すという原則を説明する。
+QA risk:
+- Afterタイトルは1行想定。長ければ本文を削る。
+
+SLIDE 16
+Title: 1枚に1つの主張を守ると、視線の行き先が1つになる。
+Narrative job: ページ単位の情報設計を教える。
+Visible content:
+- NG page: 結論 / 例外 / 次の行動 / 補足が同じ強さ
+- OK page: 結論を1つ、支える情報は従属させる
+- Rule: 2つの「だから何？」があるなら、2枚に分ける。
+Visual type: CONTRAST
+Layout / silhouette:
+- 左に視線が4方向へ散るページ。
+- 右に1つの大きな結論へ収束するページ。
+- 矢印は少数。右側を視覚的に優位にする。
+Image / mock:
+- ネイティブのスライドモック。
+Evidence / source: S3、S1
+Speaker note purpose:
+- 1スライド1アイデア、短い文章、ラッピング回避の原則を結びつける。
+QA risk:
+- NG側をわざと読みにくくしすぎない。比較の意味は保つ。
+
+SLIDE 17
+Title: 根拠は数字を置くだけでなく、「だから何か」まで示す。
+Narrative job: Evidenceを意思決定へ接続する。
+Visible content:
+- Claim: 次回は価格説明よりセキュリティ確認を優先する
+- Evidence: 稟議コメントで、未確認事項がセキュリティ欄に集中
+- Meaning: 決裁停止の原因に合わせて、会議の議題を変える
+- Label: 架空例
+Visual type: EVIDENCE
+Layout / silhouette:
+- 左から右へ Claim → Evidence → Meaning の3段階。
+- 中央の根拠を紙の抜粋、右の意味を大きな会議アジェンダとして見せる。
+Image / mock:
+- 文書モックと会議アジェンダ。ネイティブ。
+Evidence / source: S3、S10（架空例）
+Speaker note purpose:
+- 根拠を陳列せず、意思決定への含意まで書く。
+QA risk:
+- 事実と意味を色だけで区別しない。ラベルと形も変える。
+
+SLIDE 18
+Title: Slide Specが、各ページの主張・根拠・見せ方・出典を固定する。
+Narrative job: 3段階目の作業を、完成形のシートとして渡す。
+Visible content:
+- Slide Specの必須欄:
+  - Title
+  - Narrative job
+  - Visible content
+  - Evidence
+  - Visual type
+  - Layout
+  - Source
+  - QA risk
+- Bottom line: 作り始める前に、完成条件を言語化する。
+Visual type: ACTION
+Layout / silhouette:
+- 画面の8割を占めるSlide Specの紙面。
+- 右上に小さな完成スライドのプレビュー。
+- 紙面の各欄からプレビューへ細い関連線。
+Image / mock:
+- 紙面モック。実際の本Slide Spec形式を簡略化して見せる。
+Evidence / source: S6、S10
+Speaker note purpose:
+- AnthropicのPPTX skillが持つ計画・実装・QAの分離を参考に、初心者が使える事前仕様へ整理したと説明する。
+QA risk:
+- フォームを細かくしすぎない。8欄を本文16pt以上で収める。
+
+SLIDE 19
+Title: 見せ方は、主張に合わせて5つの型から選べる。
+Narrative job: デザインの選択肢を、目的ベースで整理する。
+Visible content:
+- HERO: 結論を記憶させる
+- CONTRAST: 違いを判断させる
+- PROCESS: 順序を理解させる
+- EVIDENCE: 根拠を信じてもらう
+- ACTION: その場で使わせる
+- Rule: 先に型を選び、あとから内容を詰める。
+Visual type: EVIDENCE
+Layout / silhouette:
+- 5種類のミニスライドを、一直線の棚に大小をつけて並べる。
+- 各型の形そのものを変える。5枚同じカードにはしない。
+Image / mock:
+- ネイティブのミニスライド。
+Evidence / source: S1、S3、S10
+Speaker note purpose:
+- この5型はAI顧問室による制作上の分類であり、状況に応じて複合してよいと補足する。
+QA risk:
+- 5項目を均等カード化しない。HEROを最大、ACTIONを出口として右端に置く。
+
+SLIDE 20
+Title: 背景画像は、雰囲気ではなく理解を助ける舞台として使う。
+Narrative job: 画像を使う判断基準を教える。
+Visible content:
+- Use when: 場所 / 人物 / 状況が、主張の理解に必要
+- Avoid when: ただ未来的、ただ綺麗、ただAIらしい
+- Example: 会議の緊張を見せる背景 + 判断シートを前景に置く
+Visual type: CONTRAST
+Layout / silhouette:
+- 左3分の1に「装飾だけの抽象AI背景」を小さく置き、赤い×。
+- 残りに会議の場面を全面配置し、その上へ白い判断シート。
+Image / mock:
+- 2枚の生成画像。抽象AI背景と、意思決定が止まった会議場面。
+- 文字は前景面にのみ置く。
+Evidence / source: S1、S10
+Speaker note purpose:
+- Microsoftの「画像は話を伝えるために使い、多すぎないようにする」を背景画像の採用基準へ翻訳する。
+QA risk:
+- 左右二分割を前ページと連続させない。右の体験を支配的にする。
+
+SLIDE 21
+Title: 背景画像の上には前景モックを置き、文字の居場所をつくる。
+Narrative job: 全面背景でも可読性を守る具体策を渡す。
+Visible content:
+- Paper mock: 説明・結論向け
+- Browser mock: プロンプト・操作向け
+- Device mock: 閲覧体験向け
+- Rule: 写真は舞台、文字は情報面。
+Visual type: ACTION
+Layout / silhouette:
+- 1枚の同じ背景画像上に、紙・ブラウザ・スマホの3つを遠近付きで重ねる。
+- 各モックの用途を短いラベルで示す。
+Image / mock:
+- 生成背景1枚 + ネイティブの3モック。
+Evidence / source: S1、S2、S10
+Speaker note purpose:
+- 十分なコントラストを担保し、画像と文字の役割を分ける。
+QA risk:
+- モック同士を重ねすぎない。文字は不透明面の安全領域内に置く。
+
+SLIDE 22
+Title: 同じレイアウトを繰り返さず、主張に合わせて画面の形を変える。
+Narrative job: デッキ全体のリズムを設計する。
+Visible content:
+- Rhythm example:
+  HERO → CONTRAST → PROCESS → EVIDENCE → ACTION → HERO
+- Rule: 色を変えるのではなく、情報の形を変える。
+- Check: 6枚を縮小表示して、隣が同じシルエットなら組み替える。
+Visual type: PROCESS
+Layout / silhouette:
+- 6枚のサムネイルを波形のように大小・余白・重心を変えて並べる。
+- 画面下に細い視線移動の軌跡。
+Image / mock:
+- ネイティブのミニスライド。カードグリッドではなく映画の絵コンテのように配置。
+Evidence / source: S6、S10
+Speaker note purpose:
+- Anthropic skillの「レイアウトを変える」「全スライドを画像で確認する」という考えをリズム検査に使う。
+QA risk:
+- 装飾的な多様性にしない。各シルエットの用途ラベルを残す。
+
+SLIDE 23
+Title: AIには候補と速度を任せ、人は目的・事実・優先順位を持つ。
+Narrative job: AIと人の責任境界を明確にする。
+Visible content:
+- AI:
+  - タイトル候補
+  - 構成案
+  - 表現の短縮
+  - ビジュアル案
+- Human:
+  - 誰に何を決めてもらうか
+  - 事実と出典の確認
+  - 何を削るか
+  - 最終承認
+- Bottom line: 生成は委任できる。責任は委任しない。
+Visual type: PROCESS
+Layout / silhouette:
+- 上下2本のスイムレーン。AIとHumanが交互にバトンを渡す。
+- Humanの承認ゲートを黄色のひし形で3か所。
+Image / mock:
+- ネイティブ図解。
+Evidence / source: S5、S6、S10
+Speaker note purpose:
+- AIを自動完成装置ではなく、選択肢を速く出す協働者として位置づける。
+QA risk:
+- 人とAIを善悪で分けない。役割の違いとして描く。
+
+SLIDE 24
+Title: 制作はBrief、Ghost Deck、Slide Spec、Visual、QAの順に進める。
+Narrative job: 教材全体を、実行順と承認ゲートつきのワークフローへ統合する。
+Visible content:
+- 1 Brief — 読者と決定を固定
+- Gate 1 — 人が承認
+- 2 Ghost Deck — タイトルだけで物語を確認
+- Gate 2 — 人が承認
+- 3 Slide Spec — 根拠と見せ方を固定
+- Gate 3 — 人が承認
+- 4 Visual — 制作
+- 5 QA — 全ページ検査
+- Copy prompt:
+  「各工程の承認が出るまで次へ進まないでください。最初はBriefだけを作成してください。」
+Visual type: ACTION
+Layout / silhouette:
+- 画面全体を横切る5段階の制作ライン。
+- 3つの承認ゲートを大きく見せる。
+- 下部に短いコピープロンプト。
+Image / mock:
+- ネイティブ図解。
+Evidence / source: S5、S6、S10
+Speaker note purpose:
+- 本教材自身がこのワークフローで作られていることを説明する。AIの反復改善を工程承認で制御する。
+QA risk:
+- 5工程と3ゲートを混同させない。工程は青、ゲートは黄で形も変える。
+
+SLIDE 25
+Title: AIの初稿は、完成品ではなく検査するための仮説である。
+Narrative job: 生成後の姿勢を変え、QAへつなぐ。
+Visible content:
+- Draft 01
+- Inspect:
+  - 何が伝わるか
+  - 何が余計か
+  - 何が足りないか
+  - 何が未確認か
+- Rule: 直す前に、問題の種類を言葉にする。
+Visual type: EVIDENCE
+Layout / silhouette:
+- 大きな1枚の初稿スライドを斜めに置く。
+- 周囲に4つの赤入れ注釈。画面右上に「DRAFT 01」スタンプ。
+Image / mock:
+- スライドモック。赤入れは手書き風だが読める文字。
+Evidence / source: S5、S6
+Speaker note purpose:
+- 反復改善と全ページ検査を、初稿の定義として説明する。
+QA risk:
+- 赤入れを装飾化しない。4観点のいずれかに必ず対応させる。
+
+SLIDE 26
+Title: 品質は、物語・焦点・収まり・根拠・読みやすさの5回に分けて確認する。
+Narrative job: 具体的なQA手順を渡す。
+Visible content:
+- Pass 1 物語: タイトルだけで因果が通るか
+- Pass 2 焦点: 1枚1主張か
+- Pass 3 収まり: 重なり・切れ・折返しはないか
+- Pass 4 根拠: 出典・仮定・架空例が区別されているか
+- Pass 5 読みやすさ: 距離・コントラスト・読み順に耐えるか
+- Bottom line: 5項目を一度に見ず、1回1目的で検査する。
+Visual type: ACTION
+Layout / silhouette:
+- 1枚のスライドを5回通す「検査レーン」。
+- 各Passで別のチェック痕が増える。
+- 横一列のカードにはせず、同一ページの段階的な変化として見せる。
+Image / mock:
+- ネイティブ図解。
+Evidence / source: S1、S2、S6、S10
+Speaker note purpose:
+- 検査を分けることで見落としを減らす実務手順。効果量は断定しない。
+QA risk:
+- 5観点の本文を16pt未満にしない。必要なら各説明を1行に保つ。
+
+SLIDE 27
+Title: PPTX、PDF、投影、スマホでは、同じ資料でも崩れ方が違う。
+Narrative job: 最終出力を実機・実形式で確認する必要を示す。
+Visible content:
+- PPTX: 編集・フォント・互換性
+- PDF: 固定レイアウト・リンク
+- 投影: 距離・端の切れ・色
+- スマホ: 縮小時の文字量・縦持ち閲覧
+- Final check:
+  1. PPTXを開く
+  2. PDFを書き出す
+  3. 全画面投影する
+  4. スマホで読む
+Visual type: ACTION
+Layout / silhouette:
+- 1つのスライドが、PowerPoint窓、PDF紙面、プロジェクター、スマホへ展開する。
+- 4つの出力を奥行きのあるモックとして配置。
+Image / mock:
+- ネイティブのデバイス・出力モック。
+Evidence / source: S1、S7、S8、S9
+Speaker note purpose:
+- Microsoftの互換性、フォント置換、PDF書き出し、投影解像度の注意を実務チェックへまとめる。
+QA risk:
+- 「PDFなら絶対崩れない」と断定しない。リンクや書き出し結果も確認対象にする。
+
+SLIDE 28
+Title: まず自社資料1本で試し、迷う工程だけ無料顧問を使う。
+Narrative job: 教材だけで実行できる状態を作り、任意の支援へ自然につなぐ。
+Visible content:
+- 今日やること:
+  1. 自社資料を1本選ぶ
+  2. Briefの4項目を書く
+  3. タイトルだけでGhost Deckを作る
+  4. 1枚だけSlide Specを書いて作り直す
+- Secondary CTA:
+  無料顧問1回分
+  自社資料を持ち込み、BriefとGhost Deckを一緒に作る
+- Small note: 教材だけで進められる方は、そのまま実践してください。
+Visual type: ACTION
+Layout / silhouette:
+- 明るい会議室の生成背景。
+- 手前左に「今日やること」の大きな白いアクションシート。
+- 右奥に控えめな「無料顧問1回分」の相談カード。主役は自力実践。
+- 文字はすべて前景の不透明面に置く。
+Image / mock:
+- 生成画像。作業を始める経営者と担当者、机上に自社資料。
+- 前景に紙面モック。
+Evidence / source: S10
+Speaker note purpose:
+- 第1幕の「会議が止まる」を、自社資料1本の行動で回収する。CTAは支援の選択肢としてのみ提示する。
+QA risk:
+- CTAを教材より大きくしない。価格・限定・成果保証など未確認の訴求を足さない。
+
+DECK-LEVEL QA BEFORE IMPLEMENTATION
+- 全タイトルがGhost Deck承認版と一致している。
+- 01〜08で問題、最悪の未来、最高の未来、手段の提示が完了する。
+- 09〜24で初心者がBrief → Ghost Deck → Slide Spec → Visual → QAを理解できる。
+- 25〜27で初稿、5回QA、出力別QAを実行できる。
+- 28のCTAが自力実践を邪魔していない。
+- すべての専門語は初出で定義または例を付けている。
+- 連続するスライドに同じシルエットを使っていない。
+- 全面背景画像のページ01、03、20、21、28は、必ず不透明な前景モックを持つ。
+- 外部の非自明な主張と生成画像は話者ノートの[Sources]に記録する。
+- 実測していない効果数値、架空の顧客名、架空の成功結果を使わない。
+- PPTX生成後は全28ページをレンダーし、各ページを実寸で個別確認する。
+- 意図しない重なり、文字切れ、タイトル折返し、低コントラスト、出典漏れをゼロにする。

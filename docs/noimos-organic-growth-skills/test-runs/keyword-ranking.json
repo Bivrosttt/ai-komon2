@@ -1,0 +1,76 @@
+{
+  "tool": "noimos-commercial-keywords",
+  "generated_at": "2026-07-30T03:00:50.951165+00:00",
+  "method": "planning heuristic; not a ranking or revenue prediction",
+  "eligible_count": 3,
+  "candidates": [
+    {
+      "keyword": "AI顧問 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 79.9,
+      "search_volume": 260.0,
+      "difficulty": 24.0,
+      "demand_basis": "observed_volume",
+      "source": "provider-export",
+      "retrieved_at": "2026-07-30",
+      "reasons": []
+    },
+    {
+      "keyword": "AI顧問 費用",
+      "intent": "purchase",
+      "eligible": true,
+      "score": 78.5,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "serp-proxy",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI導入支援会社 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 78.1,
+      "search_volume": 590.0,
+      "difficulty": 48.0,
+      "demand_basis": "observed_volume",
+      "source": "provider-export",
+      "retrieved_at": "2026-07-30",
+      "reasons": []
+    },
+    {
+      "keyword": "生成AI とは",
+      "intent": "informational",
+      "eligible": false,
+      "score": 55.4,
+      "search_volume": 8100.0,
+      "difficulty": 72.0,
+      "demand_basis": "observed_volume",
+      "source": "provider-export",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "intent_not_commercial"
+      ]
+    },
+    {
+      "keyword": "AI導入 メリット",
+      "intent": "informational",
+      "eligible": false,
+      "score": 45.7,
+      "search_volume": 1900.0,
+      "difficulty": 55.0,
+      "demand_basis": "observed_volume",
+      "source": "provider-export",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "intent_not_commercial",
+        "cannibalization_risk"
+      ]
+    }
+  ]
+}

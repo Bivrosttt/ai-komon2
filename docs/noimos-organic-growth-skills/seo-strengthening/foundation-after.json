@@ -1,0 +1,85 @@
+{
+  "tool": "noimos-growth-foundation",
+  "generated_at": "2026-07-30T08:41:23.582546+00:00",
+  "root": "/Users/koki/Desktop/ai-komon2",
+  "html": "/Users/koki/Desktop/ai-komon2/index.html",
+  "overall": "pass",
+  "summary": {
+    "pass": 11,
+    "warn": 0,
+    "fail": 0
+  },
+  "findings": [
+    {
+      "check": "title",
+      "status": "pass",
+      "evidence": "AI顧問室｜中小企業のためのAI顧問サービス",
+      "priority": "P1"
+    },
+    {
+      "check": "meta_description",
+      "status": "pass",
+      "evidence": "75 chars",
+      "priority": "P1"
+    },
+    {
+      "check": "canonical",
+      "status": "pass",
+      "evidence": "https://ai-komon.bivrost.co.jp/",
+      "priority": "P0"
+    },
+    {
+      "check": "viewport",
+      "status": "pass",
+      "evidence": "present",
+      "priority": "P0"
+    },
+    {
+      "check": "single_h1",
+      "status": "pass",
+      "evidence": "1 H1 elements",
+      "priority": "P1"
+    },
+    {
+      "check": "json_ld",
+      "status": "pass",
+      "evidence": "1/1 valid; types=['Organization', 'Service', 'WebSite']",
+      "priority": "P0"
+    },
+    {
+      "check": "open_graph",
+      "status": "pass",
+      "evidence": "complete",
+      "priority": "P1"
+    },
+    {
+      "check": "cta_links",
+      "status": "pass",
+      "evidence": "10 unique CTA destinations: ['#contact', 'articles/ai-advisor-comparison/', 'data.html', 'https://timerex.net/s/koki.otsuka_bfac/4b686119', 'implementation.html']",
+      "priority": "P0"
+    },
+    {
+      "check": "analytics_source",
+      "status": "pass",
+      "evidence": "source markers: ['gtag', 'lead_event']; live receipt not verified",
+      "priority": "P1"
+    },
+    {
+      "check": "robots_and_sitemap",
+      "status": "pass",
+      "evidence": "robots=True, sitemap=True, disallow_all=False",
+      "priority": "P0"
+    },
+    {
+      "check": "llms_txt",
+      "status": "pass",
+      "evidence": "1698 chars",
+      "priority": "P2"
+    }
+  ],
+  "limitations": [
+    "Source inspection does not verify live network firing or analytics receipt.",
+    "Rendered mobile/desktop visual checks are required separately.",
+    "Positioning quality and trust proof require human review."
+  ]
+}

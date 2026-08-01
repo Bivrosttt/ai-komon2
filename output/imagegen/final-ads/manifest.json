@@ -1,0 +1,40 @@
+{
+  "campaign": "AI顧問室 5業界 現場ペイン広告",
+  "created_at": "2026-07-30",
+  "format": "png",
+  "dimensions": "square, original model output",
+  "copy_policy": "main_copy_only_native_image_generation",
+  "post_generation_text_overlay": false,
+  "items": [
+    {
+      "industry": "建設",
+      "file": "kensetsu-native-text.png",
+      "copy": "現場写真を80枚撮った。事務所に戻って30分。写真台帳はまだ白紙。",
+      "landing_page": "../../../lp-ai-kensetsu-photo.html"
+    },
+    {
+      "industry": "不動産",
+      "file": "fudosan-native-text.png",
+      "copy": "11:02に問い合わせ。11:32、まだ返信できていない。",
+      "landing_page": "../../../lp-ai-fudosan-inquiry.html"
+    },
+    {
+      "industry": "製造",
+      "file": "seizo-native-text.png",
+      "copy": "見積依頼が来た。類似図面を探して30分。まだ見つからない。",
+      "landing_page": "../../../lp-ai-seizo-estimate.html"
+    },
+    {
+      "industry": "運送・物流",
+      "file": "unsou-native-text.png",
+      "copy": "朝6時。配車変更が3件。どの車に反映したか追えない。",
+      "landing_page": "../../../lp-ai-unsou-dispatch.html"
+    },
+    {
+      "industry": "旅館・ホテル",
+      "file": "shukuhaku-native-text.png",
+      "copy": "チェックインの列に3組。代表電話が鳴る。",
+      "landing_page": "../../../lp-ai-shukuhaku-front.html"
+    }
+  ]
+}

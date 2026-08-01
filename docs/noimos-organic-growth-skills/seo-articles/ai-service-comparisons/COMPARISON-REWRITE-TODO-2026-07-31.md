@@ -1,0 +1,106 @@
+# 実在AIサービス比較記事リライト TODO
+
+更新日: 2026年8月1日
+対象: 既存のAI動画・AIコーディング・AI議事録比較記事  
+運用: 各項目は証跡（ファイル、URL、コマンド、画面確認）がそろった時点でのみ `[x]` にする。
+
+## 全体チェックリスト
+
+- [x] 対象記事を3本に固定した
+- [x] 最新の `noimos-comparison-article` スキル全文を読み、現行記事の不足を確認した
+- [x] スキルの全工程をチェックリスト形式へ統一し、TODO必須運用を明文化する
+- [x] 公式ホーム画面のスクリーンショットを各サービスのレビュー直前へ配置した
+- [x] 価格・usage・コスパ・強み・弱み・公式リンク・最終AI顧問室CTAを各記事で確認した
+- [x] 3記事を最新チェックリストに沿ってブラッシュアップし、差分を検証する
+- [x] デスクトップ・スマホの実ブラウザ表示を3記事で確認する
+- [x] 比較バリデータ、SEO/GEOバリデータ、品質ゲートを再実行する
+- [x] TODOの未完了項目を解消し、証跡ファイルをリンクする
+
+## AI動画サービス比較
+
+- [x] ブリーフ・候補・代表シナリオ・決定ルールを確認: `ai-video-tools-comparison-brief.md`
+- [x] 公式料金・usage・口コミの調査証跡を確認: `ai-video-tools-comparison-research.md`
+- [x] claim ledgerと価格入力を確認: `ai-video-tools-comparison-claims.json`, `ai-video-tools-comparison-pricing.csv`
+- [x] 公式ホーム画面4枚と取得元台帳を確認: `ai-video-tools-comparison/home-screens/`, `ai-video-tools-comparison-screenshots.json`
+- [x] 本文・価格表・強み弱み表・CTAを確認: `articles/ai-video-tools-comparison/index.html`
+- [x] 最新チェックリストでDOM、禁止語、リンク、画像、レスポンシブ表示を再検証する
+- [x] リライト後の品質レポートを保存する
+
+## AIコーディングサービス比較
+
+- [x] ブリーフ・候補・代表シナリオ・決定ルールを確認: `ai-coding-tools-comparison-brief.md`
+- [x] 公式料金・usage・口コミの調査証跡を確認: `ai-coding-tools-comparison-research.md`
+- [x] claim ledgerと価格入力を確認: `ai-coding-tools-comparison-claims.json`, `ai-coding-tools-comparison-pricing.csv`
+- [x] 公式ホーム画面4枚と取得元台帳を確認: `ai-coding-tools-comparison/home-screens/`, `ai-coding-tools-comparison-screenshots.json`
+- [x] 本文・価格表・強み弱み表・CTAを確認: `articles/ai-coding-tools-comparison/index.html`
+- [x] 最新チェックリストでDOM、禁止語、リンク、画像、レスポンシブ表示を再検証する
+- [x] リライト後の品質レポートを保存する
+
+## AI議事録サービス比較
+
+- [x] ブリーフ・候補・代表シナリオ・決定ルールを確認: `ai-meeting-notes-comparison-brief.md`
+- [x] 公式料金・usage・口コミの調査証跡を確認: `ai-meeting-notes-comparison-research.md`
+- [x] claim ledgerと価格入力を確認: `ai-meeting-notes-comparison-claims.json`, `ai-meeting-notes-comparison-pricing.csv`
+- [x] 公式ホーム画面4枚と取得元台帳を確認: `ai-meeting-notes-comparison/home-screens/`, `ai-meeting-notes-comparison-screenshots.json`
+- [x] 本文・価格表・強み弱み表・CTAを確認: `articles/ai-meeting-notes-comparison/index.html`
+- [x] 最新チェックリストでDOM、禁止語、リンク、画像、レスポンシブ表示を再検証する
+- [x] リライト後の品質レポートを保存する
+
+## 完了条件
+
+- [x] 3記事すべてで比較バリデータが `PASS`（blockers 0、warnings 0）になる
+- [x] 3記事すべてでSEO/GEOバリデータとAI-only品質ゲートが成功する
+- [x] 3記事すべてでサービス数とホーム画面数が一致し、各レビュー見出し直前に画像がある
+- [x] 3記事すべてでスマホ時に目次が非表示、CTAが記事下に移動し、比較表が横スクロール可能である
+- [x] 対象記事内の禁止語検索が0件になる
+- [x] 変更したスキル、記事、証跡、画像だけをコミットする
+
+## 実行証跡
+
+- 比較バリデータ出力: `ai-video-tools-comparison-comparison-validation.json` / `ai-coding-tools-comparison-comparison-validation.json` / `ai-meeting-notes-comparison-comparison-validation.json`
+- SEO/GEO出力: `ai-video-tools-comparison-validation.json` / `ai-coding-tools-comparison-validation.json` / `ai-meeting-notes-comparison-validation.json`
+- AI-only品質出力: 各 `*-quality-report.json`（3件とも `PASS`）
+- 公式ホーム画面台帳: 各 `*-screenshots.json` と各記事の `home-screens/`
+- 実ブラウザ画面: `/tmp/ai-video-tools-comparison-desktop.png`、`/tmp/ai-coding-tools-comparison-desktop.png`、`/tmp/ai-meeting-notes-comparison-desktop.png`
+
+## サービス間の視認性改善（2026年7月31日 22:40）
+
+- [x] 3記事の4サービス節を `service-review` カードに分割した
+- [x] サービスごとに番号、アクセント色、背景色、見出し上の区切り線を付けた
+- [x] デスクトップでカード間隔148px相当、スマホで106px相当を実ブラウザ計測した
+- [x] 3記事すべてで画像4枚の読み込み、横幅、目次、末尾CTAを再確認した
+- [x] 代表画面を保存した: `/tmp/ai-video-service-review-desktop.png`、`/tmp/ai-video-service-review-mobile.png`
+
+## サービスリンクの導線修正（2026年7月31日）
+
+- [x] サービス名、H1、結論、比較表の主リンクを公式ホーム／公式プロダクトホームへ変更した
+- [x] 料金URLは調査ソース欄に残し、サービス導線と役割を分離した
+- [x] スキルに `home_url` と `pricing_url` の分離ルールを追加した
+- [x] 比較バリデータに初出サービスリンクの公式ホームURL検査を追加した
+- [x] 3記事で初出リンクに `pricing` / `plans` が含まれないことをDOM確認した
+- [x] 3記事の比較・SEO/GEOバリデータがPASSした
+
+## 要点ブロックとサービス列の改善（2026年7月31日）
+
+- [x] 料金表・強み弱み表のサービス列に内容幅ベースのnowrap指定を追加した
+- [x] サービス名が最長の候補に合わせて広がり、10文字前後の名前が改行されないことを3記事で確認した
+- [x] 冒頭の要点を、用途別第一候補・価格/usage・選ばない条件が本文なしで分かる内容へ書き換えた
+- [x] 要点ブロックが全候補名・具体的な数値・判断条件を含むことをバリデータで検査するルールを追加した
+- [x] 3記事の比較・SEO/GEOバリデータがPASSした
+- [x] デスクトップ・スマホで要点ブロックと比較表の表示を確認した
+
+## ヘッダーと左右レイアウトの改善（2026年7月31日）
+
+- [x] 3記事に共通ヘッダー（AI顧問室、AI導入、記事、相談CTA）を追加した
+- [x] デスクトップのグリッドを左250px・中央可変・右290pxへ調整した
+- [x] ヘッダー下のsticky目次・CTA位置を調整し、左右欄が中央本文に押し潰されないことを確認した
+- [x] スマホではナビを簡略化し、目次非表示・記事下CTA・横幅390pxを確認した
+- [x] 3記事の比較・SEO/GEOバリデータがPASSした
+
+## 右CTAの幅とコピー改善（2026年8月1日）
+
+- [x] 右CTAを290pxへ広げ、1440px・2048pxで中央本文を圧迫せず表示した
+- [x] 見出しを2行、説明を1文＋オファー1行へ整理した
+- [x] ボタンを「無料コンサルを受け取る」に短縮し、デスクトップで1行表示にした
+- [x] 3記事の1440px・390px表示で横スクロール0、スマホのCTA記事下を確認した
+- [x] 3記事の比較・SEO/GEOバリデータがPASSした

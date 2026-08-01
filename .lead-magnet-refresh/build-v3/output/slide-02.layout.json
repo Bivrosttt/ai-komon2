@@ -1,0 +1,1126 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/4jfgm2",
+    "id": "4jfgm2",
+    "slide": 2,
+    "layoutId": "9344d366-ad5c-411b-8e5f-a7b651a706e0",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "9ceca35b-7556-4f85-9a71-2cdab5b648c3",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Hiragino Kaku Gothic ProN"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "9344d366-ad5c-411b-8e5f-a7b651a706e0",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "9ceca35b-7556-4f85-9a71-2cdab5b648c3",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "9ceca35b-7556-4f85-9a71-2cdab5b648c3",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8vqdcja1",
+      "id": "1",
+      "bbox": [
+        64,
+        18,
+        280,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "PROBLEM / SPEED ≠ DECISION",
+      "textPreview": "PROBLEM / SPEED ≠ DECISION",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#62666D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "PROBLEM / SPEED ≠ DECISION"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "PROBLEM / SPEED ≠ DECISION",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#62666D",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "PROBLEM / SPEED ≠ DECISION",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#62666D",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7uhwjetw",
+      "id": "2",
+      "name": "slide-title-2",
+      "bbox": [
+        64,
+        46,
+        1152,
+        112
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "AIで資料は速くなる。\nでも、経営会議の判断は速くならない。",
+      "textPreview": "AIで資料は速くなる。 | でも、経営会議の判断は速くならない。",
+      "resolvedFontSize": 48,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 48,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AIで資料は速くなる。"
+          },
+          {
+            "index": 2,
+            "text": "でも、経営会議の判断は速くならない。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AIで資料は速くなる。",
+          "lineSpacingPercent": 95000,
+          "resolvedTextStyle": {
+            "fontSize": 48,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 0.95
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AIで資料は速くなる。",
+              "fontSize": 48,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 0.95
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "でも、経営会議の判断は速くならない。",
+          "lineSpacingPercent": 95000,
+          "resolvedTextStyle": {
+            "fontSize": 48,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 0.95
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "でも、経営会議の判断は速くならない。",
+              "fontSize": 48,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 0.95
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/m98va9sb",
+      "id": "3",
+      "bbox": [
+        90,
+        216,
+        360,
+        58
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "生成速度",
+      "textPreview": "生成速度",
+      "resolvedFontSize": 38,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 38,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#2357D9",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "生成速度"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "生成速度",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 38,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#2357D9",
+            "bold": true,
+            "alignment": "center",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "生成速度",
+              "fontSize": 38,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#2357D9",
+              "bold": true,
+              "alignment": "center",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/l8feh4bq",
+      "id": "4",
+      "bbox": [
+        830,
+        216,
+        360,
+        58
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "判断速度",
+      "textPreview": "判断速度",
+      "resolvedFontSize": 38,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 38,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#E33B36",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "判断速度"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "判断速度",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 38,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#E33B36",
+            "bold": true,
+            "alignment": "center",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "判断速度",
+              "fontSize": 38,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#E33B36",
+              "bold": true,
+              "alignment": "center",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/k76d8za5",
+      "id": "5",
+      "bbox": [
+        86,
+        306,
+        230,
+        126
+      ],
+      "rotation": -7,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8DADE",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/z6xwfutk",
+      "id": "6",
+      "bbox": [
+        102,
+        322,
+        128.8,
+        14
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#2357D9",
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/y5ov69sz",
+      "id": "7",
+      "bbox": [
+        102,
+        350,
+        165.6,
+        28
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#111111",
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x4fed4be",
+      "id": "8",
+      "bbox": [
+        132,
+        328,
+        230,
+        126
+      ],
+      "rotation": -5,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8DADE",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c36d4za9",
+      "id": "9",
+      "bbox": [
+        148,
+        350,
+        94,
+        84
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#FBE9E8",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u58r298j",
+      "id": "10",
+      "bbox": [
+        252,
+        350,
+        94,
+        84
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#E9EEFD",
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/f6hsvu94",
+      "id": "11",
+      "bbox": [
+        178,
+        350,
+        230,
+        126
+      ],
+      "rotation": -3,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8DADE",
+      "lineWidth": 1
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/g7qt4zqp",
+      "id": "12",
+      "bbox": [
+        194,
+        366,
+        128.8,
+        14
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#2357D9",
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h8zax4ra",
+      "id": "13",
+      "bbox": [
+        194,
+        394,
+        165.6,
+        28
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#111111",
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6horyp8n",
+      "id": "14",
+      "bbox": [
+        224,
+        372,
+        230,
+        126
+      ],
+      "rotation": -1,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8DADE",
+      "lineWidth": 1
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7ixsru98",
+      "id": "15",
+      "bbox": [
+        240,
+        394,
+        94,
+        84
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#FBE9E8",
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sj690zqd",
+      "id": "16",
+      "bbox": [
+        344,
+        394,
+        94,
+        84
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#E9EEFD",
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tkzat4ry",
+      "id": "17",
+      "bbox": [
+        270,
+        394,
+        230,
+        126
+      ],
+      "rotation": 1,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8DADE",
+      "lineWidth": 1
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/idorup8b",
+      "id": "18",
+      "bbox": [
+        286,
+        410,
+        128.8,
+        14
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#2357D9",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jexsna9w",
+      "id": "19",
+      "bbox": [
+        286,
+        438,
+        165.6,
+        28
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#111111",
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nitovqpo",
+      "id": "20",
+      "bbox": [
+        316,
+        416,
+        230,
+        126
+      ],
+      "rotation": 3,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8DADE",
+      "lineWidth": 1
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mhk72lo3",
+      "id": "21",
+      "bbox": [
+        332,
+        438,
+        94,
+        84
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#FBE9E8",
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9kbqxg7u",
+      "id": "22",
+      "bbox": [
+        436,
+        438,
+        94,
+        84
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#E9EEFD",
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/oj2p4b69",
+      "id": "23",
+      "bbox": [
+        554,
+        292,
+        170,
+        130
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "≠",
+      "textPreview": "≠",
+      "resolvedFontSize": 108.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 112,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 0.97,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "≠"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "≠",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 112,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "center",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "≠",
+              "fontSize": 112,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "center",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bmd8zqp0",
+      "id": "24",
+      "bbox": [
+        846,
+        312,
+        316,
+        184
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8DADE",
+      "lineWidth": 1
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/al476lof",
+      "id": "25",
+      "bbox": [
+        878,
+        342,
+        220,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "会議後の決定",
+      "textPreview": "会議後の決定",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 15,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#E33B36",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "会議後の決定"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "会議後の決定",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#E33B36",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "会議後の決定",
+              "fontSize": 15,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#E33B36",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xovq107q",
+      "id": "26",
+      "bbox": [
+        878,
+        388,
+        252,
+        54
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "fillColor": "#FBE9E8",
+      "lineWidth": 0
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wnmp8v65",
+      "id": "27",
+      "bbox": [
+        878,
+        388,
+        252,
+        54
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "未記入",
+      "textPreview": "未記入",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 26,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#E33B36",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "未記入"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "未記入",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#E33B36",
+            "bold": true,
+            "alignment": "center",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "未記入",
+              "fontSize": 26,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#E33B36",
+              "bold": true,
+              "alignment": "center",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/rq9on6pg",
+      "id": "28",
+      "bbox": [
+        192,
+        586,
+        896,
+        42
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "速く作ることと、相手が決められることは別の設計課題。",
+      "textPreview": "速く作ることと、相手が決められることは別の設計課題。",
+      "resolvedFontSize": 27,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 27,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "速く作ることと、相手が決められることは別の設計課題。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "速く作ることと、相手が決められることは別の設計課題。",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "center",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "速く作ることと、相手が決められることは別の設計課題。",
+              "fontSize": 27,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "center",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qp07u1ov",
+      "id": "29",
+      "bbox": [
+        64,
+        665,
+        1088,
+        0
+      ],
+      "rotation": 0,
+      "geometry": "line",
+      "lineColor": "#D9DADF",
+      "lineWidth": 1
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gvylo7mt",
+      "id": "30",
+      "bbox": [
+        1184,
+        678,
+        32,
+        18
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "02",
+      "textPreview": "02",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#62666D",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "02"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "02",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#62666D",
+            "bold": true,
+            "alignment": "right",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "02",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#62666D",
+              "bold": true,
+              "alignment": "right",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

@@ -1,0 +1,17 @@
+{
+  "tool": "noimos-content-quality-gate",
+  "generated_at": "2026-07-30T03:00:51.055487+00:00",
+  "status": "PASS",
+  "blockers": [],
+  "warnings": [],
+  "evidence": [
+    {
+      "registered_claims_used": 1,
+      "claim_records": 1,
+      "numeric_claim_lines": 1,
+      "human_approval": true
+    }
+  ],
+  "reviewer": "test-reviewer",
+  "publication_performed": false
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Noimos比較記事"
+  short_description: "公式ホーム画面・価格・口コミを比較表にして判断を支援"
+  default_prompt: "Use $noimos-comparison-article as a checklist-driven workflow: create a persistent TODO, research real services, capture official home screens, compare price/usage/cost-effectiveness and strengths/weaknesses, validate every item, and write a decision-ready comparison article."

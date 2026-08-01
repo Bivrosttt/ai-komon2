@@ -1,0 +1,1929 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/dy3hem",
+    "id": "dy3hem",
+    "slide": 18,
+    "layoutId": "9344d366-ad5c-411b-8e5f-a7b651a706e0",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "9ceca35b-7556-4f85-9a71-2cdab5b648c3",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F2F3F5",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Hiragino Kaku Gothic ProN"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "9344d366-ad5c-411b-8e5f-a7b651a706e0",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "9ceca35b-7556-4f85-9a71-2cdab5b648c3",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "9ceca35b-7556-4f85-9a71-2cdab5b648c3",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/o3e9k3ix",
+      "id": "1",
+      "bbox": [
+        64,
+        18,
+        280,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "STEP 3 / SLIDE SPEC",
+      "textPreview": "STEP 3 / SLIDE SPEC",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#62666D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "STEP 3 / SLIDE SPEC"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "STEP 3 / SLIDE SPEC",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#62666D",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "STEP 3 / SLIDE SPEC",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#62666D",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3258ry1s",
+      "id": "2",
+      "name": "slide-title-18",
+      "bbox": [
+        64,
+        46,
+        1152,
+        112
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "Slide Specが、各ページの主張・根拠・\n見せ方・出典を固定する。",
+      "textPreview": "Slide Specが、各ページの主張・根拠・ | 見せ方・出典を固定する。",
+      "resolvedFontSize": 48,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 48,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Slide Specが、各ページの主張・根拠・"
+          },
+          {
+            "index": 2,
+            "text": "見せ方・出典を固定する。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Slide Specが、各ページの主張・根拠・",
+          "lineSpacingPercent": 95000,
+          "resolvedTextStyle": {
+            "fontSize": 48,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 0.95
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Slide Specが、各ページの主張・根拠・",
+              "fontSize": 48,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 0.95
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "見せ方・出典を固定する。",
+          "lineSpacingPercent": 95000,
+          "resolvedTextStyle": {
+            "fontSize": 48,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 0.95
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "見せ方・出典を固定する。",
+              "fontSize": 48,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 0.95
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/21writ07",
+      "id": "3",
+      "bbox": [
+        72,
+        208,
+        890,
+        422
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8DADE",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/103qpojm",
+      "id": "4",
+      "bbox": [
+        108,
+        236,
+        280,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "SLIDE SPEC / SAMPLE",
+      "textPreview": "SLIDE SPEC / SAMPLE",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#2357D9",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "SLIDE SPEC / SAMPLE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "SLIDE SPEC / SAMPLE",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#2357D9",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "SLIDE SPEC / SAMPLE",
+              "fontSize": 17,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#2357D9",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gzu9gji1",
+      "id": "5",
+      "bbox": [
+        108,
+        280,
+        180,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "Title",
+      "textPreview": "Title",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#E33B36",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Title"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Title",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#E33B36",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Title",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#E33B36",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fyl8ne1g",
+      "id": "6",
+      "bbox": [
+        288,
+        274,
+        628,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "fillColor": "#FFF5CC",
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/udcre90v",
+      "id": "7",
+      "bbox": [
+        304,
+        274,
+        596,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "読み手が持ち帰る結論",
+      "textPreview": "読み手が持ち帰る結論",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "読み手が持ち帰る結論"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "読み手が持ち帰る結論",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "読み手が持ち帰る結論",
+              "fontSize": 17,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tc3ql4ja",
+      "id": "8",
+      "bbox": [
+        108,
+        319,
+        180,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "Narrative job",
+      "textPreview": "Narrative job",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#62666D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Narrative job"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Narrative job",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#62666D",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Narrative job",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#62666D",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sbu9cji5",
+      "id": "9",
+      "bbox": [
+        288,
+        313,
+        628,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2187uhgr",
+      "id": "10",
+      "bbox": [
+        304,
+        313,
+        596,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "このページが物語で担う役割",
+      "textPreview": "このページが物語で担う役割",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "このページが物語で担う役割"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "このページが物語で担う役割",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "このページが物語で担う役割",
+              "fontSize": 17,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3mh8nmhc",
+      "id": "11",
+      "bbox": [
+        108,
+        358,
+        180,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "Visible content",
+      "textPreview": "Visible content",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#62666D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Visible content"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Visible content",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#62666D",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Visible content",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#62666D",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4nqpwryx",
+      "id": "12",
+      "bbox": [
+        288,
+        352,
+        628,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "fillColor": "#F2F3F5",
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pozqpczi",
+      "id": "13",
+      "bbox": [
+        304,
+        352,
+        596,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "画面に残す情報だけ",
+      "textPreview": "画面に残す情報だけ",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "画面に残す情報だけ"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "画面に残す情報だけ",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "画面に残す情報だけ",
+              "fontSize": 17,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/uxo7qxgv",
+      "id": "14",
+      "bbox": [
+        108,
+        397,
+        180,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "Evidence",
+      "textPreview": "Evidence",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#62666D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Evidence"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Evidence",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#62666D",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Evidence",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#62666D",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fyh8j2h0",
+      "id": "15",
+      "bbox": [
+        288,
+        391,
+        628,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gzqps7yl",
+      "id": "16",
+      "bbox": [
+        304,
+        391,
+        596,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "主張を信じる材料",
+      "textPreview": "主張を信じる材料",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "主張を信じる材料"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "主張を信じる材料",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "主張を信じる材料",
+              "fontSize": 17,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h0zqlcz6",
+      "id": "17",
+      "bbox": [
+        108,
+        436,
+        180,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "Visual type",
+      "textPreview": "Visual type",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#62666D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Visual type"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Visual type",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#62666D",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Visual type",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#62666D",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6to7mxgj",
+      "id": "18",
+      "bbox": [
+        288,
+        430,
+        628,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "fillColor": "#F2F3F5",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7ux8f2h4",
+      "id": "19",
+      "bbox": [
+        304,
+        430,
+        596,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "HERO / CONTRAST / PROCESS / EVIDENCE / ACTION",
+      "textPreview": "HERO / CONTRAST / PROCESS / EVIDENCE / ACTION",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "HERO / CONTRAST / PROCESS / EVIDENCE / ACTION"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "HERO / CONTRAST / PROCESS / EVIDENCE / ACTION",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "HERO / CONTRAST / PROCESS / EVIDENCE / ACTION",
+              "fontSize": 17,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vyt4nyxw",
+      "id": "20",
+      "bbox": [
+        108,
+        475,
+        180,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "Layout",
+      "textPreview": "Layout",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#62666D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Layout"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Layout",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#62666D",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Layout",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#62666D",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/axknutwb",
+      "id": "21",
+      "bbox": [
+        288,
+        469,
+        628,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x0vmp8f2",
+      "id": "22",
+      "bbox": [
+        304,
+        469,
+        596,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "情報の重心と視線",
+      "textPreview": "情報の重心と視線",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "情報の重心と視線"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "情報の重心と視線",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "情報の重心と視線",
+              "fontSize": 17,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wzm5w3eh",
+      "id": "23",
+      "bbox": [
+        108,
+        514,
+        180,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "Source",
+      "textPreview": "Source",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#62666D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Source"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Source",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#62666D",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Source",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#62666D",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/j2doryxs",
+      "id": "24",
+      "bbox": [
+        288,
+        508,
+        628,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "fillColor": "#F2F3F5",
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/i14nytwn",
+      "id": "25",
+      "bbox": [
+        304,
+        508,
+        596,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "出典URL",
+      "textPreview": "出典URL",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "出典URL"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "出典URL",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "出典URL",
+              "fontSize": 17,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/54v6t8fy",
+      "id": "26",
+      "bbox": [
+        108,
+        553,
+        180,
+        24
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "QA risk",
+      "textPreview": "QA risk",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#62666D",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "QA risk"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "QA risk",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#62666D",
+            "bold": true,
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "QA risk",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#62666D",
+              "bold": true,
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/k3m503ed",
+      "id": "27",
+      "bbox": [
+        288,
+        547,
+        628,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/z694fexo",
+      "id": "28",
+      "bbox": [
+        304,
+        547,
+        596,
+        30
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "切れ・重なり・誤認の危険",
+      "textPreview": "切れ・重なり・誤認の危険",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "切れ・重なり・誤認の危険"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "切れ・重なり・誤認の危険",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "alignment": "left",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "切れ・重なり・誤認の危険",
+              "fontSize": 17,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "alignment": "left",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/y50nm9w3",
+      "id": "29",
+      "bbox": [
+        1000,
+        280,
+        220,
+        132
+      ],
+      "rotation": 2,
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#D8DADE",
+      "lineWidth": 1
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4zet0bqp",
+      "id": "30",
+      "bbox": [
+        1016,
+        300,
+        92.4,
+        92
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#F2F3F5",
+      "lineWidth": 0
+    },
+    {
+      "order": 31,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/50na9gra",
+      "id": "31",
+      "bbox": [
+        1114.4,
+        304,
+        70.4,
+        18
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#2357D9",
+      "lineWidth": 0
+    },
+    {
+      "order": 32,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ixwby18z",
+      "id": "32",
+      "bbox": [
+        1114.4,
+        334,
+        88,
+        12
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "fillColor": "#E4E6EA",
+      "lineWidth": 0
+    },
+    {
+      "order": 33,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3y5s7694",
+      "id": "33",
+      "bbox": [
+        934,
+        340,
+        72,
+        28
+      ],
+      "rotation": 0,
+      "geometry": "rightArrow",
+      "fillColor": "#F4C542",
+      "lineWidth": 0
+    },
+    {
+      "order": 34,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gvetwbqt",
+      "id": "34",
+      "bbox": [
+        994,
+        442,
+        226,
+        108
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "作り始める前に、\n完成条件を\n言語化する。",
+      "textPreview": "作り始める前に、 | 完成条件を | 言語化する。",
+      "resolvedFontSize": 23,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 23,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "作り始める前に、"
+          },
+          {
+            "index": 2,
+            "text": "完成条件を"
+          },
+          {
+            "index": 3,
+            "text": "言語化する。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "作り始める前に、",
+          "lineSpacingPercent": 108000,
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "center",
+            "lineSpacing": 1.08
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "作り始める前に、",
+              "fontSize": 23,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "center",
+              "lineSpacing": 1.08
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "完成条件を",
+          "lineSpacingPercent": 108000,
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "center",
+            "lineSpacing": 1.08
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "完成条件を",
+              "fontSize": 23,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "center",
+              "lineSpacing": 1.08
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "言語化する。",
+          "lineSpacingPercent": 108000,
+          "resolvedTextStyle": {
+            "fontSize": 23,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "center",
+            "lineSpacing": 1.08
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "言語化する。",
+              "fontSize": 23,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "center",
+              "lineSpacing": 1.08
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 35,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hwna5gre",
+      "id": "35",
+      "bbox": [
+        1184,
+        678,
+        32,
+        18
+      ],
+      "rotation": 0,
+      "geometry": "rect",
+      "text": "18",
+      "textPreview": "18",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 14,
+        "typeface": "Hiragino Kaku Gothic ProN",
+        "color": "#62666D",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "18"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "18",
+          "lineSpacingPercent": 100000,
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Kaku Gothic ProN",
+            "color": "#62666D",
+            "bold": true,
+            "alignment": "right",
+            "lineSpacing": 1
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "18",
+              "fontSize": 14,
+              "typeface": "Hiragino Kaku Gothic ProN",
+              "color": "#62666D",
+              "bold": true,
+              "alignment": "right",
+              "lineSpacing": 1
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

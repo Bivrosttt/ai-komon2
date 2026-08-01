@@ -1,0 +1,107 @@
+{
+  "tool": "noimos-seo-geo-article",
+  "generated_at": "2026-07-30T14:11:48.386810+00:00",
+  "input": "/Users/koki/Desktop/ai-komon2/articles/work-handover-manual/index.html",
+  "overall": "pass",
+  "score": 100,
+  "checks": [
+    {
+      "check": "title",
+      "status": "pass",
+      "evidence": "業務引き継ぎの方法｜後任が迷わないマニュアルの作り方 | AI顧問室",
+      "priority": "P0"
+    },
+    {
+      "check": "single_h1",
+      "status": "pass",
+      "evidence": "1 H1 elements",
+      "priority": "P0"
+    },
+    {
+      "check": "h2_depth",
+      "status": "pass",
+      "evidence": "9 H2 elements",
+      "priority": "P1"
+    },
+    {
+      "check": "canonical",
+      "status": "pass",
+      "evidence": "https://ai-komon.bivrost.co.jp/articles/work-handover-manual/",
+      "priority": "P0"
+    },
+    {
+      "check": "meta_description",
+      "status": "pass",
+      "evidence": "67 chars",
+      "priority": "P1"
+    },
+    {
+      "check": "article_schema",
+      "status": "pass",
+      "evidence": "valid=True, types=['Article', 'FAQPage']",
+      "priority": "P0"
+    },
+    {
+      "check": "answer_first",
+      "status": "pass",
+      "evidence": "answer/summary block detected",
+      "priority": "P1"
+    },
+    {
+      "check": "visible_faq",
+      "status": "pass",
+      "evidence": "present",
+      "priority": "P1"
+    },
+    {
+      "check": "article_diagram",
+      "status": "pass",
+      "evidence": "images_with_alt=1, figcaptions=1",
+      "priority": "P0"
+    },
+    {
+      "check": "internal_links",
+      "status": "pass",
+      "evidence": "8 unique",
+      "priority": "P1"
+    },
+    {
+      "check": "external_sources",
+      "status": "pass",
+      "evidence": "3 unique",
+      "priority": "P1"
+    },
+    {
+      "check": "cta",
+      "status": "pass",
+      "evidence": "present",
+      "priority": "P1"
+    },
+    {
+      "check": "author_and_date",
+      "status": "pass",
+      "evidence": "present",
+      "priority": "P0"
+    },
+    {
+      "check": "substantive_length",
+      "status": "pass",
+      "evidence": "2096 Japanese characters",
+      "priority": "P1"
+    },
+    {
+      "check": "no_placeholders",
+      "status": "pass",
+      "evidence": "none",
+      "priority": "P0"
+    },
+    {
+      "check": "local_assets",
+      "status": "pass",
+      "evidence": "all present",
+      "priority": "P0"
+    }
+  ],
+  "approval_mode": "ai_only",
+  "human_approval_required": false
+}

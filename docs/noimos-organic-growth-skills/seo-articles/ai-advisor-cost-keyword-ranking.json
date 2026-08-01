@@ -1,0 +1,117 @@
+{
+  "tool": "noimos-commercial-keywords",
+  "generated_at": "2026-07-30T10:12:59.241672+00:00",
+  "method": "planning heuristic; not a ranking or revenue prediction",
+  "eligible_count": 5,
+  "candidates": [
+    {
+      "keyword": "AI顧問 費用",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 64.2,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "public SERP discovery proxy",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI顧問 料金",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 64.2,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "public SERP discovery proxy",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AIコンサル 費用",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 63.0,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "public SERP discovery proxy",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI顧問 月額",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 62.2,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "public SERP discovery proxy",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI導入 支援 費用",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 59.3,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "public SERP discovery proxy",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI導入 メリット",
+      "intent": "informational",
+      "eligible": false,
+      "score": 30.5,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "existing article inventory",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "intent_not_commercial",
+        "volume_not_observed",
+        "difficulty_not_observed",
+        "cannibalization_risk"
+      ]
+    },
+    {
+      "keyword": "AI 顧問とは",
+      "intent": "informational",
+      "eligible": false,
+      "score": 30.5,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "existing article inventory",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "intent_not_commercial",
+        "volume_not_observed",
+        "difficulty_not_observed",
+        "cannibalization_risk"
+      ]
+    }
+  ]
+}

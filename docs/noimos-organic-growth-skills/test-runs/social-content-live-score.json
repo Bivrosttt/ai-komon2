@@ -1,0 +1,29 @@
+{
+  "tool": "noimos-social-conversion-content",
+  "generated_at": "2026-07-30T03:12:51.330285+00:00",
+  "overall": "pass",
+  "assets": [
+    {
+      "id": "linkedin-noimos-01",
+      "platform": "linkedin",
+      "score": 100,
+      "status": "pass",
+      "issues": []
+    },
+    {
+      "id": "x-noimos-01",
+      "platform": "x",
+      "score": 100,
+      "status": "pass",
+      "issues": []
+    },
+    {
+      "id": "ugc-noimos-01",
+      "platform": "tiktok",
+      "score": 100,
+      "status": "pass",
+      "issues": []
+    }
+  ],
+  "human_approval_required": true
+}

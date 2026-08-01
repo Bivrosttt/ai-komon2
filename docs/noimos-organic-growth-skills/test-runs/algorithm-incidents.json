@@ -1,0 +1,103 @@
+{
+  "tool": "noimos-algorithm-adaptation",
+  "generated_at": "2026-07-30T03:13:28.690857+00:00",
+  "windows": {
+    "baseline": [
+      "2026-07-10",
+      "2026-07-23"
+    ],
+    "recent": [
+      "2026-07-24",
+      "2026-07-30"
+    ]
+  },
+  "counts": {
+    "material_loss": 1,
+    "material_gain": 1,
+    "stable_or_noise": 1,
+    "insufficient_data": 0
+  },
+  "incidents": [
+    {
+      "page": "/loss",
+      "query": "loss query",
+      "classification": "material_loss",
+      "baseline": {
+        "impressions": 2800.0,
+        "clicks": 420.0,
+        "ctr": 0.15,
+        "position": 4.0,
+        "conversions": 42.0
+      },
+      "recent": {
+        "impressions": 840.0,
+        "clicks": 70.0,
+        "ctr": 0.08333333333333333,
+        "position": 7.0,
+        "conversions": 7.0
+      },
+      "changes": {
+        "clicks_per_day": -0.6667,
+        "impressions_per_day": -0.4,
+        "position": 3.0
+      },
+      "notes": [
+        "conversion_loss"
+      ],
+      "requires_human_approval_for_change": true
+    },
+    {
+      "page": "/gain",
+      "query": "gain query",
+      "classification": "material_gain",
+      "baseline": {
+        "impressions": 1680.0,
+        "clicks": 140.0,
+        "ctr": 0.08333333333333333,
+        "position": 8.0,
+        "conversions": 14.0
+      },
+      "recent": {
+        "impressions": 1540.0,
+        "clicks": 196.0,
+        "ctr": 0.12727272727272726,
+        "position": 5.0,
+        "conversions": 21.0
+      },
+      "changes": {
+        "clicks_per_day": 1.8,
+        "impressions_per_day": 0.8333,
+        "position": -3.0
+      },
+      "notes": [],
+      "requires_human_approval_for_change": true
+    },
+    {
+      "page": "/noise",
+      "query": "noise query",
+      "classification": "stable_or_noise",
+      "baseline": {
+        "impressions": 2100.0,
+        "clicks": 280.0,
+        "ctr": 0.13333333333333333,
+        "position": 6.0,
+        "conversions": 28.0
+      },
+      "recent": {
+        "impressions": 1064.0,
+        "clicks": 147.0,
+        "ctr": 0.13815789473684212,
+        "position": 6.1,
+        "conversions": 14.0
+      },
+      "changes": {
+        "clicks_per_day": 0.05,
+        "impressions_per_day": 0.0133,
+        "position": 0.1
+      },
+      "notes": [],
+      "requires_human_approval_for_change": false
+    }
+  ],
+  "warning": "A detected change does not prove an algorithm update."
+}

@@ -1,0 +1,20 @@
+{
+  "tool": "noimos-content-quality-gate",
+  "generated_at": "2026-07-31T13:59:57.257438+00:00",
+  "status": "PASS",
+  "blockers": [],
+  "warnings": [],
+  "evidence": [
+    {
+      "registered_claims_used": 8,
+      "claim_records": 8,
+      "numeric_claim_lines": 8,
+      "approval_mode": "ai_only",
+      "approval_complete": true
+    }
+  ],
+  "approval_mode": "ai_only",
+  "reviewer": null,
+  "pipeline": "Noimos AI Service Comparison Pipeline",
+  "publication_performed": false
+}

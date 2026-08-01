@@ -1,0 +1,14 @@
+{
+  "topic": "AIコーディングサービス比較",
+  "retrieved_at": "2026-07-31",
+  "claims": [
+    {"id":"coding_copilot_price","claim":"GitHub Copilot Freeは月2,000補完、Proは月10ドルと15ドル分のAI credits。","source_url":"https://github.com/features/copilot/plans?locale=ja","publisher":"GitHub","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"coding_cursor_price","claim":"Cursor Proは月20ドル、Teamsは1ユーザー月40ドル。Pro+はProの3倍、Ultraは20倍のAgent上限。","source_url":"https://www.cursor.com/pricing","publisher":"Cursor","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"coding_claude_price","claim":"Claude Proは月20ドルまたは年払い表示月17ドルでClaude Codeを含み、MaxはProの5倍または20倍利用。","source_url":"https://claude.com/pricing","publisher":"Anthropic","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"coding_replit_price","claim":"Replit Coreは月25ドルまたは年払い表示月20ドルで25ドル分のAgent credits、Proは月100ドルで100ドル分。","source_url":"https://replit.com/pricing?web=1","publisher":"Replit","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"coding_cursor_reviews","claim":"Cursorの独立レビューでは複数ファイル編集と速度が好評で、既存コードの変更範囲と従量課金が弱みとして見られる。","source_url":"https://www.techradar.com/best/best-ai-tools","publisher":"TechRadar","retrieved_at":"2026-07-31","evidence_type":"independent_editorial_review","verified":true,"confidence":"medium"},
+    {"id":"coding_claude_reviews","claim":"Claude Codeのレビューでは長い文脈と自律性が評価され、端末中心の学習負担と上位プラン価格が弱み。","source_url":"https://www.eesel.ai/blog/claude-code-review","publisher":"eesel AI","retrieved_at":"2026-07-31","evidence_type":"independent_editorial_review","verified":true,"confidence":"medium"},
+    {"id":"coding_replit_reviews","claim":"ReplitのG2/Capterraレビューでは自然言語からの試作速度が好評で、Agent creditsの消費と追加課金が不満。","source_url":"https://www.g2.com/products/replit/reviews","publisher":"G2","retrieved_at":"2026-07-31","evidence_type":"independent_review_aggregate","verified":true,"confidence":"medium"},
+    {"id":"coding_decision_rules","claim":"補完・レビューはCopilot、IDEの複数ファイル編集はCursor、端末の自律タスクはClaude Code、試作・公開はReplitが第一候補。","source_url":"https://github.com/features/copilot/plans?locale=ja","publisher":"AI顧問室編集部（公式情報比較）","retrieved_at":"2026-07-31","evidence_type":"derived_comparison","verified":true,"confidence":"medium"}
+  ]
+}

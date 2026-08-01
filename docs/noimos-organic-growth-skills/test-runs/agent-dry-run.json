@@ -1,0 +1,66 @@
+{
+  "tool": "noimos-always-on-agent",
+  "generated_at": "2026-07-30T09:37:20.736556+00:00",
+  "agent": "noimos-organic-growth-dry-run",
+  "overall": "pass",
+  "violations": [],
+  "summary": {
+    "scheduled_runs": 6,
+    "approval_handoffs": 1,
+    "approval_mode": "ai_only",
+    "ai_approved_runs": 1,
+    "external_actions_executed": 0
+  },
+  "ledger": [
+    {
+      "run_date": "2026-08-03",
+      "job": "daily-trend-draft",
+      "channel": "linkedin",
+      "idempotency_key": "a2a7d53d7c97d4d8",
+      "status": "dry_run_complete",
+      "external_actions": []
+    },
+    {
+      "run_date": "2026-08-04",
+      "job": "daily-trend-draft",
+      "channel": "linkedin",
+      "idempotency_key": "606a78b4d213d20e",
+      "status": "dry_run_complete",
+      "external_actions": []
+    },
+    {
+      "run_date": "2026-08-05",
+      "job": "daily-trend-draft",
+      "channel": "linkedin",
+      "idempotency_key": "df4f7689b7c83547",
+      "status": "dry_run_complete",
+      "external_actions": []
+    },
+    {
+      "run_date": "2026-08-06",
+      "job": "daily-trend-draft",
+      "channel": "linkedin",
+      "idempotency_key": "78f6cad6fc3e24df",
+      "status": "dry_run_complete",
+      "external_actions": []
+    },
+    {
+      "run_date": "2026-08-07",
+      "job": "daily-trend-draft",
+      "channel": "linkedin",
+      "idempotency_key": "ec7c6387da3838d4",
+      "status": "dry_run_complete",
+      "external_actions": []
+    },
+    {
+      "run_date": "2026-08-07",
+      "job": "weekly-approved-publication-handoff",
+      "channel": "linkedin",
+      "idempotency_key": "21b88f9520e7a76a",
+      "status": "ai_approved_for_publish",
+      "external_actions": [
+        "publish"
+      ]
+    }
+  ]
+}

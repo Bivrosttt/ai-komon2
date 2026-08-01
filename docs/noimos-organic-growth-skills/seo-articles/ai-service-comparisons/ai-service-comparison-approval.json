@@ -1,0 +1,14 @@
+{
+  "mode": "ai_only",
+  "status": "ai_approved",
+  "pipeline": "Noimos AI Service Comparison Pipeline",
+  "reviewed_at": "2026-07-31T21:30:00+09:00",
+  "checks": {
+    "claim_evidence": true,
+    "brand_alignment": true,
+    "specificity": true,
+    "risk_screen": true,
+    "render_qa": true
+  },
+  "notes": "Official service pages were checked, dynamic pricing was not presented as a permanent ranking, and CTA/visual/link/render checks are recorded per article."
+}

@@ -1,0 +1,1074 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/6vdddu",
+    "id": "6vdddu",
+    "slide": 4,
+    "layoutId": "67548e21-b8db-4131-b9fd-44dde8db5eb6",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "0a5edf58-c549-40f0-aed1-ba8c922d07d5",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F7F7F4",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Hiragino Sans"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "67548e21-b8db-4131-b9fd-44dde8db5eb6",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "0a5edf58-c549-40f0-aed1-ba8c922d07d5",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "0a5edf58-c549-40f0-aed1-ba8c922d07d5",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/felwru1c",
+      "id": "1",
+      "bbox": [
+        66,
+        28,
+        150,
+        22
+      ],
+      "geometry": "rect",
+      "text": "AI顧問室",
+      "textPreview": "AI顧問室",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 14,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AI顧問室"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AI顧問室",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AI顧問室",
+              "fontSize": 14,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gfux0zix",
+      "id": "2",
+      "bbox": [
+        220,
+        29,
+        340,
+        20
+      ],
+      "geometry": "rect",
+      "text": "DIAGNOSE",
+      "textPreview": "DIAGNOSE",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 12,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "DIAGNOSE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "DIAGNOSE",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "DIAGNOSE",
+              "fontSize": 12,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1g3et4j2",
+      "id": "3",
+      "bbox": [
+        1150,
+        28,
+        62,
+        22
+      ],
+      "geometry": "rect",
+      "text": "04",
+      "textPreview": "04",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 14,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "bold": true,
+        "alignment": "right",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "04"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "04",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70",
+            "bold": true,
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "04",
+              "fontSize": 14,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70",
+              "bold": true,
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2hcf290n",
+      "id": "4",
+      "bbox": [
+        66,
+        668,
+        8,
+        8
+      ],
+      "geometry": "rect",
+      "fillColor": "#E43E2B",
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3ilgve18",
+      "id": "5",
+      "bbox": [
+        1188,
+        668,
+        8,
+        8
+      ],
+      "geometry": "rect",
+      "fillColor": "#111214",
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ojux4jit",
+      "id": "6",
+      "bbox": [
+        66,
+        92,
+        1040,
+        126
+      ],
+      "geometry": "rect",
+      "text": "AI資料が弱くなる原因は、3つしかない。",
+      "textPreview": "AI資料が弱くなる原因は、3つしかない。",
+      "resolvedFontSize": 46,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 46,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "AI資料が弱くなる原因は、3つしかない。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "AI資料が弱くなる原因は、3つしかない。",
+          "lineSpacingPercent": 96000,
+          "resolvedTextStyle": {
+            "fontSize": 46,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true,
+            "lineSpacing": 0.96
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "AI資料が弱くなる原因は、3つしかない。",
+              "fontSize": 46,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true,
+              "lineSpacing": 0.96
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pknyxoje",
+      "id": "7",
+      "bbox": [
+        74,
+        278,
+        78,
+        44
+      ],
+      "geometry": "rect",
+      "text": "01",
+      "textPreview": "01",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 32,
+        "typeface": "Hiragino Sans",
+        "color": "#E43E2B",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "01"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "01",
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Hiragino Sans",
+            "color": "#E43E2B",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "01",
+              "fontSize": 32,
+              "typeface": "Hiragino Sans",
+              "color": "#E43E2B",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qlwf690z",
+      "id": "8",
+      "bbox": [
+        182,
+        280,
+        260,
+        36
+      ],
+      "geometry": "rect",
+      "text": "目的が広い",
+      "textPreview": "目的が広い",
+      "resolvedFontSize": 27,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 27,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "目的が広い"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "目的が広い",
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "目的が広い",
+              "fontSize": 27,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/b65gze1k",
+      "id": "9",
+      "bbox": [
+        476,
+        282,
+        690,
+        48
+      ],
+      "geometry": "rect",
+      "text": "「分かりやすく」だけで、誰の何を変えるかがない。",
+      "textPreview": "「分かりやすく」だけで、誰の何を変えるかがない。",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "「分かりやすく」だけで、誰の何を変えるかがない。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "「分かりやすく」だけで、誰の何を変えるかがない。",
+          "lineSpacingPercent": 115000,
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70",
+            "lineSpacing": 1.15
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "「分かりやすく」だけで、誰の何を変えるかがない。",
+              "fontSize": 18,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70",
+              "lineSpacing": 1.15
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zelkfexw",
+      "id": "10",
+      "bbox": [
+        182,
+        350,
+        984,
+        1
+      ],
+      "geometry": "rect",
+      "fillColor": "#E6E7E4",
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ydcjm9wb",
+      "id": "11",
+      "bbox": [
+        74,
+        390,
+        78,
+        44
+      ],
+      "geometry": "rect",
+      "text": "02",
+      "textPreview": "02",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 32,
+        "typeface": "Hiragino Sans",
+        "color": "#1858D8",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "02"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "02",
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Hiragino Sans",
+            "color": "#1858D8",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "02",
+              "fontSize": 32,
+              "typeface": "Hiragino Sans",
+              "color": "#1858D8",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lgn2hof2",
+      "id": "12",
+      "bbox": [
+        182,
+        392,
+        260,
+        36
+      ],
+      "geometry": "rect",
+      "text": "主張が薄い",
+      "textPreview": "主張が薄い",
+      "resolvedFontSize": 27,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 27,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "主張が薄い"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "主張が薄い",
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "主張が薄い",
+              "fontSize": 27,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kfu1ojeh",
+      "id": "13",
+      "bbox": [
+        476,
+        394,
+        690,
+        48
+      ],
+      "geometry": "rect",
+      "text": "タイトルが話題名で、読み手が得る結論になっていない。",
+      "textPreview": "タイトルが話題名で、読み手が得る結論になっていない。",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "タイトルが話題名で、読み手が得る結論になっていない。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "タイトルが話題名で、読み手が得る結論になっていない。",
+          "lineSpacingPercent": 115000,
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70",
+            "lineSpacing": 1.15
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "タイトルが話題名で、読み手が得る結論になっていない。",
+              "fontSize": 18,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70",
+              "lineSpacing": 1.15
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/balkbex0",
+      "id": "14",
+      "bbox": [
+        182,
+        462,
+        984,
+        1
+      ],
+      "geometry": "rect",
+      "fillColor": "#E6E7E4",
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a9cji9wf",
+      "id": "15",
+      "bbox": [
+        74,
+        502,
+        78,
+        44
+      ],
+      "geometry": "rect",
+      "text": "03",
+      "textPreview": "03",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 32,
+        "typeface": "Hiragino Sans",
+        "color": "#F6C945",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "03"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "03",
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Hiragino Sans",
+            "color": "#F6C945",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "03",
+              "fontSize": 32,
+              "typeface": "Hiragino Sans",
+              "color": "#F6C945",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xc32dofq",
+      "id": "16",
+      "bbox": [
+        182,
+        504,
+        260,
+        36
+      ],
+      "geometry": "rect",
+      "text": "検査がない",
+      "textPreview": "検査がない",
+      "resolvedFontSize": 27,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 27,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "検査がない"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "検査がない",
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "検査がない",
+              "fontSize": 27,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cbu1kje5",
+      "id": "17",
+      "bbox": [
+        476,
+        506,
+        690,
+        48
+      ],
+      "geometry": "rect",
+      "text": "生成した瞬間を完成とし、全ページを画像で見直していない。",
+      "textPreview": "生成した瞬間を完成とし、全ページを画像で見直していない。",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18,
+        "typeface": "Hiragino Sans",
+        "color": "#656A70",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "生成した瞬間を完成とし、全ページを画像で見直していない。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "生成した瞬間を完成とし、全ページを画像で見直していない。",
+          "lineSpacingPercent": 115000,
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "typeface": "Hiragino Sans",
+            "color": "#656A70",
+            "lineSpacing": 1.15
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "生成した瞬間を完成とし、全ページを画像で見直していない。",
+              "fontSize": 18,
+              "typeface": "Hiragino Sans",
+              "color": "#656A70",
+              "lineSpacing": 1.15
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v65knyx4",
+      "id": "18",
+      "bbox": [
+        182,
+        574,
+        984,
+        1
+      ],
+      "geometry": "rect",
+      "fillColor": "#E6E7E4",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u5w3udwj",
+      "id": "19",
+      "bbox": [
+        182,
+        626,
+        820,
+        30
+      ],
+      "geometry": "rect",
+      "text": "つまり、プロンプトより先に“判断の型”が必要です。",
+      "textPreview": "つまり、プロンプトより先に“判断の型”が必要です。",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "Hiragino Sans",
+        "color": "#111214",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "つまり、プロンプトより先に“判断の型”が必要です。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "つまり、プロンプトより先に“判断の型”が必要です。",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "Hiragino Sans",
+            "color": "#111214",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "つまり、プロンプトより先に“判断の型”が必要です。",
+              "fontSize": 22,
+              "typeface": "Hiragino Sans",
+              "color": "#111214",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

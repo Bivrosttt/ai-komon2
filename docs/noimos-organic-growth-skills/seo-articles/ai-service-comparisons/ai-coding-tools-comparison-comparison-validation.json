@@ -1,0 +1,19 @@
+{
+  "tool": "noimos-comparison-article",
+  "input": "articles/ai-coding-tools-comparison/index.html",
+  "status": "PASS",
+  "blockers": [],
+  "warnings": [],
+  "services": [
+    "GitHub Copilot",
+    "Cursor",
+    "Claude Code",
+    "Replit"
+  ],
+  "home_urls": {
+    "GitHub Copilot": "https://github.com/features/copilot",
+    "Cursor": "https://cursor.com/",
+    "Claude Code": "https://claude.com/product/claude-code",
+    "Replit": "https://replit.com/"
+  }
+}

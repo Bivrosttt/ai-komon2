@@ -1,0 +1,35 @@
+{
+  "name": "noimos-organic-growth-dry-run",
+  "timezone": "Asia/Tokyo",
+  "max_retries": 2,
+  "approval_policy": {
+    "mode": "ai_only",
+    "pipeline": "Noimos AI Quality Pipeline"
+  },
+  "idempotency_key_fields": ["job", "date", "channel"],
+  "stages": [
+    {"name": "collect"},
+    {"name": "normalize"},
+    {"name": "analyze"},
+    {"name": "prioritize"},
+    {"name": "draft"},
+    {"name": "quality_gate"},
+    {"name": "approval_policy"},
+    {"name": "publish_handoff"},
+    {"name": "learn"}
+  ],
+  "jobs": [
+    {
+      "name": "daily-trend-draft",
+      "channel": "linkedin",
+      "weekdays": [0, 1, 2, 3, 4],
+      "actions": ["collect", "analyze", "draft"]
+    },
+    {
+      "name": "weekly-approved-publication-handoff",
+      "channel": "linkedin",
+      "weekdays": [4],
+      "actions": ["quality_gate", "publish"]
+    }
+  ]
+}

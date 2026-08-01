@@ -1,0 +1,107 @@
+{
+  "tool": "noimos-seo-geo-article",
+  "generated_at": "2026-07-31T14:06:07.450648+00:00",
+  "input": "/Users/koki/Desktop/ai-komon2/articles/ai-video-tools-comparison/index.html",
+  "overall": "pass",
+  "score": 100,
+  "checks": [
+    {
+      "check": "title",
+      "status": "pass",
+      "evidence": "AI動画生成サービス比較｜Runway・HeyGen・Synthesia・Firefly【2026年】 | AI顧問室",
+      "priority": "P0"
+    },
+    {
+      "check": "single_h1",
+      "status": "pass",
+      "evidence": "1 H1 elements",
+      "priority": "P0"
+    },
+    {
+      "check": "h2_depth",
+      "status": "pass",
+      "evidence": "7 H2 elements",
+      "priority": "P1"
+    },
+    {
+      "check": "canonical",
+      "status": "pass",
+      "evidence": "https://ai-komon.bivrost.co.jp/articles/ai-video-tools-comparison/",
+      "priority": "P0"
+    },
+    {
+      "check": "meta_description",
+      "status": "pass",
+      "evidence": "86 chars",
+      "priority": "P1"
+    },
+    {
+      "check": "article_schema",
+      "status": "pass",
+      "evidence": "valid=True, types=['Article', 'BreadcrumbList', 'FAQPage']",
+      "priority": "P0"
+    },
+    {
+      "check": "answer_first",
+      "status": "pass",
+      "evidence": "answer/summary block detected",
+      "priority": "P1"
+    },
+    {
+      "check": "visible_faq",
+      "status": "pass",
+      "evidence": "present",
+      "priority": "P1"
+    },
+    {
+      "check": "article_diagram",
+      "status": "pass",
+      "evidence": "images_with_alt=5, figcaptions=5",
+      "priority": "P0"
+    },
+    {
+      "check": "internal_links",
+      "status": "pass",
+      "evidence": "10 unique",
+      "priority": "P1"
+    },
+    {
+      "check": "external_sources",
+      "status": "pass",
+      "evidence": "14 unique",
+      "priority": "P1"
+    },
+    {
+      "check": "cta",
+      "status": "pass",
+      "evidence": "present",
+      "priority": "P1"
+    },
+    {
+      "check": "author_and_date",
+      "status": "pass",
+      "evidence": "present",
+      "priority": "P0"
+    },
+    {
+      "check": "substantive_length",
+      "status": "pass",
+      "evidence": "2646 Japanese characters",
+      "priority": "P1"
+    },
+    {
+      "check": "no_placeholders",
+      "status": "pass",
+      "evidence": "none",
+      "priority": "P0"
+    },
+    {
+      "check": "local_assets",
+      "status": "pass",
+      "evidence": "all present",
+      "priority": "P0"
+    }
+  ],
+  "approval_mode": "ai_only",
+  "human_approval_required": false
+}

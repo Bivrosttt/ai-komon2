@@ -16,7 +16,7 @@
 | 画面行動 | Microsoft Clarity | ヒートマップ、スクロール、セッション録画 | Project ID設定後に送信 |
 | 広告実績 | Meta Ads API → Discord | 消化、表示、クリック、広告別実績 | GitHub Actionsで日次通知 |
 
-Google Sheetsには、ブラウザから送ったLPイベントが`Raw Events`へ入ります。GA4の集計データはApps Scriptの`syncGa4Report`で`GA4 Daily`へ取り込めます。Meta Ads APIの広告実績はDiscordレポーターが取得しますが、`Ad Daily`への自動書込はまだ別ジョブです。
+Google Sheetsには、ブラウザから送ったLPイベントが`Raw Events`へ入ります。GA4の集計データはApps Scriptの`syncGa4Report`で`GA4 Daily`へ取り込めます。Meta Ads APIの広告実績はDiscordレポーターが取得します。レポーター側には、`Raw Events`を読み取り、同じ期間のLPファネルと`utm_content`別実績を広告日報へ追加する機能を実装済みです。GitHub Secret/Variableが未設定の間はMeta広告レポートを止めず、LP欄だけを「未接続」として表示します。
 
 ```mermaid
 flowchart LR
@@ -29,6 +29,7 @@ flowchart LR
   F --> G[Google Sheets Raw Events]
   D --> H[Meta Events Manager / Dataset]
   I[Meta Ads API] --> J[GitHub Actions]
+  G --> J
   J --> K[Discord広告レポート]
   G --> L[Dashboard / Experiment / Leads]
   I -. 現在は自動書込なし .-> M[Google Sheets Ad Daily]
@@ -62,6 +63,7 @@ flowchart LR
 
 - [ ] `node --test tests/analytics-setup.test.mjs`を実行する
 - [ ] `node scripts/check_analytics_setup.mjs`を実行し、`Analytics audit passed`を確認する
+- [ ] テスト出力に「リポジトリ内の全広告LPを実ファイルで監査する」が含まれ、追加LPの設定漏れがないことを確認する
 - [ ] 本番ホストにテストURL（UTM付き）を開く
 - [ ] GA4リアルタイムまたはDebugViewで`page_view`、`view_content`、`cta_click`、`timerex_click`を確認する
 - [ ] GA4で`scroll_depth`、`section_view`、`engagement_10s`を確認する
@@ -80,6 +82,8 @@ flowchart LR
 node --test tests/analytics-setup.test.mjs
 node scripts/check_analytics_setup.mjs
 ```
+
+`tests/analytics-setup.test.mjs`には、必須スクリプトや区画識別子の単体テストに加えて、リポジトリ内で検出された全広告LPを実ファイルで監査する統合テストが含まれます。新しい`lp-*.html`や`diagnosis.html`を追加したときに、計測スクリプト・`hero`・`final_cta`の不足があると、既知の例外を除いてテストとCIが失敗します。
 
 実装:
 
@@ -179,6 +183,15 @@ GitHub設定画面:
 - [Actions実行履歴](https://github.com/onion-salad/meta-discord-reporter/actions)
 - [Actions Secrets](https://github.com/onion-salad/meta-discord-reporter/settings/secrets/actions)
 - [Actions Variables](https://github.com/onion-salad/meta-discord-reporter/settings/variables/actions)
+
+LPアナリティクスを同じ日報へ接続する追加設定:
+
+- GitHub Secret `GOOGLE_SERVICE_ACCOUNT_JSON_B64`: Google Sheetsを閲覧できるサービスアカウントJSONのBase64値
+- GitHub Variable `GOOGLE_SHEETS_SPREADSHEET_ID`: 計測スプレッドシートID（現在は`1LuibxdWft_uc8ACHQX1toXxN2_aJgsCJKYa1ro_maCA`）
+- GitHub Variable `GOOGLE_SHEETS_RANGE`: 省略時は`Raw Events!A:U`
+- サービスアカウントのメールアドレスを対象スプレッドシートへ「閲覧者」として共有
+
+接続後のDiscord日報には、セッション、PV、CTAクリック、TimeRex予約リンククリック、CTA/予約リンク到達率、10秒滞在、90%スクロール、`utm_content`別のセッション・CTA・予約リンク、LP別セッション上位を出します。Raw Eventsは匿名`session_id`を使い、`event_id`重複を除外します。予約リンククリックは予約完了ではないため、完了数の代替にはしません。
 
 ## イベントがどう流れるか
 

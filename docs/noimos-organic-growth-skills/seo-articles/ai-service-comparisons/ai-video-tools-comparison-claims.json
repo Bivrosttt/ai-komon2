@@ -1,0 +1,14 @@
+{
+  "topic": "AI動画生成サービス比較",
+  "retrieved_at": "2026-07-31",
+  "claims": [
+    {"id":"video_runway_price","claim":"Runway Standardは月15ドル、年払い表示は月12ドルで625 credits/月。Gen-4.5では約52秒相当。","source_url":"https://runwayml.com/ja/pricing","publisher":"Runway","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"video_heygen_price","claim":"HeyGen Creatorは月29ドル、600 credits、最大30分/動画、175言語以上。","source_url":"https://www.heygen.com/ja-jp/pricing","publisher":"HeyGen","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"video_synthesia_price","claim":"Synthesia Starterは月29ドル、年払い表示は月18ドルで最大10分/月。","source_url":"https://www.synthesia.io/pricing","publisher":"Synthesia","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"video_firefly_price","claim":"Adobe Firefly Standardは月9.99ドル、2,000 creditsで5秒動画最大20本相当。","source_url":"https://www.adobe.com/products/firefly.html","publisher":"Adobe","retrieved_at":"2026-07-31","evidence_type":"official_pricing_page","verified":true,"confidence":"high"},
+    {"id":"video_runway_reviews","claim":"Runwayの海外レビューでは短尺生成の品質とTurboの効率が好評で、credits消費と生成の不安定さが不満として見られる。","source_url":"https://www.reddit.com/r/vidmuse/comments/1ulmb3a/runway_ai_video_generator_in_2026_full_review/","publisher":"Reddit","retrieved_at":"2026-07-31","evidence_type":"independent_user_review","verified":true,"confidence":"medium"},
+    {"id":"video_heygen_reviews","claim":"HeyGenのG2/Capterraレビューでは操作性とアバターが評価され、グリッチとサポートへの不満が見られる。","source_url":"https://www.g2.com/products/heygen/pricing","publisher":"G2","retrieved_at":"2026-07-31","evidence_type":"independent_review_aggregate","verified":true,"confidence":"medium"},
+    {"id":"video_firefly_reviews","claim":"TechRadarはFireflyの生成品質とBoardsを評価し、専門動画エディターより遅くアバターがない点を弱みとしている。","source_url":"https://www.techradar.com/computing/creative-software/adobe-firefly-ai-video-editor-review","publisher":"TechRadar","retrieved_at":"2026-07-31","evidence_type":"independent_editorial_review","verified":true,"confidence":"high"},
+    {"id":"video_decision_rules","claim":"広告・SNSはRunway、アバター営業・翻訳はHeyGen、研修はSynthesia、Adobe制作環境との接続はFireflyが第一候補。","source_url":"https://runwayml.com/ja/pricing","publisher":"AI顧問室編集部（公式情報比較）","retrieved_at":"2026-07-31","evidence_type":"derived_comparison","verified":true,"confidence":"medium"}
+  ]
+}

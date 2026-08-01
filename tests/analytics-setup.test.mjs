@@ -1,12 +1,19 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import test from 'node:test';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import {
   REQUIRED_SCRIPTS,
   auditHtml,
+  auditRepository,
   compareWithBaseline,
+  discoverAnalyticsPages,
   extractScriptSources
 } from '../scripts/check_analytics_setup.mjs';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 function completeHtml(extra = '') {
   const scripts = REQUIRED_SCRIPTS
@@ -74,4 +81,17 @@ test('既知問題は許容するが新規問題は失敗対象にする', () =>
   };
   const result = compareWithBaseline(current, baseline);
   assert.deepEqual(result.unexpected, { 'new.html': ['missing-section:hero'] });
+});
+
+test('リポジトリ内の全広告LPを実ファイルで監査する', () => {
+  const baseline = JSON.parse(fs.readFileSync(
+    path.join(ROOT, 'tests/fixtures/analytics-audit-baseline.json'),
+    'utf8'
+  ));
+  const pages = discoverAnalyticsPages(ROOT);
+  const issues = auditRepository(ROOT);
+  const result = compareWithBaseline(issues, baseline);
+
+  assert.ok(pages.length > 0, '広告LPが1ページ以上見つかること');
+  assert.deepEqual(result.unexpected, {});
 });

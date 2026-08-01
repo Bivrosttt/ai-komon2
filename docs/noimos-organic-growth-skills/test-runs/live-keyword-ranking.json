@@ -1,0 +1,100 @@
+{
+  "tool": "noimos-commercial-keywords",
+  "generated_at": "2026-07-30T03:14:03.385954+00:00",
+  "method": "planning heuristic; not a ranking or revenue prediction",
+  "eligible_count": 5,
+  "candidates": [
+    {
+      "keyword": "AI顧問 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 81.3,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "public-serp-observation",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI顧問 費用",
+      "intent": "purchase",
+      "eligible": true,
+      "score": 80.5,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "public-serp-observation",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI導入支援会社 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 79.0,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "public-serp-observation",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI顧問 おすすめ",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 75.0,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "public-serp-observation",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "中小企業 AI導入支援 会社",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 75.0,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "public-serp-observation",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "生成AI とは",
+      "intent": "informational",
+      "eligible": false,
+      "score": 47.7,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "proxy",
+      "source": "public-serp-observation",
+      "retrieved_at": "2026-07-30",
+      "reasons": [
+        "intent_not_commercial",
+        "volume_not_observed",
+        "difficulty_not_observed",
+        "cannibalization_risk"
+      ]
+    }
+  ]
+}

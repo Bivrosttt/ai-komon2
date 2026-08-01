@@ -1,0 +1,104 @@
+{"kind":"deck","id":"pr/rxzxno","name":"Deck"}
+{"kind":"layout","layoutId":"e9d735d3-2cd7-44b8-a8a7-580ec95fa44f","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"7f33ef61-55ea-4b05-aa08-7b0fb0a4e2d8","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/mvc1g3","slide":1,"title":"TEMPLATE / COVER","textShapes":5}
+{"kind":"shape","id":"sh/5sbm1w3q","slide":1,"bbox":[24,14,1232,692]}
+{"kind":"textbox","id":"sh/ip0nq1kz","slide":1,"text":"TEMPLATE / COVER","textPreview":"TEMPLATE / COVER","textChars":16,"textLines":1,"bbox":[88,36,560,24]}
+{"kind":"textbox","id":"sh/3q94z6lk","slide":1,"name":"fixed-page-number-1","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1176,668,38,18]}
+{"kind":"textbox","id":"sh/sv25wb2h","slide":1,"text":"実務テンプレート","textPreview":"実務テンプレート","textChars":8,"textLines":1,"bbox":[88,142,360,28]}
+{"kind":"textbox","id":"sh/dwbm5g3m","slide":1,"text":"これだけでOK。\nAIでクオリティの高い\nスライドを作る方法","textPreview":"これだけでOK。 | AIでクオリティの高い | スライドを作る方法","textChars":30,"textLines":3,"bbox":[88,182,640,210]}
+{"kind":"textbox","id":"sh/qtknu1kb","slide":1,"text":"社長・決裁者が判断できる資料を、\nシンプルな構図でつくる。","textPreview":"社長・決裁者が判断できる資料を、 | シンプルな構図でつくる。","textChars":29,"textLines":2,"bbox":[88,448,520,72]}
+{"kind":"shape","id":"sh/rut436lw","slide":1,"bbox":[88,566,160,8]}
+{"kind":"notes","id":"nt/mvc1g3","slide":1,"text":"表紙は大見出しと短い補足だけ。装飾を増やさず、最初の一枚で対象読者と約束を伝える。\n\n[Sources]\n- AI顧問室のテンプレート設計\n[/Sources]"}
+{"kind":"slide","id":"sl/az6e8r","slide":2,"title":"TEMPLATE / VAGUE VS SPECIFIC","textShapes":10}
+{"kind":"shape","id":"sh/u107i9gb","slide":2,"bbox":[24,14,1232,692]}
+{"kind":"textbox","id":"sh/h4rqdofm","slide":2,"text":"TEMPLATE / VAGUE VS SPECIFIC","textPreview":"TEMPLATE / VAGUE VS SPECIFIC","textChars":28,"textLines":1,"bbox":[88,36,560,24]}
+{"kind":"textbox","id":"sh/w3ipkjy1","slide":2,"name":"fixed-page-number-2","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1176,668,38,18]}
+{"kind":"textbox","id":"sh/j698fyxs","slide":2,"text":"曖昧な依頼では、\nどれだけ良いプロンプトでも資料がぶれる。","textPreview":"曖昧な依頼では、 | どれだけ良いプロンプトでも資料がぶれる。","textChars":29,"textLines":2,"bbox":[88,70,1100,118]}
+{"kind":"textbox","id":"sh/i507mtg7","slide":2,"text":"VAGUE","textPreview":"VAGUE","textChars":5,"textLines":1,"bbox":[114,244,444,28]}
+{"kind":"shape","id":"sh/58bqhofy","slide":2,"bbox":[114,286,444,246]}
+{"kind":"textbox","id":"sh/472po3yd","slide":2,"text":"経営者向けに\nAIの提案資料を作る","textPreview":"経営者向けに | AIの提案資料を作る","textChars":17,"textLines":2,"bbox":[138,350,396,100]}
+{"kind":"textbox","id":"sh/rut8jyxo","slide":2,"text":"読者も、決定も、場面も曖昧","textPreview":"読者も、決定も、場面も曖昧","textChars":13,"textLines":1,"bbox":[138,478,396,28]}
+{"kind":"shape","id":"sh/6tk7qtg3","slide":2,"bbox":[584,381,116,42]}
+{"kind":"textbox","id":"sh/4fe1sbit","slide":2,"text":"SPECIFIC","textPreview":"SPECIFIC","textChars":8,"textLines":1,"bbox":[744,244,460,28]}
+{"kind":"shape","id":"sh/5gnilgje","slide":2,"bbox":[744,286,460,246]}
+{"kind":"textbox","id":"sh/itwjql03","slide":2,"text":"従業員30〜100名の経営者が、\n問い合わせ対応で\n2週間の試験導入を承認する提案","textPreview":"従業員30〜100名の経営者が、 | 問い合わせ対応で | 2週間の試験導入を承認する提案","textChars":41,"textLines":3,"bbox":[768,350,412,100]}
+{"kind":"textbox","id":"sh/je50j61o","slide":2,"text":"判断条件が具体的","textPreview":"判断条件が具体的","textChars":8,"textLines":1,"bbox":[768,478,412,28]}
+{"kind":"textbox","id":"sh/sje1wvi5","slide":2,"text":"具体化するのは文章量ではなく、判断条件。","textPreview":"具体化するのは文章量ではなく、判断条件。","textChars":20,"textLines":1,"bbox":[318,620,660,36]}
+{"kind":"notes","id":"nt/az6e8r","slide":2,"text":"参考画像の構図をテンプレート化。左右の比較、中央の単純な矢印、下部の結論だけで成立させる。\n\n[Sources]\n- AI顧問室のテンプレート設計\n[/Sources]"}
+{"kind":"slide","id":"sl/mpj5gl","slide":3,"title":"TEMPLATE / ONE CLAIM","textShapes":7}
+{"kind":"shape","id":"sh/vmd87uhk","slide":3,"bbox":[24,14,1232,692]}
+{"kind":"textbox","id":"sh/w7m90zip","slide":3,"text":"TEMPLATE / ONE CLAIM","textPreview":"TEMPLATE / ONE CLAIM","textChars":20,"textLines":1,"bbox":[88,36,560,24]}
+{"kind":"textbox","id":"sh/h8vq94za","slide":3,"name":"fixed-page-number-3","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1176,668,38,18]}
+{"kind":"textbox","id":"sh/mhkrup0n","slide":3,"text":"1枚に1つの主張だけを置く。","textPreview":"1枚に1つの主張だけを置く。","textChars":14,"textLines":1,"bbox":[88,72,1100,80]}
+{"kind":"textbox","id":"sh/7id83uh8","slide":3,"text":"AIに作らせる前に、\nこのページで何を決めてほしいかを書く。","textPreview":"AIに作らせる前に、 | このページで何を決めてほしいかを書く。","textChars":30,"textLines":2,"bbox":[88,244,640,128]}
+{"kind":"shape","id":"sh/8jm9wfit","slide":3,"bbox":[88,418,636,1]}
+{"kind":"textbox","id":"sh/9kvq5kze","slide":3,"text":"主張","textPreview":"主張","textChars":2,"textLines":1,"bbox":[88,448,100,24]}
+{"kind":"textbox","id":"sh/ydkrq50r","slide":3,"text":"次回、担当部署で2週間の検証を始める。","textPreview":"次回、担当部署で2週間の検証を始める。","textChars":19,"textLines":1,"bbox":[88,480,620,42]}
+{"kind":"shape","id":"sh/zet8zahc","slide":3,"bbox":[820,244,330,236]}
+{"kind":"textbox","id":"sh/3614ritc","slide":3,"text":"余白を残す\n＝読み手の視線を\n主張に集める","textPreview":"余白を残す | ＝読み手の視線を | 主張に集める","textChars":21,"textLines":3,"bbox":[850,294,270,128]}
+{"kind":"notes","id":"nt/mpj5gl","slide":3,"text":"主張を大きく、補足を少なく。複雑な図解の代わりに、余白と文字のサイズ差で焦点をつくる。\n\n[Sources]\n- AI顧問室のテンプレート設計\n[/Sources]"}
+{"kind":"slide","id":"sl/bw7k5e","slide":4,"title":"TEMPLATE / TWO COLUMNS","textShapes":8}
+{"kind":"shape","id":"sh/7e1kv254","slide":4,"bbox":[24,14,1232,692]}
+{"kind":"textbox","id":"sh/8fal47m9","slide":4,"text":"TEMPLATE / TWO COLUMNS","textPreview":"TEMPLATE / TWO COLUMNS","textChars":22,"textLines":1,"bbox":[88,36,560,24]}
+{"kind":"textbox","id":"sh/9gj2xcnu","slide":4,"name":"fixed-page-number-4","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1176,668,38,18]}
+{"kind":"textbox","id":"sh/uhs36h4f","slide":4,"text":"問題と解決策を、左右に分けて見せる。","textPreview":"問題と解決策を、左右に分けて見せる。","textChars":18,"textLines":1,"bbox":[88,72,1100,80]}
+{"kind":"textbox","id":"sh/vi1kzm50","slide":4,"text":"問題","textPreview":"問題","textChars":2,"textLines":1,"bbox":[114,226,460,28]}
+{"kind":"shape","id":"sh/wjul87ml","slide":4,"bbox":[114,268,460,250]}
+{"kind":"textbox","id":"sh/hk321cn6","slide":4,"text":"資料は完成しているのに、\n会議の判断が進まない。","textPreview":"資料は完成しているのに、 | 会議の判断が進まない。","textChars":24,"textLines":2,"bbox":[146,332,396,108]}
+{"kind":"textbox","id":"sh/i5c3ah4r","slide":4,"text":"解決策","textPreview":"解決策","textChars":3,"textLines":1,"bbox":[706,226,460,28]}
+{"kind":"shape","id":"sh/j6lk3m5w","slide":4,"bbox":[706,268,460,250]}
+{"kind":"textbox","id":"sh/bu5onuh4","slide":4,"text":"決めることを先に固定し、\n1枚1主張で資料をつくる。","textPreview":"決めることを先に固定し、 | 1枚1主張で資料をつくる。","textChars":26,"textLines":2,"bbox":[738,332,396,108]}
+{"kind":"textbox","id":"sh/atw7up0j","slide":4,"text":"色は左右の役割を伝えるためだけに使う。","textPreview":"色は左右の役割を伝えるためだけに使う。","textChars":19,"textLines":1,"bbox":[364,620,552,36]}
+{"kind":"notes","id":"nt/bw7k5e","slide":4,"text":"左右2カラムは問題と解決策の対比に限定する。カード内の情報量を増やさない。\n\n[Sources]\n- AI顧問室のテンプレート設計\n[/Sources]"}
+{"kind":"slide","id":"sl/mc1oli","slide":5,"title":"TEMPLATE / THREE STEPS","textShapes":13}
+{"kind":"shape","id":"sh/je58rmtk","slide":5,"bbox":[24,14,1232,692]}
+{"kind":"textbox","id":"sh/kfe907u5","slide":5,"text":"TEMPLATE / THREE STEPS","textPreview":"TEMPLATE / THREE STEPS","textChars":22,"textLines":1,"bbox":[88,36,560,24]}
+{"kind":"textbox","id":"sh/lgnqtcbq","slide":5,"name":"fixed-page-number-5","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1176,668,38,18]}
+{"kind":"textbox","id":"sh/6hwr2hcb","slide":5,"text":"作業は3段階に分ける。","textPreview":"作業は3段階に分ける。","textChars":11,"textLines":1,"bbox":[88,72,1100,80]}
+{"kind":"shape","id":"sh/7i58vmtw","slide":5,"bbox":[108,252,300,218]}
+{"kind":"textbox","id":"sh/8je94ruh","slide":5,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[134,276,70,28]}
+{"kind":"textbox","id":"sh/tknaxwbm","slide":5,"text":"決める","textPreview":"決める","textChars":3,"textLines":1,"bbox":[134,326,248,48]}
+{"kind":"textbox","id":"sh/mls7qxc7","slide":5,"text":"読者・決定・根拠を固定","textPreview":"読者・決定・根拠を固定","textChars":11,"textLines":1,"bbox":[134,398,248,42]}
+{"kind":"shape","id":"sh/nm18j2tc","slide":5,"bbox":[420,340,42,28]}
+{"kind":"shape","id":"sh/rq9ona5s","slide":5,"bbox":[470,252,300,218]}
+{"kind":"textbox","id":"sh/qp07u547","slide":5,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[496,276,70,28]}
+{"kind":"textbox","id":"sh/dsrqpkni","slide":5,"text":"並べる","textPreview":"並べる","textChars":3,"textLines":1,"bbox":[496,326,248,48]}
+{"kind":"textbox","id":"sh/cripwfmx","slide":5,"text":"タイトルだけで流れを作る","textPreview":"タイトルだけで流れを作る","textChars":12,"textLines":1,"bbox":[496,398,248,42]}
+{"kind":"shape","id":"sh/329ojq5g","slide":5,"bbox":[782,340,42,28]}
+{"kind":"shape","id":"sh/21g7ql4v","slide":5,"bbox":[832,252,300,218]}
+{"kind":"textbox","id":"sh/por6l0nm","slide":5,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[858,276,70,28]}
+{"kind":"textbox","id":"sh/43ipsvm1","slide":5,"text":"整える","textPreview":"整える","textChars":3,"textLines":1,"bbox":[858,326,248,48]}
+{"kind":"textbox","id":"sh/vypofq5k","slide":5,"text":"本文・見せ方・QAを行う","textPreview":"本文・見せ方・QAを行う","textChars":12,"textLines":1,"bbox":[858,398,248,42]}
+{"kind":"textbox","id":"sh/uxg7ml4z","slide":5,"text":"先に構図を決めると、AIに任せる範囲が明確になる。","textPreview":"先に構図を決めると、AIに任せる範囲が明確になる。","textChars":25,"textLines":1,"bbox":[282,592,716,36]}
+{"kind":"notes","id":"nt/mc1oli","slide":5,"text":"工程を3つに単純化。矢印は一方向に一つだけ置き、読者の視線を迷わせない。\n\n[Sources]\n- AI顧問室のテンプレート設計\n[/Sources]"}
+{"kind":"slide","id":"sl/vriyzv","slide":6,"title":"TEMPLATE / IMAGE + MESSAGE","textShapes":6}
+{"kind":"shape","id":"sh/kf6dgrm9","slide":6,"bbox":[24,14,1232,692]}
+{"kind":"textbox","id":"sh/zexw7m5o","slide":6,"text":"TEMPLATE / IMAGE + MESSAGE","textPreview":"TEMPLATE / IMAGE + MESSAGE","textChars":26,"textLines":1,"bbox":[88,36,560,24]}
+{"kind":"textbox","id":"sh/ydoveh43","slide":6,"name":"fixed-page-number-6","text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1176,668,38,18]}
+{"kind":"textbox","id":"sh/9kzedwnq","slide":6,"text":"画像は雰囲気ではなく、\n主張を理解する舞台として置く。","textPreview":"画像は雰囲気ではなく、 | 主張を理解する舞台として置く。","textChars":27,"textLines":2,"bbox":[88,72,1100,116]}
+{"kind":"shape","id":"sh/8j6dkrm5","slide":6,"bbox":[88,262,622,292]}
+{"kind":"textbox","id":"sh/7ixwbm5k","slide":6,"text":"IMAGE\nここに背景写真を置く","textPreview":"IMAGE | ここに背景写真を置く","textChars":16,"textLines":2,"bbox":[132,350,534,100]}
+{"kind":"textbox","id":"sh/mhovih4z","slide":6,"text":"写真の上に長文を直接置かない。\n白い前景カードに主張を置く。","textPreview":"写真の上に長文を直接置かない。 | 白い前景カードに主張を置く。","textChars":30,"textLines":2,"bbox":[792,300,330,104]}
+{"kind":"shape","id":"sh/povu1cn6","slide":6,"bbox":[792,466,300,72]}
+{"kind":"textbox","id":"sh/onmd87m1","slide":6,"text":"文字の居場所を先につくる","textPreview":"文字の居場所を先につくる","textChars":12,"textLines":1,"bbox":[816,486,252,30]}
+{"kind":"notes","id":"nt/vriyzv","slide":6,"text":"画像枠はあくまで置き場所。画像と文字の役割を分離し、背景画像に依存した読みにくいレイアウトを避ける。\n\n[Sources]\n- AI顧問室のテンプレート設計\n[/Sources]"}
+{"kind":"slide","id":"sl/58c9x0","slide":7,"title":"TEMPLATE / CTA","textShapes":12}
+{"kind":"shape","id":"sh/1gvqx4fe","slide":7,"bbox":[24,14,1232,692]}
+{"kind":"textbox","id":"sh/ed47mpgn","slide":7,"text":"TEMPLATE / CTA","textPreview":"TEMPLATE / CTA","textChars":14,"textLines":1,"bbox":[88,36,560,24]}
+{"kind":"textbox","id":"sh/zed8vux8","slide":7,"name":"fixed-page-number-7","text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1176,668,38,18]}
+{"kind":"textbox","id":"sh/cb2pkzyh","slide":7,"text":"まず1本、自社資料で試す。","textPreview":"まず1本、自社資料で試す。","textChars":13,"textLines":1,"bbox":[88,72,1100,80]}
+{"kind":"textbox","id":"sh/dcbqtkf2","slide":7,"text":"教材だけで進められる方は、そのまま実践してください。","textPreview":"教材だけで進められる方は、そのまま実践してください。","textChars":26,"textLines":1,"bbox":[88,202,660,34]}
+{"kind":"shape","id":"sh/qpk7ipgr","slide":7,"bbox":[88,292,42,42]}
+{"kind":"textbox","id":"sh/rqt8ruxc","slide":7,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[88,292,42,42]}
+{"kind":"textbox","id":"sh/4n2pgfyl","slide":7,"text":"自社資料を1本選ぶ","textPreview":"自社資料を1本選ぶ","textChars":9,"textLines":1,"bbox":[158,294,540,36]}
+{"kind":"shape","id":"sh/5obqpkf6","slide":7,"bbox":[88,364,42,42]}
+{"kind":"textbox","id":"sh/d0redo7y","slide":7,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[88,364,42,42]}
+{"kind":"textbox","id":"sh/czix4jqd","slide":7,"text":"決めることを1つ書く","textPreview":"決めることを1つ書く","textChars":10,"textLines":1,"bbox":[158,366,540,36]}
+{"kind":"shape","id":"sh/by9wbeps","slide":7,"bbox":[88,436,42,42]}
+{"kind":"textbox","id":"sh/qx0f2987","slide":7,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[88,436,42,42]}
+{"kind":"textbox","id":"sh/pw7e947m","slide":7,"text":"1枚だけ作り直す","textPreview":"1枚だけ作り直す","textChars":8,"textLines":1,"bbox":[158,438,540,36]}
+{"kind":"shape","id":"sh/ovyx0zq1","slide":7,"bbox":[820,260,340,240]}
+{"kind":"textbox","id":"sh/3upw7upg","slide":7,"text":"無料顧問\n1回分","textPreview":"無料顧問 | 1回分","textChars":8,"textLines":2,"bbox":[858,306,264,88]}
+{"kind":"textbox","id":"sh/2tgfy98b","slide":7,"text":"自社資料を持ち込み、\n迷う工程だけ一緒に整理する","textPreview":"自社資料を持ち込み、 | 迷う工程だけ一緒に整理する","textChars":24,"textLines":2,"bbox":[858,418,264,48]}
+{"kind":"notes","id":"nt/58c9x0","slide":7,"text":"CTAは教材の価値を下げず、次の一歩として置く。黒いカードは一つだけ。\n\n[Sources]\n- AI顧問室のテンプレート設計\n[/Sources]"}
