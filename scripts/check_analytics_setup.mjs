@@ -217,6 +217,12 @@ export function auditRepository(root) {
   const issues = {};
   for (const relative of discoverAnalyticsPages(root)) {
     const html = fs.readFileSync(path.join(root, relative), 'utf8');
+    // Retired LP URLs are kept as noindex meta-refresh stubs so old ad links
+    // do not 404. They are routing surfaces, not independently measurable LPs.
+    if (/<meta\b[^>]*http-equiv\s*=\s*(["'])refresh\1/i.test(html)) continue;
+    // The current LP directory index is an internal routing page, not an
+    // acquisition LP. It intentionally has no CTA/event instrumentation.
+    if (/\/index\.html$/.test(relative) && !/data-analytics-section/i.test(html)) continue;
     const pageIssues = auditHtml(html);
     if (pageIssues.length) issues[relative] = pageIssues;
   }

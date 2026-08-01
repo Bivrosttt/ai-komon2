@@ -87,6 +87,16 @@
   .featured-arrow{margin-top:auto;padding-top:16px;font:700 17px/1 var(--latin);color:var(--blue)}
   .featured-card:first-child .featured-arrow{color:var(--lime)}
 
+  .current-lp{background:var(--ink);color:#fff;border:1px solid var(--ink);padding:28px;box-shadow:9px 9px 0 var(--lime);margin-bottom:52px}
+  .current-lp-kicker{font:700 10px/1.3 var(--latin);letter-spacing:.16em;text-transform:uppercase;color:var(--lime)}
+  .current-lp h2{font-size:28px;line-height:1.35;margin-top:9px}
+  .current-lp p{color:#c7cad3;font-size:12px;margin-top:8px}
+  .current-lp-links{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:23px}
+  .current-lp-link{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid #545963;color:#fff;padding:13px 14px;font-size:13px;font-weight:700;transition:.2s}
+  .current-lp-link:hover{background:var(--blue);border-color:var(--lime);transform:translateY(-2px)}
+  .current-lp-link span{font:700 16px/1 var(--latin);color:var(--lime)}
+  .library-subtitle{font-size:20px;margin-bottom:20px}
+
   .group{margin-top:66px;scroll-margin-top:145px}
   .group[hidden]{display:none}
   .group-head{display:grid;grid-template-columns:170px 1fr;gap:30px;margin-bottom:25px;padding-bottom:18px;border-bottom:2px solid var(--ink)}
@@ -132,6 +142,9 @@
     .toolbar{padding:12px 0}
     main{padding:44px 0 75px}
     .featured,.card-grid{grid-template-columns:1fr}
+    .current-lp{padding:22px 18px}
+    .current-lp h2{font-size:22px}
+    .current-lp-links{grid-template-columns:1fr 1fr}
     .featured-card{min-height:180px}
     .group{margin-top:52px}
     .group-head{grid-template-columns:1fr;gap:8px}
@@ -196,7 +209,22 @@
   <div class="container">
     <div class="result-row"><h2>LPライブラリ</h2><span class="result-count" id="resultCount" aria-live="polite">31 / 31 PAGES</span></div>
 
-    <section class="featured" id="featured" aria-label="新着LP">
+    <section class="current-lp" aria-labelledby="current-lp-title">
+      <div class="current-lp-kicker">Current / Free consultation 2026-07-31</div>
+      <h2 id="current-lp-title">現行の広告LP：業務改善コンサル1回分</h2>
+      <p>現在の広告検証で使う最新セットです。以下の5本を優先し、旧LP・提案LPとは分けて管理します。</p>
+      <div class="current-lp-links">
+        <a class="current-lp-link" href="lp/free-ai-consultation-20260731/kensetsu.html">建設 <span>↗</span></a>
+        <a class="current-lp-link" href="lp/free-ai-consultation-20260731/fudosan.html">不動産 <span>↗</span></a>
+        <a class="current-lp-link" href="lp/free-ai-consultation-20260731/seizo.html">製造 <span>↗</span></a>
+        <a class="current-lp-link" href="lp/free-ai-consultation-20260731/unsou.html">運送 <span>↗</span></a>
+        <a class="current-lp-link" href="lp/free-ai-consultation-20260731/shukuhaku.html">宿泊 <span>↗</span></a>
+      </div>
+    </section>
+
+    <h2 class="library-subtitle">旧LP・提案LP・検証用LP</h2>
+
+    <section class="featured" id="featured" aria-label="旧LP・提案LP">
       <a class="featured-card" href="lp-official-v2.html"><span class="new-badge">New / Official V2</span><h3>AIに詳しくなくても、会社は変えられる。</h3><p>人物写真を軸に、相談・実装・社内定着の人間的な伴走を伝える公式LP候補。</p><span class="featured-arrow">OPEN ↗</span></a>
       <a class="featured-card" href="lp-komon-sales.html"><span class="new-badge">New / Sales</span><h3>営業を増やす前に、営業の仕事を減らす。</h3><p>BtoB営業10〜50名の社長・営業責任者向け。</p><span class="featured-arrow">OPEN ↗</span></a>
       <a class="featured-card" href="lp-komon-backoffice.html"><span class="new-badge">New / Back office</span><h3>事務員を、もう一人採る前に。</h3><p>従業員30〜100名の経営者・管理部長向け。</p><span class="featured-arrow">OPEN ↗</span></a>
@@ -211,7 +239,7 @@
         <a class="card" href="lp-komon-sales.html" data-category="target" data-search="営業 BtoB 営業責任者 商談 提案書 追客 CRM"><div class="card-top"><span class="card-no">LP 02</span><span class="tag">営業組織</span></div><h3>営業を増やす前に、営業の仕事を減らす。</h3><p>商談準備・提案書・追客の下ごしらえをAI化し、顧客時間を取り戻す訴求。</p><div class="card-foot"><span class="filename">lp-komon-sales.html</span><span class="open">OPEN ↗</span></div></a>
         <a class="card" href="lp-komon-backoffice.html" data-category="target" data-search="バックオフィス 管理部長 経理 総務 人事 採用 事務員"><div class="card-top"><span class="card-no">LP 03</span><span class="tag">管理部門</span></div><h3>事務員を、もう一人採る前に。</h3><p>採用前に定型業務を整理し、AIが下ごしらえ、人が確認する体制を提案。</p><div class="card-foot"><span class="filename">lp-komon-backoffice.html</span><span class="open">OPEN ↗</span></div></a>
         <a class="card" href="lp-komon-kensetsu.html" data-category="target" data-search="建設 工務店 現場監督 日報 写真 見積 書類"><div class="card-top"><span class="card-no">LP 04</span><span class="tag">建設業</span></div><h3>監督を、現場に返す。</h3><p>日報・写真整理・見積準備など、監督を現場から離す書類仕事にフォーカス。</p><div class="card-foot"><span class="filename">lp-komon-kensetsu.html</span><span class="open">OPEN ↗</span></div></a>
-        <a class="card" href="lp-fudosan.html" data-category="target" data-search="不動産 反響対応 追客 ポータル 成約 AI顧問"><div class="card-top"><span class="card-no">LP 05</span><span class="tag">不動産業</span></div><h3>反響から5分で返す会社が、契約を取っていく。</h3><p>反響対応・追客・集客におけるAI活用を、不動産会社向けに具体化。</p><div class="card-foot"><span class="filename">lp-fudosan.html</span><span class="open">OPEN ↗</span></div></a>
+        <a class="card" href="lp/free-ai-consultation-20260731/fudosan.html" data-category="target" data-search="不動産 反響対応 追客 ポータル 成約 AI顧問 業務改善 現行"><div class="card-top"><span class="card-no">LP 05</span><span class="tag">現行広告LP</span></div><h3>不動産の業務を、まず聞かせてください。</h3><p>問い合わせ対応や物件資料の整理など、業務の流れからAI活用箇所を整理。</p><div class="card-foot"><span class="filename">free-ai-consultation-20260731/fudosan.html</span><span class="open">OPEN ↗</span></div></a>
       </div>
     </section>
 

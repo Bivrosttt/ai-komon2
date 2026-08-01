@@ -35,7 +35,7 @@ LP_NOTES = {  # 訴求軸メモ（?from= はファイル名と同じ）
     "lp-risk.html": "リスク回避", "lp-time.html": "時間創出", "lp-hitode.html": "人手不足",
     "lp-kantan.html": "かんたん", "lp-hikaku.html": "比較", "lp-genba.html": "現場（建設）",
     "lp-roi.html": "ROI試算", "lp-chatgpt.html": "ChatGPT止まり", "lp-lv2.html": "レベル2向け",
-    "lp-lv3.html": "レベル3向け", "lp-lv4.html": "レベル4向け", "lp-fudosan.html": "不動産向け",
+    "lp-lv3.html": "レベル3向け", "lp-lv4.html": "レベル4向け",
 }
 
 lps = glob.glob(str(ROOT / "lp-*.html"))
