@@ -102,6 +102,11 @@
     });
   }
 
+  // LP scripts can replace CTA hrefs after this shared measurement script has
+  // run. Expose a narrow refresh hook so injected booking links keep the same
+  // attribution contract as static links.
+  window.aiKomonDecorateLinks = decorateLinks;
+
   function toCollector(eventName, params) {
     if (!config.eventEndpoint) return;
     var attribution = getAttribution();

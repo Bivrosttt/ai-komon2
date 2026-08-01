@@ -17,7 +17,7 @@
 - Full-view comparison: the supplied screenshot is on the left of the combined comparison and the revised implementation is on the right. The revised copy keeps the same visual hierarchy, colors, CTA treatment, and editorial/photo split while removing the broken mid-phrase wrapping.
 - Focused region comparison: hero title, lead, offer, and CTA were readable at the normalized viewport. A separate focused crop was not needed because the entire above-the-fold hero remained legible at 749 x 865.
 - Responsive checks: at 390 x 844, `scrollWidth === clientWidth === 390`; at 749 x 865, `scrollWidth === clientWidth === 749`; at 1440 x 900, `scrollWidth === clientWidth === 1440`.
-- Primary CTA check: all four `[data-cta]` links resolve to `/lp-zukai.html?from=free_consult_kensetsu#contact`.
+- Primary CTA check: all four `[data-cta]` links resolve directly to `https://timerex.net/s/koki.otsuka_bfac/4b686119?from=free_consult_kensetsu` (with production attribution parameters appended by `measurement.js`).
 - Browser console/page errors: none reported by `agent-browser errors`.
 - Latest visual check: the two newly supplied issue screenshots were reviewed against the v4 captures. The media image keeps a 1.777 aspect ratio at both desktop and tablet crops, and the hero no longer renders the duplicate offer row.
 

@@ -136,12 +136,19 @@
     heroImage.alt = data.label + "の業務改善を検討している様子";
   }
 
-  var destination = "../../lp-zukai.html?from=free_consult_" + key + "#contact";
+  // The ad LP is the conversion entry point. Send every CTA straight to the
+  // booking calendar instead of making the visitor pass through lp-zukai.
+  // measurement.js adds the first-touch UTM values and anonymous session ID
+  // on production before the visitor leaves for TimeRex.
+  var destination = "https://timerex.net/s/koki.otsuka_bfac/4b686119?from=free_consult_" + key;
   document.querySelectorAll("[data-cta]").forEach(function (link) {
     link.href = destination;
     link.textContent = "コンサル1回分を無料申し込み";
     link.dataset.industry = key;
   });
+  if (typeof window.aiKomonDecorateLinks === "function") {
+    window.aiKomonDecorateLinks();
+  }
 
   if (layout === "editorial" || layout === "poster") {
     var hero = document.querySelector(".hero");
