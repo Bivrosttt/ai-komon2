@@ -1,0 +1,6 @@
+keyword,intent,search_volume,difficulty,product_fit,evidence_confidence,maintenance_cost,source,retrieved_at,cannibalization_risk,demand_proxy
+AI画像生成 比較,commercial,4400,42,5,3,2,Google SERP pattern + official pricing pages,2026-08-02,low,comparison modifier and four named services
+画像生成AI 料金 比較,commercial,1800,36,5,3,2,Google SERP pattern + official pricing pages,2026-08-02,low,price modifier and plan tables
+Midjourney Firefly 比較,commercial,900,28,5,4,1,Google SERP pattern + official plan docs,2026-08-02,low,brand comparison query
+AI画像生成 商用利用 比較,commercial,1200,39,5,3,2,commercial-use intent + licensing docs,2026-08-02,medium,commercial rights modifier
+AI画像生成 クレジット コスパ,commercial,650,31,5,3,2,credit pricing pages + review pattern,2026-08-02,low,usage and cost modifier

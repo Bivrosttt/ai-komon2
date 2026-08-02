@@ -1,0 +1,19 @@
+{
+  "tool": "noimos-comparison-article",
+  "input": "articles/ai-presentation-tools-comparison/index.html",
+  "status": "PASS",
+  "blockers": [],
+  "warnings": [],
+  "services": [
+    "Gamma",
+    "Beautiful.ai",
+    "Canva",
+    "Microsoft 365 Copilot"
+  ],
+  "home_urls": {
+    "Gamma": "https://gamma.app/",
+    "Beautiful.ai": "https://www.beautiful.ai/",
+    "Canva": "https://www.canva.com/",
+    "Microsoft 365 Copilot": "https://www.microsoft.com/en-us/microsoft-365/powerpoint"
+  }
+}

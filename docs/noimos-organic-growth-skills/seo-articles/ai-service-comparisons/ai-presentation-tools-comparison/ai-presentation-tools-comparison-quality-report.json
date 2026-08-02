@@ -1,0 +1,20 @@
+{
+  "tool": "noimos-content-quality-gate",
+  "generated_at": "2026-08-02T09:59:20.735054+00:00",
+  "status": "PASS",
+  "blockers": [],
+  "warnings": [],
+  "evidence": [
+    {
+      "registered_claims_used": 5,
+      "claim_records": 5,
+      "numeric_claim_lines": 5,
+      "approval_mode": "ai_only",
+      "approval_complete": true
+    }
+  ],
+  "approval_mode": "ai_only",
+  "reviewer": "AI Content Quality Gate",
+  "pipeline": "official-research -> claims-ledger -> comparison-validator -> seo-geo-validator -> render-qa",
+  "publication_performed": false
+}

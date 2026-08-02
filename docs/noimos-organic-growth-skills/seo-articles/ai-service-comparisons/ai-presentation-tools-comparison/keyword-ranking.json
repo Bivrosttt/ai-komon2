@@ -1,0 +1,68 @@
+{
+  "tool": "noimos-commercial-keywords",
+  "generated_at": "2026-08-02T09:49:32.434398+00:00",
+  "method": "planning heuristic; not a ranking or revenue prediction",
+  "eligible_count": 5,
+  "candidates": [
+    {
+      "keyword": "Gamma Beautiful.ai 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 83.2,
+      "search_volume": 700.0,
+      "difficulty": 24.0,
+      "demand_basis": "observed_volume",
+      "source": "Google SERP pattern + official plan docs",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "AIプレゼン作成 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 81.5,
+      "search_volume": 3600.0,
+      "difficulty": 41.0,
+      "demand_basis": "observed_volume",
+      "source": "Google SERP pattern + official pricing pages",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "PowerPoint Copilot プレゼン 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 80.2,
+      "search_volume": 1000.0,
+      "difficulty": 38.0,
+      "demand_basis": "observed_volume",
+      "source": "Microsoft official licensing and support",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "AIスライド作成 料金 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 79.6,
+      "search_volume": 1300.0,
+      "difficulty": 35.0,
+      "demand_basis": "observed_volume",
+      "source": "Google SERP pattern + official pricing pages",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "プレゼンAI コスパ",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 77.9,
+      "search_volume": 500.0,
+      "difficulty": 29.0,
+      "demand_basis": "observed_volume",
+      "source": "credit and seat pricing pages",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "tool": "noimos-commercial-keywords",
+  "generated_at": "2026-08-02T09:49:32.461131+00:00",
+  "method": "planning heuristic; not a ranking or revenue prediction",
+  "eligible_count": 5,
+  "candidates": [
+    {
+      "keyword": "Intercom Zendesk 比較 AI",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 82.9,
+      "search_volume": 800.0,
+      "difficulty": 33.0,
+      "demand_basis": "observed_volume",
+      "source": "official pricing and independent reviews",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "Freshdesk Gorgias 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 82.2,
+      "search_volume": 450.0,
+      "difficulty": 27.0,
+      "demand_basis": "observed_volume",
+      "source": "official plan pages + G2/Capterra",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "AIカスタマーサポート 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 81.2,
+      "search_volume": 2400.0,
+      "difficulty": 43.0,
+      "demand_basis": "observed_volume",
+      "source": "Google SERP pattern + official pricing pages",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "AIチャットボット 料金 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 80.0,
+      "search_volume": 1900.0,
+      "difficulty": 45.0,
+      "demand_basis": "observed_volume",
+      "source": "Google SERP pattern + official usage pricing",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "AIエージェント カスタマーサポート コスパ",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 79.0,
+      "search_volume": 550.0,
+      "difficulty": 30.0,
+      "demand_basis": "observed_volume",
+      "source": "usage-based pricing pages + review pattern",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    }
+  ]
+}

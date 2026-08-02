@@ -1,0 +1,11 @@
+{
+  "captured_at":"2026-08-02",
+  "viewport":"1440x900",
+  "services":[
+    {"name":"Midjourney","url":"https://www.midjourney.com/home/","file":"articles/ai-image-generation-comparison/home-screens/midjourney-home.png","evidence":"official home screenshot"},
+    {"name":"Adobe Firefly","url":"https://firefly.adobe.com/","file":"articles/ai-image-generation-comparison/home-screens/firefly-home.png","evidence":"official home screenshot"},
+    {"name":"Ideogram","url":"https://ideogram.ai/","file":"articles/ai-image-generation-comparison/home-screens/ideogram-home.png","evidence":"official home screenshot"},
+    {"name":"Canva","url":"https://www.canva.com/","file":"articles/ai-image-generation-comparison/home-screens/canva-home.png","evidence":"official home screenshot"}
+  ],
+  "render_qa":{"desktop":"render-desktop.png","tablet":"render-tablet.png","mobile":"render-mobile.png","overflow":"scrollWidth equals clientWidth at all three viewports","lazy_images":"all images naturalWidth>0 after scrollintoview"}
+}

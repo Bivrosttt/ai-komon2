@@ -1,0 +1,9 @@
+{
+  "claims": [
+    {"id":"img_midjourney_basic","claim":"Midjourney Basic is USD 10 per month and includes 3.3 Fast GPU hours.","source_url":"https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans","publisher":"Midjourney","retrieved_at":"2026-08-02","evidence_type":"official_plan_table","verified":true},
+    {"id":"img_midjourney_standard","claim":"Midjourney Standard is USD 30 per month and includes 15 Fast GPU hours plus unlimited image Relax time.","source_url":"https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans","publisher":"Midjourney","retrieved_at":"2026-08-02","evidence_type":"official_plan_table","verified":true},
+    {"id":"img_firefly_standard","claim":"Adobe Firefly Standard is USD 9.99 per month, 2000 generative credits, and up to 20 five-second videos.","source_url":"https://www.adobe.com/products/firefly/plans.html","publisher":"Adobe","retrieved_at":"2026-08-02","evidence_type":"official_plan_page","verified":true},
+    {"id":"img_ideogram_plus","claim":"Ideogram Plus is USD 20 per month with 1000 priority credits.","source_url":"https://ideogram.ai/pricing/","publisher":"Ideogram","retrieved_at":"2026-08-02","evidence_type":"official_pricing_page","verified":true},
+    {"id":"img_canva_pro","claim":"Canva Pro is displayed as USD 144 per year for one person and includes an AI allowance up to 2000 Standard uses as an estimate.","source_url":"https://www.canva.com/pricing/","publisher":"Canva","retrieved_at":"2026-08-02","evidence_type":"official_pricing_page","verified":true}
+  ]
+}

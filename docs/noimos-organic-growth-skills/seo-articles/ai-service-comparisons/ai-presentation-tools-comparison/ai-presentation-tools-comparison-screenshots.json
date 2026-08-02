@@ -1,0 +1,11 @@
+{
+  "captured_at":"2026-08-02",
+  "viewport":"1440x900",
+  "services":[
+    {"name":"Gamma","url":"https://gamma.app/","file":"articles/ai-presentation-tools-comparison/home-screens/gamma-home.png","evidence":"official home screenshot"},
+    {"name":"Beautiful.ai","url":"https://www.beautiful.ai/","file":"articles/ai-presentation-tools-comparison/home-screens/beautiful-ai-home.png","evidence":"official home screenshot"},
+    {"name":"Canva","url":"https://www.canva.com/","file":"articles/ai-presentation-tools-comparison/home-screens/canva-home.png","evidence":"official home screenshot"},
+    {"name":"Microsoft 365 Copilot","url":"https://www.microsoft.com/en-us/microsoft-365/powerpoint","file":"articles/ai-presentation-tools-comparison/home-screens/microsoft-powerpoint-home.png","evidence":"official PowerPoint product home screenshot"}
+  ],
+  "render_qa":{"desktop":"render-desktop.png","tablet":"render-tablet.png","mobile":"render-mobile.png","overflow":"scrollWidth equals clientWidth at all three viewports","lazy_images":"all images naturalWidth>0 after scrollintoview"}
+}

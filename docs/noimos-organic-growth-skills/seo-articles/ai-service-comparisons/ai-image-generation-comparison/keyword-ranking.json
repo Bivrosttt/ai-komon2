@@ -1,0 +1,68 @@
+{
+  "tool": "noimos-commercial-keywords",
+  "generated_at": "2026-08-02T09:49:32.406283+00:00",
+  "method": "planning heuristic; not a ranking or revenue prediction",
+  "eligible_count": 5,
+  "candidates": [
+    {
+      "keyword": "Midjourney Firefly 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 82.7,
+      "search_volume": 900.0,
+      "difficulty": 28.0,
+      "demand_basis": "observed_volume",
+      "source": "Google SERP pattern + official plan docs",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "AI画像生成 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 81.3,
+      "search_volume": 4400.0,
+      "difficulty": 42.0,
+      "demand_basis": "observed_volume",
+      "source": "Google SERP pattern + official pricing pages",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "画像生成AI 料金 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 79.9,
+      "search_volume": 1800.0,
+      "difficulty": 36.0,
+      "demand_basis": "observed_volume",
+      "source": "Google SERP pattern + official pricing pages",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "AI画像生成 商用利用 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 78.1,
+      "search_volume": 1200.0,
+      "difficulty": 39.0,
+      "demand_basis": "observed_volume",
+      "source": "commercial-use intent + licensing docs",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    },
+    {
+      "keyword": "AI画像生成 クレジット コスパ",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 77.9,
+      "search_volume": 650.0,
+      "difficulty": 31.0,
+      "demand_basis": "observed_volume",
+      "source": "credit pricing pages + review pattern",
+      "retrieved_at": "2026-08-02",
+      "reasons": []
+    }
+  ]
+}

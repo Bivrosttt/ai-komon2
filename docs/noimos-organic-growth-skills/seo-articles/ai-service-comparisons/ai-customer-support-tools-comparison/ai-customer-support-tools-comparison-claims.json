@@ -1,0 +1,8 @@
+{
+  "claims": [
+    {"id":"support_intercom_fin","claim":"Intercom Fin is USD 0.99 per outcome and existing-helpdesk use has no seat cost with an example minimum of 50 outcomes.","source_url":"https://www.intercom.com/pricing","publisher":"Intercom","retrieved_at":"2026-08-02","evidence_type":"official_pricing_faq","verified":true},
+    {"id":"support_zendesk_suite","claim":"Zendesk Suite Team is USD 55 per agent per month paid yearly and AI agents are included in Suite and Support plans with automated resolution usage measurement.","source_url":"https://www.zendesk.com/pricing/","publisher":"Zendesk","retrieved_at":"2026-08-02","evidence_type":"official_pricing_faq","verified":true},
+    {"id":"support_gorgias_agent","claim":"Gorgias AI Agent costs USD 0.90 per resolved interaction on most plans and plans range from 90 to 2500 plus automated interactions.","source_url":"https://www.gorgias.com/blog/ai-agent-pricing","publisher":"Gorgias","retrieved_at":"2026-08-02","evidence_type":"official_pricing_explainer","verified":true},
+    {"id":"support_freshdesk_growth","claim":"Freshdesk Growth is USD 19 per agent per month billed annually and includes the first 500 Freddy AI Agent sessions.","source_url":"https://www.freshworks.com/freshdesk/pricing/","publisher":"Freshworks","retrieved_at":"2026-08-02","evidence_type":"official_pricing_page","verified":true}
+  ]
+}

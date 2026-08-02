@@ -1,0 +1,9 @@
+{
+  "claims": [
+    {"id":"pres_gamma_free","claim":"Gamma Free allows up to 10 slides per prompt and provides one-time credits.","source_url":"https://gamma.app/pricing","publisher":"Gamma","retrieved_at":"2026-08-02","evidence_type":"official_pricing_page","verified":true},
+    {"id":"pres_gamma_plus","claim":"Gamma Plus is USD 9 per month on annual billing with 1000 credits per month.","source_url":"https://help.gamma.app/en/articles/8077107-how-can-i-upgrade-my-gamma-subscription","publisher":"Gamma","retrieved_at":"2026-08-02","evidence_type":"official_help_page","verified":true},
+    {"id":"pres_beautiful_pro","claim":"Beautiful.ai Pro is USD 12 per month billed annually with unlimited AI content generation and slides.","source_url":"https://www.beautiful.ai/pricing","publisher":"Beautiful.ai","retrieved_at":"2026-08-02","evidence_type":"official_pricing_page","verified":true},
+    {"id":"pres_canva_pro","claim":"Canva Pro is displayed as USD 144 per year and an AI allowance up to 2000 Standard uses as an estimate.","source_url":"https://www.canva.com/pricing/","publisher":"Canva","retrieved_at":"2026-08-02","evidence_type":"official_pricing_page","verified":true},
+    {"id":"pres_microsoft_standard","claim":"Microsoft 365 Business Standard with Copilot is USD 23.50 per user per month paid yearly and includes PowerPoint, Word, Excel, Teams and 1TB storage.","source_url":"https://www.microsoft.com/en-us/microsoft-365-copilot/pricing","publisher":"Microsoft","retrieved_at":"2026-08-02","evidence_type":"official_pricing_page","verified":true}
+  ]
+}

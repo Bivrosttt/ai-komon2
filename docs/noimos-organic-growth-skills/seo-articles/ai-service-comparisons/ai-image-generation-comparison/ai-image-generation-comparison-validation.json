@@ -1,0 +1,19 @@
+{
+  "tool": "noimos-comparison-article",
+  "input": "articles/ai-image-generation-comparison/index.html",
+  "status": "PASS",
+  "blockers": [],
+  "warnings": [],
+  "services": [
+    "Midjourney",
+    "Adobe Firefly",
+    "Ideogram",
+    "Canva"
+  ],
+  "home_urls": {
+    "Midjourney": "https://www.midjourney.com/home/",
+    "Adobe Firefly": "https://firefly.adobe.com/",
+    "Ideogram": "https://ideogram.ai/",
+    "Canva": "https://www.canva.com/"
+  }
+}

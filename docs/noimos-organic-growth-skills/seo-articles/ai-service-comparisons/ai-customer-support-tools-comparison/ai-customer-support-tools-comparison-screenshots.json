@@ -1,0 +1,11 @@
+{
+  "captured_at":"2026-08-02",
+  "viewport":"1440x900",
+  "services":[
+    {"name":"Intercom Fin","url":"https://www.intercom.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/intercom-home.png","evidence":"official home screenshot"},
+    {"name":"Zendesk AI","url":"https://www.zendesk.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/zendesk-home.png","evidence":"official home screenshot"},
+    {"name":"Gorgias AI Agent","url":"https://www.gorgias.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/gorgias-home.png","evidence":"official home screenshot"},
+    {"name":"Freshdesk Freddy AI","url":"https://freshdesk.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/freshdesk-home.png","evidence":"official Freshdesk product home screenshot"}
+  ],
+  "render_qa":{"desktop":"render-desktop.png","tablet":"render-tablet.png","mobile":"render-mobile.png","overflow":"scrollWidth equals clientWidth at all three viewports","lazy_images":"all images naturalWidth>0 after scrollintoview"}
+}

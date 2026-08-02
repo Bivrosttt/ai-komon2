@@ -1,0 +1,5 @@
+service,plan,billing,listed_price,free_tier,usage,unit_cost_scenario,cost_effectiveness,source_url,retrieved_at
+Intercom Fin,Fin on existing helpdesk,payg,USD 0.99/outcome,14-day trial,minimum 50 outcomes example; no seat cost,USD 0.99 per resolved outcome,good for adding AI to an existing helpdesk,https://www.intercom.com/pricing,2026-08-02
+Zendesk AI,Suite Team,annual,USD 55/agent/mo,14-day trial,AI agents included; usage tied to automated resolutions,USD 55 per agent plus resolution usage,good for omnichannel teams already on Zendesk,https://www.zendesk.com/pricing/,2026-08-02
+Gorgias AI Agent,Support + AI Agent,annual,USD 0.90/resolved interaction add-on,free trial,90 to 2500+ automated interactions per month; helpdesk ticket tier separate,USD 0.90 per resolved interaction on most plans,good for Shopify-heavy support,https://www.gorgias.com/blog/ai-agent-pricing,2026-08-02
+Freshdesk Freddy AI,Growth,annual,USD 19/agent/mo,free trial,first 500 AI Agent sessions included; extra USD 49/100 sessions,USD 19 base + USD 0.49 per extra session,good for lower-seat-cost pilot,https://www.freshworks.com/freshdesk/pricing/,2026-08-02

@@ -1,0 +1,19 @@
+{
+  "tool": "noimos-comparison-article",
+  "input": "articles/ai-customer-support-tools-comparison/index.html",
+  "status": "PASS",
+  "blockers": [],
+  "warnings": [],
+  "services": [
+    "Intercom Fin",
+    "Zendesk AI",
+    "Gorgias AI Agent",
+    "Freshdesk Freddy AI"
+  ],
+  "home_urls": {
+    "Intercom Fin": "https://www.intercom.com/",
+    "Zendesk AI": "https://www.zendesk.com/",
+    "Gorgias AI Agent": "https://www.gorgias.com/",
+    "Freshdesk Freddy AI": "https://freshdesk.com/"
+  }
+}
