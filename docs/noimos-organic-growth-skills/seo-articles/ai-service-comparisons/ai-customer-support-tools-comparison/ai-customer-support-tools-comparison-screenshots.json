@@ -1,11 +1,12 @@
 {
   "captured_at":"2026-08-02",
   "viewport":"1440x900",
+  "manual_visual_review":{"reviewed_by":"AI","reviewed_at":"2026-08-02","method":"view_imageによる1枚ずつの目視","status":"pass","checks":["service_identity","homepage_context","cookie_overlay_removed","no_major_overlay"]},
   "services":[
-    {"name":"Intercom Fin","url":"https://www.intercom.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/intercom-home.png","evidence":"official home screenshot"},
-    {"name":"Zendesk AI","url":"https://www.zendesk.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/zendesk-home.png","evidence":"official home screenshot"},
-    {"name":"Gorgias AI Agent","url":"https://www.gorgias.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/gorgias-home.png","evidence":"official home screenshot"},
-    {"name":"Freshdesk Freddy AI","url":"https://freshdesk.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/freshdesk-home.png","evidence":"official Freshdesk product home screenshot"}
+    {"name":"Intercom Fin","url":"https://www.intercom.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/intercom-home.png","evidence":"official home screenshot","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}},
+    {"name":"Zendesk AI","url":"https://www.zendesk.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/zendesk-home.png","evidence":"official home screenshot","visual_check":{"status":"pass","reviewed_at":"2026-08-02","note":"Cookieモーダルを拒否してから目視"}},
+    {"name":"Gorgias AI Agent","url":"https://www.gorgias.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/gorgias-home.png","evidence":"official home screenshot","visual_check":{"status":"pass","reviewed_at":"2026-08-02","note":"Cookieモーダルを拒否し、チャットiframeを閉じてから目視"}},
+    {"name":"Freshdesk Freddy AI","url":"https://freshdesk.com/","file":"articles/ai-customer-support-tools-comparison/home-screens/freshdesk-home.png","evidence":"official Freshdesk product home screenshot","visual_check":{"status":"pass","reviewed_at":"2026-08-02","note":"Cookieバナーを受諾してから目視"}}
   ],
   "render_qa":{"desktop":"render-desktop.png","tablet":"render-tablet.png","mobile":"render-mobile.png","overflow":"scrollWidth equals clientWidth at all three viewports","lazy_images":"all images naturalWidth>0 after scrollintoview"}
 }

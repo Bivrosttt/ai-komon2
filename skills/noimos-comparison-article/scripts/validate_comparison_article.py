@@ -35,6 +35,7 @@ def main() -> int:
     parser.add_argument("--services", required=True, help="JSON array of service names")
     parser.add_argument("--out", required=True)
     parser.add_argument("--screenshot-dir", help="Directory containing official service home screenshots")
+    parser.add_argument("--screenshot-ledger", help="JSON ledger containing source URLs and manual visual checks")
     parser.add_argument("--home-urls", help="JSON object mapping service names to canonical official home URLs")
     args = parser.parse_args()
 
@@ -130,6 +131,27 @@ def main() -> int:
         image_files = sorted([*screenshot_dir.glob("*.png"), *screenshot_dir.glob("*.webp"), *screenshot_dir.glob("*.jpg"), *screenshot_dir.glob("*.jpeg")])
         if len(image_files) < len(services):
             screenshot_failures.append({"reason": "screenshot_file_count_less_than_services", "file_count": len(image_files), "screenshot_dir": str(screenshot_dir)})
+    if args.screenshot_ledger:
+        ledger_path = Path(args.screenshot_ledger)
+        try:
+            ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
+            entries = ledger.get("services") or ledger.get("screenshots") or []
+            if ledger.get("manual_visual_review", {}).get("status") != "pass":
+                screenshot_failures.append({"reason": "manual_visual_review_not_pass", "ledger": str(ledger_path)})
+            if len(entries) < len(services):
+                screenshot_failures.append({"reason": "screenshot_ledger_entry_count_less_than_services", "entry_count": len(entries), "ledger": str(ledger_path)})
+            entries_by_service = {entry.get("service") or entry.get("name"): entry for entry in entries}
+            missing_visual_services = [
+                service for service in services
+                if entries_by_service.get(service, {}).get("visual_check", {}).get("status") != "pass"
+            ]
+            if missing_visual_services:
+                screenshot_failures.append({"reason": "expected_service_visual_check_missing_or_not_pass", "services": missing_visual_services, "ledger": str(ledger_path)})
+            for entry in entries:
+                if entry.get("visual_check", {}).get("status") != "pass":
+                    screenshot_failures.append({"reason": "screenshot_visual_check_not_pass", "service": entry.get("service") or entry.get("name"), "ledger": str(ledger_path)})
+        except (OSError, json.JSONDecodeError) as exc:
+            screenshot_failures.append({"reason": "screenshot_ledger_unreadable", "ledger": str(ledger_path), "error": str(exc)})
     if screenshot_failures:
         blockers.append({"code": "home_screenshot_missing", "detail": screenshot_failures})
 

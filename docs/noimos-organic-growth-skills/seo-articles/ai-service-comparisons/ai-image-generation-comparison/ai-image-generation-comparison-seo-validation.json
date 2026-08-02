@@ -1,6 +1,6 @@
 {
   "tool": "noimos-seo-geo-article",
-  "generated_at": "2026-08-02T09:58:47.441856+00:00",
+  "generated_at": "2026-08-02T10:29:23.559492+00:00",
   "input": "/Users/koki/Desktop/ai-komon2/articles/ai-image-generation-comparison/index.html",
   "overall": "pass",
   "score": 100,
@@ -68,7 +68,7 @@
     {
       "check": "external_sources",
       "status": "pass",
-      "evidence": "15 unique",
+      "evidence": "17 unique",
       "priority": "P1"
     },
     {
@@ -86,7 +86,7 @@
     {
       "check": "substantive_length",
       "status": "pass",
-      "evidence": "2651 Japanese characters",
+      "evidence": "2689 Japanese characters",
       "priority": "P1"
     },
     {

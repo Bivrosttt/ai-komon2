@@ -25,6 +25,7 @@
 - [x] Canva: `articles/ai-presentation-tools-comparison/home-screens/canva-home.png`
 - [x] Microsoft PowerPoint: `articles/ai-presentation-tools-comparison/home-screens/microsoft-powerpoint-home.png`
 - [x] 各画像をサービス見出しの直前に配置し、取得日と公式リンクをfigcaptionへ記載。
+- [x] 全4枚を `view_image` で1枚ずつ目視確認し、Cloudflare検証・ログイン後ワークスペース・主要領域のCookie遮蔽がないことを確認。代替画面は理由をfigcaption/台帳へ記載: `ai-presentation-tools-comparison-screenshots.json` の `manual_visual_review` / `visual_check`。
 
 ## 4. 本文・UI
 
@@ -43,4 +44,5 @@
 - [x] SEO/GEOバリデータ: `ai-presentation-tools-comparison-seo-validation.json`（score 100 / pass）
 - [x] AI-only品質ゲート: `ai-presentation-tools-comparison-quality-report.json`（PASS）
 - [x] 1440px / 768px / 390pxで表示・横スクロール・画像欠落・CTAリンクを確認（scrollWidth=clientWidth、画像はscrollintoview後に全件読込）。
+- [x] 画像の存在確認だけで完了にせず、目視確認の全サービス判定が `pass` であることを確認。
 - [x] `git diff --check` と禁止表現検索を実行。

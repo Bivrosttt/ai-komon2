@@ -1,10 +1,11 @@
 {
-  "retrieved_at": "2026-07-31",
+  "retrieved_at": "2026-08-02",
   "viewport": "1440x900",
+  "manual_visual_review": {"reviewed_by":"AI", "reviewed_at":"2026-08-02", "method":"view_imageによる1枚ずつの目視", "status":"pass", "checks":["service_identity","homepage_context","public_not_signed_in_app","no_major_overlay"]},
   "screenshots": [
-    {"service":"Runway","file":"articles/ai-video-tools-comparison/home-screens/runway-home.png","source_url":"https://runway.com/","source_type":"official_home"},
-    {"service":"HeyGen","file":"articles/ai-video-tools-comparison/home-screens/heygen-home.png","source_url":"https://www.heygen.com/","source_type":"official_home"},
-    {"service":"Synthesia","file":"articles/ai-video-tools-comparison/home-screens/synthesia-home.png","source_url":"https://www.synthesia.io/","source_type":"official_home"},
-    {"service":"Adobe Firefly","file":"articles/ai-video-tools-comparison/home-screens/firefly-home.png","source_url":"https://firefly.adobe.com/","source_type":"official_home"}
+    {"service":"Runway","file":"articles/ai-video-tools-comparison/home-screens/runway-home.png","source_url":"https://runway.com/","source_type":"official_home","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}},
+    {"service":"HeyGen","file":"articles/ai-video-tools-comparison/home-screens/heygen-home.png","source_url":"https://www.heygen.com/","source_type":"official_home","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}},
+    {"service":"Synthesia","file":"articles/ai-video-tools-comparison/home-screens/synthesia-home.png","source_url":"https://www.synthesia.io/","source_type":"official_home","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}},
+    {"service":"Adobe Firefly","file":"articles/ai-video-tools-comparison/home-screens/firefly-home.png","source_url":"https://firefly.adobe.com/","source_type":"official_home","note":"サインイン後の個人ワークスペースではなく、公開状態のFireflyアプリホームを取得。","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}}
   ]
 }

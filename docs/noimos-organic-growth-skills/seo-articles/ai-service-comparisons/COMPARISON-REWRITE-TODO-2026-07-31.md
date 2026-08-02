@@ -1,6 +1,6 @@
 # 実在AIサービス比較記事リライト TODO
 
-更新日: 2026年8月1日
+更新日: 2026年8月2日
 対象: 既存のAI動画・AIコーディング・AI議事録比較記事  
 運用: 各項目は証跡（ファイル、URL、コマンド、画面確認）がそろった時点でのみ `[x]` にする。
 
@@ -9,11 +9,13 @@
 - [x] 対象記事を3本に固定した
 - [x] 最新の `noimos-comparison-article` スキル全文を読み、現行記事の不足を確認した
 - [x] スキルの全工程をチェックリスト形式へ統一し、TODO必須運用を明文化する
-- [x] 公式ホーム画面のスクリーンショットを各サービスのレビュー直前へ配置した
+- [x] 公式ホーム画面（または公式Docs/Help Centerの代替画面）のスクリーンショットを各サービスのレビュー直前へ配置した
+- [x] 対象3記事の全12枚を `view_image` で1枚ずつ目視し、Cloudflare検証・ログイン後ワークスペース・主要領域のCookie遮蔽を除去。全台帳の `manual_visual_review.status` と各 `visual_check.status` が `pass`: 各 `*-screenshots.json`
 - [x] 価格・usage・コスパ・強み・弱み・公式リンク・最終AI顧問室CTAを各記事で確認した
 - [x] 3記事を最新チェックリストに沿ってブラッシュアップし、差分を検証する
 - [x] デスクトップ・スマホの実ブラウザ表示を3記事で確認する
 - [x] 比較バリデータ、SEO/GEOバリデータ、品質ゲートを再実行する
+- [x] 比較バリデータにスクリーンショット台帳の `manual_visual_review` / `visual_check` を必須検査として追加し、6記事すべてでPASSを確認する
 - [x] TODOの未完了項目を解消し、証跡ファイルをリンクする
 
 ## AI動画サービス比較
@@ -22,6 +24,7 @@
 - [x] 公式料金・usage・口コミの調査証跡を確認: `ai-video-tools-comparison-research.md`
 - [x] claim ledgerと価格入力を確認: `ai-video-tools-comparison-claims.json`, `ai-video-tools-comparison-pricing.csv`
 - [x] 公式ホーム画面4枚と取得元台帳を確認: `ai-video-tools-comparison/home-screens/`, `ai-video-tools-comparison-screenshots.json`
+- [x] 4枚を目視確認し、Fireflyは公開状態のアプリホームであることを確認
 - [x] 本文・価格表・強み弱み表・CTAを確認: `articles/ai-video-tools-comparison/index.html`
 - [x] 最新チェックリストでDOM、禁止語、リンク、画像、レスポンシブ表示を再検証する
 - [x] リライト後の品質レポートを保存する
@@ -32,6 +35,7 @@
 - [x] 公式料金・usage・口コミの調査証跡を確認: `ai-coding-tools-comparison-research.md`
 - [x] claim ledgerと価格入力を確認: `ai-coding-tools-comparison-claims.json`, `ai-coding-tools-comparison-pricing.csv`
 - [x] 公式ホーム画面4枚と取得元台帳を確認: `ai-coding-tools-comparison/home-screens/`, `ai-coding-tools-comparison-screenshots.json`
+- [x] 4枚を目視確認し、Replitは公式Docs Welcome画面の代替であることを確認
 - [x] 本文・価格表・強み弱み表・CTAを確認: `articles/ai-coding-tools-comparison/index.html`
 - [x] 最新チェックリストでDOM、禁止語、リンク、画像、レスポンシブ表示を再検証する
 - [x] リライト後の品質レポートを保存する
@@ -42,6 +46,7 @@
 - [x] 公式料金・usage・口コミの調査証跡を確認: `ai-meeting-notes-comparison-research.md`
 - [x] claim ledgerと価格入力を確認: `ai-meeting-notes-comparison-claims.json`, `ai-meeting-notes-comparison-pricing.csv`
 - [x] 公式ホーム画面4枚と取得元台帳を確認: `ai-meeting-notes-comparison/home-screens/`, `ai-meeting-notes-comparison-screenshots.json`
+- [x] 4枚を目視確認し、Cookieバナー/モーダルを除去した状態であることを確認
 - [x] 本文・価格表・強み弱み表・CTAを確認: `articles/ai-meeting-notes-comparison/index.html`
 - [x] 最新チェックリストでDOM、禁止語、リンク、画像、レスポンシブ表示を再検証する
 - [x] リライト後の品質レポートを保存する

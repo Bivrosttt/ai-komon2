@@ -1,6 +1,6 @@
 {
   "tool": "noimos-seo-geo-article",
-  "generated_at": "2026-08-02T09:58:47.473223+00:00",
+  "generated_at": "2026-08-02T10:29:23.712366+00:00",
   "input": "/Users/koki/Desktop/ai-komon2/articles/ai-presentation-tools-comparison/index.html",
   "overall": "pass",
   "score": 100,
@@ -68,7 +68,7 @@
     {
       "check": "external_sources",
       "status": "pass",
-      "evidence": "16 unique",
+      "evidence": "17 unique",
       "priority": "P1"
     },
     {
@@ -86,7 +86,7 @@
     {
       "check": "substantive_length",
       "status": "pass",
-      "evidence": "2601 Japanese characters",
+      "evidence": "2612 Japanese characters",
       "priority": "P1"
     },
     {

@@ -1,11 +1,12 @@
 {
   "captured_at":"2026-08-02",
   "viewport":"1440x900",
+  "manual_visual_review":{"reviewed_by":"AI","reviewed_at":"2026-08-02","method":"view_imageによる1枚ずつの目視","status":"pass","checks":["service_identity","homepage_or_official_product_context","not_blocked_or_login","no_major_overlay"]},
   "services":[
-    {"name":"Gamma","url":"https://gamma.app/","file":"articles/ai-presentation-tools-comparison/home-screens/gamma-home.png","evidence":"official home screenshot"},
-    {"name":"Beautiful.ai","url":"https://www.beautiful.ai/","file":"articles/ai-presentation-tools-comparison/home-screens/beautiful-ai-home.png","evidence":"official home screenshot"},
-    {"name":"Canva","url":"https://www.canva.com/","file":"articles/ai-presentation-tools-comparison/home-screens/canva-home.png","evidence":"official home screenshot"},
-    {"name":"Microsoft 365 Copilot","url":"https://www.microsoft.com/en-us/microsoft-365/powerpoint","file":"articles/ai-presentation-tools-comparison/home-screens/microsoft-powerpoint-home.png","evidence":"official PowerPoint product home screenshot"}
+    {"name":"Gamma","url":"https://help.gamma.app/en/","file":"articles/ai-presentation-tools-comparison/home-screens/gamma-home.png","evidence":"official help center home screen","note":"本体ホームはCloudflare検証画面になったため、公式Help Centerホームを代替取得。","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}},
+    {"name":"Beautiful.ai","url":"https://www.beautiful.ai/","file":"articles/ai-presentation-tools-comparison/home-screens/beautiful-ai-home.png","evidence":"official home screenshot","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}},
+    {"name":"Canva","url":"https://www.canva.com/","file":"articles/ai-presentation-tools-comparison/home-screens/canva-home.png","evidence":"official home screenshot","visual_check":{"status":"pass","reviewed_at":"2026-08-02","note":"Cookieバナーを受諾してから目視"}},
+    {"name":"Microsoft 365 Copilot","url":"https://www.microsoft.com/en-us/microsoft-365/powerpoint","file":"articles/ai-presentation-tools-comparison/home-screens/microsoft-powerpoint-home.png","evidence":"official PowerPoint product home screenshot","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}}
   ],
   "render_qa":{"desktop":"render-desktop.png","tablet":"render-tablet.png","mobile":"render-mobile.png","overflow":"scrollWidth equals clientWidth at all three viewports","lazy_images":"all images naturalWidth>0 after scrollintoview"}
 }

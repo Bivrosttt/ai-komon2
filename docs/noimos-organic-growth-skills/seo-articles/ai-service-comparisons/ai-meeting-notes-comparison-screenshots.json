@@ -1,10 +1,11 @@
 {
-  "retrieved_at": "2026-07-31",
+  "retrieved_at": "2026-08-02",
   "viewport": "1440x900",
+  "manual_visual_review": {"reviewed_by":"AI", "reviewed_at":"2026-08-02", "method":"view_imageによる1枚ずつの目視", "status":"pass", "checks":["service_identity","homepage_context","cookie_overlay_removed","no_major_overlay"]},
   "screenshots": [
-    {"service":"Notta","file":"articles/ai-meeting-notes-comparison/home-screens/notta-home.png","source_url":"https://www.notta.ai/","source_type":"official_home"},
-    {"service":"Otter.ai","file":"articles/ai-meeting-notes-comparison/home-screens/otter-home.png","source_url":"https://otter.ai/","source_type":"official_home"},
-    {"service":"Fireflies.ai","file":"articles/ai-meeting-notes-comparison/home-screens/fireflies-home.png","source_url":"https://fireflies.ai/","source_type":"official_home"},
-    {"service":"Zoom AI Companion","file":"articles/ai-meeting-notes-comparison/home-screens/zoom-ai-home.png","source_url":"https://www.zoom.com/en/products/ai-assistant/","source_type":"official_home"}
+    {"service":"Notta","file":"articles/ai-meeting-notes-comparison/home-screens/notta-home.png","source_url":"https://www.notta.ai/","source_type":"official_home","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}},
+    {"service":"Otter.ai","file":"articles/ai-meeting-notes-comparison/home-screens/otter-home.png","source_url":"https://otter.ai/","source_type":"official_home","visual_check":{"status":"pass","reviewed_at":"2026-08-02","note":"Cookieバナーを拒否してから目視"}},
+    {"service":"Fireflies.ai","file":"articles/ai-meeting-notes-comparison/home-screens/fireflies-home.png","source_url":"https://fireflies.ai/","source_type":"official_home","visual_check":{"status":"pass","reviewed_at":"2026-08-02","note":"Cookieバナーを受諾してから目視"}},
+    {"service":"Zoom AI Companion","file":"articles/ai-meeting-notes-comparison/home-screens/zoom-ai-home.png","source_url":"https://www.zoom.com/en/products/ai-assistant/","source_type":"official_home","visual_check":{"status":"pass","reviewed_at":"2026-08-02","note":"Cookieモーダルを受諾してから目視"}}
   ]
 }

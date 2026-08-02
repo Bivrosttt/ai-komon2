@@ -1,11 +1,12 @@
 {
   "captured_at":"2026-08-02",
   "viewport":"1440x900",
+  "manual_visual_review":{"reviewed_by":"AI","reviewed_at":"2026-08-02","method":"view_imageによる1枚ずつの目視","status":"pass","checks":["service_identity","homepage_or_official_product_context","not_blocked_or_login","no_major_overlay"]},
   "services":[
-    {"name":"Midjourney","url":"https://www.midjourney.com/home/","file":"articles/ai-image-generation-comparison/home-screens/midjourney-home.png","evidence":"official home screenshot"},
-    {"name":"Adobe Firefly","url":"https://firefly.adobe.com/","file":"articles/ai-image-generation-comparison/home-screens/firefly-home.png","evidence":"official home screenshot"},
-    {"name":"Ideogram","url":"https://ideogram.ai/","file":"articles/ai-image-generation-comparison/home-screens/ideogram-home.png","evidence":"official home screenshot"},
-    {"name":"Canva","url":"https://www.canva.com/","file":"articles/ai-image-generation-comparison/home-screens/canva-home.png","evidence":"official home screenshot"}
+    {"name":"Midjourney","url":"https://updates.midjourney.com/","file":"articles/ai-image-generation-comparison/home-screens/midjourney-home.png","evidence":"official updates home screen","note":"本体ホームはCloudflare検証画面になったため、公式Updatesホームを代替取得。","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}},
+    {"name":"Adobe Firefly","url":"https://firefly.adobe.com/","file":"articles/ai-image-generation-comparison/home-screens/firefly-home.png","evidence":"official public app home screenshot","note":"サインイン後の個人ワークスペースではない公開状態のFireflyホーム。","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}},
+    {"name":"Ideogram","url":"https://docs.ideogram.ai/","file":"articles/ai-image-generation-comparison/home-screens/ideogram-home.png","evidence":"official docs home screen","note":"本体ホームはCloudflare検証画面になったため、公式DocsのWelcome画面を代替取得。","visual_check":{"status":"pass","reviewed_at":"2026-08-02"}},
+    {"name":"Canva","url":"https://www.canva.com/","file":"articles/ai-image-generation-comparison/home-screens/canva-home.png","evidence":"official home screenshot","visual_check":{"status":"pass","reviewed_at":"2026-08-02","note":"Cookieバナーを受諾してから目視"}}
   ],
   "render_qa":{"desktop":"render-desktop.png","tablet":"render-tablet.png","mobile":"render-mobile.png","overflow":"scrollWidth equals clientWidth at all three viewports","lazy_images":"all images naturalWidth>0 after scrollintoview"}
 }
