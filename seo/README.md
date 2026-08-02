@@ -39,6 +39,8 @@ python3 seo/scripts/run_daily.py --root .
 python3 scripts/build_noimos_seo_reference.py --out seo/reference/noimos-seo-articles
 ```
 
+実在サービスの比較記事を作る場合は、一般的なSEO記事ルールではなく、リサーチ・価格/usage・公式ホーム画面・口コミ・比較表までを含む [比較記事スキル](../skills/noimos-comparison-article/SKILL.md) を先に読みます。案件別TODOと証跡は [`docs/noimos-organic-growth-skills/seo-articles/ai-service-comparisons/`](../docs/noimos-organic-growth-skills/seo-articles/ai-service-comparisons/) に集約しています。
+
 ## データソースの扱い
 
 - サジェストは意図の発見用で、検索数ではない。

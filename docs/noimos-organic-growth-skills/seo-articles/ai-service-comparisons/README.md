@@ -14,6 +14,19 @@ AI動画、AIコーディング、AI議事録の3カテゴリで、公式ペー�
 - `/articles/ai-coding-tools-comparison/`
 - `/articles/ai-meeting-notes-comparison/`
 
+## 証跡ファイルの置き場所
+
+3記事の比較証跡はこのディレクトリに集約しています。サービス別の`*-research.md`と`*-pricing.csv`も、今後は`seo-articles/`直下へ置かず、ここへ追加します。
+
+- ルール: `skills/noimos-comparison-article/SKILL.md`
+- 案件チェックリスト: `COMPARISON-REWRITE-TODO-YYYY-MM-DD.md`
+- ブリーフ: `*-brief.md`
+- 調査根拠: `*-research.md` / `*-claims.json`
+- 価格・usage入力: `*-pricing.csv`
+- 公式ホーム画面: 各記事の`home-screens/` / `*-screenshots.json`
+- 検証結果: `*-comparison-validation.json` / `*-validation.json` / `*-quality-report.json`
+- 過去の参考記事分析: [`archive/`](archive/)
+
 ## 共通の必須要素
 
 1. 初出のサービス名を公式サイトへリンクする。
