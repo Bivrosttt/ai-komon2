@@ -14,6 +14,13 @@ const RAW_EVENTS_HEADERS = [
   'utm_content', 'utm_source', 'utm_medium', 'utm_campaign',
   'utm_term', 'utm_id', 'fbclid', 'gclid', 'from',
   'attribution_status', 'page', 'url', 'referrer', 'variant',
+  'value', 'level', 'environment', 'content_type', 'content_slug'
+];
+const PREVIOUS_RAW_EVENTS_HEADERS = [
+  'event_time', 'event_name', 'event_id', 'session_id',
+  'utm_content', 'utm_source', 'utm_medium', 'utm_campaign',
+  'utm_term', 'utm_id', 'fbclid', 'gclid', 'from',
+  'attribution_status', 'page', 'url', 'referrer', 'variant',
   'value', 'level', 'environment'
 ];
 const LEGACY_RAW_EVENTS_HEADERS = [
@@ -70,7 +77,9 @@ function doPost(e) {
         data.variant || '',
         data.value || '',
         data.level || '',
-        'production'
+        'production',
+        data.content_type || '',
+        data.content_slug || ''
       ]);
     } finally {
       lock.releaseLock();
@@ -99,6 +108,11 @@ function ensureHeaders(sheet) {
   const isLegacy = LEGACY_RAW_EVENTS_HEADERS.every((header, index) => currentHeaders[index] === header);
   if (isLegacy) {
     migrateRowsToCanonicalSchema(sheet, headerRow, LEGACY_RAW_EVENTS_HEADERS);
+    return;
+  }
+  const isPreviousCanonical = PREVIOUS_RAW_EVENTS_HEADERS.every((header, index) => currentHeaders[index] === header);
+  if (isPreviousCanonical) {
+    migrateRowsToCanonicalSchema(sheet, headerRow, PREVIOUS_RAW_EVENTS_HEADERS);
     return;
   }
 

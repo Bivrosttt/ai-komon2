@@ -57,6 +57,21 @@
     return merged;
   }
 
+  function contentContext() {
+    var pathname = window.location.pathname || '/';
+    var isArticle = /^\/articles(?:\/|$)/i.test(pathname);
+    var contentType = isArticle
+      ? (pathname.replace(/\/$/, '') === '/articles' ? 'article_index' : 'article')
+      : 'website';
+    return {
+      content_name: document.title || pathname,
+      content_type: contentType,
+      content_slug: contentType === 'article'
+        ? pathname.replace(/^\/articles\//i, '').replace(/\/$/, '')
+        : ''
+    };
+  }
+
   window.aiKomonTrack = function (eventName, params) {
     if (typeof window.fbq === 'function') {
       window.fbq('track', eventName, eventParams(params));
@@ -96,9 +111,6 @@
     }
   }, true);
 
-  window.fbq('track', 'ViewContent', eventParams({
-    content_name: window.location.pathname,
-    content_type: 'website'
-  }));
+  window.fbq('track', 'ViewContent', eventParams(contentContext()));
 
 })();

@@ -37,6 +37,11 @@ jobs:
           node --test tests/analytics-setup.test.mjs
           node scripts/check_analytics_setup.mjs
 
+      - name: Test SEO article analytics guard
+        run: |
+          node --test tests/article-analytics.test.mjs
+          node scripts/check_article_analytics.mjs
+
       - name: Audit pages and internal links
         run: |
           python3 seo/scripts/site_audit.py \

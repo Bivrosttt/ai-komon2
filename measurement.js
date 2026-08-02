@@ -31,6 +31,27 @@
     return id;
   }
 
+  // Keep article traffic distinguishable from LP/tool traffic in both GA4
+  // and the Raw Events sheet.  The path fallback is necessary because this
+  // script is loaded from <head>, before <body> has been parsed.
+  function getContentContext() {
+    var pathname = window.location.pathname || '/';
+    var isArticle = /^\/articles(?:\/|$)/i.test(pathname);
+    var bodyType = document.body && document.body.getAttribute('data-analytics-content-type');
+    var contentType = bodyType || (isArticle
+      ? (pathname.replace(/\/$/, '') === '/articles' ? 'article_index' : 'article')
+      : 'website');
+    var articleSlug = '';
+    if (isArticle && contentType === 'article') {
+      articleSlug = pathname.replace(/^\/articles\//i, '').replace(/\/$/, '');
+    }
+    return {
+      content_name: document.title || pathname,
+      content_type: contentType,
+      content_slug: articleSlug
+    };
+  }
+
   function getQueryValue(params, key) {
     return params.get(key) || '';
   }
@@ -123,6 +144,9 @@
       variant: attribution.utm_content || '',
       value: params && params.value != null ? String(params.value) : '',
       level: params && params.level != null ? String(params.level) : '',
+      content_name: params && params.content_name ? String(params.content_name) : '',
+      content_type: params && params.content_type ? String(params.content_type) : '',
+      content_slug: params && params.content_slug ? String(params.content_slug) : '',
       attribution: attribution
     };
     var body = JSON.stringify(payload);
@@ -265,11 +289,9 @@
 
   initClarity();
 
-  window.aiKomonMeasure('PageView', {});
-  window.aiKomonMeasure('ViewContent', {
-    content_name: window.location.pathname,
-    content_type: 'website'
-  });
+  var contentContext = getContentContext();
+  window.aiKomonMeasure('PageView', contentContext);
+  window.aiKomonMeasure('ViewContent', contentContext);
 
   // Keep attribution on every internal handoff, including the external
   // booking link. This also repairs links injected after initial page load.

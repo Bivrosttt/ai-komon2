@@ -1,6 +1,6 @@
 # AI顧問室｜計測・広告分析の運用ドキュメント
 
-最終確認日: 2026-07-29
+最終確認日: 2026-08-02
 
 この文書は、AI顧問室のLP計測、Google Analytics 4、Meta Pixel、Microsoft Clarity、Google SheetsのイベントDB、Meta広告の日次レポートを後継者が引き継ぐための運用メモです。
 
@@ -73,6 +73,59 @@ flowchart LR
 - [ ] 入力欄、個人情報、予約情報がClarityでマスクされていることを確認する
 - [ ] CTAを複数回押したとき、意図しない二重イベントが発生していないことを確認する
 - [ ] 実予約完了はTimeRex側のWebhookまたは予約シートで別途確認する（予約ボタンクリックだけでは予約完了ではない）
+
+## SEO記事の計測チェックリスト
+
+SEO記事は広告LPとは別に、`articles/**/index.html`へ同じ計測スタックを入れる。記事のソースにタグがあることと、本番でイベントを受信できることは別の状態なので、次の順番で確認する。
+
+### 実装TODO
+
+- [x] `analytics-config.js`、`measurement-config.js`、`meta-pixel-config.js`を記事の`<head>`から読み込む
+- [x] `meta-pixel.js`、`measurement.js`、`ga4-events.js`を上記の順で読み込む
+- [x] 記事ページに`data-analytics-content-type="article"`、記事一覧に`article_index`を付ける
+- [x] `/articles/<slug>/`を`content_type`、`content_slug`付きで`view_content`とRaw Eventsへ送る
+- [x] 記事内のTimeRexリンクを共通クリック計測とUTM／`ak_session_id`引き継ぎの対象にする
+- [x] 全記事を機械監査する`node scripts/check_article_analytics.mjs`を追加する
+- [x] AIが読み取れる固定の保存先として、Google Sheetsの`Raw Events`と`GA4 Daily`を使う
+
+### ソース確認（AIがローカルで実行）
+
+```bash
+node scripts/check_article_analytics.mjs
+node scripts/check_article_analytics.mjs --json
+node --test tests/article-analytics.test.mjs
+```
+
+この監査は、35ページのスクリプト欠落・重複・順序違反、記事種別、title、description、canonical、Article JSON-LDを確認する。これは「計測コードが存在する」ことの証明であり、イベント受信の証明ではない。
+
+### 受信確認（AIがMCPで実行）
+
+現在、専用のGA4 MCPコネクタは設定していない。その代わり、接続済みのGoogle Drive / Sheets MCPから同じ計測DBを読み取れる。AIは次の2つを別々に読む。
+
+- `Raw Events`：ブラウザからApps Scriptへ到着した生イベント。`page`が`/articles/`で始まる行を検索し、`page_view`、`view_content`、`cta_click`、`timerex_click`を確認する
+- `GA4 Daily`：Apps Scriptの`syncGa4Report`がGA4 Data APIから同期した集計。`page_path`が`/articles/`で始まる行を確認する
+
+確認例（MCPの引数は固定のスプレッドシートID、検索文字列は`/articles/`）:
+
+```text
+google_drive_search_spreadsheet_rows(
+  sheet_name="Raw Events",
+  range="A3:W1146",
+  query="/articles/",
+  header_row=3,
+  return_columns=["A","B","D","O","U"]
+)
+```
+
+`Raw Events`に該当行が0件の場合は、タグが本番へデプロイされていない、広告ブロッカー／同意設定で送信されない、またはApps Script Web Appが未反映のいずれかである。`GA4 Daily`が古い場合は、スプレッドシートの「AI顧問室 分析」>「GA4を直近7日分同期」を実行してから再確認する。
+
+### 受信と成果を混同しない
+
+- **ソース**：HTMLと監査コマンドでタグが存在する
+- **受信**：Raw Events／GA4へイベントが到着する
+- **成果**：TimeRexの予約完了、商談、契約。`timerex_click`だけでは予約完了を意味しない
+
+記事を公開・更新したときは、上の3状態をそれぞれ記録し、ソース確認だけで「アナリティクスが動いている」と判断しない。
 
 ## アナリティクス設定漏れの自動テスト
 
@@ -188,7 +241,7 @@ LPアナリティクスを同じ日報へ接続する追加設定:
 
 - GitHub Secret `GOOGLE_SERVICE_ACCOUNT_JSON_B64`: Google Sheetsを閲覧できるサービスアカウントJSONのBase64値
 - GitHub Variable `GOOGLE_SHEETS_SPREADSHEET_ID`: 計測スプレッドシートID（現在は`1LuibxdWft_uc8ACHQX1toXxN2_aJgsCJKYa1ro_maCA`）
-- GitHub Variable `GOOGLE_SHEETS_RANGE`: 省略時は`Raw Events!A:U`
+- GitHub Variable `GOOGLE_SHEETS_RANGE`: 省略時は`Raw Events!A:W`
 - サービスアカウントのメールアドレスを対象スプレッドシートへ「閲覧者」として共有
 
 接続後のDiscord日報には、セッション、PV、CTAクリック、TimeRex予約リンククリック、CTA/予約リンク到達率、10秒滞在、90%スクロール、`utm_content`別のセッション・CTA・予約リンク、LP別セッション上位を出します。Raw Eventsは匿名`session_id`を使い、`event_id`重複を除外します。予約リンククリックは予約完了ではないため、完了数の代替にはしません。
@@ -270,7 +323,7 @@ Apps Script側では次を検証します。
 | `level` | 診断レベル等 |
 | `environment` | `production` |
 
-現在は`utm_term`、`utm_id`、`gclid`、`from`、`url`、`referrer`、`attribution_status`も`Raw Events`へ保存します。既存シートはタイトル行が1行目、列見出しが3行目のため、Apps Scriptは見出し行を自動検出して拡張します。旧14列スキーマを検出した場合は、既存行を列名ベースで21列へ移行してからヘッダーを書き換えるため、`fbclid`や`page`の位置がずれません。未知のスキーマは黙って上書きせずエラーにして、手動確認を要求します。`fbclid`しか無い流入は、`utm_source=meta`と`utm_medium=paid_social`だけを推定し、キャンペーン名・クリエイティブ名は捏造しません。`attribution_status`は`explicit`、`inferred_meta`、`direct_or_unknown`のいずれかです。
+現在は`utm_term`、`utm_id`、`gclid`、`from`、`url`、`referrer`、`attribution_status`に加えて、記事識別用の`content_type`、`content_slug`も`Raw Events`へ保存します。既存シートはタイトル行が1行目、列見出しが3行目のため、Apps Scriptは見出し行を自動検出して拡張します。旧14列スキーマまたは従来21列スキーマを検出した場合は、既存行を列名ベースで23列へ移行してからヘッダーを書き換えるため、`fbclid`や`page`の位置がずれません。未知のスキーマは黙って上書きせずエラーにして、手動確認を要求します。`fbclid`しか無い流入は、`utm_source=meta`と`utm_medium=paid_social`だけを推定し、キャンペーン名・クリエイティブ名は捏造しません。`attribution_status`は`explicit`、`inferred_meta`、`direct_or_unknown`のいずれかです。
 
 ## GA4で分かること
 
