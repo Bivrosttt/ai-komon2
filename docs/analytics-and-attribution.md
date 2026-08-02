@@ -86,7 +86,19 @@ SEO記事は広告LPとは別に、`articles/**/index.html`へ同じ計測スタ
 - [x] `/articles/<slug>/`を`content_type`、`content_slug`付きで`view_content`とRaw Eventsへ送る
 - [x] 記事内のTimeRexリンクを共通クリック計測とUTM／`ak_session_id`引き継ぎの対象にする
 - [x] 全記事を機械監査する`node scripts/check_article_analytics.mjs`を追加する
-- [x] AIが読み取れる固定の保存先として、Google Sheetsの`Raw Events`と`GA4 Daily`を使う
+- [x] AIが読み取れる固定の保存先として、Google Sheetsの`Raw Events`、`SEO Events`、`SEO Daily`、`GA4 Daily`を使う
+
+### 広告とSEOのタブを分ける運用
+
+広告とSEOは同じスプレッドシートに置きますが、閲覧・集計タブを分けます。これにより、広告の配信実績と記事の自然流入を混ぜずに確認できます。
+
+- `Raw Events`：広告LP・SEO記事を含む全ブラウザイベントの原本。Apps Scriptだけが追記する。
+- `SEO Events`：`Raw Events`から`page`が`/articles/`で始まる行を数式で抽出するライブビュー。ここへ直接書き込まない。
+- `SEO Daily`：`SEO Events`を日付・ページ・イベント名ごとに`QUERY`で集計する分析ビュー。記事ごとの`page_view`、`view_content`、CTAイベントの比較に使う。
+- `Ad Daily`：Metaなど広告媒体の日次実績。SEOイベントは書き込まない。
+- `GA4 Daily`：GA4 Data APIから同期した集計。広告・SEOを横断した補助確認に使う。
+
+`SEO Events`と`SEO Daily`は重複保存ではなく、`Raw Events`を一つの原本とするGoogle Sheets数式ビューです。したがって、イベント受信の不具合を調べるときは`Raw Events`、SEO記事の通常分析では`SEO Events`／`SEO Daily`を先に読みます。
 
 ### ソース確認（AIがローカルで実行）
 
@@ -100,9 +112,11 @@ node --test tests/article-analytics.test.mjs
 
 ### 受信確認（AIがMCPで実行）
 
-現在、専用のGA4 MCPコネクタは設定していない。その代わり、接続済みのGoogle Drive / Sheets MCPから同じ計測DBを読み取れる。AIは次の2つを別々に読む。
+現在、専用のGA4 MCPコネクタは設定していない。その代わり、接続済みのGoogle Drive / Sheets MCPから同じ計測DBを読み取れる。AIは次の4つを用途別に読む。
 
-- `Raw Events`：ブラウザからApps Scriptへ到着した生イベント。`page`が`/articles/`で始まる行を検索し、`page_view`、`view_content`、`cta_click`、`timerex_click`を確認する
+- `Raw Events`：ブラウザからApps Scriptへ到着した生イベント。受信トラブルや全チャネルの突合に使う
+- `SEO Events`：`Raw Events`から`/articles/`だけを抽出したライブビュー。記事のイベント確認に使う
+- `SEO Daily`：SEO記事のページ別・日別イベント数。定期レポートや記事比較に使う
 - `GA4 Daily`：Apps Scriptの`syncGa4Report`がGA4 Data APIから同期した集計。`page_path`が`/articles/`で始まる行を確認する
 
 確認例（MCPの引数は固定のスプレッドシートID、検索文字列は`/articles/`）:
@@ -114,6 +128,24 @@ google_drive_search_spreadsheet_rows(
   query="/articles/",
   header_row=3,
   return_columns=["A","B","D","O","U","V","W"]
+)
+```
+
+通常のSEO確認では、原本を毎回検索する代わりに次のビューを使う。
+
+```text
+google_drive_get_spreadsheet_range(
+  spreadsheet_id="1LuibxdWft_uc8ACHQX1toXxN2_aJgsCJKYa1ro_maCA",
+  sheet_name="SEO Events",
+  range="A3:W2000",
+  value_render_option="FORMATTED_VALUE"
+)
+
+google_drive_get_spreadsheet_range(
+  spreadsheet_id="1LuibxdWft_uc8ACHQX1toXxN2_aJgsCJKYa1ro_maCA",
+  sheet_name="SEO Daily",
+  range="A3:D2000",
+  value_render_option="FORMATTED_VALUE"
 )
 ```
 
