@@ -110,10 +110,10 @@ node --test tests/article-analytics.test.mjs
 ```text
 google_drive_search_spreadsheet_rows(
   sheet_name="Raw Events",
-  range="A3:W1146",
+  range="A3:W2000",
   query="/articles/",
   header_row=3,
-  return_columns=["A","B","D","O","U"]
+  return_columns=["A","B","D","O","U","V","W"]
 )
 ```
 
