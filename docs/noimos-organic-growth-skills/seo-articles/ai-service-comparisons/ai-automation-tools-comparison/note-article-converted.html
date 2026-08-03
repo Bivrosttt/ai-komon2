@@ -1,0 +1,80 @@
+<p>AI業務自動化は、アプリをすぐにつなぐのか、細かな処理を組むのか、AIエージェントを担当者のように動かすのかで選択が変わります。公式の料金・usageと国内外レビューを突き合わせ、第一候補と選ばない条件まで一つの比較表にまとめました。</p>
+
+    <figure name="dfa49589-5597-4c2e-91c3-e455146ce980" id="dfa49589-5597-4c2e-91c3-e455146ce980" class="note-image"><a href="https://assets.st-note.com/img/1785728056-Zvaq0ixbOLVRP7HS6fmCE8sN.png" rel="nofollow noopener" target="_blank"><img src="https://assets.st-note.com/img/1785728056-Zvaq0ixbOLVRP7HS6fmCE8sN.png" alt="AI業務自動化ツール比較を表す接続アイコンのサムネイル"></a><figcaption>AI業務自動化ツール比較のカバー画像</figcaption></figure>
+
+    <p><strong>先に結論：</strong>ノーコードで多数のアプリを素早くつなぐなら<a href="https://zapier.com/" rel="nofollow noopener">Zapier</a>、セルフホストや細かな分岐まで設計するなら<a href="https://n8n.io/" rel="nofollow noopener">n8n</a>、実行回数を気にせずオープンソースの操作感で始めるなら<a href="https://www.activepieces.com/" rel="nofollow noopener">Activepieces</a>、AIエージェントを営業・調査の担当者として運用するなら<a href="https://relevanceai.com/" rel="nofollow noopener">Relevance AI</a>が第一候補です。</p>
+    <h3>要点を先に：価格・usage・選ばない条件</h3><ul>
+      <li><strong>Zapier：</strong>Freeは月100 tasks、Professionalは月19.99ドルから。非技術チームが9,000以上のアプリをつなぐなら強い一方、高頻度処理をtasks課金で回したい人には不向きです。</li>
+      <li><strong>n8n：</strong>Starterは年払いで月20ユーロ、月2,500 executions・各execution内はsteps無制限。セルフホストや複雑な分岐に強い反面、保守できる技術担当がいない組織には向きません。</li>
+      <li><strong>Activepieces：</strong>10 active flowsまで無料、以降はactive flowあたり月5ドルでruns無制限。少数フローを大量実行するならコスパが良く、連携先の多さを最優先する人には候補が狭くなります。</li>
+      <li><strong>Relevance AI：</strong>Freeは月200 Actions、Proは年払い月19ドルで2,500 Actionsと月20ドルのVendor Credits。AIエージェント中心なら有力ですが、単純なアプリ連携だけなら割高になりやすいです。</li>
+    </ul>
+    <h3>この記事の目次</h3><ol><li><a rel="nofollow noopener">料金・usage・コスパ比較</a></li><li><a rel="nofollow noopener">4サービスの実力と口コミ</a></li><li><a rel="nofollow noopener">強み・弱み比較表</a></li><li><a rel="nofollow noopener">用途別の決定ルール</a></li><li><a rel="nofollow noopener">導入の設計</a></li><li><a rel="nofollow noopener">AI顧問室への最短経路</a></li></ol>
+
+    <h2>料金・usage・コスパ比較（2026年8月3日時点）</h2>
+    <p>比較単位をそろえるため、月に1,000件の定型処理を一つのフローで動かす小規模チームを想定します。ただし、tasks・executions・active flows・Actionsは意味が違うため、単純な月額順ではなく「どの単位で増えるか」をコスパの中心に置きました。</p>
+    <h3><a href="https://zapier.com/" rel="nofollow noopener">Zapier</a></h3><blockquote><p><strong>代表プラン・月額</strong><br>Free $0/月、Professional $19.99/月から</p><p><strong>usage</strong><br>Freeは100 tasks/月。処理1件ごとにtaskを消費</p><p><strong>実効コスト・コスパ</strong><br>無料枠内なら$0。1,000件規模ではtask上限を超えやすく、回数課金の予算が必要</p><p><strong>選ばない条件</strong><br>高頻度処理を固定費だけで運用したい場合</p></blockquote>
+<h3><a href="https://n8n.io/" rel="nofollow noopener">n8n</a></h3><blockquote><p><strong>代表プラン・月額</strong><br>Starter €20/月（年払い）</p><p><strong>usage</strong><br>2,500 workflow executions/月、1 execution内のstepsは無制限</p><p><strong>実効コスト・コスパ</strong><br>枠を使い切れば約€0.008/execution。処理段数が増えても単位が増えにくい</p><p><strong>選ばない条件</strong><br>セルフホスト・権限・ログを保守できる人がいない場合</p></blockquote>
+<h3><a href="https://www.activepieces.com/" rel="nofollow noopener">Activepieces</a></h3><blockquote><p><strong>代表プラン・月額</strong><br>10 active flowsまで無料、以降$5/active flow/月</p><p><strong>usage</strong><br>runs無制限。AI agents、MCP servers、tablesを含む</p><p><strong>実効コスト・コスパ</strong><br>10フロー以内なら実行回数は$0。フローを11本に増やすと公開料金では月$55相当</p><p><strong>選ばない条件</strong><br>数百種類の連携アプリを最初から網羅したい場合</p></blockquote>
+<h3><a href="https://relevanceai.com/" rel="nofollow noopener">Relevance AI</a></h3><blockquote><p><strong>代表プラン・月額</strong><br>Free $0/月、Pro $19/月（年払い）から</p><p><strong>usage</strong><br>Free 200 Actions/月。Pro 2,500 Actions + Vendor Credits $20/月</p><p><strong>実効コスト・コスパ</strong><br>Action数とVendor Creditsの組み合わせ。LLM・外部ツール利用量を一律の1件単価にはできない</p><p><strong>選ばない条件</strong><br>決まったアプリ間の転送だけを安価に処理したい場合</p></blockquote>
+    <blockquote><p><strong>コスパの見方：</strong>Zapierは接続先の広さを買うサービス、n8nはexecution内の処理段数をまとめるサービス、Activepiecesは少数flowのruns無制限を買うサービス、Relevance AIはAIエージェントのActionsと外部モデル費をまとめるサービスです。月額だけで並べると、用途を誤ります。</p></blockquote>
+
+    <h2>4サービスの実力と口コミ</h2>
+
+
+      <figure name="abca830c-1185-4461-bbd4-0d60f94a0b91" id="abca830c-1185-4461-bbd4-0d60f94a0b91" class="note-image"><a href="https://assets.st-note.com/img/1785728056-KCymVSaTgeQpvDrJXIb0Rkw6.png" rel="nofollow noopener" target="_blank"><img src="https://assets.st-note.com/img/1785728056-KCymVSaTgeQpvDrJXIb0Rkw6.png" alt="Zapier公式ホーム画面のスクリーンショット"></a><figcaption>Zapier公式ホーム画面（2026年8月3日取得）— <a href="https://zapier.com/" rel="nofollow noopener">公式サイト</a></figcaption></figure>
+      <h3><a href="https://zapier.com/" rel="nofollow noopener">Zapier</a>：アプリ連携を最短で始める</h3>
+      <p><strong>公式情報：</strong>9,000以上のアプリ連携と、Free 100 tasks/月、Professional 19.99ドル/月からという分かりやすい入口が特徴です。トリガー、処理、通知を画面上で組めるため、コードを書かずに営業・フォーム・メールの流れを一本化できます。</p>
+      <p><strong>レビュー傾向：</strong>G2とCapterraでは、連携先の多さ、初期設定のしやすさ、テンプレートが評価されています。一方で、複数ステップや大量タスクでは料金が膨らみやすいという声も共通します。業務の最初の一歩には強いですが、毎日何万件も処理する基盤には料金設計が合いません。</p>
+
+
+
+      <figure name="796db192-d98e-4ebf-8fe0-f366d34d978e" id="796db192-d98e-4ebf-8fe0-f366d34d978e" class="note-image"><a href="https://assets.st-note.com/img/1785728056-RdtTvg0MOnh8KLSHiI7brwPG.png" rel="nofollow noopener" target="_blank"><img src="https://assets.st-note.com/img/1785728056-RdtTvg0MOnh8KLSHiI7brwPG.png" alt="n8n公式ホーム画面のスクリーンショット"></a><figcaption>n8n公式ホーム画面（2026年8月3日取得）— <a href="https://n8n.io/" rel="nofollow noopener">公式サイト</a></figcaption></figure>
+      <h3><a href="https://n8n.io/" rel="nofollow noopener">n8n</a>：複雑な処理とセルフホスト</h3>
+      <p><strong>公式情報：</strong>CloudのStarterは年払い月20ユーロで2,500 workflow executions、各execution内のstepsは無制限です。Community Editionをセルフホストでき、HTTP・データ変換・AIノードを細かく組み合わせられます。</p>
+      <p><strong>レビュー傾向：</strong>G2とCapterraでは、柔軟性、連携、セルフホストが評価される一方、APIやコードに慣れていない利用者には学習負担があるという傾向が目立ちます。TechRadarが過去に報じた脆弱性のように、セルフホストではアップデートと公開範囲の管理も必要です。技術担当が運用できない場合は、導入後の保守コストが本体価格を上回ります。</p>
+
+
+
+      <figure name="6e499dfd-1cf9-44f7-9fcf-ac1ed71d7583" id="6e499dfd-1cf9-44f7-9fcf-ac1ed71d7583" class="note-image"><a href="https://assets.st-note.com/img/1785728056-1eYaj6Vfw0A9OHD5kEtLduo4.png" rel="nofollow noopener" target="_blank"><img src="https://assets.st-note.com/img/1785728056-1eYaj6Vfw0A9OHD5kEtLduo4.png" alt="Activepieces公式ホーム画面のスクリーンショット"></a><figcaption>Activepieces公式ホーム画面（2026年8月3日取得）— <a href="https://www.activepieces.com/" rel="nofollow noopener">公式サイト</a></figcaption></figure>
+      <h3><a href="https://www.activepieces.com/" rel="nofollow noopener">Activepieces</a>：フロー数を抑えて大量実行</h3>
+      <p><strong>公式情報：</strong>Standardは10 active flowsまで無料で、11本目以降はactive flowごとに月5ドル。runsは無制限で、AI agents、MCP servers、tablesも含まれます。Community Editionを自分の環境で動かす選択肢もあります。</p>
+      <p><strong>レビュー傾向：</strong>G2やProduct Huntでは、操作の分かりやすさ、オープンソース、手頃な価格が好評です。反対に、確立された競合より連携先が少ない、英語のチュートリアルが中心という声があります。少数の定型フローを大量に動かす用途では強く、特殊なSaaS連携を最初から必要とする場合は候補から外れます。</p>
+
+
+
+      <figure name="a5d8e134-e708-4257-b481-f79e2ddb2786" id="a5d8e134-e708-4257-b481-f79e2ddb2786" class="note-image"><a href="https://assets.st-note.com/img/1785728057-dJpUBxe1zyNPTR3kCjaGZf2n.png" rel="nofollow noopener" target="_blank"><img src="https://assets.st-note.com/img/1785728057-dJpUBxe1zyNPTR3kCjaGZf2n.png" alt="Relevance AI公式ホーム画面のスクリーンショット"></a><figcaption>Relevance AI公式ホーム画面（2026年8月3日取得）— <a href="https://relevanceai.com/" rel="nofollow noopener">公式サイト</a></figcaption></figure>
+      <h3><a href="https://relevanceai.com/" rel="nofollow noopener">Relevance AI</a>：AIエージェントを業務担当にする</h3>
+      <p><strong>公式情報：</strong>Freeは月200 Actions、Proは年払い月19ドルからで2,500 Actionsと月20ドルのVendor Creditsを含みます。単発の文章生成ではなく、調査、営業リスト作成、問い合わせ処理などを複数の専門エージェントに分けて運用する設計です。</p>
+      <p><strong>レビュー傾向：</strong>G2や独立レビューでは、エージェントの構成自由度、テンプレート、複数モデルを束ねる柔軟性が評価されています。一方、Actionsと外部モデル費の見積もりが直感的でないという指摘があります。単純な転送や通知の自動化だけなら、ZapierやActivepiecesの方が費用と構成を説明しやすいです。</p>
+
+
+    <h2>強み・弱み比較表</h2>
+    <h3>Zapier</h3><blockquote><p><strong>強み</strong><br>9,000以上のアプリ、テンプレート、ノーコード</p><p><strong>弱み</strong><br>tasks課金、複雑な処理・大量実行のコスト</p><p><strong>向く人</strong><br>営業・マーケ担当が自分で連携を作るチーム</p><p><strong>向かない人</strong><br>毎日大量のイベントを低い固定費で処理するチーム</p></blockquote>
+<h3>n8n</h3><blockquote><p><strong>強み</strong><br>セルフホスト、分岐、API・AIノード、execution単位</p><p><strong>弱み</strong><br>学習・保守、公開範囲と更新の管理</p><p><strong>向く人</strong><br>技術担当がデータ処理を細かく設計するチーム</p><p><strong>向かない人</strong><br>運用担当を置けず完全ノーコードだけを求めるチーム</p></blockquote>
+<h3>Activepieces</h3><blockquote><p><strong>強み</strong><br>10 flows無料、runs無制限、MCP・AI agents</p><p><strong>弱み</strong><br>連携先の幅、英語情報、企業向け機能の厚み</p><p><strong>向く人</strong><br>少数フローを大量実行する小規模チーム</p><p><strong>向かない人</strong><br>特殊なSaaS連携と大規模ガバナンスを同時に求める企業</p></blockquote>
+<h3>Relevance AI</h3><blockquote><p><strong>強み</strong><br>専門AIエージェント、ツール・モデルの組み合わせ</p><p><strong>弱み</strong><br>Actions・Vendor Creditsの予算管理、単純連携には過剰</p><p><strong>向く人</strong><br>営業・調査・CSをエージェント単位で分担したいチーム</p><p><strong>向かない人</strong><br>固定手順の通知・転送だけを安く動かしたいチーム</p></blockquote>
+
+    <h2>用途別の決定ルール</h2>
+    <blockquote><p><strong>非技術チーム</strong>：Zapier<br>フォーム、CRM、メール、Slackを今週中につなぐなら第一候補。高頻度イベントが中心なら選ばない。</p></blockquote><blockquote><p><strong>技術担当あり</strong>：n8n<br>API、分岐、データ整形、セルフホストを一つのワークフローにまとめるなら第一候補。保守担当がいないなら選ばない。</p></blockquote><blockquote><p><strong>少数フロー・大量実行</strong>：Activepieces<br>10フロー以内でrunsを気にせず動かすなら第一候補。連携アプリの網羅性が最重要なら選ばない。</p></blockquote><blockquote><p><strong>AIエージェント業務</strong>：Relevance AI<br>調査、営業、問い合わせを専門エージェントに分けるなら第一候補。単純な通知だけなら選ばない。</p></blockquote>
+    <p>迷った場合は「最初に自動化する一業務」と「月の実行単位」を先に決めます。アプリ間の転送ならZapierまたはActivepieces、処理を細かく制御するならn8n、判断や調査を任せるならRelevance AIという順で候補を絞れます。</p>
+
+    <h2>導入の設計</h2>
+    <blockquote><p><strong>01 / 入力</strong>：対象業務を1つに絞る<br>問い合わせ、見積作成、営業リサーチなど、開始条件と完了条件を一文で定義します。</p></blockquote><blockquote><p><strong>02 / 処理</strong>：トリガーから出力まで描く<br>フォームやメールを起点に、AI処理、データ保存、通知の順でつなぎ、各サービスのusage単位を割り当てます。</p></blockquote><blockquote><p><strong>03 / 定着</strong>：成果指標を一つ置く<br>処理件数、対応時間、商談化率など、導入前後で変化を読み取れる指標を一つだけ追います。</p></blockquote>
+    <p>ツールを先に契約するより、業務の入力・処理・出力を先に決めた方が、不要な有料枠と保守負担を避けられます。</p>
+
+    <h3>調査・出典</h3><ul>
+      <li><a href="https://zapier.com/pricing?m=1" rel="nofollow noopener">Zapier料金</a> / <a href="https://www.g2.com/products/zapier/reviews" rel="nofollow noopener">Zapier G2</a> / <a href="https://www.capterra.com/p/130182/Zapier/reviews/" rel="nofollow noopener">Zapier Capterra</a></li>
+      <li><a href="https://n8n.io/pricing/" rel="nofollow noopener">n8n料金</a> / <a href="https://www.g2.com/products/n8n/reviews" rel="nofollow noopener">n8n G2</a> / <a href="https://www.capterra.com/p/198028/n8n-io/reviews/" rel="nofollow noopener">n8n Capterra</a> / <a href="https://www.techradar.com/pro/security/critical-n8n-flaws-discovered-heres-how-to-stay-safe" rel="nofollow noopener">TechRadar</a></li>
+      <li><a href="https://www.activepieces.com/pricing" rel="nofollow noopener">Activepieces料金</a> / <a href="https://www.g2.com/products/activepieces/reviews" rel="nofollow noopener">Activepieces G2</a> / <a href="https://www.producthunt.com/products/activepieces/reviews" rel="nofollow noopener">Product Hunt</a></li>
+      <li><a href="https://relevanceai.com/docs/get-started/pricing" rel="nofollow noopener">Relevance AI料金</a> / <a href="https://www.g2.com/products/relevance-ai/reviews" rel="nofollow noopener">Relevance AI G2</a> / <a href="https://www.quantumdesk.com/blog/relevance-ai-reviews" rel="nofollow noopener">独立レビュー</a></li>
+    </ul>
+
+    <h2>よくある質問</h2>
+    <h3>無料で始めるならどれですか？</h3><p>Zapierは月100 tasks、Activepiecesは10 active flows、Relevance AIは月200 Actionsまで無料です。n8nはCommunity Editionをセルフホストできます。非技術チームはZapier、少数フローの大量実行はActivepieces、AIエージェントはRelevance AI、技術担当がいる場合はn8nから選ぶと迷いません。</p>
+    <h3>n8nとActivepiecesはどう使い分けますか？</h3><p>APIやデータ変換を細かく組み、セルフホストも選びたいならn8n。10本前後のフローをノーコードで管理し、runs無制限を活かしたいならActivepiecesです。保守担当がいない場合はn8nを選ばない判断になります。</p>
+    <h3>AIエージェントを業務に組み込むならどれですか？</h3><p>営業リサーチや問い合わせ対応を専門エージェントに分担させるならRelevance AI。既存アプリの間にAI処理を一つ足すだけならZapierまたはActivepiecesの方が構成を説明しやすいです。</p>
+    <h3>AI顧問室では何をしてくれますか？</h3><p>候補サービスの比較だけでなく、対象業務の入力・処理・出力を整理し、選んだAIを実際の業務フローへ組み込みます。</p>
+
+
+    <h2>自社に合うAIを<br>最短経路で組み込む</h2><p>候補選びから業務フローへの実装まで支援します。<br><strong>無料でコンサル一回分をプレゼント。</strong></p><strong><a href="https://timerex.net/s/koki.otsuka_bfac/4b686119" rel="nofollow noopener">無料コンサルを受け取る</a></strong>

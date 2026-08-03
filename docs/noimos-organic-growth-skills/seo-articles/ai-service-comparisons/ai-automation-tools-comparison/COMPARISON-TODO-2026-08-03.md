@@ -46,3 +46,15 @@
 - 公式ホーム画像4枚は `home-screens/` に保存し、`ai-automation-tools-comparison-screenshots.json` の全件を `visual_check: pass` とした。
 - 検索ボリューム・難易度の数値は取得できなかったため、キーワードCSVでは空欄にし、SERP商用性・比較記事の存在・一次情報量を需要プロキシとして記録した。
 - 公開後28日のGSC・記事CTA・相談CV確認は公開後に実施するため未完了。
+
+## note変換・公開
+
+- [x] note-article-converterでタイトルと本文を分離し、サイト用メタ情報・関連記事・独自CSSを除去
+- [x] HTML表4つをサービス別の`h3`＋`blockquote`比較カードへ変換
+- [x] 公式ホーム画像4枚とサムネイルをnote画像へアップロードし、本文順を維持
+- [x] note内部APIで下書き保存後、明示承認に基づきフルpayloadで公開
+- [x] note APIで`status=published`、`is_published=true`、画像5枚、タグ4件を確認
+- [x] 公開HTMLをHTTP 200で取得し、ブラウザでタイトル・画像・本文・CTAを確認
+- [x] 変換本文に`table`、`div`、`section`、`details`、関連記事、サイト専用ラベルを残していない
+
+証跡：`note-article-converted.html`、`note-publication.json`、公開URL [note記事](https://note.com/try_aikomon/n/n2f59eb6f7c15)。
