@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AI業務自動化ツール比較</title>
+  <desc id="desc">業務フローを表す白い接続アイコンを配した抽象的なカバー画像</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#142b4c"/><stop offset=".55" stop-color="#26699a"/><stop offset="1" stop-color="#65b9b1"/></linearGradient>
+    <linearGradient id="icon" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset=".58" stop-color="#fff"/><stop offset="1" stop-color="#bce9e1"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="20" stdDeviation="18" flood-color="#071b35" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="1600" height="900" rx="54" fill="url(#bg)"/>
+  <path d="M-100 620C180 420 390 460 610 600s410 210 720 10 420-170 550-110v400H-100Z" fill="#9ad5d0" opacity=".2"/>
+  <path d="M-120 190C200 360 380 260 580 110s360-170 610 40 390 200 570 50v-220H-120Z" fill="#d7f4ec" opacity=".12"/>
+  <path d="M90 750L470 180M360 900L860 120M760 900L1330 120M1100 900L1600 300" stroke="#fff" stroke-opacity=".08" stroke-width="28"/>
+  <g filter="url(#shadow)" fill="none" stroke="url(#icon)" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="490" cy="450" r="82" fill="url(#icon)" stroke="none"/>
+    <circle cx="1110" cy="450" r="82" fill="url(#icon)" stroke="none"/>
+    <path d="M572 450h456"/>
+    <path d="M770 450v-148h180M770 450v148h180"/>
+    <circle cx="950" cy="302" r="44" fill="url(#icon)" stroke="none"/>
+    <circle cx="950" cy="598" r="44" fill="url(#icon)" stroke="none"/>
+  </g>
+  <g fill="#173b61" opacity=".8"><circle cx="490" cy="450" r="22"/><circle cx="1110" cy="450" r="22"/><circle cx="950" cy="302" r="12"/><circle cx="950" cy="598" r="12"/></g>
+</svg>

@@ -15,7 +15,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 test('全SEO記事に共通計測スタックが入っている', () => {
   const pages = discoverArticlePages(ROOT);
   const issues = auditArticleRepository(ROOT);
-  assert.equal(pages.length, 35);
+  assert.equal(pages.length, 36);
   assert.deepEqual(issues, {});
 });
 

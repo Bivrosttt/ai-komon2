@@ -1,0 +1,19 @@
+{
+  "tool": "noimos-comparison-article",
+  "input": "articles/ai-automation-tools-comparison/index.html",
+  "status": "PASS",
+  "blockers": [],
+  "warnings": [],
+  "services": [
+    "Zapier",
+    "n8n",
+    "Activepieces",
+    "Relevance AI"
+  ],
+  "home_urls": {
+    "Zapier": "https://zapier.com",
+    "n8n": "https://n8n.io",
+    "Activepieces": "https://www.activepieces.com",
+    "Relevance AI": "https://relevanceai.com"
+  }
+}

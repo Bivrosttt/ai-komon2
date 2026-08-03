@@ -1,0 +1,14 @@
+{
+  "manual_visual_review": {
+    "status": "pass",
+    "checked_at": "2026-08-03",
+    "method": "agent-browser screenshot followed by view_image inspection of all four images",
+    "notes": "公式ホームの主要ヒーロー、ブランド、導線が読み取れ、Cookieモーダルやチャレンジ画面などの主要オーバーレイがないことを確認"
+  },
+  "screenshots": [
+    {"service":"Zapier","source_url":"https://zapier.com/","retrieved_at":"2026-08-03","path":"articles/ai-automation-tools-comparison/home-screens/zapier-home.png","visual_check":{"status":"pass","checked_at":"2026-08-03","method":"view_image","notes":"オレンジのヘッダーと自動化を訴求するヒーローを確認"}},
+    {"service":"n8n","source_url":"https://n8n.io/","retrieved_at":"2026-08-03","path":"articles/ai-automation-tools-comparison/home-screens/n8n-home.png","visual_check":{"status":"pass","checked_at":"2026-08-03","method":"view_image","notes":"ダークなヒーローとAIエージェント・ワークフローの訴求を確認"}},
+    {"service":"Activepieces","source_url":"https://www.activepieces.com/","retrieved_at":"2026-08-03","path":"articles/ai-automation-tools-comparison/home-screens/activepieces-home.png","visual_check":{"status":"pass","checked_at":"2026-08-03","method":"view_image","notes":"Give AI to every teamのヒーローと連携アプリ群を確認"}},
+    {"service":"Relevance AI","source_url":"https://relevanceai.com/","retrieved_at":"2026-08-03","path":"articles/ai-automation-tools-comparison/home-screens/relevance-ai-home.png","visual_check":{"status":"pass","checked_at":"2026-08-03","method":"view_image","notes":"Specialist agents for every taskのヒーローと業務エージェント画面を確認"}}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "checked_at": "2026-08-03",
+  "browser": "agent-browser",
+  "page": "http://127.0.0.1:4173/articles/ai-automation-tools-comparison/index.html",
+  "viewports": {
+    "1280x800": {"overflow": false, "answer": true, "key_points": true, "toc": true, "related": true, "cta_href": "https://timerex.net/s/koki.otsuka_bfac/4b686119", "notes": "左目次・中央本文・右CTAの3カラムを目視"},
+    "768x1024": {"overflow": false, "notes": "見出し、サムネイル、表の横スクロール領域を目視"},
+    "390x844": {"overflow": false, "toc_display": "none", "cta_order": "99", "cta_href": "https://timerex.net/s/koki.otsuka_bfac/4b686119", "notes": "目次を隠し、CTAを記事下へ移すレスポンシブを確認"}
+  },
+  "images": {"all_complete_after_scroll": true, "natural_widths": {"thumbnail.svg": 267, "zapier-home.png": 1440, "n8n-home.png": 1440, "activepieces-home.png": 1440, "relevance-ai-home.png": 1440}},
+  "console": {"errors": [], "warnings": []},
+  "checks": ["header", "answer", "key-points", "toc", "service reviews", "official home screenshots", "comparison tables", "related links", "TimeRex CTA"]
+}

@@ -1,0 +1,8 @@
+service,plan,monthly_price,billing,usage,scenario_cost,cost_note,source_url,retrieved_at
+Zapier,Free,0,monthly,100 tasks/month,0 USD within free quota,"1,000 tasks exceed free quota; higher usage is task-based",https://zapier.com/pricing?m=1,2026-08-03
+Zapier,Professional,19.99,monthly equivalent annual,"task quota varies by selected tier",,"Professional starts at listed price; task overage depends on tier",https://zapier.com/pricing?m=1,2026-08-03
+n8n,Starter,20,EUR monthly equivalent annual,"2,500 workflow executions/month; unlimited steps per execution",0.008 EUR/execution at full quota,"Execution count does not rise with step count",https://n8n.io/pricing/,2026-08-03
+Activepieces,Standard,0,monthly,"10 active flows; unlimited runs",0 USD within 10 active flows,"Additional active flow is 5 USD/month",https://www.activepieces.com/pricing,2026-08-03
+Activepieces,11 active flows,55,USD monthly,"11 active flows; unlimited runs",0.055 USD/flow-month,"Ten free flows plus one paid flow at 5 USD; listed for scenario clarity",https://www.activepieces.com/pricing,2026-08-03
+Relevance AI,Free,0,monthly,200 Actions/month,0 USD within free quota,"External model and vendor use is separate",https://relevanceai.com/docs/get-started/pricing,2026-08-03
+Relevance AI,Pro,19,USD monthly equivalent annual,"2,500 Actions/month + 20 USD Vendor Credits/month",,"Action and vendor credits cannot be reduced to one universal task price",https://relevanceai.com/docs/get-started/pricing,2026-08-03

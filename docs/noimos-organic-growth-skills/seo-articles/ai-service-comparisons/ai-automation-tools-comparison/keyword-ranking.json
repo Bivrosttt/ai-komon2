@@ -1,0 +1,83 @@
+{
+  "tool": "noimos-commercial-keywords",
+  "generated_at": "2026-08-03T02:37:41.542873+00:00",
+  "method": "planning heuristic; not a ranking or revenue prediction",
+  "eligible_count": 5,
+  "candidates": [
+    {
+      "keyword": "AI業務自動化ツール 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 68.0,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "Japanese SERP comparison pages and official pricing pages",
+      "retrieved_at": "2026-08-03",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AI ワークフロー 自動化 ツール 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 68.0,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "Japanese SERP and n8n official comparison",
+      "retrieved_at": "2026-08-03",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "Zapier n8n 比較",
+      "intent": "comparison",
+      "eligible": true,
+      "score": 66.2,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "Brand comparison SERP and official plans",
+      "retrieved_at": "2026-08-03",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "業務自動化 ノーコード 比較",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 64.2,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "Japanese SERP and review pages",
+      "retrieved_at": "2026-08-03",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    },
+    {
+      "keyword": "AIエージェント 自動化 料金",
+      "intent": "commercial",
+      "eligible": true,
+      "score": 62.2,
+      "search_volume": null,
+      "difficulty": null,
+      "demand_basis": "unknown_neutral",
+      "source": "Official pricing pages for agent/workflow services",
+      "retrieved_at": "2026-08-03",
+      "reasons": [
+        "volume_not_observed",
+        "difficulty_not_observed"
+      ]
+    }
+  ]
+}
